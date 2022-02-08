@@ -21,8 +21,8 @@ markdown_extensions:
   - admonition
 nav:
   - "Nova":
-#      - "Guide":
-#          - "Getting started": "nova/guide/index.md"
+#     - "Guide":
+#         - "Getting started": "nova/guide/index.md"
       - "For Server Admins":
           - "Configs":
             - "Main Config": "nova/configs/main.md"
