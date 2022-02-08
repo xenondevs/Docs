@@ -1,0 +1,43 @@
+site_name: xenondevs docs
+site_url: https://xenondevs.xyz/docs/
+theme:
+  name: material
+  logo: assets/logo.png
+  palette:
+    scheme: slate
+  features:
+    - content.tabs.link
+    - navigation.tabs
+    - content.code.annotate
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+nav:
+  - "Nova":
+#      - "Guide":
+#          - "Getting started": "nova/guide/index.md"
+      - "For Server Admins":
+          - "Configs":
+            - "Main Config": "nova/configs/main.md"
+            - "Individual Configs": "nova/configs/individual.md"
+          - "Recipes": "nova/configs/recipes.md"
+      - "API":
+          - "Getting Started": "nova/api/index.md"
+          - "Protection": "nova/api/protection/protectionintegration.md"
+          - "NovaMaterial": "nova/api/material/index.md"
+          - "TileEntity":
+              - "TileEntity": "nova/api/tileentity/tileentity.md"
+              - "TileEntityManager": "nova/api/tileentity/tileentitymanager.md"
+          - "Events":
+              - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
+              - "ProtectionCheckEvent": "nova/api/events/protectioncheckevent.md"
+              - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
+  - "ParticleLib":
+      - "": 'wip.md'
