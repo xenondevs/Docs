@@ -97,7 +97,7 @@ These speeds can be configured here:
 ```
 !!! info
 
-    If you're looking trying to change the transfer rates of cables, these are configured in the individual cable configs.
+    If you're looking to change the transfer rates of cables, these are configured in the individual cable configs.
 
 ## Performance Options
 
