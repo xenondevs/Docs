@@ -1,5 +1,6 @@
 site_name: xenondevs docs
 site_url: https://xenondevs.xyz/docs/
+repo_url: https://github.com/xenondevs/Docs
 theme:
   name: material
   logo: assets/logo.png
