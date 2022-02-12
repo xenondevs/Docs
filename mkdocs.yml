@@ -12,7 +12,7 @@ extra:
       link: https://discord.com/invite/hnEknVWvUe
   alternate:
     - name: English
-      link: httpsxenondevs.xyz/docs/en/
+      link: /en/
 theme:
   name: material
   logo: assets/logo.png
