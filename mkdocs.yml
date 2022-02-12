@@ -2,7 +2,6 @@ site_name: xenondevs docs
 site_url: https://xenondevs.xyz/docs/
 repo_url: https://github.com/xenondevs/Docs
 repo_name: xenondevs/Docs
-edit_uri: edit/main/docs/
 copyright: Copyright &copy; 2022 xenondevs
 extra:
   social:
@@ -10,9 +9,6 @@ extra:
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/hnEknVWvUe
-  alternate:
-    - name: English
-      link: /en/
 theme:
   name: material
   logo: assets/logo.png
