@@ -30,6 +30,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
   - admonition
+plugins:
+  - i18n:
+      default_language: en
+      languages:
+        en: English
+        de: Deutsch
 nav:
   - "Nova":
       - "Guide":
