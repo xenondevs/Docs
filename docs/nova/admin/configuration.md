@@ -24,12 +24,13 @@ Tile-Entity limits are configured in the `performance.tile_entity_limits` sectio
 Players with the permission `nova.misc.bypassTileEntityLimits` will be able to bypass these restrictions.
 
 There are 4 different limiters. You can choose one or combine multiple:
-| Name                 | Description                                                                  |
-| :------------------: | :--------------------------------------------------------------------------- |
-| world                | Prevent placing tile entities in specific worlds.                            |
-| type_world           | Prevent placing specific tile-entities in specific worlds.                   |
-| amount               | Set a maximum amount of tile-entities of a type for a player.                |
-| amount_per_world     | Set a maximum amount of tile-entities of a type for a player for each world. |
+
+|       Name       | Description                                                                  |
+|:----------------:|:-----------------------------------------------------------------------------|
+|      world       | Prevent placing tile entities in specific worlds.                            |
+|    type_world    | Prevent placing specific tile-entities in specific worlds.                   |
+|      amount      | Set a maximum amount of tile-entities of a type for a player.                |
+| amount_per_world | Set a maximum amount of tile-entities of a type for a player for each world. |
 
 Example configs:
 
