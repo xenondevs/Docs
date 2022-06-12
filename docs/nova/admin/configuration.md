@@ -8,7 +8,7 @@ The following section explains the more complex configuration options.
 
 ## Item Categories
 <figure markdown>
-  ![](https://i.imgur.com/92BWPDd.png){ align=right }
+  ![](https://i.imgur.com/92BWPDd.png){ width=200 }
   <figcaption>A screenshot of the Nova items menu</figcaption>
 </figure>
 You might want to customize the Nova items menu. In order to do that, just edit `plugins/Nova/configs/item_categories.yml`. You can add or remove categories and change icon, name and items.
@@ -25,7 +25,7 @@ Players with the permission `nova.misc.bypassTileEntityLimits` will be able to b
 
 There are 4 different limiters. You can choose one or combine multiple:
 | Name                 | Description                                                                  |
-|:--------------------:|:-----------------------------------------------------------------------------|
+| :------------------: | :--------------------------------------------------------------------------- |
 | world                | Prevent placing tile entities in specific worlds.                            |
 | type_world           | Prevent placing specific tile-entities in specific worlds.                   |
 | amount               | Set a maximum amount of tile-entities of a type for a player.                |
@@ -35,8 +35,9 @@ Example configs:
 
 === world
 
-    This example config prevents players from placing tile-entities in the nether and end dimension.
     ```yaml
+    # This example config prevents players from placing
+    # tile-entities in the nether and end dimension.
     performance:
       tile_entity_limits:
         world_blacklist:
@@ -47,8 +48,9 @@ Example configs:
 
 === type_world
 
-    This example config prevents players from placing quarries in the overworld and pulverizers in the nether.
     ```yaml
+    # This example config prevents players from placing
+    # quarries in the overworld and pulverizers in the nether.
     performance:
       tile_entity_limits:
         world_type_blacklist:
@@ -60,8 +62,9 @@ Example configs:
 
 === amount
 
-    This example config sets a maximum amount of one quarry and 50 cables of each type for every player.
     ```yaml
+    # This example config sets a maximum amount of one
+    # quarry and 50 cables of each type for every player.
     performance:
       tile_entity_limits:
         amount:
@@ -74,8 +77,9 @@ Example configs:
 
 === amount_per_world
 
-    This example config sets a maximum of one quarry per player per world.
     ```yaml
+    # This example config sets a maximum of one
+    # quarry per player per world.
     performance:
       tile_entity_limits:
         amount_per_world:
