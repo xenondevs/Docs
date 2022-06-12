@@ -121,10 +121,6 @@ This is an example recipe for pulverizing iron ore into iron dust:
 }
 ```
 
-!!! info "Time"
-
-    The time is in ticks. One second is 20 ticks.
-
 ### Mechanical Press Recipes
 
 Recipes for the mechanical press are grouped in the sub-folders ``gear/`` and ``plate/``  
@@ -142,10 +138,6 @@ This is an example recipe for pressing an iron plate:
 !!! info "Multiple Choices for Ingredients"
 
     If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for the input.
-
-!!! info "Time"
-
-    The time is in ticks. One second is 20 ticks.
 
 ### Fluid Infuser Recipes
 
@@ -171,10 +163,6 @@ This is an example recipe for inserting water into a bucket to create a water bu
 
     Currently, there are only ``WATER`` and ``LAVA``. Custom fluids from other plugins are not supported.
 
-!!! info "Time"
-
-     The time is in ticks. One second is 20 ticks.
-
 This is an example recipe for extract water from a water bottle to create an empty bottle:
 
 ```json
@@ -191,10 +179,6 @@ This is an example recipe for extract water from a water bottle to create an emp
 !!! info "Custom Item Format"
 
      As a water bottle is not its own item, a Custom Item Format is required here. See \"Item Formats\" below for more information.
-
-!!! info "Time"
-
-    The time is in ticks. One second is 20 ticks.
 
 ### Electric Brewing Stand Recipes
 
@@ -239,7 +223,7 @@ This recipe would add the luck effect type to the electric brewing stand:
 
      The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
 
-!!! warning "Multiple Item Choices"
+!!! warning "Multiple Choices for Ingredients"
 
      In this recipe type, multiple item choices for one ingredient are **not** allowed.
 
