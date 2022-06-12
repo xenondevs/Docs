@@ -55,10 +55,13 @@ For more advanced users, Nova can also perform a multipart request to a server o
 
 For [this php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455), the config would be the following:
 ```yaml
-url: https://example.com/upload.php
-filePartName: pack
-extraparams:
-  key: "" # This key also needs to be set in the php script mentioned above
+auto_upload:
+  enabled: true
+  service: CustomMultiPart
+  url: https://example.com/upload.php
+  filePartName: pack
+  extraparams:
+    key: "" # This key also needs to be set in the php script mentioned above
 ```
 
 If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
