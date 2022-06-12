@@ -285,18 +285,18 @@ For that, just put multiple recipe objects into a json array:
       "  a"
     ],
     "ingredients": {
-      "t": "addon2:example_item"
+      "a": "addon2:example_item"
     }
   },
   {
     "result": "addon1:result_item",
     "shape": [
-      " a  ",
+      " a ",
       " a ",
       " a "
     ],
     "ingredients": {
-      "t": "addon1:fallback_item"
+      "a": "addon1:fallback_item"
     }
   }
 ]
@@ -320,18 +320,18 @@ If you don't want any exceptions in the console if none of the fallbacks could b
         "  a"
       ],
       "ingredients": {
-        "t": "addon2:example_item"
+        "a": "addon2:example_item"
       }
     },
     {
       "result": "addon1:result_item",
       "shape": [
-        " a  ",
+        " a ",
         " a ",
         " a "
       ],
       "ingredients": {
-        "t": "addon1:fallback_item"
+        "a": "addon1:fallback_item"
       }
     }
   ]
