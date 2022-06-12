@@ -31,15 +31,15 @@ recipe for the Advanced Cable:
 
 !!! info "Shape"
 
-   The shape is the structure of the recipe. You can see that it resembles a Crafting Table. The letters you use here have to  also be present in the ``ingredients`` section. You can use a space if that slot should be empty.
+    The shape is the structure of the recipe. You can see that it resembles a Crafting Table. The letters you use here have to  also be present in the ``ingredients`` section. You can use a space if that slot should be empty.
 
 !!! info "Multiple Choices for Ingredients"
 
-   If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for each ingredient.
+     If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for each ingredient.
 
 !!! info ""
 
-   "amount" can be omitted for 1
+    "amount" can be omitted for 1
 
 ### Shapeless Recipes
 
@@ -58,7 +58,7 @@ for the Basic Item Filter:
 
 !!! info "Amount of Items"
 
-   The number after the ingredient names represents the amount of items that need to be present in the crafting table.
+     The number after the ingredient names represents the amount of items that need to be present in the crafting table.
 
 Like in shaped recipes, it is also possible to give multiple choices for a specific ingredient.  
 The following recipe would allow players to either use paper or an iron plate to craft a Basic Item Filter.
@@ -97,11 +97,11 @@ This is an example recipe for smelting iron dust into iron ingots:
 
 !!! info "Multiple Choices for Ingredients"
 
-   If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for the input.
+      If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for the input.
 
 !!! info "Time"
 
-   The time is in ticks. One second is 20 ticks.
+     The time is in ticks. One second is 20 ticks.
 
 ## Machines Recipe Types
 
@@ -123,7 +123,7 @@ This is an example recipe for pulverizing iron ore into iron dust:
 
 !!! info "Time"
 
-The time is in ticks. One second is 20 ticks.
+    The time is in ticks. One second is 20 ticks.
 
 ### Mechanical Press Recipes
 
@@ -141,11 +141,11 @@ This is an example recipe for pressing an iron plate:
 
 !!! info "Multiple Choices for Ingredients"
 
-If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for the input.
+    If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for the input.
 
 !!! info "Time"
 
-The time is in ticks. One second is 20 ticks.
+    The time is in ticks. One second is 20 ticks.
 
 ### Fluid Infuser Recipes
 
@@ -165,15 +165,15 @@ This is an example recipe for inserting water into a bucket to create a water bu
 
 !!! info "Mode"
 
-   The mode specifies if this should be a recipe for inserting (``INSERT``) or extracting (``EXTRACT``) fluids.
+    The mode specifies if this should be a recipe for inserting (``INSERT``) or extracting (``EXTRACT``) fluids.
 
-!! info "Fluid Type"
+!!! info "Fluid Type"
 
-   Currently, there are only ``WATER`` and ``LAVA``. Custom fluids from other plugins are not supported.
+    Currently, there are only ``WATER`` and ``LAVA``. Custom fluids from other plugins are not supported.
 
 !!! info "Time"
 
-   The time is in ticks. One second is 20 ticks.
+     The time is in ticks. One second is 20 ticks.
 
 This is an example recipe for extract water from a water bottle to create an empty bottle:
 
@@ -190,11 +190,11 @@ This is an example recipe for extract water from a water bottle to create an emp
 
 !!! info "Custom Item Format"
 
-   As a water bottle is not its own item, a Custom Item Format is required here. See \"Item Formats\" below for more information.
+     As a water bottle is not its own item, a Custom Item Format is required here. See \"Item Formats\" below for more information.
 
 !!! info "Time"
 
-   The time is in ticks. One second is 20 ticks.
+    The time is in ticks. One second is 20 ticks.
 
 ### Electric Brewing Stand Recipes
 
@@ -221,27 +221,27 @@ This recipe would add the luck effect type to the electric brewing stand:
 
 !!! info "default_time"
 
-   The default time a potion with this effect would have. In ticks, 20 ticks = 1s. This potion would have a default time of 1:30
+     The default time a potion with this effect would have. In ticks, 20 ticks = 1s. This potion would have a default time of 1:30
 
 !! info "redstone_multiplier"
 
-   The time multiplier when a duration level (one redstone) is added. This means a luck potion with level two duration would last 3:00, level three 4:30 and so on.
+     The time multiplier when a duration level (one redstone) is added. This means a luck potion with level two duration would last 3:00, level three 4:30 and so on.
 
 !! info "glowstone_multiplier"
 
-   In Minecraft, when glowstone is added to a potion in order to increase the amplifier level, the duration is reduced. This is represented by this multiplier. A potion with an amplifier of level two would have a duration of 0:45, level three 0:11 and so on.
+     In Minecraft, when glowstone is added to a potion in order to increase the amplifier level, the duration is reduced. This is represented by this multiplier. A potion with an amplifier of level two would have a duration of 0:45, level three 0:11 and so on.
 
 !! info "max_duration_level"
 
-   The maximum allowed duration level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
+     The maximum allowed duration level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
 
 !! info "max_amplifier_level"
 
-   The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
+     The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
 
 !! warning "Multiple Item Choices"
 
-   In this recipe type, multiple item choices for one ingredient are **not** allowed.
+     In this recipe type, multiple item choices for one ingredient are **not** allowed.
 
 ## Item Formats
 
@@ -320,7 +320,7 @@ For that, just put multiple recipe objects into a json array:
 
 !!! info
 
-   If required, it is also possible to use item fallbacks inside of recipe fallbacks.
+       If required, it is also possible to use item fallbacks inside of recipe fallbacks.
 
 If you don't want any exceptions in the console if none of the fallbacks could be loaded, you can set the ``failSilently`` boolean to ``true``.
 
