@@ -6,14 +6,10 @@ Every addon has its own subdirectory with its own config files.
 Most of the options in the configs are self-explanatory or explained using comments.
 The following section explains the more complex configuration options.
 
-## Item Categories
-<figure markdown>
-  ![](https://i.imgur.com/92BWPDd.png){ width=200 }
-  <figcaption>A screenshot of the Nova items menu</figcaption>
-</figure>
+## Items Menu
 You might want to customize the Nova items menu. In order to do that, just edit `plugins/Nova/configs/item_categories.yml`. You can add or remove categories and change icon, name and items.
 
-!!! warn
+!!! warning
 
     After applying changes to `item_categories.json`, the file will not be automatically updated anymore. This will cause items from newly added or updated items to not appear and will prevent Nova from working properly after removing an addon whose items are listed here.
 
@@ -45,7 +41,7 @@ Example configs:
           worlds:
             - world_nether
             - world_the_end
-     ```
+    ```
 
 === "type_world"
 
@@ -89,7 +85,7 @@ Example configs:
 
 ## Upgrade values
 
-As every addon can add its own upgrades. The upgrade values for the default upgrades `speed`, `efficiency`, `energy`, `fluid` and `range` are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`. Every addon that has its own upgrades also has a `upgrade_values.json` config file in its config folder.  
+As every addon can add its own upgrades. The upgrade values for the default upgrades `speed`, `efficiency`, `energy`, `fluid` and `range` are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`. Every addon that has its own upgrades also has a `upgrade_values.json` config file in its config folder.
 
 The config for the default upgrades looks like this:
 ```yaml

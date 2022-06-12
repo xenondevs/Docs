@@ -5,8 +5,7 @@ the broken block.
 
 !!! warning
 
-    This event can't be cancelled. Please see [ProtectionIntegration](../protection/protectionintegration.md)
-    and [ProtectionCheckEvent](./protectioncheckevent.md).
+    This event can't be cancelled. Please see [ProtectionIntegration](../protection/protectionintegration.md).
 
 ## Properties
 

@@ -59,7 +59,6 @@ nav:
               - "TileEntityManager": "nova/api/tileentity/tileentitymanager.md"
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
-              - "ProtectionCheckEvent": "nova/api/events/protectioncheckevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
   - "ParticleLib":
       - "": 'wip.md'
