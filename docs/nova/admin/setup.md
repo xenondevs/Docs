@@ -25,7 +25,7 @@ There are currently three main ways to configure the auto-uploader:
 Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
 
 Example config:
-```yml
+```yaml
 auto_upload:
   enabled: true
   service: xenondevs
@@ -38,7 +38,7 @@ If you're able to open a port on your server, this option will make the most sen
 Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
 
 Example config:
-```yml
+```yaml
 auto_upload:
   enabled: true
   service: SelfHost
@@ -54,7 +54,7 @@ auto_upload:
 For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
 
 For [this php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455), the config would be the following:
-```yml
+```yaml
 url: https://example.com/upload.php
 filePartName: pack
 extraparams:
