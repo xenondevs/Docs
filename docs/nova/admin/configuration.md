@@ -33,7 +33,7 @@ There are 4 different limiters. You can choose one or combine multiple:
 
 Example configs:
 
-=== world
+=== "world"
 
     ```yaml
     # This example config prevents players from placing
@@ -46,7 +46,7 @@ Example configs:
             - world_the_end
      ```
 
-=== type_world
+=== "type_world"
 
     ```yaml
     # This example config prevents players from placing
@@ -60,7 +60,7 @@ Example configs:
             - machines:pulverizer
     ```
 
-=== amount
+=== "amount"
 
     ```yaml
     # This example config sets a maximum amount of one
@@ -75,7 +75,7 @@ Example configs:
           logistics:ultimate_cable: 50
     ```
 
-=== amount_per_world
+=== "amount_per_world"
 
     ```yaml
     # This example config sets a maximum of one
