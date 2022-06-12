@@ -223,23 +223,23 @@ This recipe would add the luck effect type to the electric brewing stand:
 
      The default time a potion with this effect would have. In ticks, 20 ticks = 1s. This potion would have a default time of 1:30
 
-!! info "redstone_multiplier"
+!!! info "redstone_multiplier"
 
      The time multiplier when a duration level (one redstone) is added. This means a luck potion with level two duration would last 3:00, level three 4:30 and so on.
 
-!! info "glowstone_multiplier"
+!!! info "glowstone_multiplier"
 
      In Minecraft, when glowstone is added to a potion in order to increase the amplifier level, the duration is reduced. This is represented by this multiplier. A potion with an amplifier of level two would have a duration of 0:45, level three 0:11 and so on.
 
-!! info "max_duration_level"
+!!! info "max_duration_level"
 
      The maximum allowed duration level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
 
-!! info "max_amplifier_level"
+!!! info "max_amplifier_level"
 
      The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
 
-!! warning "Multiple Item Choices"
+!!! warning "Multiple Item Choices"
 
      In this recipe type, multiple item choices for one ingredient are **not** allowed.
 
