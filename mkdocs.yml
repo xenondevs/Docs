@@ -31,6 +31,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
   - admonition
+  - attr_list
+  - md_in_html
 plugins:
   - i18n:
       default_language: en
@@ -43,10 +45,11 @@ nav:
           - "Getting started": "nova/guide/index.md"
           - "Non Craftable": "nova/guide/non-craftable.md"
       - "For Server Admins":
+          - "Setup": "nova/admin/setup.md"
           - "Configs":
-            - "Main Config": "nova/configs/main.md"
-            - "Individual Configs": "nova/configs/individual.md"
-          - "Recipes": "nova/configs/recipes.md"
+            - "Main Config": "nova/admin/configs/main.md"
+            - "Individual Configs": "nova/admin/configs/individual.md"
+          - "Recipes": "nova/admin/recipes.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"

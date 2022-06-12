@@ -1,1 +1,1 @@
-[Nova Wiki](./nova/configs/main.md)
+[Nova Wiki](nova/admin/configs/main.md)
