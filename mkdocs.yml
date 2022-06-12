@@ -33,6 +33,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
+  - tables
 plugins:
   - i18n:
       default_language: en
@@ -47,9 +48,7 @@ nav:
           - "Non Craftable": "nova/guide/non-craftable.md"
       - "For Server Admins":
           - "Setup": "nova/admin/setup.md"
-          - "Configs":
-            - "Main Config": "nova/admin/configs/main.md"
-            - "Individual Configs": "nova/admin/configs/individual.md"
+          - "Configuration": "nova/admin/configuration.md"
           - "Recipes": "nova/admin/recipes.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
