@@ -2,13 +2,13 @@
 
 ## Step 1: Plugin Installation
 
-* Just like any other plugin, the plugin jar file downloaded from [SpigotMC](https://www.spigotmc.org/resources/93648/) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
-* Start your server and wait until Nova is done loading. (Indicated by the message in the console ``[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
+* Like any other plugin, the plugin jar file downloaded from [SpigotMC](https://www.spigotmc.org/resources/93648/) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
+* Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
 !!! warning
 
-    Nova v0.9 is not compatible with earlier versions of Nova. If you're updating from an earlier version, make sure to delete the ``plugins/Nova`` folder and remove all items / blocks from your world.
+    Nova v0.9 is not compatible with earlier versions of Nova. If you're updating from an earlier version, make sure to delete the ``plugins/Nova`` folder and remove all items and blocks from Nova from your world.
 
 ## Step 2: ResourcePack Hosting
 
@@ -16,6 +16,8 @@ Due to the way custom resource packs work, it is required to upload them to a we
 Nova has a built-in way to automatically upload the resource pack after it changes.
 
 The auto-uploader can be configured in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.auto_upload``.
+
+There are currently three main ways to configure the auto-uploader:
 
 ### Patreon Upload Service
 
@@ -43,7 +45,7 @@ auto_upload:
   port: 12345 # The port on which the server will be running, needs to be open to the Internet.
 ```
 
-??? info "Optional Parameters"
+!!! info "Optional Parameters"
 
         You can also set the host of your server using the ``host`` parameter. If it is not set, the public ip address of your server gets used.
 
@@ -60,13 +62,25 @@ extraparams:
 ```
 
 If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
-For example, for a response like this ``{"state":"success", "url":"https://example.com/ResourcePack.zip"}``, the regex could be ``"url":"([\w:/\.]*)``.
+For example, for a response like this 
+```json
+{
+  "state": "success",
+  "url": "https://example.com/ResourcePack.zip"
+}
+```
+the regex could be ``"url": "([\w:/\.]*)``.
 
 ## Step 3: Installing addons
 
 To install an addon:
+
 * Stop the server
 * Drag & drop the addon jar file into ``plugins/Nova/addons/``
 * Start the server again
 
 The new resource pack will be automatically generated and uploaded using the configured auto-uploader.
+
+!!! info
+
+    Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons: `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing`
