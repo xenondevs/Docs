@@ -10,6 +10,7 @@ Unchecked plugins are partially supported, some features might not work.
 - [ ] [oraxen](https://www.spigotmc.org/resources/72448/) (Blocks are not recognized by Nova)
 
 Planned:
+
 * [Slimefun](https://github.com/Slimefun/Slimefun4)
 * [Space](https://www.spigotmc.org/resources/space.59572/)
 
