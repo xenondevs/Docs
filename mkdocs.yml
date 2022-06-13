@@ -26,6 +26,8 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
@@ -48,6 +50,7 @@ nav:
           - "Non Craftable": "nova/guide/non-craftable.md"
       - "For Server Admins":
           - "Setup": "nova/admin/setup.md"
+          - "Compatibility": "nova/admin/compatibility.md"
           - "Configuration": "nova/admin/configuration.md"
           - "Recipes": "nova/admin/recipes.md"
       - "API":
