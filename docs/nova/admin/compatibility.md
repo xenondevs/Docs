@@ -18,7 +18,7 @@ Planned:
 
     Most of these plugins require [resource pack merging](setup.md#optional-resourcepack-merging).
 
-## World Protection
+## World Protection Plugins
 
 - [x] WorldGuard
 - [x] GriefPrevention
