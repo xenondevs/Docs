@@ -87,3 +87,28 @@ The new resource pack will be automatically generated and uploaded using the con
 !!! info
 
     Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons: `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing`
+
+## (optional) ResourcePack Merging
+
+**This step is only required if your server is already using a custom resource pack.**
+
+Due to technical limitations, it is only possible to have one server resource pack. To circumvent this issue, Nova can automatically merge existing resource packs with its own.
+
+* Make sure to turn off the custom resource pack in the config of the plugin providing it
+* Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
+
+Example:
+```yaml
+resource_pack:
+  base_packs:
+    - plugins/ItemsAdder/data/resource_pack
+```
+
+!!! info
+
+    You can add as many base packs as you want.
+
+
+!!! warning
+
+    There might still be some issues with overlapping custom model data after merging the resource packs. To address this, change the ``modelDataStart`` values under ``resource_pack.materials.<materialType>``.
