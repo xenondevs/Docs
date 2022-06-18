@@ -13,9 +13,15 @@
 ## Step 2: ResourcePack Hosting
 
 Due to the way custom resource packs work, it is required to upload them to a web server first before they can be sent to players.
-Nova has a built-in way to automatically upload the resource pack after it changes.
+You can either set an url to a resource pack you have already uploaded to a web server in the main config file ``plugins/Nova/configs/config.yml``
 
-The auto-uploader can be configured in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.auto_upload``.
+```yaml
+resource_pack:
+  url: https://example.com/resource_pack.zip
+```
+
+Or use Novas built-in way to automatically upload the resource pack after it changes. The auto-uploader can be configured 
+in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.auto_upload``.
 
 There are currently three main ways to configure the auto-uploader:
 
