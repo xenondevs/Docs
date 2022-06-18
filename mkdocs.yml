@@ -45,9 +45,6 @@ plugins:
 nav:
   - "Nova":
       - "Home": "nova/index.md"
-      - "Guide":
-          - "Getting started": "nova/guide/index.md"
-          - "Non Craftable": "nova/guide/non-craftable.md"
       - "For Server Admins":
           - "Setup": "nova/admin/setup.md"
           - "Compatibility": "nova/admin/compatibility.md"
