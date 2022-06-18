@@ -26,3 +26,4 @@ Planned:
 - [x] GriefDefender (requires GDHooks)
 - [x] Towny
 - [x] ProtectionStones
+- [x] QuickShop
