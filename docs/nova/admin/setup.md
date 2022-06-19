@@ -113,6 +113,9 @@ resource_pack:
 !!! info
 
     You can add as many base packs as you want.
+    
+    **Note:** When adding ItemsAdder items, blocks, etc. make sure to have created the pack before using `/iazip`.  
+    Otherwise important files may be missing from the final resource pack!
 
 
 !!! warning
