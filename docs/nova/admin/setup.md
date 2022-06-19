@@ -2,7 +2,7 @@
 
 ## Step 1: Plugin Installation
 
-* Like any other plugin, the plugin jar file downloaded from [SpigotMC](https://www.spigotmc.org/resources/93648/) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
+* Like any other plugin, the Nova plugin jar file downloaded from [SpigotMC](https://www.spigotmc.org/resources/93648/) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
