@@ -114,7 +114,7 @@ resource_pack:
 
     You can add as many base packs as you want.
 
-    **Note:** Before building the resource pack with nova, make sure that the listed base packs have been properly generated.
+    **Note:** Before building the resource pack with Nova, make sure that the listed base packs have been properly generated.
     For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.
 
 
