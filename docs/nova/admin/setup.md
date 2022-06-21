@@ -12,7 +12,13 @@
 
 ## Step 2: ResourcePack Hosting
 
-Due to the way custom resource packs work, it is required to upload them to a web server first before they can be sent to players.
+Due to the way custom resource packs work, it is required to upload them to a web server first before they can be sent to players.  
+You can do this either manually or automatically.
+
+### Manual ResourcePack Hosting
+
+For manual resource pack hosting, upload the resource pack found under ``plugins/Nova/ResourcePack/ResourcePack.zip`` to a file uploader of your choice.
+
 You can either set an url to a resource pack you have already uploaded to a web server in the main config file ``plugins/Nova/configs/config.yml``
 
 ```yaml
@@ -20,12 +26,18 @@ resource_pack:
   url: https://example.com/resource_pack.zip
 ```
 
-Or use Novas built-in way to automatically upload the resource pack after it changes. The auto-uploader can be configured 
-in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.auto_upload``.
+!!! warning
+
+    It is important that the url you set here is a **direct** download link.
+
+### Automatic Resource Pack Hosting
+
+You can also use Novas built-in way to automatically upload the resource pack after it changes.  
+The auto-uploader can be configured in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.auto_upload``.
 
 There are currently three main ways to configure the auto-uploader:
 
-### Patreon Upload Service
+#### Patreon Upload Service
 
 [Patrons](https://www.patreon.com/xenondevs) are given access to upload to our servers.
 Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
@@ -38,7 +50,7 @@ auto_upload:
   key: "" # Your Patreon-Uploader Key
 ```
 
-### Self-hosted
+#### Self-hosted
 
 If you're able to open a port on your server, this option will make the most sense for you.
 Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
@@ -55,7 +67,7 @@ auto_upload:
 
         You can also set the host of your server using the ``host`` parameter. If it is not set, the public ip address of your server gets used.
 
-### Custom Multipart Request (advanced)
+#### Custom Multipart Request (advanced)
 
 For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
 
