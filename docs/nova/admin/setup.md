@@ -18,8 +18,7 @@ You can do this either manually or automatically.
 ### Manual ResourcePack Hosting
 
 For manual resource pack hosting, upload the resource pack found under ``plugins/Nova/ResourcePack/ResourcePack.zip`` to a file uploader of your choice.
-
-You can either set an url to a resource pack you have already uploaded to a web server in the main config file ``plugins/Nova/configs/config.yml``
+Then set the url to download the resource pack in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.url``:
 
 ```yaml
 resource_pack:
