@@ -1,12 +1,12 @@
-## What is a Window in InvUI
+## What is a Window in InvUI?
 
 In InvUI, windows represent the actual Minecraft inventories that are displayed to the player.
-Depending on the type of Window, they display on or two GUI(s).
+Depending on the type of window, they display on or two GUI(s).
 
-**A window can only have one viewer.** This is because InvUI GUIs are made to be easily translatable.
+**A window can only have one viewer.** This is because InvUI's GUIs are designed to be easy to translate.
 Up until this point, we've only dealt with `ItemProviders`, which unlike `ItemStacks` have a
 method to retrieve the represented `ItemStack` with a `UUID` for translation purposes.  
-Now, the Window is the first part in the chain that uses `ItemStacks` - and as these are already
+Now, the window is the first part in the chain that uses `ItemStacks` - and as these are already
 translated to a specific language, allowing multiple people to view the same window might cause
 one of them to see the wrong language.
 
@@ -27,7 +27,7 @@ Single windows do not use the player's own inventory.
 Split windows use one GUI for the upper inventory and another GUI for the player's inventory.
 Combined windows use the same GUI for the upper and lower inventory.
 
-While the player's inventory in use by a Window, the contents are saved and restored after
+While the player's inventory in use by a window, the contents are saved and restored after
 the inventory has been closed or the player dies.
 Additionally, the player is not able to pick up any items and advancement listening is also
 temporarily turned off. Therefore, the feature is safe to use in survival mode.
