@@ -72,7 +72,7 @@ nav:
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
   - "InvUI":
-      - "invui/index.md"
+      - "Getting Started": "invui/index.md"
       - "Basics": "invui/basics.md"
       - "GUIs":
           - "invui/guis/index.md"
