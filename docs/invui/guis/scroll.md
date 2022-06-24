@@ -150,12 +150,16 @@ Now that we've created the ControlItems, let's make the actual GUI:
     new SimpleWindow(player, "InvUI", gui).show();
     ```
 
-And this is how it looks in-game:  
-![](https://i.imgur.com/UhVPGRq.gif)
+<figure markdown>
+  ![](https://i.imgur.com/TQ3yXxT.gif){ width="360" }
+  <figcaption>The example GUI from above</figcaption>
+</figure>
 
 You can also change the scroll direction by using `Markers.ITEM_LIST_SLOT_VERTICAL` instead of `Markers.ITEM_LIST_SLOT_HORIZONTAL`.
 This would result in the gui scrolling from left to right:  
-![](https://i.imgur.com/HoeAhyx.gif)
+<figure markdown>
+  ![](https://i.imgur.com/HoeAhyx.gif){ width="360" }
+</figure>
 
 !!! info
 

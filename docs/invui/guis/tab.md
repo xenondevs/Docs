@@ -109,7 +109,7 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
     ```
 
 <figure markdown>
-  ![](https://i.imgur.com/tO4Rc06.gif){ width="500" }
+  ![](https://i.imgur.com/tO4Rc06.gif){ width="360" }
   <figcaption>The example GUI from above</figcaption>
 </figure>
 
