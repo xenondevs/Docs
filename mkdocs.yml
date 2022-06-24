@@ -62,9 +62,9 @@ nav:
           - "Getting Started": "nova/addon/getting-started.md"
           - "Addon.yml": "nova/addon/addon.yml.md"
           - "AssetPacks":
-              - "Basics": "assetpack-basics.md"
-              - "Creating Items" : "creating-items.md"
-              - "Creating Blocks" : "creating-blocks.md"
+              - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
+              - "Creating Items" : "nova/addon/asset-packs/creating-items.md"
+              - "Creating Blocks" : "nova/addon/asset-packs/creating-blocks.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
