@@ -58,6 +58,16 @@ Example:
 main: com.example.ExampleAddon
 ```
 
+## novaVersion*
+
+The minimum version of Nova that your addon requires.
+
+Example:
+
+```yaml
+novaVersion: 0.9.4
+```
+
 ## author/authors
 
 A list of author(s) of your addon.
