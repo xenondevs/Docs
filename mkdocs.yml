@@ -78,5 +78,7 @@ nav:
           - "invui/guis/index.md"
           - "Normal GUI": "invui/guis/normal.md"
           - "Paged GUI": "invui/guis/paged.md"
+          - "Scroll GUI": "invui/guis/scroll.md"
+          - "Tab GUI": "invui/guis/tab.md"
       - "Items": "invui/items.md"
       - "Structure": "invui/structure.md"
