@@ -49,8 +49,8 @@ You can change them by providing a `stackSizes` array in the constructor.
 
 If you're creating a plugin that modifies maximum stack sizes of items, change the
 `StackSizeProvider` in `InventoryUtils#stackSizeProvider` to a custom one you've created.  
-This will make InvUI respect your maximum stack sizes. Note, that you increase the stack size
-over what is actually possible in vanilla Minecraft.
+This will make InvUI respect your maximum stack sizes.
+(Please note that you can't have a maximum stack size higher than what is normally possible in vanilla Minecraft.)
 
 ## Serialization
 
