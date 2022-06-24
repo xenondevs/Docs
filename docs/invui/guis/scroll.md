@@ -1,6 +1,4 @@
-# Scroll GUI
-
-## What is a Scroll GUI?
+## Scroll GUI
 
 A Scroll GUI allows you to scroll through a list of items line by line.
 This can be done both vertically and horizontally.

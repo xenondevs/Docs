@@ -1,5 +1,3 @@
-# GUIs
-
 ## What is a GUI in InvUI?
 
 A GUI is basically a container for width * height SlotElements.

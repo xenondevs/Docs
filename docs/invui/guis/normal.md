@@ -1,6 +1,4 @@
-# Normal GUI
-
-## Creating a normal GUI
+## Normal GUI
 
 Just a normal GUI without any special functionality.  
 This example shows how to create one using the GUIBuilder:
