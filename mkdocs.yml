@@ -60,5 +60,11 @@ nav:
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
-  - "ParticleLib":
-      - "": 'wip.md'
+  - "InvUI":
+      - "Home": "invui/index.md"
+      - "InvUI Basics": "invui/basics.md"
+      - "GUIs":
+          - "Normal GUI": "invui/guis/normal.md"
+          - "Paged GUI": "invui/guis/paged.md"
+      - "Items": "invui/items.md"
+      - "Structure": "invui/structure.md"
