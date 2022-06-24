@@ -121,7 +121,7 @@ Example:
 repositories:
   - https://repo.xenondevs.xyz/releases
 libraries:
-  - de.studiocode.invui:InvUI:0.7-SNAPSHOT
+  - xyz.xenondevs.bytebase:ByteBase:0.2-SNAPSHOT
 ```
 
 ## Example addon.yml
