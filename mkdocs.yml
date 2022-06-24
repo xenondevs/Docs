@@ -58,6 +58,9 @@ nav:
           - "Compatibility": "nova/admin/compatibility.md"
           - "Configuration": "nova/admin/configuration.md"
           - "Recipes": "nova/admin/recipes.md"
+      - "Addons":
+          - "Getting Started": "nova/addon/getting-started.md"
+          - "Addon.yml": "nova/addon/addon.yml.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
