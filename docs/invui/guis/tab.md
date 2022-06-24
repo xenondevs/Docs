@@ -108,8 +108,10 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
     new SimpleWindow(player, "InvUI", gui).show();
     ```
 
-And this is how it looks like:  
-![](https://i.imgur.com/tO4Rc06.gif){ align=center }
+<figure markdown>
+  ![](https://i.imgur.com/tO4Rc06.gif){ width="360" }
+  <figcaption>The example GUI from above</figcaption>
+</figure>
 
 !!! info
 
