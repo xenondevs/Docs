@@ -1,17 +1,144 @@
 # addon.yml
 
+The addon.yml is used to provide information about your addon to Nova. It is required for all addons. Options marked
+with
+a * are required.
+
+## id*
+
+This is the id of your addon. It is used for multiple things like the addon's config folder name or the namespace for
+items and blocks. This id has to start with a letter and can only contain lowercase letters, numbers and underscores.
+There are also a few reserved words that can't be used as id. These are:
+
+* ``nova``
+* ``minecraft``
+* ``itemsadder``
+* ``oraxen``
+* ``mmoitems``
+
+Example:
+
 ```yaml
-id: example # (1)
-name: Example # (2)
-version: ${project.version} # (3)
-main: com.example.ExampleAddon # (4)
-authors: [ "ExampleAuthor" ] # (5)
-spigotResourceId: 12345 # (6)
+id: example_id
 ```
 
-1. This is your addon id. It is used for multiple things like the addon's config folder name or the namespace for items and blocks.
-2. This is the addon name. Displayed in ``/nova addons``
-3. If you use the provided pom.xml, the maven resources plugin will automatically set the version during the build.
-4. Main class of your addon. Similar to a spigot plugin's main class.
-5. The author(s) of your addon.
-6. The spigot resource id of your addon. This is used to automatically check for updates.
+## name*
+
+This is the name of your addon. It is displayed when running ``/nova addons``.
+
+Example:
+
+```yaml
+name: Example Addon
+```
+
+## version*
+
+The version of your addon. If you're using the template's pom.xml, you can set this to ``${project.version}`` to
+automatically
+get the version from the pom.xml.
+
+Example:
+
+```yaml
+version: 1.0.0
+```
+
+Or to automatically get the version from the pom.xml:
+
+```yaml
+version: ${project.version}
+```
+
+## main*
+
+Full path to your main class (without the .class extension).
+
+Example:
+
+```yaml
+main: com.example.ExampleAddon
+```
+
+## author/authors
+
+A list of author(s) of your addon.
+
+Example:
+
+```yaml
+author: Example Author
+```
+
+Or for multiple authors:
+
+```yaml
+authors: [ "Example Author", "Another Author" ]
+```
+
+## spigotResourceId
+
+The id of your addon's Spigot resource. This is used to automatically check for updates. You can find this id after the
+period in the url of your addon's Spigot page.
+
+Example (With Nova's id):
+
+![Nova url example](https://i.imgur.com/grLp3UZ.png)
+
+```yaml
+spigotResourceId: 93648
+```
+
+## depend/softdepend
+
+You can use these options to specify which addons your addon depends on and thus needs to be loaded before your addon
+is.
+The difference between ``depend`` and ``softdepend`` is that ``softdepend`` will not cause the addon to fail if the
+dependency is not
+loaded.
+
+Example:
+
+```yaml
+depend:
+  - machines
+softdepend:
+  - logistics
+```
+
+## repositories/libraries
+
+These options allow you to download libraries from maven repositories, so you don't have to include them in your jar.
+These
+libraries will be automatically downloaded and loaded. maven central is added by default.
+
+The format for the libraries are: ``<groupId>:<artifactId>:<version>`` or if you need more
+options, ``<groupId>:<artifactId>[:<extension>[:<classifier>]]:<version>``
+
+Example:
+
+```yaml
+repositories:
+  - https://repo.xenondevs.xyz/releases
+libraries:
+  - de.studiocode.invui:InvUI:0.7-SNAPSHOT
+```
+
+## Example addon.yml
+
+```yaml
+id: example_id
+name: Example Addon
+version: ${project.version}
+main: com.example.ExampleAddon
+authors: [ "Example Author", "Another Author" ]
+spigotResourceId: 93648
+depend:
+  - machines
+softdepend:
+  - logistics
+repositories:
+  - https://repo.xenondevs.xyz/releases
+libraries:
+  - de.studiocode.invui:InvUI:0.7-SNAPSHOT
+```
