@@ -105,7 +105,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .filter { !it.isAir && it.isItem }
         .map { SimpleItem(ItemBuilder(it)) }
 
-    val gui: GUI = GUIBuilder(GUIType.SCROLL_ITEMS)
+    val gui = GUIBuilder(GUIType.SCROLL_ITEMS)
         .setStructure(
             "x x x x x x x x u",
             "x x x x x x x x #",
@@ -115,7 +115,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .addIngredient('x', Markers.ITEM_LIST_SLOT_VERTICAL)
         .addIngredient('#', border)
         .addIngredient('u', ScrollUpItem())
-        .addIngredient('d', InvUIPlugin.ScrollDownItem())
+        .addIngredient('d', ScrollDownItem())
         .setItems(items)
         .build()
     
