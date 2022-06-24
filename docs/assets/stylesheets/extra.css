@@ -1,7 +1,8 @@
 :root > * {
-  --md-code-hl-string-color: #7ac39e;
-  --md-code-hl-keyword-color: #7ac39e;
+  --md-code-hl-string-color: #98C379;
+  --md-code-hl-keyword-color: #C792EA;
   --md-code-hl-variable-color: #6d98d9;
+  --md-code-hl-name-color: #e9c985;
 }
 
 @media only screen and (min-width: 76.25em) {
@@ -9,11 +10,12 @@
     max-width: none;
   }
   .md-sidebar--primary {
-    left: 0;
+    margin-left: 3.75%;
+    margin-right: 3.75%;
   }
   .md-sidebar--secondary {
-    right: 0;
-    margin-left: 0;
+    margin-left: 3.75%;
+    margin-right: 3.75%;
     -webkit-transform: none;
     transform: none;   
   }
