@@ -75,7 +75,7 @@ nav:
       - "Getting Started": "invui/index.md"
       - "Basics": "invui/basics.md"
       - "GUIs":
-          - "invui/guis/index.md"
+          - "Overview": "invui/guis/index.md"
           - "Normal GUI": "invui/guis/normal.md"
           - "Paged GUI": "invui/guis/paged.md"
           - "Scroll GUI": "invui/guis/scroll.md"

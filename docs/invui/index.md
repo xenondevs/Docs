@@ -1,5 +1,7 @@
 # InvUI
 
+## Configuring Maven / Gradle
+
 To use InvUI, you first have to add the xenondevs maven repository to your build configuration.
 
 === "Maven"
