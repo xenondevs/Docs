@@ -11,7 +11,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
 
     ```kotlin
     // create a structure
-    val structure: Structure = Structure(
+    val structure = Structure(
         "# # # # # # # # #",
         "# x x x x x x x #",
         "# x x x x x x x #",

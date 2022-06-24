@@ -4,12 +4,14 @@ repo_url: https://github.com/xenondevs/Docs
 repo_name: xenondevs/Docs
 edit_uri: edit/main/docs/
 copyright: Copyright &copy; 2022 xenondevs
+
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/hnEknVWvUe
+  
 theme:
   name: material
   logo: assets/logo.png
@@ -21,6 +23,7 @@ theme:
     - content.code.annotate
   icon:
     repo: fontawesome/brands/github
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -36,12 +39,17 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - tables
+
 plugins:
+  - search
   - i18n:
       default_language: en
       languages:
         en: English
-        de: Deutsch
+
+extra_css:
+  - assets/stylesheets/extra.css
+
 nav:
   - "Nova":
       - "Home": "nova/index.md"
@@ -64,6 +72,7 @@ nav:
       - "Home": "invui/index.md"
       - "InvUI Basics": "invui/basics.md"
       - "GUIs":
+          - "invui/guis/index.md"
           - "Normal GUI": "invui/guis/normal.md"
           - "Paged GUI": "invui/guis/paged.md"
       - "Items": "invui/items.md"
