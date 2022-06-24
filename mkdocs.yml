@@ -63,7 +63,7 @@ nav:
   - "InvUI":
       - "Home": "invui/index.md"
       - "InvUI Basics": "invui/basics.md"
-      - "GUIs": "invui/guis/index.md"
+      - "GUIs":
           - "Normal GUI": "invui/guis/normal.md"
           - "Paged GUI": "invui/guis/paged.md"
       - "Items": "invui/items.md"
