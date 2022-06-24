@@ -10,7 +10,7 @@ This is an example for a "Page Back" Item:
     ```kotlin
     class BackItem : PageItem(false) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemBuilder {
+        override fun getItemProvider(gui: PagedGUI): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(
@@ -34,7 +34,7 @@ This is an example for a "Page Back" Item:
         }
     
         @Override
-        public ItemBuilder getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGUI gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(gui.hasPageBefore()
@@ -54,7 +54,7 @@ This is an example for a "Page Forward" Item:
     ```kotlin
     class ForwardItem : PageItem(true) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemBuilder {
+        override fun getItemProvider(gui: PagedGUI): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Next page")
                 .addLoreLines(
@@ -78,7 +78,7 @@ This is an example for a "Page Forward" Item:
         }
     
         @Override
-        public ItemBuilder getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGUI gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Next page")
                 .addLoreLines(gui.hasNextPage()
