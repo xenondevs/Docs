@@ -1,6 +1,8 @@
 A paged GUI is a gui that can display pages of either `Items` or `GUIs`.  
-First, we'll need to create the page switching buttons:
 
+## Control Items
+
+First, we'll need to create the page switching buttons.  
 This is an example for a "Page Back" Item:
 
 === "Kotlin"
@@ -95,6 +97,10 @@ _More information about ControlItems in the [Items](../items.md) section._
 
     You also might want to register these Items as [global ingredients](../structure.md).
 
+## Creating the GUI
+
+### Paged Items
+
 Now that we've created the ControlItems, let's make the actual GUI:
 
 === "Kotlin"
@@ -150,6 +156,8 @@ Now that we've created the ControlItems, let's make the actual GUI:
 
 In-game, it will look like this:  
 ![](https://i.imgur.com/hyGz4V6.gif)
+
+### Paged GUIs
 
 Instead of using Items, you can also use whole GUIs as pages.
 In the following example I used two slightly different versions of the GUI created above and added them as pages.
