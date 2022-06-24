@@ -9,6 +9,9 @@
   .md-main__inner {
     max-width: none;
   }
+  .md-content {
+    max-width: 56.5%;
+  }
   .md-sidebar--primary {
     margin-left: 3.75%;
     margin-right: 3.75%;

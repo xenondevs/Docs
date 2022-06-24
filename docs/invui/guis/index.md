@@ -1,5 +1,3 @@
-# GUIs
-
 ## What is a GUI in InvUI?
 
 A GUI is basically a container for width * height SlotElements.
@@ -12,10 +10,11 @@ GUIs cannot display anything to a player, a Window is used for that.
 ## Different types of GUIs
 
 There are four different GUI types available:
+
 * [Normal GUI](normal.md)
 * [Paged GUI](paged.md)
-* Scroll
-* Tab
+* [Scroll GUI](scroll.md)
+* [Tab GUI](tab.md)
 
 ## Animations
 

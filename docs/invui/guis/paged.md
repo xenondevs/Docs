@@ -1,8 +1,8 @@
-# Paged GUI
-
 A paged GUI is a gui that can display pages of either `Items` or `GUIs`.  
-First, we'll need to create the page switching buttons:
 
+## Control Items
+
+First, we'll need to create the page switching buttons.  
 This is an example for a "Page Back" Item:
 
 === "Kotlin"
@@ -10,7 +10,7 @@ This is an example for a "Page Back" Item:
     ```kotlin
     class BackItem : PageItem(false) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemBuilder {
+        override fun getItemProvider(gui: PagedGUI): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(
@@ -34,7 +34,7 @@ This is an example for a "Page Back" Item:
         }
     
         @Override
-        public ItemBuilder getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGUI gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(gui.hasPageBefore()
@@ -54,7 +54,7 @@ This is an example for a "Page Forward" Item:
     ```kotlin
     class ForwardItem : PageItem(true) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemBuilder {
+        override fun getItemProvider(gui: PagedGUI): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Next page")
                 .addLoreLines(
@@ -78,7 +78,7 @@ This is an example for a "Page Forward" Item:
         }
     
         @Override
-        public ItemBuilder getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGUI gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Next page")
                 .addLoreLines(gui.hasNextPage()
@@ -96,6 +96,10 @@ _More information about ControlItems in the [Items](../items.md) section._
 !!! info
 
     You also might want to register these Items as [global ingredients](../structure.md).
+
+## Creating the GUI
+
+### Paged Items
 
 Now that we've created the ControlItems, let's make the actual GUI:
 
@@ -152,6 +156,8 @@ Now that we've created the ControlItems, let's make the actual GUI:
 
 In-game, it will look like this:  
 ![](https://i.imgur.com/hyGz4V6.gif)
+
+### Paged GUIs
 
 Instead of using Items, you can also use whole GUIs as pages.
 In the following example I used two slightly different versions of the GUI created above and added them as pages.
