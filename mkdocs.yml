@@ -11,7 +11,7 @@ extra:
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/hnEknVWvUe
-  
+
 theme:
   name: material
   logo: assets/logo.png
@@ -72,8 +72,8 @@ nav:
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
   - "InvUI":
-      - "Home": "invui/index.md"
-      - "InvUI Basics": "invui/basics.md"
+      - "invui/index.md"
+      - "Basics": "invui/basics.md"
       - "GUIs":
           - "invui/guis/index.md"
           - "Normal GUI": "invui/guis/normal.md"
