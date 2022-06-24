@@ -29,7 +29,4 @@ This example shows how to create one using the GUIBuilder:
         .build();
     ```
 
-<figure markdown>
-  ![](https://i.imgur.com/MZmFbnJ.png){ width="360" }
-  <figcaption>The example GUI from above</figcaption>
-</figure>
+![](https://i.imgur.com/MZmFbnJ.png)

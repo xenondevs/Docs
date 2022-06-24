@@ -154,10 +154,8 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .build();
     ```
 
-<figure markdown>
-  ![](https://i.imgur.com/hyGz4V6.gif){ width="360" }
-  <figcaption>The example GUI from above</figcaption>
-</figure>
+In-game, it will look like this:  
+![](https://i.imgur.com/hyGz4V6.gif)
 
 ### Paged GUIs
 
