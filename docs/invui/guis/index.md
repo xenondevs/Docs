@@ -19,8 +19,12 @@ There are four different GUI types available:
 
 ## Animations
 
-GUIs can also play animations with `gui.playAnimation(animation);`. While an animation is running, the player can't interact with any Item in the GUI.
+GUIs can also play animations with `gui.playAnimation(animation);`.  
+While an animation is running, the player can't interact with any Item in the GUI.
+
+
 Available Animations:
+
 * SequentialAnimation
 * SplitSequentialAnimation
 * HorizontalSnakeAnimation
