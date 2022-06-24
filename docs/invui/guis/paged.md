@@ -1,5 +1,3 @@
-## Paged GUI
-
 A paged GUI is a gui that can display pages of either `Items` or `GUIs`.  
 First, we'll need to create the page switching buttons:
 
