@@ -25,10 +25,6 @@ to make addons.
 This guide uses a GitHub repo template so having a GitHub account is recommended. You can also install [GitHub Desktop](https://desktop.github.com/)
 if you don't want to use git commands.
 
-### InvUI
-
-Nova uses the InvUI library for everything UI based. You can read the wiki [here](../../invui/index.md).
-
 ## Setting up your project
 
 You can now create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).

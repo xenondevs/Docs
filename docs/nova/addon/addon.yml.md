@@ -1,8 +1,6 @@
 # addon.yml
-
-The addon.yml is used to provide information about your addon to Nova. It is required for all addons. Options marked
-with
-a * are required.
+Now that you've created your project, let's start by creating your addon.yml file. The addon.yml is used to provide 
+information about your addon to Nova. It is required for all addons. **Options marked with a * are required.**
 
 ## id*
 
