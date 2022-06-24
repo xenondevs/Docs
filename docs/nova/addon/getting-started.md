@@ -9,7 +9,7 @@ While you don't necessarily need to access NMS while making an addon, we still r
 version. If you're not familiar with BuildTools you can read [this guide](https://www.spigotmc.org/wiki/buildtools/). After
 downloading BuildTools, run the following command:
 
-```console
+```bash
 java -jar BuildTools.jar --remapped
 ```
 
