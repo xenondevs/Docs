@@ -9,7 +9,7 @@
 
 As you probably noticed, the TilEntity needs a ``Lazy<TileEntityGUI>`` property. It's lazy to save performance and only
 load a GUI when needed. To create a new GUI, you need to create an inner class that extends ``TileEntityGUI``. In this
-GUI override the ``gui`` property and set it to the GUI you want to display. For now, let's create a GUI with a single
+class override the ``gui`` property and set it to the GUI you want to display. For now, let's create a GUI with a single
 energy bar.
 
 ```kotlin
@@ -29,6 +29,8 @@ inner class SolarPanelGUI : TileEntityGUI() {
 ```
 
 1. The ``energyHolder`` will be explained in the next section.
+
+Now we can properly set the ``gui`` property inside the TileEntity class.
 
 ```kotlin
 override val gui = lazy { SolarPanelGUI() }
