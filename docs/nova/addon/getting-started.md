@@ -5,8 +5,8 @@ knowledge about the Kotlin, the Spigot API and Maven.**
 
 ### BuildTools
 
-While you don't necessarily need to access NMS while making an addon, we still recommend installing a mojang-mapped spigot
-version. If you're not familiar with BuildTools you can read [this guide](https://www.spigotmc.org/wiki/buildtools/). After
+While you don't necessarily need to access NMS while making an addon, installing a mojang-mapped spigot version is still
+required. If you're not familiar with BuildTools you can read [this guide](https://www.spigotmc.org/wiki/buildtools/). After
 downloading BuildTools, run the following command:
 
 ```bash
