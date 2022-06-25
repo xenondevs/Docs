@@ -60,7 +60,7 @@ nav:
           - "Recipes": "nova/admin/recipes.md"
       - "Addons":
           - "Getting Started": "nova/addon/getting-started.md"
-          - "Addon.yml": "nova/addon/addon.yml.md"
+          - "addon.yml": "nova/addon/addon.yml.md"
           - "AssetPacks":
               - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
               - "Creating Items": "nova/addon/asset-packs/creating-items.md"
