@@ -37,3 +37,18 @@ Change `<groupId>` and `<artifactId>` to your own.
 ### src/main/kotlin
 
 Change the package name to your own.
+
+### Building
+
+To build, run
+```bash title="Build with Maven"
+mvn package "-Ddir=<Path to your plugins/ directory here>"
+```
+Or if you're on a mojang-mapped server, run
+```bash title="Build with Maven"
+mvn package "-Ddir=<Path to your plugins/ directory here>" -P mojang-mapped
+```
+
+!!! warning
+
+    Some things like particles won't work on mojang-mapped servers
