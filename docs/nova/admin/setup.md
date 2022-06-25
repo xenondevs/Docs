@@ -43,10 +43,11 @@ Due to hosting costs and the potential for abuse, this service is only available
 
 Example config:
 ```yaml
-auto_upload:
-  enabled: true
-  service: xenondevs
-  key: "" # Your Patreon-Uploader Key
+resource_pack:
+  auto_upload:
+    enabled: true
+    service: xenondevs
+    key: "" # Your Patreon-Uploader Key
 ```
 
 #### Self-hosted
@@ -56,15 +57,22 @@ Nova will automatically start a lightweight web server from which the resource p
 
 Example config:
 ```yaml
-auto_upload:
-  enabled: true
-  service: SelfHost
-  port: 12345 # The port on which the server will be running, needs to be open to the Internet.
+resource_pack:
+  auto_upload:
+    enabled: true
+    service: SelfHost
+    port: 12345 # The port on which the server will be running, needs to be open to the Internet.
 ```
 
-!!! info "Optional Parameters"
+!!! info "'host' parameter"
 
-        You can also set the host of your server using the ``host`` parameter. If it is not set, the public ip address of your server gets used.
+    You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
+    If you are on a local server, you will need to set `host: 127.0.0.1`
+
+!! warning "'portNeeded' parameter"
+
+    When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
+    If this is not the case, set `portNeeded: true`.
 
 #### Custom Multipart Request (advanced)
 
@@ -72,13 +80,14 @@ For more advanced users, Nova can also perform a multipart request to a server o
 
 For [this php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455), the config would be the following:
 ```yaml
-auto_upload:
-  enabled: true
-  service: CustomMultiPart
-  url: https://example.com/upload.php
-  filePartName: pack
-  extraparams:
-    key: "" # This key also needs to be set in the php script mentioned above
+resource_pack:
+  auto_upload:
+    enabled: true
+    service: CustomMultiPart
+    url: https://example.com/upload.php
+    filePartName: pack
+    extraparams:
+      key: "" # This key also needs to be set in the php script mentioned above
 ```
 
 If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
