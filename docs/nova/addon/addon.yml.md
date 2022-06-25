@@ -114,6 +114,11 @@ softdepend:
   - logistics
 ```
 
+!!! info
+
+    Unlike in spigot plugins, `depdend` and `softdepend` actually change which classes can be accessed from your addon.
+    Without a (soft)dependency configured, you will not be able to access the classes of different addons at runtime.
+
 ## repositories/libraries
 
 These options allow you to download libraries from maven repositories, so you don't have to include them in your jar.
