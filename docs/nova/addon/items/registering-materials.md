@@ -2,8 +2,8 @@
 
 ## Time and Place of Registration
 After [creating the item asset](../asset-packs/creating-items.md), they need to be registered in code.  
-For this, we recommend creating a `Items` singleton object that contains all `ItemNovaMaterials` of your object.
-All materials need to be registered when `Addon#init` is called, materials registered later might not work properly.
+For this, we recommend creating a `Items` singleton object that contains all `ItemNovaMaterials` of your addon.
+All materials need to be registered when `Addon#init` is called, materials registered later won't work properly.
 
 Your singleton object might then look like this:  
 ```kotlin
@@ -51,7 +51,7 @@ object Items {
 However, we also previously mentioned that we want our ruby to be edible. For this, we need to call `registerFood`.
 This also requires us to create food options, which configure things like eating time, nutrition, saturation, instant
 health and more. You're also able to set custom code which will be executed when the food has been eaten.  
-In this example, I'll use the nutrition and saturation values of an Apple, but with a eating time of 2 seconds:  
+In this example, I'll use the nutrition and saturation values of an Apple, but with an eating time of 2 seconds:  
 ```kotlin
 object Items {
     
