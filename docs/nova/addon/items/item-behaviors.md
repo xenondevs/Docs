@@ -62,3 +62,35 @@ purposes.
             armorToughness = 2.0
         )
         ```
+
+There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
+your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
+pretty self-explanatory. Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
+
+```kotlin
+class JetpackBehavior(
+    private val tier: JetpackTier
+) : ItemBehavior() {
+    
+    override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
+        if (event.equipMethod == EquipMethod.BREAK) {
+            event.isCancelled = true
+        } else setJetpack(player, equipped)
+    }
+    
+    private fun setJetpack(player: Player, state: Boolean) {
+        if (state) {
+            AttachmentManager.addAttachment(player, tier.attachmentType)
+            AbilityManager.giveAbility(player, tier.abilityType)
+        } else {
+            AttachmentManager.removeAttachment(player, tier.attachmentType)
+            AbilityManager.takeAbility(player, tier.abilityType)
+        }
+    }
+    
+}
+```
+
+!!! warning
+
+    Make sure to not update a items lore in the ``modifyItemBuilder`` method, always use the ``getLore`` method.
