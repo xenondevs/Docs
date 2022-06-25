@@ -117,7 +117,7 @@ and check if it's still day time.
 
 ```kotlin title="SolarPanel.kt"
 override fun handleTick() {
-    if(world.time < 13_000)
+    if(world.time < 13000)
         energyHolder.energy += ENERGY_PER_TICK
 }
 ```
