@@ -71,8 +71,10 @@ object Items {
 ```
 The way nutrition and saturation is handle is exactly the same as it is in vanilla Minecraft.
 This is the formula for calculating the resulting food level and saturation is the following:
-```kotlin
+```kotlin title="foodLevel"
 foodLevel = min(player.foodLevel + options.nutrition, 20)
+```
+```kotlin title="saturation"
 saturation = min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
 ```
 
@@ -80,3 +82,6 @@ saturation = min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
 
     You can find the `nutrition` and `saturationModifier` for vanilla Minecraft items by decompiling the mojang-mapped
     class `net.minecraft.world.food.Foods`.
+
+## Registering items with custom behavior
+If you want t
