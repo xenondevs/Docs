@@ -20,7 +20,7 @@ You can do this either manually or automatically.
 For manual resource pack hosting, upload the resource pack found under ``plugins/Nova/resource_pack/ResourcePack.zip`` to a file uploader of your choice.
 Then set the url to download the resource pack in the main config file ``plugins/Nova/configs/config.yml`` under ``resource_pack.url``:
 
-```yaml
+```yaml title="plugins/Nova/configs/config.yml"
 resource_pack:
   url: https://example.com/resource_pack.zip
 ```
@@ -126,7 +126,7 @@ Due to technical limitations, it is only possible to have one server resource pa
 * Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
 
 Example:
-```yaml
+```yaml title="plugins/Nova/configs/config.yml"
 resource_pack:
   base_packs:
     - plugins/ItemsAdder/data/resource_pack/pack.zip
