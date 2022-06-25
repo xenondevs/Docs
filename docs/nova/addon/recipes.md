@@ -9,15 +9,17 @@ For more information about the recipe format and default recipe types, [read the
 Recipe types are registered over the `RecipeTypeRegistry`.  
 All of the following values are required to create a new `RecipeType`:
 
-* `dirName: String` - The name for the directory of your recipe type.
-* `recipeClass: KClass<T>` - The class of your recipe type, must be a subclass of `NovaRecipe`.
-* `group: RecipeGroup` - The recipe group that displays the recipe in the recipe explorer gui. 
-* `deserializer: RecipeDeserializer<T>` - The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`
+|      Name      |          Type           | Usage                                                                                                         |
+|:--------------:|:-----------------------:|---------------------------------------------------------------------------------------------------------------|
+|   `dirName`    |        `String`         | The name for the directory of your recipe type.                                                               |
+| `recipeClass`  |       `KClass<T>`       | The class of your recipe type, must be a subclass of `NovaRecipe`.                                            |
+|    `group`     |      `RecipeGroup`      | The recipe group that displays the recipe in the recipe explorer gui.                                         |
+| `deserializer` | `RecipeDeserializer<T>` | The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`. |
 
-!!! warning
+!!! danger
 
-    While some of these values are nullable, setting them to null should only be done for testing and debugging purposes
-    and they should never be null in a released build.
+    These values are only nullable for testing purposes (i.e. you want to test your deserializer but don't have a
+    `RecipeGroup` yet). They should **never** be `null` on a live build!
 
 !!! example
 
@@ -67,12 +69,78 @@ All of the following values are required to create a new `RecipeType`:
                 val result = ItemUtils.getItemBuilder(json.getString("result")!!).get()
         
                 return FluidInfuserRecipe(getRecipeKey(file), mode, fluidType, fluidAmount, input, result, time)
+            }
         }
         ```
 
         !!! info
 
             Make sure to always use the `parseRecipeChoice(JsonElement)`, `ItemUtils.getItemBuilder(String)` and`getRecipeKey(File)`
-            utility methods when creating your recipe deserializer.
+            utility methods instead of using your own logic.
 
-}
+    === "Recipe Group"
+
+        The recipe group is only used for recipe explorer GUI, so your recipes will already work without it.  
+        However, it is still required to create a recipe group.
+
+        As always, it is very easy to create a recipe group for conversion recipes:
+        ```kotlin title="PulverizingRecipeGroup"
+        object PulverizingRecipeGroup : ConversionRecipeGroup() {
+            override val priority = 4 // (1)
+            override val icon = Blocks.PULVERIZER.basicClientsideProvider // (2)
+            override val texture = GUITextures.RECIPE_PULVERIZER // (3)
+        }
+        ```
+        1. The priority defines where in the recipe explorer your recipe type is going to be. (Lower value -> left | Higher value -> right)
+        2. The icon displayed for your recipe type.
+        3. The GUI Texture used when displaying your recipe type.
+
+        However, if your recipe is not a `ConversionNovaRecipe`, your recipe group might be a bit more work:
+        ```kotlin title="FluidInfuserRecipeGroup"
+        object FluidInfuserRecipeGroup : RecipeGroup() {
+        
+            override val texture = GUITextures.RECIPE_FLUID_INFUSER
+            override val icon = Blocks.FLUID_INFUSER.basicClientsideProvider
+            override val priority = 6
+        
+            override fun createGUI(container: RecipeContainer): GUI {
+                val recipe = container.recipe as FluidInfuserRecipe
+            
+                val progressItem: ItemBuilder
+                val translate: String
+                if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) {
+                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_LEFT_RIGHT.createItemBuilder()
+                    translate = "menu.machines.recipe.insert_fluid"
+                } else {
+                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_RIGHT_LEFT.createItemBuilder()
+                    translate = "menu.machines.recipe.extract_fluid"
+                }
+            
+                progressItem.setDisplayName(TranslatableComponent(
+                    translate,
+                    recipe.fluidAmount,
+                    TranslatableComponent(recipe.fluidType.localizedName)
+                ))
+            
+                return GUIBuilder(GUIType.NORMAL)
+                    .setStructure(
+                        ". f . t . . . . .",
+                        ". f p i . . . r .",
+                        ". f . . . . . . .")
+                    .addIngredient('i', createRecipeChoiceItem(recipe.input))
+                    .addIngredient('r', createRecipeChoiceItem(listOf(recipe.result)))
+                    .addIngredient('p', progressItem)
+                    .addIngredient('f', StaticFluidBar(recipe.fluidType, recipe.fluidAmount, FLUID_CAPACITY, 3))
+                    .addIngredient('t', CoreGUIMaterial.TP_STOPWATCH
+                        .createBasicItemBuilder()
+                        .setDisplayName(TranslatableComponent("menu.nova.recipe.time", recipe.time / 20.0))
+                    )
+                    .build()
+            }
+        
+        }
+        ```
+
+        !!! info
+
+            The resulting GUI needs to be in the dimensions `9x3`
