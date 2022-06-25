@@ -24,7 +24,7 @@ class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockSta
 By wrapping them in ``configReloadable``, they'll be automatically updated when the config is reloaded. Now let's make
 our Solar Panel actually work.
 
-# Holders
+## Holders
 
 Holders are classes that are used to store/handle specific data like energy amount or side config data. Every 
 ``NetworkedTileEntity`` has an ``energyHolder``, an ``itemHolder`` and a ``fluidHolder`` property. To actually use them,
@@ -42,7 +42,7 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
 
 ??? example "More holder examples"
 
-    === "EnergyHolder example: energy consuming tileEntity"
+    === "EnergyHolder example: Energy consuming tileEntity"
 
         ``EnergyHolders`` have 3 types:
 
@@ -51,59 +51,59 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
         * BufferEnergyHolder: Used for tileEntities that store energy and transfer it to other tileEntities when needed.
 
         ```kotlin
-            override val energyHolder = ConsumerEnergyHolder(this,
-                MAX_ENERGY,
-                ENERGY_PER_TICK,
-                null,
-                upgradeHolder) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
+        override val energyHolder = ConsumerEnergyHolder(this,
+            MAX_ENERGY,
+            ENERGY_PER_TICK,
+            null,
+            upgradeHolder) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
         ```
 
-    === "ItemHolder example: tileEntity converting items"
+    === "ItemHolder example: TileEntity converting items"
         
         ``ItemHolders`` need VirtualInventories. So in this case, we need an input and output inventory. Which we can
         get by calling ``getInventory``:
 
         ```kotlin
-            private val inputInventory = getInventory("input", 1)
-            private val outputInventory = getInventory("output", 1)
+        private val inputInventory = getInventory("input", 1)
+        private val outputInventory = getInventory("output", 1)
         ```
 
         You can also give these inventories update handlers. For example if an item is removed, print "Item removed" to
         the console:
         
         ```kotlin
-             private val inputInventory = getInventory("input", 1) {
-                if(it.isRemove)
-                    println("Item removed!")
-             }
+        private val inputInventory = getInventory("input", 1) {
+           if(it.isRemove)
+               println("Item removed!")
+        }
         ```
 
         You can then pass these inventories to the ``ItemHolder``:
 
         ```kotlin
-            override val itemHolder = NovaItemHolder(
-                this,
-                inputInventory to NetworkConnectionType.BUFFER,
-                outputInventory to NetworkConnectionType.EXTRACT
-            ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (1)
+        override val itemHolder = NovaItemHolder(
+            this,
+            inputInventory to NetworkConnectionType.BUFFER,
+            outputInventory to NetworkConnectionType.EXTRACT
+        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (1)
         ```
 
         1. Set all sides to insert except the front.
 
-    === "FluidHolder example: freezer"
+    === "FluidHolder example: Freezer"
 
         First, we need an input tank:
         
         ```kotlin
-            private val waterTank = getFluidContainer("water", setOf(FluidType.WATER), WATER_CAPACITY, 0)
+        private val waterTank = getFluidContainer("water", setOf(FluidType.WATER), WATER_CAPACITY, 0)
         ```
 
         We can then pass this tank to the ``FluidHolder``:
         
         ```kotlin
-            override val fluidHolder = NovaFluidHolder(this, waterTank to NetworkConnectionType.BUFFER) { 
-                createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) // (1)
-            }
+        override val fluidHolder = NovaFluidHolder(this, waterTank to NetworkConnectionType.BUFFER) { 
+            createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) // (1)
+        }
         ```
 
         1. Set all sides to insert except the front.
