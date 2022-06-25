@@ -91,6 +91,7 @@ All of the following values are required to create a new `RecipeType`:
             override val texture = GUITextures.RECIPE_PULVERIZER // (3)
         }
         ```
+        
         1. The priority defines where in the recipe explorer your recipe type is going to be. (Lower value -> left | Higher value -> right)
         2. The icon displayed for your recipe type.
         3. The GUI Texture used when displaying your recipe type.
