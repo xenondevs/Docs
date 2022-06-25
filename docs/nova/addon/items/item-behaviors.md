@@ -93,4 +93,4 @@ class JetpackBehavior(
 
 !!! warning
 
-    Make sure to not update a items lore in the ``modifyItemBuilder`` method, always use the ``getLore`` method.
+    Make sure to not update an items lore in the ``modifyItemBuilder`` method, always use the ``getLore`` method.
