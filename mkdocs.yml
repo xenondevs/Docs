@@ -71,9 +71,10 @@ nav:
               - "Registering Materials": "nova/addon/items/registering-materials.md"
               - "Item Behaviors": "nova/addon/items/item-behaviors.md"
               - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
+          - "Configs": "nova/addon/configs.md"
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
-          - "Configs": "nova/addon/configs.md"
+              - "TileEntity GUI": "nova/addon/blocks/tileentity-gui.md"
           - "Recipes": "nova/addon/recipes.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
