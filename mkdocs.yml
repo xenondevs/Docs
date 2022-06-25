@@ -74,6 +74,7 @@ nav:
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
           - "Configs": "nova/addon/configs.md"
+          - "Recipes": "nova/addon/recipes.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
