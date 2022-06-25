@@ -19,13 +19,7 @@ NovaConfig[Items.RUBY]
 ## configReloadable
 In order to take advantage of the config reloading feature, delegate properties to `configReloadble`:
 
-```kotlin title="Don't do this"
-object Example {
-    val SOME_VALUE: Int = NovaConfig[Items.RUBY].getInt("some_value")
-}
-```
-
-```kotlin title="Do this"
+```kotlin
 object Example {
     val SOME_VALUE: Int by configReloadable { NovaConfig[Items.RUBY].getInt("some_value") }
 }
