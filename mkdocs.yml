@@ -73,7 +73,7 @@ nav:
               - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
-          - "Configs": "nova/configs.md"
+          - "Configs": "nova/addon/configs.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
