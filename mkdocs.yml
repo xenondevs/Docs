@@ -70,6 +70,7 @@ nav:
           - "Items":
               - "Registering Materials": "nova/addon/items/registering-material.md"
               - "Item Behaviors": "nova/addon/items/item-behaviors.md"
+              - "Using ItemNovaMaterial": "nova/addon/items-using-item-nova-material.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
