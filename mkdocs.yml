@@ -69,6 +69,7 @@ nav:
               - "Language Files": "nova/addon/asset-packs/language-files.md"
           - "Items":
               - "Registering the Material": "nova/addon/items/registering-material.md"
+              - "Item Behaviors": "nova/addon/items/item-behaviors.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
