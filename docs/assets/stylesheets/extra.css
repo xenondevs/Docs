@@ -41,6 +41,8 @@
         background-color: #2e303e;
     }
 
-    scrollbar-color: #21222c #2e303e;
+    body {
+        scrollbar-color: #21222c #2e303e;
+    }
 
 }
