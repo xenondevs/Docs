@@ -42,11 +42,11 @@ Change the package name to your own.
 
 To build, run
 ```bash title="Build with Maven"
-mvn package "-Ddir=<Path to your plugins/ directory here>"
+mvn package "-Ddir=<Path to your plugins/Nova/addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
 ```bash title="Build with Maven"
-mvn package "-Ddir=<Path to your plugins/ directory here>" -P mojang-mapped
+mvn package "-Ddir=<Path to your plugins/Nova/addons directory here>" -P mojang-mapped
 ```
 
 !!! warning
