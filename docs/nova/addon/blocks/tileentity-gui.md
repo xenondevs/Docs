@@ -3,7 +3,7 @@
 !!! info "Check out the InvUI wiki"
 
     If you're not familiar with the InvUI library, you'll have to trouble understanding the following guide. You can check
-    out the wiki [here](https://xenondevs.xyz/docs-dev/invui/). Nova registers some default ingredients which can be used
+    out the wiki [here](../../../invui). Nova registers some default ingredients which can be used
     in the GUIBuilder. You can check out the default ingredients [here](https://github.com/xenondevs/Nova/blob/main/Nova/src/main/kotlin/xyz/xenondevs/nova/ui/GlobalStructureIngredients.kt).
     **Don't register your own global ingredients!**
 
