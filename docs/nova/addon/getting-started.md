@@ -38,7 +38,7 @@ Change `<groupId>` and `<artifactId>` to your own.
 
 Change the package name to your own.
 
-### Building
+## Building
 
 To build, run
 ```bash title="Build with Maven"
