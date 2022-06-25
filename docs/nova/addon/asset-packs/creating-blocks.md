@@ -32,7 +32,7 @@ In such a case, you can separate `item` and `block`:
 
 ## `item_type` and `block_type`
 
-The different item types from [Creating Items](creating-items.md) can also be set for the block models, as our current
+The different item types from [Creating Items](creating-items.md#item-types) can also be set for the block models, as our current
 custom blocks are all armor stands and therefore also just use items.
 
 !!! warning
