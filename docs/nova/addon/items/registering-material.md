@@ -72,10 +72,10 @@ object Items {
 The way nutrition and saturation is handle is exactly the same as it is in vanilla Minecraft.
 This is the formula for calculating the resulting food level and saturation is the following:
 ```kotlin title="foodLevel"
-foodLevel = min(player.foodLevel + options.nutrition, 20)
+min(player.foodLevel + options.nutrition, 20)
 ```
 ```kotlin title="saturation"
-saturation = min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
+min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
 ```
 
 !!! info
@@ -83,5 +83,8 @@ saturation = min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
     You can find the `nutrition` and `saturationModifier` for vanilla Minecraft items by decompiling the mojang-mapped
     class `net.minecraft.world.food.Foods`.
 
-## Registering items with custom behavior
-If you want t
+## NovaItem
+Custom behavior of items is done over so-called `NovaItems`. Every `ItemNovaMaterial` has a `NovaItem`, which is
+basically just a list of [Item Behaviors](item-behaviors.md). When registering a material, you can either specify
+the `NovaItem` or just pass the `ItemBehaviors`. If the `NovaItem` is set to `null`, the final `ItemNovaMaterial` will
+still have a `NovaItem` with no item behaviors.
