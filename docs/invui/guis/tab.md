@@ -87,23 +87,23 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
     Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
     
     GUI gui1 = new SimpleGUI(9, 3);
-            gui1.fill(new SimpleItem(new ItemBuilder(Material.DIRT)), true);
+    gui1.fill(new SimpleItem(new ItemBuilder(Material.DIRT)), true);
     
-                GUI gui2 = new SimpleGUI(9, 3);
-                gui2.fill(new SimpleItem(new ItemBuilder(Material.DIAMOND)), true);
+    GUI gui2 = new SimpleGUI(9, 3);
+    gui2.fill(new SimpleItem(new ItemBuilder(Material.DIAMOND)), true);
     
-                GUI gui = new GUIBuilder<>(GUIType.TAB)
-    .setStructure(
-    "# # # 0 # 1 # # #",
-    "x x x x x x x x x",
-    "x x x x x x x x x",
-    "x x x x x x x x x")
-    .addIngredient('x', Markers.ITEM_LIST_SLOT_VERTICAL)
-    .addIngredient('#', border)
-    .addIngredient('0', new MyTabItem(0))
-    .addIngredient('1', new MyTabItem(1))
-    .setGUIs(Arrays.asList(gui1, gui2))
-    .build();
+    GUI gui = new GUIBuilder<>(GUIType.TAB)
+        .setStructure(
+            "# # # 0 # 1 # # #",
+            "x x x x x x x x x",
+            "x x x x x x x x x",
+            "x x x x x x x x x")
+        .addIngredient('x', Markers.ITEM_LIST_SLOT_VERTICAL)
+        .addIngredient('#', border)
+        .addIngredient('0', new MyTabItem(0))
+        .addIngredient('1', new MyTabItem(1))
+        .setGUIs(Arrays.asList(gui1, gui2))
+        .build();
     
     new SimpleWindow(player, "InvUI", gui).show();
     ```
