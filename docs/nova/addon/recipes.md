@@ -151,4 +151,4 @@ All of the following values are required to create a new `RecipeType`:
 
             The resulting GUI needs to be in the dimensions `9x3`
 
-        [:material-file-document-outline: InvUI Documentation](#){ .md-button }
+        [:material-file-document-outline: InvUI Documentation](../invui/){ .md-button }
