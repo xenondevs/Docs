@@ -1,5 +1,5 @@
 **This guide is not beginner-friendly! Making Nova addons requires a lot of
-knowledge about the Kotlin, the Spigot API and Maven.**
+knowledge about Kotlin, the Spigot API and Maven.**
 
 ## Prerequisites
 
