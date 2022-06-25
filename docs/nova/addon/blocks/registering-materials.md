@@ -3,8 +3,8 @@
 !!! info
 
     Currently, every block in Nova is automatically a TileEntity. So creating ores or other non interactable blocks is not
-    supported yet. Normal blocks will be added in the future which will also include real blocks instead of ArmorStands
-    like note blocks and mushroom blocks.
+    supported yet. Normal blocks will be added in the future which will also include real blocks like note blocks and 
+    mushroom blocks instead of ArmorStands.
 
 ## Time and Place of Registration
 
