@@ -26,7 +26,8 @@ instead.
 
 There are of course different item types, depending on the properties you need for your material. For example,
 damageable,
-translucent, consumable, etc. To use these item types we use the ``item_type`` property. So let's make an edible ruby:
+translucent, consumable, etc. To use these item types we use the ``item_type`` property. These types will let Nova automatically
+assign the correct vanilla material. So let's make an edible ruby material:
 
 ```json
 {
@@ -36,6 +37,8 @@ translucent, consumable, etc. To use these item types we use the ``item_type`` p
   }
 }
 ```
+
+To actually make it consumable, we'll have to add a Consumable item behavior later.
 
 The following item types currently exist:
 
