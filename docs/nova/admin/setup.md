@@ -69,7 +69,7 @@ resource_pack:
     You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
     If you are on a local server, you will need to set `host: 127.0.0.1`
 
-!! warning "'portNeeded' parameter"
+!!! warning "'portNeeded' parameter"
 
     When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
     If this is not the case, set `portNeeded: true`.
