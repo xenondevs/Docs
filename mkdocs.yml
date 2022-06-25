@@ -65,6 +65,7 @@ nav:
               - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
               - "Creating Items": "nova/addon/asset-packs/creating-items.md"
               - "Creating Blocks": "nova/addon/asset-packs/creating-blocks.md"
+              - "Creating GUIs": "nova/addon/asset-packs/creating-guis.md"
               - "Language Files": "nova/addon/asset-packs/language-files.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
