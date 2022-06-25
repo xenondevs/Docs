@@ -51,11 +51,13 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
         * BufferEnergyHolder: Used for tileEntities that store energy and transfer it to other tileEntities when needed.
 
         ```kotlin
-        override val energyHolder = ConsumerEnergyHolder(this,
+        override val energyHolder = ConsumerEnergyHolder(
+            this,
             MAX_ENERGY,
             ENERGY_PER_TICK,
             null,
-            upgradeHolder) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
+            upgradeHolder
+        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
         ```
 
     === "ItemHolder example: TileEntity converting items"
