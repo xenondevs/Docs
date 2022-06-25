@@ -26,20 +26,21 @@
         -webkit-transform: none;
         transform: none;
     }
-}
 
-body::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
+    body::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+    }
 
-body::-webkit-scrollbar-thumb {
-    background-color: #21222c;
-    border-radius: 10px;
-}
+    body::-webkit-scrollbar-thumb {
+        background-color: #21222c;
+        border-radius: 20px;
+    }
 
-body::-webkit-scrollbar-track {
-    background-color: #2e303e;
-}
+    body::-webkit-scrollbar-track {
+        background-color: #2e303e;
+    }
 
-scrollbar-color: #21222c #2e303e;
+    scrollbar-color: #21222c #2e303e;
+
+}
