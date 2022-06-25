@@ -10,7 +10,7 @@ New or changed keys will automatically be added / updated on the server as well,
 To access the configs, retrieve them from `NovaConfig`.  
 You can either use their names:
 ```kotlin
-NovaConfig["myaddon:ruby"] // namespace:name (drop the .yml)
+NovaConfig["example:ruby"] // namespace:name (drop the .yml)
 ```
 Or if the name matches the name of one of your [items](items/registering-materials.md), the NovaMaterial:
 ```kotlin

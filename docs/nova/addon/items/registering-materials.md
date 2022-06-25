@@ -17,7 +17,7 @@ object Items {
 ```
 and your addon main like this:
 ```kotlin
-object MyAddon : Addon() {
+object ExampleAddon : Addon() {
     
     override fun init() {
         Items.init()
@@ -40,7 +40,7 @@ Registering our ruby from [before](../asset-packs/creating-items.md), our `Items
 ```kotlin
 object Items {
     
-    val RUBY = NovaMaterialRegistry.registerDefaultItem(MyAddon, "ruby")
+    val RUBY = NovaMaterialRegistry.registerDefaultItem(ExampleAddon, "ruby")
     
     fun init() = Unit
     
@@ -56,7 +56,7 @@ In this example, I'll use the nutrition and saturation values of an Apple, but w
 object Items {
     
     val RUBY = NovaMaterialRegistry.registerFood(
-        Machines,
+        ExampleAddon,
         "ruby",
         FoodOptions(
             consumeTime = 40, // 40 ticks = 2 second

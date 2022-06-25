@@ -17,7 +17,7 @@ There are also a few reserved words that can't be used as id. These are:
 Example:
 
 ```yaml
-id: example_id
+id: example
 ```
 
 ## name*
