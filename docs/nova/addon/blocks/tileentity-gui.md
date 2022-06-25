@@ -9,7 +9,8 @@
 
 As you probably noticed, the TilEntity needs a ``Lazy<TileEntityGUI>`` property. It's lazy to save performance and only
 load a GUI when needed. To create a new GUI, you need to create an inner class that extends ``TileEntityGUI``. In this
-GUI override the ``gui`` property and set it to the GUI you want to display. For now, let's leave the GUI empty.
+GUI override the ``gui`` property and set it to the GUI you want to display. For now, let's create a GUI with a single
+energy bar.
 
 ```kotlin
 inner class SolarPanelGUI : TileEntityGUI() {
@@ -17,35 +18,20 @@ inner class SolarPanelGUI : TileEntityGUI() {
     override val gui: GUI = GUIBuilder(GUIType.NORMAL)
         .setStructure(
             "1 - - - - - - - 2",
-            "| # # # # # # # |",
-            "| # # # # # # # |",
-            "| # # # # # # # |",
+            "| # # # e # # # |",
+            "| # # # e # # # |",
+            "| # # # e # # # |",
             "3 - - - - - - - 4")
+        .addIngredient('e', EnergyBar(3, energyHolder)) // (1)
         .build()
     
 }
 ```
 
-Now we can set the GUI in the ``TileEntity``.
+1. The ``energyHolder`` will be explained in the next section.
 
 ```kotlin
 override val gui = lazy { SolarPanelGUI() }
 ```
-
-But we don't want an empty GUI of course. Let#s give it an energy bar.
-
-```kotlin
-override val gui: GUI = GUIBuilder(GUIType.NORMAL)
-    .setStructure(
-        "1 - - - - - - - 2",
-        "| # # # e # # # |",
-        "| # # # e # # # |",
-        "| # # # e # # # |",
-        "3 - - - - - - - 4")
-    .addIngredient('e', EnergyBar(3, energyHolder)) // (1)
-    .build()
-```
-
-1. The ``energyHolder`` will be explained in the next section.
 
 And that's it for the GUI.
