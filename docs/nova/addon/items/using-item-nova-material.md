@@ -27,14 +27,16 @@ of their array.
 ### Understanding Packet Items
 To understand the difference between a normal (server-side) and a client-side item, you first need to understand how custom
 items are handled in Nova.  
-In order to be extremely flexible in regard to changing custom model data, the underlying vanilla material or changes
-in the lore format of custom items from Nova, these things are not stored in the actual ItemStack at all.  
-All of these things (custom model data, item type, lore, display name) are actually only applied on packet level.  
-This can be observed by running the command `/data get entity @p SelectedItem` while holding an item from Nova: its
-material will always be `shulker_shell` and it won't have any custom model data, display name or lore, even though it has
-one for your game.
-Client-side providers are now wrappers for the ItemStack that the client actually sees. They should only be used in cases
-where the ItemStack isn't actually stored anywhere, for example as a button in a GUI or as the head of a `FakeArmorStand`.  
+In order to be extremely flexible when it comes to changing custom model data, the underlying vanilla material, the lore
+format of the item or its display name, Nova items do not store this information at all.
+All of these values are actually only applied on packet level, this can be observed by running the command
+`/data get entity @p SelectedItem` while holding an item from Nova: its material will always be `shulker_shell` and it
+won't have any custom model data, display name or lore, even though it has one for your game.
+Coming back to client-side providers: These are wrappers for the ItemStacks that the client actually sees.
+They should only be used in cases where the ItemStack isn't actually stored anywhere, for example as a button in a GUI
+or as the head of a `FakeArmorStand`.  
 
-Generally, you should use `clientsideProviders` or `basicClientsideProviders` when working with GUIs and `createItemStack(amount)`
-if you need an item to give to a player.
+!!! info
+
+    Generally, you should use `clientsideProviders` or `basicClientsideProviders` when working with GUIs and `createItemStack(amount)`
+    if you need an item to give to a player.
