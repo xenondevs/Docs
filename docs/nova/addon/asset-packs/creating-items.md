@@ -1,4 +1,6 @@
-# Creating your first item
+# Creating items
+
+## Creating your first material
 
 To start of open the newly created ``materials.json`` file. This file will contain all materials needed by your addon.
 Both
