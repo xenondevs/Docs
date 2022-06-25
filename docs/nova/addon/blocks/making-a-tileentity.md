@@ -68,7 +68,7 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
         private val outputInventory = getInventory("output", 1)
         ```
 
-        You can also give these inventories update handlers. For example if an item is removed, print "Item removed" to
+        You can also give these inventories update handlers. For example: if an item is removed, print "Item removed" to
         the console:
         
         ```kotlin
@@ -107,3 +107,17 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
         ```
 
         1. Set all sides to insert except the front.
+
+## Handling ticks
+
+Now that we've got our energyHolder set up, we can start giving it energy. To do that, we just override the ``handleTick`` method
+and check if it's still day time.
+
+```kotlin title="SolarPanel.kt"
+override fun handleTick() {
+    if(world.time < 13_000)
+        energyHolder.energy += ENERGY_PER_TICK
+}
+```
+
+And that's it! We now have a working solar panel.
