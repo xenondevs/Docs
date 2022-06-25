@@ -2,9 +2,9 @@
 
 ## Config
 
-Let's start off by making a simple config file for our Solar Panel in ``resources/configs/solar_panel.yml``:
+Let's start off by making a simple config file for our Solar Panel:
 
-```yaml
+```yaml title="resources/configs/solar_panel.yml"
 capacity: 10000
 energy_per_tick: 40
 ```
@@ -31,7 +31,7 @@ Holders are classes that are used to store/handle specific data like energy amou
 you have to override them. The SolarPanel provides energy to other machines in the network, so it needs an ``EnergyHolder`` 
 instance:
 
-```kotlin
+```kotlin title="SolarPanel.kt"
 override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null) { // (1)
     createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM) // (2)
 }
@@ -44,6 +44,12 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
 
     === "EnergyHolder example: energy consuming tileEntity"
 
+        ``EnergyHolders`` have 3 types:
+
+        * ProviderEnergyHolder: Used mostly for tileEntities that generate energy.
+        * ConsumerEnergyHolder: Used for tileEntities that need and consume energy to operate.
+        * BufferEnergyHolder: Used for tileEntities that store energy and transfer it to other tileEntities when needed.
+
         ```kotlin
             override val energyHolder = ConsumerEnergyHolder(this,
                 MAX_ENERGY,
@@ -54,7 +60,7 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
 
     === "ItemHolder example: tileEntity converting items"
         
-        ``ItemHolder``s need VirtualInventories. So in this case, we need an input and output inventory. Which we can
+        ``ItemHolders`` need VirtualInventories. So in this case, we need an input and output inventory. Which we can
         get by calling ``getInventory``:
 
         ```kotlin
