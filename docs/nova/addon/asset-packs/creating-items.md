@@ -38,16 +38,18 @@ assign the correct vanilla material. So let's make an edible ruby material:
 }
 ```
 
-To actually make it consumable, we'll have to add a Consumable item behavior later.
+!!! warning
 
-The following item types currently exist:
+    This alone doesn't make the item edible. To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
 
-* ``default`` - The default item type. You don't need to specify this manually.
-* ``damageable`` - An item that can be damaged.
-* ``translucent`` - For items whose texture have pixels that aren't fully transparent.
-* ``consumable`` - An item that can be consumed.
-* ``always_consumable`` - An item that can be consumed even if the player's hunger is full.
-* ``fast_consumable`` - An item that can be consumed faster than the default.
+??? example "Available item types"
+
+    * ``default`` - The default item type. You don't need to specify this manually.
+    * ``damageable`` - An item that can be damaged.
+    * ``translucent`` - For items whose texture have pixels that aren't fully transparent.
+    * ``consumable`` - An item that can be consumed.
+    * ``always_consumable`` - An item that can be consumed even if the player's hunger is full.
+    * ``fast_consumable`` - An item that can be consumed faster than the default.
 
 If none of these item types are appropriate, you can use the ``item_material`` property to explicitly set a material.
 
