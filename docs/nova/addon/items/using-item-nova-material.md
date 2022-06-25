@@ -31,7 +31,7 @@ In order to be extremely flexible when it comes to changing custom model data, t
 format of the item or its display name, Nova items do not store this information at all.
 All of these values are actually only applied on packet level, this can be observed by running the command
 `/data get entity @p SelectedItem` while holding an item from Nova: its material will always be `shulker_shell` and it
-won't have any custom model data, display name or lore, even though it has one for your game.
+won't have any custom model data, display name or lore, even though it has one for your game.  
 Coming back to client-side providers: These are wrappers for the ItemStacks that the client actually sees.
 They should only be used in cases where the ItemStack isn't actually stored anywhere, for example as a button in a GUI
 or as the head of a `FakeArmorStand`.  
