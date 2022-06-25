@@ -42,7 +42,7 @@ assign the correct vanilla material. So let's make an edible ruby material:
 
     This alone doesn't make the item edible. To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
 
-??? example "Available item types"
+???+ example "Available item types"
 
     * ``default`` - The default item type. You don't need to specify this manually.
     * ``damageable`` - An item that can be damaged.
