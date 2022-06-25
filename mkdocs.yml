@@ -68,9 +68,11 @@ nav:
               - "Creating GUIs": "nova/addon/asset-packs/creating-guis.md"
               - "Language Files": "nova/addon/asset-packs/language-files.md"
           - "Items":
-              - "Registering Materials": "nova/addon/items/registering-material.md"
+              - "Registering Materials": "nova/addon/items/registering-materials.md"
               - "Item Behaviors": "nova/addon/items/item-behaviors.md"
               - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
+          - "Blocks":
+              - "Registering Materials": "nova/addon/blocks/registering-materials.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
