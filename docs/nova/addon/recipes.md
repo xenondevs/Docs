@@ -19,9 +19,10 @@ All of the following values are required to create a new `RecipeType`:
 !!! danger
 
     These values are only nullable for testing purposes (i.e. you want to test your deserializer but don't have a
-    `RecipeGroup` yet). They should **never** be `null` on a live build!
+    `RecipeGroup` yet).  
+    They should **never** be `null` on a live build!
 
-!!! example
+!!! example "Creating a custom Recipe Type"
 
     === "Recipe Class"
         
@@ -70,6 +71,7 @@ All of the following values are required to create a new `RecipeType`:
         
                 return FluidInfuserRecipe(getRecipeKey(file), mode, fluidType, fluidAmount, input, result, time)
             }
+
         }
         ```
 
@@ -110,10 +112,10 @@ All of the following values are required to create a new `RecipeType`:
                 val progressItem: ItemBuilder
                 val translate: String
                 if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) {
-                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_LEFT_RIGHT.createItemBuilder()
+                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_LEFT_RIGHT.createClientsideItemBuilder()
                     translate = "menu.machines.recipe.insert_fluid"
                 } else {
-                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_RIGHT_LEFT.createItemBuilder()
+                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_RIGHT_LEFT.createClientsideItemBuilder()
                     translate = "menu.machines.recipe.extract_fluid"
                 }
             
@@ -133,7 +135,7 @@ All of the following values are required to create a new `RecipeType`:
                     .addIngredient('p', progressItem)
                     .addIngredient('f', StaticFluidBar(recipe.fluidType, recipe.fluidAmount, FLUID_CAPACITY, 3))
                     .addIngredient('t', CoreGUIMaterial.TP_STOPWATCH
-                        .createBasicItemBuilder()
+                        .createClientsideItemBuilder()
                         .setDisplayName(TranslatableComponent("menu.nova.recipe.time", recipe.time / 20.0))
                     )
                     .build()
