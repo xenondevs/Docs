@@ -91,6 +91,6 @@ class JetpackBehavior(
 }
 ```
 
-!!! warning
+!!! danger
 
     Make sure to not update an items lore in the ``modifyItemBuilder`` method, always use the ``getLore`` method.
