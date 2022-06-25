@@ -130,7 +130,7 @@ All of the following values are required to create a new `RecipeType`:
                         ". f . t . . . . .",
                         ". f p i . . . r .",
                         ". f . . . . . . .")
-                    .addIngredient('i', createRecipeChoiceItem(recipe.input))
+                    .addIngredient('i', createRecipeChoiceItem(recipe.input)) // (1)
                     .addIngredient('r', createRecipeChoiceItem(listOf(recipe.result)))
                     .addIngredient('p', progressItem)
                     .addIngredient('f', StaticFluidBar(recipe.fluidType, recipe.fluidAmount, FLUID_CAPACITY, 3))
@@ -143,6 +143,9 @@ All of the following values are required to create a new `RecipeType`:
         
         }
         ```
+        
+        1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that
+            item. It also automatically cycles through all possible input options, if there is more than one.
 
         !!! info
 
