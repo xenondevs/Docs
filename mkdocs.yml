@@ -10,6 +10,9 @@ extra:
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/hnEknVWvUe
+    - icon: fontawesome/brands/patreon
+      link: https://patreon.com/xenondevs
+      
 theme:
   name: material
   logo: assets/logo.png
