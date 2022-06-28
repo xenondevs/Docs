@@ -46,10 +46,10 @@ There are currently three main ways to configure the auto-uploader:
         Example config:
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
-            auto_upload:
-                enabled: true
-                service: xenondevs
-                key: "" # Your Patreon-Uploader Key
+          auto_upload:
+            enabled: true
+            service: xenondevs
+            key: "" # Your Patreon-Uploader Key
         ```
     
     === "Self-hosted"
@@ -60,7 +60,7 @@ There are currently three main ways to configure the auto-uploader:
         Example config:
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
-        auto_upload:
+          auto_upload:
             enabled: true
             service: SelfHost
             port: 12345 # The port on which the server will be running, needs to be open to the Internet.
@@ -84,20 +84,20 @@ There are currently three main ways to configure the auto-uploader:
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
         auto_upload:
-            enabled: true
-            service: CustomMultiPart
-            url: https://example.com/upload.php
-            filePartName: pack
-            extraparams:
-                key: "" # This key also needs to be set in the php script mentioned above
+          enabled: true
+          service: CustomMultiPart
+          url: https://example.com/upload.php
+          filePartName: pack
+          extraparams:
+            key: "" # This key also needs to be set in the php script mentioned above
         ```
     
         If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
         For example, for a response like this 
         ```json
         {
-            "state": "success",
-            "url": "https://example.com/ResourcePack.zip"
+          "state": "success",
+          "url": "https://example.com/ResourcePack.zip"
         }
         ```
         the regex could be ``"url": "([\w:/\.]*)``.
