@@ -50,9 +50,10 @@ nav:
       - "Home": "nova/index.md"
       - "For Server Admins":
           - "Setup": "nova/admin/setup.md"
-          - "Compatibility": "nova/admin/compatibility.md"
           - "Configuration": "nova/admin/configuration.md"
+          - "Compatibility": "nova/admin/compatibility.md"
           - "Recipes": "nova/admin/recipes.md"
+          - "FAQ": "nova/admin/faq.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
