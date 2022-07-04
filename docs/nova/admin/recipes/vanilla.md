@@ -5,7 +5,7 @@
 Shaped recipes are recipes for the Crafting Table that have to follow a specific structure. This is an example crafting
 recipe for the Advanced Cable:
 
-```json
+```json title="advanced_cable.json"
 {
   "result": "logistics:advanced_cable",
   "amount": 3,
