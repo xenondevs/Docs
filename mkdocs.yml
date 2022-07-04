@@ -87,8 +87,8 @@ nav:
           - "Protection": "nova/api/protection/protectionintegration.md"
           - "NovaMaterial": "nova/api/material/index.md"
           - "TileEntity":
-              - "TileEntity": "nova/api/tileentity/tileentity.md"
               - "TileEntityManager": "nova/api/tileentity/tileentitymanager.md"
+              - "TileEntity": "nova/api/tileentity/tileentity.md"
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
