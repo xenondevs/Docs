@@ -55,7 +55,10 @@ nav:
               - "List of compatible plugins": "nova/admin/compatibility/index.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
               - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
-          - "Recipes": "nova/admin/recipes.md"
+          - "Recipes":
+              - "Custom Recipes": "nova/admin/recipes/index.md"
+              - "Vanilla Recipe Types": "nova/admin/recipes/vanilla.md"
+              - "Machines Recipe Types": "nova/admin/recipes/machines.md"
           - "FAQ": "nova/admin/faq.md"
       - "API":
           - "Getting Started": "nova/api/index.md"
