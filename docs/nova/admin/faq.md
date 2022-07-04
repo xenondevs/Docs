@@ -32,7 +32,7 @@
 
 ??? faq "Is Nova compatible with Plugin X?"
     
-    All compatible plugins and setup requirements are listed on the [compatibility page](compatibility.md).
+    All compatible plugins and setup requirements are listed on the [compatibility page](compatibility/index.md).
 
 ??? faq "How does the Item Filter work?"
 
