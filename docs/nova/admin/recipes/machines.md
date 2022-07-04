@@ -49,7 +49,7 @@ This is an example recipe for inserting water into a bucket to create a water bu
   "time": 100
 }
 ```
-!!! info "Parameters"
+!!! abstract "Parameters"
 
     === "Mode"
 
@@ -72,11 +72,9 @@ This is an example recipe for extract water from a water bottle to create an emp
 }
 ```
 
-!!! info "Parameters"
+!!! info "Custom Item Format"
 
-    === "Custom Item Format"
-
-        As a water bottle is not its own item, a Custom Item Format is required here. See \"Item Formats\" below for more information.
+    As a water bottle is not its own item, a Custom Item Format is required here. See \"Item Formats\" below for more information.
 
 ## Electric Brewing Stand Recipes
 
@@ -101,7 +99,7 @@ This recipe would add the luck effect type to the electric brewing stand:
 }
 ```
 
-!!! info "Parameters"
+!!! abstract "Parameters"
 
     === "default_time"
 

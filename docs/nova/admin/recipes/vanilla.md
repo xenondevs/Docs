@@ -21,17 +21,20 @@ recipe for the Advanced Cable:
 }
 ```
 
-!!! info "Shape"
+!!! abstract "Parameters"
 
-    The shape is the structure of the recipe. You can see that it resembles a Crafting Table. The letters you use here have to  also be present in the ``ingredients`` section. You can use a space if that slot should be empty.
+    === "shape"
+
+        The shape is the structure of the recipe. You can see that it resembles a Crafting Table. The letters you use here have to  also be present in the ``ingredients`` section. You can use a space if that slot should be empty.
+
+    === "amount"
+
+        The amount of items that will be crafted, can be omitted for 1.
+
 
 !!! info "Multiple Choices for Ingredients"
 
      If you want to give players multiple item choices for a single ingredient, you can specify an array of strings instead of a single string for each ingredient.
-
-!!! info ""
-
-    "amount" can be omitted for 1
 
 ## Shapeless Recipes
 
