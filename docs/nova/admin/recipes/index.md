@@ -89,40 +89,39 @@ For that, just put multiple recipe objects into a json array:
         
             If required, it is also possible to use item fallbacks inside of recipe fallbacks.
 
-    === "With `failSilently`"
+    === "With failSilently"
 
         If you don't want any exceptions in the console if none of the fallbacks could be loaded, you can set the ``failSilently`` boolean to ``true``.
         
-        ??? example "Example recipe with fallback and `failSilently`"
-            ```json title="recipe.json"
+        ```json title="recipe.json"
+        {
+          "failSilently": true,
+          "recipes": [
             {
-              "failSilently": true,
-              "recipes": [
-                {
-                  "result": "addon1:result_item",
-                  "shape": [
-                    "a  ",
-                    " a ",
-                    "  a"
-                  ],
-                  "ingredients": {
-                    "a": "addon2:example_item"
-                  }
-                },
-                {
-                  "result": "addon1:result_item",
-                  "shape": [
-                    " a ",
-                    " a ",
-                    " a "
-                  ],
-                  "ingredients": {
-                    "a": "addon1:fallback_item"
-                  }
-                }
-              ]
+              "result": "addon1:result_item",
+              "shape": [
+                "a  ",
+                " a ",
+                "  a"
+              ],
+              "ingredients": {
+                "a": "addon2:example_item"
+              }
+            },
+            {
+              "result": "addon1:result_item",
+              "shape": [
+                " a ",
+                " a ",
+                " a "
+              ],
+              "ingredients": {
+                "a": "addon1:fallback_item"
+              }
             }
-            ```
+          ]
+        }
+        ```
 
         !!! info
         
