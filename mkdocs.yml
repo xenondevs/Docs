@@ -51,7 +51,9 @@ nav:
       - "For Server Admins":
           - "Setup": "nova/admin/setup.md"
           - "Configuration": "nova/admin/configuration.md"
-          - "Compatibility": "nova/admin/compatibility.md"
+          - "Compatibility":
+              - "List of compatible plugins": "nova/admin/compatibility/index.md"
+              - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
           - "Recipes": "nova/admin/recipes.md"
           - "FAQ": "nova/admin/faq.md"
       - "API":
