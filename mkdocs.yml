@@ -54,6 +54,7 @@ nav:
           - "Compatibility":
               - "List of compatible plugins": "nova/admin/compatibility/index.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
+              - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
           - "Recipes": "nova/admin/recipes.md"
           - "FAQ": "nova/admin/faq.md"
       - "API":

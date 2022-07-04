@@ -11,8 +11,8 @@ Unchecked plugins are partially supported, some features might not work.
 
 Planned:
 
-* [Slimefun](https://github.com/Slimefun/Slimefun4)
-* [Space](https://www.spigotmc.org/resources/space.59572/)
+* Slimefun
+* Space
 
 !!! warning
 
