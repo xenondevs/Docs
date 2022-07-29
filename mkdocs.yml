@@ -63,6 +63,7 @@ nav:
           - "Configuration": "nova/admin/configuration.md"
           - "Compatibility":
               - "List of compatible plugins": "nova/admin/compatibility/index.md"
+              - "Troubleshooting": "nova/admin/compatibility/troubleshooting.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
               - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
           - "Recipes":
