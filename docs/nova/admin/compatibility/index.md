@@ -17,6 +17,7 @@ Planned:
 !!! warning
 
     Most of these plugins require [resource pack merging](setup.md#optional-resourcepack-merging).
+    You might also want to check out the [troubleshooting page](troubleshooting.md)
 
 ## World Protection Plugins
 
