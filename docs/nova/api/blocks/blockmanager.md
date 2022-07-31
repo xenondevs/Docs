@@ -16,7 +16,7 @@ You can get the ``BlockManager`` using [the previously retrieved Nova instance](
     BlockManager blockManager = nova.getBlockManager(); // (1)
     ```
 
-    1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getTileEntityManager()``
+    1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getBlockManager()``
 
 # Getting a BlockState
 
