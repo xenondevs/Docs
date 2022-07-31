@@ -95,8 +95,8 @@ nav:
           - "Protection": "nova/api/protection/protectionintegration.md"
           - "NovaMaterial": "nova/api/material/index.md"
           - "Blocks":
-              - "BlockState": "nova/api/blocks/blockstate.md"
               - "BlockManager": "nova/api/blocks/blockmanager.md"
+              - "BlockState": "nova/api/blocks/blockstate.md"
           - "TileEntity":
               - "TileEntityManager": "nova/api/tileentity/tileentitymanager.md"
               - "TileEntity": "nova/api/tileentity/tileentity.md"
