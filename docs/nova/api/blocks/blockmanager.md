@@ -18,7 +18,7 @@ You can get the ``BlockManager`` using [the previously retrieved Nova instance](
 
     1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getBlockManager()``
 
-# Getting a BlockState
+## Getting a BlockState
 
 The BlockManager also allows you to get a BlockState at a specific location.
 
@@ -40,7 +40,7 @@ You can also check if a block at a specific location is a Nova block via ``Block
 
 See [BlockState](blockstate.md) for more information.
 
-# Placing a block
+## Placing a block
 
 You can also place a nova block at a specific location by using a [``NovaMaterial``](../material/index.md).
 
@@ -86,7 +86,7 @@ You can also place a nova block at a specific location by using a [``NovaMateria
 
     The ``BlockManager.placeBlock`` function has a few overrides requiring less arguments.
 
-# Getting the drops of a block
+## Getting the drops of a block
 
 If you want to get the drops of a block, you can use the ``BlockManager.getDrops`` function. Again, there are a few
 overrides requiring less arguments.
@@ -123,7 +123,7 @@ overrides requiring less arguments.
     2. The source, again, this doesn't have to be a player, it can also be a tile-entity or similar.
     3. The tool used to break the block.
 
-# Removing a block
+## Removing a block
 
 You can remove a block at a specific location by using the ``BlockManager.removeBlock`` function. The function will return
 a ``boolean`` whether there was a block at the provided location and whether it was removed successfully.
