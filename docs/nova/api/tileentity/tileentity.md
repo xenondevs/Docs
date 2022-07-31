@@ -1,7 +1,6 @@
 # TileEntity
 
-A TileEntity is a block that has internal logic and tick-based updates. Currently, Nova only has TileEntities as blocks 
-but this may change in the future.
+A TileEntity is a block that has internal logic and tick-based updates.
 
 ## Getting the owner of a TileEntity
 
@@ -64,3 +63,5 @@ These drops include all items in the TileEntity's inventory and the TileEntity i
         return;
     List<ItemStack> drops = tileEntity.getDrops(true);
     ```
+
+For more information about the TileEntityManager, see the [TileEntityManager](../tileentity/tileentitymanager.md) page.
