@@ -9,8 +9,8 @@ the [``NovaMaterial``](../material/index.md) and the location of the block via t
 
     ```kotlin
     val blockState = blockManager.getBlock(location) ?: return
-    val material = tileEntity.material
-    val location = tileEntity.location
+    val material = blockState.material
+    val location = blockState.location
     ```
 
 === "Java"
