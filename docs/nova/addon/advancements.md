@@ -1,6 +1,6 @@
 # Advancements
 
-Advancements can be created with the top level dsl builder function `advancement`.
+Advancements can be created with the top level dsl builder function `advancement`.  
 After creating all advancements, you can register them using `AdvancementManager#registerAdvancements`
 
 !!! important
@@ -50,7 +50,7 @@ Nova also provided some useful top level functions for creating advancements wit
     === "`obtainNovaItemsAdvancement`"
 
         ```kotlin
-        // Advancement for obtaining any dust type:
+        // Advancement for obtaining any dust type
         private val DUST = obtainNovaItemsAdvancement(ExampleAddon, "dust", ROOT, listOf(
             Items.IRON_DUST, Items.GOLD_DUST, Items.DIAMOND_DUST,
             Items.NETHERITE_DUST, Items.EMERALD_DUST, Items.LAPIS_DUST,
