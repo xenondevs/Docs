@@ -38,7 +38,7 @@ These all have different constructors. You can open the example box below to see
            required, it is still recommended to set it since it will automatically calculate the actual energy consumption with upgrades.
         4. (optional) A second energy consumption rate if needed.
         5. (optional) A ``UpgradeHolder`` instance. See [UpgradeHolder](upgrades.md) for more info.
-        6. A lambda that creates a default ``BlockSideConfig`` for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
+        6. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
            you have a simple default config. In this case, a config with insert on all sides except the front will be created.
 
     === "ProviderEnergyHolder"
@@ -58,7 +58,7 @@ These all have different constructors. You can open the example box below to see
         3. (optional) Another config reloadable value that stores the amount of energy that is generated per tick. While this value is not
            required, it is still recommended to set it since it will automatically calculate the actual energy generation with upgrades.
         4. (optional) A ``UpgradeHolder`` instance. See [UpgradeHolder](upgrades.md) for more info.
-        5. A lambda that creates a default ``BlockSideConfig`` for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
+        5. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
            you have a simple default config. In this case, a config with extract on all sides except the front will be created.
 
     === "BufferEnergyHolder"
@@ -76,6 +76,8 @@ These all have different constructors. You can open the example box below to see
            actual maximum amount is calculated with upgrades.
         3. (optional) A boolean value that determines if the holder should provide an infinite amount of energy. Can be used
            for creative blocks (E.g. a creative power cell).
+        4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
+           you have a simple default config. In this case, a config with buffer on all sides will be created.
 
 
 ```kotlin
