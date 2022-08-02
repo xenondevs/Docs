@@ -1,11 +1,5 @@
 # Registering Materials
 
-!!! info
-
-    Currently, every block in Nova is automatically a TileEntity. So creating ores or other non interactable blocks is not
-    supported yet. Normal blocks will be added in the future which will also include real blocks like note blocks and 
-    mushroom blocks instead of ArmorStands.
-
 ## Time and Place of Registration
 
 The registration is pretty similar to the [item registration](../items/registering-materials.md). Create
@@ -42,7 +36,7 @@ object ExampleAddon : Addon() {
 
 Again, calling the init function will cause the class and all its fields to be loaded.
 
-## Creating BlockOptions
+## BlockOptions
 
 Before registering a new TileEntity, you need to create a `BlockOptions` instance. This class contains properties for
 breaking/placing custom blocks. Let's create an instance that can be broken with a stone pickaxe:
@@ -53,7 +47,6 @@ private val STONE = BlockOptions(
     ToolCategory.PICKAXE, // (2)
     ToolLevel.STONE, // (3)
     true, // (4)
-    Material.BARRIER, // (5)
     SoundEffect(Sound.BLOCK_STONE_PLACE), // (6)
     SoundEffect(Sound.BLOCK_STONE_BREAK), // (7)
     Material.NETHERITE_BLOCK, // (8)
@@ -65,11 +58,39 @@ private val STONE = BlockOptions(
 2. The type of tool that can break this block.
 3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian).
 4. Whether a tool is required to receive drops.
-5. The material for the hitbox of the block.
-6. The sound that plays when the block is placed.
-7. The sound that plays when the block is broken.
-8. The break particles that spawn when the block is broken.
-9. (optional) Whether a break animation should be displayed while breaking the block.
+5. The sound that plays when the block is placed.
+6. The sound that plays when the block is broken.
+7. The break particles that spawn when the block is broken.
+8. (optional) Whether a break animation should be displayed while breaking the block.
+
+## NovaBlock
+
+The `NovaBlock` handles the logic of all blocks of that material (or multiple materials, if the same `NovaBlock` is
+registered to them). This logic includes handling interacts, returning drops, playing the break sound or break particles
+and more. Depending on if you register a TileEntity or a normal block, the `TileEntityBlock` or `NovaBlock$Default` is used.
+
+!!! info
+
+    `NovaBlock` is very similar to `NovaItem` in concept, with the exception of it being for blocks and it's ability
+    to be used in multiple materials.
+
+## Block properties
+
+Block properties store data stored inside the `NovaBlockState`.  
+Currently, the only block property available is `Directional`, but addons can create custom block properties.  
+Block properties can be accessed by calling the `getProperty(BlockPropertyType)` or `getProperty(KClass)` methods in  
+`NovaBlockState`.
+
+# PlaceCheckFun
+
+The `PlaceCheckFun` is a typealias for `((Player, ItemStack, Location) -> CompletableFuture<Boolean>)` can be used
+for additional permission checks for block placing. This might be useful for checking the place permission for blocks
+with multiple hitboxes.
+
+# MultiBlockLoader
+
+The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
+block positions that are also part of this block. This list should not include the position of the base block.
 
 ## Creating a basic TileEntity class
 
