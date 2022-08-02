@@ -47,10 +47,10 @@ private val STONE = BlockOptions(
     ToolCategory.PICKAXE, // (2)
     ToolLevel.STONE, // (3)
     true, // (4)
-    SoundEffect(Sound.BLOCK_STONE_PLACE), // (6)
-    SoundEffect(Sound.BLOCK_STONE_BREAK), // (7)
-    Material.NETHERITE_BLOCK, // (8)
-    true // (9)
+    SoundEffect(Sound.BLOCK_STONE_PLACE), // (5)
+    SoundEffect(Sound.BLOCK_STONE_BREAK), // (6)
+    Material.NETHERITE_BLOCK, // (7)
+    true // (8)
 )
 ```
 
@@ -62,35 +62,6 @@ private val STONE = BlockOptions(
 6. The sound that plays when the block is broken.
 7. The break particles that spawn when the block is broken.
 8. (optional) Whether a break animation should be displayed while breaking the block.
-
-## (optional) NovaBlock
-
-The `NovaBlock` handles the logic of all blocks of that material (or multiple materials, if the same `NovaBlock` is
-registered to them). This logic includes handling interacts, returning drops, playing the break sound, showing break
-particles and more. Depending on if you register a TileEntity or a normal block, the `TileEntityBlock` or
-`NovaBlock$Default` is used.
-
-!!! info
-
-    `NovaBlock` is very similar to `NovaItem` in concept, with the exception of it being for blocks and it's ability
-    to be used in multiple materials.
-
-## (optional) Block properties
-
-Block properties store data stored inside the `NovaBlockState`.  
-Currently, the only block property available is `Directional`, but addons can create custom block properties.  
-Block properties can be accessed by calling the `getProperty(BlockPropertyType)` or `getProperty(KClass)` methods in  
-`NovaBlockState`.
-
-## (optional) MultiBlockLoader
-
-The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
-block positions that are also part of this block. This list should not include the position of the base block.
-
-## (optional) MultiBlockLoader
-
-The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
-block positions that are also part of this block. This list should not include the position of the base block.
 
 ## Registering the block
 
@@ -115,3 +86,34 @@ val MY_TILE_ENTITY_1 = NovaMaterialRegistry.registerTileEntity(ExampleAddon, "ex
 
     The examples above are far from everything you can do, as it is also possible to set a custom `NovaBlock`,
     `NovaItem`, `PlaceCheckFun` or `MultiBlockLoader`.
+
+## Additional properties
+
+### NovaBlock
+
+The `NovaBlock` handles the logic of all blocks of that material (or multiple materials, if the same `NovaBlock` is
+registered to them). This logic includes handling interacts, returning drops, playing the break sound, showing break
+particles and more. Depending on if you register a TileEntity or a normal block, the `TileEntityBlock` or
+`NovaBlock$Default` is used.
+
+!!! info
+
+    `NovaBlock` is very similar to `NovaItem` in concept, with the exception of it being for blocks and it's ability
+    to be used in multiple materials.
+
+### Block properties
+
+Block properties store data stored inside the `NovaBlockState`.  
+Currently, the only block property available is `Directional`, but addons can create custom block properties.  
+Block properties can be accessed by calling the `getProperty(BlockPropertyType)` or `getProperty(KClass)` methods in  
+`NovaBlockState`.
+
+### MultiBlockLoader
+
+The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
+block positions that are also part of this block. This list should not include the position of the base block.
+
+### MultiBlockLoader
+
+The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
+block positions that are also part of this block. This list should not include the position of the base block.
