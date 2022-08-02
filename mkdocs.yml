@@ -96,6 +96,7 @@ nav:
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
           - "GUI Textures / Overlays": "nova/addon/guitexture.md"
           - "Recipes": "nova/addon/recipes.md"
+          - "Advancements": "nova/addon/advancements.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
