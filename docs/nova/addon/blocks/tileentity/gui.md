@@ -33,10 +33,10 @@ inner class SolarPanelGUI : TileEntityGUI() {
 Now we can properly set the ``gui`` property inside the TileEntity class.
 
 ```kotlin
-override val gui = lazy { SolarPanelGUI() }
+override val gui = lazy(::SolarPanelGUI)
 ```
 
-# Side Config GUI
+## Side Config GUI
 
 If you want to allow players to change the side configuration of your through the TileEntity's GUI, you can use the
 built-in `SideConfigGUI`.
