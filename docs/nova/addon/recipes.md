@@ -147,6 +147,7 @@ All of the following values are required to create a new `RecipeType`:
         1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that
             item. It also automatically cycles through all possible input options if there is more than one.
 
+        If you're not familiar with the InvUI library, you'll have to trouble understanding the code above.
         [:material-file-document-outline: InvUI Documentation](../../../invui/){ .md-button }
 
         !!! info
