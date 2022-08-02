@@ -140,11 +140,11 @@ override fun saveData() {
 
 ## Other useful functions
 
-* getInventory() - See [ItemHolders](holders.md#itemholder).
-* getFluidContainer() - See [FluidHolders](holders.md#fluidholder).
-* createParticleTask() - See [Particles](particles.md).
-* createSideConfig(), createExclusiveSideConfig() - See [Holders](holders.md).
-* getSurroundingRegion() - Gets the surrounding region of the TileEntity via a ``Region`` instance.
-* getBlockFrontRegion(), getFrontRegion() - Gets the front region of the TileEntity via a ``Region`` instance.
-* playSoundEffect() - Plays a sound effect to all TileEntity viewers.
-* getViewers() - Returns a list of all players that the TileEntity is visible to.
+* ``getInventory()`` - See [ItemHolders](holders.md#itemholder).
+* ``getFluidContainer()`` - See [FluidHolders](holders.md#fluidholder).
+* ``createParticleTask()`` - See [Particles](particles.md).
+* ``createSideConfig()``, ``createExclusiveSideConfig()`` - See [Holders](holders.md).
+* ``getSurroundingRegion()`` - Gets the surrounding region of the TileEntity via a ``Region`` instance.
+* ``getBlockFrontRegion()``, ``getFrontRegion()`` - Gets the front region of the TileEntity via a ``Region`` instance.
+* ``playSoundEffect()`` - Plays a sound effect to all TileEntity viewers.
+* ``getViewers()`` - Returns a list of all players that the TileEntity is visible to.
