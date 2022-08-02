@@ -88,7 +88,7 @@ nav:
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
               - "TileEntities":
-                  - "Basic": "nova/addon/blocks/tileentities/base.md"
+                  - "Basic": "nova/addon/blocks/tileentity/base.md"
                   - "Config": "nova/addon/blocks/tileentity/config.md"
                   - "GUI": "nova/addon/blocks/tileentity/gui.md"
                   - "Holders": "nova/addon/blocks//tileentity/holders.md"

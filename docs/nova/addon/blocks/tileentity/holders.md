@@ -79,72 +79,50 @@ These all have different constructors. You can open the example box below to see
         4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
            you have a simple default config. In this case, a config with buffer on all sides will be created.
 
+## ItemHolder
+
+!!! warning "VirtualInventories"
+
+    Make sure to read the [VirtualInventories](../../../../invui/virtualinventory.md) page on the InvUI wiki before proceeding!
+
+``ItemHolders`` are used provide an interface for networks to interact with your TileEntity's inventories. Depending on
+what your TileEntity does, you may need more than one inventory (For example, a pulverizer with an input and output inventory).
+Unlike ``EnergyHolders``, ``ItemHolders`` only have one default implementation called ``NovaItemHolder``. To create a 
+``VirtualInventory`` use the ``getInventory`` functions. For this example, let's create an input and output inventory.
 
 ```kotlin
-override val energyHolder = ConsumerEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null, upgradeHolder) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
+private val inputInv = getInventory("input", 1)
+private val outputInv = getInventory("output", 2)
 ```
 
+If you want to handle inventory changes, you can pass a lambda or method reference to the ``getInventory`` function.
 
-```kotlin title="SolarPanel.kt"
-override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null) { // (1)
-    createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM) // (2)
+```kotlin
+private val inputInv = getInventory("input", 1, ::handleInputUpdate)
+// ...
+private fun handleInputUpdate(event: ItemUpdateEvent) {
+    // ...
 }
 ```
 
-1. ``null`` is the ``UpgradeHolder`` instance, more on this later.
-2. This sets the side config to exclusively extract energy from the bottom of the block.
+Now we can override the ``itemHolder`` property.
+
+```kotlin
+override val itemHolder = NovaItemHolder(
+    this, // (1)
+    inputInv to NetworkConnectionType.BUFFER, // (2)
+    outputInv to NetworkConnectionType.EXTRACT // (3)
+) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)
+```
+
+1. The parent TileEntity that the holder is attached to.
+2. The default inventory. A pair of ``VirtualInventory`` and ``NetworkConnectionType``. The first element is the input
+   inventory and the second element is the default connection type.
+3. Vararg of additional inventories.
+4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
+   you have a simple default config. In this case, a config with insert on all sides except the front will be created.
 
 ??? example "More holder examples"
-
-    === "EnergyHolder example: Energy consuming tileEntity"
-
-        ``EnergyHolders`` have 3 types:
-
-        * ProviderEnergyHolder: Used mostly for tileEntities that generate energy.
-        * ConsumerEnergyHolder: Used for tileEntities that need and consume energy to operate.
-        * BufferEnergyHolder: Used for tileEntities that store energy and transfer it to other tileEntities when needed.
-
-        ```kotlin
-        override val energyHolder = ConsumerEnergyHolder(
-            this,
-            MAX_ENERGY,
-            ENERGY_PER_TICK,
-            null,
-            upgradeHolder
-        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) }
-        ```
-
-    === "ItemHolder example: TileEntity converting items"
-        
-        ``ItemHolders`` need VirtualInventories. So in this case, we need an input and output inventory. Which we can
-        get by calling ``getInventory``:
-
-        ```kotlin
-        private val inputInventory = getInventory("input", 1)
-        private val outputInventory = getInventory("output", 1)
-        ```
-
-        You can also give these inventories update handlers. For example: if an item is removed, print "Item removed" to
-        the console:
-        
-        ```kotlin
-        private val inputInventory = getInventory("input", 1) {
-           if(it.isRemove)
-               println("Item removed!")
-        }
-        ```
-
-        You can then pass these inventories to the ``ItemHolder``:
-
-        ```kotlin
-        override val itemHolder = NovaItemHolder(
-            this,
-            inputInventory to NetworkConnectionType.BUFFER,
-            outputInventory to NetworkConnectionType.EXTRACT
-        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (1)
-        ```
-
-        1. Set all sides to insert except the front.
 
     === "FluidHolder example: Freezer"
 
@@ -163,6 +141,16 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
         ```
 
         1. Set all sides to insert except the front.
+
+## Back to the original Solar Panel
+
+For our solar panel, we only have to override the ``energyHolder`` property. It could look something like this:
+
+```kotlin title="SolarPanel.kt"
+override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null) {
+    createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM)
+}
+```
 
 ## Handling ticks
 
