@@ -4,7 +4,7 @@
 
 The registration is pretty similar to the [item registration](../items/registering-materials.md). Create
 the [block assets](../asset-packs/creating-blocks.md)
-and create a `Blocks` singleton object that contains all `BlockNovaMaterial` of your addon. All materials need to be
+and create a `Blocks` singleton object that contains all `BlockNovaMaterials` of your addon. All materials need to be
 registered when `Addon#init` is called, materials registered later won't work properly. Similar to the `Items` singleton
 object, your singleton object might then look like this:
 
@@ -38,7 +38,7 @@ Again, calling the init function will cause the class and all its fields to be l
 
 ## BlockOptions
 
-Before registering a new TileEntity, you need to create a `BlockOptions` instance. This class contains properties for
+Before registering a new Block, you need to create a `BlockOptions` instance. This class contains properties for
 breaking/placing custom blocks. Let's create an instance that can be broken with a stone pickaxe:
 
 ```kotlin title="Blocks.kt"
@@ -63,7 +63,7 @@ private val STONE = BlockOptions(
 7. The break particles that spawn when the block is broken.
 8. (optional) Whether a break animation should be displayed while breaking the block.
 
-## NovaBlock
+## (optional) NovaBlock
 
 The `NovaBlock` handles the logic of all blocks of that material (or multiple materials, if the same `NovaBlock` is
 registered to them). This logic includes handling interacts, returning drops, playing the break sound, showing break
@@ -75,53 +75,43 @@ particles and more. Depending on if you register a TileEntity or a normal block,
     `NovaBlock` is very similar to `NovaItem` in concept, with the exception of it being for blocks and it's ability
     to be used in multiple materials.
 
-## Block properties
+## (optional) Block properties
 
 Block properties store data stored inside the `NovaBlockState`.  
 Currently, the only block property available is `Directional`, but addons can create custom block properties.  
 Block properties can be accessed by calling the `getProperty(BlockPropertyType)` or `getProperty(KClass)` methods in  
 `NovaBlockState`.
 
-## MultiBlockLoader
+## (optional) MultiBlockLoader
 
 The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
 block positions that are also part of this block. This list should not include the position of the base block.
 
-## MultiBlockLoader
+## (optional) MultiBlockLoader
 
 The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
 block positions that are also part of this block. This list should not include the position of the base block.
 
-## Creating a basic TileEntity class
+## Registering the block
 
-Before registering the material, you need to create a TileEntity class with a constructor that takes a `NovaTileEntityState` instance.
-We will reference this constructor in the ``registerTileEntity`` function later.
+Using the options specified above, you can now register your block material via `NovaMaterialRegistry#registerBlock` or
+`NovaMaterialRegistry#registerTileEntity`:  
 
-```kotlin
-class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockState) {
-    
-    override val gui: Lazy<TileEntityGUI>
-        get() = TODO("We'll implement this later")
+```kotlin title="Blocks.kt"
+// normal block
+val MY_BLOCK = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block", STONE)
 
-}
+// normal directional block (North, East, South, West)
+val MY_BLOCK_1 = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block_1", STONE, properties = listOf(Directional.NORMAL))
+
+// normal directional block (North, East, South, West, Up, Down)
+val MY_BLOCK_2 = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block_2", STONE, properties = listOf(Directional.ALL))
+
+// directional tile entity block (North, East, South, West)
+val MY_TILE_ENTITY_1 = NovaMaterialRegistry.registerTileEntity(ExampleAddon, "example_tile_entity", STONE, ::ExampleTileEntity, properties = listOf(Directional.NORMAL))
 ```
 
-Don't worry about the ``gui`` property or ``NetworkedTileEntity`` yet. Now we can finally register the material.
+!!! tip
 
-```kotlin
-val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
-```
-
-So your ``Blocks`` object might look something like this:
-
-```kotlin
-object Blocks {
-    
-    private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolLevel.STONE, true, Material.BARRIER, SoundEffect(Sound.BLOCK_STONE_PLACE), SoundEffect(Sound.BLOCK_STONE_BREAK), Material.NETHERITE_BLOCK)
-    
-    val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
-    
-    fun init() = Unit
-
-}
-```
+    The examples above are far from everything you can do, as it is also possible to set a custom `NovaBlock`,
+    `NovaItem`, `PlaceCheckFun` or `MultiBlockLoader`.
