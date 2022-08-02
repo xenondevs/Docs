@@ -67,7 +67,7 @@ amount of pixels can be obtained by calling `MoveCharacters#getMovingComponent`.
     }
     ```
     
-    1. + 1 because the "cursor" always moves one pixel to the left after every character in order to make space between them.
+    1. +1 because the "cursor" always moves one pixel to the left after every character in order to make space between them.
 
 The overlay can now be displayed through the `ActionbarOverlayManager`:
 
