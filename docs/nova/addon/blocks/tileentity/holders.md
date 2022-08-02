@@ -21,7 +21,7 @@ These all have different constructors. You can open the example box below to see
 
     === "ConsumerEnergyHolder"
 
-        ```kotlin
+        ```kotlin title="ConsumerEnergyHolder"
         override val energyHolder = ConsumerEnergyHolder(
             this, // (1)
             MAX_ENERGY, // (2)
@@ -43,7 +43,7 @@ These all have different constructors. You can open the example box below to see
 
     === "ProviderEnergyHolder"
 
-        ```kotlin
+        ```kotlin title="ProviderEnergyHolder"
         override val energyHolder = ProviderEnergyHolder(
             this, // (1)
             MAX_ENERGY, // (2)
@@ -63,7 +63,7 @@ These all have different constructors. You can open the example box below to see
 
     === "BufferEnergyHolder"
         
-        ```kotlin
+        ```kotlin title="BufferEnergyHolder"
         override val energyHolder = BufferEnergyHolder(
             this, // (1)
             MAX_ENERGY, // (2)
@@ -72,7 +72,7 @@ These all have different constructors. You can open the example box below to see
         ```
 
         1. The parent TileEntity that the holder is attached to.
-        2. A config reloadable value that stores the maximum amount of energy that can be stored. (See [Config](../../configs.md) for more info). The
+        2. A config reloadable value that stores the maximum amount of energy that can be stored (See [Config](../../configs.md) for more info). The
            actual maximum amount is calculated with upgrades.
         3. (optional) A boolean value that determines if the holder should provide an infinite amount of energy. Can be used
            for creative blocks (E.g. a creative power cell).
@@ -122,25 +122,58 @@ override val itemHolder = NovaItemHolder(
 4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
    you have a simple default config. In this case, a config with insert on all sides except the front will be created.
 
-??? example "More holder examples"
+## FluidHolder
 
-    === "FluidHolder example: Freezer"
+Similar to ``ItemHolders``, ``FluidHolders`` are used provide an interface for networks to interact with your TileEntity's tanks.
+But instead of ``VirtualInventories``, they use ``FluidTanks`` which you can get from the ``getFluidContainer`` function:
 
-        First, we need an input tank:
-        
-        ```kotlin
-        private val waterTank = getFluidContainer("water", setOf(FluidType.WATER), WATER_CAPACITY, 0)
-        ```
+```kotlin
+private val waterTank = getFluidContainer(
+    "water", // (1)
+    setOf(FluidType.WATER), // (2)
+    WATER_CAPACITY, // (3)
+    0 // (4)
+)
+```
 
-        We can then pass this tank to the ``FluidHolder``:
-        
-        ```kotlin
-        override val fluidHolder = NovaFluidHolder(this, waterTank to NetworkConnectionType.BUFFER) { 
-            createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) // (1)
-        }
-        ```
+1. The name of the tank.
+2. The fluid types that can be stored in the tank.
+3. A config reloadable value that stores the maximum amount of fluid that can be stored (See [Config](../../configs.md) for more info).
+4. (optional) The amount of fluid that is initially stored in the tank. Defaults to 0 if omitted.
 
-        1. Set all sides to insert except the front.
+Again, you can handle changes in the tank by passing a lambda or method reference to the ``getFluidContainer`` function.
+But unlike The ``ItemHolder`` you can also pass a [``UpgradeHolder``](upgrades.md) to the ``getFluidContainer`` function.
+
+```kotlin
+private val waterTank = getFluidContainer(
+    "water",
+    setOf(FluidType.WATER),
+    WATER_CAPACITY,
+    0,
+    ::updateWaterLevel,
+    upgradeHolder
+)
+// ...
+private fun updateWaterLevel() {
+    // ...
+}
+```
+
+Now we can override the ``fluidHolder`` property.
+
+```kotlin
+override val fluidHolder = NovaFluidHolder(
+    this, // (1)
+    waterTank to NetworkConnectionType.BUFFER// (2)
+    // You can add additional tanks here // (3) 
+) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)
+```
+
+1. The parent TileEntity that the holder is attached to.
+2. The default tank. A pair of ``FluidTank`` and ``NetworkConnectionType``. The first element is the input tank and the second element is the default connection type.
+3. Vararg of additional tanks.
+4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
+   you have a simple default config. In this case, a config with insert on all sides except the front will be created.
 
 ## Back to the original Solar Panel
 
@@ -151,17 +184,3 @@ override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TI
     createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM)
 }
 ```
-
-## Handling ticks
-
-Now that we've got our energyHolder set up, we can start giving it energy. To do that, we just override the ``handleTick`` method
-and check if it's still day time.
-
-```kotlin title="SolarPanel.kt"
-override fun handleTick() {
-    if(world.time < 13000)
-        energyHolder.energy += ENERGY_PER_TICK
-}
-```
-
-And that's it! We now have a working solar panel.
