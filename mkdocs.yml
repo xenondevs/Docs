@@ -92,6 +92,7 @@ nav:
                   - "GUI": "nova/addon/blocks/tileentity/gui.md"
                   - "Making a TileEntity": "nova/addon/blocks//tileentity/making-a-tileentity.md"
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
+          - "GUI Textures / Overlays": "nova/addon/guitexture.md"
           - "Recipes": "nova/addon/recipes.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"

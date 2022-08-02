@@ -8,7 +8,7 @@ and create a `Blocks` singleton object that contains all `BlockNovaMaterials` of
 registered when `Addon#init` is called, materials registered later won't work properly. Similar to the `Items` singleton
 object, your singleton object might then look like this:
 
-```kotlin title="Blocks.kt"
+```kotlin
 object Blocks {
     
     // we will register blocks here later
@@ -20,7 +20,7 @@ object Blocks {
 
 Now add the init call to your main class:
 
-```kotlin title="ExampleAddon.kt"
+```kotlin
 object ExampleAddon : Addon() {
     
     override fun init() {
@@ -41,7 +41,7 @@ Again, calling the init function will cause the class and all its fields to be l
 Before registering a new Block, you need to create a `BlockOptions` instance. This class contains properties for
 breaking/placing custom blocks. Let's create an instance that can be broken with a stone pickaxe:
 
-```kotlin title="Blocks.kt"
+```kotlin
 private val STONE = BlockOptions(
     3.0, // (1)
     ToolCategory.PICKAXE, // (2)
@@ -68,7 +68,7 @@ private val STONE = BlockOptions(
 Using the options specified above, you can now register your block material via `NovaMaterialRegistry#registerBlock` or
 `NovaMaterialRegistry#registerTileEntity`:  
 
-```kotlin title="Blocks.kt"
+```kotlin
 // normal block
 val MY_BLOCK = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block", STONE)
 
