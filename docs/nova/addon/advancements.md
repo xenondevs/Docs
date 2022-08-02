@@ -41,13 +41,13 @@ Nova also provided some useful top level functions for creating advancements wit
 
 ??? example
 
-    === `obtainNovaItemAdvancement`
+    === "`obtainNovaItemAdvancement`"
 
         ```kotlin
         private val OBTAIN_EXAMPLE_ITEM = obtainNovaItemAdvancement(ExampleAddon, ROOT, Blocks.EXAMPLE_ITEM)
         ```
 
-    === `obtainNovaItemsAdvancement`
+    === "`obtainNovaItemsAdvancement`"
 
         ```kotlin
         // Advancement for obtaining any dust type:
