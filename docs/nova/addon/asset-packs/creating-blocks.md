@@ -72,12 +72,12 @@ on availability:
 In total, 988 blocks can be registered as `solid`. If there are no more blocks available, Nova will fall back to armor
 stand blocks.
 
-#### `directions`
+#### directions
 
 If your block is directional, you will need to register that under the `directions` property. Each direction takes up
 one block state, so a normal directional block will take up four block states and a block that can also be rotated to look
 up or down will take up six block states.  
-The `directions` property accepts a string with the chars `n` `e` `s` `w` `u` `d` representing the directions `north`,
+The `directions` property accepts a string with the chars `n`, `e`, `s`, `w`, `u`, `d` representing the directions `north`,
 `east`, `south`, `west`, `up`, `down`.  
 ```json title="North, East, South, West Directional Block"
 "quarry": {
@@ -89,7 +89,7 @@ The `directions` property accepts a string with the chars `n` `e` `s` `w` `u` `d
 }
 ```
 
-#### `priority`
+#### priority
 
 Because the supply of solid bocks is limited, you can set a priority for your material to become a solid block.  
 The blocks with the highest priority will become solid blocks.  

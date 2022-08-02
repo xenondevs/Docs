@@ -9,7 +9,7 @@ texture](https://i.imgur.com/VW3UMqh.png).
 
 We just have to add it to our materials file:
 
-```json
+```json title="materials.json"
 {
   "ruby": "item/ruby"
 }
@@ -29,7 +29,7 @@ damageable,
 translucent, consumable, etc. To use these item types we use the ``item_type`` property. These types will let Nova automatically
 assign the correct vanilla material. So let's make an edible ruby material:
 
-```json
+```json title="materials.json"
 {
   "ruby": {
     "item": {
@@ -42,7 +42,7 @@ assign the correct vanilla material. So let's make an edible ruby material:
 
 !!! warning
 
-    The type alone doesn't give the item any functionality, but just changes the underlying vanilla material.
+    The type alone doesn't give the item any functionality, but just changes the underlying vanilla material.  
     To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
 
 ???+ example "Available item types"
@@ -55,7 +55,7 @@ assign the correct vanilla material. So let's make an edible ruby material:
 
 If none of these item types are appropriate, you can use the ``material`` property to explicitly set a material.
 
-```json
+```json title="materials.json"
 {
   "ruby": {
     "item": {
@@ -73,7 +73,7 @@ this process a lot easier. Instead of having to specify each model explicitly, y
 format.
 For example a diamond bow with multiple models would look like this:
 
-```json
+```json title="materials.json"
 {
   "diamond_bow": {
     "item": {
@@ -90,7 +90,7 @@ This will generate a diamond bow with 4 models using the textures``texture/item/
 
 If your models don't have a fixed number format, you can also list them by hand:
 
-```json
+```json title="materials.json"
 {
   "diamond_bow": {
     "item": {
