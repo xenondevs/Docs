@@ -125,3 +125,4 @@ nav:
       - "VirtualInventory": "invui/virtualinventory.md"
   - "Cosmic Binary Format":
       - "Getting Started": "cbf/index.md"
+      - "Binary Adapters": "cbf/binaryadapter.md"

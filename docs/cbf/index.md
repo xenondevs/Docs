@@ -2,7 +2,8 @@
 
 ## Configuring Maven / Gradle
 
-To use CBF, you first have to add the xenondevs maven repository to your build configuration.
+CBF is xenondevs´ lazy evaluation binary format used primarily in [Nova](https://spigotmc.org/resources/93648/). To use
+CBF, you first have to add the xenondevs maven repository to your build configuration.
 
 === "Maven"
 
@@ -76,3 +77,9 @@ To get started, you also need to install a CBF adapter. Currently, only the nett
     ```kotlin
     implementation("xyz.xenondevs.cbf:cosmic-binary-format-netty-adapter:VERSION")
     ```
+
+You can then set the ``defaultBufferProvider`` to Netty:
+
+```kotlin
+CBF.defaultBufferProvider = NettyBufferProvider
+```

@@ -125,7 +125,7 @@ override fun getDrops(includeSelf: Boolean): MutableList<ItemStack> {
 !!! tip
 
     To get a better understanding of how to save data, read the CBF wiki.
-    [:material-file-document-outline: CBF Documentation](../../../cbf/){ .md-button }
+    [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
 
 Use this function to save any additional data your TileEntity might have. You can store the data via ``storeData`` which
 will serialize the data via CBF. Make sure to call the superclass's function.
