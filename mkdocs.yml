@@ -121,3 +121,5 @@ nav:
           - "Tab GUI": "invui/guis/tab.md"
       - "Windows": "invui/windows.md"
       - "VirtualInventory": "invui/virtualinventory.md"
+  - "Cosmic Binary Format":
+      - "Getting Started": "cbf/index.md"

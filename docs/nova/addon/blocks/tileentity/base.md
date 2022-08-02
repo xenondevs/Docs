@@ -38,7 +38,7 @@ object Blocks {
 
     Some of these functions are only available via the ``NetworkedTileEntity`` class.
 
-### handleTick()
+### ``handleTick()``
 
 This function is called every tick in the server thread.
 
@@ -48,7 +48,7 @@ override fun handleTick() {
 }
 ```
 
-### handleAsyncTick()
+### ``handleAsyncTick()``
 
 This function is called every tick asynchronously.
 
@@ -58,7 +58,7 @@ override fun handleAsyncTick() {
 }
 ```
 
-### handleInitialized(first: Boolean)
+### ``handleInitialized(first: Boolean)``
 
 Called when the TileEntity is loaded/placed. The ``first`` parameter is true when the TileEntity is first loaded meaning
 it has just been placed. Make sure to call the superclass's function.
@@ -70,7 +70,7 @@ override fun handleInitialized(first: Boolean) {
 }
 ```
 
-### handleRemoved(unload: Boolean)
+### ``handleRemoved(unload: Boolean)``
 
 Called after the TileEntity has been removed from the TileEntityManager's TileEntity map because it either got unloaded 
 or destroyed. The ``unload`` parameter is true when the TileEntity was removed because the chunk was unloaded. Make sure 
@@ -83,7 +83,7 @@ override fun handleRemoved(unload: Boolean) {
 }
 ```
 
-### handleRightClick(ctx: BlockInteractContext): Boolean
+### ``handleRightClick(ctx: BlockInteractContext): Boolean``
 
 This function is called when a player right-clicks the block. The return value determines whether any action was performed.
 Make sure to call the superclass's function.
@@ -95,7 +95,7 @@ override fun handleRightClick(ctx: BlockInteractContext): Boolean {
 }
 ```
 
-### reload()
+### ``reload()``
 
 This function is called when TileEntity's upgrades are changed or when the config is reloaded. Make sure to call the 
 superclass's function
@@ -107,7 +107,7 @@ override fun reload() {
 }
 ```
 
-### getDrops(includeSelf: Boolean): MutableList<ItemStack>
+### ``getDrops(includeSelf: Boolean): MutableList<ItemStack>``
 
 Override this function if you need to add additional drops. You can ignore the ``includeSelf`` parameter as it is only
 needed by the superclass's function.
@@ -120,7 +120,7 @@ override fun getDrops(includeSelf: Boolean): MutableList<ItemStack> {
 }
 ```
 
-### saveData()
+### ``saveData()``
 
 !!! tip
 
