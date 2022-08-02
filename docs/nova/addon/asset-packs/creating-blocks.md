@@ -6,7 +6,7 @@ Generally, creating a block material is very similar to [creating an item materi
 If your item and block are supposed to use the same model, you don't need to do anything at all.
 For example, this is how we register the Solar Panel in our Machines addon:
 
-```json
+```json title="materials.json"
 "solar_panel": "block/solar_panel"
 ```
 
@@ -18,7 +18,7 @@ and 2 for the rotor blades). However, since we can only display one model at a t
 create a smaller version of the whole Wind Turbine for players to hold in their hands.  
 In such a case, you can separate `item` and `block`:
 
-```json
+```json title="materials.json"
 "wind_turbine": {
   "item": "item/wind_turbine",
   "block": {
@@ -79,7 +79,8 @@ one block state, so a normal directional block will take up four block states an
 up or down will take up six block states.  
 The `directions` property accepts a string with the chars `n`, `e`, `s`, `w`, `u`, `d` representing the directions `north`,
 `east`, `south`, `west`, `up`, `down`.  
-```json title="North, East, South, West Directional Block"
+The order is irrelevant.  
+```json title="materials.json - Directional solid block for North, East, South, West"
 "quarry": {
   "item": "block/quarry",
   "block": {
@@ -88,6 +89,11 @@ The `directions` property accepts a string with the chars `n`, `e`, `s`, `w`, `u
   }
 }
 ```
+
+!!! abstract
+
+    The `directions` property is only required for blocks of type `solid`, as Nova needs to generate the block states
+    for those rotations. Armor stand blocks do not need this property since armor stands can just be rotated.
 
 #### priority
 
