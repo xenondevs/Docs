@@ -62,7 +62,7 @@ nav:
           - "Setup": "nova/admin/setup.md"
           - "Configuration": "nova/admin/configuration.md"
           - "Compatibility":
-              - "List of compatible plugins": "nova/admin/compatibility/index.md"
+              - "List of compatible Plugins": "nova/admin/compatibility/index.md"
               - "Troubleshooting": "nova/admin/compatibility/troubleshooting.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
               - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
@@ -89,7 +89,7 @@ nav:
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
               - "TileEntity GUI": "nova/addon/blocks/tileentity-gui.md"
               - "Making a TileEntity": "nova/addon/blocks/making-a-tileentity.md"
-              - "TileEntity particles": "nova/addon/blocks/tileentity-particles.md"
+              - "TileEntity Particles": "nova/addon/blocks/tileentity-particles.md"
           - "Recipes": "nova/addon/recipes.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
