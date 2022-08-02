@@ -2,7 +2,7 @@
 
 Binary adapters are used to serialize and deserialize objects into binary data.
  
-??? example Default adapters
+??? example "Default adapters"
 
     The following adapters are available by default:
 
