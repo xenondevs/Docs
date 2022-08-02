@@ -1,36 +1,36 @@
 # BinaryAdapters
 
 Binary adapters are used to serialize and deserialize objects into binary data.
+ 
+??? example Default adapters
 
-## Default adapters
+    The following adapters are available by default:
 
-The following adapters are available by default:
-
-* Byte
-* ByteArray
-* Short
-* ShortArray
-* Int
-* IntArray
-* Long
-* LongArray
-* Float
-* FloatArray
-* Double
-* DoubleArray
-* Boolean
-* BooleanArray
-* Char
-* CharArray
-* String
-* StringArray
-* Enum
-* UUID
-* Pair
-* Triple
-* Map
-* Collection
-* Compound
+    * Byte
+    * ByteArray
+    * Short
+    * ShortArray
+    * Int
+    * IntArray
+    * Long
+    * LongArray
+    * Float
+    * FloatArray
+    * Double
+    * DoubleArray
+    * Boolean
+    * BooleanArray
+    * Char
+    * CharArray
+    * String
+    * StringArray
+    * Enum
+    * UUID
+    * Pair
+    * Triple
+    * Map
+    * Collection
+    * Compound
 
 ## Creating your own adapter
 
