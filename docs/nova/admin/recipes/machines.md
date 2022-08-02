@@ -74,7 +74,7 @@ This is an example recipe for extract water from a water bottle to create an emp
 
 !!! info "Custom Item Format"
 
-    As a water bottle is not its own item, a Custom Item Format is required here. See [Item Formats](index.md#item-formats) for more information.
+    As a water bottle is not its own item, a Complex Item Format is required here. See [Item Formats](index.md#item-formats) for more information.
 
 ## Electric Brewing Stand Recipes
 
