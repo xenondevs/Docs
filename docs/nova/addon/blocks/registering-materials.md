@@ -113,7 +113,7 @@ Block properties can be accessed by calling the `getProperty(BlockPropertyType)`
 The `MultiBlockLoader` is a typealias for `(BlockPos) -> List<BlockPos>` which is just supposed to return a list of
 block positions that are also part of this block. This list should not include the position of the base block.
 
-# PlaceCheckFun
+### PlaceCheckFun
 
 The `PlaceCheckFun` is a typealias for `((Player, ItemStack, Location) -> CompletableFuture<Boolean>)` used to check
 for placement permissions of multi blocks.
