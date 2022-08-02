@@ -32,32 +32,36 @@ assign the correct vanilla material. So let's make an edible ruby material:
 ```json
 {
   "ruby": {
-    "item_type": "consumable",
-    "item": "item/ruby"
+    "item": {
+      "type": "consumable",
+      "model": "item/ruby"
+    }
   }
 }
 ```
 
 !!! warning
 
-    This alone doesn't make the item edible. To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
+    The type alone doesn't give the item any functionality, but just changes the underlying vanilla material.
+    To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
 
 ???+ example "Available item types"
 
     * ``default`` - The default item type. You don't need to specify this manually.
     * ``damageable`` - An item that can be damaged.
-    * ``translucent`` - For items whose texture have pixels that aren't fully transparent.
     * ``consumable`` - An item that can be consumed.
     * ``always_consumable`` - An item that can be consumed even if the player's hunger is full.
     * ``fast_consumable`` - An item that can be consumed faster than the default.
 
-If none of these item types are appropriate, you can use the ``item_material`` property to explicitly set a material.
+If none of these item types are appropriate, you can use the ``material`` property to explicitly set a material.
 
 ```json
 {
   "ruby": {
-    "item_material": "diamond",
-    "item": "item/ruby"
+    "item": {
+      "material": "diamond",
+      "model": "item/ruby"
+    }
   }
 }
 ```
@@ -73,7 +77,9 @@ For example a diamond bow with multiple models would look like this:
 {
   "diamond_bow": {
     "item": {
-      "item/diamond_bow/%s": [0, 3]
+      "models": {
+        "item/diamond_bow/%s": [0, 3]
+      }
     }
   }
 }
@@ -87,12 +93,14 @@ If your models don't have a fixed number format, you can also list them by hand:
 ```json
 {
   "diamond_bow": {
-    "item": [
-      "item/diamond_bow/not_pulled",
-      "item/diamond_bow/pulled",
-      "item/diamond_bow/shooting",
-      "item/diamond_bow/releasing"
-    ]
+    "item": {
+      "models": [
+        "item/diamond_bow/not_pulled",
+        "item/diamond_bow/pulled",
+        "item/diamond_bow/shooting",
+        "item/diamond_bow/releasing"
+      ]
+    }
   }
 }
 ```
