@@ -5,7 +5,7 @@
     In order to understand Nova's GUI textures and overlays, it might be beneficial for you to read our
     [spigot thread on abusing custom fonts](https://www.spigotmc.org/threads/520187/).
 
-# GUI Textures
+## GUI Textures
 
 The GUITextures [registered previously](asset-packs/creating-guis.md) can simply be accessed by calling  
 ```kotlin
@@ -17,7 +17,7 @@ and [items](items/registering-materials.md).
 In order to use a gui texture, call the `getTitle` method on it, and use the resulting title for a GUI.  
 If you're making a `TileEntityGUI`, the `GUITexture` can be directly set in its constructor.
 
-# Action bar overlays
+## Action bar overlays
 
 Action bar overlays follow the same concept of abusing fonts to render images, but are a bit more difficult to implement
 for addon developers, as it requires them to create the font file themselves.  
