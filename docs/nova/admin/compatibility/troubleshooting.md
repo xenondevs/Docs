@@ -22,5 +22,5 @@ might interfere with Nova's logic. If this is the case, you might want to disabl
 
 ### Why should I not disable solid blocks?
 
-Solid blocks have a huge performance benefit compared to armor stand blocks, as the Minecraft client renders like normal
-blocks instead of entities. Solid blocks should only be disabled as a last resort.
+Solid blocks have a huge performance benefit compared to armor stand blocks, as the Minecraft client renders them like
+normal blocks instead of entities. Solid blocks should only be disabled as a last resort.
