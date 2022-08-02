@@ -30,7 +30,7 @@ Then, retrieve the current upgrade modifier for a certain upgrade type by callin
 
 ## Using the Upgrades GUI
 
-The `UpgradesGUI` can easily be added to your `TileEntityGUI` by creating a `OpenUpgradesItem` with your `upgradeHolder`.
+The `UpgradesGUI` can easily be added to your `TileEntityGUI` by creating an `OpenUpgradesItem` with your `upgradeHolder`.
 
 ```kotlin
 inner class SolarPanelGUI : TileEntityGUI() {
@@ -53,7 +53,7 @@ inner class SolarPanelGUI : TileEntityGUI() {
 
 ### Time and Place of Registration
 
-Just like nova materials, upgrade types should be registered during addon initialization i.e. in the `init()` function
+Just like nova materials, upgrade types should be registered during addon initialization, i.e. in the `init()` function
 of your addon object. We recommend creating a singleton object to house all of your upgrade types:
 
 ```kotlin
@@ -66,7 +66,7 @@ object UpgradeTypes {
 }
 ```
 
-Then, call that init function in during addon initialization:
+Then, call that init function during addon initialization:
 
 ```kotlin
 object ExampleAddon : Addon() {
