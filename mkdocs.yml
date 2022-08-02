@@ -87,9 +87,11 @@ nav:
           - "Configs": "nova/addon/configs.md"
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
-              - "TileEntity GUI": "nova/addon/blocks/tileentity-gui.md"
-              - "Making a TileEntity": "nova/addon/blocks/making-a-tileentity.md"
-              - "TileEntity Particles": "nova/addon/blocks/tileentity-particles.md"
+              - "TileEntities":
+                  - "Config": "nova/addon/blocks/tileentity/config.md"
+                  - "GUI": "nova/addon/blocks/tileentity/gui.md"
+                  - "Making a TileEntity": "nova/addon/blocks//tileentity/making-a-tileentity.md"
+                  - "Particles": "nova/addon/blocks/tileentity/particles.md"
           - "Recipes": "nova/addon/recipes.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
