@@ -14,7 +14,7 @@ After creating all advancements, you can register them using `AdvancementManager
 When creating the root advancement, make sure to set a background image and a criterion that is obtained automatically,
 such as an empty tick.
 
-??? example
+??? example "Example root advancement"
 
     ```kotlin
     private val ROOT = advancement(ExampleAddon, "root") {
@@ -39,7 +39,7 @@ Nova also provided some useful top level functions for creating advancements wit
 * `obtainNovaItemAdvancement`
 * `obtainNovaItemsAdvancement`
 
-??? example
+??? example "Example usage of `obtainNovaItemAdvancement` and `obtainNovaItemsAdvancement`"
 
     === "`obtainNovaItemAdvancement`"
 

@@ -16,7 +16,7 @@ All of the following values are required to create a new `RecipeType`:
 |    `group`     |      `RecipeGroup`      | The recipe group that displays the recipe in the recipe explorer gui.                                         |
 | `deserializer` | `RecipeDeserializer<T>` | The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`. |
 
-!!! danger
+!!! danger "Attention"
 
     These values are only nullable for testing purposes (i.e. you want to test your deserializer but don't have a
     `RecipeGroup` yet).  

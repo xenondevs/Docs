@@ -15,13 +15,13 @@ After creating your font, implement the `ActionbarOverlay` interface. There you'
 to be displayed in the action bar, as well as the width of the entire text. Components to move the text by a specified
 amount of pixels can be obtained by calling `MoveCharacters#getMovingComponent`.
 
-!!! question "Why is the width important?"
+??? question "Why is the width important?"
 
     As you might know, Minecraft always centers the text in the action bar. In order to prevent this, Nova automatically
     moves the "cursor" back to the middle by appending negative movement characters, which makes the game think that the
     actual width of the text is 0, therefore leaving it where it is.
 
-??? example "JetpackOverlay"
+??? example "Example: JetpackOverlay"
 
     ```kotlin
     class JetpackOverlay : ActionbarOverlay {

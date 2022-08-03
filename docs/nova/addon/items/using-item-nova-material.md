@@ -5,7 +5,6 @@ To get an ItemStack from a ItemNovaMaterial, you can either call `createItemBuil
 
 ## ItemProviders
 ItemProviders are just wrappers for ItemStacks, [so that they can be used in InvUI GUIs](../../../invui/items.md).  
-
 There are two different providers arrays available:
 
 | Name                     | Description                                        |
