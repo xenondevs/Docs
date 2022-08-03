@@ -1,13 +1,13 @@
 # Advancements
 
-Advancements can be created with the top level dsl builder function `advancement`.  
+Advancements can be created with the top level function `advancement`.  
 After creating all advancements, you can register them using `AdvancementManager#registerAdvancements`
 
 !!! important
 
     Before continuing, make sure to be familiar with
     [Minecraft's advancement format](https://minecraft.fandom.com/wiki/Advancement/JSON_format) which is used in datapacks,
-    as Nova's way of registering advancements is basically just a kotlin dsl builder for that.
+    as Nova's way of registering advancements is basically just a kotlin DSL builder for that.
 
 ## Creating the root advancement
 
