@@ -32,6 +32,11 @@ object Blocks {
 }
 ```
 
+## NetworkedTileEntity
+
+A default ``TileEntity`` can't be connected to networks, but a ``NetworkedTileEntity`` can. So if your TileEntity should
+be able to properly interact with surrounding blocks and cables, use ``NetworkedTileEntity``.
+
 ## Overriding commonly needed functions
 
 !!! note
