@@ -94,9 +94,12 @@ nav:
                   - "Holders": "nova/addon/blocks/tileentity/holders.md"
                   - "Upgrades": "nova/addon/blocks/tileentity/upgrades.md"
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
-          - "GUI Textures / Overlays": "nova/addon/guitexture.md"
+          - "GUI Textures": "nova/addon/guitexture.md"
+          - "Actionbar Overlays": "nova/addon/actionbaroverlay.md"
           - "Recipes": "nova/addon/recipes.md"
           - "Advancements": "nova/addon/advancements.md"
+          - "Attachments": "nova/addon/attachments.md"
+          - "Abilities": "nova/addon/abilities.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
