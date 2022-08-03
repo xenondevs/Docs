@@ -38,7 +38,7 @@ override val gui = lazy(::SolarPanelGUI)
 
 ## Side Config GUI
 
-If you want to allow players to change the side configuration of your through the TileEntity's GUI, you can use the
+If you want to allow players to change the side configuration of your TileEntity through the GUI, you can use the
 built-in `SideConfigGUI`.
 
 ```kotlin title="SideConfigGUI Constructor"

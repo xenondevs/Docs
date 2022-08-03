@@ -1,7 +1,7 @@
 # Configs
 
 ## Adding configs to your addon
-In order to add configs to your addon, create a directory called `configs` und `resources`. There, you can add all
+In order to add configs to your addon, create a directory called `configs` in `resources`. There, you can add all
 your .yml configs, which will automatically be extracted and handled the same way all Nova configs are.  
 New or changed keys will automatically be added / updated on the server as well, unless they have been modified by an admin.  
 ![](https://i.imgur.com/NdG1uX8.png)

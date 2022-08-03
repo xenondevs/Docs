@@ -90,14 +90,15 @@ Make sure to call the superclass's function.
 
 ```kotlin
 override fun handleRightClick(ctx: BlockInteractContext): Boolean {
-    return super.handleRightClick(ctx)
+    actionPerformed = super.handleRightClick(ctx)
     // Called when a player right-clicks the block
+    return actionPerformed // || ...
 }
 ```
 
 ### ``reload()``
 
-This function is called when TileEntity's upgrades are changed or when the config is reloaded. Make sure to call the 
+This function is called when a TileEntity's upgrades are changed or when the config is reloaded. Make sure to call the 
 superclass's function
 
 ```kotlin
