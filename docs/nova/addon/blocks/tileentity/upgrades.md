@@ -77,9 +77,6 @@ object ExampleAddon : Addon() {
         UpgradeTypes.init()
     }
 
-    override fun onEnable() = Unit
-    override fun onDisable() = Unit
-
 }
 ```
 

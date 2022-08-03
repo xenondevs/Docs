@@ -23,9 +23,6 @@ object ExampleAddon : Addon() {
         Items.init()
     }
     
-    override fun onEnable() = Unit
-    override fun onDisable() = Unit
-    
 }
 ```
 While the `init` function in `Items` is empty, calling it will still cause the class and all its fields to be loaded.

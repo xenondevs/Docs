@@ -27,9 +27,6 @@ object ExampleAddon : Addon() {
         Items.init()
         Blocks.init()
     }
-    
-    override fun onEnable() = Unit
-    override fun onDisable() = Unit
 
 }
 ```
