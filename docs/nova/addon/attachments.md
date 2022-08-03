@@ -44,7 +44,7 @@ And this is how you would remove it again:
 AttachmentManager.removeAttachment(player, Attachments.EXAMPLE_ATTACHMENT)
 ```
 
-# Modifying Attachment Logic
+## Modifying Attachment Logic
 
 You can also change the attachment logic by extending the `Attachment` class and then call the constructor of your
 `Attachment` subclass when registering your attachment type.
