@@ -3,10 +3,10 @@
 !!! tip
 
     In order to understand Nova's GUI textures and overlays, it might be beneficial for you to read our
-    [spigot thread on abusing custom fonts](https://www.spigotmc.org/threads/520187/).
+    [spigot thread on using the font renderer](https://www.spigotmc.org/threads/520187/).
 
-Actionbar overlays follow the same concept of abusing fonts to render images as [GUI Textures](guitexture.md), but are
-a bit more difficult to implement for addon developers, as it requires them to create the font file themselves.
+Action bar overlays follow the same concept of using fonts to render images as [GUI Textures](guitexture.md), but are
+a bit more difficult to implement for addon developers, as you need to create the font file yourself.
 
 Font files are stored under `assets/fonts/` and have [this format](https://minecraft.fandom.com/wiki/Resource_Pack#Fonts).  
 You might also want to take a look at [our font for the jetpack energy bar overlay](https://github.com/Nova-Addons/Jetpacks/blob/main/src/main/resources/assets/fonts/energy_bar.json).
