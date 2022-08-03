@@ -1,12 +1,11 @@
 # Attachments
 
-# What is an Attachment?
+## What is an Attachment?
 
-In Nova, an Attachment is an armor stands with a custom item as helmet riding a player.
-The Attachment system makes assigning models to players easy, as it handles all the riding logic.
+In Nova, an `Attachment` is an armor stand with a custom item as helmet riding a player.
+The attachment system makes assigning models to players easy, as it handles all the riding logic.  
 Once a player is given an attachment, it will stay on that player until it is removed again.
-
-# Creating an AttachmentType
+## Creating an AttachmentType
 
 To create a new `AttachmentType`, use the `register` method in `AttachmentTypeRegistry`.  
 We recommend creating a singleton object to store all attachment types. These should be registered during Addon initialization.
