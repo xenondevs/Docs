@@ -82,7 +82,7 @@ object PairBinaryAdapter : BinaryAdapter<Pair<*, *>> {
 }
 ```
 
-The registration is the same:
+The registration works the same way:
 
 ```kotlin
 CBF.registerBinaryAdapter(Pair::class, PairBinaryAdapter)

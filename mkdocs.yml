@@ -129,3 +129,6 @@ nav:
   - "Cosmic Binary Format":
       - "Getting Started": "cbf/index.md"
       - "Binary Adapters": "cbf/binaryadapter.md"
+      - "Instance Creators": "cbf/instancecreator.md"
+      - "Serialization": "cbf/serialization.md"
+      - "Compounds": "cbf/compound.md"
