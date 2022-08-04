@@ -21,3 +21,7 @@ You can register it similarly to [``BinaryAdapters``](binaryadapter.md).
 ```kotlin
 registerInstanceCreator(EnumMap::class, EnumMapInstanceCreator)
 ```
+
+!!! note
+
+    This instance creator is registered by default.

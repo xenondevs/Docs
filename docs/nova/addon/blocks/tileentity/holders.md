@@ -1,7 +1,7 @@
 # Holders
 
-Holders are classes that are used to store/handle specific data like energy amount or side config data. Every 
-``NetworkedTileEntity`` has an ``energyHolder``, an ``itemHolder`` and a ``fluidHolder`` property. To make them functional,
+Holders are used to store/handle specific data like energy amount or side config data and provide an interface for networks.
+Every ``NetworkedTileEntity`` has an ``energyHolder``, an ``itemHolder`` and a ``fluidHolder`` property. To make them functional,
 you need to override them in your TileEntity implementation. All 3 holders have a common property: The ``connectionConfig`` 
 which is used to determine what ``NetworkConnectionType`` each ``BlockFace`` has. The connection types ``NONE``, ``INSERT``,
 ``EXTRACT`` and ``BUFFER`` are available. The ``BUFFER`` connection type is used for faces that have both an insert and 

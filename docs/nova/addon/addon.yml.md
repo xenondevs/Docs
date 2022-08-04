@@ -65,7 +65,7 @@ The minimum version of Nova that your addon requires.
 Example:
 
 ```yaml
-novaVersion: 0.9.4
+novaVersion: 0.10
 ```
 
 ## author/authors
@@ -144,7 +144,7 @@ id: example_id
 name: Example Addon
 version: ${project.version}
 main: com.example.ExampleAddon
-novaVersion: 0.9.4
+novaVersion: 0.10
 authors: [ "Example Author", "Another Author" ]
 spigotResourceId: 93648
 depend:

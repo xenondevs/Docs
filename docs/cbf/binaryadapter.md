@@ -87,3 +87,7 @@ The registration works the same way:
 ```kotlin
 CBF.registerBinaryAdapter(Pair::class, PairBinaryAdapter)
 ```
+
+!!! note
+
+    Both these adapters are already registered by default. Replacing them might cause issues with already serialized data.

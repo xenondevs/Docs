@@ -38,20 +38,20 @@ Now you can add CBF to your build configuration:
     <dependency>
         <groupId>xyz.xenondevs.cbf</groupId>
         <artifactId>cosmic-binary-format</artifactId>
-        <version>VERSION</version>
+        <version>0.1</version>
     </dependency>
     ```
 
 === "Gradle Groovy"
 
     ```groovy
-    implementation "xyz.xenondevs.cbf:cosmic-binary-format:VERSION"
+    implementation "xyz.xenondevs.cbf:cosmic-binary-format:0.1"
     ```
 
 === "Gradle Kotlin"
 
     ```kotlin
-    implementation("xyz.xenondevs.cbf:cosmic-binary-format:VERSION")
+    implementation("xyz.xenondevs.cbf:cosmic-binary-format:0.1")
     ```
 
 To get started, you also need to install a CBF adapter. Currently, only the netty adapter is available.
@@ -62,20 +62,20 @@ To get started, you also need to install a CBF adapter. Currently, only the nett
     <dependency>
         <groupId>xyz.xenondevs.cbf</groupId>
         <artifactId>cosmic-binary-format-netty-adapter</artifactId>
-        <version>VERSION</version>
+        <version>0.1</version>
     </dependency>
     ```
 
 === "Gradle Groovy"
 
     ```groovy
-    implementation "xyz.xenondevs.cbf:cosmic-binary-format-netty-adapter:VERSION"
+    implementation "xyz.xenondevs.cbf:cosmic-binary-format-netty-adapter:0.1"
     ```
 
 === "Gradle Kotlin"
 
     ```kotlin
-    implementation("xyz.xenondevs.cbf:cosmic-binary-format-netty-adapter:VERSION")
+    implementation("xyz.xenondevs.cbf:cosmic-binary-format-netty-adapter:0.1")
     ```
 
 You can then set the ``defaultBufferProvider`` to Netty:
