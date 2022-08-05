@@ -95,3 +95,8 @@ class JetpackBehavior(
 
     Make sure to not update an items lore or display name in the ``modifyItemBuilder`` method,
     always use the ``getLore`` and ``getName`` methods.
+
+## Item data
+
+If you need to store or retrieve data, use the ``ItemStack.storeData``, ``ItemStack.retrieveData`` and ``ItemStack.retrieveDataOrNull`` 
+functions. Check out the [TileEntity data page](../blocks/tileentity/data.md) for more information.

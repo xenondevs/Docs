@@ -92,6 +92,7 @@ nav:
                   - "Basics": "nova/addon/blocks/tileentity/base.md"
                   - "Config": "nova/addon/blocks/tileentity/config.md"
                   - "GUI": "nova/addon/blocks/tileentity/gui.md"
+                  - "TileEntity Data": "nova/addon/blocks/tileentity/data.md"
                   - "Holders": "nova/addon/blocks/tileentity/holders.md"
                   - "Upgrades": "nova/addon/blocks/tileentity/upgrades.md"
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
