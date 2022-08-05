@@ -33,7 +33,7 @@ Now you can add the API dependency to your build configuration:
     <dependency>
         <groupId>xyz.xenondevs.nova</groupId>
         <artifactId>Nova-API</artifactId>
-        <version>0.8</version>
+        <version>0.10</version>
         <scope>provided</scope>
     </dependency>
     ```
@@ -41,13 +41,13 @@ Now you can add the API dependency to your build configuration:
 === "Gradle Groovy"
 
     ```groovy
-    implementation "xyz.xenondevs.nova:Nova-API:0.8"
+    implementation "xyz.xenondevs.nova:Nova-API:0.10"
     ```
 
 === "Gradle Kotlin"
 
     ```kotlin
-    implementation("xyz.xenondevs.nova:Nova-API:0.8")
+    implementation("xyz.xenondevs.nova:Nova-API:0.10")
     ```
 
 To get the Nova instance you can use the `Nova` class:
@@ -69,4 +69,6 @@ To get the Nova instance you can use the `Nova` class:
 You can use this instance to access everything else:
 
 - [Adding custom protection checks](./protection/protectionintegration.md)
+- [Getting ``NovaMaterials``](./material/index.md)
 - [Working with TileEntities](./tileentity/tileentitymanager.md)
+- [Managing Nova Blocks](./blocks/blockmanager.md)

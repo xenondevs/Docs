@@ -4,6 +4,7 @@ repo_url: https://github.com/xenondevs/Docs
 repo_name: xenondevs/Docs
 edit_uri: edit/main/docs/
 copyright: Copyright &copy; 2022 xenondevs
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -12,7 +13,7 @@ extra:
       link: https://discord.com/invite/hnEknVWvUe
     - icon: fontawesome/brands/patreon
       link: https://patreon.com/xenondevs
-      
+
 theme:
   name: material
   logo: assets/logo.png
@@ -24,6 +25,7 @@ theme:
     - content.code.annotate
   icon:
     repo: fontawesome/brands/github
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -31,6 +33,9 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
@@ -39,12 +44,17 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - tables
+
 plugins:
+  - search
   - i18n:
       default_language: en
       languages:
         en: English
-        de: Deutsch
+
+extra_css:
+  - assets/stylesheets/extra.css
+
 nav:
   - "Nova":
       - "Home": "nova/index.md"
@@ -52,7 +62,8 @@ nav:
           - "Setup": "nova/admin/setup.md"
           - "Configuration": "nova/admin/configuration.md"
           - "Compatibility":
-              - "List of compatible plugins": "nova/admin/compatibility/index.md"
+              - "List of compatible Plugins": "nova/admin/compatibility/index.md"
+              - "Troubleshooting": "nova/admin/compatibility/troubleshooting.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
               - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
           - "Recipes":
@@ -60,15 +71,66 @@ nav:
               - "Vanilla Recipe Types": "nova/admin/recipes/vanilla.md"
               - "Machines Recipe Types": "nova/admin/recipes/machines.md"
           - "FAQ": "nova/admin/faq.md"
-      - "API":
+      - "Addons":
+          - "Getting Started": "nova/addon/getting-started.md"
+          - "addon.yml": "nova/addon/addon.yml.md"
+          - "AssetPacks":
+              - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
+              - "Creating Items": "nova/addon/asset-packs/creating-items.md"
+              - "Creating Blocks": "nova/addon/asset-packs/creating-blocks.md"
+              - "Creating GUIs": "nova/addon/asset-packs/creating-guis.md"
+              - "Language Files": "nova/addon/asset-packs/language-files.md"
+          - "Items":
+              - "Registering Materials": "nova/addon/items/registering-materials.md"
+              - "Item Behaviors": "nova/addon/items/item-behaviors.md"
+              - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
+              - "Item Categories": "nova/addon/items/item-categories.md"
+          - "Configs": "nova/addon/configs.md"
+          - "Blocks":
+              - "Registering Materials": "nova/addon/blocks/registering-materials.md"
+              - "TileEntities":
+                  - "Basics": "nova/addon/blocks/tileentity/base.md"
+                  - "Config": "nova/addon/blocks/tileentity/config.md"
+                  - "GUI": "nova/addon/blocks/tileentity/gui.md"
+                  - "TileEntity Data": "nova/addon/blocks/tileentity/data.md"
+                  - "Holders": "nova/addon/blocks/tileentity/holders.md"
+                  - "Upgrades": "nova/addon/blocks/tileentity/upgrades.md"
+                  - "Particles": "nova/addon/blocks/tileentity/particles.md"
+          - "GUI Textures": "nova/addon/guitexture.md"
+          - "Actionbar Overlays": "nova/addon/actionbaroverlay.md"
+          - "Advancements": "nova/addon/advancements.md"
+          - "Attachments": "nova/addon/attachments.md"
+          - "Abilities": "nova/addon/abilities.md"
+          - "Recipes": "nova/addon/recipes.md"
+      - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
           - "NovaMaterial": "nova/api/material/index.md"
+          - "Blocks":
+              - "BlockManager": "nova/api/blocks/blockmanager.md"
+              - "BlockState": "nova/api/blocks/blockstate.md"
           - "TileEntity":
-              - "TileEntity": "nova/api/tileentity/tileentity.md"
               - "TileEntityManager": "nova/api/tileentity/tileentitymanager.md"
+              - "TileEntity": "nova/api/tileentity/tileentity.md"
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
-  - "ParticleLib":
-      - "": 'wip.md'
+  - "InvUI":
+      - "Getting Started": "invui/index.md"
+      - "Basics": "invui/basics.md"
+      - "Items": "invui/items.md"
+      - "Structure": "invui/structure.md"
+      - "GUIs":
+          - "Overview": "invui/guis/index.md"
+          - "Normal GUI": "invui/guis/normal.md"
+          - "Paged GUI": "invui/guis/paged.md"
+          - "Scroll GUI": "invui/guis/scroll.md"
+          - "Tab GUI": "invui/guis/tab.md"
+      - "Windows": "invui/windows.md"
+      - "VirtualInventory": "invui/virtualinventory.md"
+  - "CBF":
+      - "Getting Started": "cbf/index.md"
+      - "Binary Adapters": "cbf/binaryadapter.md"
+      - "Instance Creators": "cbf/instancecreator.md"
+      - "Serialization": "cbf/serialization.md"
+      - "Compounds": "cbf/compound.md"
