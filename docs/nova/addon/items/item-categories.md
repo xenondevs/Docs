@@ -3,10 +3,9 @@
 In order for your items to appear in the `/nova items` GUI or be accessible via `/nova give`, they need to be in the
 `item_categories.yml` file in your addon resources.
 
-# File Structure
+## File Structure
 
 The structure of the `item_categories.yml` file is as follows:  
-You can register as many item categories as you want.
 
 ```yaml
 example_category: # (1)
@@ -25,7 +24,9 @@ example_category: # (1)
 4. Tabs of categories with a lower priority will be to the left of tabs of categories with a higher priority.
 5. The items that will be listed under that category in the `/nova items` GUI.
 
+You can register as many item categories as you want.
+
 !!! info
 
-   It is possible to add items to existing categories by just using the same category id. When multiple addons define the
-   same category, the addon loaded first sets the icon, name and priority.
+      It is possible to add items to existing categories by just using the same category id. When multiple addons define the
+      same category, the addon loaded first sets the icon, name and priority.
