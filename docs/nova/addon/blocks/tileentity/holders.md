@@ -177,10 +177,22 @@ override val fluidHolder = NovaFluidHolder(
 
 ## Back to the original Solar Panel
 
-For our solar panel, we only have to override the ``energyHolder`` property. It could look something like this:
+For our solar panel, we only have to override the ``energyHolder`` property.
 
 ```kotlin title="SolarPanel.kt"
 override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null) {
     createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM)
 }
 ```
+
+Now that we've got our energyHolder set up, we can start giving it energy. To do that, we just override the ``handleTick`` method
+and check if it's still day time.
+
+```kotlin title="SolarPanel.kt"
+override fun handleTick() {
+    if(world.time < 13000)
+        energyHolder.energy += ENERGY_PER_TICK
+}
+```
+
+And that's it! We now have a working solar panel.
