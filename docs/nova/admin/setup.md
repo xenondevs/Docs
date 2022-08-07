@@ -120,21 +120,33 @@ The new resource pack will be automatically generated and uploaded using the con
 
 **This step is only required if your server is already using a custom resource pack.**
 
-Due to technical limitations, it is only possible to have one server resource pack. To circumvent this issue, Nova can automatically merge existing resource packs with its own.
+Due to technical limitations, it is only possible to have one server resource pack. To circumvent this issue, Nova can automatically merge existing resource packs with its own.  
+There are two ways of defining base packs:  
 
-* Make sure to turn off the custom resource pack in the config of the plugin providing it
-* Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
+=== "With Config"
 
-Example:
-```yaml title="plugins/Nova/configs/config.yml"
-resource_pack:
-  base_packs:
-    - plugins/ItemsAdder/data/resource_pack/pack.zip
-```
+    * Make sure to turn off the custom resource pack in the config of the plugin providing it
+    * Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
 
-!!! info
+    Example:
+    ```yaml title="plugins/Nova/configs/config.yml"
+    resource_pack:
+      base_packs:
+        - plugins/ItemsAdder/data/resource_pack/pack.zip
+    ```
 
-    You can add as many base packs as you want.
+    !!! info
+    
+        You can add as many base packs as you want.
+    
+        **Note:** Before building the resource pack with Nova, make sure that the listed base packs have been properly generated.
+        For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.
 
-    **Note:** Before building the resource pack with Nova, make sure that the listed base packs have been properly generated.
-    For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.
+=== "With Folder"
+
+    * Make sure to turn off the custom resource pack in the config of the plugin providing it
+    * Copy the resource pack directory or zip file to `plugins/Nova/resource_pack/base_packs/`
+
+        !!! info
+    
+            You can add as many base packs as you want.
