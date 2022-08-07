@@ -122,7 +122,7 @@ The new resource pack will be automatically generated and uploaded using the con
 
 Due to technical limitations, it is only possible to have one server resource pack. To circumvent this issue, Nova can automatically merge existing resource packs with its own.  
 
-Currently, there are two define base packs:  
+Currently, there are two ways to define base packs:  
 
 === "With Config"
 
