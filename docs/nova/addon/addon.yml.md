@@ -39,7 +39,7 @@ get the version from the pom.xml.
 Example:
 
 ```yaml
-version: 1.0.0
+version: "1.0.0"
 ```
 
 Or to automatically get the version from the pom.xml:
@@ -65,7 +65,7 @@ The minimum version of Nova that your addon requires.
 Example:
 
 ```yaml
-novaVersion: 0.10
+novaVersion: "0.10"
 ```
 
 ## author/authors
@@ -142,9 +142,9 @@ libraries:
 ```yaml
 id: example_id
 name: Example Addon
-version: ${project.version}
+version: "${project.version}"
 main: com.example.ExampleAddon
-novaVersion: 0.10
+novaVersion: "0.10"
 authors: [ "Example Author", "Another Author" ]
 spigotResourceId: 93648
 depend:
