@@ -45,7 +45,7 @@ version: "1.0.0"
 Or to automatically get the version from the pom.xml:
 
 ```yaml
-version: ${project.version}
+version: "${project.version}"
 ```
 
 ## main*
