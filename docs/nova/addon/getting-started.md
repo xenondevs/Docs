@@ -59,3 +59,9 @@ mvn package "-Ddir=<Path to your addons/ directory here>" -P mojang-mapped
 !!! warning
 
     Some things like particles won't work on mojang-mapped servers
+
+## Enabling dev mode
+
+Nova's reload prevention can get pretty annoying while making addons. To bypass this check, you can enable dev mode by 
+adding ``-DNovaDev`` in front of ``-jar`` in your server start script. This also allows you to bypass other restrictions,
+like joining the server during startup.
