@@ -28,7 +28,7 @@ inner class SolarPanelGUI : TileEntityGUI() {
 }
 ```
 
-1. The ``energyHolder`` will be explained in the next section.
+1. The ``energyHolder`` will be explained in an upcoming section.
 
 Now we can properly set the ``gui`` property inside the TileEntity class.
 
