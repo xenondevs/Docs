@@ -101,6 +101,23 @@ There are currently three main ways to configure the auto-uploader:
         }
         ```
         the regex could be ``"url": "([\w:/\.]*)``.
+    === "S3"
+
+        If you are using Amazon S3, you can use the S3 service to upload the resource pack. **You have to expose your S3 
+        bucket to the Internet yourself.**
+
+        Example config:
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: S3
+            endpoint: s3.amazonaws.com // The endpoint of your S3 service
+            region: eu-central-1 // The region of your S3 endpoint
+            bucket: examplebucket // The name of your S3 bucket
+            key_id: "" // Your S3 key id
+            key_secret: "" // Your S3 key secret
+        ```
 
 ## Step 3: Installing addons
 
