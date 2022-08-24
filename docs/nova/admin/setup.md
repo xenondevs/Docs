@@ -112,11 +112,11 @@ There are currently three main ways to configure the auto-uploader:
           auto_upload:
             enabled: true
             service: S3
-            endpoint: s3.amazonaws.com // The endpoint of your S3 service
-            region: eu-central-1 // The region of your S3 endpoint
-            bucket: examplebucket // The name of your S3 bucket
-            key_id: "" // Your S3 key id
-            key_secret: "" // Your S3 key secret
+            endpoint: s3.amazonaws.com # The endpoint of your S3 service
+            region: eu-central-1 # The region of your S3 endpoint
+            bucket: examplebucket # The name of your S3 bucket
+            key_id: "" # Your S3 key id
+            key_secret: "" # Your S3 key secret
         ```
 
 ## Step 3: Installing addons
