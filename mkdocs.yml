@@ -73,7 +73,7 @@ nav:
           - "FAQ": "nova/admin/faq.md"
       - "Addons":
           - "Getting Started": "nova/addon/getting-started.md"
-          - "addon.yml": "nova/addon/addon.yml.md"
+          - "Configure Addon": "nova/addon/addon-configuration.md"
           - "AssetPacks":
               - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
               - "Creating Items": "nova/addon/asset-packs/creating-items.md"
