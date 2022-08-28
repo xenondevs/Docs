@@ -72,7 +72,7 @@ novaVersion.set("0.11")
 
 Or use the version set in your version catalog:
 
-```kotlin title="build.gradle.kts addon { }
+```kotlin title="build.gradle.kts addon { }"
 novaVersion.set(deps.versions.nova)
 ```
 
