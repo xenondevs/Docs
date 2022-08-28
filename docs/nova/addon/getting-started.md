@@ -56,9 +56,9 @@ In the `addon` task, set `main` to your addon main class.
 
 #### Adding dependencies
 
-If your addon requires dependencies that need to be loaded at runtime, add them under the `nova` configuration:
+If your addon requires dependencies that need to be present at runtime, add them under the `nova` configuration:
 
-```kotlin title="build.gradle.kts"
+```kotlin title="build.gradle.kts dependencies { }"
 nova("commons-net:commons-net:3.8.0")
 ```
 
@@ -66,11 +66,11 @@ nova("commons-net:commons-net:3.8.0")
 
 To build, run
 ```bash title="Build with Maven"
-gradle addonJar "-DoutDir=<Path to your addons/ directory here>"
+gradle addonJar "-DoutDir=<Path to your addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
 ```bash title="Build with Maven"
-gradle addonjar "-DoutDir=<Path to your addons/ directory here>" -Dmojang-mapped
+gradle addonJar "-DoutDir=<Path to your addons directory here>" -Dmojang-mapped
 ```
 
 !!! warning
