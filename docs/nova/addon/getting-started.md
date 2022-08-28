@@ -54,6 +54,14 @@ Change `version` to your version.
 
 In the `addon` task, set `main` to your addon main class.
 
+#### Adding dependencies
+
+If your addon requires dependencies that need to be loaded at runtime, add them under the `nova` configuration:
+
+```kotlin title="build.gradle.kts"
+nova("commons-net:commons-net:3.8.0")
+```
+
 ## Building
 
 To build, run

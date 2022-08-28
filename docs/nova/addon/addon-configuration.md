@@ -126,7 +126,7 @@ loaded.
 Example:
 
 ```kotlin title="build.gradle.kts addon { }"
-depend.add("machines)
+depend.add("machines")
 softdepend.add("logistics")
 ```
 
