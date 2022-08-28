@@ -41,20 +41,18 @@ After creating the new repo and cloning it, make sure to edit the following file
 
 Change the package name to your own.
 
-### Configuring the Gradle build
-
-#### settings.gradle.kts
+### settings.gradle.kts
 
 Change `rootProject.name` to your addon id.
 
-#### build.gradle.kts
+### build.gradle.kts
 
 Change `group` to your group.  
 Change `version` to your version.
 
 In the `addon` task, set `main` to your addon main class.
 
-#### Adding dependencies
+## Adding dependencies
 
 If your addon requires dependencies that need to be present at runtime, add them under the `nova` configuration:
 
