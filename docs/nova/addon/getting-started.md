@@ -63,11 +63,11 @@ nova("commons-net:commons-net:3.8.0")
 ## Building
 
 To build, run
-```bash title="Build with Maven"
+```bash title="Build with Gradle"
 gradle addonJar "-DoutDir=<Path to your addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
-```bash title="Build with Maven"
+```bash title="Build with Gradle"
 gradle addonJar "-DoutDir=<Path to your addons directory here>" -Dmojang-mapped
 ```
 
