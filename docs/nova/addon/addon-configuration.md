@@ -1,6 +1,6 @@
 # Configure Addon
 Now that you've created your project, you need to set several values in the `addon` task.
-:material-information-outline:{ title="Part of the ``xyz.xenondevs.nova:nova-gradle-plugin``" }
+:material-information-outline:{ title="Part of the xyz.xenondevs.nova:nova-gradle-plugin" }
 If you're using the addon template, most of these values are already set for you.
 
 **Options marked with a * are required.**
