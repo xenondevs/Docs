@@ -73,9 +73,7 @@ There are three different `ReloadableRegion` implementations available:
 !!! note
 
     `ReloadableRegion` and its implementations are specifically designed to be used with TileEntities.  
-    (They're stored inside the TileEntity: Their visual regions get disabled if the TileEntity is unloaded or broken
-    and configured sizes are automatically stored inside the TileEntity data.)  
-    Therefore, they can only be created using the above mentioned tile-entitiy functions.
+    Therefore, they can only be created using the above mentioned TileEntity functions.
 
 ### Visual Region
 
