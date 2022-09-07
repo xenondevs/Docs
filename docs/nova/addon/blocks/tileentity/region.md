@@ -1,7 +1,5 @@
 # Region
 
-## Normal Regions
-
 Generally, a region is an area between a `min` and a `max` Location.  
 
 ```kotlin
@@ -11,7 +9,7 @@ val region = Region(min, max)
 If your region is related to a `TileEntity`, you can also use the tile-entity functions ``getBlockFrontRegion()``,
 ``getFrontRegion()`` and ``getSurroundingRegion()`` which create a region relative to the TileEntity.
 
-### Visual Region
+## Visual Region
 
 To display the outline of this region with particles, you can use the `VisualRegion` object:  
 
@@ -75,7 +73,5 @@ There are three different `ReloadableRegion` implementations available:
     `ReloadableRegion` and its implementations are specifically designed to be used with TileEntities.  
     Therefore, they can only be created using the above mentioned TileEntity functions.
 
-### Visual Region
-
-Every `ReloadableRegion` provides an instance of a `VisualRegionItem` (`region.visualizeRegionItem`).
+Every `ReloadableRegion` also provides an instance of a `VisualRegionItem` (`region.visualizeRegionItem`).
 You can use this as a show / hide region button in your GUI.
