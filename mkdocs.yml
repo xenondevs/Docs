@@ -98,7 +98,7 @@ nav:
                   - "Regions": "nova/addon/blocks/tileentity/region.md"
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
           - "GUI Textures": "nova/addon/guitexture.md"
-          - "Actionbar Overlays": "nova/addon/actionbaroverlay.md"
+          - "Overlays": "nova/addon/overlays.md"
           - "Advancements": "nova/addon/advancements.md"
           - "Attachments": "nova/addon/attachments.md"
           - "Abilities": "nova/addon/abilities.md"

@@ -1,15 +1,17 @@
-# Actionbar Overlay
+# Overlays
 
 !!! tip
 
-    In order to understand Nova's GUI textures and overlays, it might be beneficial for you to read our
+    In order to understand Nova's overlays, it might be beneficial for you to read our
     [spigot thread on using the font renderer](https://www.spigotmc.org/threads/520187/).
 
-Action bar overlays follow the same concept of using fonts to render images as [GUI Textures](guitexture.md), but are
+Overlays follow the same concept of using fonts to render images as [GUI Textures](guitexture.md), but are
 a bit more difficult to implement for addon developers, as you need to create the font file yourself.
 
 Font files are stored under `assets/fonts/` and have [this format](https://minecraft.fandom.com/wiki/Resource_Pack#Fonts).  
 You might also want to take a look at [our font for the jetpack energy bar overlay](https://github.com/Nova-Addons/Jetpacks/blob/main/src/main/resources/assets/fonts/energy_bar.json).
+
+## Action bar overlay
 
 After creating your font, implement the `ActionbarOverlay` interface. There you'll need to provide the component array
 to be displayed in the action bar, as well as the width of the entire text. Components to move the text by a specified
@@ -65,3 +67,15 @@ ActionbarOverlayManager.registerOverlay(player, overlay)
 
     Nova intercepts action bar packets and appends the action bar overlay to it. This means that normal action bar text
     can still be displayed, even if one or more action bar overlays are active.
+
+## Boss bar overlay
+
+Similar to the action bar overlay, you can also render at boss bar position. For that, you can either extend the
+`BossBarOverlay` class or use the `TextBossBarOverlay` and `CenteredTextBossBarOverlay` implementations if you just
+need to render text.
+
+Then, register your overlay in the `BossBarOverlayManager`:
+
+```kotlin
+BossBarOverlayManager.registerOverlay(player, overlay)
+```
