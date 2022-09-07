@@ -85,7 +85,9 @@ Example configs:
 
 ## Upgrade values
 
-As every addon can add its own upgrades. The upgrade values for the default upgrades `speed`, `efficiency`, `energy`, `fluid` and `range` are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`. Every addon that has its own upgrades also has a `upgrade_values.json` config file in its config folder.
+The upgrade values for the default upgrade types `speed`, `efficiency`, `energy`, `fluid` and `range`
+are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`.
+This separation is done intentionally to indicate that every addon can have its own `upgrade_values.json` file for their own upgrade types.
 
 The config for the default upgrades looks like this:
 ```yaml
@@ -96,7 +98,8 @@ fluid: [ 1.0, 1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1, 10.0 ]
 range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
 
-The amount of values in the arrays specifies the amount of upgrades that can be added, the numbers themselves are the modifiers. Depending on the type of upgrade, these values might be a multipliers or in the case of the range upgrade, are just added on top of the default max range.
+The amount of values in the arrays specifies the amount of upgrades that can be added, the numbers themselves are the modifiers.
+Depending on the type of upgrade, these values might be a multipliers or in the case of the range upgrade, are just added on top of the default max range.
 
 The upgrade values can also be changed for specific tile-entities by adding a `upgrade_values` section to the config of that tile-entity.
 For example, the default limit of range upgrades for the Pump from the Machines addon is changed to 30 this way:

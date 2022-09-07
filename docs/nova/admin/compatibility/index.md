@@ -28,3 +28,4 @@ Planned:
 - [x] Towny
 - [x] ProtectionStones
 - [x] QuickShop
+- [x] Residence

@@ -17,7 +17,7 @@ example_category: # (1)
     - example_addon:other_item
 ```
 
-1. The id of the category. This can useful if you want to add items to an existing category, such as `misc` from Nova
+1. The id of the category. This can be useful if you want to add items to an existing category, such as `misc` from Nova
    or `machines`, `power` or `crafting` from Machines.
 2. The tab icon in the `/nova items` GUI.
 3. The tab name in the `/nova items` GUI.

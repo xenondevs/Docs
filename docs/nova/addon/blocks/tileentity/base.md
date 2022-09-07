@@ -128,10 +128,9 @@ override fun getDrops(includeSelf: Boolean): MutableList<ItemStack> {
 
 ### ``saveData()``
 
-!!! tip
-
 Use this function to save any additional data your TileEntity might have. You can store the data via ``storeData`` which
-will serialize the data via CBF. Make sure to call the superclass's function. Read the [TileEntity Data Page](data.md).
+will serialize the data via CBF. Make sure to call the superclass's function. Read the [TileEntity Data Page](data.md) for
+more information.
 
 ```kotlin
 override fun saveData() {

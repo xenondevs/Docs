@@ -15,7 +15,7 @@ Before overriding the ``energyHolder`` property, you need to choose the best imp
 * ProviderEnergyHolder: Used for TileEntities that generate energy.
 * BufferEnergyHolder: Used for TileEntities that store energy and transfer it to other tileEntities when needed. E.g. power cells.
 
-These all have different constructors. You can open the example box below to see how each of them is implemented.
+These all have different constructors. You can open the example box below to see how each one is implemented.
 
 ??? example "EnergyHolder implementations"
 
@@ -32,7 +32,7 @@ These all have different constructors. You can open the example box below to see
         ```
         
         1. The parent TileEntity that the holder is attached to.
-        2. A config reloadable value that stores the maximum amount of energy that can be stored (See [Config](../../configs.md) for more info). The
+        2. A config reloadable value of the maximum amount of energy that can be stored (See [Config](../../configs.md) for more info). The
            actual maximum amount is calculated with upgrades.
         3. (optional) Another config reloadable value that stores the amount of energy that is consumed per tick. While this value is not
            required, it is still recommended to set it since it will automatically calculate the actual energy consumption with upgrades.
@@ -85,7 +85,7 @@ These all have different constructors. You can open the example box below to see
 
     Make sure to read the [VirtualInventories](../../../../invui/virtualinventory.md) page on the InvUI wiki before proceeding!
 
-``ItemHolders`` are used provide an interface for networks to interact with your TileEntity's inventories. Depending on
+``ItemHolders`` are used to provide an interface for networks to interact with your TileEntity's inventories. Depending on
 what your TileEntity does, you may need more than one inventory (For example, a pulverizer with an input and output inventory).
 Unlike ``EnergyHolders``, ``ItemHolders`` only have one default implementation called ``NovaItemHolder``. To create a 
 ``VirtualInventory`` use the ``getInventory`` functions. For this example, let's create an input and output inventory.
