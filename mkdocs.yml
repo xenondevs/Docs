@@ -95,6 +95,7 @@ nav:
                   - "TileEntity Data": "nova/addon/blocks/tileentity/data.md"
                   - "Holders": "nova/addon/blocks/tileentity/holders.md"
                   - "Upgrades": "nova/addon/blocks/tileentity/upgrades.md"
+                  - "Regions": "nova/addon/blocks/tileentity/region.md"
                   - "Particles": "nova/addon/blocks/tileentity/particles.md"
           - "GUI Textures": "nova/addon/guitexture.md"
           - "Actionbar Overlays": "nova/addon/actionbaroverlay.md"
