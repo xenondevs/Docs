@@ -79,3 +79,8 @@ Then, register your overlay in the `BossBarOverlayManager`:
 ```kotlin
 BossBarOverlayManager.registerOverlay(player, overlay)
 ```
+
+!!! info
+
+    Nova intercepts all vanilla boss bars and then redraws them using custom characters that have the boss bar texture.
+    With this approach, vanilla boss bars can just be moved below the boss bar overlays.
