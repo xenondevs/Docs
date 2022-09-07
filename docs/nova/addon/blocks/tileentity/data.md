@@ -2,7 +2,7 @@
 
 !!! tip 
 
-    Make sure to check out the CBF documentation for more information.
+    Make sure to check out the CBF documentation for more information.  
     [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
 
 ??? example "Default Nova Binary Adapters"
@@ -19,9 +19,28 @@
 All of Nova's binary data is handled via cbf. TileEntities have special functions to directly store/retrieve data. You can
 call ``storeData`` to store data and ``retrieveData`` or ``retrieveDataOrNull`` to retrieve data.
 
-## Storing data
+## Storing / retrieving data with data accessors
 
-Storing TileEntity data should be done by overriding the ``saveData`` function. **Make sure to call the superclass's function.**
+To define a property that is automatically saved when the TileEntity's data gets saved, you can use the `storedValue` function.
+It returns a `DataAcessor` object to which you can delegate:  
+
+```kotlin title="storedValue (not null)"
+val burnTime: Int by storedValue("burnTime") { 0 }
+```
+
+```kotlin title="storedValue (nullable)"
+val itemFilter: ItemFilter? by storedValue("itemFilter")
+```
+
+And that's it! When the TileEntity gets saved, those properties will be written to the TileEntity data. Unlike the manual
+approach, you will not need to add anything to the `saveData` function.
+
+## Manually storing / retrieving data
+
+### Storing data manually
+
+Storing TileEntity data should be done by overriding the ``saveData`` function.
+**Make sure to call the superclass's function.**
 
 ```kotlin title="MechanicalPress.kt"
 override fun saveData() {
@@ -31,7 +50,7 @@ override fun saveData() {
 }
 ```
 
-## Retrieving data
+### Retrieving data manually
 
 You can then retrieve the data while initializing your TileEntity's properties.
 
