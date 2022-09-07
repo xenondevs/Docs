@@ -25,11 +25,11 @@ To define a property that is automatically saved when the TileEntity's data gets
 It returns a `DataAcessor` object to which you can delegate:  
 
 ```kotlin title="storedValue (not null)"
-val burnTime: Int by storedValue("burnTime") { 0 }
+private val burnTime: Int by storedValue("burnTime") { 0 }
 ```
 
 ```kotlin title="storedValue (nullable)"
-val itemFilter: ItemFilter? by storedValue("itemFilter")
+private val itemFilter: ItemFilter? by storedValue("itemFilter")
 ```
 
 And that's it! When the TileEntity gets saved, those properties will be written to the TileEntity data. Unlike the manual
@@ -39,8 +39,7 @@ approach, you will not need to add anything to the `saveData` function.
 
 ### Storing data manually
 
-Storing TileEntity data should be done by overriding the ``saveData`` function.
-**Make sure to call the superclass's function.**
+If you're not using data accessors, store your data in the `saveData` function.
 
 ```kotlin title="MechanicalPress.kt"
 override fun saveData() {
@@ -49,6 +48,10 @@ override fun saveData() {
     storeData("pressTime", timeLeft)
 }
 ```
+
+!!! danger
+
+    Make sure to call the superclasses function.
 
 ### Retrieving data manually
 
