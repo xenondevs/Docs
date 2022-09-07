@@ -65,8 +65,8 @@ ActionbarOverlayManager.registerOverlay(player, overlay)
 
 !!! info
 
-    Nova intercepts action bar packets and appends the action bar overlay to it. This means that normal action bar text
-    can still be displayed, even if one or more action bar overlays are active.
+    Nova intercepts action bar packets and appends the action bar overlay to it.  
+    This means that normal action bar text can still be displayed, even if one or more action bar overlays are active.
 
 ## Boss bar overlay
 
@@ -82,5 +82,5 @@ BossBarOverlayManager.registerOverlay(player, overlay)
 
 !!! info
 
-    Nova intercepts all vanilla boss bars and then redraws them using custom characters that have the boss bar texture.
-    With this approach, vanilla boss bars can just be moved below the boss bar overlays.
+    Nova intercepts all vanilla boss bars and then redraws them using custom characters that have the boss bar texture.  
+    With this approach, vanilla boss bars are just moved below your boss bar overlay.
