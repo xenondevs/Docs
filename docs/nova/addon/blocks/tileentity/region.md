@@ -32,24 +32,23 @@ VisualizeRegionItem(regionUUID) { region }
 
 ## ReloadableRegion
 
-In some cases, you might want your region's size to be adjustable through player input, upgrades or config changes.  
+In some cases, you might want your region's size to be adjustable through player input, upgrades or with the config.  
 For those cases, we recommend using a `ReloadableRegion`.
 
 There are three different `ReloadableRegion` implementations available:
 
-!!! example "`ReloadableRegion` implementations"
+!!! example "ReloadableRegion implementations"
 
-    === "`StaticRegion`"
+    === "StaticRegion"
     
         This is the simplest implementation. It accepts a `ValueReloadable<Int>` for retrieving the size
         and a lambda for creating a `Region` with that size:
         
         ```kotlin
-        val size = configReloadable { NovaConfig[Blocks.EXAMPLE].getInt("range") }
         val region = getStaticRegion(size) { getSurroundingRegion(it) }
         ```
     
-    === "`DynamicRegion`"
+    === "DynamicRegion"
     
         The dynamic region allows user-modified sizes. You'll need to set a min, max, and default size as well as
         a lambda for creating a `Region` with that size:
@@ -61,7 +60,7 @@ There are three different `ReloadableRegion` implementations available:
         You can then change the size of the region using `region.size` or place the `region.displaySizeItem`,
         `region.increaseSizeItem` and `region.decreaseSizeItem` in your TileEntity's GUI to make the size adjustable by players.
     
-    === "`UpgradableRegion`"
+    === "UpgradableRegion"
     
         The upgradable region is a subclass of `DynamicRegion` which additionally allows size modification using upgrades.
         You'll only need to specify which `UpgradeType` affects the maximum possible size of your region - everything else
@@ -74,6 +73,8 @@ There are three different `ReloadableRegion` implementations available:
 !!! note
 
     `ReloadableRegion` and its implementations are specifically designed to be used with TileEntities.  
+    (They're stored inside the TileEntity: Their visual regions get disabled if the TileEntity is unloaded or broken
+    and configured sizes are automatically stored inside the TileEntity data.)  
     Therefore, they can only be created using the above mentioned tile-entitiy functions.
 
 ### Visual Region
