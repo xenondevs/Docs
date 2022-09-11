@@ -6,47 +6,6 @@
     --md-code-hl-name-color: #e9c985;
 }
 
-@media only screen and (min-width: 76.25em) {
-    .md-main__inner {
-        max-width: none;
-    }
-
-    .md-content {
-        max-width: 56.5%;
-    }
-
-    .md-sidebar--primary {
-        margin-left: 3.75%;
-        margin-right: 3.75%;
-    }
-
-    .md-sidebar--secondary {
-        margin-left: 3.75%;
-        margin-right: 3.75%;
-        -webkit-transform: none;
-        transform: none;
-    }
-
-    body::-webkit-scrollbar {
-        width: 15px;
-        height: 15px;
-    }
-
-    body::-webkit-scrollbar-thumb {
-        background-color: #21222c;
-        border-radius: 15px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background-color: #2e303e;
-    }
-
-    body {
-        scrollbar-color: #21222c #2e303e;
-    }
-
-}
-
 .md-nav {
     font-size: 14px;
     line-height: 1.4;
@@ -73,12 +32,6 @@
 .md-typeset table:not([class]) th {
     color: var(--table-foreground);
     background-color: var(--table-background);
-}
-
-[data-md-color-scheme="default"] {
-    --code-color: #532ba8;
-    --table-foreground: var(--md-default-bg-color); /* table header backgrounds */
-    --table-background: var(--md-default-fg-color--light); /* table header (text) */
 }
 
 [data-md-color-scheme="slate"] {
