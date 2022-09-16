@@ -34,8 +34,7 @@ Example configs:
 === "world"
 
     ```yaml
-    # This example config prevents players from placing
-    # tile-entities in the nether and end dimension.
+    # This example config prevents players from placing tile-entities in the nether and end dimension.
     performance:
       tile_entity_limits:
         world_blacklist:
@@ -47,8 +46,7 @@ Example configs:
 === "type_world"
 
     ```yaml
-    # This example config prevents players from placing
-    # quarries in the overworld and pulverizers in the nether.
+    # This example config prevents players from placing quarries in the overworld and pulverizers in the nether.
     performance:
       tile_entity_limits:
         world_type_blacklist:
@@ -61,8 +59,7 @@ Example configs:
 === "amount"
 
     ```yaml
-    # This example config sets a maximum amount of one
-    # quarry and 50 cables of each type for every player.
+    # This example config sets a maximum amount of one quarry and 50 cables of each type for every player.
     performance:
       tile_entity_limits:
         amount:
@@ -77,8 +74,7 @@ Example configs:
 === "amount_per_world"
 
     ```yaml
-    # This example config sets a maximum of one
-    # quarry per player per world.
+    # This example config sets a maximum of one quarry per player per world.
     performance:
       tile_entity_limits:
         amount_per_world:
@@ -89,8 +85,7 @@ Example configs:
 === "amount_per_chunk"
 
     ```yaml
-    # This example config sets a maximum of one
-    # quarry per player per world.
+    # This example config sets a maximum of one quarry per player per world.
     performance:
       tile_entity_limits:
         amount_per_chunk:
