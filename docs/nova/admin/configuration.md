@@ -21,12 +21,13 @@ Players with the permission `nova.misc.bypassTileEntityLimits` will be able to b
 
 There are 4 different limiters. You can choose one or combine multiple:
 
-|       Name       | Description                                                                  |
-|:----------------:|:-----------------------------------------------------------------------------|
-|      world       | Prevent placing tile entities in specific worlds.                            |
-|    type_world    | Prevent placing specific tile-entities in specific worlds.                   |
-|      amount      | Set a maximum amount of tile-entities of a type for a player.                |
-| amount_per_world | Set a maximum amount of tile-entities of a type for a player for each world. |
+|       Name       | Description                                                                     |
+|:----------------:|:--------------------------------------------------------------------------------|
+|      world       | Prevent placing tile entities in specific worlds.                               |
+|    type_world    | Prevent placing specific tile-entities in specific worlds.                      |
+|      amount      | Set a maximum amount of tile-entities of a type for each player.                |
+| amount_per_world | Set a maximum amount of tile-entities of a type for each player for each world. |
+| amount_per_chunk | Set a maximum amount of tile-entities of a type for each player for each chunk. |
 
 Example configs:
 
@@ -65,6 +66,7 @@ Example configs:
     performance:
       tile_entity_limits:
         amount:
+          '*': 100 # Not mandatory, but this option would limit the total amount of tile-entities to 100 per player.
           machines:quarry: 1
           logistics:basic_cable: 50
           logistics:advanced_cable: 50
@@ -80,6 +82,19 @@ Example configs:
     performance:
       tile_entity_limits:
         amount_per_world:
+          '*': 100 # Not mandatory, but this option would limit the total amount of tile-entities to 100 per player per world.
+          machines:quarry: 1
+    ```
+
+=== "amount_per_chunk"
+
+    ```yaml
+    # This example config sets a maximum of one
+    # quarry per player per world.
+    performance:
+      tile_entity_limits:
+        amount_per_world:
+          '*': 5 # Not mandatory, but this option would limit the total amount of tile-entities to 5 per player per chunk.
           machines:quarry: 1
     ```
 
