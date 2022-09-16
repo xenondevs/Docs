@@ -93,7 +93,7 @@ Example configs:
     # quarry per player per world.
     performance:
       tile_entity_limits:
-        amount_per_world:
+        amount_per_chunk:
           '*': 5 # Not mandatory, but this option would limit the total amount of tile-entities to 5 per player per chunk.
           machines:quarry: 1
     ```
