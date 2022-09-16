@@ -19,7 +19,7 @@ With tile-entity limits, you can create restrictions on which tile-entities play
 Tile-Entity limits are configured in the `performance.tile_entity_limits` section.  
 Players with the permission `nova.misc.bypassTileEntityLimits` will be able to bypass these restrictions.
 
-There are 4 different limiters. You can choose one or combine multiple:
+There are 5 different limiters. You can choose one or combine multiple:
 
 |       Name       | Description                                                                     |
 |:----------------:|:--------------------------------------------------------------------------------|
