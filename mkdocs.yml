@@ -116,6 +116,7 @@ nav:
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
+          - "Waila Manager": "nova/api/player/wailamanager.md"
   - "InvUI":
       - "Getting Started": "invui/index.md"
       - "Basics": "invui/basics.md"

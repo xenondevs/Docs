@@ -72,3 +72,4 @@ You can use this instance to access everything else:
 - [Getting ``NovaMaterials``](./material/index.md)
 - [Working with TileEntities](./tileentity/tileentitymanager.md)
 - [Managing Nova Blocks](./blocks/blockmanager.md)
+- [Toggling the WAILA overlay](./player/wailamanager.md)
