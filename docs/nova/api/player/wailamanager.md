@@ -1,4 +1,4 @@
-# Waila Manager
+# WailaManager
 
 The WailaManager allows you to enable / disable the WAILA overlay for players.
 
