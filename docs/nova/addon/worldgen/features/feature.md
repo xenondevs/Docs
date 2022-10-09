@@ -28,23 +28,23 @@ you'll quickly notice that `features` is a 2d `JsonArray` instead of a 1-dimensi
 generates different feature categories in a specific order. Below you'll find a list of all feature categories in the order
 they're generated.
 
-- raw_generation (e.g. end islands)
-- lakes (e.g. lava lakes)
-- local_modifications (e.g. amethyst geodes)
-- underground_structures (e.g. dungeons)
-- surface_structures (e.g. villages) 
-- strongholds (not used anymore)
+- raw_generation <small> (e.g. end islands) </small>
+- lakes <small> (e.g. lava lakes) </small>
+- local_modifications <small> (e.g. amethyst geodes) </small>
+- underground_structures <small> (e.g. dungeons) </small>
+- surface_structures <small> (e.g. villages) </small>
+- strongholds <small> (not used anymore) </small>
 - underground_ores
-- underground_decoration (e.g. sculk, also used for nether ores for some reason)
-- fluid_springs (e.g. water springs)
-- vegetal_decoration (e.g. trees, flowers)
-- top_layer_modification (used for post-generation modifications, e.g. snow)
+- underground_decoration <small> (e.g. sculk, also used for nether ores for some reason) </small>
+- fluid_springs <small> (e.g. water springs) </small>
+- vegetal_decoration <small> (e.g. trees, flowers) </small>
+- top_layer_modification <small> (used for post-generation modifications, e.g. snow) </small>
 
 Make sure to add your feature to the correct category, or it might not generate at all/get destroyed by another feature.
 
-??? example "Vanilla birch forest"
+??? example "Example: Vanilla birch forest"
 
-    As an example, here is the 2d json array for the vanilla birch forest biome:
+     As an example, here's the features `JsonArray` for the vanilla birch forest biome:
 
     ```json
     "features": [
