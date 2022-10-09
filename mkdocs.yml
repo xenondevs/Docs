@@ -103,6 +103,10 @@ nav:
           - "Attachments": "nova/addon/attachments.md"
           - "Abilities": "nova/addon/abilities.md"
           - "Recipes": "nova/addon/recipes.md"
+          - "World Generation":
+              - "Overview": "nova/addon/worldgen/worldgen.md"
+              - "Features":
+                  - "Overview": "nova/addon/worldgen/features/feature.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
