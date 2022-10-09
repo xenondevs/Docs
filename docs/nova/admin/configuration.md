@@ -19,22 +19,22 @@ With tile-entity limits, you can create restrictions on which tile-entities play
 Tile-Entity limits are configured in the `performance.tile_entity_limits` section.  
 Players with the permission `nova.misc.bypassTileEntityLimits` will be able to bypass these restrictions.
 
-There are 4 different limiters. You can choose one or combine multiple:
+There are 5 different limiters. You can choose one or combine multiple:
 
-|       Name       | Description                                                                  |
-|:----------------:|:-----------------------------------------------------------------------------|
-|      world       | Prevent placing tile entities in specific worlds.                            |
-|    type_world    | Prevent placing specific tile-entities in specific worlds.                   |
-|      amount      | Set a maximum amount of tile-entities of a type for a player.                |
-| amount_per_world | Set a maximum amount of tile-entities of a type for a player for each world. |
+|       Name       | Description                                                                     |
+|:----------------:|:--------------------------------------------------------------------------------|
+|      world       | Prevent placing tile entities in specific worlds.                               |
+|    type_world    | Prevent placing specific tile-entities in specific worlds.                      |
+|      amount      | Set a maximum amount of tile-entities of a type for each player.                |
+| amount_per_world | Set a maximum amount of tile-entities of a type for each player for each world. |
+| amount_per_chunk | Set a maximum amount of tile-entities of a type for each player for each chunk. |
 
 Example configs:
 
 === "world"
 
     ```yaml
-    # This example config prevents players from placing
-    # tile-entities in the nether and end dimension.
+    # This example config prevents players from placing tile-entities in the nether and end dimension.
     performance:
       tile_entity_limits:
         world_blacklist:
@@ -46,8 +46,7 @@ Example configs:
 === "type_world"
 
     ```yaml
-    # This example config prevents players from placing
-    # quarries in the overworld and pulverizers in the nether.
+    # This example config prevents players from placing quarries in the overworld and pulverizers in the nether.
     performance:
       tile_entity_limits:
         world_type_blacklist:
@@ -60,11 +59,11 @@ Example configs:
 === "amount"
 
     ```yaml
-    # This example config sets a maximum amount of one
-    # quarry and 50 cables of each type for every player.
+    # This example config sets a maximum amount of one quarry and 50 cables of each type for every player.
     performance:
       tile_entity_limits:
         amount:
+          '*': 100 # Not mandatory, but this option would limit the total amount of tile-entities to 100 per player.
           machines:quarry: 1
           logistics:basic_cable: 50
           logistics:advanced_cable: 50
@@ -75,11 +74,22 @@ Example configs:
 === "amount_per_world"
 
     ```yaml
-    # This example config sets a maximum of one
-    # quarry per player per world.
+    # This example config sets a maximum of one quarry per player per world.
     performance:
       tile_entity_limits:
         amount_per_world:
+          '*': 100 # Not mandatory, but this option would limit the total amount of tile-entities to 100 per player per world.
+          machines:quarry: 1
+    ```
+
+=== "amount_per_chunk"
+
+    ```yaml
+    # This example config sets a maximum of one quarry per player per world.
+    performance:
+      tile_entity_limits:
+        amount_per_chunk:
+          '*': 5 # Not mandatory, but this option would limit the total amount of tile-entities to 5 per player per chunk.
           machines:quarry: 1
     ```
 

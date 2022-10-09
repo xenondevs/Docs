@@ -88,7 +88,7 @@ There are currently three main ways to configure the auto-uploader:
             service: CustomMultiPart
             url: https://example.com/upload.php
             filePartName: pack
-            extraparams:
+            extraParams:
               key: "" # This key also needs to be set in the php script mentioned above
         ```
     

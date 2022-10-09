@@ -10,7 +10,7 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
-      link: https://discord.com/invite/hnEknVWvUe
+      link: https://discord.com/invite/EpVMXtXB2t
     - icon: fontawesome/brands/patreon
       link: https://patreon.com/xenondevs
 
@@ -72,7 +72,7 @@ nav:
               - "Machines Recipe Types": "nova/admin/recipes/machines.md"
           - "FAQ": "nova/admin/faq.md"
       - "Addons":
-          - "Getting Started": "nova/addon/getting-started.md"
+          - "Getting Started": "nova/addon/index.md"
           - "Configure Addon": "nova/addon/addon-configuration.md"
           - "AssetPacks":
               - "Basics": "nova/addon/asset-packs/assetpack-basics.md"
@@ -116,6 +116,7 @@ nav:
           - "Events":
               - "NovaLoadDataEvent": "nova/api/events/novaloaddataevent.md"
               - "TileEntityBreakBlockEvent": "nova/api/events/tileentitybreakblockevent.md"
+          - "WailaManager": "nova/api/player/wailamanager.md"
   - "InvUI":
       - "Getting Started": "invui/index.md"
       - "Basics": "invui/basics.md"
