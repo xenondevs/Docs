@@ -7,17 +7,17 @@
 Nova's worldgen is completely based on [Minecraft's custom worldgen format](https://minecraft.fandom.com/wiki/Custom_world_generation) with
 some additions. Below you'll find a quick overview of the format and how to use it. Check the sidebar for more detailed information.
 
-### Structure
+### Structures
 
 **TODO**
 
-### Feature
+### Features
 
 :octicons-info-24: Main page: [Feature](./feature/feature.md)
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).
 
-### Carver
+### Carvers
 
 **TODO**
 
@@ -29,6 +29,6 @@ Features (sometimes also called decorators) are used to add additional decoratio
 
 **TODO**
 
-### Custom Dimension
+### Custom Dimensions
 
 **TODO**
