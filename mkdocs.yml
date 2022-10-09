@@ -107,6 +107,7 @@ nav:
               - "Overview": "nova/addon/worldgen/worldgen.md"
               - "Features":
                   - "Overview": "nova/addon/worldgen/features/feature.md"
+                  - "Placed Features": "nova/addon/worldgen/features/placed-feature.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"

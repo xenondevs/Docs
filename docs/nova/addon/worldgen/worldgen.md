@@ -7,15 +7,17 @@
     java agents and that the `use_agent` option is set to `true` in Nova's `config.yml` file.
 
 Nova's worldgen is completely based on [Minecraft's custom worldgen format](https://minecraft.fandom.com/wiki/Custom_world_generation) with
-some additions. Below you'll find a quick overview of the format and how to use it. Check the sidebar for more detailed information.
+some additions. Before you start, make sure to create a `data/worldgen` directory in your addon's resources folder. This is where
+all your worldgen files will be stored.
+
+Below you'll find a quick overview of the format and how to use it. Check the sidebar for more detailed information.
 
 ### Structures
 
 **TODO**
 
 ### Features
-
-:octicons-info-24: Main page · [Features Overview](./feature/feature.md)
+<small>Check out the [Features Overview](./feature/feature.md) page for more information.</small>
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).
 
