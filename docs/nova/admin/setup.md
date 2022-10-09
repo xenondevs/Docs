@@ -71,10 +71,10 @@ There are currently three main ways to configure the auto-uploader:
             You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
             If you are on a local server, you will need to set `host: 127.0.0.1`
     
-        !!! warning "'portNeeded' parameter"
+        !!! warning "'append_port' parameter"
     
             When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
-            If this is not the case, set `portNeeded: true`.
+            If this is not the case, set `append_port: true`.
     
     === "Custom Multipart Request (advanced)"
     
@@ -88,7 +88,7 @@ There are currently three main ways to configure the auto-uploader:
             service: CustomMultiPart
             url: https://example.com/upload.php
             filePartName: pack
-            extraparams:
+            extraParams:
               key: "" # This key also needs to be set in the php script mentioned above
         ```
     
@@ -101,6 +101,23 @@ There are currently three main ways to configure the auto-uploader:
         }
         ```
         the regex could be ``"url": "([\w:/\.]*)``.
+    === "S3"
+
+        If you are using Amazon S3, you can use the S3 service to upload the resource pack. **You have to expose your S3 
+        bucket to the Internet yourself.**
+
+        Example config:
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: S3
+            endpoint: s3.amazonaws.com # The endpoint of your S3 service
+            region: eu-central-1 # The region of your S3 endpoint
+            bucket: examplebucket # The name of your S3 bucket
+            key_id: "" # Your S3 key id
+            key_secret: "" # Your S3 key secret
+        ```
 
 ## Step 3: Installing addons
 

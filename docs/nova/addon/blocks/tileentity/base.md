@@ -146,7 +146,7 @@ override fun saveData() {
 * ``getFluidContainer()`` - See [FluidHolders](holders.md#fluidholder).
 * ``createParticleTask()`` - See [Particles](particles.md).
 * ``createSideConfig()``, ``createExclusiveSideConfig()`` - See [Holders](holders.md).
-* ``getSurroundingRegion()`` - Gets the surrounding region of the TileEntity via a ``Region`` instance.
-* ``getBlockFrontRegion()``, ``getFrontRegion()`` - Gets the front region of the TileEntity via a ``Region`` instance.
+* ``getBlockFrontRegion()``, ``getFrontRegion()``, ``getSurroundingRegion()`` - See [Region](region.md)
+* ``createStaticRegion()``, ``getDynamicRegion()``, ``getUpgradableRegion()`` - See [Reloadable Region](region.md#reloadableregion)
 * ``playSoundEffect()`` - Plays a sound effect to all TileEntity viewers.
 * ``getViewers()`` - Returns a list of all players that the TileEntity is visible to.

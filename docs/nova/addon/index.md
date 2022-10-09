@@ -1,5 +1,5 @@
 **This guide is not beginner-friendly! Making Nova addons requires a lot of
-knowledge about Kotlin, the Spigot API and Maven.**
+knowledge about Kotlin, the Spigot API, Maven and Gradle.**
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ java -jar BuildTools.jar --remapped
 
 This will install the latest mojang-mapped spigot version on your local maven repository.
 
-### Intellij
+### IntelliJ
 
 Even though Eclipse does have Kotlin support via a plugin, it's not the best option. We recommend using [IntelliJ](https://www.jetbrains.com/idea/)
 to make addons.
@@ -37,23 +37,38 @@ your Intellij settings and import the codestyle.xml file here:
 You can now create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).
 After creating the new repo and cloning it, make sure to edit the following files:
 
-### pom.xml
-
-Change `<groupId>` and `<artifactId>` to your own.
-
 ### src/main/kotlin
 
 Change the package name to your own.
 
+### settings.gradle.kts
+
+Change `rootProject.name` to your addon id.
+
+### build.gradle.kts
+
+Change `group` to your group.  
+Change `version` to your version.
+
+In the `addon` task, set `main` to your addon main class.
+
+## Adding dependencies
+
+If your addon requires dependencies that need to be present at runtime, add them under the `nova` configuration:
+
+```kotlin title="build.gradle.kts dependencies { }"
+nova("commons-net:commons-net:3.8.0")
+```
+
 ## Building
 
 To build, run
-```bash title="Build with Maven"
-mvn package "-Ddir=<Path to your addons/ directory here>"
+```bash title="Build with Gradle"
+gradle addonJar "-DoutDir=<Path to your addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
-```bash title="Build with Maven"
-mvn package "-Ddir=<Path to your addons/ directory here>" -P mojang-mapped
+```bash title="Build with Gradle"
+gradle addonJar "-DoutDir=<Path to your addons directory here>" -Dmojang-mapped
 ```
 
 !!! warning

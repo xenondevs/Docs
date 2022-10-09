@@ -2,9 +2,11 @@
 
 ## What is an Attachment?
 
-In Nova, an `Attachment` is an armor stand with a custom item as helmet riding a player.
-The attachment system makes assigning models to players easy, as it handles all the riding logic.  
+In Nova, an `Attachment` is a (fake) entity riding a player, but you'll mostly likely use the `ItemAttachment`
+implementation which is a clientside armor stand riding a player while wearing a custom item as a helmet.  
+The attachment system makes assigning models to players easy, as it handles all the riding logic.
 Once a player is given an attachment, it will stay on that player until it is removed again.
+
 ## Creating an AttachmentType
 
 To create a new `AttachmentType`, use the `register` method in `AttachmentTypeRegistry`.  
@@ -25,7 +27,7 @@ object ExampleAddon : Addon() {
 ```kotlin
 object Attachments {
     
-    val EXAMPLE_ATTACHMENT = AttachmentTypeRegistry.register(ExampleAddon, "example_attachment") { Attachment(it, Items.ATTACHMENT_ITEM) }
+    val EXAMPLE_ATTACHMENT = AttachmentTypeRegistry.register(ExampleAddon, "example_attachment") { ItemAttachment(it, Items.ATTACHMENT_ITEM) }
     
     fun init() = Unit
     
@@ -46,7 +48,7 @@ AttachmentManager.removeAttachment(player, Attachments.EXAMPLE_ATTACHMENT)
 
 ## Modifying Attachment Logic
 
-You can also change the attachment logic by extending the `Attachment` class and then call the constructor of your
-`Attachment` subclass when registering your attachment type.
+You can also change the attachment logic by either directly implementing the `Attachment` interface or by extending the
+`ItemAttachment` class. Then, just call the constructor of your 'Attachment' subclass when registering the attachment type.
 
-If you need an attachment which gets hidden when a player looks down, check out the `HideOnDownAttachment`.
+If you need an attachment which gets hidden when a player looks down, check out the `HideOnDownItemAttachment`.
