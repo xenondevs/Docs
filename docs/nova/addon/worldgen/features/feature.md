@@ -114,5 +114,5 @@ Make sure to add your feature to the correct category, or it might not generate 
     ]
     ```
 
-Check out the [Biomes](../biome/biome.md) page for more information on how to create a new biome or, if you want to add 
+Check out the [Biomes](../biome.md) page for more information on how to create a new biome or, if you want to add 
 your feature to an existing biome, check out the [Biome Injections](../inject/biome.md) page.
