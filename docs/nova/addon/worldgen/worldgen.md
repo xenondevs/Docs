@@ -1,3 +1,5 @@
+# World Generation Overview
+
 !!! warning
 
     Custom World Generation **needs** a java agent to work. Minecraft's world gen format is deeply nested via [DataFixerUpper](https://github.com/Mojang/DataFixerUpper)
@@ -13,7 +15,7 @@ some additions. Below you'll find a quick overview of the format and how to use 
 
 ### Features
 
-:octicons-info-24: Main page: [Feature](./feature/feature.md)
+:octicons-info-24: Main page · [Features Overview](./feature/feature.md)
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).
 
