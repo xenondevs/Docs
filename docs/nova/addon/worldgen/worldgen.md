@@ -17,7 +17,7 @@ Below you'll find a quick overview of the format and how to use it. Check the si
 **TODO**
 
 ### Features
-<small>Check out the [Features Overview](features/feature.md) page for more information.</small>
+<small>Check out the [Features Overview](features/features.md) page for more information.</small>
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).
 
