@@ -36,6 +36,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
@@ -44,6 +46,7 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - tables
+  - def_list
 
 plugins:
   - search
@@ -54,6 +57,11 @@ plugins:
 
 extra_css:
   - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/js/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - "Nova":
@@ -106,7 +114,7 @@ nav:
           - "World Generation":
               - "Overview": "nova/addon/worldgen/worldgen.md"
               - "Features":
-                  - "Overview": "nova/addon/worldgen/features/feature.md"
+                  - "Overview": "nova/addon/worldgen/features/features.md"
                   - "Placed Features": "nova/addon/worldgen/features/placed-feature.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"

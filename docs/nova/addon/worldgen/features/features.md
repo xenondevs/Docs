@@ -18,8 +18,8 @@ check out its corresponding page in the sidebar. You can create configured featu
 
 ### 3. Placed Feature
 
-A placed feature determines where the configured feature will be placed. You can create placed feature files in the
-`data/worldgen/placed_feature` directory. You can find more information on the [Placed Feature](./placed-feature.md) page.
+A placed feature determines where and how a configured feature will be placed. You can create placed feature files in the
+`data/worldgen/placed_feature` directory. You can find more information on the [Placed Feature](placed-feature.md) page.
 
 ## Using Features
 
@@ -44,7 +44,7 @@ Make sure to add your feature to the correct category, or it might not generate 
 
 ??? example "Example: Vanilla birch forest"
 
-     As an example, here's the features `JsonArray` for the vanilla birch forest biome:
+     As an example, here's the features `JsonArray` of the vanilla birch forest biome:
 
     ```json
     "features": [
