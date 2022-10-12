@@ -354,11 +354,11 @@ Returns the given position if the surface height at the given position is inside
 
 `max_inclusive` (optional)
 
-:   A `double` value that defines the maximum surface level. The position is returned if the surface level is below or equal to this value. Defaults to $$2^{31} - 1$$.
+:   A `double` value that defines the maximum surface level. The position is returned if the surface level is below or equal to this value. Defaults to $2^{31} - 1$.
 
 `min_inclusive` (optional)
 
-:   A `double` value that defines the minimum surface level. The position is returned if the surface level is above or equal to this value. Defaults to $$-2^{31}$$.
+:   A `double` value that defines the minimum surface level. The position is returned if the surface level is above or equal to this value. Defaults to $-2^{31}$.
 
 ```json title="Example"
 {
