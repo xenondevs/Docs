@@ -51,7 +51,7 @@ purposes.
         * The armor
         * The armor toughness
 
-        If you need some examples for the ``armor`` and ``armorToughness`` values, you can check out the [Minecraft wiki](https://minecraft.fandom.com/wiki/Armor#Defense_points).
+        If you need some examples for the ``armor`` and ``armorToughness`` values, you can check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Armor#Defense_points).
 
         Example for a chestplate with the same amount of protection as a diamond chestplate:
         
