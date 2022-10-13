@@ -217,7 +217,7 @@ Takes the input position and sets the y coordinate to one block above the height
 
 `heightmap`
 
-:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) gist page for image examples.
+:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
 
 ```json title="Example"
 {
@@ -348,7 +348,7 @@ Returns the given position if the surface height at the given position is inside
 
 `heightmap`
 
-:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) gist page for image examples.
+:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
 
 `max_inclusive` (optional)
 
