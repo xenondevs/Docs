@@ -73,6 +73,12 @@ Always returns the y-value provided by a vertical anchor.
     }
     ```
 
+    Or even directly providing a constant value:
+
+    ```json
+    10
+    ```
+
 ### `minecraft:uniform`
 
 Generates a random y-value between `min_inclusive` and `max_inclusive` in a uniform distribution.

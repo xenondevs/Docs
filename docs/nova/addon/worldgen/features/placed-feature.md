@@ -190,11 +190,11 @@ max number of steps is reached. If no matching block is found, empty is returned
 
 ### `minecraft:height_range`
 
-Takes the input position and sets the y coordinate to a value provided by the given [height provider](#height-providers).
+Takes the input position and sets the y coordinate to a value provided by the given [height provider](../height-provider.md).
 
 `height`
 
-:   The [height provider](#height-providers) providing the y-coordinate
+:   The [height provider](../height-provider.md) providing the y-coordinate
 
 ```json title="Example"
 {
@@ -379,5 +379,3 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
 ## Block predicates
 
 ## Int Providers
-
-## Height Providers
