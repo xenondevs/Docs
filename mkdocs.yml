@@ -116,6 +116,7 @@ nav:
               - "Features":
                   - "Overview": "nova/addon/worldgen/features/features.md"
                   - "Placed Features": "nova/addon/worldgen/features/placed-feature.md"
+                  - "Height Providers": "nova/addon/worldgen/features/height-provider.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
