@@ -28,7 +28,7 @@ purposes.
 
         The energy capacity can then be configured in the material config file:
         
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         max_energy: 100000
         ```
 
@@ -40,7 +40,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Consumable)
         ```
 
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         # The type of food (normal, fast, always_eatable).
         food_type: normal
         # The time it takes for the food to be consumed, in ticks.
@@ -63,7 +63,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable)
         ```
 
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         armor_type: CHESTPLATE
         armor: 8.0
         armor_toughness: 3.0
@@ -76,7 +76,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE))
         ```
 
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         armor: 8.0
         armor_toughness: 3.0
         knockback_resistance: 2.0
@@ -93,7 +93,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Tool)
         ```
 
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         # The tool level
         tool_level: minecraft:iron
         # The tool category
@@ -118,7 +118,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Damageable)
         ```
 
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         # The maximum durability of the item.
         max_durability: 200
         # The damage the item takes when it is used to attack an entity.
@@ -137,7 +137,7 @@ purposes.
         val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Enchantable)
         ```
         
-        ```yml title="configs/example_item.yml"
+        ```yaml title="configs/example_item.yml"
         # The enchantment value
         enchantment_value: 
         # The enchantment categories
@@ -232,7 +232,8 @@ class JetpackBehavior(
 !!! bug "Modifying item display name, lore and other attributes"
 
     Make sure to not update an items lore or display name in the ``modifyItemBuilder`` method,
-    always use the ``updatePacketItemData`` methods.  
+    always use the ``updatePacketItemData`` methods.
+    
     Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
 
 ## Item data
