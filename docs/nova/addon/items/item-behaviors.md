@@ -200,7 +200,7 @@ purposes.
     )
     ```
     
-    Since hardcoding those values is strongly discouraged, you need to opt-in via the `@HardcodedMaterialOptions` annotation.
+    Since hardcoding those values is strongly discouraged, you need to opt-in via the `@OptIn(HardcodedMaterialOptions::class)` annotation.
 
 
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
