@@ -185,8 +185,7 @@ purposes.
 
     If you don't want your material options to be configurable or your specific use-case does not work well with
     configurable values, you can using the factory functions named after the material options interfaces.  
-    For example, this is how you would create hardcoded `ToolOptions`: (since hardcoding those values is strongly
-    discouraged, you need to opt-in via the `@HardcodedMaterialOptions` annotation.
+    For example, this is how you would create hardcoded `ToolOptions`:
     
     ```kotlin title="Hardcoded ToolOptions"
     @OptIn(HardcodedMaterialOptions::class)
@@ -200,6 +199,9 @@ purposes.
         canBreakBlocksInCreative = false
     )
     ```
+    
+    Since hardcoding those values is strongly discouraged, you need to opt-in via the `@HardcodedMaterialOptions` annotation.
+
 
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
 your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
