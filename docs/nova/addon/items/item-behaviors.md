@@ -144,7 +144,7 @@ purposes.
         enchantment_categories: ["weapon", "breakable"]
         ```
 
-        ??? example Available enchantment categories
+        ??? example "Available enchantment categories"
 
             `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`, `digger`, `fishing_rod`, `trident`,
             `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
