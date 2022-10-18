@@ -11,16 +11,16 @@ Tool Levels represent the tier of a tool. Internally, those tiers are represente
 | Diamond    | 3     | `ToolLevel.DIAMOND` |
 | Netherite  | 3     | `ToolLevel.DIAMOND` |
 
-??? question "Why is there no `ToolLevel.WOODEN`"
+??? question "Why is there no `ToolLevel.WOODEN`?"
 
-    Since the wooden tool tier is the lowest possible tier, it does not have a custom `ToolLevel` and is represented by null.  
+    Since the wooden tool tier is the lowest possible tier, it does not have a custom `ToolLevel` and is represented by `null`.  
     This is handled this way to prevent confusion when dealing with tool categories that do not have multiple tool levels
     (e.g. shears) which would then also be categorized under the wooden tool tier.
 
-    It is still possible to require a wooden tool to break a block by setting the the desired `ToolCategory` (for example
-    `PICKAXE`, `null` as the `ToolLevel` and `requiresToolForDrops = true` in `BlockOptions`.
+    It is still possible to require a wooden tool to break a block by setting the the desired `ToolCategory`,
+    `null` as the `ToolLevel` and `requiresToolForDrops = true` in `BlockOptions`.
 
-    Wooden and golden tools can break the same blocks, which is why they're both on ToolLevel 0.
+    Wooden and golden tools can break the same blocks, which is why they're both on ToolLevel `0` / `null`.
 
 The numerical values are assigned to the tool levels in the `tool_levels.yml` config file:
 
@@ -45,7 +45,7 @@ object ToolLevels {
 
 Then, assign a numerical tool level value to your registered value in the `tool_levels.yml` config file:
 
-```yml title="tool_levels.yml"
+```yaml title="tool_levels.yml"
 example_level: 4
 ```
 
@@ -56,7 +56,7 @@ tools could break + additional custom blocks that have a tool level with the num
 ## Tool Categories
 
 Tool Categories define what type of tool your item is. They determine which blocks can be broken with which item.  
-By default, there are five tool categories available:
+By default, there are six tool categories available:
 
 * Sword
 * Pickaxe
