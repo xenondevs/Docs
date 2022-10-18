@@ -1,4 +1,4 @@
-# Tool Levels
+## Tool Levels
 
 Tool Levels represent the tier of a tool. Internally, those tiers are represented by numbers. By default, there are three levels:
 
@@ -30,7 +30,7 @@ iron: 2
 diamond: 3
 ```
 
-## Registering a custom tool level
+### Registering a custom tool level
 
 To register a new tool level, simply call `ToolLevelRegistry#register`.  
 As always, we recommend storing your tool levels as final values in a singleton object:
@@ -53,7 +53,7 @@ The specified level of `4` would give tools of that level the ability to break a
 tools could break + additional custom blocks that have a tool level with the numerical value of `4` configured in their
 `BlockOptions`.
 
-# Tool Categories
+## Tool Categories
 
 Tool Categories define what type of tool your item is. They determine which blocks can be broken with which item.  
 By default, there are five tool categories available:
@@ -65,7 +65,7 @@ By default, there are five tool categories available:
 * Hoe
 * Shears
 
-## Registering a custom tool category
+### Registering a custom tool category
 
 To register a custom tool category, simply call `ToolCategoryRegistry#register`.  
 As always, we recommend storing your tool categories as final values in a singleton object:
