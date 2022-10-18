@@ -74,7 +74,7 @@ By default, there are six tool categories available:
 To register a custom tool category, simply call `ToolCategoryRegistry#register`.  
 As always, we recommend storing your tool categories as final values in a singleton object:
 
-```kotlin title="ToolCategories.kt"
+```kotlin
 object ToolCategories {
     
     val EXAMPLE_CATEGORY = ToolCategoryRegistry.register(ExampleAddon, "example_category") {
