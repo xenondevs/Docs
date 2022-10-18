@@ -85,6 +85,7 @@ nav:
               - "Item Behaviors": "nova/addon/items/item-behaviors.md"
               - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
               - "Item Categories": "nova/addon/items/item-categories.md"
+              - "Tools": "nova/addon/items/tools.md"
           - "Configs": "nova/addon/configs.md"
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
