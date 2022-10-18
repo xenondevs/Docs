@@ -6,14 +6,14 @@
 
 Tool Levels represent the tier of a tool. Internally, those tiers are represented by numbers. By default, there are three levels:
 
-| Block Type | Level |  ToolLevel (Nova)   |
-|:-----------|:-----:|:-------------------:|
-| Wooden     |   0   |       `null`        |
-| Gold       |   0   |       `null`        |
-| Stone      |   1   |  `ToolLevel.STONE`  |
-| Iron       |   2   |  `ToolLevel.IRON`   |
-| Diamond    |   3   | `ToolLevel.DIAMOND` |
-| Netherite  |   3   | `ToolLevel.DIAMOND` |
+| Tool Type | Level |  ToolLevel (Nova)   |
+|:----------|:-----:|:-------------------:|
+| Wooden    |   0   |       `null`        |
+| Gold      |   0   |       `null`        |
+| Stone     |   1   |  `ToolLevel.STONE`  |
+| Iron      |   2   |  `ToolLevel.IRON`   |
+| Diamond   |   3   | `ToolLevel.DIAMOND` |
+| Netherite |   3   | `ToolLevel.DIAMOND` |
 
 ??? question "Why is there no `ToolLevel.WOODEN`?"
 
