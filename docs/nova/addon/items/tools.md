@@ -74,7 +74,7 @@ As always, we recommend storing your tool categories as final values in a single
 object ToolCategories {
     
     val EXAMPLE_CATEGORY = ToolCategoryRegistry.register(ExampleAddon, "example_category") {
-        ResourcePath.of("example_addon", it?.let{"item/${it.id}_example" } ?: "item/example")
+        ResourcePath.of("example_addon", it?.let { "item/${it.id}_example" } ?: "item/example")
     }
     
 }
