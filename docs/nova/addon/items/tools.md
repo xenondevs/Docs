@@ -1,4 +1,4 @@
-!!! info "Creating custom Tools"
+!!! info "Creating custom tools"
 
     If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md).
 
