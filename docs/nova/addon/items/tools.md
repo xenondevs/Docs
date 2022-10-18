@@ -1,3 +1,7 @@
+!!! info "Creating custom Tools"
+
+    If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md).
+
 ## Tool Levels
 
 Tool Levels represent the tier of a tool. Internally, those tiers are represented by numbers. By default, there are three levels:
