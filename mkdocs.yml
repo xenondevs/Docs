@@ -104,6 +104,8 @@ nav:
           - "Attachments": "nova/addon/attachments.md"
           - "Abilities": "nova/addon/abilities.md"
           - "Recipes": "nova/addon/recipes.md"
+          - "Migration Guide":
+              - "0.11 -> 0.12": "nova/addon/migration-guide/0.11-0.12.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
