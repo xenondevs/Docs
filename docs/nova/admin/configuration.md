@@ -37,7 +37,7 @@ Example configs:
     # This example config prevents players from placing tile-entities in the nether and end dimension.
     performance:
       tile_entity_limits:
-        world_blacklist:
+        world:
           worlds:
             - world_nether
             - world_the_end
@@ -49,7 +49,7 @@ Example configs:
     # This example config prevents players from placing quarries in the overworld and pulverizers in the nether.
     performance:
       tile_entity_limits:
-        world_type_blacklist:
+        type_world:
           world:
             - machines:quarry
           world_nether:
