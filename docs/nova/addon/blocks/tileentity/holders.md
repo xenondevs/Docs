@@ -81,9 +81,9 @@ These all have different constructors. You can open the example box below to see
 
 ## ItemHolder
 
-!!! warning "VirtualInventories"
+!!! warning "VirtualInventory"
 
-    Make sure to read the [VirtualInventories](../../../../invui/virtualinventory.md) page on the InvUI wiki before proceeding!
+    Make sure to read the [VirtualInventory](../../../../invui/virtualinventory.md) page on the InvUI wiki before proceeding!
 
 ``ItemHolders`` are used to provide an interface for networks to interact with your TileEntity's inventories. Depending on
 what your TileEntity does, you may need more than one inventory (For example, a pulverizer with an input and output inventory).
