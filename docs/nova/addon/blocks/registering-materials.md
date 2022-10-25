@@ -54,8 +54,8 @@ private val STONE = BlockOptions(
 2. A list of tool categories that are suitable to break this block. Can be empty.
 3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian). Can be null.
 4. Whether a tool is required to receive drops.
-5. The sound group to use for this block. Sound groups include sounds for hitting, breaking, placing, stepping and falling on a block.
-    You can also create your own sound group with your own custom sounds.
+5. The sound group to use for this block. Sound groups include sounds for hitting, breaking and placing a block as well as
+   stepping and falling on a block. You can also create your own sound group with your own custom sounds.
 6. The break particles that spawn when the block is broken.
 7. Whether a break animation should be displayed while breaking the block.
 
