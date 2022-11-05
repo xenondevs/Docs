@@ -27,16 +27,16 @@ object Example {
 }
 ```
 
-Or if you need to pass the `ValueReloadable` somewhere, don't delegate:
+Or if you need to pass the `Provider` somewhere, don't delegate:
 
 ```kotlin
 object Example {
-    val SOME_VALUE: ValueReloadable<Int> = configReloadable { NovaConfig[Items.RUBY].getInt("some_value") }
+    val SOME_VALUE: Provider<Int> = configReloadable { NovaConfig[Items.RUBY].getInt("some_value") }
 }
 ```
 
-Or if you're required to pass a `ValueReloadble`, but the value actually isn't configurable nor reloadable:
+Or if you're required to pass a `Provider`, but the value actually isn't configurable nor reloadable:
 
 ```kotlin
-val someValue: ValueReloadable<Int> = notReloadable(0)
+val someValue: Provider<Int> = provider(0)
 ```

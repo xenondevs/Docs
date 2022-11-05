@@ -14,9 +14,9 @@ For example, this is how we register the Solar Panel in our Machines addon:
 
 In some cases, you will need different models for block and item. An example from the Machines addon would be the
 Wind Turbine. As it occupies multiple blocks, the Wind Turbine is split into 6 different (4 four the actual "pillar"
-and 2 for the rotor blades). However, since we can only display one model at a time on an item, it was also required to
-create a smaller version of the whole Wind Turbine for players to hold in their hands.  
-In such a case, you can separate `item` and `block`:
+and 2 for the rotor blades) models. However, since an item cannot be a compound of multiple models, we needed to create
+a separate, smaller version of the whole Wind Turbine for players to hold in their hands.
+For such cases, you can separate `item` and `block:
 
 ```json title="materials.json"
 "wind_turbine": {
@@ -37,8 +37,7 @@ In such a case, you can separate `item` and `block`:
 ## Block Types
 
 The block type defines how blocks are added to the world.
-Currently, there are only two types: `default` and `solid`.
-Default does not need to be set explicitly.  
+Currently, there are only two types: `default` (can be omitted) and `solid`.
 
 ### Armor Stand blocks
 
