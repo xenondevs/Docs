@@ -7,10 +7,10 @@ Unchecked plugins are partially supported, some features might not work.
 
 - [x] [ItemsAdder](itemsadder.md)
 - [x] MMOItems
-- [ ] oraxen (Blocks are not recognized by Nova)
 
 Planned:
 
+* oraxen
 * Slimefun
 * Space
 
