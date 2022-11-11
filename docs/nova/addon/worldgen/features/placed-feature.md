@@ -90,9 +90,9 @@ otherwise.
 
 Returns the position if the [block predicate](#block-predicates) matches the block at the given position. Empty otherwise.
 
-`predicate`
-
-:   The [block predicate](#block-predicates)
+| Name        | Description                              |
+|-------------|------------------------------------------|
+| `predicate` | The [block predicate](#block-predicates) |
 
 ```json title="Example"
 {
@@ -108,9 +108,9 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
 
 Returns all positions in the given position's chunk that were carved out by a [carver](../carvers.md).
 
-`step`
-
-:   The carver step. Can be `air` or `liquid`
+| Name   | Description                               |
+|--------|-------------------------------------------|
+| `step` | The carver step. Can be `air` or `liquid` |
 
 ```json title="Example"
 {
@@ -123,9 +123,9 @@ Returns all positions in the given position's chunk that were carved out by a [c
 
 Returns the given position `count` times.
 
-`count`
-
-:   Either an `int` value in the range $[0;256]$ or an [int provider](#int-providers). The provided value is the number of times the position is returned
+| Name    | Description                                                                                                                                           |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `count` | Either an `int` value in the range $[0;256]$ or an [int provider](#int-providers). The provided value is the number of times the position is returned |
 
 ```json title="Example - Simple"
 {
@@ -154,21 +154,12 @@ Returns the given position `count` times.
 Scans for blocks matching the given [block predicate](#block-predicates) up/down until it finds a matching block or the
 max number of steps is reached. If no matching block is found, empty is returned.
 
-`direction_of_search`
-
-:   The direction of the scan. Can be `up` or `down`
-
-`max_steps`
-
-:   Max number of steps to scan. An `int` value in the range $[1;32]$
-
-`target_condition`
-
-:   The [block predicate](#block-predicates) to match
-
-`allowed_search_condition` (optional)
-
-:   A [block predicate](#block-predicates) that each scanned block must match to allow further scanning. If not provided, no condition is applied
+| Name                                  | Description                                                                                                                                   |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `direction_of_search`                 | The direction of the scan. Can be `up` or `down`                                                                                              |
+| `max_steps`                           | Max number of steps to scan. An `int` value in the range $[1;32]$                                                                             |
+| `target_condition`                    | The [block predicate](#block-predicates) to match                                                                                             |
+| `allowed_search_condition` (optional) | A [block predicate](#block-predicates) that each scanned block must match to allow further scanning. If not provided, no condition is applied |
 
 ```json title="Example"
 {
@@ -192,9 +183,9 @@ max number of steps is reached. If no matching block is found, empty is returned
 
 Takes the input position and sets the y coordinate to a value provided by the given [height provider](../height-provider.md).
 
-`height`
-
-:   The [height provider](../height-provider.md) providing the y-coordinate
+| Name     | Description                                                             |
+|----------|-------------------------------------------------------------------------|
+| `height` | The [height provider](../height-provider.md) providing the y-coordinate |
 
 ```json title="Example"
 {
@@ -215,9 +206,9 @@ Takes the input position and sets the y coordinate to a value provided by the gi
 
 Takes the input position and sets the y coordinate to one block above the heightmap at the given position.
 
-`heightmap`
-
-:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+| Name        | Description                                                                                                                                                                                                                                                                      |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `heightmap` | The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples. |
 
 ```json title="Example"
 {
@@ -245,17 +236,11 @@ double noise = Biome.BIOME_INFO_NOISE.getValue((double)pos.getX() / noiseFactor,
 int n = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
 ```
 
-`noise_factor`
-
-:   A `double` value that scales the noise horizontally. The higher the value, the wider the peaks.
-
-`noise_offset` (optional)
-
-:   A `double` value that offsets the noise vertically.
-
-`noise_to_count_ratio`
-
-:   An `int` value that defines the ratio of noise to count.
+| Name                      | Description                                                                                     |
+|---------------------------|-------------------------------------------------------------------------------------------------|
+| `noise_factor`            | A `double` value that scales the noise horizontally. The higher the value, the wider the peaks. |
+| `noise_offset` (optional) | A `double` value that offsets the noise vertically.                                             |
+| `noise_to_count_ratio`    | An `int` value that defines the ratio of noise to count.                                        |
 
 ```json title="Example"
 {
@@ -279,17 +264,11 @@ if (noise < threshold) {
 }
 ```
 
-`noise_level`
-
-:   A `double` value of the threshold that determines whether the position is returned `below_noise` or `above_noise` times.
-
-`above_noise`
-
-:   An `int` value that determines how often the position is returned if the noise value is above/equal to the threshold.
-
-`below_noise`
-
-:   An `int` value that determines how often the position is returned if the noise value is below the threshold.
+| Name          | Description                                                                                                              |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|
+| `noise_level` | A `double` value of the threshold that determines whether the position is returned `below_noise` or `above_noise` times. |
+| `above_noise` | An `int` value that determines how often the position is returned if the noise value is above/equal to the threshold.    |
+| `below_noise` | An `int` value that determines how often the position is returned if the noise value is below the threshold.             |
 
 ```json title="Example"
 {
@@ -302,15 +281,10 @@ if (noise < threshold) {
 
 ### `minecraft:random_offset`
 
-Applies an offset to the given position.
-
-`xz_spread`
-
-:   Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers). **x and z are sampled separately!**
-
-`y_spread`
-
-:   Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers).
+| Name        | Description                                                                                                                  |
+|-------------|------------------------------------------------------------------------------------------------------------------------------|
+| `xz_spread` | Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers). **x and z are sampled separately!** |
+| `y_spread`  | Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers).                                     |
 
 ```json title="Example"
 {
@@ -329,11 +303,11 @@ Applies an offset to the given position.
 ### `minecraft:rarity_filter`
 
 Either returns the given position or empty. The chance of returning the position is determined by the given chance and
-calculated via `1 / chance`
+calculated via `1 / chance`.
 
-`chance`
-
-:   A positive `int`
+| Name     | Description                                                            |
+|----------|------------------------------------------------------------------------|
+| `chance` | A positive `int` that determines the chance of returning the position. |
 
 ```json title="Example"
 {
@@ -346,17 +320,11 @@ calculated via `1 / chance`
 
 Returns the given position if the surface height at the given position is inside the specified range. Otherwise, returns empty.
 
-`heightmap`
-
-:   The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
-
-`max_inclusive` (optional)
-
-:   A `double` value that defines the maximum surface level. Defaults to $2^{31} - 1$.
-
-`min_inclusive` (optional)
-
-:   A `double` value that defines the minimum surface level. Defaults to $-2^{31}$.
+| Name            | Description                                                                                                                                                                                                                                                                      |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `heightmap`     | The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples. |
+| `max_inclusive` | A `double` value that defines the maximum surface level. Defaults to $2^{31} - 1$.                                                                                                                                                                                               |
+| `min_inclusive` | A `double` value that defines the minimum surface level. Defaults to $-2^{31}$.                                                                                                                                                                                                  |
 
 ```json title="Example"
 {
@@ -370,9 +338,16 @@ Returns the given position if the surface height at the given position is inside
 
 If the amount of motion-blocking blocks under the surface is less than/equal to `max_water_depth`, returns the given position. Otherwise, returns empty.
 
-`max_water_depth`
+| Name              | Description                                  |
+|-------------------|----------------------------------------------|
+| `max_water_depth` | An `int` defining the maximum allowed depth. |
 
-:   An `int` defining the maximum allowed depth.
+```json title="Example"
+{
+  "type": "minecraft:surface_water_depth_filter",
+  "max_water_depth": 2
+}
+```
 
 # TODO \/ move to different section \/
 
