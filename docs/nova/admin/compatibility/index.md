@@ -6,7 +6,7 @@ Checked plugins are fully supported (e.g. their items can be used in recipes, th
 Unchecked plugins are partially supported, some features might not work.
 
 - [x] [ItemsAdder](itemsadder.md)
-- [] MMOItems
+- [ ] MMOItems
 
 Planned:
 
