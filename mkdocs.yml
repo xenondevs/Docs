@@ -47,6 +47,7 @@ markdown_extensions:
   - md_in_html
   - tables
   - def_list
+  - md_in_html
 
 plugins:
   - search
@@ -117,6 +118,8 @@ nav:
               - "Features":
                   - "Overview": "nova/addon/worldgen/features/features.md"
                   - "Placed Features": "nova/addon/worldgen/features/placed-feature.md"
+                  - "Configurations":
+                    - "Ores": "nova/addon/worldgen/features/configurations/ores.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"
