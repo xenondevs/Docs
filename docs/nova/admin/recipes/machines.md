@@ -24,13 +24,11 @@ This is an example recipe for pressing an iron plate:
 
 ```json title="iron_ingot_to_iron_plate.json"
 {
-  "input": "minecraft:iron_ingot", // (1)!
+  "input": "minecraft:iron_ingot",
   "result": "machines:iron_plate",
   "time": 200
 }
 ```
-
-1. Test
 
 !!! info "Multiple Choices for Ingredients"
 
