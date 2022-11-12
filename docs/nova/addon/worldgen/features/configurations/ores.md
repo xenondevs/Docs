@@ -16,7 +16,8 @@ The following options are available for ore configurations:
 ### Targets
 
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
-pretty much the same thing as `Predicate<BlockState>` in Java. The following `RuleTest`s are available:
+pretty much the same thing as `Predicate<BlockState>` in Java.  
+The following `RuleTest`s are available:
 
 <table>
     <thead>
