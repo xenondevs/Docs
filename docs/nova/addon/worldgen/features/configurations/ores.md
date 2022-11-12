@@ -20,11 +20,11 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
 
 <table>
     <thead>
-    <th>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Example</td>
-    </th>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
     </thead>
     <tbody>
     <tr>
