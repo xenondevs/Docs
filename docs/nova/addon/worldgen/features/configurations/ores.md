@@ -21,9 +21,9 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
 <table>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Example</th>
+        <th style="width: 30%">Name</th>
+        <th style="width: 30%">Description</th>
+        <th style="width: 40%">Example</th>
     </tr>
     </thead>
     <tbody>
@@ -86,13 +86,13 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
     </tr>
     <tr>
         <td><code>minecraft:random_block_match</code></td>
-        <td>Matches the given block with a probability. The probability should be a value in the range $[0;1]$.</td>
+        <td>Matches the given block with a probability. The probability should be a value between 0.0 and 1.0.</td>
         <td>
             ```json
             "target": {
               "predicate_type": "minecraft:random_block_match",
               "block": "minecraft:cobblestone",
-              "probability": 0.5 // (1)!
+              "probability": 0.5
             }
             ```
         </td>
