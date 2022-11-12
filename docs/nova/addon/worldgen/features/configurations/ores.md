@@ -28,9 +28,7 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
     </thead>
     <tbody>
     <tr>
-        <td>
-            `minecraft:always_true`
-        </td>
+        <td><code>minecraft:always_true</code></td>
         <td>Matches every block</td>
         <td>
             ```json
@@ -41,21 +39,21 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
         </td>
     </tr>
     <tr>
-        <td>`minecraft:block_match`</td>
+        <td><code>minecraft:block_match</code></td>
         <td>Matches a specific block</td>
         <td>
             ```json
             "target": {
               "predicate_type": "minecraft:block_match",
-              "block": "minecraft:stone" // (1)!
+              "block": "minecraft:stone"
             }
             ```
             
-            1. Also supports Nova blocks
+            <code>block</code> also supports Nova blocks.
         </td>
     </tr>
     <tr>
-        <td>`minecraft:blockstate_match`</td>
+        <td><code>minecraft:blockstate_match</code></td>
         <td>Matches a specific blockstate</td>
         <td>
             ```json
@@ -75,8 +73,8 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
             ```
     </tr>
     <tr>
-        <td>`minecraft:tag_match`</td>
-        <td>Matches a specific [block tag](https://minecraft.fandom.com/wiki/Tag#Blocks)</td>
+        <td><code>minecraft:tag_match</code></td>
+        <td>Matches a specific <a href="https://minecraft.fandom.com/wiki/Tag#Blocks">block tag</a></td>
         <td>
             ```json
             "target": {
@@ -87,7 +85,7 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
         </td>
     </tr>
     <tr>
-        <td>`minecraft:random_block_match`</td>
+        <td><code>minecraft:random_block_match</code></td>
         <td>Matches the given block with a probability. The probability should be a value in the range $[0;1]$.</td>
         <td>
             ```json
@@ -97,8 +95,6 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
               "probability": 0.5 // (1)!
             }
             ```
-            
-            1. $50%$ chance to match
         </td>
     </tr>
     </tbody>
