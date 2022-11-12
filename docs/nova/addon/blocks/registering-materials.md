@@ -40,14 +40,14 @@ breaking/placing custom blocks. Let's create an instance that can be broken with
 
 ```kotlin
 private val STONE = BlockOptions(
-    3.0, // (1)
-    ToolCategory.PICKAXE, // (2)
-    ToolLevel.STONE, // (3)
-    true, // (4)
-    SoundEffect(Sound.BLOCK_STONE_PLACE), // (5)
-    SoundEffect(Sound.BLOCK_STONE_BREAK), // (6)
-    Material.NETHERITE_BLOCK, // (7)
-    true // (8)
+    3.0, // (1)!
+    ToolCategory.PICKAXE, // (2)!
+    ToolLevel.STONE, // (3)!
+    true, // (4)!
+    SoundEffect(Sound.BLOCK_STONE_PLACE), // (5)!
+    SoundEffect(Sound.BLOCK_STONE_BREAK), // (6)!
+    Material.NETHERITE_BLOCK, // (7)!
+    true // (8)!
 )
 ```
 

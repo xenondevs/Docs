@@ -88,9 +88,9 @@ All of the following values are required to create a new `RecipeType`:
         As always, it is very easy to create a recipe group for conversion recipes:
         ```kotlin title="PulverizingRecipeGroup"
         object PulverizingRecipeGroup : ConversionRecipeGroup() {
-            override val priority = 4 // (1)
-            override val icon = Blocks.PULVERIZER.basicClientsideProvider // (2)
-            override val texture = GUITextures.RECIPE_PULVERIZER // (3)
+            override val priority = 4 // (1)!
+            override val icon = Blocks.PULVERIZER.basicClientsideProvider // (2)!
+            override val texture = GUITextures.RECIPE_PULVERIZER // (3)!
         }
         ```
         
@@ -130,7 +130,7 @@ All of the following values are required to create a new `RecipeType`:
                         ". f . t . . . . .",
                         ". f p i . . . r .",
                         ". f . . . . . . .")
-                    .addIngredient('i', createRecipeChoiceItem(recipe.input)) // (1)
+                    .addIngredient('i', createRecipeChoiceItem(recipe.input)) // (1)!
                     .addIngredient('r', createRecipeChoiceItem(listOf(recipe.result)))
                     .addIngredient('p', progressItem)
                     .addIngredient('f', StaticFluidBar(recipe.fluidType, recipe.fluidAmount, FLUID_CAPACITY, 3))

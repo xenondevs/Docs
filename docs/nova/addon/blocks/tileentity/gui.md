@@ -22,7 +22,7 @@ inner class SolarPanelGUI : TileEntityGUI() {
             "| # # # e # # # |",
             "| # # # e # # # |",
             "3 - - - - - - - 4")
-        .addIngredient('e', EnergyBar(3, energyHolder)) // (1)
+        .addIngredient('e', EnergyBar(3, energyHolder)) // (1)!
         .build()
     
 }
@@ -43,10 +43,10 @@ built-in `SideConfigGUI`.
 
 ```kotlin title="SideConfigGUI Constructor"
 class SideConfigGUI(
-    endPoint: NetworkEndPoint, // (1)
-    inventoryNames: List<Pair<NetworkedInventory, String>>? = null, // (2)
-    fluidContainerNames: List<Pair<FluidContainer, String>>? = null, // (3)
-    openPrevious: (Player) -> Unit // (4)
+    endPoint: NetworkEndPoint, // (1)!
+    inventoryNames: List<Pair<NetworkedInventory, String>>? = null, // (2)!
+    fluidContainerNames: List<Pair<FluidContainer, String>>? = null, // (3)!
+    openPrevious: (Player) -> Unit // (4)!
 ) 
 ```
 

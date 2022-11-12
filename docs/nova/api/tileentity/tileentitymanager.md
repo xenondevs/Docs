@@ -11,7 +11,7 @@ You can get the ``TileEntityManager`` using [the previously retrieved Nova insta
 === "Java"
 
     ```java
-    TileEntityManager tileEntityManager = nova.getTileEntityManager(); // (1)
+    TileEntityManager tileEntityManager = nova.getTileEntityManager(); // (1)!
     ```
 
     1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getTileEntityManager()``
