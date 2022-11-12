@@ -98,5 +98,26 @@ The following `RuleTest`s are available:
             ```
         </td>
     </tr>
+    <tr>
+        <td><code>minecraft:random_blockstate_match</code></td>
+        <td>Matches the given blockstate with a probability. The probability should be a value between 0.0 and 1.0.</td>
+        <td>
+            ```json
+            "target": {
+              "predicate_type": "minecraft:random_blockstate_match",
+              "block_state": {
+                "Name": "minecraft:glass_pane",
+                "Properties": {
+                  "east": "true",
+                  "north": "false",
+                  "south": "false",
+                  "waterlogged": "false",
+                  "west": "true"
+                }
+              }
+              "probability": 0.5
+            }
+            ```
+        </td>
     </tbody>
 </table>
