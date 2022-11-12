@@ -28,7 +28,9 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
     </thead>
     <tbody>
     <tr>
-        <td>`minecraft:always_true`</td>
+        <td>
+            `minecraft:always_true`
+        </td>
         <td>Matches every block</td>
         <td>
             ```json
