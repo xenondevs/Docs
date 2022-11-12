@@ -19,11 +19,14 @@ As mentioned above, the `targets` option is a list of targets. The `target` opti
 pretty much the same thing as `Predicate<BlockState>` in Java. The following `RuleTest`s are available:
 
 <table>
+    <thead>
     <th>
         <td>Name</td>
         <td>Description</td>
         <td>Example</td>
     </th>
+    </thead>
+    <tbody>
     <tr>
         <td>`minecraft:always_true`</td>
         <td>Matches every block</td>
@@ -96,4 +99,5 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The following `Ru
             1. $50%$ chance to match
         </td>
     </tr>
+    </tbody>
 </table>
