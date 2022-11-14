@@ -87,6 +87,7 @@ nav:
               - "Item Behaviors": "nova/addon/items/item-behaviors.md"
               - "Using ItemNovaMaterial": "nova/addon/items/using-item-nova-material.md"
               - "Item Categories": "nova/addon/items/item-categories.md"
+              - "Tools": "nova/addon/items/tools.md"
           - "Configs": "nova/addon/configs.md"
           - "Blocks":
               - "Registering Materials": "nova/addon/blocks/registering-materials.md"
@@ -105,6 +106,8 @@ nav:
           - "Attachments": "nova/addon/attachments.md"
           - "Abilities": "nova/addon/abilities.md"
           - "Recipes": "nova/addon/recipes.md"
+          - "Migration Guide":
+              - "0.11 ➝ 0.12": "nova/addon/migration-guide/0.11-0.12.md"
       - "API for Plugins":
           - "Getting Started": "nova/api/index.md"
           - "Protection": "nova/api/protection/protectionintegration.md"

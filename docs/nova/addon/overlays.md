@@ -17,22 +17,13 @@ After creating your font, implement the `ActionbarOverlay` interface. There you'
 to be displayed in the action bar, as well as the width of the entire text. Components to move the text by a specified
 amount of pixels can be obtained by calling `MoveCharacters#getMovingComponent`.
 
-??? question "Why is the width important?"
-
-    As you might know, Minecraft always centers the text in the action bar. In order to prevent this, Nova automatically
-    moves the "cursor" back to the middle by appending negative movement characters, which makes the game think that the
-    actual width of the text is 0, therefore leaving it where it is.
-
 ??? example "Example: JetpackOverlay"
 
     ```kotlin
     class JetpackOverlay : ActionbarOverlay {
     
-        override var text: Array<BaseComponent> = getCurrentText()
+        override var components: Array<BaseComponent> = getCurrentText()
             private set
-        
-        // 95 is the moved distance, 23 is texture size + 1 (1)
-        override val width = 95 + 23
         
         var percentage: Double = 0.0
             set(value) {
@@ -69,6 +60,10 @@ ActionbarOverlayManager.registerOverlay(player, overlay)
     This means that normal action bar text can still be displayed, even if one or more action bar overlays are active.
 
 ## Boss bar overlay
+
+!!! warning "Upcoming API-breaking changes"
+
+    A rework of boss bar overlays is planned for 0.13 or later.
 
 Similar to the action bar overlay, you can also render at boss bar position. For that, you can either extend the
 `BossBarOverlay` class or use the `TextBossBarOverlay` and `CenteredTextBossBarOverlay` implementations if you just

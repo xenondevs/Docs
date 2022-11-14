@@ -46,3 +46,21 @@
     }
 
 }
+
+.md-nav {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.md-nav__link {
+    display: inline-flex;
+}
+
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
+.text-center {
+    text-align: center !important;
+}

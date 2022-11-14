@@ -41,24 +41,23 @@ breaking/placing custom blocks. Let's create an instance that can be broken with
 ```kotlin
 private val STONE = BlockOptions(
     3.0, // (1)!
-    ToolCategory.PICKAXE, // (2)!
+    listOf(ToolCategory.PICKAXE), // (2)!
     ToolLevel.STONE, // (3)!
     true, // (4)!
-    SoundEffect(Sound.BLOCK_STONE_PLACE), // (5)!
-    SoundEffect(Sound.BLOCK_STONE_BREAK), // (6)!
-    Material.NETHERITE_BLOCK, // (7)!
-    true // (8)!
+    SoundGroup.STONE, // (5)!
+    Material.NETHERITE_BLOCK, // (6)!
+    true // (7)!
 )
 ```
 
 1. This is the hardness of the block. It determines how long it takes to break the block. This value currently doesn't affect explosions.
-2. The type of tool that can break this block.
-3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian).
+2. A list of tool categories that are suitable to break this block. Can be empty.
+3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian). Can be null.
 4. Whether a tool is required to receive drops.
-5. The sound that plays when the block is placed.
-6. The sound that plays when the block is broken.
-7. The break particles that spawn when the block is broken.
-8. (optional) Whether a break animation should be displayed while breaking the block.
+5. The sound group to use for this block. Sound groups include sounds for hitting, breaking and placing a block as well as
+   stepping and falling on a block. You can also create your own sound group with your own custom sounds.
+6. The break particles that spawn when the block is broken.
+7. Whether a break animation should be displayed while breaking the block.
 
 ## Registering the block
 

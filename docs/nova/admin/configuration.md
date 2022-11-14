@@ -19,10 +19,11 @@ With tile-entity limits, you can create restrictions on which tile-entities play
 Tile-Entity limits are configured in the `performance.tile_entity_limits` section.  
 Players with the permission `nova.misc.bypassTileEntityLimits` will be able to bypass these restrictions.
 
-There are 5 different limiters. You can choose one or combine multiple:
+There are 6 different limiters. You can choose one or combine multiple:
 
 |       Name       | Description                                                                     |
 |:----------------:|:--------------------------------------------------------------------------------|
+|       type       | Prevent placing a specific tile-entity.                                         |
 |      world       | Prevent placing tile entities in specific worlds.                               |
 |    type_world    | Prevent placing specific tile-entities in specific worlds.                      |
 |      amount      | Set a maximum amount of tile-entities of a type for each player.                |
@@ -31,6 +32,16 @@ There are 5 different limiters. You can choose one or combine multiple:
 
 Example configs:
 
+=== "type"
+
+    ```yaml
+    # This example config prevents players from placing the quarry.
+    performance:
+      tile_entity_limits:
+        type:
+          - machines:quarry
+    ```
+
 === "world"
 
     ```yaml
@@ -38,9 +49,8 @@ Example configs:
     performance:
       tile_entity_limits:
         world:
-          worlds:
-            - world_nether
-            - world_the_end
+          - world_nether
+          - world_the_end
     ```
 
 === "type_world"
