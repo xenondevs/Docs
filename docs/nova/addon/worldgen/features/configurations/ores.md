@@ -121,3 +121,73 @@ The following `RuleTest`s are available:
         </td>
     </tbody>
 </table>
+
+## Example
+
+As an example, here's the configured- and placed feature of star shards ore from the machines addon.
+
+```json title="configured_feature/ore_star_shards.json"
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 4,
+    "targets": [ // (1)!
+      {
+        "state": {
+          "Name": "machines:star_shards_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "machines:deepslate_star_shards_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
+        }
+      }
+    ]
+  }
+```
+
+1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
+
+```json title="placed_feature/ore_star_shards.json"
+{
+  "feature": "machines:ore_star_shards",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 30 // (1)!
+    },
+    {
+      "type": "minecraft:in_square" // (2)!
+    },
+    {
+      "type": "minecraft:height_range", // (3)!
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "below_top": 0
+        },
+        "min_inclusive": {
+          "absolute": 120
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome" // (4)!
+    }
+  ]
+}
+```
+
+1. 30 tries per chunk
+2. Spread the tries in a square
+3. Place the ore above y-level 119
+4. Discard the try if we moved into a biome that doesn't generate star shards
