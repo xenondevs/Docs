@@ -6,10 +6,6 @@
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
-!!! warning
-
-    Nova v0.9 is not compatible with earlier versions of Nova. If you're updating from an earlier version, make sure to delete the ``plugins/Nova`` folder and remove all items and blocks from Nova from your world.
-
 ## Step 2: ResourcePack Hosting
 
 Due to the way custom resource packs work, it is required to upload them to a web server first before they can be sent to players.  

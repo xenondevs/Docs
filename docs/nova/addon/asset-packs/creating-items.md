@@ -22,49 +22,23 @@ And add the texture to our asset pack at ``assets/textures/item/ruby.png``. So o
 If you want an item with a custom model, you can just link to it the same way. Just put the model file the models folder
 instead.
 
-## Item types
+??? abstract "Vanilla item material"
 
-There are of course different item types, depending on the properties you need for your material. For example,
-damageable,
-translucent, consumable, etc. To use these item types we use the ``item_type`` property. These types will let Nova automatically
-assign the correct vanilla material. So let's make an edible ruby material:
-
-```json title="materials.json"
-{
-  "ruby": {
-    "item": {
-      "type": "consumable",
-      "model": "item/ruby"
+    The vanilla item material (which is used to alter clientside behavior of items) will be automatically chosen based on
+    the [item behaviors](../items/item-behaviors.md) (i.e. a damageable item for tools or a sword for tools that can't break blocks in creative).
+    
+    If you still need to set the material type explicitly, you can do so by setting the `material` property:
+    
+    ```json title="materials.json"
+    {
+      "ruby": {
+        "item": {
+          "material": "diamond",
+          "model": "item/ruby"
+        }
+      }
     }
-  }
-}
-```
-
-!!! warning
-
-    The type alone doesn't give the item any functionality, but just changes the underlying vanilla material.  
-    To actually make it consumable, we'll have to add a Consumable item behavior in the code later.
-
-???+ example "Available item types"
-
-    * ``default`` - The default item type. You don't need to specify this manually.
-    * ``damageable`` - An item that can be damaged.
-    * ``consumable`` - An item that can be consumed.
-    * ``always_consumable`` - An item that can be consumed even if the player's hunger is full.
-    * ``fast_consumable`` - An item that can be consumed faster than the default.
-
-If none of these item types are appropriate, you can use the ``material`` property to explicitly set a material.
-
-```json title="materials.json"
-{
-  "ruby": {
-    "item": {
-      "material": "diamond",
-      "model": "item/ruby"
-    }
-  }
-}
-```
+    ```
 
 ## Items with multiple models
 

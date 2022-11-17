@@ -14,9 +14,9 @@ For example, this is how we register the Solar Panel in our Machines addon:
 
 In some cases, you will need different models for block and item. An example from the Machines addon would be the
 Wind Turbine. As it occupies multiple blocks, the Wind Turbine is split into 6 different (4 four the actual "pillar"
-and 2 for the rotor blades). However, since we can only display one model at a time on an item, it was also required to
-create a smaller version of the whole Wind Turbine for players to hold in their hands.  
-In such a case, you can separate `item` and `block`:
+and 2 for the rotor blades) models. However, since an item cannot be a compound of multiple models, we needed to create
+a separate, smaller version of the whole Wind Turbine for players to hold in their hands.
+For such cases, you can separate `item` and `block:
 
 ```json title="materials.json"
 "wind_turbine": {
@@ -36,8 +36,8 @@ In such a case, you can separate `item` and `block`:
 
 ## Block Types
 
-Just like items, blocks can also have a type. Currently, there are only two types: `default` and `solid`, whereas default
-does not need to be explicitly specified as it is the default.  
+The block type defines how blocks are added to the world.
+Currently, there are only two types: `default` (can be omitted) and `solid`.
 
 ### Armor Stand blocks
 
@@ -45,12 +45,16 @@ When using the block type `default`, armor stands are used to display the block 
 When this type is used, you can also configure the hitbox material with the `hitbox`. This is the material of the block
 over which the custom block model will be displayed with the armor stand. By default, the hitbox type is `BARRIER`, which
 comes with several benefits such as being able to use models smaller than the block itself but also not having to set
-the armor stand on fire. (Because of the way Minecraft's lightning works, some block types will cause the armor stand
-to be rendered completely black, as it is inside the block and no light gets through. Nova automatically deals with these
-kinds of blocks and sets the armor stand on fire (the fire is not visible to the player as the armor stand is invisible),
-but this is still not optimal as the block will always be rendered at full brightness, which is especially noticeable
-in dark areas, at night or when using shaders. Therefore, it is recommended to stick to the barrier block or to use a
-similar material which also doesn't block any light.)
+the armor stand on fire.
+
+??? question "Why are non-barrier armor stands on fire?"
+
+    Because of the way Minecraft's lightning works, some block types will cause the armor stand
+    to be rendered completely black, as it is inside the block and no light gets through. Nova automatically deals with these
+    kinds of blocks and sets the armor stand on fire (the fire is not visible to the player as the armor stand is invisible),
+    but this is still not optimal as the block will always be rendered at full brightness, which is especially noticeable
+    in dark areas, at night or when using shaders. Therefore, it is recommended to stick to the barrier block or to use a
+    similar material which also doesn't block any light.
 
 ### Solid blocks
 
@@ -90,7 +94,7 @@ The order is irrelevant.
 }
 ```
 
-!!! abstract
+!!! abstract "`directions`"
 
     The `directions` property is only required for blocks of type `solid`, as Nova needs to generate the block states
     for those rotations. Armor stand blocks do not need this property since armor stands can just be rotated.
