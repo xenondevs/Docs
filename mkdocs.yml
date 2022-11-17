@@ -74,7 +74,9 @@ nav:
               - "List of compatible Plugins": "nova/admin/compatibility/index.md"
               - "Troubleshooting": "nova/admin/compatibility/troubleshooting.md"
               - "ItemsAdder": "nova/admin/compatibility/itemsadder.md"
+              - "Oraxen": "nova/admin/compatibility/oraxen.md"
               - "GriefDefender": "nova/admin/compatibility/griefdefender.md"
+              - "UTP": "nova/admin/compatibility/utp.md"
           - "Recipes":
               - "Custom Recipes": "nova/admin/recipes/index.md"
               - "Vanilla Recipe Types": "nova/admin/recipes/vanilla.md"

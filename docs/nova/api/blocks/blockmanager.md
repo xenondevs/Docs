@@ -13,7 +13,7 @@ You can get the ``BlockManager`` using [the previously retrieved Nova instance](
 === "Java"
 
     ```java
-    BlockManager blockManager = nova.getBlockManager(); // (1)
+    BlockManager blockManager = nova.getBlockManager(); // (1)!
     ```
 
     1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getBlockManager()``
@@ -53,10 +53,10 @@ You can also place a nova block at a specific location by using a [``NovaMateria
     ```kotlin
     val material = materialRegistry.get("machines:pulverizer")
     blockManager.placeBlock(
-        location, // (1)
-        material, // (2)
-        player, // (3)
-        true // (4)
+        location, // (1)!
+        material, // (2)!
+        player, // (3)!
+        true // (4)!
     )
     ```
 
@@ -70,10 +70,10 @@ You can also place a nova block at a specific location by using a [``NovaMateria
     ```java
     NovaMaterial material = materialRegistry.get("machines:pulverizer");
     blockManager.placeBlock(
-        location, // (1)
-        material, // (2)
-        player, // (3)
-        true // (4)
+        location, // (1)!
+        material, // (2)!
+        player, // (3)!
+        true // (4)!
     );
     ```
 
@@ -99,9 +99,9 @@ overrides requiring less arguments.
 
     ```kotlin
     val drops = blockManager.getDrops(
-        location, // (1)
-        player, // (2)
-        tool // (3)
+        location, // (1)!
+        player, // (2)!
+        tool // (3)!
     )
     ```
 
@@ -113,9 +113,9 @@ overrides requiring less arguments.
 
     ```java
     List<ItemStack> drops = blockManager.getDrops(
-        location, // (1)
-        player, // (2)
-        tool // (3)
+        location, // (1)!
+        player, // (2)!
+        tool // (3)!
     );
     ```
 
@@ -132,10 +132,10 @@ a ``boolean`` whether there was a block at the provided location and whether it 
 
     ```kotlin
     blockManager.removeBlock(
-        location, // (1)
-        player, // (2)
-        true, // (3)
-        true // (4)
+        location, // (1)!
+        player, // (2)!
+        true, // (3)!
+        true // (4)!
     )
     ```
 
@@ -148,10 +148,10 @@ a ``boolean`` whether there was a block at the provided location and whether it 
 
     ```java
     blockManager.removeBlock(
-        location, // (1)
-        player, // (2)
-        true, // (3)
-        true // (4)
+        location, // (1)!
+        player, // (2)!
+        true, // (3)!
+        true // (4)!
     );
     ```
 

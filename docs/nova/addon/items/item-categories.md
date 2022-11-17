@@ -8,11 +8,11 @@ In order for your items to appear in the `/nova items` GUI or be accessible via 
 The structure of the `item_categories.yml` file is as follows:  
 
 ```yaml
-example_category: # (1)
-  icon: example_addon:example_item # (2)
-  name: "menu.example_addon.items.category.example_category" # (3)
-  priority: 0 # (4)
-  items: # (5)
+example_category: # (1)!
+  icon: example_addon:example_item # (2)!
+  name: "menu.example_addon.items.category.example_category" # (3)!
+  priority: 0 # (4)!
+  items: # (5)!
     - example_addon:example_item
     - example_addon:other_item
 ```

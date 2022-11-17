@@ -23,12 +23,12 @@ These all have different constructors. You can open the example box below to see
 
         ```kotlin title="ConsumerEnergyHolder"
         override val energyHolder = ConsumerEnergyHolder(
-            this, // (1)
-            MAX_ENERGY, // (2)
-            ENERGY_PER_TICK, // (3)
-            null, // (4)
-            upgradeHolder // (5)
-        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (6)
+            this, // (1)!
+            MAX_ENERGY, // (2)!
+            ENERGY_PER_TICK, // (3)!
+            null, // (4)!
+            upgradeHolder // (5)!
+        ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (6)!
         ```
         
         1. The parent TileEntity that the holder is attached to.
@@ -45,11 +45,11 @@ These all have different constructors. You can open the example box below to see
 
         ```kotlin title="ProviderEnergyHolder"
         override val energyHolder = ProviderEnergyHolder(
-            this, // (1)
-            MAX_ENERGY, // (2)
-            ENERGY_PER_TICK, // (3)
-            upgradeHolder // (4)
-        ) { createSideConfig(NetworkConnectionType.EXTRACT, FRONT) } // (5)
+            this, // (1)!
+            MAX_ENERGY, // (2)!
+            ENERGY_PER_TICK, // (3)!
+            upgradeHolder // (4)!
+        ) { createSideConfig(NetworkConnectionType.EXTRACT, FRONT) } // (5)!
         ```
 
         1. The parent TileEntity that the holder is attached to.
@@ -65,10 +65,10 @@ These all have different constructors. You can open the example box below to see
         
         ```kotlin title="BufferEnergyHolder"
         override val energyHolder = BufferEnergyHolder(
-            this, // (1)
-            MAX_ENERGY, // (2)
-            false // (3)
-        ) { createSideConfig(BUFFER) } // (4)
+            this, // (1)!
+            MAX_ENERGY, // (2)!
+            false // (3)!
+        ) { createSideConfig(BUFFER) } // (4)!
         ```
 
         1. The parent TileEntity that the holder is attached to.
@@ -109,10 +109,10 @@ Now we can override the ``itemHolder`` property.
 
 ```kotlin
 override val itemHolder = NovaItemHolder(
-    this, // (1)
-    inputInv to NetworkConnectionType.BUFFER, // (2)
-    outputInv to NetworkConnectionType.EXTRACT // (3)
-) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)
+    this, // (1)!
+    inputInv to NetworkConnectionType.BUFFER, // (2)!
+    outputInv to NetworkConnectionType.EXTRACT // (3)!
+) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)!
 ```
 
 1. The parent TileEntity that the holder is attached to.
@@ -129,10 +129,10 @@ But instead of ``VirtualInventories``, they use ``FluidTanks`` which you can get
 
 ```kotlin
 private val waterTank = getFluidContainer(
-    "water", // (1)
-    setOf(FluidType.WATER), // (2)
-    WATER_CAPACITY, // (3)
-    0 // (4)
+    "water", // (1)!
+    setOf(FluidType.WATER), // (2)!
+    WATER_CAPACITY, // (3)!
+    0 // (4)!
 )
 ```
 
@@ -163,10 +163,10 @@ Now we can override the ``fluidHolder`` property.
 
 ```kotlin
 override val fluidHolder = NovaFluidHolder(
-    this, // (1)
-    waterTank to NetworkConnectionType.BUFFER// (2)
-    // You can add additional tanks here // (3) 
-) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)
+    this, // (1)!
+    waterTank to NetworkConnectionType.BUFFER// (2)!
+    // You can add additional tanks here // (3) !
+) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)!
 ```
 
 1. The parent TileEntity that the holder is attached to.

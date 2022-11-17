@@ -15,7 +15,7 @@ To get a ``NovaMaterial`` you first have to get the ``NovaMaterialRegistry`` usi
 === "Java"
 
     ```java
-    NovaMaterialRegistry materialRegistry = nova.getMaterialRegistry(); // (1)
+    NovaMaterialRegistry materialRegistry = nova.getMaterialRegistry(); // (1)!
     ```
 
     1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getMaterialRegistry()``
@@ -25,7 +25,7 @@ Using this registry, you can now get a ``NovaMaterial`` by id. It needs to be in
 === "Kotlin"
 
     ```kotlin
-    val material = materialRegistry.get("nova:wrench") // (1)
+    val material = materialRegistry.get("nova:wrench") // (1)!
     ```
 
     1. This will throw an exception if the material is not found. However, wrench always exists.<br>If you're unsure or processing user input use ``getOrNull`` instead.
@@ -33,7 +33,7 @@ Using this registry, you can now get a ``NovaMaterial`` by id. It needs to be in
 === "Java"
 
     ```java
-    NovaMaterial material = materialRegistry.get("nova:wrench"); // (1)
+    NovaMaterial material = materialRegistry.get("nova:wrench"); // (1)!
     ```
 
     1. This will throw an exception if the material is not found. However, wrench always exists.<br>If you're unsure or processing user input use ``getOrNull`` instead.

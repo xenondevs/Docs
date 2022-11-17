@@ -40,13 +40,13 @@ breaking/placing custom blocks. Let's create an instance that can be broken with
 
 ```kotlin
 private val STONE = BlockOptions(
-    3.0, // (1)
-    listOf(ToolCategory.PICKAXE), // (2)
-    ToolLevel.STONE, // (3)
-    true, // (4)
-    SoundGroup.STONE, // (5)
-    Material.NETHERITE_BLOCK, // (6)
-    true // (7)
+    3.0, // (1)!
+    listOf(ToolCategory.PICKAXE), // (2)!
+    ToolLevel.STONE, // (3)!
+    true, // (4)!
+    SoundGroup.STONE, // (5)!
+    Material.NETHERITE_BLOCK, // (6)!
+    true // (7)!
 )
 ```
 

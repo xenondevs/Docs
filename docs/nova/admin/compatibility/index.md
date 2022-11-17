@@ -6,13 +6,13 @@ Checked plugins are fully supported (e.g. their items can be used in recipes, th
 Unchecked plugins are partially supported, some features might not work.
 
 - [x] [ItemsAdder](itemsadder.md)
-- [x] MMOItems
-- [ ] oraxen (Blocks are not recognized by Nova)
+- [ ] MMOItems
 
 Planned:
 
-* Slimefun
-* Space
+* [Oraxen](oraxen.md)
+* [Slimefun](utp.md)
+* [Space](utp.md)
 
 !!! warning
 
