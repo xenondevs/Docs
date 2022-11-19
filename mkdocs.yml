@@ -122,6 +122,13 @@ nav:
                   - "Overview": "nova/addon/worldgen/features/features.md"
                   - "Placed Features": "nova/addon/worldgen/features/placed-feature.md"
                   - "Configurations":
+                    - "Bamboo": "nova/addon/worldgen/features/configurations/bamboo.md"
+                    - "Basalt Columns": "nova/addon/worldgen/features/configurations/basalt-columns.md"
+                    - "Block Column": "nova/addon/worldgen/features/configurations/block-column.md"
+                    - "Block Pile": "nova/addon/worldgen/features/configurations/block-pile.md"
+                    - "Delta Feature": "nova/addon/worldgen/features/configurations/delta-feature.md"
+                    - "Disk": "nova/addon/worldgen/features/configurations/disk.md"
+                    - "Dripstone Cluster": "nova/addon/worldgen/features/configurations/dripstone-cluster.md"
                     - "Ores": "nova/addon/worldgen/features/configurations/ores.md"
           - "Migration Guide":
               - "0.11 ➝ 0.12": "nova/addon/migration-guide/0.11-0.12.md"

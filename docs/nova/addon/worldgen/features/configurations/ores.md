@@ -7,16 +7,17 @@ Ore features are used to generate ores in the world. They are configured using t
 
 The following options are available for ore configurations:
 
-| Option                           | Description                                                                                                                                                        |
-|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `size`                           | An `int` in the range $[0;64]$. Determines the volume size of the ore.                                                                                             |
-| `discard_chance_on_air_exposure` | A `float` in the range $[0;1]$. Determines the chance that the ore will be discarded if it is exposed to air. `1` means that the ore will never be exposed to air. |
-| `targets`                        | A list which determines what block to use for specific targets. Needs a `target` and a `state` option. See below for more details.                                 |
+| Option                           | Type                            | Description                                                                                                                        |
+|----------------------------------|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `size`                           | An `int` in the range $[0;64]$. | Determines the volume size of the ore.                                                                                             |
+| `discard_chance_on_air_exposure` | A `float` in the range $[0;1]$. | Determines the chance that the ore will be discarded if it is exposed to air. `1` means that the ore will never be exposed to air. |
+| `targets`                        | A list of `TargetBlockState`s   | A list which determines what block to use for specific targets. Needs a `target` and a `state` option. See below for more details. |
 
 ### Targets
 
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
-pretty much the same thing as `Predicate<BlockState>` in Java.  
+pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../block-state-provider.md)
+which determines what block to use for the specific target.
 The following `RuleTest`s are available:
 
 <table>
@@ -187,7 +188,7 @@ As an example, here's the configured- and placed feature of star shards ore from
 }
 ```
 
-1. 30 tries per chunk
-2. Spread the tries in a square
-3. Place the ore above y-level 119
-4. Discard the try if we moved into a biome that doesn't generate star shards
+1. 30 tries per chunk.
+2. Spread the tries in a square.
+3. Place the ore above y-level 119.
+4. Discard the try if we moved into a biome that doesn't generate star shards.

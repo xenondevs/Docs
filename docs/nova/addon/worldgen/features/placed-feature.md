@@ -281,6 +281,8 @@ if (noise < threshold) {
 
 ### `minecraft:random_offset`
 
+Offsets the given position by the provided [int provider's](#int-providers) values.
+
 | Name        | Description                                                                                                                  |
 |-------------|------------------------------------------------------------------------------------------------------------------------------|
 | `xz_spread` | Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers). **x and z are sampled separately!** |
@@ -354,3 +356,5 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
 ## Block predicates
 
 ## Int Providers
+
+## Float Providers
