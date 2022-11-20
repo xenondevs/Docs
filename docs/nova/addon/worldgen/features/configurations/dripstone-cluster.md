@@ -4,7 +4,7 @@ The `dripstone_cluster` feature allows you to add dripstone clusters to the worl
 
 ## Configuration
 
-The `dripstone_cluster` feature has the following configuration options:
+The `dripstone_cluster` feature has the following configuration options:  
 <small>Some of these options might be a bit hard to understand, We'd recommend just checking out the example below.</small>
 
 | Option                                                        | Type                                                                                     | Description                                                                            |

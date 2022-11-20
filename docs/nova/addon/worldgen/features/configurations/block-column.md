@@ -21,7 +21,7 @@ layer.
 
 ## Examples
 
-As an example, here's the configured feature used to place cacti in the desert.
+As an example, here's the configured feature used to place cacti in the desert.  
 <small>Please note that Minecraft uses the [`random_patch`](random-patch.md) feature to actually spread cacti and sugar cane.</small>
 
 ### Cactus

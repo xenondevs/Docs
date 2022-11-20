@@ -109,7 +109,7 @@ As an example, here's the configured and placed feature for sand disks in lakes:
 
 1. 3 tries per chunk.
 2. Spread the disks in a square.
-3. Make sure to move the y coordinate to the ocean floor.
+3. Makes sure to move the y coordinate to the ocean floor.
 4. Only place the disk if the block is water.
 5. Only place the disk if the current biome has sand disks.
 
