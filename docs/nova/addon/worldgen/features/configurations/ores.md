@@ -17,7 +17,7 @@ The following options are available for ore configurations:
 
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
 pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../block-state-provider.md)
-which determines what block to use for the specific target.
+which determines what block to use for the specific target.  
 The following `RuleTest`s are available:
 
 <table>
@@ -73,6 +73,7 @@ The following `RuleTest`s are available:
               }
             }
             ```
+        </td>
     </tr>
     <tr>
         <td><code>minecraft:tag_match</code></td>
@@ -120,6 +121,7 @@ The following `RuleTest`s are available:
             }
             ```
         </td>
+    </tr>
     </tbody>
 </table>
 

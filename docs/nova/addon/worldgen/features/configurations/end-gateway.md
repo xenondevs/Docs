@@ -70,4 +70,4 @@ Here's the configured and placed feature for the vanilla return end gateway:
 4. Randomly offset the gateways in the y direction.
 5. Only place the gateways in biomes that have end gateways.
 
-![Example](https://i.imgur.com/Olaox63.jpeg)
+![Example](https://i.imgur.com/SthHhVK.jpeg)
