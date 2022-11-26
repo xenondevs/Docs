@@ -42,7 +42,7 @@ As an example, here's the configured- and placed feature for the underground lav
 }
 ```
 
-```json
+```json title="placed_feature/lake_lava_underground.json"
 {
   "feature": "minecraft:lake_lava",
   "placement": [
