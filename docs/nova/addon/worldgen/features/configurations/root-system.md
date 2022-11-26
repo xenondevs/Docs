@@ -8,7 +8,7 @@ A root system feature has the following configuration options:
 
 | Option                             | Type                                                        | Description                                                 |
 |------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
-| `required_vertical_space_for_tree` | An `int` in the range $[1;64}$                              | The amount of vertical space required for the tree to grow. |
+| `required_vertical_space_for_tree` | An `int` in the range $[1;64]$                              | The amount of vertical space required for the tree to grow. |
 | `root_radius`                      | An `int` in the range $[1;64]$                              | The radius of the root system.                              |
 | `root_placement_attempts`          | An `int` in the range $[1;256]$                             | The amount of attempts to place a root.                     |
 | `root_column_max_height`           | An `int` in the range $[1;4096]$                            | The maximum height of a root column.                        |
