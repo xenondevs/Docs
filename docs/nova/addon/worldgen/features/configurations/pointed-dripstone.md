@@ -1,0 +1,66 @@
+# Pointed dripstone feature
+
+The `pointed_dripstone` feature can be used to add pointed dripstone to the world.
+
+## Configuration
+
+The `pointed_dripstone` feature has the following configuration options:
+
+| Option                                                       | Type                                | Description                                                     |
+|--------------------------------------------------------------|-------------------------------------|-----------------------------------------------------------------|
+| `chance_of_taller_dripstone` (optional, defaults to `0.2`)   | A `float` in the range $[0.0;1.0]$. | Determines the chance of a dripstone being taller than 1 block. |
+| `chance_of_directional_spread` (optional, defaults to `0.7`) | A `float` in the range $[0.0;1.0]$. | Determines the chance of a dripstone spreading horizontally.    |
+| `chance_of_spread_radius2` (optional, defaults to `0.5`)     | A `float` in the range $[0.0;1.0]$. | Determines the chance of a dripstone spreading 2 blocks away.   |
+| `chance_of_spread_radius3` (optional, defaults to `0.5`)     | A `float` in the range $[0.0;1.0]$. | Determines the chance of a dripstone spreading 3 blocks away.   |
+
+## Example
+
+Minecraft uses a [`simple_random_selector`](simple-random-selector.md) feature to actually place pointed dripstone. Here's 
+one of the features used to place upwards pointing dripstone.
+
+```json title="configured_feature/pointed_dripstone.json"
+{
+  "type": "minecraft:pointed_dripstone",
+  "config": {
+    "chance_of_taller_dripstone": 0.2,
+    "chance_of_directional_spread": 0.7,
+    "chance_of_spread_radius2": 0.5,
+    "chance_of_spread_radius3": 0.5
+  }
+}
+```
+
+The placed feature is also located in the random selector:
+
+```json title="configured_feature/pointed_dripstone.json"
+{
+  "feature": "minecraft:pointed_dripstone",
+  "placement": [
+    {
+      "type": "minecraft:environment_scan", // (1)!
+      "allowed_search_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": [
+          "minecraft:air",
+          "minecraft:water"
+        ]
+      },
+      "direction_of_search": "down",
+      "max_steps": 12,
+      "target_condition": {
+        "type": "minecraft:solid" 
+      }
+    },
+    {
+      "type": "minecraft:random_offset", // (2)!
+      "xz_spread": 0,
+      "y_spread": 1
+    }
+  ]
+}
+```
+
+1. Searches downwards for a solid block.
+2. Makes sure to place the dripstone on top of the solid block.
+
+![Example](https://i.imgur.com/G1ccC52.jpeg)
