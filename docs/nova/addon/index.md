@@ -5,7 +5,7 @@ knowledge about Kotlin, the Spigot API, Maven and Gradle.**
 
 ### BuildTools
 
-While you don't necessarily need to access NMS while making an addon, installing a mojang-mapped spigot version is still
+While you don't necessarily need to access NMS while making an addon, installing a mojang-mapped Spigot version is still
 required. If you're not familiar with BuildTools you can read [this guide](https://www.spigotmc.org/wiki/buildtools/). After
 downloading BuildTools, run the following command:
 
@@ -13,7 +13,7 @@ downloading BuildTools, run the following command:
 java -jar BuildTools.jar --remapped
 ```
 
-This will install the latest mojang-mapped spigot version on your local maven repository.
+This will install the latest mojang-mapped Spigot version on your local maven repository.
 
 ### IntelliJ
 

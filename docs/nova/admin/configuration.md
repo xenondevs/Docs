@@ -11,7 +11,8 @@ You might want to customize the Nova items menu. In order to do that, just edit 
 
 !!! warning
 
-    After applying changes to `item_categories.json`, the file will not be automatically updated anymore. This will cause items from newly added or updated items to not appear and will prevent Nova from working properly after removing an addon whose items are listed here.
+    After modifying `item_categories.json`, the file will not be automatically updated anymore.
+    This will prevent items from newly added addons from appearing, so you will have to add those yourself.
 
 ## Tile-Entity limits
 
