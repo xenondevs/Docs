@@ -66,12 +66,12 @@ on availability:
 
 | Block Type           | Amount available |
 |----------------------|------------------|
-| Note Block           | 1049             |
+| Note Block           | 1149             |
 | Red Mushroom Block   | 63               |
 | Brown Mushroom Block | 63               |
 | Mushroom Stem        | 63               |
 |                      |                  |
-| Total                | 1238             |
+| Total                | 1338             |
 
 In total, 988 blocks can be registered as `solid`. If there are no more blocks available, Nova will fall back to armor
 stand blocks.
