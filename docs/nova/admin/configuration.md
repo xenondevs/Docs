@@ -128,3 +128,38 @@ For example, the default limit of range upgrades for the Pump from the Machines 
 upgrade_values:
   range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ]
 ```
+
+## Resource Filters
+
+Resource filters allow you to exclude certain files from the resource pack. They are configured in the main config
+under `resource_pack.generation.resource_filters`.
+
+```yaml
+resource_pack:
+  generation:
+    content_filters:
+    - stage: "" # (1)
+      type: "" # (2)
+      pattern_type: "" # (3)
+      filter: "" # (4)
+      directory: "" # (5)
+```
+
+1. The stage at which the filter should be applied. Can be `asset_pack` or `resource_pack`.
+2. The type of the filter. Can be `whitelist` or `blacklist`.
+3. The pattern type of the `filter` field. Can be `regex` or `wildcard`.
+4. The filter pattern to match against. The `pattern_type` field determines how the pattern is interpreted.
+5. The directory to apply the filter to. This property is optional and defaults to the root directory.
+
+??? example "Example: Excluding all language files except en_us.json and de_de.json"
+
+    ```yaml
+    resource_pack:
+      generation:
+        resource_filters:
+        - stage: resource_pack
+          type: whitelist
+          pattern_type: regex
+          filter: minecraft\/lang\/(en_us|de_de).json
+          directory: minecraft/lang/
+    ```
