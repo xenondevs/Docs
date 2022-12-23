@@ -6,7 +6,7 @@ Unlike other inventory libraries, InvUI does not redraw items every tick. To tri
 
 ### Default ItemProviders
 There are also two default ``ItemProviders`` in InvUI: ``ItemWrapper`` and ``ItemBuilder``.  
-Both implementations will ignore the provided UUID in ``ItemProvider#getFor``, but you can always inherit from ``ItemProvider`` or even ``ItemBuilder`` to change this behavior.
+Both implementations will ignore the provided UUID in ``ItemProvider#getFor``, but you can always inherit from ``ItemProvider`` to change this behavior.
 
 ## Default UI Items in InvUI
 InvUI provides a few basic items, but you will probably have to create your own ones for more complicated behavior.
