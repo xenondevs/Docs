@@ -13,7 +13,7 @@ To create a `VirtualInventory`, you can do one of two things:
 
 !!! info
 
-    The `uuid` parameter is only required for serialization. You an set it to null, if you're not planning to serialize your inventory.
+    The `uuid` parameter is only required for serialization. You can set it to null, if you're not planning to serialize your inventory.
 
 ## Inventory Events
 
