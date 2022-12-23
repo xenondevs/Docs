@@ -145,8 +145,9 @@ Currently, there are two ways to define base packs:
     Example:
     ```yaml title="plugins/Nova/configs/config.yml"
     resource_pack:
-      base_packs:
-        - plugins/ItemsAdder/output/generated.zip
+      generation:
+        base_packs:
+          - plugins/ItemsAdder/output/generated.zip
     ```
 
     !!! info
