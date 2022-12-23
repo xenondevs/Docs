@@ -51,12 +51,13 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
 
 As you can see, there are many types of ingredients that can be added:
 `Items`, `Item Supplier`, `SlotElement`, `SlotElement Supplier`, `VirtualInventory`, `Marker`.  
-When you're using an Item or SlotElement as ingredient, be aware that it will always be the same item on every slot, which means that when one of them changes, every item changes. To circumvent this behavior, use an Item Supplier. This will create a new instance of the Item for every slot.
+When using an `Item` or `SlotElement as ingredient, the same instance will be used on every slot.
+If you don't want this, use an Item Supplier. This will create a new instance for every slot.
 
 ## Global Ingredients
 
 If you're reusing the same ingredients over and over again, consider registering them as global ingredients.  
-Make sure to use suppliers for every item where you want a new instance per `GUI`, such as `ControlItems`.
+Make sure to use suppliers for every item where you want a new instance per slot.
 
 === "Java"
 
@@ -64,11 +65,11 @@ Make sure to use suppliers for every item where you want a new instance per `GUI
     // Supplier is not needed here as the Item does not do anything
     Structure.addGlobalIngredient('#', new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
 
-    // These items need a supplier
+    // These items need a supplier because ControlItems can only control one GUI
     Structure.addGlobalIngredient('<', BackItem::new);
     Structure.addGlobalIngredient('>', ForwardItem::new);
 
-    // adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
+    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
     Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL);
     ```
 
@@ -82,6 +83,6 @@ Make sure to use suppliers for every item where you want a new instance per `GUI
     Structure.addGlobalIngredient('<', ::BackItem)
     Structure.addGlobalIngredient('>', ::ForwardItem)
     
-    // adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
+    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
     Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL)
     ```
