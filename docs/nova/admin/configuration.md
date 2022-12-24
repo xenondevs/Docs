@@ -138,11 +138,11 @@ under `resource_pack.generation.resource_filters`.
 resource_pack:
   generation:
     content_filters:
-    - stage: "" # (1)
-      type: "" # (2)
-      pattern_type: "" # (3)
-      filter: "" # (4)
-      directory: "" # (5)
+    - stage: "" # (1)!
+      type: "" # (2)!
+      pattern_type: "" # (3)!
+      filter: "" # (4)!
+      directory: "" # (5)!
 ```
 
 1. The stage at which the filter should be applied. Can be `asset_pack` or `resource_pack`.
