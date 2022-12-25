@@ -1,1 +1,0 @@
-[Nova Wiki](nova/index.md)

@@ -1,0 +1,16 @@
+INHERIT: base.yml
+docs_dir: cbf
+site_name: CBF Documentation
+edit_uri: edit/main/docs/cbf/
+
+theme:
+  features:
+    - content.tabs.link
+    - content.code.annotate
+
+nav:
+  - "Getting Started": "index.md"
+  - "Binary Adapters": "binaryadapter.md"
+  - "Instance Creators": "instancecreator.md"
+  - "Serialization": "serialization.md"
+  - "Compounds": "compound.md"

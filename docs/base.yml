@@ -1,0 +1,46 @@
+site_url: https://xenondevs.xyz/docs/
+repo_url: https://github.com/xenondevs/Docs
+repo_name: xenondevs/Docs
+copyright: Copyright &copy; 2022 xenondevs
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xenondevs
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/EpVMXtXB2t
+    - icon: fontawesome/brands/patreon
+      link: https://patreon.com/xenondevs
+
+theme:
+  name: material
+  logo: assets/logo.png
+  palette:
+    scheme: slate
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+
+plugins:
+  - search
+
+extra_css:
+  - assets/stylesheets/extra.css
