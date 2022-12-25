@@ -1,0 +1,66 @@
+:root > * {
+    --md-code-hl-string-color: #98C379;
+    --md-code-hl-keyword-color: #C792EA;
+    --md-code-hl-variable-color: #6d98d9;
+    --md-code-hl-function-color: #6d98d9;
+    --md-code-hl-name-color: #e9c985;
+}
+
+@media only screen and (min-width: 76.25em) {
+    .md-main__inner {
+        max-width: none;
+    }
+
+    .md-content {
+        max-width: 56.5%;
+    }
+
+    .md-sidebar--primary {
+        margin-left: 3.75%;
+        margin-right: 3.75%;
+    }
+
+    .md-sidebar--secondary {
+        margin-left: 3.75%;
+        margin-right: 3.75%;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    body::-webkit-scrollbar {
+        width: 15px;
+        height: 15px;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: #21222c;
+        border-radius: 15px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background-color: #2e303e;
+    }
+
+    body {
+        scrollbar-color: #21222c #2e303e;
+    }
+
+}
+
+.md-nav {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.md-nav__link {
+    display: inline-flex;
+}
+
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
+.text-center {
+    text-align: center !important;
+}

@@ -97,7 +97,7 @@ There are currently three main ways to configure the auto-uploader:
         }
         ```
         the regex could be ``"url": "([\w:/\.]*)``.
-    === "S3"
+    === "Amazon S3"
 
         If you are using Amazon S3, you can use the S3 service to upload the resource pack. **You have to expose your S3 
         bucket to the Internet yourself.**
@@ -127,7 +127,7 @@ The new resource pack will be automatically generated and uploaded using the con
 
 !!! info
 
-    Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons: `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing`
+    Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons: `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
 
 ## (optional) ResourcePack Merging
 
@@ -139,14 +139,14 @@ Currently, there are two ways to define base packs:
 
 === "With Config"
 
-    * Make sure to turn off the custom resource pack in the config of the plugin providing it
+    * Make sure to turn off the resource pack prompt in the config of the plugin providing it
     * Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
 
     Example:
     ```yaml title="plugins/Nova/configs/config.yml"
     resource_pack:
       base_packs:
-        - plugins/ItemsAdder/data/resource_pack/pack.zip
+        - plugins/ItemsAdder/output/generated.zip
     ```
 
     !!! info
@@ -158,7 +158,7 @@ Currently, there are two ways to define base packs:
 
 === "With Folder"
 
-    * Make sure to turn off the custom resource pack in the config of the plugin providing it
+    * Make sure to turn off the resource pack prompt in the config of the plugin providing it
     * Copy the resource pack directory or zip file to `plugins/Nova/resource_pack/base_packs/`
 
         !!! info
