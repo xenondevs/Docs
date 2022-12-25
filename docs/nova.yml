@@ -1,0 +1,76 @@
+INHERIT: base.yml
+docs_dir: nova
+site_name: Nova Documentation
+edit_uri: edit/main/docs/nova/
+
+theme:
+  features:
+    - navigation.tabs
+    - content.tabs.link
+    - content.code.annotate
+
+nav:
+  - "Setup & Configuration":
+      - "Setup": "admin/setup.md"
+      - "Configuration": "admin/configuration.md"
+      - "Compatibility":
+          - "List of compatible Plugins": "admin/compatibility/index.md"
+          - "Troubleshooting": "admin/compatibility/troubleshooting.md"
+          - "ItemsAdder": "admin/compatibility/itemsadder.md"
+          - "Oraxen": "admin/compatibility/oraxen.md"
+          - "GriefDefender": "admin/compatibility/griefdefender.md"
+          - "UTP": "admin/compatibility/utp.md"
+      - "Recipes":
+          - "Custom Recipes": "admin/recipes/index.md"
+          - "Vanilla Recipe Types": "admin/recipes/vanilla.md"
+          - "Machines Recipe Types": "admin/recipes/machines.md"
+      - "FAQ": "admin/faq.md"
+  - "Plugin API":
+      - "Getting Started": "api/index.md"
+      - "Protection": "api/protection/protectionintegration.md"
+      - "NovaMaterial": "api/material/index.md"
+      - "Blocks":
+          - "BlockManager": "api/blocks/blockmanager.md"
+          - "BlockState": "api/blocks/blockstate.md"
+      - "TileEntity":
+          - "TileEntityManager": "api/tileentity/tileentitymanager.md"
+          - "TileEntity": "api/tileentity/tileentity.md"
+      - "Events":
+          - "NovaLoadDataEvent": "api/events/novaloaddataevent.md"
+          - "TileEntityBreakBlockEvent": "api/events/tileentitybreakblockevent.md"
+      - "WailaManager": "api/player/wailamanager.md"
+  - "Addon API":
+      - "Getting Started": "addon/index.md"
+      - "Configure Addon": "addon/addon-configuration.md"
+      - "AssetPacks":
+          - "Basics": "addon/asset-packs/assetpack-basics.md"
+          - "Creating Items": "addon/asset-packs/creating-items.md"
+          - "Creating Blocks": "addon/asset-packs/creating-blocks.md"
+          - "Creating GUIs": "addon/asset-packs/creating-guis.md"
+          - "Language Files": "addon/asset-packs/language-files.md"
+      - "Items":
+          - "Registering Materials": "addon/items/registering-materials.md"
+          - "Item Behaviors": "addon/items/item-behaviors.md"
+          - "Using ItemNovaMaterial": "addon/items/using-item-nova-material.md"
+          - "Item Categories": "addon/items/item-categories.md"
+          - "Tools": "addon/items/tools.md"
+      - "Configs": "addon/configs.md"
+      - "Blocks":
+          - "Registering Materials": "addon/blocks/registering-materials.md"
+          - "TileEntities":
+              - "Basics": "addon/blocks/tileentity/base.md"
+              - "Config": "addon/blocks/tileentity/config.md"
+              - "GUI": "addon/blocks/tileentity/gui.md"
+              - "TileEntity Data": "addon/blocks/tileentity/data.md"
+              - "Holders": "addon/blocks/tileentity/holders.md"
+              - "Upgrades": "addon/blocks/tileentity/upgrades.md"
+              - "Regions": "addon/blocks/tileentity/region.md"
+              - "Particles": "addon/blocks/tileentity/particles.md"
+      - "GUI Textures": "addon/guitexture.md"
+      - "Overlays": "addon/overlays.md"
+      - "Advancements": "addon/advancements.md"
+      - "Attachments": "addon/attachments.md"
+      - "Abilities": "addon/abilities.md"
+      - "Recipes": "addon/recipes.md"
+      - "Migration Guide":
+          - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

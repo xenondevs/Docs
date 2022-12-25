@@ -64,3 +64,11 @@ Nova also provided some useful top level functions for creating advancements wit
             Items.COAL_DUST, Items.COPPER_DUST, Items.STAR_DUST
         ), true)
         ```
+
+## Registering Advancements
+
+After creating all advancements, you can register them using the `AdvancementLoader`:
+
+```kotlin
+AdvancementLoader.registerAdvancements(ROOT, DUST, ALL_DUSTS)
+```
