@@ -129,6 +129,51 @@ upgrade_values:
   range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ]
 ```
 
+## Attribute Modifiers
+
+Every item configuration file can have an `attribute_modifiers` section.
+
+```yaml title="Structure of the `attribute_modifiers` section"
+attribute_modifiers:
+  <equipment_slot>:
+  - attribute: <attribute> # (1)!
+    operation: <operation> # (2)!
+    value: <value> # (3)!
+    hidden: <hidden> # (4)!
+```
+
+1. The attribute to modify.  
+    Available attributes: `generic.maxHealth`, `generic.followRange`, `generic.knockbackResistance`, `generic.movementSpeed`,
+    `generic.flying_speed`, `generic.attackDamage`, `generic.attack_knockback`, `generic.attackSpeed`, `generic.armor`,
+    `generic.armorToughness`, `generic.luck`
+2. The operation to perform.  
+    Possible operations: `addition`, `multiply_base`, `multiply_total`
+3. The value to modify the attribute with.
+4. Whether the attribute should be hidden from the item's lore.  
+    Default: `false`
+
+??? example "Example configuration"
+
+    ```yaml
+    # The following configuration increases the player's attack damage by 5 if the item is held in the main hand,
+    # and increases the movement speed by 10% for both the main hand and off hand.
+    
+    attribute_modifiers:
+      mainhand:
+      - attribute: generic.attack_damage
+        operation: addition
+        value: 5.0
+      offhand:
+      - attribute: generic.movement_speed
+        operation: multiply_base
+        value: 0.1
+      - attribute: generic.movement_speed
+        operation: multiply_base
+        value: 0.1
+    ```
+    
+    ![](https://i.imgur.com/TIjCNto.png)
+
 ## Resource Filters
 
 Resource filters allow you to exclude certain files from the resource pack. They are configured in the main config
