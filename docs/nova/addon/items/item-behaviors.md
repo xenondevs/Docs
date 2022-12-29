@@ -69,14 +69,14 @@ purposes.
             ```
 
             1. The type of the effect.  
-               A list of all effects can be found [here](https://minecraft.fandom.com/wiki/Effect#Effect_list)
+               A list of all effect types can be found [here](https://minecraft.fandom.com/wiki/Effect#Effect_list).
             2. The duration of the effect in ticks.
             3. The amplifier of the effect. An amplifier of 0 is a level 1 effect.
             4. Whether the effect is ambient or not.  
                Default value: `true`
-            5. Whether the effect has particles or not.
+            5. Whether the effect has particles or not.  
                Default value: `true`
-            6. Whether the effect has an icon or not.
+            6. Whether the effect has an icon or not.  
                Default value: `true`
                
 
