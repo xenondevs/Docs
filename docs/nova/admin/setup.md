@@ -40,6 +40,7 @@ There are currently three main ways to configure the auto-uploader:
         Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
     
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -54,6 +55,7 @@ There are currently three main ways to configure the auto-uploader:
         Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
     
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -88,7 +90,7 @@ There are currently three main ways to configure the auto-uploader:
 
         A few examples:
 
-        ### [Ploudos' resource pack CDN](https://resourcepack.host/)
+        ### [PloudOS' resource pack CDN](https://resourcepack.host/)
 
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
@@ -119,6 +121,7 @@ There are currently three main ways to configure the auto-uploader:
         bucket to the Internet yourself.**
 
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -129,6 +132,19 @@ There are currently three main ways to configure the auto-uploader:
             bucket: examplebucket # The name of your S3 bucket
             key_id: "" # Your S3 key id
             key_secret: "" # Your S3 key secret
+        ```
+
+    === "Oraxen"
+
+        If you are using Oraxen on your server, you can configure Nova to use the PolyMath instance [configured in Oraxen's config.yml](https://docs.oraxen.com/configuration/plugin-settings#upload).
+
+        Example config:
+        
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: Oraxen
         ```
 
 ## Step 3: Installing addons
