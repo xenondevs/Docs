@@ -133,7 +133,7 @@ upgrade_values:
 
 Every item configuration file can have an `attribute_modifiers` section.
 
-```yaml title="Structure of the `attribute_modifiers` section"
+```yaml title="Structure of the attribute_modifiers section"
 attribute_modifiers:
   <equipment_slot>: # (1)!
   - attribute: <attribute> # (2)!
@@ -142,7 +142,7 @@ attribute_modifiers:
     hidden: <hidden> # (5)!
 ```
 
-1. The equipment slot that this item needs to be in in order for the attribute modifier to apply.  
+1. The equipment slot that this item needs to be in for the attribute modifier to apply.  
     Possible values: `mainhand`, `offhand`, `feet`, `legs`, `chest`, `head`
 2. The attribute to modify.  
     Available attributes: `generic.maxHealth`, `generic.followRange`, `generic.knockbackResistance`, `generic.movementSpeed`,
