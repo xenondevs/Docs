@@ -135,27 +135,29 @@ Every item configuration file can have an `attribute_modifiers` section.
 
 ```yaml title="Structure of the `attribute_modifiers` section"
 attribute_modifiers:
-  <equipment_slot>:
-  - attribute: <attribute> # (1)!
-    operation: <operation> # (2)!
-    value: <value> # (3)!
-    hidden: <hidden> # (4)!
+  <equipment_slot>: # (1)!
+  - attribute: <attribute> # (2)!
+    operation: <operation> # (3)!
+    value: <value> # (4)!
+    hidden: <hidden> # (5)!
 ```
 
-1. The attribute to modify.  
+1. The equipment slot that this item needs to be in in order for the attribute modifier to apply.  
+    Possible values: `mainhand`, `offhand`, `feet`, `legs`, `chest`, `head`
+2. The attribute to modify.  
     Available attributes: `generic.maxHealth`, `generic.followRange`, `generic.knockbackResistance`, `generic.movementSpeed`,
     `generic.flying_speed`, `generic.attackDamage`, `generic.attack_knockback`, `generic.attackSpeed`, `generic.armor`,
     `generic.armorToughness`, `generic.luck`
-2. The operation to perform.  
+3. The operation to perform.  
     Possible operations: `addition`, `multiply_base`, `multiply_total`
-3. The value to modify the attribute with.
-4. Whether the attribute should be hidden from the item's lore.  
+4. The value to modify the attribute with.
+5. Whether the attribute should be hidden from the item's lore.  
     Default: `false`
 
 ??? example "Example configuration"
 
     ```yaml
-    # The following configuration increases the player's attack damage by 5 if the item is held in the main hand,
+    # The following configuration increases the player's attack damage by 5 if the item is held in the main hand
     # and increases the movement speed by 10% for both the main hand and off hand.
     
     attribute_modifiers:
