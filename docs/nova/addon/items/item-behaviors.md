@@ -55,6 +55,31 @@ purposes.
         effects: []
         ```
 
+        ??? example "Example Effect"
+
+            ```yaml
+            effects:
+            # A level 1 speed effect that lasts 10 seconds.
+            - type: speed # (1)!
+              duration: 200 # (2)!
+              amplifier: 0 # (3)!
+              ambient: true # (4)!
+              particles: true # (5)!
+              icon: true # (6)!
+            ```
+
+            1. The type of the effect.  
+               A list of all effects can be found [here](https://minecraft.fandom.com/wiki/Effect#Effect_list)
+            2. The duration of the effect in ticks.
+            3. The amplifier of the effect. An amplifier of 0 is a level 1 effect.
+            4. Whether the effect is ambient or not.  
+               Default value: `true`
+            5. Whether the effect has particles or not.
+               Default value: `true`
+            6. Whether the effect has an icon or not.
+               Default value: `true`
+               
+
     === "Wearable"
 
         Allows you to make an item that can be equipped in a players armor slots.
