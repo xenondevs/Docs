@@ -77,16 +77,6 @@ There are currently three main ways to configure the auto-uploader:
     === "Custom Multipart Request (advanced)"
     
         For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
-        
-        If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
-        For example, for a response like this 
-        ```json
-        {
-          "state": "success",
-          "url": "https://example.com/ResourcePack.zip"
-        }
-        ```
-        the regex could be ``"url": "([\w:/\.]*)``.
 
         A few examples:
 
