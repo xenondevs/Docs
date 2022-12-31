@@ -29,7 +29,7 @@ To use InvUI, you first have to add the xenondevs maven repository to your build
     }
     ```
 
-Now you can add InvUI as to your build configuration:
+Now you can add InvUI as a dependency:
 
 === "Maven"
 
