@@ -59,19 +59,6 @@ If you don't want this, use an Item Supplier. This will create a new instance fo
 If you're reusing the same ingredients over and over again, consider registering them as global ingredients.  
 Make sure to use suppliers for every item where you want a new instance per slot.
 
-=== "Java"
-
-    ```java
-    // Supplier is not needed here as the Item does not do anything
-    Structure.addGlobalIngredient('#', new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
-
-    // These items need a supplier because ControlItems can only control one GUI
-    Structure.addGlobalIngredient('<', BackItem::new);
-    Structure.addGlobalIngredient('>', ForwardItem::new);
-
-    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
-    Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL);
-    ```
 
 === "Kotlin"
     
@@ -85,4 +72,18 @@ Make sure to use suppliers for every item where you want a new instance per slot
     
     // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
     Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL)
+    ```
+
+=== "Java"
+
+    ```java
+    // Supplier is not needed here as the Item does not do anything
+    Structure.addGlobalIngredient('#', new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
+
+    // These items need a supplier because ControlItems can only control one GUI
+    Structure.addGlobalIngredient('<', BackItem::new);
+    Structure.addGlobalIngredient('>', ForwardItem::new);
+
+    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
+    Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL);
     ```
