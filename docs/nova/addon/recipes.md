@@ -3,7 +3,7 @@
 ## Adding recipes to your addon
 Recipes files are placed under `recipes/<namespace>/type`, where the `namespace` is the namespace of the addon that
 registered this recipe type (`minecraft` for Minecraft recipe types) and `type` the name of the recipe type.  
-For more information about the recipe format and default recipe types, [read the admin page on it](../admin/recipes).
+For more information about the recipe format and default recipe types, [read the admin page on it](../../admin/recipes).
 
 ## Creating a custom Recipe Type
 Recipe types are registered over the `RecipeTypeRegistry`.  
