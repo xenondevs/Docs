@@ -1,4 +1,4 @@
-# Creating blocks
+# Creating Blocks
 
 ## Creating your first block material
 

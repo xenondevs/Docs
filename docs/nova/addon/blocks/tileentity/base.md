@@ -144,7 +144,7 @@ override fun saveData() {
 
 * ``getInventory()`` - See [ItemHolders](holders.md#itemholder).
 * ``getFluidContainer()`` - See [FluidHolders](holders.md#fluidholder).
-* ``createParticleTask()`` - See [Particles](particles.md).
+* ``createPacketTask()`` - Repeatedly sends the same packets to all players in range. See [Particles](particles.md).
 * ``createSideConfig()``, ``createExclusiveSideConfig()`` - See [Holders](holders.md).
 * ``getBlockFrontRegion()``, ``getFrontRegion()``, ``getSurroundingRegion()`` - See [Region](region.md)
 * ``createStaticRegion()``, ``getDynamicRegion()``, ``getUpgradableRegion()`` - See [Reloadable Region](region.md#reloadableregion)

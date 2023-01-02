@@ -1,4 +1,4 @@
-# Creating items
+# Creating Items
 
 ## Creating your first material
 
@@ -78,5 +78,20 @@ If your models don't have a fixed number format, you can also list them by hand:
   }
 }
 ```
+
+## Applying an armor texture
+
+To apply an armor texture to your item, simple add the `armor` property:
+
+```json title="materials.json"
+{
+  "star_chestplate": {
+    "item": "item/star_chestplate",
+    "armor": "star" // (1)!
+  }
+}
+```
+
+1. The name of your armor texture. See: [registering an armor texture](creating-armor.md#registering-an-armor-texture)
 
 We'll implement these items in code later. Let's create a block in the asset-pack in the next section.

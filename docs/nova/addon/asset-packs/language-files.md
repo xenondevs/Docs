@@ -33,7 +33,3 @@ You can of course use your own type names, just make sure to include your addons
   "advancement.example.solar_panel.description": "Craft a Solar Panel"
 }
 ```
-
-So with all previous steps done, your ``assets`` folder could look like this:
-
-![folder](https://i.imgur.com/g2y0Lyn.png)

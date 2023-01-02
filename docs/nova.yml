@@ -47,6 +47,7 @@ nav:
           - "Creating Items": "addon/asset-packs/creating-items.md"
           - "Creating Blocks": "addon/asset-packs/creating-blocks.md"
           - "Creating GUIs": "addon/asset-packs/creating-guis.md"
+          - "Creating Armor": "addon/asset-packs/creating-armor.md"
           - "Language Files": "addon/asset-packs/language-files.md"
       - "Items":
           - "Registering Materials": "addon/items/registering-materials.md"
@@ -73,4 +74,5 @@ nav:
       - "Abilities": "addon/abilities.md"
       - "Recipes": "addon/recipes.md"
       - "Migration Guide":
+          - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

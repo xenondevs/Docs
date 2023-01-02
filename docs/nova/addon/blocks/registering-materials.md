@@ -52,7 +52,7 @@ private val STONE = BlockOptions(
 
 1. This is the hardness of the block. It determines how long it takes to break the block. This value currently doesn't affect explosions.
 2. A list of tool categories that are suitable to break this block. Can be empty.
-3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian). Can be null.
+3. The minimum `ToolTier` that is required to properly break this block (Like diamond for obsidian). Can be null.
 4. Whether a tool is required to receive drops.
 5. The sound group to use for this block. Sound groups include sounds for hitting, breaking and placing a block as well as
    stepping and falling on a block. You can also create your own sound group with your own custom sounds.
@@ -63,7 +63,7 @@ private val STONE = BlockOptions(
 ## Registering the block
 
 Using the options specified above, you can now register your block material via the builders obtained by calling
-`NovaMaterialRegistry#block` or `NovaMaterialRegistry#tileEntity`. Unlike items materials, block- and tile-entity materials
+`NovaMaterialRegistry#block` or `NovaMaterialRegistry#tileEntity`. Unlike item materials, block- and tile-entity materials
 can only be registered using the builder functions.
 
 ```kotlin

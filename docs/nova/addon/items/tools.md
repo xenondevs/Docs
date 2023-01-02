@@ -2,47 +2,39 @@
 
     If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md).
 
-## Tool Levels
+## Tool Tiers
 
-Tool Levels represent the tier of a tool. Internally, those tiers are represented by numbers. By default, there are three levels:
+Each tool tier maps to a numerical tool level. Those tool levels are then used to determine if a tool tier is good enough to break a block.
 
-| Tool Type | Level |  ToolLevel (Nova)   |
-|:----------|:-----:|:-------------------:|
-| Wooden    |   0   |       `null`        |
-| Gold      |   0   |       `null`        |
-| Stone     |   1   |  `ToolLevel.STONE`  |
-| Iron      |   2   |  `ToolLevel.IRON`   |
-| Diamond   |   3   | `ToolLevel.DIAMOND` |
-| Netherite |   3   | `ToolLevel.DIAMOND` |
-
-??? question "Why is there no `ToolLevel.WOODEN`?"
-
-    Since the wooden tool tier is the lowest possible tier, it does not have a custom `ToolLevel` and is represented by `null`.  
-    This is handled this way to prevent confusion when dealing with tool categories that do not have multiple tool levels
-    (e.g. shears) which would then also be categorized under the wooden tool tier.
-
-    It is still possible to require a wooden tool to break a block by setting the the desired `ToolCategory`,
-    `null` as the `ToolLevel` and `requiresToolForDrops = true` in `BlockOptions`.
-
-    Wooden and golden tools can break the same blocks, which is why they're both on ToolLevel `0` / `null`.
+| Tool Type                                      | Level |   ToolTier (Nova)   |
+|:-----------------------------------------------|:-----:|:-------------------:|
+| No Tool                                        |   0   |       `null`        |
+| ![](https://i.imgur.com/x0LolKX.png) Wooden    |   0   |   `ToolTier.WOOD`   |
+| ![](https://i.imgur.com/fHQr0q6.png) Golden    |   0   |  `ToolTier.GOLDEN`  |
+| ![](https://i.imgur.com/KpENSNs.png) Stone     |   1   |  `ToolLevel.STONE`  |
+| ![](https://i.imgur.com/wYG64FD.png) Iron      |   2   |  `ToolLevel.IRON`   |
+| ![](https://i.imgur.com/kkuGiVe.png) Diamond   |   3   | `ToolLevel.DIAMOND` |
+| ![](https://i.imgur.com/jup6fy4.png) Netherite |   3   | `ToolLevel.DIAMOND` |
 
 The numerical values are assigned to the tool levels in the `tool_levels.yml` config file:
 
 ```yaml title="tool_levels.yml"
+wood: 0
+gold: 0
 stone: 1
 iron: 2
 diamond: 3
 ```
 
-### Registering a custom tool level
+### Registering a custom tool tier
 
-To register a new tool level, simply call `ToolLevelRegistry#register`.  
+To register a new tool level, simply call `ToolTierRegistry#register`.  
 As always, we recommend storing your tool levels as final values in a singleton object:
 
 ```kotlin
-object ToolLevels {
+object ToolTiers {
     
-    val EXAMPLE_LEVEL = ToolLevelRegistry.register(ExampleAddon, "example_level")
+    val EXAMPLE_TIER = ToolLevelRegistry.register(ExampleAddon, "example_tier")
     
 }
 ```
@@ -50,12 +42,12 @@ object ToolLevels {
 Then, assign a numerical tool level value to your registered value in the `tool_levels.yml` config file:
 
 ```yaml title="tool_levels.yml"
-example_level: 4
+example_tier: 4
 ```
 
 The specified level of `4` would give tools of that level the ability to break all blocks that `diamond` or `netherite`
-tools could break + additional custom blocks that have a tool level with the numerical value of `4` configured in their
-`BlockOptions`.
+tools could break + additional custom blocks that have a tool tier that resolves to a tool level of `4`
+configured in their `BlockOptions`.
 
 ## Tool Categories
 
@@ -83,9 +75,10 @@ object ToolCategories {
     
 }
 ```
+!!! info
 
-The `getIcon` lambda is required for WAILA to display the proper tool icon. You're given a tool level and need to return
-the texture path to the tool icon.
+    The `getIcon` lambda is required for WAILA to display the proper tool icon. You're given a tool tier and need to return
+    the texture path to the tool icon.
 
 You can then use your new tool category in the `BlockOptions` of your custom block to make those blocks only breakable
 with a tool of that category.
