@@ -68,16 +68,16 @@ can only be registered using the builder functions.
 
 ```kotlin
 // normal block
-val MY_BLOCK = NovaMaterialRegistry.block(ExampleAddon, "example_block").properties(STONE).register()
+val MY_BLOCK = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).register()
 
 // normal directional block (North, East, South, West)
-val MY_BLOCK_1 = NovaMaterialRegistry.block(ExampleAddon, "example_block").properties(STONE).properties(Directional.NORMAL).register()
+val MY_BLOCK_1 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.NORMAL).register()
 
 // normal directional block (North, East, South, West, Up, Down)
-val MY_BLOCK_2 = NovaMaterialRegistry.block(ExampleAddon, "example_block").properties(STONE).properties(Directional.ALL).register()
+val MY_BLOCK_2 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.ALL).register()
 
 // directional tile entity block (North, East, South, West)
-val MY_TILE_ENTITY_1 = NovaMaterialRegistry.tileEntity(ExampleAddon, "example_block", ::ExampleTileEntity).properties(STONE).properties(Directional.NORMAL).register()
+val MY_TILE_ENTITY_1 = NovaMaterialRegistry.tileEntity(ExampleAddon, "example_block", ::ExampleTileEntity).blockOptions(STONE).properties(Directional.NORMAL).register()
 ```
 
 Don't forget to call `register()` at the end of the builder chain.
