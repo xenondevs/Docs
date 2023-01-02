@@ -2,10 +2,7 @@
 
 Item behaviors are used to add functionality to items. There are some default implementations, but you can also create your own.
 
-As stated in the previous section, for consumable items you can either call ``NovaMaterial#registerFood`` or call
-``NovaMaterial#registerItem`` with the ``Consumable`` item behavior. This item behavior lets you specify the food options
-like the consumeTime, the nutrition and much more. However, there are more item behaviors that you can use for different
-purposes.
+## Default Item Behaviors
 
 ???+ example "Default Item Behaviors"
 
@@ -54,6 +51,21 @@ purposes.
         # A list of effects to apply to the player when this food is consumed.
         effects: []
         ```
+
+        ??? info "Saturation & Nutrition"
+
+            This is how the `saturation_modifier` and `nutrition` value affect your player's food level and saturation:
+            ```kotlin title="foodLevel"
+            min(player.foodLevel + options.nutrition, 20)
+            ```
+            ```kotlin title="saturation"
+            min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
+            ```
+
+            !!! info
+
+                You can find the `nutrition` and `saturationModifier` for vanilla Minecraft items by decompiling the mojang-mapped
+                class `net.minecraft.world.food.Foods`.
 
         ??? example "Example Effect"
 
@@ -232,6 +244,8 @@ purposes.
     Since hardcoding those values is strongly discouraged, you need to opt-in via the `@OptIn(HardcodedMaterialOptions::class)` annotation.
 
 
+## Custom Item Behaviors
+
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
 your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
 pretty self-explanatory. Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
@@ -267,7 +281,24 @@ class JetpackBehavior(
     
     Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
 
-## Item data
+### ItemBehaviorFactory & MaterialOptions
 
-If you need to store or retrieve data, use the ``ItemStack.storeData``, ``ItemStack.retrieveData`` and ``ItemStack.retrieveDataOrNull`` 
-functions.
+If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
+to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(ItemNovaMaterial)`
+function. Here, you can create an instance of your `ItemBehavior` based on the `ItemNovaMaterial` that is passed to the function.
+
+With `MaterialOptions` and `ConfigAccess`, you easily create config-reloadable properties for your item behavior.
+Here is an example of how we implement
+[ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L151-L154) and
+[MaterialOptions / ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
+for food items.
+
+## Item Data
+
+If you need to store or retrieve data from an `ItemStack`, call `ItemStack.novaCompound` to retrieve the CBF Compound.
+There, you can store any data you want.
+
+!!! tip
+
+    Make sure to check out the CBF documentation for more information.  
+    [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
