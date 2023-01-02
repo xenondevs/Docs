@@ -54,7 +54,7 @@ Item behaviors are used to add functionality to items. There are some default im
 
         ??? info "Saturation & Nutrition"
 
-            This is how the `saturation_modifier` and `nutrition` value affect your player's food level and saturation:
+            This is how the `saturation_modifier` and `nutrition` value affects your player's food level and saturation:
             ```kotlin title="foodLevel"
             min(player.foodLevel + options.nutrition, 20)
             ```
@@ -62,10 +62,8 @@ Item behaviors are used to add functionality to items. There are some default im
             min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
             ```
 
-            !!! info
-
-                You can find the `nutrition` and `saturationModifier` for vanilla Minecraft items by decompiling the mojang-mapped
-                class `net.minecraft.world.food.Foods`.
+            You can find the `nutrition` and `saturationModifier` for vanilla items by decompiling the mojang-mapped
+            class `net.minecraft.world.food.Foods`.
 
         ??? example "Example Effect"
 
@@ -248,31 +246,35 @@ Item behaviors are used to add functionality to items. There are some default im
 
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
 your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
-pretty self-explanatory. Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
+pretty self-explanatory.
 
-```kotlin
-class JetpackBehavior(
-    private val tier: JetpackTier
-) : ItemBehavior() {
-    
-    override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
-        if (event.equipMethod == EquipMethod.BREAK) {
-            event.isCancelled = true
-        } else setJetpack(player, equipped)
-    }
-    
-    private fun setJetpack(player: Player, state: Boolean) {
-        if (state) {
-            AttachmentManager.addAttachment(player, tier.attachmentType)
-            AbilityManager.giveAbility(player, tier.abilityType)
-        } else {
-            AttachmentManager.removeAttachment(player, tier.attachmentType)
-            AbilityManager.takeAbility(player, tier.abilityType)
+??? example "Example Custom Item Behavior"
+
+    Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
+
+    ```kotlin title="JetpackBehavior.kt"
+    class JetpackBehavior(
+        private val tier: JetpackTier
+    ) : ItemBehavior() {
+        
+        override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
+            if (event.equipMethod == EquipMethod.BREAK) {
+                event.isCancelled = true
+            } else setJetpack(player, equipped)
         }
+        
+        private fun setJetpack(player: Player, state: Boolean) {
+            if (state) {
+                AttachmentManager.addAttachment(player, tier.attachmentType)
+                AbilityManager.giveAbility(player, tier.abilityType)
+            } else {
+                AttachmentManager.removeAttachment(player, tier.attachmentType)
+                AbilityManager.takeAbility(player, tier.abilityType)
+            }
+        }
+        
     }
-    
-}
-```
+    ```
 
 !!! bug "Modifying item display name, lore and other attributes"
 
@@ -281,16 +283,16 @@ class JetpackBehavior(
     
     Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
 
-### ItemBehaviorFactory & MaterialOptions
+### ItemBehaviorFactory & MaterialOptions / ConfigAccess
 
 If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
 to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(ItemNovaMaterial)`
 function. Here, you can create an instance of your `ItemBehavior` based on the `ItemNovaMaterial` that is passed to the function.
 
-With `MaterialOptions` and `ConfigAccess`, you easily create config-reloadable properties for your item behavior.
+With `ConfigAccess`, you easily create a class that houses config-reloadable properties for your item behavior.  
 Here is an example of how we implement
 [ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L151-L154) and
-[MaterialOptions / ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
+[ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
 for food items.
 
 ## Item Data
