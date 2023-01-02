@@ -129,6 +129,8 @@ purposes.
         attack_damage: 6
         # The attack speed
         attack_speed: 2.0
+        # The knockback bonus
+        knockback_bonus: 1
         # If sweep attacks can be performed with this tool
         can_sweep_attack: true
         # If this tool can break blocks in creative
@@ -164,15 +166,16 @@ purposes.
         
         ```yaml title="configs/example_item.yml"
         # The enchantment value
-        enchantment_value: 
+        enchantment_value: 10 # (1)!
         # The enchantment categories
-        enchantment_categories: ["weapon", "breakable"]
+        enchantment_categories: ["weapon", "breakable"] # (2)!
         ```
-
-        ??? example "Available enchantment categories"
-
-            `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`, `digger`, `fishing_rod`, `trident`,
-            `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
+        
+        1. The enchantment value of the item. This value defines how enchantable an item is.
+           A higher enchantment value means more secondary and higher-level enchantments.
+        2. The enchantment categories of the item. This defines which enchantments can be applied to this item.  
+           Available enchantment categories: `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`,
+           `digger`, `fishing_rod`, `trident`, `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
 
     === "Stripping"
 
