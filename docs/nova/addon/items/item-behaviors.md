@@ -172,7 +172,8 @@ purposes.
         ```
         
         1. The enchantment value of the item. This value defines how enchantable an item is.
-           A higher enchantment value means more secondary and higher-level enchantments.
+           A higher enchantment value means more secondary and higher-level enchantments.  
+           Vanilla enchantment values: wood: `15`, stone: `5`, iron: `14`, diamond: `10`, gold: `22`, netherite: `15`
         2. The enchantment categories of the item. This defines which enchantments can be applied to this item.  
            Available enchantment categories: `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`,
            `digger`, `fishing_rod`, `trident`, `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
