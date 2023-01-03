@@ -2,9 +2,8 @@
 
 ## Creating your first material
 
-To start of open the newly created ``materials.json`` file. This file will contain all materials needed by your addon.
-Both
-items and blocks are described in this file. So let's create a simple ruby item. We can use minecraft's [old unused ruby
+To start off, open the newly created ``materials.json`` file. This file will contain all materials needed by your addon.
+Both items and blocks are described in this file. So let's create a simple ruby item. We can use minecraft's [old unused ruby
 texture](https://i.imgur.com/VW3UMqh.png).
 
 We just have to add it to our materials file:

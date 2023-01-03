@@ -1,5 +1,4 @@
 # Creating Armor
-
 ## Registering an Armor Texture
 
 In order to register an armor texture, you'll first need to create a `armor.json` in `assets/`:  
@@ -34,24 +33,24 @@ Then, create an armor entry:
 6. (optional) The frames per second of the animation, for the case that this is an animated armor texture.
    This value is optional and defaults to `0`.
 
-### Higher Resolution Armor Textures
+## Higher Resolution Armor Textures
 
 You can create armor textures of higher resolutions, as long as the aspect ratio is 2:1.  
 If you do this, make sure that all layers (including emissivity maps) are of the same resolution.
 
-### Animated Armor Textures
+## Animated Armor Textures
 
 You can create animated armor textures by creating an animated texture, similar to how block and item textures are animated.
 If you create an animated texture, make sure that the `interpolation` and `fps` properties are set and that all layers
 (including emissivity maps) have the same number of frames.
 
-### Compatibility with client-side rendering mods
+## Compatibility with client-side rendering mods
 
-#### OptiFine
+### OptiFine
 Custom armor can be rendered when using [OptiFine](https://optifine.net), however, the emissivity maps will not be used.  
 The framerate of animated armor will be capped at 20 FPS.
 
-#### Iris
+### Iris
 To use custom armor with [Iris](https://irisshaders.net/), it is required to install
 [CITResewn](https://www.curseforge.com/minecraft/mc-mods/cit-resewn) for custom armor and
 [Animatica](https://www.curseforge.com/minecraft/mc-mods/animatica) for animated armor textures

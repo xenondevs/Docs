@@ -245,43 +245,73 @@ Item behaviors are used to add functionality to items. There are some default im
 ## Custom Item Behaviors
 
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
-your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
-pretty self-explanatory.
+your own. Just create a new class and extend ``ItemBehavior``. Instead of registering event handlers, you can override
+the `handle...()` functions, which are called when something is done with an `ItemStack` of a material with that behavior.
 
-??? example "Example Custom Item Behavior"
+### `val vanillaMaterialProperties`
 
-    Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
+A `Provider` for a list of `VanillaMaterialProperty`s.  
+Vanilla material properties define what properties the item should have client-side. Based on the given properties,
+a corresponding vanilla material will be used. Nova will always try to find a vanilla material with the exact same
+properties as requested. If there is no such material, Nova might also choose a vanilla material with more vanilla
+material properties. If there is no material that has all requested properties, an exception will be thrown.
 
-    ```kotlin title="JetpackBehavior.kt"
-    class JetpackBehavior(
-        private val tier: JetpackTier
-    ) : ItemBehavior() {
-        
-        override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
-            if (event.equipMethod == EquipMethod.BREAK) {
-                event.isCancelled = true
-            } else setJetpack(player, equipped)
-        }
-        
-        private fun setJetpack(player: Player, state: Boolean) {
-            if (state) {
-                AttachmentManager.addAttachment(player, tier.attachmentType)
-                AbilityManager.giveAbility(player, tier.abilityType)
-            } else {
-                AttachmentManager.removeAttachment(player, tier.attachmentType)
-                AbilityManager.takeAbility(player, tier.abilityType)
-            }
-        }
-        
-    }
-    ```
+These are the available vanilla material properties:
 
-!!! bug "Modifying item display name, lore and other attributes"
+| Property Name                 | Effect                                                                   |
+|-------------------------------|--------------------------------------------------------------------------|
+| `DAMAGEABLE`                  | The item has a durability bar.                                           |
+| `CREATIVE_NON_BLOCK_BREAKING` | The item cannot break blocks in creative mode.                           |
+| `CONSUMABLE_NORMAL`           | The item can be consumed normally.                                       |
+| `CONSUMABLE_ALWAYS`           | The item can always be consumed.                                         |
+| `CONSUMABLE_FAST`             | The item can be consumed fast, the eating process start without a delay. |
+| `HELMET`                      | The item can render a custom helmet texture.                             |
+| `CHESTPLATE`                  | The item can render a custom chestplate texture.                         |
+| `LEGGINGS`                    | The item can render a custom leggings texture.                           |
+| `BOOTS`                       | The item can render a custom boots texture.                              |
 
-    Make sure to not update an items lore or display name in the ``modifyItemBuilder`` method,
-    always use the ``updatePacketItemData`` methods.
-    
-    Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
+### `val attributeModifiers`
+
+A `Provider` for a list of `AttributeModifier`s.  
+
+```kotlin title="Example Attribute Modifiers"
+override val attributeModifiers = provider(listOf(
+    AttributeModifier(
+        name = "Example Attribute Modifier (${novaMaterial.id}})", // (1)!
+        attribute = Attributes.MOVEMENT_SPEED, // (2)!
+        operation = Operation.MULTIPLY_TOTAL, // (3)!
+        value = 0.1, // (4)!
+        showInLore = true, // (5)!
+        EquipmentSlot.MAINHAND // (6)!
+    )
+))
+```
+
+1. The name of the attribute modifier. This is also used to create a `UUID` for your `AttributeModifier` to distinguish
+   it from other `AttributeModifier`s. It is important that different `AttributeModifier`s have different `UUID`s.
+2. The attribute that should be modified.
+3. The operation that should be done.
+4. The value that should be used for the operation. In this case, the movement speed will be increased by 10%.
+5. Whether the attribute modifier should be shown in the `ItemStack`'s lore.
+6. The equipment slot(s) that this attribute modifier should be applied to.
+
+### `fun modifyItemBuilder`
+
+This function is called when an `ItemBuilder` is created for an `ItemStack` of a material with this behavior.  
+Here, you can add additional NBT data to the `ItemStack` by calling `ItemBuilder.addModifer`.
+
+!!! bug "Modifying display name, lore and other attributes"
+
+    Do not use this method to modify the item's display name, lore, or other properties that are not required for the item to work server-side.  
+    For that, use the `updatePacketItemData` function instead.
+
+### `fun updatePacketItemData`
+
+This method is called every time a packet that includes an `ItemStack` of a material with this `ItemBehavior` is sent to a player.  
+Here, you can customize how the item is displayed for the player. Using the given `PacketItemData`, you can modify things
+like the display name, lore (normal and advanced tooltips), the durability bar and more.
+
+Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
 
 ### ItemBehaviorFactory & MaterialOptions / ConfigAccess
 

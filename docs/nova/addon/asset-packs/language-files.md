@@ -1,4 +1,4 @@
-# Language files
+# Language Files
 
 Everything in Nova has to be localized which is why language files are very important. To start off, create a folder
 called``lang`` in your ``assets`` root folder. Here you can create language files for your addon. The format for these

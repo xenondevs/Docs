@@ -20,7 +20,7 @@ You can also use `basicClientsideProvider` and `clientsideProvider`, which are b
 To understand the difference between a normal (server-side) and a client-side item, you first need to understand how custom
 items are handled in Nova.  
 In order to be extremely flexible when it comes to changing custom model data, the underlying vanilla material, the lore
-format of the item or its display name, Nova items do not store this information at all.
+format of the item or its display name, Nova's ItemStacks do not store this information at all.
 All of these values are actually only applied on packet level, this can be observed by running the command
 `/data get entity @p SelectedItem` while holding an item from Nova: its material will always be `shulker_shell` and it
 won't have any custom model data, display name or lore, even though it has one for your game.  
