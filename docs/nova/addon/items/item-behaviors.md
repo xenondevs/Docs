@@ -254,7 +254,7 @@ A `Provider` for a list of `VanillaMaterialProperty`s.
 Vanilla material properties define what properties the item should have client-side. Based on the given properties,
 a corresponding vanilla material will be used. Nova will always try to find a vanilla material with the exact same
 properties as requested. If there is no such material, Nova might also choose a vanilla material with more vanilla
-material properties. If there is no material that has all requested properties, an exception will be thrown.
+material properties. If there is no material that has all requested properties, properties of low importance will be ignored.
 
 These are the available vanilla material properties:
 
@@ -269,6 +269,7 @@ These are the available vanilla material properties:
 | `CHESTPLATE`                  | The item can render a custom chestplate texture.                         |
 | `LEGGINGS`                    | The item can render a custom leggings texture.                           |
 | `BOOTS`                       | The item can render a custom boots texture.                              |
+| `FIRE_RESISTANT`              | The item will not catch on fire.                                         |
 
 ### `val attributeModifiers`
 
