@@ -93,22 +93,9 @@ Item behaviors are used to add functionality to items. There are some default im
     === "Wearable"
 
         Allows you to make an item that can be equipped in a players armor slots.
-        
-        ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable)
-        ```
-
-        ```yaml title="configs/example_item.yml"
-        armor_type: CHESTPLATE
-        armor: 8.0
-        armor_toughness: 3.0
-        knockback_resistance: 2.0
-        ```
-
-        If you don't want to make the armor type configurable:
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE))
+        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE, Sound.ITEM_ARMOR_EQUIP_DIAMOND))
         ```
 
         ```yaml title="configs/example_item.yml"
