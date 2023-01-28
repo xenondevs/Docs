@@ -322,7 +322,7 @@ Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the g
     }
     ```
 
-== "Kotlin"
+=== "Kotlin"
 
     ```kotlin title="Example"
     InSquarePlacement.spread()
@@ -440,7 +440,7 @@ Offsets the given position by the provided [int provider's](#int-providers) valu
 Either returns the given position or empty. The chance of returning the position is determined by the given chance and
 calculated via `1 / chance`.
 
- === "Json"
+=== "Json"
 
     | Name     | Description                                                            |
     |----------|------------------------------------------------------------------------|
