@@ -7,10 +7,11 @@
     java agents and that the `use_agent` option is set to `true` in Nova's `config.yml` file.
 
 Nova's worldgen is completely based on [Minecraft's custom worldgen format](https://minecraft.fandom.com/wiki/Custom_world_generation) with
-some additions. Before you start, make sure to create a `data/worldgen` directory in your addon's resources folder. This is where
-all your worldgen files will be stored.
+some additions. However, you can also register everything worldgen-related in code if you don't want to use Json. If you 
+do decide to use Json files, make sure to create a `data/worldgen` directory in your addon's resources folder before you 
+start. This is where all your worldgen files will be stored.
 
-Below you'll find a quick overview of the format and how to use it. Check the sidebar for more detailed information.
+Below you'll find a quick overview of the format how to use it. Check the sidebar for more detailed information.
 
 ### Structures
 

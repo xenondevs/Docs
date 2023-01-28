@@ -3,13 +3,14 @@
 A placed feature determines where and how a configured feature will be placed. Placed features work via placement modifiers 
 that can be applied to a configured feature. 
 
-You can create placed feature files in the `data/worldgen/placed_feature` directory.
+You can create placed feature files in the `data/worldgen/placed_feature` directory or register them in the `FeatureRegistry`
+in code.
 
 ## Structure
 
 `feature`
 
-:   The configured features id
+:   The configured feature's id
 
 `placement`
 
@@ -17,41 +18,65 @@ You can create placed feature files in the `data/worldgen/placed_feature` direct
 
 Here's an example of Minecraft's large diamond ore placed feature: 
 
-```json title="ore_diamond_large.json"
-{
-  "feature": "minecraft:ore_diamond_large",
-  "placement": [
-    {
-      "type": "minecraft:rarity_filter", // (1)
-      "chance": 9
-    },
-    {
-      "type": "minecraft:in_square" // (2)
-    },
-    {
-      "type": "minecraft:height_range", // (3)
-      "height": {
-        "type": "minecraft:trapezoid", // (4)
-        "max_inclusive": {
-          "above_bottom": 80
-        },
-        "min_inclusive": {
-          "above_bottom": -80
-        }
-      }
-    },
-    {
-      "type": "minecraft:biome" // (5)
-    }
-  ]
-}
-```
+=== "Json"
 
-1. Only give the feature a chance of ${{}^{1}\!/_{9}}$ to generate
-2. Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the initial position
-3. Sets the y-coordinate to a value provided by the trapezoid height provider
-4. Provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
-5. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
+    ```json title="ore_diamond_large.json"
+    {
+      "feature": "minecraft:ore_diamond_large",
+      "placement": [
+        {
+          "type": "minecraft:rarity_filter", // (1)!
+          "chance": 9
+        },
+        {
+          "type": "minecraft:in_square" // (2)!
+        },
+        {
+          "type": "minecraft:height_range", // (3)!
+          "height": {
+            "type": "minecraft:trapezoid", // (4)!
+            "max_inclusive": {
+              "above_bottom": 80
+            },
+            "min_inclusive": {
+              "above_bottom": -80
+            }
+          }
+        },
+        {
+          "type": "minecraft:biome" // (5)!
+        }
+      ]
+    }
+    ```
+
+    1. Only give the feature a chance of ${{}^{1}\!/_{9}}$ to generate
+    2. Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the initial position
+    3. Sets the y-coordinate to a value provided by the trapezoid height provider
+    4. Provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
+    5. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
+
+=== "Kotlin"
+
+    ```kotlin
+    val ORE_DIAMOND_LARGE_PLACEMENT = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "ore_diamond_large",
+        ORE_DIAMOND_LARGE_CONFIG,
+        listOf(
+            RarityFilter.onAverageOnceEvery(9), // (1)!
+            InSquarePlacement.spread(), // (2)!
+            HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), // (3)!
+            BiomeFilter.biome() // (4)!
+        )
+    )
+    ```
+
+    1. Only give the feature a chance of ${{}^{1}\!/_{9}}$ to generate
+    2. Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the initial position
+    3. Sets the y-coordinate to a value provided by the trapezoid height provider.  
+       `triangle` is a shortcut for the trapezoid height provider with a plateau of width 0. This provider provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
+    4. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
 
 ## Placement Modifiers
 
