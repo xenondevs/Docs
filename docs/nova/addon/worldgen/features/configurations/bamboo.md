@@ -6,20 +6,54 @@ The `bamboo` feature is used to add bamboo to the world.
 
 Bamboo features can only be configured to have a specific probability of spawning a podzol disk under the bamboo.
 
+=== "Kotlin"
+
+    In code, the configuration is done via the `ProbabilityFeatureConfiguration` class. The constructor takes a single 
+    `Float` parameter ($[0.0;1.0]$) which determines the probability of spawning a podzol disk under the bamboo.
+
 === "Json"
 
     | Option        | Type                            | Description                                                            |
     |---------------|---------------------------------|------------------------------------------------------------------------|
     | `probability` | A `float` in the range $[0.0;1.0]$. | Determines the probability of spawning a podzol disk under the bamboo. |
 
-=== "Kotlin"
-
-    In code, the configuration is done via the `ProbabilityFeatureConfiguration` class. The constructor takes a single 
-    `Float` parameter ($[0.0;1.0]$) which determines the probability of spawning a podzol disk under the bamboo.
 
 ## Example
 
 As an example, here's the configured and placed feature for the bamboo in the jungle.
+
+=== "Kotlin"
+
+    ```kotlin title="ConfiguredFeatures.kt"
+    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "bamboo_some_podzol",
+        Feature.BAMBOO,
+        ProbabilityFeatureConfiguration(0.2f) // (1)!
+    )
+    ```
+
+    1. Gives a $20\%$ chance of spawning a podzol disk under the bamboo.
+
+    ```kotlin title="PlacedFeatures.kt"
+    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "bamboo_some_podzol",
+        ConfiguredFeatures.BAMBOO_SOME_PODZOL,
+        listOf(
+            NoiseBasedCountPlacement.of(170, 80.0, 0.3), // (1)!
+            InSquarePlacement.spread(), // (2)!
+            HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), // (3)!
+            BiomeFilter.biome() // (4)!
+        )
+    )
+    ```
+
+    1. Use noise to determine bamboo amount.   
+       See [Noise-based count placement](../placed-feature.md#minecraftnoise_based_count) for more information.
+    2. Spread the tries in a square.
+    3. Make sure to place the bamboo on the world surface.
+    4. Only place the bamboo in biomes that have bamboo.
 
 === "Json"
 
@@ -54,39 +88,6 @@ As an example, here's the configured and placed feature for the bamboo in the ju
         }
       ]
     }
-    ```
-
-    1. Use noise to determine bamboo amount.   
-       See [Noise-based count placement](../placed-feature.md#minecraftnoise_based_count) for more information.
-    2. Spread the tries in a square.
-    3. Make sure to place the bamboo on the world surface.
-    4. Only place the bamboo in biomes that have bamboo.
-
-=== "Kotlin"
-
-    ```kotlin title="ConfiguredFeatures.kt"
-    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "bamboo_some_podzol",
-        Feature.BAMBOO,
-        ProbabilityFeatureConfiguration(0.2f) // (1)!
-    )
-    ```
-
-    1. Gives a $20\%$ chance of spawning a podzol disk under the bamboo.
-
-    ```kotlin title="PlacedFeatures.kt"
-    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "bamboo_some_podzol",
-        ConfiguredFeatures.BAMBOO_SOME_PODZOL,
-        listOf(
-            NoiseBasedCountPlacement.of(170, 80.0, 0.3), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
     ```
 
     1. Use noise to determine bamboo amount.   

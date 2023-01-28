@@ -18,6 +18,29 @@ in code.
 
 Here's an example of Minecraft's large diamond ore placed feature: 
 
+=== "Kotlin"
+
+    ```kotlin
+    val ORE_DIAMOND_LARGE_PLACEMENT = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "ore_diamond_large",
+        ORE_DIAMOND_LARGE_CONFIG, // (1)!
+        listOf(
+            RarityFilter.onAverageOnceEvery(9), // (2)!
+            InSquarePlacement.spread(), // (3)!
+            HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), // (4)!
+            BiomeFilter.biome() // (5)!
+        )
+    )
+    ```
+
+    1. The configured feature to place
+    2. Only give the feature a chance of ${{}^{1}\!/_{9}}$ to generate
+    3. Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the initial position
+    4. Sets the y-coordinate to a value provided by the trapezoid height provider.  
+       `triangle` is a shortcut for the trapezoid height provider with a plateau of width 0. This provider provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
+    5. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
+
 === "Json"
 
     ```json title="ore_diamond_large.json"
@@ -56,29 +79,6 @@ Here's an example of Minecraft's large diamond ore placed feature:
     4. Provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
     5. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
 
-=== "Kotlin"
-
-    ```kotlin
-    val ORE_DIAMOND_LARGE_PLACEMENT = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "ore_diamond_large",
-        ORE_DIAMOND_LARGE_CONFIG, // (1)!
-        listOf(
-            RarityFilter.onAverageOnceEvery(9), // (2)!
-            InSquarePlacement.spread(), // (3)!
-            HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), // (4)!
-            BiomeFilter.biome() // (5)!
-        )
-    )
-    ```
-
-    1. The configured feature to place
-    2. Only give the feature a chance of ${{}^{1}\!/_{9}}$ to generate
-    3. Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the initial position
-    4. Sets the y-coordinate to a value provided by the trapezoid height provider.  
-       `triangle` is a shortcut for the trapezoid height provider with a plateau of width 0. This provider provides a y-coordinate in the range $[-80;80]$ below/above the bedrock layer via an isosceles trapezoidal distribution. Since blocks can't be placed under the bedrock layer, this again halves the chance of the feature generating.
-    5. Only generates the feature in biomes that contain this feature <small>(the `in_square` placement modifiers might have generated a position in a different biome).</small>
-
 ## Placement Modifiers
 
 A Placement modifier takes an initial position and returns empty, one or more block positions. These modifiers are chained,
@@ -106,6 +106,11 @@ modifiers can be found below.
 Returns the position if the configured feature is registered in the biome's `feature` list at the given position. Empty
 otherwise.
 
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    BiomeFilter.biome()
+    ```
 
 === "Json"
 
@@ -115,15 +120,15 @@ otherwise.
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    BiomeFilter.biome()
-    ```
-
 ### `minecraft:block_predicate_filter`
 
 Returns the position if the [block predicate](#block-predicates) matches the block at the given position. Empty otherwise.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    BlockPredicateFilter.forPredicate(BlockPredicate.matchesTag(BlockTags.STONE_ORE_REPLACEABLES))
+    ```
 
 === "Json"
 
@@ -139,12 +144,6 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
         "tag": "minecraft:stone_ore_replaceables"
       }
     }
-    ```
-
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    BlockPredicateFilter.forPredicate(BlockPredicate.matchesTag(BlockTags.STONE_ORE_REPLACEABLES))
     ```
 
 ### `minecraft:carving_mask`
@@ -217,6 +216,17 @@ Returns the given position `count` times.
 Scans for blocks matching the given [block predicate](#block-predicates) up/down until it finds a matching block or the
 max number of steps is reached. If no matching block is found, empty is returned.
 
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    EnvironmentScanPlacement.scanningFor(
+        Direction.DOWN, // Search direction
+        BlockPredicate.solid(), // Target predicate
+        BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.WATER), // Allowed search predicate
+        12 // Max steps
+    )
+    ```
+
 === "Json"
 
     | Name                                  | Description                                                                                                                                   |
@@ -244,20 +254,15 @@ max number of steps is reached. If no matching block is found, empty is returned
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    EnvironmentScanPlacement.scanningFor(
-        Direction.DOWN, // Search direction
-        BlockPredicate.solid(), // Target predicate
-        BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.WATER), // Allowed search predicate
-        12 // Max steps
-    )
-    ```
-
 ### `minecraft:height_range`
 
 Takes the input position and sets the y coordinate to a value provided by the given [height provider](../height-provider.md).
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))
+    ```
 
 === "Json"
 
@@ -280,16 +285,16 @@ Takes the input position and sets the y coordinate to a value provided by the gi
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))
-    ```
-
 ### `minecraft:heightmap`
 
 Takes the input position and sets the y coordinate to one block above the heightmap at the given position. Check out the 
 [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+    ```
 
 === "Json"
 
@@ -304,15 +309,15 @@ Takes the input position and sets the y coordinate to one block above the height
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
-    ```
-
 ### `minecraft:in_square`
 
 Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the given position.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    InSquarePlacement.spread()
+    ```
 
 === "Json"
 
@@ -320,12 +325,6 @@ Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the g
     {
       "type": "minecraft:in_square"
     }
-    ```
-
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    InSquarePlacement.spread()
     ```
 
 ### `minecraft:noise_based_count`
@@ -336,6 +335,16 @@ amount of times the position is returned is determined by the following code:
 double noise = Biome.BIOME_INFO_NOISE.getValue((double)pos.getX() / noiseFactor, (double)pos.getZ() / noiseFactor, false);
 int n = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
 ```
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    NoiseBasedCountPlacement.of(
+        160, // Noise to count ratio
+        80.0, // Noise factor
+        .3 // Noise offset
+    )
+    ```
 
 === "Json"
 
@@ -354,16 +363,6 @@ int n = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    NoiseBasedCountPlacement.of(
-        160, // Noise to count ratio
-        80.0, // Noise factor
-        .3 // Noise offset
-    )
-    ```
-
 ### `minecraft:noise_threshold_count`
 
 Returns the given position multiple times. If the noise value at the given position is below the given threshold, the
@@ -376,6 +375,16 @@ if (noise < threshold) {
   return above_noise;
 }
 ```
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    NoiseThresholdCountPlacement.of(
+        -0.8, // Noise level
+        5, // Below noise
+        10 // Above noise
+    )
+    ```
 
 === "Json"
 
@@ -394,19 +403,15 @@ if (noise < threshold) {
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    NoiseThresholdCountPlacement.of(
-        -0.8, // Noise level
-        5, // Below noise
-        10 // Above noise
-    )
-    ```
-
 ### `minecraft:random_offset`
 
 Offsets the given position by the provided [int provider's](#int-providers) values.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    RandomOffsetPlacement.of(ConstantInt.ZERO, UniformInt.of(3, 9))
+    ```
 
 === "Json"
 
@@ -429,16 +434,16 @@ Offsets the given position by the provided [int provider's](#int-providers) valu
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    RandomOffsetPlacement.of(ConstantInt.ZERO, UniformInt.of(3, 9))
-    ```
-
 ### `minecraft:rarity_filter`
 
 Either returns the given position or empty. The chance of returning the position is determined by the given chance and
 calculated via `1 / chance`.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    RarityFilter.onAverageOnceEvery(9)
+    ```
 
 === "Json"
 
@@ -453,16 +458,20 @@ calculated via `1 / chance`.
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    RarityFilter.onAverageOnceEvery(9)
-    ```
-
 ### `minecraft:surface_relative_threshold_filter`
 
 Returns the given position if the surface height at the given position is inside the specified range. Otherwise, returns empty.
 Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    SurfaceRelativeThresholdFilter.of(
+        Heightmap.Types.OCEAN_FLOOR_WG,
+        Int.MIN_VALUE, // min
+        -2 // max
+    )
+    ```
 
 === "Json"
 
@@ -480,19 +489,15 @@ Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    SurfaceRelativeThresholdFilter.of(
-        Heightmap.Types.OCEAN_FLOOR_WG,
-        Int.MIN_VALUE, // min
-        -2 // max
-    )
-    ```
-
 ### `minecraft:surface_water_depth_filter`
 
 If the amount of motion-blocking blocks under the surface is less than/equal to `max_water_depth`, returns the given position. Otherwise, returns empty.
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    SurfaceWaterDepthFilter.forMaxDepth(2)
+    ```
 
 === "Json"
 
@@ -505,12 +510,6 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
       "type": "minecraft:surface_water_depth_filter",
       "max_water_depth": 2
     }
-    ```
-
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    SurfaceWaterDepthFilter.forMaxDepth(2)
     ```
 
 # TODO \/ move to different section \/
