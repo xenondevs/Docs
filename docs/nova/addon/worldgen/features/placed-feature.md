@@ -82,7 +82,7 @@ Here's an example of Minecraft's large diamond ore placed feature:
 ## Placement Modifiers
 
 A Placement modifier takes an initial position and returns empty, one or more block positions. These modifiers are chained,
-and pretty much act like a lot of `flatMap` calls. In fact, that's exactly what Minecraft internally does:
+and pretty much act like a lot of `flatMap` calls. In fact, that's exactly what Minecraft does internally:
 
 ```java title="PlacedFeature.java"
 private boolean placeWithContext(PlacementContext ctx, RandomSource random, BlockPos pos) {
@@ -151,6 +151,12 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
 
 Returns all positions in the given position's chunk that were carved out by a [carver](../carvers.md).
 
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    CarvingMaskPlacement.forStep(GenerationStep.Carving.AIR)
+    ```
+
 === "Json"
 
     | Name   | Description                               |
@@ -164,15 +170,19 @@ Returns all positions in the given position's chunk that were carved out by a [c
     }
     ```
 
-=== "Kotlin"
-
-    ```kotlin title="Example"
-    CarvingMaskPlacement.forStep(GenerationStep.Carving.AIR)
-    ```
-
 ### `minecraft:count`
 
 Returns the given position `count` times.
+
+=== "Kotlin"
+
+    ```kotlin title="Example - Simple"
+    CountPlacement.of(10)
+    ```
+
+    ```kotlin title="Example - Int Provider"
+    CountPlacement.of(UniformInt.of(1, 10))
+    ```
 
 === "Json"
 
@@ -196,16 +206,6 @@ Returns the given position `count` times.
         "max_inclusive": 10
       }
     }
-    ```
-
-=== "Kotlin"
-
-    ```kotlin title="Example - Simple"
-    CountPlacement.of(10)
-    ```
-
-    ```kotlin title="Example - Int Provider"
-    CountPlacement.of(UniformInt.of(1, 10))
     ```
 
 ### `minecraft:count_on_every_layer`
