@@ -6,17 +6,12 @@ The `basalt_columns` feature allows you to add basalt columns to the world.
 
 The `basalt_columns` feature has the following configuration options:
 
-=== "Kotlin"
+| Option   | Type                                                                              | Description                                                                                        |
+|----------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `reach`  | An [`IntProvider`](../placed-feature.md#int-providers) whose value is in $[0;3]$. | Determines the maximum radius from the center of the current column cluster.                       |
+| `height` | An `IntProvider` whose value is in $[1;10]$.                                      | Determines the maximum height of the current column cluster. (Actual height is $\text{height} + 1$ |
 
-In code, the configuration is done via the `ColumnFeatureConfiguration` class. The constructor takes two [`IntProvider`](../placed-feature.md#int-providers)
-parameters, first for the maximum radius from the center of the current column cluster, and second for the maximum height of the current column cluster. (Actual height is $\text{height} + 1$
-
-=== "Json"
-
-    | Option   | Type                                                                              | Description                                                                                        |
-    |----------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-    | `reach`  | An [`IntProvider`](../placed-feature.md#int-providers) whose value is in $[0;3]$. | Determines the maximum radius from the center of the current column cluster.                       |
-    | `height` | An `IntProvider` whose value is in $[1;10]$.                                      | Determines the maximum height of the current column cluster. (Actual height is $\text{height} + 1$ |
+In code, the configuration is done via the `ColumnFeatureConfiguration` class.
 
 ## Example
 

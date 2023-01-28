@@ -6,17 +6,11 @@ The `bamboo` feature is used to add bamboo to the world.
 
 Bamboo features can only be configured to have a specific probability of spawning a podzol disk under the bamboo.
 
-=== "Kotlin"
+| Option        | Type                                | Description                                                            |
+|---------------|-------------------------------------|------------------------------------------------------------------------|
+| `probability` | A `float` in the range $[0.0;1.0]$. | Determines the probability of spawning a podzol disk under the bamboo. |
 
-    In code, the configuration is done via the `ProbabilityFeatureConfiguration` class. The constructor takes a single 
-    `Float` parameter ($[0.0;1.0]$) which determines the probability of spawning a podzol disk under the bamboo.
-
-=== "Json"
-
-    | Option        | Type                            | Description                                                            |
-    |---------------|---------------------------------|------------------------------------------------------------------------|
-    | `probability` | A `float` in the range $[0.0;1.0]$. | Determines the probability of spawning a podzol disk under the bamboo. |
-
+In code, the configuration is done via the `ProbabilityFeatureConfiguration` class.
 
 ## Example
 
