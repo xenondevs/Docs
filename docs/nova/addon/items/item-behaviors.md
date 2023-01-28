@@ -2,10 +2,7 @@
 
 Item behaviors are used to add functionality to items. There are some default implementations, but you can also create your own.
 
-As stated in the previous section, for consumable items you can either call ``NovaMaterial#registerFood`` or call
-``NovaMaterial#registerItem`` with the ``Consumable`` item behavior. This item behavior lets you specify the food options
-like the consumeTime, the nutrition and much more. However, there are more item behaviors that you can use for different
-purposes.
+## Default Item Behaviors
 
 ???+ example "Default Item Behaviors"
 
@@ -55,25 +52,50 @@ purposes.
         effects: []
         ```
 
+        ??? info "Saturation & Nutrition"
+
+            This is how the `saturation_modifier` and `nutrition` value affects your player's food level and saturation:
+            ```kotlin title="foodLevel"
+            min(player.foodLevel + options.nutrition, 20)
+            ```
+            ```kotlin title="saturation"
+            min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
+            ```
+
+            You can find the `nutrition` and `saturationModifier` for vanilla items by decompiling the mojang-mapped
+            class `net.minecraft.world.food.Foods`.
+
+        ??? example "Example Effect"
+
+            ```yaml
+            effects:
+            # A level 1 speed effect that lasts 10 seconds.
+            - type: speed # (1)!
+              duration: 200 # (2)!
+              amplifier: 0 # (3)!
+              ambient: true # (4)!
+              particles: true # (5)!
+              icon: true # (6)!
+            ```
+
+            1. The type of the effect.  
+               A list of all effect types can be found [here](https://minecraft.fandom.com/wiki/Effect#Effect_list).
+            2. The duration of the effect in ticks.
+            3. The amplifier of the effect. An amplifier of 0 is a level 1 effect.
+            4. Whether the effect is ambient or not.  
+               Default value: `true`
+            5. Whether the effect has particles or not.  
+               Default value: `true`
+            6. Whether the effect has an icon or not.  
+               Default value: `true`
+               
+
     === "Wearable"
 
         Allows you to make an item that can be equipped in a players armor slots.
-        
-        ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable)
-        ```
-
-        ```yaml title="configs/example_item.yml"
-        armor_type: CHESTPLATE
-        armor: 8.0
-        armor_toughness: 3.0
-        knockback_resistance: 2.0
-        ```
-
-        If you don't want to make the armor type configurable:
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE))
+        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE, Sound.ITEM_ARMOR_EQUIP_DIAMOND))
         ```
 
         ```yaml title="configs/example_item.yml"
@@ -104,6 +126,8 @@ purposes.
         attack_damage: 6
         # The attack speed
         attack_speed: 2.0
+        # The knockback bonus
+        knockback_bonus: 1
         # If sweep attacks can be performed with this tool
         can_sweep_attack: true
         # If this tool can break blocks in creative
@@ -139,15 +163,17 @@ purposes.
         
         ```yaml title="configs/example_item.yml"
         # The enchantment value
-        enchantment_value: 
+        enchantment_value: 10 # (1)!
         # The enchantment categories
-        enchantment_categories: ["weapon", "breakable"]
+        enchantment_categories: ["weapon", "breakable"] # (2)!
         ```
-
-        ??? example "Available enchantment categories"
-
-            `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`, `digger`, `fishing_rod`, `trident`,
-            `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
+        
+        1. The enchantment value of the item. This value defines how enchantable an item is.
+           A higher enchantment value means more secondary and higher-level enchantments.  
+           Vanilla enchantment values: wood: `15`, stone: `5`, iron: `14`, diamond: `10`, gold: `22`, netherite: `15`
+        2. The enchantment categories of the item. This defines which enchantments can be applied to this item.  
+           Available enchantment categories: `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`,
+           `digger`, `fishing_rod`, `trident`, `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
 
     === "Stripping"
 
@@ -203,42 +229,96 @@ purposes.
     Since hardcoding those values is strongly discouraged, you need to opt-in via the `@OptIn(HardcodedMaterialOptions::class)` annotation.
 
 
-There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
-your own. Just create a new class and extend ``ItemBehavior``. Here you can override a lot of methods, they should all be
-pretty self-explanatory. Here's an example of a custom item behavior we use for our [Jetpacks](https://www.spigotmc.org/resources/nova-addon-jetpacks.102714/) addon:
+## Custom Item Behaviors
 
-```kotlin
-class JetpackBehavior(
-    private val tier: JetpackTier
-) : ItemBehavior() {
-    
-    override fun handleEquip(player: Player, itemStack: ItemStack, equipped: Boolean, event: ArmorEquipEvent) {
-        if (event.equipMethod == EquipMethod.BREAK) {
-            event.isCancelled = true
-        } else setJetpack(player, equipped)
-    }
-    
-    private fun setJetpack(player: Player, state: Boolean) {
-        if (state) {
-            AttachmentManager.addAttachment(player, tier.attachmentType)
-            AbilityManager.giveAbility(player, tier.abilityType)
-        } else {
-            AttachmentManager.removeAttachment(player, tier.attachmentType)
-            AbilityManager.takeAbility(player, tier.abilityType)
-        }
-    }
-    
-}
+There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
+your own. Just create a new class and extend ``ItemBehavior``. Instead of registering event handlers, you can override
+the `handle...()` functions, which are called when something is done with an `ItemStack` of a material with that behavior.
+
+### `val vanillaMaterialProperties`
+
+A `Provider` for a list of `VanillaMaterialProperty`s.  
+Vanilla material properties define what properties the item should have client-side. Based on the given properties,
+a corresponding vanilla material will be used. Nova will always try to find a vanilla material with the exact same
+properties as requested. If there is no such material, Nova might also choose a vanilla material with more vanilla
+material properties. If there is no material that has all requested properties, properties of low importance will be ignored.
+
+These are the available vanilla material properties:
+
+| Property Name                 | Effect                                                                   |
+|-------------------------------|--------------------------------------------------------------------------|
+| `DAMAGEABLE`                  | The item has a durability bar.                                           |
+| `CREATIVE_NON_BLOCK_BREAKING` | The item cannot break blocks in creative mode.                           |
+| `CONSUMABLE_NORMAL`           | The item can be consumed normally.                                       |
+| `CONSUMABLE_ALWAYS`           | The item can always be consumed.                                         |
+| `CONSUMABLE_FAST`             | The item can be consumed fast, the eating process start without a delay. |
+| `HELMET`                      | The item can render a custom helmet texture.                             |
+| `CHESTPLATE`                  | The item can render a custom chestplate texture.                         |
+| `LEGGINGS`                    | The item can render a custom leggings texture.                           |
+| `BOOTS`                       | The item can render a custom boots texture.                              |
+| `FIRE_RESISTANT`              | The item will not catch on fire.                                         |
+
+### `val attributeModifiers`
+
+A `Provider` for a list of `AttributeModifier`s.  
+
+```kotlin title="Example Attribute Modifiers"
+override val attributeModifiers = provider(listOf(
+    AttributeModifier(
+        name = "Example Attribute Modifier (${novaMaterial.id}})", // (1)!
+        attribute = Attributes.MOVEMENT_SPEED, // (2)!
+        operation = Operation.MULTIPLY_TOTAL, // (3)!
+        value = 0.1, // (4)!
+        showInLore = true, // (5)!
+        EquipmentSlot.MAINHAND // (6)!
+    )
+))
 ```
 
-!!! bug "Modifying item display name, lore and other attributes"
+1. The name of the attribute modifier. This is also used to create a `UUID` for your `AttributeModifier` to distinguish
+   it from other `AttributeModifier`s. It is important that different `AttributeModifier`s have different `UUID`s.
+2. The attribute that should be modified.
+3. The operation that should be done.
+4. The value that should be used for the operation. In this case, the movement speed will be increased by 10%.
+5. Whether the attribute modifier should be shown in the `ItemStack`'s lore.
+6. The equipment slot(s) that this attribute modifier should be applied to.
 
-    Make sure to not update an items lore or display name in the ``modifyItemBuilder`` method,
-    always use the ``updatePacketItemData`` methods.
-    
-    Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
+### `fun modifyItemBuilder`
 
-## Item data
+This function is called when an `ItemBuilder` is created for an `ItemStack` of a material with this behavior.  
+Here, you can add additional NBT data to the `ItemStack` by calling `ItemBuilder.addModifer`.
 
-If you need to store or retrieve data, use the ``ItemStack.storeData``, ``ItemStack.retrieveData`` and ``ItemStack.retrieveDataOrNull`` 
-functions.
+!!! bug "Modifying display name, lore and other attributes"
+
+    Do not use this method to modify the item's display name, lore, or other properties that are not required for the item to work server-side.  
+    For that, use the `updatePacketItemData` function instead.
+
+### `fun updatePacketItemData`
+
+This method is called every time a packet that includes an `ItemStack` of a material with this `ItemBehavior` is sent to a player.  
+Here, you can customize how the item is displayed for the player. Using the given `PacketItemData`, you can modify things
+like the display name, lore (normal and advanced tooltips), the durability bar and more.
+
+Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
+
+### ItemBehaviorFactory & MaterialOptions / ConfigAccess
+
+If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
+to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(ItemNovaMaterial)`
+function. Here, you can create an instance of your `ItemBehavior` based on the `ItemNovaMaterial` that is passed to the function.
+
+With `ConfigAccess`, you easily create a class that houses config-reloadable properties for your item behavior.  
+Here is an example of how we implement
+[ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L151-L154) and
+[ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
+for food items.
+
+## Item Data
+
+If you need to store or retrieve data from an `ItemStack`, call `ItemStack.novaCompound` to retrieve the CBF Compound.
+There, you can store any data you want.
+
+!!! tip
+
+    Make sure to check out the CBF documentation for more information.  
+    [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }

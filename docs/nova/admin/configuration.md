@@ -128,3 +128,85 @@ For example, the default limit of range upgrades for the Pump from the Machines 
 upgrade_values:
   range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ]
 ```
+
+## Attribute Modifiers
+
+Every item configuration file can have an `attribute_modifiers` section.
+
+```yaml title="Structure of the attribute_modifiers section"
+attribute_modifiers:
+  <equipment_slot>: # (1)!
+  - attribute: <attribute> # (2)!
+    operation: <operation> # (3)!
+    value: <value> # (4)!
+    hidden: <hidden> # (5)!
+```
+
+1. The equipment slot that this item needs to be in for the attribute modifier to apply.  
+    Possible values: `mainhand`, `offhand`, `feet`, `legs`, `chest`, `head`
+2. The attribute to modify.  
+    Available attributes: `generic.maxHealth`, `generic.followRange`, `generic.knockbackResistance`, `generic.movementSpeed`,
+    `generic.flying_speed`, `generic.attackDamage`, `generic.attack_knockback`, `generic.attackSpeed`, `generic.armor`,
+    `generic.armorToughness`, `generic.luck`
+3. The operation to perform.  
+    Possible operations: `addition`, `multiply_base`, `multiply_total`
+4. The value to modify the attribute with.
+5. Whether the attribute should be hidden from the item's lore.  
+    Default: `false`
+
+??? example "Example configuration"
+
+    ```yaml
+    # The following configuration increases the player's attack damage by 5 if the item is held in the main hand
+    # and increases the movement speed by 10% for both the main hand and off hand.
+    
+    attribute_modifiers:
+      mainhand:
+      - attribute: generic.attack_damage
+        operation: addition
+        value: 5.0
+      offhand:
+      - attribute: generic.movement_speed
+        operation: multiply_base
+        value: 0.1
+      - attribute: generic.movement_speed
+        operation: multiply_base
+        value: 0.1
+    ```
+    
+    ![](https://i.imgur.com/TIjCNto.png)
+
+## Resource Filters
+
+Resource filters allow you to exclude certain files from the resource pack. They are configured in the main config
+under `resource_pack.generation.resource_filters`.
+
+```yaml
+resource_pack:
+  generation:
+    content_filters:
+    - stage: "" # (1)!
+      type: "" # (2)!
+      pattern_type: "" # (3)!
+      filter: "" # (4)!
+      directory: "" # (5)!
+```
+
+1. The stage at which the filter should be applied. Can be `asset_pack` or `resource_pack`.
+2. The type of the filter. Can be `whitelist` or `blacklist`.
+3. The pattern type of the `filter` field. Can be `regex` or `wildcard`.
+4. The filter pattern to match against. The `pattern_type` field determines how the pattern is interpreted.
+5. The directory to apply the filter to. This property is optional and defaults to the root directory.
+
+??? example "Example: Excluding all language files except en_us.json and de_de.json"
+
+    ```yaml
+    resource_pack:
+      generation:
+        resource_filters:
+        - stage: resource_pack
+          type: whitelist
+          pattern_type: regex
+          filter: minecraft\/lang\/(en_us|de_de).json
+          directory: minecraft/lang/
+    ```

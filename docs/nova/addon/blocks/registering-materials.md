@@ -42,7 +42,7 @@ breaking/placing custom blocks. Let's create an instance that can be broken with
 private val STONE = BlockOptions(
     3.0, // (1)!
     listOf(ToolCategory.PICKAXE), // (2)!
-    ToolLevel.STONE, // (3)!
+    ToolTier.STONE, // (3)!
     true, // (4)!
     SoundGroup.STONE, // (5)!
     Material.NETHERITE_BLOCK, // (6)!
@@ -52,31 +52,35 @@ private val STONE = BlockOptions(
 
 1. This is the hardness of the block. It determines how long it takes to break the block. This value currently doesn't affect explosions.
 2. A list of tool categories that are suitable to break this block. Can be empty.
-3. The minimum ``ToolLevel`` that is required to properly break this block (Like diamond for obsidian). Can be null.
+3. The minimum `ToolTier` that is required to properly break this block (Like diamond for obsidian). Can be null.
 4. Whether a tool is required to receive drops.
 5. The sound group to use for this block. Sound groups include sounds for hitting, breaking and placing a block as well as
    stepping and falling on a block. You can also create your own sound group with your own custom sounds.
-6. The break particles that spawn when the block is broken.
+6. The break particles that spawn when the block is broken. This is only relevant for armor stand based blocks, but since
+   you can't know if your block will end up being and armor stand block, you'll always have to set this value.
 7. Whether a break animation should be displayed while breaking the block.
 
 ## Registering the block
 
-Using the options specified above, you can now register your block material via `NovaMaterialRegistry#registerBlock` or
-`NovaMaterialRegistry#registerTileEntity`:  
+Using the options specified above, you can now register your block material via the builders obtained by calling
+`NovaMaterialRegistry#block` or `NovaMaterialRegistry#tileEntity`. Unlike item materials, block- and tile-entity materials
+can only be registered using the builder functions.
 
 ```kotlin
 // normal block
-val MY_BLOCK = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block", STONE)
+val MY_BLOCK = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).register()
 
 // normal directional block (North, East, South, West)
-val MY_BLOCK_1 = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block_1", STONE, properties = listOf(Directional.NORMAL))
+val MY_BLOCK_1 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.NORMAL).register()
 
 // normal directional block (North, East, South, West, Up, Down)
-val MY_BLOCK_2 = NovaMaterialRegistry.registerBlock(ExampleAddon, "example_block_2", STONE, properties = listOf(Directional.ALL))
+val MY_BLOCK_2 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.ALL).register()
 
 // directional tile entity block (North, East, South, West)
-val MY_TILE_ENTITY_1 = NovaMaterialRegistry.registerTileEntity(ExampleAddon, "example_tile_entity", STONE, ::ExampleTileEntity, properties = listOf(Directional.NORMAL))
+val MY_TILE_ENTITY_1 = NovaMaterialRegistry.tileEntity(ExampleAddon, "example_block", ::ExampleTileEntity).blockOptions(STONE).properties(Directional.NORMAL).register()
 ```
+
+Don't forget to call `register()` at the end of the builder chain.
 
 !!! tip
 

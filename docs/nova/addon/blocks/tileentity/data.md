@@ -37,9 +37,13 @@ approach, you will not need to add anything to the `saveData` function.
 
 ## Manually storing / retrieving data
 
+Unless it's not possible otherwise, we recommend against storing data manually.
+
 ### Storing data manually
 
 If you're not using data accessors, store your data in the `saveData` function.
+
+!!! bug "Make sure to call the superclasses function!"
 
 ```kotlin title="MechanicalPress.kt"
 override fun saveData() {
@@ -48,10 +52,6 @@ override fun saveData() {
     storeData("pressTime", timeLeft)
 }
 ```
-
-!!! danger
-
-    Make sure to call the superclasses function.
 
 ### Retrieving data manually
 

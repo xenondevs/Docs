@@ -1,4 +1,4 @@
-# Creating blocks
+# Creating Blocks
 
 ## Creating your first block material
 
@@ -73,7 +73,7 @@ on availability:
 |                      |                  |
 | Total                | 1338             |
 
-In total, 988 blocks can be registered as `solid`. If there are no more blocks available, Nova will fall back to armor
+In total, 1338 blocks can be registered as `solid`. If there are no more blocks available, Nova will fall back to armor
 stand blocks.
 
 #### directions

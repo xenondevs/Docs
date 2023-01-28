@@ -64,19 +64,15 @@ nova("commons-net:commons-net:3.8.0")
 
 To build, run
 ```bash title="Build with Gradle"
-gradle addonJar "-DoutDir=<Path to your addons directory here>"
+gradlew addonJar -PoutDir="<Path to your addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
 ```bash title="Build with Gradle"
-gradle addonJar "-DoutDir=<Path to your addons directory here>" -Dmojang-mapped
+gradlew addonJar -PoutDir="<Path to your addons directory here>" -Pmojang-mapped
 ```
-
-!!! warning
-
-    Some things like particles won't work on mojang-mapped servers
 
 ## Enabling dev mode
 
 Nova's reload prevention can get pretty annoying while making addons. To bypass this check, you can enable dev mode by 
 adding ``-DNovaDev`` in front of ``-jar`` in your server start script. This also allows you to bypass other restrictions,
-like joining the server during startup.
+like joining the server during startup or using addons that were made for a newer version of Nova.
