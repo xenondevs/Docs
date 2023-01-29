@@ -4,13 +4,13 @@ Displaying an inventory to a player requires two things: a [GUI](guis/index.md) 
 The GUI contains all UI Elements [Items](items.md), while a Window actually displays it to a user and is directly tied to a Bukkit inventory.  
 Not tying the GUI to a specific inventory type (like Chest, Dropper, Hopper or Anvil) allows for a much more flexible usage as well as nested GUIs, which can be very helpful when you're trying to create a more complex menu.
 
-## Creating a GUI with the GUIBuilder
-This is an example of how you would go about creating a GUI using the GUIBuilder:
+## Creating a GUI with the GuiBuilder
+This is an example of how you would go about creating a Gui using the GuiBuilder:
 
 === "Kotlin"
 
     ```kotlin
-    val gui = GUIBuilder(GUIType.NORMAL)
+    val gui = GuiType.NORMAL.builder()
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",
@@ -22,7 +22,7 @@ This is an example of how you would go about creating a GUI using the GUIBuilder
 === "Java"
 
     ```java
-    GUI gui = new GUIBuilder<>(GUIType.NORMAL)
+    Gui gui = GuiType.NORMAL.builder()
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",
@@ -37,27 +37,38 @@ Then, create a Window and show it to a player:
 === "Kotlin"
 
     ```kotlin
-    SimpleWindow(player, "InvUI", gui).show()
+    val window = WindowType.NORMAL.builder()
+        .setViewer(player)
+        .setTitle("InvUI")
+        .setGui(gui)
+        .build()
+    
+    window.show()
     ```
 
 === "Java"
 
     ```java
-    new SimpleWindow(player, "InvUI", gui).show();
+    Window window = WindowType.NORMAL.builder()
+        .setViewer(player)
+        .setTitle("InvUI")
+        .setGui(gui)
+        .build();
+    
+    window.show();
     ```
 
 ![](https://i.imgur.com/MZmFbnJ.png)
 
-## Creating a GUI without the GUI Builder
+## Creating a GUI without the GuiBuilder
 
-If you can't to use the GUI Builder for whatever reason, it is also possible to create GUIs manually.  
-The normal GUI type is called `SimpleGUI` and this is how you would use it:
+If you don't want to use the GuiBuilder, you can also call the static factory methods in the Gui interfaces.
 
 === "Kotlin"
 
     ```kotlin
     // create the GUI
-    val gui = SimpleGUI(9, 4)
+    val gui = Gui.empty(9, 4)
     
     // set items using x and y coordinates
     gui.setItem(0, 0, item)
@@ -65,7 +76,7 @@ The normal GUI type is called `SimpleGUI` and this is how you would use it:
     // set an item using the slot index
     gui.setItem(10, item)
     
-    // use a Structure to add items (like in the GUI Builder)
+    // use a Structure to add items (like in the GuiBuilder)
     val structure: Structure = Structure(
         "# # # # # # # # #",
         "# . . . . . . . #",
@@ -80,7 +91,7 @@ The normal GUI type is called `SimpleGUI` and this is how you would use it:
 
     ```java
     // create the GUI
-    GUI gui = new SimpleGUI(9, 4);
+    Gui gui = Gui.empty(9, 4);
     
     // set items using x and y coordinates
     gui.setItem(0, 0, item);
@@ -88,7 +99,7 @@ The normal GUI type is called `SimpleGUI` and this is how you would use it:
     // set an item using the slot index
     gui.setItem(10, item);
     
-    // use a Structure to add items (like in the GUI Builder)
+    // use a Structure to add items (like in the GuiBuilder)
     Structure structure = new Structure(
         "# # # # # # # # #",
         "# . . . . . . . #",

@@ -90,7 +90,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
 === "Kotlin"
 
     ```kotlin
-    class ChangePageItem : ControlItem<PagedGUI>() {
+    class ChangePageItem : ControlItem<PagedGui<*>>() {
         
         override fun handleClick(clickType: ClickType, player: Player, event: InventoryClickEvent) {
             if (clickType == ClickType.LEFT) {
@@ -100,9 +100,9 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
             }
         }
         
-        override fun getItemProvider(gui: PagedGUI): ItemProvider {
+        override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             return ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.currentPageIndex + 1)) // + 1 because we don't want to have "Current page: 0"
+                .setDisplayName("§7Current page: " + (gui.currentPage + 1)) // + 1 because we don't want to have "Current page: 0"
                 .addLoreLines("§8Left-click to go forward", "§8Right-click to go back")
         }
         
@@ -112,7 +112,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
 === "Java"
 
     ```java
-    public class ChangePageItem extends ControlItem<PagedGUI> {
+    public class ChangePageItem extends ControlItem<PagedGui<*>> {
         
         @Override
         public void handleClick(@NotNull ClickType clickType, @NotNull Player player, @NotNull InventoryClickEvent event) {
@@ -124,7 +124,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
         }
         
         @Override
-        public ItemProvider getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGui<*> gui) {
             return new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
                 .setDisplayName("§7Current page: " + (gui.getCurrentPageIndex() + 1)) // + 1 because we don't want to have "Current page: 0"
                 .addLoreLines("§8Left-click to go forward", "§8Right-click to go back");
@@ -133,4 +133,4 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
     }
     ```
 
-The `getItemProvider` method will get called when the page changes, as `PagedGUI` internally calls `Controllable#updateControlItems`, so the displayed page number in this example item will always be correct.
+The `getItemProvider` method will get called when the page changes, as `PagedGui` internally calls `Controllable#updateControlItems`, so the displayed page number in this example item will always be correct.

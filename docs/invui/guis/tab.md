@@ -11,7 +11,7 @@ First, we'll need to create our Tab Items:
     ```kotlin
     class MyTabItem(private val tab: Int) : TabItem(tab) {
         
-        override fun getItemProvider(gui: TabGUI): ItemProvider {
+        override fun getItemProvider(gui: TabGui): ItemProvider {
             return if (gui.currentTab == tab) {
                 ItemBuilder(Material.GLOWSTONE_DUST)
                     .setDisplayName("Tab $tab (selected)")
@@ -37,7 +37,7 @@ First, we'll need to create our Tab Items:
         }
         
         @Override
-        public ItemProvider getItemProvider(TabGUI gui) {
+        public ItemProvider getItemProvider(TabGui gui) {
             if (gui.getCurrentTab() == tab) {
                 return new ItemBuilder(Material.GLOWSTONE_DUST)
                     .setDisplayName("Tab " + tab + " (selected)");
@@ -52,20 +52,20 @@ First, we'll need to create our Tab Items:
 
 ## Creating the GUI
 
-Now, lets create the actual TabGUI. In this example, I've only created two tabs, but you can have as many tabs as you want.
+Now, lets create the actual TabGui. In this example, I've only created two tabs, but you can have as many tabs as you want.
 
 === "Kotlin"
 
     ```kotlin
     val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"))
     
-    val gui1 = SimpleGUI(9, 3)
+    val gui1 = Guis.empty(9, 3)
     gui1.fill(SimpleItem(ItemBuilder(Material.DIRT)), true)
     
-    val gui2 = SimpleGUI(9, 3)
+    val gui2 = Guis.empty(9, 3)
     gui2.fill(SimpleItem(ItemBuilder(Material.DIAMOND)), true)
     
-    val gui: GUI = GUIBuilder(GUIType.TAB)
+    val gui = GuiType.TAB.builder()
         .setStructure(
             "# # # 0 # 1 # # #",
             "x x x x x x x x x",
@@ -75,10 +75,8 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
         .addIngredient('#', border)
         .addIngredient('0', MyTabItem(0))
         .addIngredient('1', MyTabItem(1))
-        .setGUIs(listOf(gui1, gui2))
+        .setTabs(listOf(gui1, gui2))
         .build()
-    
-    SimpleWindow(player, "InvUI", gui).show()
     ```
 
 === "Java"
@@ -86,13 +84,13 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
     ```java
     Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
     
-    GUI gui1 = new SimpleGUI(9, 3);
+    Gui gui1 = Guis.empty(9, 3);
     gui1.fill(new SimpleItem(new ItemBuilder(Material.DIRT)), true);
     
-    GUI gui2 = new SimpleGUI(9, 3);
+    Gui gui2 = Guis.empty(9, 3);
     gui2.fill(new SimpleItem(new ItemBuilder(Material.DIAMOND)), true);
     
-    GUI gui = new GUIBuilder<>(GUIType.TAB)
+    Gui gui = GuiType.TAB.builder()
         .setStructure(
             "# # # 0 # 1 # # #",
             "x x x x x x x x x",
@@ -102,10 +100,8 @@ Now, lets create the actual TabGUI. In this example, I've only created two tabs,
         .addIngredient('#', border)
         .addIngredient('0', new MyTabItem(0))
         .addIngredient('1', new MyTabItem(1))
-        .setGUIs(Arrays.asList(gui1, gui2))
+        .setTabs(Arrays.asList(gui1, gui2))
         .build();
-    
-    new SimpleWindow(player, "InvUI", gui).show();
     ```
 
 And this is how it looks like:  

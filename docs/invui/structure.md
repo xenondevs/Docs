@@ -22,7 +22,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         .addIngredient('>', ForwardItem())
 
     // use it in a GUI Builder
-    GUIBuilder(GUIType.PAGED_ITEMS).setStructure(structure)
+    GuiType.PAGED_ITEMS.builder().setStructure(structure)
     
     // or use it on an existing GUI
     gui.applyStructure(structure)
@@ -43,7 +43,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         .addIngredient('>', new ForwardItem());
 
     // use it in a GUI Builder
-    new GUIBuilder<>(GUIType.PAGED_ITEMS).setStructure(structure);
+    GuiType.PAGED_ITEMS.builder().setStructure(structure);
 
     // or use it on an existing GUI
     gui.applyStructure(structure);
@@ -70,8 +70,8 @@ Make sure to use suppliers for every item where you want a new instance per slot
     Structure.addGlobalIngredient('<', ::BackItem)
     Structure.addGlobalIngredient('>', ::ForwardItem)
     
-    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
-    Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL)
+    // Adding the Markers.CONTENT_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
+    Structure.addGlobalIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
     ```
 
 === "Java"
@@ -84,6 +84,6 @@ Make sure to use suppliers for every item where you want a new instance per slot
     Structure.addGlobalIngredient('<', BackItem::new);
     Structure.addGlobalIngredient('>', ForwardItem::new);
 
-    // Adding the Markers.ITEM_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
-    Structure.addGlobalIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL);
+    // Adding the Markers.CONTENT_LIST_SLOT_HORIZONTAL as a global ingredient is also a good idea
+    Structure.addGlobalIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL);
     ```

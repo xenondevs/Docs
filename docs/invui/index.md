@@ -35,8 +35,8 @@ Now you can add InvUI as to your build configuration:
 
     ```xml
     <dependency>
-        <groupId>de.studiocode.invui</groupId>
-        <artifactId>InvUI</artifactId>
+        <groupId>xyz.xenondevs.invui</groupId>
+        <artifactId>invui</artifactId>
         <version>VERSION</version>
     </dependency>
     ```
@@ -44,11 +44,11 @@ Now you can add InvUI as to your build configuration:
 === "Gradle Groovy"
 
     ```groovy
-    implementation "de.studiocode.invui:InvUI:VERSION"
+    implementation "xyz.xenondevs.invui:invui:VERSION"
     ```
 
 === "Gradle Kotlin"
 
     ```kotlin
-    implementation("de.studiocode.invui:InvUI:VERSION")
+    implementation("xyz.xenondevs.invui:invui:VERSION")
     ```

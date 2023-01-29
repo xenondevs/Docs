@@ -12,7 +12,7 @@ This would be an example for an Item that scrolls down:
     ```kotlin
     class ScrollDownItem : ScrollItem(1) {
         
-        override fun getItemProvider(gui: ScrollGUI): ItemProvider {
+        override fun getItemProvider(gui: ScrollGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Scroll down")
             if (!gui.canScroll(1))
@@ -33,7 +33,7 @@ This would be an example for an Item that scrolls down:
         }
         
         @Override
-        public ItemProvider getItemProvider(ScrollGUI gui) {
+        public ItemProvider getItemProvider(ScrollGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Scroll down");
             if (!gui.canScroll(1))
@@ -52,7 +52,7 @@ And this Item scrolls up:
     ```kotlin
     class ScrollUpItem : ScrollItem(-1) {
         
-        override fun getItemProvider(gui: ScrollGUI): ItemProvider {
+        override fun getItemProvider(gui: ScrollGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Scroll up")
             if (!gui.canScroll(-1))
@@ -73,7 +73,7 @@ And this Item scrolls up:
         }
         
         @Override
-        public ItemProvider getItemProvider(ScrollGUI gui) {
+        public ItemProvider getItemProvider(ScrollGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Scroll up");
             if (!gui.canScroll(-1))
@@ -105,7 +105,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .filter { !it.isAir && it.isItem }
         .map { SimpleItem(ItemBuilder(it)) }
 
-    val gui = GUIBuilder(GUIType.SCROLL_ITEMS)
+    val gui = GuiType.SCROLL_ITEMS.builder()
         .setStructure(
             "x x x x x x x x u",
             "x x x x x x x x #",
@@ -116,10 +116,8 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .addIngredient('#', border)
         .addIngredient('u', ScrollUpItem())
         .addIngredient('d', ScrollDownItem())
-        .setItems(items)
+        .setContent(items)
         .build()
-    
-    SimpleWindow(player, "InvUI", gui).show()
     ```
 
 === "Java"
@@ -133,7 +131,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .map(material -> new SimpleItem(new ItemBuilder(material)))
         .collect(Collectors.toList());
     
-    GUI gui = new GUIBuilder<>(GUIType.SCROLL_ITEMS)
+    Gui gui = GuiType.SCROLL_ITEMS.builder()
         .setStructure(
             "x x x x x x x x u",
             "x x x x x x x x #",
@@ -144,26 +142,24 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .addIngredient('#', border)
         .addIngredient('u', new ScrollUpItem())
         .addIngredient('d', new ScrollDownItem())
-        .setItems(items)
+        .setContent(items)
         .build();
-            
-    new SimpleWindow(player, "InvUI", gui).show();
     ```
 
 And this is how it looks in-game:  
 ![](https://i.imgur.com/TQ3yXxT.gif)
 
-You can also change the scroll direction by using `Markers.ITEM_LIST_SLOT_VERTICAL` instead of `Markers.ITEM_LIST_SLOT_HORIZONTAL`.
+You can also change the scroll direction by using `Markers.CONTENT_LIST_SLOT_VERTICAL` instead of `Markers.CONTENT_LIST_SLOT_HORIZONTAL`.
 This would result in the gui scrolling from left to right:  
 ![](https://i.imgur.com/HoeAhyx.gif)
 
 !!! info
 
     If you need even more control over the scroll direction, you'll need to set the `itemListSlots`
-    yourself by manually constructing the `SimpleScrollItemsGUI` without the `GUIBuilder`.
+    yourself by calling the ScrollGui.of method.
 
-### Scroll GUIs
+### `SCROLL_GUIS` and `SCROLL_INVENTORY`
 
-There is also an additional GUIType available, `SCROLL_GUIS`.
-It behaves in a very similar way to `SCROLL_ITEMS`, but instead of Items, it accepts GUIs.
-These Items of the GUIs are then displayed sequentially, so you'll want to make sure that the width of the GUIs matches the line size of your Scroll GUI.
+There are also two additional GuiTypes available: `SCROLL_GUIS` and `SCROLL_INVENTORY`.
+They behave in a very similar way to `SCROLL_ITEMS`, but instead of Items, they accept GUIs or VirtualInventories.
+For the case of `SCROLL_GUIS`, you'll want to make sure that the width of the GUIs matches the line size of your Scroll GUI.

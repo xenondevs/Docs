@@ -10,12 +10,12 @@ This is an example for a "Page Back" Item:
     ```kotlin
     class BackItem : PageItem(false) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemProvider {
+        override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(
-                    if (gui.hasPageBefore())
-                        "§7Go to page §e" + gui.currentPageIndex + "§7/§e" + gui.pageAmount 
+                    if (gui.hasPreviousPage())
+                        "§7Go to page §e" + gui.currentPage + "§7/§e" + gui.pageAmount 
                     else "§cYou can't go further back"
                 )
             return builder
@@ -34,11 +34,11 @@ This is an example for a "Page Back" Item:
         }
     
         @Override
-        public ItemProvider getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Previous page")
-                .addLoreLines(gui.hasPageBefore()
-                    ? "§7Go to page §e" + gui.getCurrentPageIndex() + "§7/§e" + gui.getPageAmount()
+                .addLoreLines(gui.hasPreviousPage()
+                    ? "§7Go to page §e" + gui.getCurrentPage() + "§7/§e" + gui.getPageAmount()
                     : "§cYou can't go further back");
             
             return builder;
@@ -54,12 +54,12 @@ This is an example for a "Page Forward" Item:
     ```kotlin
     class ForwardItem : PageItem(true) {
         
-        override fun getItemProvider(gui: PagedGUI): ItemProvider {
+        override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
             builder.setDisplayName("§7Next page")
                 .addLoreLines(
                     if (gui.hasNextPage())
-                        "§7Go to page §e" + (gui.currentPageIndex + 2) + "§7/§e" + gui.pageAmount 
+                        "§7Go to page §e" + (gui.currentPage + 2) + "§7/§e" + gui.pageAmount 
                     else "§cThere are no more pages"
                 )
             return builder
@@ -78,11 +78,11 @@ This is an example for a "Page Forward" Item:
         }
     
         @Override
-        public ItemProvider getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
             builder.setDisplayName("§7Next page")
                 .addLoreLines(gui.hasNextPage()
-                    ? "§7Go to page §e" + (gui.getCurrentPageIndex() + 2) + "§7/§e" + gui.getPageAmount()
+                    ? "§7Go to page §e" + (gui.getCurrentPage() + 2) + "§7/§e" + gui.getPageAmount()
                     : "§cThere are no more pages");
         
             return builder;
@@ -114,7 +114,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .map { SimpleItem(ItemBuilder(it)) }
     
     // create the gui
-    val gui = GUIBuilder(GUIType.PAGED_ITEMS)
+    val gui = GuiType.PAGED_ITEMS.builder()
         .setStructure(
             "# # # # # # # # #",
             "# x x x x x x x #",
@@ -124,7 +124,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .addIngredient('#', border)
         .addIngredient('<', BackItem())
         .addIngredient('>', ForwardItem())
-        .setItems(items)
+        .setContent(items)
         .build()
     ```
 
@@ -140,7 +140,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .collect(Collectors.toList());
     
     // create the gui
-    GUI gui = new GUIBuilder<>(GUIType.PAGED_ITEMS)
+    Gui gui = GuiType.PAGED_ITEMS.builder()
         .setStructure(
             "# # # # # # # # #",
             "# x x x x x x x #",
@@ -150,7 +150,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .addIngredient('#', border)
         .addIngredient('<', new BackItem())
         .addIngredient('>', new ForwardItem())
-        .setItems(items)
+        .setContent(items)
         .build();
     ```
 
@@ -166,7 +166,7 @@ Now I can switch between two paged GUIs.
 === "Kotlin"
 
     ```kotlin
-    val gui = GUIBuilder(GUIType.PAGED_GUIs)
+    val gui = GuiType.PAGED_ITEMS.builder()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",
@@ -176,17 +176,14 @@ Now I can switch between two paged GUIs.
         .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
         .addIngredient('<', BackItem())
         .addIngredient('>', ForwardItem())
-        .setGUIs(listOf(page1GUI, page2GUI))
+        .setContent(listOf(page1GUI, page2GUI))
         .build()
-
-    // show the window
-    SimpleWindow(player, "InvUI", gui).show()
     ```
 
 === "Java"
 
     ```java
-    GUI gui = new GUIBuilder<>(GUIType.PAGED_GUIs)
+    Gui gui = GuiType.PAGED_ITEMS.builder()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",
@@ -196,11 +193,8 @@ Now I can switch between two paged GUIs.
         .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
         .addIngredient('<', new BackItem())
         .addIngredient('>', new ForwardItem())
-        .setGUIs(Arrays.asList(page1GUI, page2GUI))
+        .setContent(Arrays.asList(page1GUI, page2GUI))
         .build();
-
-    // show the window
-    new SimpleWindow(player, "InvUI", gui).show();
     ```
 
 In-game it looks like this:  
