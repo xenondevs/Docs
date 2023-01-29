@@ -1,4 +1,4 @@
-A paged GUI is a gui that can display pages of either `Items` or `GUIs`.  
+A paged GUI is a gui that can display pages of either `Items` or `Guis`.  
 
 ## Control Items
 

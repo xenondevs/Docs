@@ -112,7 +112,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
 === "Java"
 
     ```java
-    public class ChangePageItem extends ControlItem<PagedGui<*>> {
+    public class ChangePageItem extends ControlItem<PagedGui<?>> {
         
         @Override
         public void handleClick(@NotNull ClickType clickType, @NotNull Player player, @NotNull InventoryClickEvent event) {
@@ -124,9 +124,9 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
         }
         
         @Override
-        public ItemProvider getItemProvider(PagedGui<*> gui) {
+        public ItemProvider getItemProvider(PagedGui<?> gui) {
             return new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.getCurrentPageIndex() + 1)) // + 1 because we don't want to have "Current page: 0"
+                .setDisplayName("§7Current page: " + (gui.getCurrentPage() + 1)) // + 1 because we don't want to have "Current page: 0"
                 .addLoreLines("§8Left-click to go forward", "§8Right-click to go back");
         }
         

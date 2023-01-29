@@ -158,7 +158,7 @@ This would result in the gui scrolling from left to right:
     If you need even more control over the scroll direction, you'll need to set the `itemListSlots`
     yourself by calling the ScrollGui.of method.
 
-### `SCROLL_GUIS` and `SCROLL_INVENTORY`
+### Scroll Guis & Scroll Inventories
 
 There are also two additional GuiTypes available: `SCROLL_GUIS` and `SCROLL_INVENTORY`.
 They behave in a very similar way to `SCROLL_ITEMS`, but instead of Items, they accept GUIs or VirtualInventories.

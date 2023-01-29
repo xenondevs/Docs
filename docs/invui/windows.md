@@ -32,17 +32,16 @@ the inventory has been closed or the player dies.
 Additionally, the player is not able to pick up any items and advancement listening is also
 temporarily turned off. Therefore, the feature is safe to use in survival mode.
 
-### `AnvilWindow`
+### AnvilWindow
 
-In the `AnvilWindow`, the rename-text can be retrieved either using the `Consumer<String> renameHandler` provided
-in the `WindowBuilder` or with `getRenameText()`.
+The rename-text can be retrieved by calling `AnvilInventory#getRenameText()`. It is also possible to set one or multiple 
+`Consumer<String> renameHandler` in the `WindowBuilder`, which will then be called every time the rename-text is changed.
 
-### `CartographyWindow`
+### CartographyWindow
 
-You're also able to set the map preview in `CatrographyWindow`.  
-To do this, you can use the methods `updateMap(MapPatch)`, `updateMap(List<MapIcon>)` and `resetMap()`.
+To update the map preview, you can use the methods `updateMap(MapPatch)`, `updateMap(List<MapIcon>)` and `resetMap()`.
 
-Note: The first slot of the cartography inventory is not accessible to you, as it is required to contain
+Please note that the first slot of the cartography inventory is not accessible to you, as it is required to contain
 a map item for the map preview to work. Therefore, your GUI's size has to be 2x1 instead of 3x1.
 
 ## Creating a new Window
@@ -53,10 +52,18 @@ be obtained by calling `WindowType.builder()`.
 === "Kotlin"
 
     ```kotlin
-    val window = WindowType.NORMAL.builder()
+    val normalWindow = WindowType.NORMAL.builder()
         .setViewer(player)
         .setGui(gui)
         .setTitle("InvUI")
+        .build()
+
+    val anvilWindow = WindowType.ANVIL_SPLIT.builder()
+        .setViewer(player)
+        .setUpperGui(anvilGui)
+        .setLowerGui(playerGui)
+        .setTitle("InvUI")
+        .addRenameHandler { println(it) }
         .build()
     ```
 
@@ -67,5 +74,13 @@ be obtained by calling `WindowType.builder()`.
         .setViewer(player)
         .setGui(gui)
         .setTitle("InvUI")
+        .build();
+
+    AnvilWindow window = WindowType.ANVIL_SPLIT.builder()
+        .setViewer(player)
+        .setUpperGui(anvilGui)
+        .setLowerGui(playerGui)
+        .setTitle("InvUI")
+        .addRenameHandler(s -> System.out.println(s))
         .build();
     ```

@@ -110,4 +110,4 @@ And this is how it looks like:
 !!! info
 
     It is also possible to, for example, put the Tab Items in a separate paged or scroll gui if you need more space.  
-    For that to work, you'd need to set the TabGUI that the Tab items are supposed to control manually using `ControlItem#setGUI`.
+    For that to work, you'd need to set the TabGUI that the Tab items are supposed to control manually using `ControlItem#setGui`.
