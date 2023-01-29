@@ -10,53 +10,85 @@ The `huge_brown_mushroom ` and `huge_red_mushroom` features can be used to add h
 | `stem_provider`                            | A `BlockStateProvider`                                  | Determines the block to use for the stem of the mushroom. |
 | `foliage_radius` (optional, defaults to 2) | An `int`                                                | Determines the radius of the cap.                         |
 
+In code, the `HugeMushroomFeatureConfiguration` class is used to configure the feature.
+
 ## Example
 
 As an example, here's the configured- and placed feature for the default huge red mushroom
 
-```json title="configured_feature/huge_red_mushroom.json"
-{
-  "type": "minecraft:huge_red_mushroom",
-  "config": {
-    "cap_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:red_mushroom_block",
-        "Properties": {
-          "down": "false",
-          "east": "true",
-          "north": "true",
-          "south": "true",
-          "up": "true",
-          "west": "true"
-        }
-      }
-    },
-    "stem_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:mushroom_stem",
-        "Properties": {
-          "down": "false",
-          "east": "true",
-          "north": "true",
-          "south": "true",
-          "up": "false",
-          "west": "true"
-        }
-      }
-    },  
-    "foliage_radius": 2
-  }
-}
-```
+=== "Kotlin"
 
-```json title="placed_feature/huge_red_mushroom.json"
-{
-  "feature": {
-  "feature": "minecraft:huge_red_mushroom",
-  "placement": []
-}
-```
+    ```kotlin title="ConfiguredFeatures.kt"
+    val HUGE_RED_MUSHROOM = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "huge_red_mushroom",
+        Feature.HUGE_RED_MUSHROOM,
+        HugeMushroomFeatureConfiguration(
+            BlockStateProvider.simple(Blocks.RED_MUSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (1)!
+            BlockStateProvider.simple((Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, false) as BlockState).setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (2)! 
+            2 // (3)!
+        )
+    )
+    ```
+
+    1. Use a mushroom block with the `down` property set to `false` as the cap.
+    2. Use a mushroom stem with the `up` and `down` properties set to `false` as the stem.
+    3. Use a radius of 2 for the cap.
+
+    ```kotlin title="PlacedFeatures.kt"
+    val HUGE_RED_MUSHROOM = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "huge_red_mushroom",
+        ConfiguredFeatures.HUGE_RED_MUSHROOM,
+        emptyList()
+    )
+    ```
+
+=== "Json"
+
+    ```json title="configured_feature/huge_red_mushroom.json"
+    {
+      "type": "minecraft:huge_red_mushroom",
+      "config": {
+        "cap_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:red_mushroom_block",
+            "Properties": {
+              "down": "false",
+              "east": "true",
+              "north": "true",
+              "south": "true",
+              "up": "true",
+              "west": "true"
+            }
+          }
+        },
+        "stem_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:mushroom_stem",
+            "Properties": {
+              "down": "false",
+              "east": "true",
+              "north": "true",
+              "south": "true",
+              "up": "false",
+              "west": "true"
+            }
+          }
+        },  
+        "foliage_radius": 2
+      }
+    }
+    ```
+
+    ```json title="placed_feature/huge_red_mushroom.json"
+    {
+      "feature": {
+      "feature": "minecraft:huge_red_mushroom",
+      "placement": []
+    }
+    ```
 
 ![Example](https://i.imgur.com/dYXdv36.jpeg)

@@ -16,40 +16,74 @@ The nether forest vegetation feature has the following configuration options:
 | `spread_width`   | A positive `int`                                        | The width of the area to spread the vegetation in.  |
 | `spread_height`  | A positive `int`                                        | The height of the area to spread the vegetation in. |
 
+In code, the `NetherForestVegetationConfig` class is used to configure the feature.
+
 ## Example
 
 As an example, here's the configured- and placed feature to spread nether sprouts in the nether forest biomes.
 
-```json title="configured_feature/nether_sprouts.json"
-{
-  "type": "minecraft:nether_forest_vegetation",
-  "config": {
-    "state_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:nether_sprouts"
+=== "Kotlin"
+
+    ```kotlin title="ConfiguredFeatures.kt"
+    val NETHER_SPROUTS = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "nether_sprouts",
+        Feature.NETHER_FOREST_VEGETATION,
+        NetherForestVegetationConfig(
+            BlockStateProvider.simple(Blocks.NETHER_SPROUTS), // block used for the vegetation
+            8, // spreadWidth
+            4 // spreadHeight
+        )
+    )
+    ```
+
+    ```kotlin title="PlacedFeatures.kt"
+    val NETHER_SPROUTS = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "nether_sprouts",
+        ConfiguredFeatures.NETHER_SPROUTS,
+        listOf(
+            CountOnEveryLayerPlacement.of(4), // (1)!
+            BiomeFilter.biome() // (2)!
+        )
+    )
+    ```
+
+    1. Make sure to place the nether sprouts on every layer if multiple exist in the biome.
+    2. Only place the sprouts in the nether forest biomes.
+
+=== "Json"
+
+    ```json title="configured_feature/nether_sprouts.json"
+    {
+      "type": "minecraft:nether_forest_vegetation",
+      "config": {
+        "state_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:nether_sprouts"
+          }
+        },
+        "spread_height": 4,
+        "spread_width": 8
       }
-    },
-    "spread_height": 4,
-    "spread_width": 8
-  }
-}
-```
-
-```json title="placed_feature/nether_sprouts.json"
-{
-  "feature": "minecraft:nether_sprouts",
-  "placement": [
-    {
-      "type": "minecraft:count_on_every_layer", // (1)!
-      "count": 4
-    },
-    {
-      "type": "minecraft:biome" // (2)!
     }
-  ]
-}
-```
+    ```
+    
+    ```json title="placed_feature/nether_sprouts.json"
+    {
+      "feature": "minecraft:nether_sprouts",
+      "placement": [
+        {
+          "type": "minecraft:count_on_every_layer", // (1)!
+          "count": 4
+        },
+        {
+          "type": "minecraft:biome" // (2)!
+        }
+      ]
+    }
+    ```
 
-1. Make sure to place the nether sprouts on every layer if multiple exist in the biome.
-2. Only place the sprouts in the nether forest biomes.
+    1. Make sure to place the nether sprouts on every layer if multiple exist in the biome.
+    2. Only place the sprouts in the nether forest biomes.

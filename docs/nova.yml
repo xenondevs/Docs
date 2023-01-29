@@ -100,7 +100,7 @@ nav:
                       - "Large Dripstone": "addon/worldgen/features/configurations/large-dripstone.md"
                       - "Multiface Growth": "addon/worldgen/features/configurations/multiface-growth.md"
                       - "Nether Forest Vegetation": "addon/worldgen/features/configurations/nether-forest-vegetation.md"
-                      - "(Netherrack) Replace Blobs": "addon/worldgen/features/configurations/netherrack-replace-blobs.md"
+                      - "Replace Blobs": "addon/worldgen/features/configurations/netherrack-replace-blobs.md"
                       - "Ores": "addon/worldgen/features/configurations/ores.md"
                       - "Pointed Dripstone": "addon/worldgen/features/configurations/pointed-dripstone.md"
                       - "Random Patch": "addon/worldgen/features/configurations/random-patch.md"

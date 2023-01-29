@@ -88,7 +88,7 @@ As an example, here's the configured feature used to place the default end spike
         ```
 
         1. Don't make the crystals invulnerable.
-        2. The first spike is at the coordinates `42, 0` with a radius of `2` and a height of `82`. The `true` means that 
+        2. The first spike is at the coordinates `42, 0` with a radius of `2` and a height of `82`. `true` specifies that 
            iron bars should be placed around the end crystal.
         3. Don't specify any specific target for the crystal beam.
 
@@ -187,7 +187,7 @@ As an example, here's the configured feature used to place the default end spike
     ```
 
     1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 
-       feature should only be placed in biomes that habe end spikes.
+       feature should only be placed in biomes that have end spikes.
 
 === "Json"    
 
@@ -203,6 +203,6 @@ As an example, here's the configured feature used to place the default end spike
     ```
 
     1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 
-       feature should only be placed in biomes that habe end spikes.
+       feature should only be placed in biomes that have end spikes.
 
 ![Example](https://i.imgur.com/ZId3oyv.jpeg)

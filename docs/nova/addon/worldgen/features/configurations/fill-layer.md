@@ -12,22 +12,48 @@ The following configuration options are available:
 | `state`  | A [`BlockState`](../../block-state.md) | The block state to use for the layer.                               |
 | `height` | An `int` in the range $[0;4064 ]$.     | The height of the layer to fill (starting at the min build height). |
 
+In code, the `LayerConfiguration` class is used to configure the feature.
+
 ## Example
 
 As an example, here's a configured- and placed feature to add a layer of grass on top of a default flat world.
 
-```json title="configured_feature/fill_layer_grass.json"
-{
-  "height": 4,
-  "state": {
-    "Name": "minecraft:grass"
-  }
-}
-```
+=== "Kotlin"
 
-```json title="placed_feature/fill_layer_grass.json"
-{
-  "feature": "minecraft:fill_layer_grass",
-  "placement": []
-}
-```
+    ``´kotlin title="ConfiguredFeatures.kt"
+    val FILL_LAYER_GRASS = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "fill_layer_grass",
+        Feature.FILL_LAYER,
+        LayerConfiguration(4, Blocks.GRASS.defaultBlockState()) // (1)!
+    )
+    ```
+
+    1. Add a layer of grass at height 4.
+
+    ```kotlin title="PlacedFeatures.kt"
+    val FILL_LAYER_GRASS = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "fill_layer_grass",
+        ConfiguredFeatures.FILL_LAYER_GRASS,
+        emptyList()
+    )
+    ```
+
+=== "Json"
+
+    ```json title="configured_feature/fill_layer_grass.json"
+    {
+      "height": 4,
+      "state": {
+        "Name": "minecraft:grass"
+      }
+    }
+    ```
+    
+    ```json title="placed_feature/fill_layer_grass.json"
+    {
+      "feature": "minecraft:fill_layer_grass",
+      "placement": []
+    }
+    ```
