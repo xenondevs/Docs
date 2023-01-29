@@ -11,63 +11,112 @@ An end gateway feature has the following configuration options:
 | `exact`           | `boolean`                                                             | Whether entities should be teleported to the exact exit location. |
 | `exit` (optional) | An array of coordinates. First element is the x coordinate and so on. | The exit location of the end gateway.                             |
 
+In code, the `EndGatewayConfiguration` class is used to configure the feature.
+
 ## Example
 
 Here's the configured and placed feature for the vanilla return end gateway:
 
-```json title="configured_feature/end_gateway_return.json"
-{
-  "type": "minecraft:end_gateway",
-  "config": {
-    "exact": true,
-    "exit": [ // (1)!
-      100,
-      50,
-      0
-    ]
-  }
-}
-```
+=== "Kotlin"
 
-1. The end spawn point is always at $(100|50|0)$
+    ```kotlin title="ConfiguredFeatures.kt"
+    val END_GATEWAY_RETURN = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "end_gateway_return",
+        Feature.END_GATEWAY,
+        EndGatewayConfiguration.knownExit( // (1)!
+            ServerLevel.END_SPAWN_POINT, // (2)!
+            true // (3)!
+        )
+    )
+    ```
 
-```json title="placed_feature/end_gateway_return.json"
-{
-  "feature": "minecraft:end_gateway_return",
-  "placement": [
+    1. If the exit location is still unknown during registration (for example for random teleportation), use
+       ```kotlin
+       EndGatewayConfiguration.delayedExitSearch()
+       ```
+    2. Constant for the end spawn point at $(100|50|0)$.
+    3. Entities should be teleported to the exact exit location.
+
+    ```kotlin title="PlacedFeatures.kt"
+    val END_GATEWAY_RETURN = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "end_gateway_return",
+        ConfiguredFeatures.END_GATEWAY_RETURN,
+        listOf(
+            RarityFilter.onAverageOnceEvery(700), // (1)!
+            InSquarePlacement.spread(), // (2)!
+            PlacementUtils.HEIGHTMAP, // (3)!
+            RandomOffsetPlacement.vertical(UniformInt.of(3, 9)), // (4)!
+            BiomeFilter.biome() // (5)!
+        )
+    )
+    ```
+
+    1. Give the end gateway a chance of $^1/_{700}$ to spawn. Or in other words, the end gateway will spawn in 1 out of 700 chunks.
+    2. Randomly offset the gateways in a square.
+    3. Move the gateways to the surface. The static consant is equivalent to
+       ```kotlin
+       HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING)
+       ```
+    4. Randomly offset the gateways in the y direction.
+    5. Only place the gateways in biomes that have end gateways
+
+=== "Json"
+
+    ```json title="configured_feature/end_gateway_return.json"
     {
-      "type": "minecraft:rarity_filter", // (1)!
-      "chance": 700
-    },
-    {
-      "type": "minecraft:in_square" // (2)!
-    },
-    {
-      "type": "minecraft:heightmap", // (3)!
-      "heightmap": "MOTION_BLOCKING"
-    },
-    {
-      "type": "minecraft:random_offset", // (4)!
-      "xz_spread": 0,
-      "y_spread": {
-        "type": "minecraft:uniform",
-        "value": {
-          "max_inclusive": 9,
-          "min_inclusive": 3
-        }
+      "type": "minecraft:end_gateway",
+      "config": {
+        "exact": true,
+        "exit": [ // (1)!
+          100,
+          50,
+          0
+        ]
       }
-    },
-    {
-      "type": "minecraft:biome" // (5)!
     }
-  ]
-}
-```
+    ```
 
-1. Give the end gateway a chance of $^1/_{700}$ to spawn. Or in other words, the end gateway will spawn in 1 out of 700 chunks.
-2. Randomly offset the gateways in a square.
-3. Move the gateways to the surface.
-4. Randomly offset the gateways in the y direction.
-5. Only place the gateways in biomes that have end gateways.
+    1. The end spawn point is always at $(100|50|0)$
+
+    ```json title="placed_feature/end_gateway_return.json"
+    {
+      "feature": "minecraft:end_gateway_return",
+      "placement": [
+        {
+          "type": "minecraft:rarity_filter", // (1)!
+          "chance": 700
+        },
+        {
+          "type": "minecraft:in_square" // (2)!
+        },
+        {
+          "type": "minecraft:heightmap", // (3)!
+          "heightmap": "MOTION_BLOCKING"
+        },
+        {
+          "type": "minecraft:random_offset", // (4)!
+          "xz_spread": 0,
+          "y_spread": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 9,
+              "min_inclusive": 3
+            }
+          }
+        },
+        {
+          "type": "minecraft:biome" // (5)!
+        }
+      ]
+    }
+    ```
+
+    1. Give the end gateway a chance of $^1/_{700}$ to spawn. Or in other words, the end gateway will spawn in 1 out of 700 chunks.
+    2. Randomly offset the gateways in a square.
+    3. Move the gateways to the surface.
+    4. Randomly offset the gateways in the y direction.
+    5. Only place the gateways in biomes that have end gateways.
 
 ![Example](https://i.imgur.com/SthHhVK.jpeg)
