@@ -51,7 +51,8 @@ As an example, here's the configured and placed feature for sand disks in lakes:
     2. If the block below is air, use sandstone since sand would fall down.
     3. Only allow `dirt` or `grass_block` in the center.
     4. Randomly chooses a radius between 2 and 6.
-    5. The `half_height` of the disk. Here the actual height is $2 \times 2 + 1 = 5$.
+    5. The `half_height` of the disk.  
+       So the actual height will be $2 \times 2 + 1 = 5$ blocks.
     
     ```kotlin title="PlacedFeatures.kt"
     val DISK_SAND = FeatureRegistry.registerPlacedFeature(

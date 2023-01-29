@@ -25,7 +25,7 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
 
 ## Example
 
-=== "Kotlin
+=== "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
     val DRIPSTONE_CLUSTER = FeatureRegistry.registerConfiguredFeature(
