@@ -7,15 +7,15 @@
     in the GUIBuilder. You can check out the default ingredients [here](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/ui/GlobalStructureIngredients.kt).
     **Don't register your own global ingredients!**
 
-As you probably noticed, the TileEntity needs a ``Lazy<TileEntityGUI>`` property. It's lazy to save performance and only
-load a GUI when needed. To create a new GUI, you need to create an inner class that extends ``TileEntityGUI``. In this
-class override the ``gui`` property and set it to the GUI you want to display. For now, let's create a GUI with a single
+As you probably noticed, the TileEntity needs a ``Lazy<TileEntityGui>`` property. It's lazy to save performance and only
+load a Gui when needed. To create a new Gui, you need to create an inner class that extends ``TileEntityGui``. In this
+class override the ``gui`` property and set it to the Gui you want to display. For now, let's create a Gui with a single
 energy bar.
 
 ```kotlin
-inner class SolarPanelGUI : TileEntityGUI() {
+inner class SolarPanelGui : TileEntityGui() {
     
-    override val gui: GUI = GUIBuilder(GUIType.NORMAL)
+    override val gui = GuiType.NORMAL.builder()
         .setStructure(
             "1 - - - - - - - 2",
             "| # # # e # # # |",
@@ -33,16 +33,16 @@ inner class SolarPanelGUI : TileEntityGUI() {
 Now we can properly set the ``gui`` property inside the TileEntity class.
 
 ```kotlin
-override val gui = lazy(::SolarPanelGUI)
+override val gui = lazy(::SolarPanelGui)
 ```
 
-## Side Config GUI
+## SideConfigGui
 
-If you want to allow players to change the side configuration of your TileEntity through the GUI, you can use the
-built-in `SideConfigGUI`.
+If you want to allow players to change the side configuration of your TileEntity through the Gui, you can use the
+built-in `SideConfigGui`.
 
-```kotlin title="SideConfigGUI Constructor"
-class SideConfigGUI(
+```kotlin
+class SideConfigGui(
     endPoint: NetworkEndPoint, // (1)!
     inventoryNames: List<Pair<NetworkedInventory, String>>? = null, // (2)!
     fluidContainerNames: List<Pair<FluidContainer, String>>? = null, // (3)!
@@ -54,21 +54,21 @@ class SideConfigGUI(
 2. A list of `NetworkedInventory` to inventory name (localized) pairs. The `NetworkedInventory` instance can be obtained
     from the `VirtualInventory` by calling `NovaItemHolder#getNetworkedInventory`
 3. A list of `FluidContainer` to container name (localized) pairs.
-4. A method to open the previous GUI. In a `TileEntityGUI`, this can reference `::openWindow`
+4. A method to open the previous GUI. In a `TileEntityGui`, this can reference `::openWindow`
 
-Depending on the network types of your TileEntity, the SideConfigGUI will adjust accordingly.
+Depending on the network types of your TileEntity, the SideConfigGui will adjust accordingly.
 
-The UI item for opening the side config gui is called `OpenSideConfigItem` and just takes the `SideConfigGUI` as parameter.
+The UI item for opening the side config gui is called `OpenSideConfigItem` and just takes the `SideConfigGui` as parameter.
 
 ```kotlin
-inner class SolarPanelGUI : TileEntityGUI() {
+inner class SolarPanelGui : TileEntityGui() {
 
-    private val sideConfigGUI = SideConfigGUI(
+    private val sideConfigGui = SideConfigGui(
         this@SolarPanel,
         ::openWindow
     )
 
-    override val gui: GUI = GUIBuilder(GUIType.NORMAL)
+    override val gui = GuiType.NORMAL.builder()
         .setStructure(
             "1 - - - - - - - 2",
             "| s # # e # # # |",
@@ -76,7 +76,7 @@ inner class SolarPanelGUI : TileEntityGUI() {
             "| # # # e # # # |",
             "3 - - - - - - - 4")
         .addIngredient('e', EnergyBar(3, energyHolder))
-        .addIngredient('s', OpenSideConfigItem(sideConfigGUI))
+        .addIngredient('s', OpenSideConfigItem(sideConfigGui))
         .build()
 
 }

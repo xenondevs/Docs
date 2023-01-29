@@ -1,12 +1,12 @@
 # Creating a basic TileEntity class
 
 Before registering the material, you need to create a TileEntity class with a constructor that takes a `NovaTileEntityState` instance.
-We will reference this constructor in the ``registerTileEntity`` function later.
+We will reference this constructor when registering the TileEntity later.
 
 ```kotlin
 class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockState) {
     
-    override val gui: Lazy<TileEntityGUI>
+    override val gui: Lazy<TileEntityGui>
         get() = TODO("We'll implement this later")
 
 }
@@ -15,7 +15,7 @@ class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockSta
 Don't worry about the ``gui`` property or ``NetworkedTileEntity`` yet. Now we can finally register the material.
 
 ```kotlin
-val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
+val SOLAR_PANEL = NovaMaterialRegistry.tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
 ```
 
 So your ``Blocks`` object might look something like this:
@@ -23,9 +23,9 @@ So your ``Blocks`` object might look something like this:
 ```kotlin
 object Blocks {
     
-    private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolLevel.STONE, true, Material.BARRIER, SoundEffect(Sound.BLOCK_STONE_PLACE), SoundEffect(Sound.BLOCK_STONE_BREAK), Material.NETHERITE_BLOCK)
+    private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolTier.WOOD, true, SoundGroup.STONE, Material.NETHERITE_BLOCK)
     
-    val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
+    val SOLAR_PANEL = tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
     
     fun init() = Unit
 

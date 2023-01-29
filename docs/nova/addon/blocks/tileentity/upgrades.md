@@ -28,14 +28,14 @@ Then, retrieve the current upgrade modifier for a certain upgrade type by callin
 
     Consider calling the `reload` method in the init block instead of duplicating the calculation code.
 
-## Using the Upgrades GUI
+## Using the UpgradesGui
 
-The `UpgradesGUI` can easily be added to your `TileEntityGUI` by creating an `OpenUpgradesItem` with your `upgradeHolder`.
+The `UpgradesGui` can easily be added to your `TileEntityGui` by creating an `OpenUpgradesItem` with your `upgradeHolder`.
 
 ```kotlin
-inner class SolarPanelGUI : TileEntityGUI() {
+inner class SolarPanelGui : TileEntityGui() {
     
-    override val gui: GUI = GUIBuilder(GUIType.NORMAL)
+    override val gui = GuiType.NORMAL.builder()
         .setStructure(
             "1 - - - - - - - 2",
             "| u # # e # # # |",
