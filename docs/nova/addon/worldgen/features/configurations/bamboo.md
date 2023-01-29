@@ -37,7 +37,7 @@ As an example, here's the configured and placed feature for the bamboo in the ju
         listOf(
             NoiseBasedCountPlacement.of(170, 80.0, 0.3), // (1)!
             InSquarePlacement.spread(), // (2)!
-            HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), // (3)!
+            PlacementUtils.HEIGHTMAP_WORLD_SURFACE, // (3)!
             BiomeFilter.biome() // (4)!
         )
     )
@@ -47,6 +47,10 @@ As an example, here's the configured and placed feature for the bamboo in the ju
        See [Noise-based count placement](../placed-feature.md#minecraftnoise_based_count) for more information.
     2. Spread the tries in a square.
     3. Make sure to place the bamboo on the world surface.
+       This static constant is equivalent to 
+       ```kotlin
+       HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+       ```
     4. Only place the bamboo in biomes that have bamboo.
 
 === "Json"

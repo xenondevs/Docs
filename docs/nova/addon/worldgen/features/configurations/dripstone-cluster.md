@@ -21,93 +21,139 @@ The `dripstone_cluster` feature has the following configuration options:
 | `max_distance_from_edge_affecting_chance_of_dripstone_column` | An int in the range $[1;64]$.                                                            | The maximum distance from the edge affecting the chance of a dripstone column.         |
 | `max_distance_from_center_affecting_height_bias`              | An int in the range $[1;64]$.                                                            | The maximum distance from the center affecting the height bias.                        |
 
+In code, the `DripstoneClusterConfiguration` class is used to configure the feature.
+
 ## Example
 
-```json title="configured_feature/dripstone_cluster.json"
-{
-  "type": "minecraft:dripstone_cluster",
-  "config": {
-    "chance_of_dripstone_column_at_max_distance_from_center": 0.1,
-    "density": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_exclusive": 0.7,
-        "min_inclusive": 0.3
-      }
-    },
-    "dripstone_block_layer_thickness": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 4,
-        "min_inclusive": 2
-      }
-    },
-    "floor_to_ceiling_search_range": 12,
-    "height": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 6,
-        "min_inclusive": 3
-      }
-    },
-    "height_deviation": 3,
-    "max_distance_from_center_affecting_height_bias": 8,
-    "max_distance_from_edge_affecting_chance_of_dripstone_column": 3,
-    "max_stalagmite_stalactite_height_diff": 1,
-    "radius": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 8,
-        "min_inclusive": 2
-      }
-    },
-    "wetness": {
-      "type": "minecraft:clamped_normal",
-      "value": {
-        "deviation": 0.3,
-        "max": 0.9,
-        "mean": 0.1,
-        "min": 0.1
-      }
-    }
-  }
-}
-```
+=== "Kotlin
 
-```json title="placed_feature/dripstone_cluster.json"
-{
-  "feature": "minecraft:dripstone_cluster",
-  "placement": [
+    ```kotlin title="ConfiguredFeatures.kt"
+    val DRIPSTONE_CLUSTER = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "dripstone_cluster",
+        Feature.DRIPSTONE_CLUSTER,
+        DripstoneClusterConfiguration(
+            12, // floorToCeilingSearchRange
+            UniformInt.of(3, 6), // height
+            UniformInt.of(2, 8), // radius
+            1, // maxStalagmiteStalactiteHeightDiff
+            3, // heightDeviation
+            UniformInt.of(2, 4), // dripstoneBlockLayerThickness
+            UniformFloat.of(0.3f, 0.7f), // density
+            ClampedNormalFloat.of(0.1f, 0.3f, 0.1f, 0.9f), // wetness
+            0.1f, // chanceOfDripstoneColumnAtMaxDistanceFromCenter
+            3, // maxDistanceFromEdgeAffectingChanceOfDripstoneColumn
+            8 // maxDistanceFromCenterAffectingHeightBias
+        )
+    )
+    ```
+
+    ```kotlin title="PlacedFeatures.kt"
+    val DRIPSTONE_CLUSTER = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "dripstone_cluster",
+        ConfiguredFeatures.DRIPSTONE_CLUSTER,
+        listOf(
+            CountPlacement.of(UniformInt.of(48, 96)),
+            InSquarePlacement.spread(),
+            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (1)!
+            BiomeFilter.biome()
+        )
+    )
+    ```
+
+    1. Constant for 
+       ```kotlin
+       HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256))
+       ```
+
+=== "Json"
+
+    ```json title="configured_feature/dripstone_cluster.json"
     {
-      "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "value": {
-          "max_inclusive": 96,
-          "min_inclusive": 48
-        }
-      }
-    },
-    {
-      "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:height_range",
-      "height": {
-        "type": "minecraft:uniform",
-        "max_inclusive": {
-          "absolute": 256
+      "type": "minecraft:dripstone_cluster",
+      "config": {
+        "chance_of_dripstone_column_at_max_distance_from_center": 0.1,
+        "density": {
+          "type": "minecraft:uniform",
+          "value": {
+            "max_exclusive": 0.7,
+            "min_inclusive": 0.3
+          }
         },
-        "min_inclusive": {
-          "above_bottom": 0
+        "dripstone_block_layer_thickness": {
+          "type": "minecraft:uniform",
+          "value": {
+            "max_inclusive": 4,
+            "min_inclusive": 2
+          }
+        },
+        "floor_to_ceiling_search_range": 12,
+        "height": {
+          "type": "minecraft:uniform",
+          "value": {
+            "max_inclusive": 6,
+            "min_inclusive": 3
+          }
+        },
+        "height_deviation": 3,
+        "max_distance_from_center_affecting_height_bias": 8,
+        "max_distance_from_edge_affecting_chance_of_dripstone_column": 3,
+        "max_stalagmite_stalactite_height_diff": 1,
+        "radius": {
+          "type": "minecraft:uniform",
+          "value": {
+            "max_inclusive": 8,
+            "min_inclusive": 2
+          }
+        },
+        "wetness": {
+          "type": "minecraft:clamped_normal",
+          "value": {
+            "deviation": 0.3,
+            "max": 0.9,
+            "mean": 0.1,
+            "min": 0.1
+          }
         }
       }
-    },
-    {
-      "type": "minecraft:biome"
     }
-  ]
-}
-```
+    ```
+    
+    ```json title="placed_feature/dripstone_cluster.json"
+    {
+      "feature": "minecraft:dripstone_cluster",
+      "placement": [
+        {
+          "type": "minecraft:count",
+          "count": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 96,
+              "min_inclusive": 48
+            }
+          }
+        },
+        {
+          "type": "minecraft:in_square"
+        },
+        {
+          "type": "minecraft:height_range",
+          "height": {
+            "type": "minecraft:uniform",
+            "max_inclusive": {
+              "absolute": 256
+            },
+            "min_inclusive": {
+              "above_bottom": 0
+            }
+          }
+        },
+        {
+          "type": "minecraft:biome"
+        }
+      ]
+    }
+    ```
 
 ![Example](https://i.imgur.com/eRK2Jf9.jpeg)

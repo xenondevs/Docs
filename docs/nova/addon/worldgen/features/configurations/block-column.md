@@ -95,7 +95,7 @@ As an example, here's the configured feature used to place cacti in the desert.
 
 ### Glow berry vines
 
-Or, as another example, Here's the configured and placed feature for glow berries/cave vines.
+Or, as another example, here's the configured and placed feature for glow berries/cave vines.
 
 === "Kotlin"
 
@@ -142,9 +142,9 @@ Or, as another example, Here's the configured and placed feature for glow berrie
     }
     ```
 
-    1. Each block of the upper layer of the vine can be either a normal or a vine with berries (biased towards normal).
-    2. The bottom layer of the vine can be either a normal or a vine with berries (biased towards normal), and the age of the vine is randomized between 23 and 25.
-    3. The vine has two layers, the upper layer and the bottom layer.
+    1. Each block of the upper layer of the vine can either be a normal or a vine with berries (biased towards normal).
+    2. The bottom layer of the vine can either be a normal or a vine with berries (biased towards normal), and the age of the vine is randomized between 23 and 25.
+    3. The vine has two layers, the upper layer (`upperStateProvider`) and the bottom layer (`bottomStateProvider `).
     4. The upper layer can be 0 to 19 blocks high, biased towards a medium height.
     5. The upper layer can be either a normal or a vine with berries (biased towards normal).
     6. The bottom layer is always 1 block high.
@@ -177,7 +177,7 @@ Or, as another example, Here's the configured and placed feature for glow berrie
     1. 188 tries per chunk.
     2. Spread the locations in a square.
     3. Only place the vines in the y-range of bottom to 256.
-    4. Search for the first block that has a solid face downwards.
+    4. Search for the first block that has a solid face downwards (max 12 blocks away).
     5. Offset the location by $(0,-1,0)$.
     6. Only place the vines if the current biome has cave vines.
 
@@ -354,7 +354,7 @@ Or, as another example, Here's the configured and placed feature for glow berrie
     1. 188 tries per chunk.
     2. Spread the locations in a square.
     3. Only place the vines in the y-range of bottom to 256.
-    4. Search for the first block that has a solid face downwards.
+    4. Search for the first block that has a solid face downwards (max 12 blocks away).
     5. Offset the location by $(0,-1,0)$.
     6. Only place the vines if the current biome has cave vines.
 
