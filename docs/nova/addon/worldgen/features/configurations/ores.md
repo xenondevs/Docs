@@ -13,6 +13,8 @@ The following options are available for ore configurations:
 | `discard_chance_on_air_exposure` | A `float` in the range $[0;1]$. | Determines the chance that the ore will be discarded if it is exposed to air. `1` means that the ore will never be exposed to air. |
 | `targets`                        | A list of `TargetBlockState`s   | A list which determines what block to use for specific targets. Needs a `target` and a `state` option. See below for more details. |
 
+In code, the `OreConfiguration` class is used to configure the feature.
+
 ### Targets
 
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
@@ -156,68 +158,146 @@ The following `RuleTest`s are available:
 
 As an example, here's the configured- and placed feature of star shards ore from the machines addon.
 
-```json title="configured_feature/ore_star_shards.json"
-{
-  "type": "minecraft:ore",
-  "config": {
-    "discard_chance_on_air_exposure": 0.0,
-    "size": 4,
-    "targets": [ // (1)!
-      {
-        "state": {
-          "Name": "machines:star_shards_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:stone_ore_replaceables"
-        }
-      },
-      {
-        "state": {
-          "Name": "machines:deepslate_star_shards_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
-        }
-      }
-    ]
-  }
-```
+=== "Kotlin"
 
-1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
+    ```kotlin title="ConfiguredFeatures.kt"
+    val ORE_STAR_SHARDS = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "ore_star_shards",
+        Feature.ORE,
+        OreConfiguration(
+            listOf( // (1)!
+                OreConfiguration.target(
+                    TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
+                    WrapperBlockState(Blocks.STAR_SHARDS_ORE)
+                ),
+                OreConfiguration.target(
+                    TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
+                    WrapperBlockState(Blocks.DEEPSLATE_STAR_SHARDS_ORE)
+                )
+            ),
+            4, // (2)!
+            0.0f // (3)!
+        )
+    )
+    ```
 
-```json title="placed_feature/ore_star_shards.json"
-{
-  "feature": "machines:ore_star_shards",
-  "placement": [
+    1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
+    2. The size of the ore vein.
+    3. The chance that the ore will be discarded if it's exposed to air.
+
+    For placements, it's pretty useful to define a few util functions to create the `PlacementModifier` list.
+    
+    ```kotlin title="PlacedFeatures.kt"
+    private fun orePlacement(firstModifier: PlacementModifier, lastModifier: PlacementModifier) =
+        listOf(firstModifier, InSquarePlacement.spread(), lastModifier, BiomeFilter.biome())
+    
+    /**
+     * @param count The amount of ores per chunk
+     */
+    private fun commonOrePlacement(count: Int, lastModifier: PlacementModifier) =
+        orePlacement(CountPlacement.of(count), lastModifier)
+    
+    /**
+     * @param chance The chance of an ore to spawn per chunk. 7 = 1 in 7 chunks
+     */
+    private fun rareOrePlacement(chance: Int, lastModifier: PlacementModifier) =
+        orePlacement(RarityFilter.onAverageOnceEvery(chance), lastModifier)
+    ```
+
+    ??? Vanilla ore placement examples
+    
+        ```kotlin
+        // ore_iron_upper
+        commonOrePlacement(90, HeightRangePlacement.triangle(VerticalAnchor.absolute(80), VerticalAnchor.absolute(384)))
+        // ore_iron_middle
+        commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56)))
+        // ore_iron_small
+        commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(72)))
+    
+        // ore_diamond
+        commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))
+        // ore_diamond_large
+        rareOrePlacement(9, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))
+        // ore_diamond_buried
+        commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))
+        ```
+
+    ```kotlin title="PlacedFeatures.kt"
+    val ORE_STAR_SHARDS = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "ore_star_shards",
+        ConfiguredFeatures.ORE_STAR_SHARDS,
+        commonOrePlacement(30, HeightRangePlacement.uniform(VerticalAnchor.absolute(120), VerticalAnchor.top())) // (1)!
+    )
+    ```
+
+    1. 30 tries per chunk and only place the ore at a high altitude (y>120).
+
+=== "Json"
+
+    ```json title="configured_feature/ore_star_shards.json"
     {
-      "type": "minecraft:count",
-      "count": 30 // (1)!
-    },
-    {
-      "type": "minecraft:in_square" // (2)!
-    },
-    {
-      "type": "minecraft:height_range", // (3)!
-      "height": {
-        "type": "minecraft:uniform",
-        "max_inclusive": {
-          "below_top": 0
-        },
-        "min_inclusive": {
-          "absolute": 120
-        }
+      "type": "minecraft:ore",
+      "config": {
+        "discard_chance_on_air_exposure": 0.0,
+        "size": 4,
+        "targets": [ // (1)!
+          {
+            "state": {
+              "Name": "machines:star_shards_ore"
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:stone_ore_replaceables"
+            }
+          },
+          {
+            "state": {
+              "Name": "machines:deepslate_star_shards_ore"
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:deepslate_ore_replaceables"
+            }
+          }
+        ]
       }
-    },
+    ```
+
+    1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
+
+    ```json title="placed_feature/ore_star_shards.json"
     {
-      "type": "minecraft:biome" // (4)!
+      "feature": "machines:ore_star_shards",
+      "placement": [
+        {
+          "type": "minecraft:count",
+          "count": 30 // (1)!
+        },
+        {
+          "type": "minecraft:in_square" // (2)!
+        },
+        {
+          "type": "minecraft:height_range", // (3)!
+          "height": {
+            "type": "minecraft:uniform",
+            "max_inclusive": {
+              "below_top": 0
+            },
+            "min_inclusive": {
+              "absolute": 120
+            }
+          }
+        },
+        {
+          "type": "minecraft:biome" // (4)!
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
-1. 30 tries per chunk.
-2. Spread the tries in a square.
-3. Place the ore above y-level 119.
-4. Discard the try if we moved into a biome that doesn't generate star shards.
+    1. 30 tries per chunk.
+    2. Spread the tries in a square.
+    3. Place the ore above y-level 119.
+    4. Discard the try if we moved into a biome that doesn't generate star shards.
