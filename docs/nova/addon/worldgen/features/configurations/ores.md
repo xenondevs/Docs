@@ -33,6 +33,9 @@ The following `RuleTest`s are available:
         <td><code>minecraft:always_true</code></td>
         <td>Matches every block</td>
         <td>
+            ```kotlin
+            AlwaysTrueTest.INSTANCE
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:always_true"
@@ -44,6 +47,9 @@ The following `RuleTest`s are available:
         <td><code>minecraft:block_match</code></td>
         <td>Matches a specific block</td>
         <td>
+            ```kotlin
+            BlockMatchTest(Blocks.STONE)
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:block_match",
@@ -58,6 +64,13 @@ The following `RuleTest`s are available:
         <td><code>minecraft:blockstate_match</code></td>
         <td>Matches a specific blockstate</td>
         <td>
+            ```kotlin
+            BlockStateMatchTest(
+                Blocks.GLASS_PANE.defaultBlockState()
+                    .setValue(IronBarsBlock.EAST, true)
+                    .setValue(IronBarsBlock.WEST, true)
+            )
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:blockstate_match",
@@ -79,6 +92,9 @@ The following `RuleTest`s are available:
         <td><code>minecraft:tag_match</code></td>
         <td>Matches a specific <a href="https://minecraft.fandom.com/wiki/Tag#Blocks">block tag</a></td>
         <td>
+            ```kotlin
+            TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES)
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:tag_match",
@@ -91,6 +107,9 @@ The following `RuleTest`s are available:
         <td><code>minecraft:random_block_match</code></td>
         <td>Matches the given block with a probability. The probability should be a value between 0.0 and 1.0.</td>
         <td>
+            ```kotlin
+            RandomBlockMatchTest(Blocks.COBBLESTONE, 0.5f)
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:random_block_match",
@@ -104,6 +123,14 @@ The following `RuleTest`s are available:
         <td><code>minecraft:random_blockstate_match</code></td>
         <td>Matches the given blockstate with a probability. The probability should be a value between 0.0 and 1.0.</td>
         <td>
+            ```kotlin
+            RandomBlockStateMatchTest(
+                Blocks.GLASS_PANE.defaultBlockState()
+                    .setValue(IronBarsBlock.EAST, true)
+                    .setValue(IronBarsBlock.WEST, true),
+                0.5f
+            )
+            ```
             ```json
             "target": {
               "predicate_type": "minecraft:random_blockstate_match",

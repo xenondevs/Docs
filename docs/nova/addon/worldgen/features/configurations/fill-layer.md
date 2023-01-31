@@ -20,7 +20,7 @@ As an example, here's a configured- and placed feature to add a layer of grass o
 
 === "Kotlin"
 
-    ``´kotlin title="ConfiguredFeatures.kt"
+    ```kotlin title="ConfiguredFeatures.kt"
     val FILL_LAYER_GRASS = FeatureRegistry.registerConfiguredFeature(
         Machines,
         "fill_layer_grass",
