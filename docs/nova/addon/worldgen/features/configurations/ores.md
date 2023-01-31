@@ -205,7 +205,7 @@ As an example, here's the configured- and placed feature of star shards ore from
         orePlacement(RarityFilter.onAverageOnceEvery(chance), lastModifier)
     ```
 
-    ??? Vanilla ore placement examples
+    ??? example "Vanilla ore placement examples"
     
         ```kotlin
         // ore_iron_upper
