@@ -248,6 +248,7 @@ These are the available vanilla material properties:
 | Property Name                 | Effect                                                                   |
 |-------------------------------|--------------------------------------------------------------------------|
 | `DAMAGEABLE`                  | The item has a durability bar.                                           |
+| `FIRE_RESISTANT`              | The item will not catch on fire.                                         |
 | `CREATIVE_NON_BLOCK_BREAKING` | The item cannot break blocks in creative mode.                           |
 | `CONSUMABLE_NORMAL`           | The item can be consumed normally.                                       |
 | `CONSUMABLE_ALWAYS`           | The item can always be consumed.                                         |
@@ -256,11 +257,10 @@ These are the available vanilla material properties:
 | `CHESTPLATE`                  | The item can render a custom chestplate texture.                         |
 | `LEGGINGS`                    | The item can render a custom leggings texture.                           |
 | `BOOTS`                       | The item can render a custom boots texture.                              |
-| `FIRE_RESISTANT`              | The item will not catch on fire.                                         |
 
 ### `val attributeModifiers`
 
-A `Provider` for a list of `AttributeModifier`s.  
+A `Provider` for a list of `AttributeModifiers`.  
 
 ```kotlin title="Example Attribute Modifiers"
 override val attributeModifiers = provider(listOf(
@@ -301,13 +301,13 @@ like the display name, lore (normal and advanced tooltips), the durability bar a
 
 Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
 
-### ItemBehaviorFactory & MaterialOptions / ConfigAccess
+### ItemBehaviorFactory
 
 If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
 to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(ItemNovaMaterial)`
 function. Here, you can create an instance of your `ItemBehavior` based on the `ItemNovaMaterial` that is passed to the function.
 
-With `ConfigAccess`, you easily create a class that houses config-reloadable properties for your item behavior.  
+With `ConfigAccess`, you easily create a class that houses [config-reloadable properties](../configs.md) for your item behavior.  
 Here is an example of how we implement
 [ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L151-L154) and
 [ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
@@ -315,10 +315,12 @@ for food items.
 
 ## Item Data
 
-If you need to store or retrieve data from an `ItemStack`, call `ItemStack.novaCompound` to retrieve the CBF Compound.
-There, you can store any data you want.
+If you need to store or retrieve data from an `ItemStack`, you can use `ItemStack.storeData` and `ItemStack.retrieveData`.
+Additionally, you can also retrieve the underlying `NamespacedCompound` by calling `ItemStack.novaCompound`.
+
+You can also run the command `/nova debug itemData` to take a look at the data of the item stack in your hand.
 
 !!! tip
 
-    Make sure to check out the CBF documentation for more information.  
+    Data is serialized using CBF. Make sure to check out the CBF documentation for more information.  
     [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
