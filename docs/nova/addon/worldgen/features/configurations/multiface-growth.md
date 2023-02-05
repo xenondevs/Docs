@@ -26,23 +26,23 @@ As an example, here's the configured- and placed feature for sculk veins.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-        val SCULK_VEIN = FeatureRegistry.registerConfiguredFeature(
-            Machines,
-            "sculk_vein",
-            Feature.MULTIFACE_GROWTH,
-            MultifaceGrowthConfiguration(
-                Blocks.SCULK_VEIN as MultifaceBlock, // block to use
-                20, // search range
-                true, // canPlaceOnFloor
-                true, // canPlaceOnCeiling
-                true, // canPlaceOnWall
-                1.0F, // chanceOfSpreading // (1)!
-                HolderSet.direct( // (2)!
-                    Block::builtInRegistryHolder,
-                    Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.DRIPSTONE_BLOCK, Blocks.CALCITE, Blocks.TUFF, Blocks.DEEPSLATE
-                )
+    val SCULK_VEIN = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "sculk_vein",
+        Feature.MULTIFACE_GROWTH,
+        MultifaceGrowthConfiguration(
+            Blocks.SCULK_VEIN as MultifaceBlock, // block to use
+            20, // search range
+            true, // canPlaceOnFloor
+            true, // canPlaceOnCeiling
+            true, // canPlaceOnWall
+            1.0F, // chanceOfSpreading // (1)!
+            HolderSet.direct( // (2)!
+                Block::builtInRegistryHolder,
+                Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.DRIPSTONE_BLOCK, Blocks.CALCITE, Blocks.TUFF, Blocks.DEEPSLATE
             )
         )
+    )
     ```
 
     1. Combined with the search range of 20, this ensures that every block in a 20 block radius will have a sculk vein.

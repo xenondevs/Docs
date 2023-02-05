@@ -64,11 +64,11 @@ In code, the `GeodeLayerSettings` class is used to configure the layers of the g
 
 The crack configuration of the geode. It has the following options:
 
-| Option                                                | Type                                             | Description                                | Amethyst geode value |
-|-------------------------------------------------------|--------------------------------------------------|--------------------------------------------|----------------------|
-| `generate_crack_chance` (optional, defaults to `1.0`) | A `double` in the range $[0.0;1.0]$.             | The chance that a crack will be generated. | `0.95`               |
-| `base_crack_size` (optional, defaults to `2.0`)       | A `double`. (Range limit in Json is $[0.0;5.0]$) | The base size of a crack.                  | `2.0`                |
-| `crack_point_offset` (optional, defaults to `2`)      | An `int`. (Range limit in Json is $[0;10]$)      | The offset of the crack point.             | `2`                  |
+| Option                                                        | Type                                             | Description                                | Amethyst geode value |
+|---------------------------------------------------------------|--------------------------------------------------|--------------------------------------------|----------------------|
+| `generate_crack_chance` (optional in Json, defaults to `1.0`) | A `double` in the range $[0.0;1.0]$.             | The chance that a crack will be generated. | `0.95`               |
+| `base_crack_size` (optional in Json, defaults to `2.0`)       | A `double`. (Range limit in Json is $[0.0;5.0]$) | The base size of a crack.                  | `2.0`                |
+| `crack_point_offset` (optional in Json, defaults to `2`)      | An `int`. (Range limit in Json is $[0;10]$)      | The offset of the crack point.             | `2`                  |
 
 In code, the `GeodeCrackSettings` class is used to configure the crack of the geode.
 
