@@ -6,13 +6,13 @@ The `huge_fungus` feature can be used to place huge fungi in the world (used for
 
 The `huge_fungus` feature has the following configuration options:
 
-| Option                                    | Type                                   | Description                                                                                       |
-|-------------------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------|
-| `hat_state`                               | A [`BlockState`](../../block-state.md) | The block state to use for the hat of the fungus.                                                 |
-| `decor_state`                             | A `BlockState`                         | The block state to randomly place under the hat as decoration. (For example shroomlight)          |
-| `stem_state`                              | A `BlockState`                         | The block state to use for the stem of the fungus.                                                |
-| `valid_base_block`                        | A `BlockState`                         | The block state that needs to be present below the fungus.                                        |
-| `planted` (optional, defaults to `false`) | A `boolean`                            | If set to `false`, can only replace `PLANT` material blocks and doesn't drop items when replaced. |
+| Option                                            | Type                                   | Description                                                                                       |
+|---------------------------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------|
+| `valid_base_block`                                | A [`BlockState`](../../block-state.md) | The block state that needs to be present below the fungus.                                        |
+| `stem_state`                                      | A `BlockState`                         | The block state to use for the stem of the fungus.                                                |
+| `hat_state`                                       | A `BlockState`                         | The block state to use for the hat of the fungus.                                                 |
+| `decor_state`                                     | A `BlockState`                         | The block state to randomly place under the hat as decoration. (For example shroomlight)          |
+| `planted` (optional in Json, defaults to `false`) | A `boolean`                            | If set to `false`, can only replace `PLANT` material blocks and doesn't drop items when replaced. |
 
 In code, the `HugeFungusConfiguration` class is used to configure the feature.
 

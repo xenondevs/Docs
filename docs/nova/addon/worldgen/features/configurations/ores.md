@@ -7,11 +7,11 @@ Ore features are used to generate ores in the world. They are configured using t
 
 The following options are available for ore configurations:
 
-| Option                           | Type                            | Description                                                                                                                        |
-|----------------------------------|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `size`                           | An `int` in the range $[0;64]$. | Determines the volume size of the ore.                                                                                             |
-| `discard_chance_on_air_exposure` | A `float` in the range $[0;1]$. | Determines the chance that the ore will be discarded if it is exposed to air. `1` means that the ore will never be exposed to air. |
-| `targets`                        | A list of `TargetBlockState`s   | A list which determines what block to use for specific targets. Needs a `target` and a `state` option. See below for more details. |
+| Option                           | Type                                        | Description                                                                                                                        |
+|----------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `targets`                        | A list of `TargetBlockState`s               | A list which determines what block to use for specific targets. Needs a `target` and a `state` option. See below for more details. |
+| `size`                           | An `int`. (Range limit in Json is $[0;64]$) | Determines the volume size of the ore.                                                                                             |
+| `discard_chance_on_air_exposure` | A `float`. (Range limit in Json is $[0;1]$) | Determines the chance that the ore will be discarded if it is exposed to air. `1` means that the ore will never be exposed to air. |
 
 In code, the `OreConfiguration` class is used to configure the feature.
 
@@ -21,6 +21,9 @@ As mentioned above, the `targets` option is a list of targets. The `target` opti
 pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../block-state-provider.md)
 which determines what block to use for the specific target.  
 The following `RuleTest`s are available:
+
+!!! warning
+    `RuleTest`s don't support Nova blocks yet. They'll need separate implementations to properly work.
 
 <table>
     <thead>
@@ -58,8 +61,6 @@ The following `RuleTest`s are available:
               "block": "minecraft:stone"
             }
             ```
-            
-            <code>block</code> also supports Nova blocks.
         </td>
     </tr>
     <tr>
@@ -169,22 +170,24 @@ As an example, here's the configured- and placed feature of star shards ore from
             listOf( // (1)!
                 OreConfiguration.target(
                     TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
-                    WrapperBlockState(Blocks.STAR_SHARDS_ORE)
+                    WrapperBlockState(Blocks.STAR_SHARDS_ORE) // (2)!
                 ),
                 OreConfiguration.target(
                     TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
                     WrapperBlockState(Blocks.DEEPSLATE_STAR_SHARDS_ORE)
                 )
             ),
-            4, // (2)!
-            0.0f // (3)!
+            4, // (3)!
+            0.0f // (4)!
         )
     )
     ```
 
     1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
-    2. The size of the ore vein.
-    3. The chance that the ore will be discarded if it's exposed to air.
+    2. Since blocks registered via Nova aren't registered in the vanilla blocks registry and thus don't have a blockstate, we need to wrap an block material in a `WrapperBlockState`.  
+       These objects are later detected before the block is placed and are passed to Nova for correct placement.
+    3. The size of the ore vein.
+    4. The chance that the ore will be discarded if it's exposed to air.
 
     For placements, it's pretty useful to define a few util functions to create the `PlacementModifier` list.
     

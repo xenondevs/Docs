@@ -8,10 +8,10 @@ The following configuration options are available:
 
 | Option              | Type                                                      | Description                                                                                                                                                      |
 |---------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `layers`            | An array of `Layer`s. See below for more information      | Defines which block states should be used at specific heights.                                                                                                   |
 | `direction`         | `north`, `east`, `south`, `west`, `up` or `down`          | Determines the direction of the column.                                                                                                                          |
 | `allowed_placement` | A [BlockPredicate](../placed-feature.md#block-predicates) | A predicate that has to match every block in the column **before** the block is placed.                                                                          |
 | `prioritize_tip`    | A `boolean`                                               | When set to `true`, all underlying block will be removed if the current block doesn't match the provided [BlockPredicate](../placed-feature.md#block-predicates) |
-| `layers`            | An array of `Layer`s. See below for more information      | Defines which block states should be used at specific heights.                                                                                                   |
 
 In code, the `BlockColumnConfiguration` class is used to configure the feature.
 

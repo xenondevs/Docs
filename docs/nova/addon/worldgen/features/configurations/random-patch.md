@@ -9,76 +9,128 @@ only exists to make distinguishing it from other `random_patch` features easier.
 
 The following configuration options are available:
 
-| Option                                | Type                                                                                                      | Description                                                     |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `tries` (optional, defaults to 128)   | A positive `int`                                                                                          | The amount of times the feature will try to generate.           |
-| `xz_spread` (optional, defaults to 7) | A positive `int`                                                                                          | The maximum horizontal distance from the center of the feature. |
-| `y_spread` (optional, defaults to 3)  | A positive `int`                                                                                          | The maximum vertical distance from the center of the feature.   |
-| `feature`                             | Can either be the name of the placed feature if it was configured elsewhere or the actual placed feature. | The placed feature to generate.                                 |
+| Option                                          | Type                                                                                                | Description                                                     |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `tries` (optional in Json, defaults to `128`)   | A positive `int`.                                                                                   | The amount of times the feature will try to generate.           |
+| `xz_spread` (optional in Json, defaults to `7`) | A positive `int`.                                                                                   | The maximum horizontal distance from the center of the feature. |
+| `y_spread` (optional in Json, defaults to `3`)  | A positive `int`.                                                                                   | The maximum vertical distance from the center of the feature.   |
+| `feature`                                       | The placed feature (in Json, this can also be the id of the placed feature if registered elsewhere) | The placed feature to generate.                                 |
+
+In code, the `RandomPatchConfiguration` class is used to configure the feature.
 
 ## Example
 
-```json title="configured_feature/patch_dead_bush.json"
-{
-  "type": "minecraft:random_patch",
-  "config": {
-    "feature": { // (1)!
-      "feature": { // (2)!
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "minecraft:dead_bush"
+As an example, here's the random patch used to generate dead bushes in the badlands biome:
+
+=== "Kotlin"
+
+    Minecraft offers a few util functions in the `FeatureUtils` class to make the creation of the `RandomPatchConfiguration` easier.
+    
+    ```kotlin title="ConfiguredFeatures.kt"
+    val PATCH_DEAD_BUSH = FeatureRegistry.registerConfiguredFeature(
+        Machines,
+        "patch_dead_bush",
+        Feature.RANDOM_PATCH,
+        FeatureUtils.simpleRandomPatchConfiguration( // (1)!
+            4, // tries
+            PlacementUtils.onlyWhenEmpty( // (2)!
+                Feature.SIMPLE_BLOCK,
+                SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.DEAD_BUSH)) // (3)!
+            )
+        )
+    )
+    ```
+    
+    1. The `simpleRandomPatchConfiguration` function creates a `RandomPatchConfiguration` with the given tries and placed feature.
+       `xz_spread` and `y_spread` are set to 7 and 3 respectively.
+    2. The `onlyWhenEmpty` function creates an [inlined `PlacedFeature`](../placed-feature#inlined) that only places the feature when the block at the position is air.
+    3. Place single dead bushes.
+    
+    ```kotlin title="PlacedFeatures.kt"
+    val PATCH_DEAD_BUSH = FeatureRegistry.registerPlacedFeature(
+        Machines,
+        "patch_dead_bush",
+        ConfiguredFeatures.PATCH_DEAD_BUSH,
+        listOf(
+            CountPlacement.of(20), // (1)!
+            InSquarePlacement.spread(), // (2)!
+            PlacementUtils.HEIGHTMAP_WORLD_SURFACE, // (3)!
+            BiomeFilter.biome() // (4)!
+        )
+    )
+    ```
+    
+    1. 20 tries to generate the feature.
+    2. Spread the feature horizontally.
+    3. Set the y-coordinate to the world surface. This static constant is equivalent to
+       ```kotlin
+       HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+       ```
+    4. Make sure that the feature only generates if the position hasn't moved outside the biome that contains dead bushes.
+
+=== "Json"
+
+    ```json title="configured_feature/patch_dead_bush.json"
+    {
+      "type": "minecraft:random_patch",
+      "config": {
+        "feature": { // (1)!
+          "feature": { // (2)!
+            "type": "minecraft:simple_block",
+            "config": {
+              "to_place": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                  "Name": "minecraft:dead_bush"
+                }
+              }
             }
-          }
-        }
-      },
+          },
+          "placement": [
+            {
+              "type": "minecraft:block_predicate_filter",
+              "predicate": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            }
+          ]
+        },
+        "tries": 4,
+        "xz_spread": 7,
+        "y_spread": 3
+      }
+    }
+    ```
+
+    1. The placed feature to generate. Can also be the id of a placed feature that was configured elsewhere.
+    2. The feature's configuration. Can also be the id of a configured feature.
+
+    ```json title="placed_feature/patch_dead_bush_badlands.json"
+    {
+      "feature": "minecraft:patch_dead_bush",
       "placement": [
         {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
-          }
+          "type": "minecraft:count",
+          "count": 20 // (1)!
+        },
+        {
+          "type": "minecraft:in_square" // (2)!
+        },
+        {
+          "type": "minecraft:heightmap",
+          "heightmap": "WORLD_SURFACE_WG" // (3)!
+        },
+        {
+          "type": "minecraft:biome" // (4)!
         }
       ]
-    },
-    "tries": 4,
-    "xz_spread": 7,
-    "y_spread": 3
-  }
-}
-```
-
-1. The placed feature to generate. Can also be the id of a placed feature that was configured elsewhere.
-2. The feature's configuration. Can also be the id of a configured feature.
-
-```json title="placed_feature/patch_dead_bush_badlands.json"
-{
-  "feature": "minecraft:patch_dead_bush",
-  "placement": [
-    {
-      "type": "minecraft:count",
-      "count": 20 // (1)!
-    },
-    {
-      "type": "minecraft:in_square" // (2)!
-    },
-    {
-      "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG" // (3)!
-    },
-    {
-      "type": "minecraft:biome" // (4)!
     }
-  ]
-}
-```
+    ```
 
-1. 20 tries to generate the feature.
-2. Spread the feature horizontally.
-3. Set the y-coordinate to the world surface.
-4. Only generate in badlands biomes.
+    1. 20 tries to generate the feature.
+    2. Spread the feature horizontally.
+    3. Set the y-coordinate to the world surface.
+    4. Make sure that the feature only generates if the position hasn't moved outside the biome that contains dead bushes.
 
 ![Example](https://i.imgur.com/KlN0sG2.jpeg)

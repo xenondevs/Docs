@@ -6,9 +6,9 @@ The `iceberg` feature allows you to add icebergs to the world.
 
 The `iceberg` feature only has one configuration option:
 
-| Option  | Type                                 | Description                              |
-|---------|--------------------------------------|------------------------------------------|
-| `state` | A [BlockState](../../block-state.md) | The block state to use for the icebergs. |
+| Option  | Type                                   | Description                              |
+|---------|----------------------------------------|------------------------------------------|
+| `state` | A [`BlockState`](../../block-state.md) | The block state to use for the icebergs. |
 
 In code, the `BlockStateConfiguration` class is used to configure the feature.
 

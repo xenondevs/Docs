@@ -46,8 +46,7 @@ As an example, here's the configured and placed feature for the bamboo in the ju
     1. Use noise to determine bamboo amount.   
        See [Noise-based count placement](../placed-feature.md#minecraftnoise_based_count) for more information.
     2. Spread the tries in a square.
-    3. Make sure to place the bamboo on the world surface.
-       This static constant is equivalent to 
+    3. Make sure to place the bamboo on the world surface. This static constant is equivalent to 
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
        ```

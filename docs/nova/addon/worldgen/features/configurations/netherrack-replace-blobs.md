@@ -7,11 +7,11 @@ the name suggests that it only works with netherrack, it can be used with any bl
 
 The `replace_blobs` feature has the following configuration options:
 
-| Option   | Type                                                                               | Description                                 |
-|----------|------------------------------------------------------------------------------------|---------------------------------------------|
-| `target` | A [`BlockState`](../../block-state.md)                                             | The block state to replace.                 |
-| `state`  | A `BlockState`                                                                     | The block state to replace the target with. |
-| `radius` | An [`IntProvider`](../placed-feature.md#int-providers) whose value is in $[0;12]$. | The radius of the blob.                     |
+| Option   | Type                                                                                      | Description                                 |
+|----------|-------------------------------------------------------------------------------------------|---------------------------------------------|
+| `target` | A [`BlockState`](../../block-state.md).                                                   | The block state to replace.                 |
+| `state`  | A `BlockState`.                                                                           | The block state to replace the target with. |
+| `radius` | An [`IntProvider`](../placed-feature.md#int-providers). (Range limit in Json is $[0;12]$) | The radius of the blob.                     |
 
 In code, the `ReplaceSphereConfiguration` class is used to configure the feature.
 

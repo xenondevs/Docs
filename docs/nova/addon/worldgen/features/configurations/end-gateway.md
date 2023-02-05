@@ -6,10 +6,10 @@ The `end_gateway` feature can be used to place end gateways in the world.
 
 An end gateway feature has the following configuration options:
 
-| Option            | Type                                                                  | Description                                                       |
-|-------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------|
-| `exact`           | `boolean`                                                             | Whether entities should be teleported to the exact exit location. |
-| `exit` (optional) | An array of coordinates. First element is the x coordinate and so on. | The exit location of the end gateway.                             |
+| Option            | Type                                                                                                                            | Description                                                       |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `exit` (optional) | A `BlockPos` (In Json, the `BlockPos` is represented via an array of coordinates. First element is the x coordinate and so on.) | The exit location of the end gateway.                             |
+| `exact`           | `boolean`                                                                                                                       | Whether entities should be teleported to the exact exit location. |
 
 In code, the `EndGatewayConfiguration` class is used to configure the feature.
 
@@ -55,7 +55,7 @@ Here's the configured and placed feature for the vanilla return end gateway:
 
     1. Give the end gateway a chance of $^1/_{700}$ to spawn. Or in other words, the end gateway will spawn in 1 out of 700 chunks.
     2. Randomly offset the gateways in a square.
-    3. Move the gateways to the surface. The static consant is equivalent to
+    3. Move the gateways to the surface. The static constant is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING)
        ```

@@ -4,11 +4,11 @@ The `huge_brown_mushroom ` and `huge_red_mushroom` features can be used to add h
 
 ## Configuration
 
-| Option                                     | Type                                                    | Description                                               |
-|--------------------------------------------|---------------------------------------------------------|-----------------------------------------------------------|
-| `cap_provider`                             | A [`BlockStateProvider`](../../block-state-provider.md) | Determines the block to use for the cap of the mushroom.  |
-| `stem_provider`                            | A `BlockStateProvider`                                  | Determines the block to use for the stem of the mushroom. |
-| `foliage_radius` (optional, defaults to 2) | An `int`                                                | Determines the radius of the cap.                         |
+| Option                                             | Type                                                    | Description                                               |
+|----------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------------|
+| `cap_provider`                                     | A [`BlockStateProvider`](../../block-state-provider.md) | Determines the block to use for the cap of the mushroom.  |
+| `stem_provider`                                    | A `BlockStateProvider`                                  | Determines the block to use for the stem of the mushroom. |
+| `foliage_radius` (optional in Json, defaults to 2) | An `int`                                                | Determines the radius of the cap.                         |
 
 In code, the `HugeMushroomFeatureConfiguration` class is used to configure the feature.
 

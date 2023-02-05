@@ -512,6 +512,8 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
     }
     ```
 
+# Inlined
+
 # TODO \/ move to different section \/
 
 ## Block predicates

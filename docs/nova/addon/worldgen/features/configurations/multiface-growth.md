@@ -7,15 +7,15 @@ glow lichen).
 
 The `multiface_growth` feature has the following configuration options:
 
-| Option                                                | Type                                             | Description                                           |
-|-------------------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
-| `block` (optional, defaults to `glow_lichen`          | A `String`. Either `glow_lichen` or `sculk_vein` | The block to generate.                                |
-| `search_range` (optional, defaults to `10`)           | An `int` in the range $[1;64]$                   | The search range for the next block to grow on.       |
-| `chance_of_spreading` (optional, defaults to `0.5`)   | A `float` in the range $[0.0;1.0]$               | The chance that the plant will spread to a new block. |
-| `can_place_on_floor` (optional, defaults to `false`)  | A `boolean`                                      | Whether the plant can grow on the floor.              |
-| `can_place_on_ceiling` (optional, defaults to `true`) | A `boolean`                                      | Whether the plant can grow on the ceiling.            |
-| `can_place_on_wall` (optional, defaults to `true`)    | A `boolean`                                      | Whether the plant can grow on the wall.               |
-| `can_be_placed_on`                                    | A single block id, block tag or a list of them   | The blocks the plant can grow on.                     |
+| Option                                                        | Type                                                                                     | Description                                           |
+|---------------------------------------------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| `block` (optional in Json, defaults to `glow_lichen`          | A `String`. Either `glow_lichen` or `sculk_vein`.                                        | The block to generate.                                |
+| `search_range` (optional in Json, defaults to `10`)           | An `int`. (Range limit in Json is $[1;64]$)                                              | The search range for the next block to grow on.       |
+| `can_place_on_floor` (optional in Json, defaults to `false`)  | A `boolean`.                                                                             | Whether the plant can grow on the floor.              |
+| `can_place_on_ceiling` (optional in Json, defaults to `true`) | A `boolean`.                                                                             | Whether the plant can grow on the ceiling.            |
+| `can_place_on_wall` (optional in Json, defaults to `true`)    | A `boolean`.                                                                             | Whether the plant can grow on the wall.               |
+| `can_be_placed_on`                                            | A list of blocks. (Also supports a single block id, block tag or a list of them in Json) | The blocks the plant can grow on.                     |
+| `chance_of_spreading` (optional in Json, defaults to `0.5`)   | A `float`. (Range limit in Json is $[0.0;1.0]$)                                          | The chance that the plant will spread to a new block. |
 
 In code, the `MultifaceGrowthConfiguration` class is used to configure the feature.
 

@@ -7,11 +7,11 @@ The `end_spike` feature can be used to place end spikes (also known as obsidian 
 The following configuration options are available:
 
 
-| Option                                                 | Type                                                                  | Description                                                                   |
-|--------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `crystal_invulnerable` (optional, defaults to `false`) | `boolean`                                                             | Whether the crystals on top of the end spikes should be invulnerable.         |
-| `crystal_beam_target` (optional)                       | An array of coordinates. First element is the x coordinate and so on. | The target of the crystal beam.                                               |
-| `spikes`                                               | An array of `Spikes`s. See below for more information                 | The spikes to place. If the array is empty, the default end spikes are placed |
+| Option                                                         | Type                                                                                                                            | Description                                                                   |
+|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `crystal_invulnerable` (optional in Json, defaults to `false`) | `boolean`                                                                                                                       | Whether the crystals on top of the end spikes should be invulnerable.         |
+| `spikes`                                                       | A list of `Spikes`s. See below for more information                                                                             | The spikes to place. If the array is empty, the default end spikes are placed |
+| `crystal_beam_target` (optional)                               | A `BlockPos` (In Json, the `BlockPos` is represented via an array of coordinates. First element is the x coordinate and so on.) | The target of the crystal beam.                                               |
 
 In code, the `SpikeConfiguration` class is used to configure the feature.
 
@@ -19,13 +19,15 @@ In code, the `SpikeConfiguration` class is used to configure the feature.
 
 The spikes can be configured with the following options:
 
-| Option                                    | Type      | Description                                               |
-|-------------------------------------------|-----------|-----------------------------------------------------------|
-| `centerX` (optional, defaults to `0`)     | `int`     | The x coordinate of the center of the spike.              |
-| `centerZ` (optional, defaults to `0`)     | `int`     | The z coordinate of the center of the spike.              |
-| `radius` (optional, defaults to `0`)      | `int`     | The radius of the spike.                                  |
-| `height` (optional, defaults to `0`)      | `int`     | The height of the spike.                                  |
-| `guarded` (optional, defaults to `false`) | `boolean` | Whether iron bars should be placed around the end crystal |
+| Option                                            | Type      | Description                                               |
+|---------------------------------------------------|-----------|-----------------------------------------------------------|
+| `centerX` (optional in Json, defaults to `0`)     | `int`     | The x coordinate of the center of the spike.              |
+| `centerZ` (optional in Json, defaults to `0`)     | `int`     | The z coordinate of the center of the spike.              |
+| `radius` (optional in Json, defaults to `0`)      | `int`     | The radius of the spike.                                  |
+| `height` (optional in Json, defaults to `0`)      | `int`     | The height of the spike.                                  |
+| `guarded` (optional in Json, defaults to `false`) | `boolean` | Whether iron bars should be placed around the end crystal |
+
+The `SpikeFeature.EndSpike` class is used to configure the spikes in code.
 
 ## Examples
 

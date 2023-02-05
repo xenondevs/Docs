@@ -1,4 +1,4 @@
-    # Forest rock feature
+# Forest rock feature
 
 The `forest_rock` feature can be used to generate small $3x3$ rocks in the world.
 
@@ -41,7 +41,7 @@ In code, the `BlockStateConfiguration` class is used to configure the feature.
 
     1. Generate 2 rocks per chunk.
     2. Randomly offset the x- and z-coordinates of the rock.
-    3. Set the y-coordinate of the rock to the highest motion-blocking block. The static consant is equivalent to
+    3. Set the y-coordinate of the rock to the highest motion-blocking block. The static constant is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING)
        ```

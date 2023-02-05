@@ -6,20 +6,21 @@ The `disk` feature allows you to place disks of blocks in the world.
 
 The `disk` feature has the following configuration options:
 
-| Option           | Type                                                                            | Description                                   |
-|------------------|---------------------------------------------------------------------------------|-----------------------------------------------|
-| `radius`         | An [IntProvider](../placed-feature.md#int-providers) whose value is in $[0;8]$. | Determines the radius of the disk.            |
-| `half_height`    | An `int` in the range $[0;8]$.                                                  | Defines half of the height of the disk.       |
-| `target`         | A [`BlockPredicate`](../placed-feature.md#block-predicates)                     | Must be passed in order to generate the disk. |
-| `state_provider` | See below.                                                                      | The block state to use for the disk.          |
+| Option           | Type                                                                                     | Description                                   |
+|------------------|------------------------------------------------------------------------------------------|-----------------------------------------------|
+| `state_provider` | See below.                                                                               | The block state to use for the disk.          |
+| `target`         | A [`BlockPredicate`](../placed-feature.md#block-predicates)                              | Must be passed in order to generate the disk. |
+| `radius`         | An [`IntProvider`](../placed-feature.md#int-providers). (Range limit in Json is $[0;8]$) | Determines the radius of the disk.            |
+| `half_height`    | An `int`. (Range limit in Json is $[0;8]$)                                               | Defines half of the height of the disk.       |
 
 In code, the `DiskConfiguration` class is used to configure the feature.
 
 ### State provider
 
 The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../block-state-provider.md) that is used
-if none of the rules apply, and `rules`, an array of `Rule`s. Each rule has a [`BlockPredicate`](../placed-feature.md#block-predicates)
-via the `if_true` option, and a [`BlockStateProvider`](../../block-state-provider.md) via the `then` option.
+if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../placed-feature.md#block-predicates)
+via the `if_true` option, and a [`BlockStateProvider`](../../block-state-provider.md) via the `then` option. In code, the
+class is called `RuleBasedBlockStateProvider`.
 
 ## Examples
 
@@ -71,8 +72,7 @@ As an example, here's the configured and placed feature for sand disks in lakes:
 
     1. 3 tries per chunk.
     2. Spread the disks in a square.
-    3. Makes sure to move the y coordinate to one block above the first solid block.
-       This static constant is equivalent to 
+    3. Makes sure to move the y coordinate to one block above the first solid block. This static constant is equivalent to 
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR_WG)
        ```

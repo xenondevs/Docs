@@ -7,10 +7,10 @@ The `fill_layer` feature can be used to fill an entire 16x16 chunk area with a s
 The following configuration options are available:
 
 
-| Option   | Type                                   | Description                                                         |
-|----------|----------------------------------------|---------------------------------------------------------------------|
-| `state`  | A [`BlockState`](../../block-state.md) | The block state to use for the layer.                               |
-| `height` | An `int` in the range $[0;4064 ]$.     | The height of the layer to fill (starting at the min build height). |
+| Option   | Type                                           | Description                                                         |
+|----------|------------------------------------------------|---------------------------------------------------------------------|
+| `height` | An `int`. (Range limit in Json is $[0;4064 ]$) | The height of the layer to fill (starting at the min build height). |
+| `state`  | A [`BlockState`](../../block-state.md)         | The block state to use for the layer.                               |
 
 In code, the `LayerConfiguration` class is used to configure the feature.
 
