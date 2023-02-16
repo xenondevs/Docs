@@ -22,9 +22,6 @@ pretty much the same thing as `Predicate<BlockState>` in Java. The `state` optio
 which determines what block to use for the specific target.  
 The following `RuleTest`s are available:
 
-!!! warning
-    `RuleTest`s don't support Nova blocks yet. They'll need separate implementations to properly work.
-
 <table>
     <thead>
     <tr>
@@ -152,8 +149,62 @@ The following `RuleTest`s are available:
             ```
         </td>
     </tr>
+    <tr>
+        <td><code>nova:material_match</code></td>
+        <td>Matches a specific nova material</td>
+        <td>
+            ```kotlin
+            MaterialMatchTest(Blocks.STAR_SHARDS_ORE)
+            ```
+            ```json
+            "target": {
+              "predicate_type": "nova:material_match",
+              "material": "machines:star_shards_ore"
+            }
+            ```
+        </td>
+    </tr>
     </tbody>
 </table>
+
+??? tip "Custom `RuleTest`s"
+    You can also implement your own custom `RuleTest`s by implementing the Minecraft `RuleTest` interface or extending
+    Nova's `NovaRuleTest`/`NovaMaterialTest` classes. Nova's classes provide a bit more parameters such as the level and
+    blockpos or even the `NovaMaterial` in `NovaMaterialTest`. You will need to provide a `RuleTestType` as well, which
+    specified how your RuleTest is serialized. Check out the [Codecs](../codecs) page for more information on Mojang's
+    serialization system. You can register your `RuleTestType` using the `RuleTestRegistry`.  
+    Here's the code for the `MaterialMatchTest` as an example:
+
+    ```kotlin title="MaterialMatchTest.kt"
+    class MaterialMatchTest(val material: BlockNovaMaterial) : NovaMaterialTest() {
+    
+        override fun test(material: BlockNovaMaterial, level: Level, pos: BlockPos, state: BlockState, random: RandomSource): Boolean {
+            return material == this.material
+        }
+        
+        override fun getType(): RuleTestType<*> {
+            return MaterialMatchTestType
+        }
+    
+    }
+    
+    object MaterialMatchTestType : RuleTestType<MaterialMatchTest> {
+    
+        private val CODEC: Codec<MaterialMatchTest> =
+            BlockNovaMaterial.CODEC
+                .fieldOf("material")
+                .xmap(::MaterialMatchTest, MaterialMatchTest::material)
+                .codec()
+                .stable()
+        
+        override fun codec() = CODEC
+    
+    }
+    ```
+
+    ```kotlin title="RuleTests.kt"
+    RuleTestRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTestType)
+    ```
 
 ## Example
 
