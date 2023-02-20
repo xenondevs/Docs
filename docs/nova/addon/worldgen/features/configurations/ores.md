@@ -20,7 +20,7 @@ In code, the `OreConfiguration` class is used to configure the feature.
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
 pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../block-state-provider.md)
 which determines what block to use for the specific target.  
-The following `RuleTest`s are available:
+The following `RuleTests` are available:
 
 <table>
     <thead>
@@ -167,44 +167,79 @@ The following `RuleTest`s are available:
     </tbody>
 </table>
 
-??? tip "Custom `RuleTest`s"
-    You can also implement your own custom `RuleTest`s by implementing the Minecraft `RuleTest` interface or extending
-    Nova's `NovaRuleTest`/`NovaMaterialTest` classes. Nova's classes provide a bit more parameters such as the level and
-    blockpos or even the `NovaMaterial` in `NovaMaterialTest`. You will need to provide a `RuleTestType` as well, which
-    specified how your RuleTest is serialized. Check out the [Codecs](../codecs) page for more information on Mojang's
-    serialization system. You can register your `RuleTestType` using the `RuleTestRegistry`.  
-    Here's the code for the `MaterialMatchTest` as an example:
+??? tip "Custom `RuleTests`"
+    You can also implement your own custom `RuleTests` by implementing the Minecraft `RuleTest` interface or extending
+    Nova's `NovaRuleTest`/`NovaMaterialTest` classes. Nova's classes provide a bit more parameters such as the `Level` and
+    `BlockPos` (or even the `NovaMaterial` via `NovaMaterialTest`).   
+    You will also need to provide a `RuleTestType`, which  specifies how your RuleTest implementation is (de)serialized.
+    This can either be done by implementing the `RuleTestType` interface or creating it inline by just registering the `Codec`
+    in the `FeatureRegistry`. Check out the [Codecs](../../codecs) page for more information on Mojang's serialization system.  
+    Here's the code for Nova's `MaterialMatchTest` implementation as an example:
 
-    ```kotlin title="MaterialMatchTest.kt"
-    class MaterialMatchTest(val material: BlockNovaMaterial) : NovaMaterialTest() {
-    
-        override fun test(material: BlockNovaMaterial, level: Level, pos: BlockPos, state: BlockState, random: RandomSource): Boolean {
-            return material == this.material
-        }
-        
-        override fun getType(): RuleTestType<*> {
-            return MaterialMatchTestType
-        }
-    
-    }
-    
-    object MaterialMatchTestType : RuleTestType<MaterialMatchTest> {
-    
-        private val CODEC: Codec<MaterialMatchTest> =
-            BlockNovaMaterial.CODEC
-                .fieldOf("material")
-                .xmap(::MaterialMatchTest, MaterialMatchTest::material)
-                .codec()
-                .stable()
-        
-        override fun codec() = CODEC
-    
-    }
-    ```
+    === "Inline RuleTestType"
 
-    ```kotlin title="RuleTests.kt"
-    RuleTestRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTestType)
-    ```
+        ```kotlin title="RuleTests.kt"
+        val MATERIAL_MATCH_TEST_TYPE = FeatureRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTest.CODEC)
+        ```
+        
+        ```kotlin title="MaterialMatchTest.kt"
+        class MaterialMatchTest(val material: BlockNovaMaterial) : NovaMaterialTest() {
+            
+            override fun test(material: BlockNovaMaterial, level: Level, pos: BlockPos, state: BlockState, random: RandomSource): Boolean {
+                return material == this.material
+            }
+            
+            override fun getType(): RuleTestType<*> = RuleTests.MATERIAL_MATCH_TEST_TYPE
+            
+            companion object {
+                
+                @JvmField // (1)!
+                val CODEC: Codec<MaterialMatchTest> =
+                    BlockNovaMaterial.CODEC
+                        .fieldOf("material")
+                        .xmap(::MaterialMatchTest, MaterialMatchTest::material)
+                        .codec()
+                        .stable()
+            }
+            
+        }
+        ```
+
+        1. This allows `CODEC` to be accessed as a field from Java code instead of having to call `getCODEC()`
+
+    === "RuleTestType object"
+
+        ```kotlin title="MaterialMatchTest.kt"
+        object MaterialMatchTestType : RuleTestType<MaterialMatchTest> {
+        
+            private val CODEC: Codec<MaterialMatchTest> =
+                BlockNovaMaterial.CODEC
+                    .fieldOf("material")
+                    .xmap(::MaterialMatchTest, MaterialMatchTest::material)
+                    .codec()
+                    .stable()
+            
+            override fun codec() = CODEC
+        
+        }
+        ```
+    
+        ```kotlin title="RuleTests.kt"
+        val MATERIAL_MATCH_TEST_TYPE = FeatureRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTestType)
+        ```
+
+        ```kotlin title="MaterialMatchTest.kt"
+        class MaterialMatchTest(val material: BlockNovaMaterial) : NovaMaterialTest() {
+        
+            override fun test(material: BlockNovaMaterial, level: Level, pos: BlockPos, state: BlockState, random: RandomSource): Boolean {
+                return material == this.material
+            }
+            
+            override fun getType(): RuleTestType<*> = MaterialMatchTestType
+        
+        }
+        ```
+        
 
 ## Example
 
