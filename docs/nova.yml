@@ -117,6 +117,7 @@ nav:
                       - "Twisting Vines": "addon/worldgen/features/configurations/twisting-vines.md"
                       - "Underwater Magma": "addon/worldgen/features/configurations/underwater-magma.md"
                       - "Vegetation Patch": "addon/worldgen/features/configurations/vegetation-patch.md"
+                - "Custom Features": "addon/worldgen/features/custom-feature.md"
       - "Migration Guide":
           - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

@@ -599,7 +599,7 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
     Minecraft also offers further abstraction via the `RepeatingPlacement` and `PlacementFilter` classes. They both override
     the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
 
-# Inlined
+## Inlined
 
 # TODO \/ move to different section \/
 
