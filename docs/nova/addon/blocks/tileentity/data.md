@@ -1,4 +1,4 @@
-# TileEntity data
+# TileEntity Data
 
 !!! tip 
 

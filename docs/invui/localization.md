@@ -34,7 +34,7 @@ You can also load them using `Languages#loadLanguage`:
 ## Specifying Player language
 
 By default, the player's locale is retrieved using `Player#getLocale()`. If you want to change this behavior, you can
-do so by calling `Languages#setLanguageProvider':
+do so by calling `Languages#setLanguageProvider`:
 
 === "Kotlin"
 

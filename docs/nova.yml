@@ -61,7 +61,7 @@ nav:
           - "TileEntities":
               - "Basics": "addon/blocks/tileentity/base.md"
               - "Config": "addon/blocks/tileentity/config.md"
-              - "GUI": "addon/blocks/tileentity/gui.md"
+              - "Menu (GUI)": "addon/blocks/tileentity/gui.md"
               - "TileEntity Data": "addon/blocks/tileentity/data.md"
               - "Holders": "addon/blocks/tileentity/holders.md"
               - "Upgrades": "addon/blocks/tileentity/upgrades.md"

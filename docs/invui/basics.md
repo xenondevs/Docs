@@ -48,7 +48,7 @@ Then, create a Window and show it to a player:
         .setGui(gui)
         .build()
     
-    window.show()
+    window.open()
     ```
 
 === "Java"
@@ -60,7 +60,7 @@ Then, create a Window and show it to a player:
         .setGui(gui)
         .build();
     
-    window.show();
+    window.open();
     ```
 
 ![](https://i.imgur.com/MZmFbnJ.png)
