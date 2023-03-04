@@ -22,7 +22,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         .addIngredient('>', ForwardItem())
 
     // use it in a GUI Builder
-    GuiType.PAGED_ITEMS.builder().setStructure(structure)
+    PagedGui.items().setStructure(structure)
     
     // or use it on an existing GUI
     gui.applyStructure(structure)
@@ -43,7 +43,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         .addIngredient('>', new ForwardItem());
 
     // use it in a GUI Builder
-    GuiType.PAGED_ITEMS.builder().setStructure(structure);
+    PagedGui.items().setStructure(structure);
 
     // or use it on an existing GUI
     gui.applyStructure(structure);

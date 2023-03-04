@@ -105,7 +105,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .filter { !it.isAir && it.isItem }
         .map { SimpleItem(ItemBuilder(it)) }
 
-    val gui = GuiType.SCROLL_ITEMS.builder()
+    val gui = ScrollGui.items()
         .setStructure(
             "x x x x x x x x u",
             "x x x x x x x x #",
@@ -131,7 +131,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .map(material -> new SimpleItem(new ItemBuilder(material)))
         .collect(Collectors.toList());
     
-    Gui gui = GuiType.SCROLL_ITEMS.builder()
+    Gui gui = ScrollGui.items()
         .setStructure(
             "x x x x x x x x u",
             "x x x x x x x x #",
@@ -158,8 +158,8 @@ This would result in the gui scrolling from left to right:
     If you need even more control over the scroll direction, you'll need to set the `itemListSlots`
     yourself by calling the ScrollGui.of method.
 
-### Scroll Guis & Scroll Inventories
+### `ScrollGui<Gui>` & `ScrollGui<VirtualInventory>`
 
-There are also two additional GuiTypes available: `SCROLL_GUIS` and `SCROLL_INVENTORY`.
-They behave in a very similar way to `SCROLL_ITEMS`, but instead of Items, they accept GUIs or VirtualInventories.
-For the case of `SCROLL_GUIS`, you'll want to make sure that the width of the GUIs matches the line size of your Scroll GUI.
+There are two additional Scroll GUI types available: `ScrollGui.guis()` and `ScrollGui.inventories()`.
+They behave in a very similar way to `ScrollGui.items()`, but instead of Items, they accept GUIs or VirtualInventories.
+For the case of `ScrollGui<Gui>`, you'll want to make sure that the width of the GUIs matches the line size of your Scroll GUI.

@@ -65,7 +65,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
     val gui2 = Guis.empty(9, 3)
     gui2.fill(SimpleItem(ItemBuilder(Material.DIAMOND)), true)
     
-    val gui = GuiType.TAB.builder()
+    val gui = TabGui.normal()
         .setStructure(
             "# # # 0 # 1 # # #",
             "x x x x x x x x x",
@@ -90,7 +90,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
     Gui gui2 = Guis.empty(9, 3);
     gui2.fill(new SimpleItem(new ItemBuilder(Material.DIAMOND)), true);
     
-    Gui gui = GuiType.TAB.builder()
+    Gui gui = TabGui.normal()
         .setStructure(
             "# # # 0 # 1 # # #",
             "x x x x x x x x x",

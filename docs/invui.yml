@@ -21,3 +21,4 @@ nav:
       - "Tab GUI": "guis/tab.md"
   - "Windows": "windows.md"
   - "VirtualInventory": "virtualinventory.md"
+  - "Localization": "localization.md"

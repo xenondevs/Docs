@@ -5,7 +5,7 @@ This example shows how to create one using the GuiBuilder:
 
     ```kotlin
     val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE))
-    val gui = GuiType.NORMAL.builder()
+    val gui = Gui.normal()
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",
@@ -19,7 +19,7 @@ This example shows how to create one using the GuiBuilder:
 
     ```java
     Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE));
-    Gui gui = GuiType.NORMAL.builder()
+    Gui gui = Gui.normal()
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",

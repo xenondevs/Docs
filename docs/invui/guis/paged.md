@@ -114,7 +114,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .map { SimpleItem(ItemBuilder(it)) }
     
     // create the gui
-    val gui = GuiType.PAGED_ITEMS.builder()
+    val gui = PagedGui.items()
         .setStructure(
             "# # # # # # # # #",
             "# x x x x x x x #",
@@ -140,7 +140,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
         .collect(Collectors.toList());
     
     // create the gui
-    Gui gui = GuiType.PAGED_ITEMS.builder()
+    Gui gui = PagedGui.items()
         .setStructure(
             "# # # # # # # # #",
             "# x x x x x x x #",
@@ -166,7 +166,7 @@ Now I can switch between two paged GUIs.
 === "Kotlin"
 
     ```kotlin
-    val gui = GuiType.PAGED_ITEMS.builder()
+    val gui = PagedGui.items()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",
@@ -183,7 +183,7 @@ Now I can switch between two paged GUIs.
 === "Java"
 
     ```java
-    Gui gui = GuiType.PAGED_ITEMS.builder()
+    Gui gui = PagedGui.items()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",

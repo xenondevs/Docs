@@ -5,12 +5,17 @@ The GUI contains all UI Elements [Items](items.md), while a Window actually disp
 Not tying the GUI to a specific inventory type (like Chest, Dropper, Hopper or Anvil) allows for a much more flexible usage as well as nested GUIs, which can be very helpful when you're trying to create a more complex menu.
 
 ## Creating a GUI with the GuiBuilder
-This is an example of how you would go about creating a Gui using the GuiBuilder:
+Every `...Gui` interface has static methods to create the specific `Gui.Builder`.  
+If the GUI can have multiple types, such as paged GUIs being able to display a list of items or a list of GUIs,
+the methods are named `.items()` or `.guis()` respectively.  
+If there is only one type, the method is named `.normal()`. This is the case for the default and tab GUI.
+
+This is an example of how you would go about creating a default Gui using the GuiBuilder:
 
 === "Kotlin"
 
     ```kotlin
-    val gui = GuiType.NORMAL.builder()
+    val gui = Gui.normal() // Creates the GuiBuilder for a normal GUI
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",
@@ -22,7 +27,7 @@ This is an example of how you would go about creating a Gui using the GuiBuilder
 === "Java"
 
     ```java
-    Gui gui = GuiType.NORMAL.builder()
+    Gui gui = Gui.normal() // Creates the GuiBuilder for a normal GUI
         .setStructure(
             "# # # # # # # # #",
             "# . . . . . . . #",
@@ -37,7 +42,7 @@ Then, create a Window and show it to a player:
 === "Kotlin"
 
     ```kotlin
-    val window = WindowType.NORMAL.builder()
+    val window = Window.single()
         .setViewer(player)
         .setTitle("InvUI")
         .setGui(gui)
@@ -49,7 +54,7 @@ Then, create a Window and show it to a player:
 === "Java"
 
     ```java
-    Window window = WindowType.NORMAL.builder()
+    Window window = Window.single()
         .setViewer(player)
         .setTitle("InvUI")
         .setGui(gui)
@@ -62,7 +67,7 @@ Then, create a Window and show it to a player:
 
 ## Creating a GUI without the GuiBuilder
 
-If you don't want to use the GuiBuilder, you can also call the static factory methods in the Gui interfaces.
+If you don't want to use the GuiBuilder, you can also call the static factory methods in the `Gui` interfaces.
 
 === "Kotlin"
 

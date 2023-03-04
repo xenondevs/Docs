@@ -52,6 +52,14 @@ If you're creating a plugin that modifies maximum stack sizes of items, change t
 This will make InvUI respect your maximum stack sizes.
 (Please note that you can't have a maximum stack size higher than what is normally possible in vanilla Minecraft.)
 
+### Background
+
+If you want your virtual inventory slots to have a background `ItemProvider` (which is an item that is technically
+in the slot, but will be ignored by all click actions) you can set the `background` parameter in
+`Structure.addIngredient(char key, VirtualInventory inventory, ItemProvider background)` or in the delegating `Gui.Builder`
+method for it.  
+Alternatively, you can also create the `SlotElement.VISlotElement` yourself.
+
 ## Serialization
 
 As addressed previously, the `VirtualInventoryManager` is capable of serializing and deserializing

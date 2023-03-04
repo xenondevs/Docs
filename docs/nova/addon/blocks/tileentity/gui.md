@@ -15,7 +15,7 @@ energy bar.
 ```kotlin
 inner class SolarPanelGui : TileEntityGui() {
     
-    override val gui = GuiType.NORMAL.builder()
+    override val gui = Gui.normal()
         .setStructure(
             "1 - - - - - - - 2",
             "| # # # e # # # |",
@@ -68,7 +68,7 @@ inner class SolarPanelGui : TileEntityGui() {
         ::openWindow
     )
 
-    override val gui = GuiType.NORMAL.builder()
+    override val gui = Gui.normal()
         .setStructure(
             "1 - - - - - - - 2",
             "| s # # e # # # |",

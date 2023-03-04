@@ -24,14 +24,14 @@ InvUI provides a few basic items, but you will probably have to create your own 
 If you don't need any behavior at all and just want to make your ``GUI`` look pretty, you can use the ``SimpleItem``. It cannot update it's ``ItemProvider`` later on and does not have any on-click functionality.
 
 ## Creating your own Item
-To create your own Item, you'll need to inherit from either ``BaseItem`` (if you want to be able to change its appearance) or ``SimpleItem`` (if you don't need to change its appearance).
-In this example, I inherited from ``BaseItem``.
+To create your own Item, you'll need to inherit from either ``AbstractItem`` (if you want to be able to change its appearance) or ``SimpleItem`` (if you don't need to change its appearance).
+In this example, I inherited from ``AbstractItem``.
 Every time a player clicks on the Item, a counter will be incremented and the number on the Item will change.
 
 === "Kotlin"
 
     ```kotlin
-    class CountItem : BaseItem() {
+    class CountItem : AbstractItem() {
         
         private var count = 0
         
@@ -54,7 +54,7 @@ Every time a player clicks on the Item, a counter will be incremented and the nu
 === "Java"
 
     ```java
-    public class CountItem extends BaseItem {
+    public class CountItem extends AbstractItem {
         
         private int count;
         
