@@ -4,11 +4,11 @@
 
     Make sure to check out the [Codecs](../codecs) page before creating a custom feature.
 
+## 1. Empty Feature
+
 To create a custom feature, you'll need to create a new object and extend Nova's `FeatureType` class. This class needs
 a [`Codec`](../codecs) for your feature configuration in the constructor, but you can just leave a `TODO()` call there 
 for now. You'll also need a `FeatureConfiguration` class (unless a pre-existing one fits your needs).
-
-## 1. Empty Feature
 
 So let's keep everything empty for now:
 
@@ -70,7 +70,7 @@ data class ExampleConfiguration(
    and maximum value, which will be used to clamp the value if it's outside the range **(Only enforced for deserialized 
    IntProviders!)**.
 
-Now we can just pass the `CODEC` field to the `FeatureType` constructor.
+Now we can pass the `CODEC` field to the `FeatureType` constructor.
 
 ```kotlin title="ExampleFeature.kt"
 object ExampleFeature : FeatureType<ExampleConfiguration>(ExampleConfiguration.CODEC) { /* ... */ }
@@ -85,7 +85,7 @@ The `FeaturePlaceContext` contains, as the name suggests, the context of the fea
 If the feature is used in another feature (For example, the [`minecraft:random_selector`](configurations/random-selector.md)
 feature), that feature can also be accessed through the `topFeature` method.
 
-!!! warning "Random usage"
+!!! danger "Random usage"
 
     To ensure consistency for the same seed across worlds, you should only use the `random` instance provided by the
     `FeaturePlaceContext`.  
@@ -127,7 +127,7 @@ object ExampleFeature : FeatureType<ExampleConfiguration>(ExampleConfiguration.C
 
 ## 5. Registering the feature
 
-Now we can register the feature using Nova's `FeatureRegistry`.
+Now we can register the feature type using Nova's `FeatureRegistry`.
 
 ```kotlin title="FeatureTypes.kt"
 object FeatureTypes {
@@ -139,7 +139,7 @@ object FeatureTypes {
 }
 ```
 
-1. Make sure to call this function in your addons `init` function to ensure all fields are initialized.
+1. Make sure to call this function in your addon's `init` function to ensure all fields are initialized.
 
 ## 6. Using the feature
 
