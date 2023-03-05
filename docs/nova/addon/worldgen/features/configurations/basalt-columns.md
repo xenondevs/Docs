@@ -90,4 +90,8 @@ As an example, here's the configured and placed feature for the large basalt col
     1. Spreads the basalt columns to multiple layers.
     2. Only place the columns in biomes that have basalt.
 
-![Example](https://i.imgur.com/WWO0Pdy.jpeg)
+## Result
+
+<p class="text-center">
+  <img src="https://i.imgur.com/29HVOlq.gif" width="40%" alt="Example"/>
+</p>

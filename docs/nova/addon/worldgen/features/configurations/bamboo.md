@@ -93,4 +93,8 @@ As an example, here's the configured and placed feature for the bamboo in the ju
     3. Make sure to place the bamboo on the world surface.
     4. Only place the bamboo in biomes that have bamboo.
 
-![Example](https://i.imgur.com/q7dJEGi.jpeg)
+## Result
+
+<p class="text-center">
+  <img src="https://i.imgur.com/SJHi7yH.png" alt="Example"/>
+</p>

@@ -70,4 +70,16 @@ As an example, here's the placed and configured feature used to place piles of h
 
     1. The feature does all the location resolving itself.
 
-![Example](https://i.imgur.com/X78JYVA.jpeg)
+### Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/kI3yAnZ.png" width="50%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/gnOfX3E.png" width="50%" alt="Example"/>
+    </p>

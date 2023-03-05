@@ -91,7 +91,20 @@ As an example, here's the configured feature used to place cacti in the desert.
     4. Since the cactus only needs the normal cactus block, we only need one layer.
     5. The cactus can be 1, 2 or 3 blocks high, biased towards a shorter height.
 
-![Example](https://i.imgur.com/PNMsBOz.jpeg)
+#### Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/MVKK0dp.png" width="30%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/pyugGNl.png" width="50%" alt="Example"/>
+    </p>
+
 
 ### Glow berry vines
 
@@ -358,4 +371,16 @@ Or, as another example, here's the configured and placed feature for glow berrie
     5. Offset the location by $(0,-1,0)$.
     6. Only place the vines if the current biome has cave vines.
 
-![Example](https://i.imgur.com/qFbdk7W.jpeg)
+#### Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/7slobb1.png" width="30%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/qFbdk7W.jpeg" alt="Example"/>
+    </p>
