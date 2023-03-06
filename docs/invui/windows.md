@@ -1,7 +1,7 @@
 ## What is a Window in InvUI?
 
 In InvUI, windows represent the actual Minecraft inventories that are displayed to the player.
-Depending on the type of window, they display on or two GUI(s).
+Depending on the type of window, they display one or two GUI(s).
 
 **A window can only have one viewer.** This is because InvUI's GUIs are designed to be easy to translate.
 Up until this point, we've only dealt with `ItemProviders`, which unlike `ItemStacks` have a
