@@ -9,9 +9,9 @@ The `disk` feature has the following configuration options:
 | Option           | Type                                                                                     | Description                                   |
 |------------------|------------------------------------------------------------------------------------------|-----------------------------------------------|
 | `state_provider` | See below.                                                                               | The block state to use for the disk.          |
-| `target`         | A [`BlockPredicate`](../placed-feature.md#block-predicates)                              | Must be passed in order to generate the disk. |
-| `radius`         | An [`IntProvider`](../placed-feature.md#int-providers). (Range limit in Json is $[0;8]$) | Determines the radius of the disk.            |
-| `half_height`    | An `int`. (Range limit in Json is $[0;8]$)                                               | Defines half of the height of the disk.       |
+| `target`         | A [`BlockPredicate`](../placed-feature.md#block-predicates).                             | Must be passed in order to generate the disk. |
+| `radius`         | An [`IntProvider`](../placed-feature.md#int-providers) (Range limit in Json is $[0;8]$). | Determines the radius of the disk.            |
+| `half_height`    | An `int`. (Range limit in Json is $[0;8]$).                                              | Defines half of the height of the disk.       |
 
 In code, the `DiskConfiguration` class is used to configure the feature.
 
