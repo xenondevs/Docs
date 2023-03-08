@@ -150,4 +150,16 @@ As an example, here's the configured and placed feature for the vanilla large dr
     }
     ```
 
-![Example](https://i.imgur.com/eRK2Jf9.jpeg)
+## Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/oDNXy5N.png" width="50%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/eRK2Jf9.jpeg" alt="Example"/>
+    </p>

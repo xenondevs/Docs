@@ -214,4 +214,6 @@ As an example, here's the configured- and placed feature for the azalea tree
     }
     ```
 
-![Example](https://i.imgur.com/Qatgkm7.jpeg)
+## Result
+
+![Example](https://i.imgur.com/KcPb1G5.gif)

@@ -1,3 +1,0 @@
-# Delta feature
-
-TODO

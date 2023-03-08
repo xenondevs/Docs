@@ -161,4 +161,6 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
     }
     ```
 
-![Example](https://i.imgur.com/eRK2Jf9.jpeg)
+## Result
+
+![Example](https://i.imgur.com/bFYJngv.gif)

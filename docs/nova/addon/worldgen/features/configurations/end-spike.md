@@ -6,7 +6,6 @@ The `end_spike` feature can be used to place end spikes (also known as obsidian 
 
 The following configuration options are available:
 
-
 | Option                                                         | Type                                                                                                                            | Description                                                                   |
 |----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `crystal_invulnerable` (optional in Json, defaults to `false`) | `boolean`                                                                                                                       | Whether the crystals on top of the end spikes should be invulnerable.         |
@@ -207,4 +206,6 @@ As an example, here's the configured feature used to place the default end spike
     1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 
        feature should only be placed in biomes that have end spikes.
 
-![Example](https://i.imgur.com/ZId3oyv.jpeg)
+## Result
+
+![Example](https://i.imgur.com/75EsKn7.gif)

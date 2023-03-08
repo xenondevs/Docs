@@ -70,7 +70,7 @@ As an example, here's the placed and configured feature used to place piles of h
 
     1. The feature does all the location resolving itself.
 
-### Result
+## Result
 
 === "Alone"
 

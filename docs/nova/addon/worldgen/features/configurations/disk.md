@@ -171,6 +171,6 @@ As an example, here's the configured and placed feature for sand disks in lakes:
     4. Only place the disk if the block is water.
     5. Only place the disk if the current biome has sand disks.
 
-### Result
+## Result
 
 ![Example](https://i.imgur.com/G2Ebb1v.gif)

@@ -91,4 +91,16 @@ As an example, here's the configured- and placed feature for the default huge re
     }
     ```
 
-![Example](https://i.imgur.com/dYXdv36.jpeg)
+## Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/ngPLJK8.gif" width="50%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/uBDxTqV.gif" width="50%" alt="Example"/>
+    </p>

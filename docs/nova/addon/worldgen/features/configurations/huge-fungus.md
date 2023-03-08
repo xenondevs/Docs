@@ -100,4 +100,16 @@ As an example, here's the configured- and placed feature for the warped fungus:
     }
     ```
 
-![Example](https://i.imgur.com/s7lDy1U.jpeg)
+## Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/ZQMzj56.gif" width="50%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/BNJlDNh.png" width="50%" alt="Example"/>
+    </p>

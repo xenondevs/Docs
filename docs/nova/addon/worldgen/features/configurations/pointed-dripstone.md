@@ -105,4 +105,6 @@ one of the features used to place upwards pointing dripstone.
     1. Searches downwards for a solid block.
     2. Makes sure to place the dripstone on top of the solid block.
 
-![Example](https://i.imgur.com/G1ccC52.jpeg)
+## Result
+
+![Example](https://i.imgur.com/DqCS6yo.png)

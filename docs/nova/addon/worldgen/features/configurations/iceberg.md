@@ -79,4 +79,6 @@ As an example, here's the configured and placed feature for the blue icebergs in
     2. Randomly offset the iceberg horizontally.
     3. Only place the iceberg if the location hasn't moved to a biome without icebergs.
 
-![Example](https://i.imgur.com/Rm9v7fd.jpeg)
+## Result
+
+![Example](https://i.imgur.com/hRVHhcb.gif)

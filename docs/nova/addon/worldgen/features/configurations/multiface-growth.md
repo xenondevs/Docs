@@ -140,4 +140,6 @@ As an example, here's the configured- and placed feature for sculk veins.
     3. Set the y-level to a random int up to 256.
     4. Only generate in biomes that have sculk growth.
 
+## Result
+
 ![Example](https://i.imgur.com/yq5KlVA.png)

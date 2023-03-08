@@ -87,4 +87,16 @@ In code, the `BlockStateConfiguration` class is used to configure the feature.
     3. Set the y-coordinate of the rock to the highest motion-blocking block.
     4. Only generate the feature if center pos hasn't moved to another biome that doesn't have the `forest_rock` feature.
 
-![Example](https://i.imgur.com/6IQPkov.jpeg)
+## Result
+
+=== "Alone"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/DT8h7o3.gif" width="50%" alt="Example"/>
+    </p>
+
+=== "Naturally generated"
+
+    <p class="text-center">
+      <img src="https://i.imgur.com/o8nrBsv.gif" width="50%" alt="Example"/>
+    </p>

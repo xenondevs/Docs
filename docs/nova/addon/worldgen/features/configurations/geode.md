@@ -279,4 +279,8 @@ In code, the `GeodeCrackSettings` class is used to configure the crack of the ge
     }
     ```
 
-![Example](https://i.imgur.com/q4VR0R5.png)
+## Result
+
+<p class="text-center">
+  <img src="https://i.imgur.com/RYgAs6a.png" width="50%" alt="Example"/>
+</p>

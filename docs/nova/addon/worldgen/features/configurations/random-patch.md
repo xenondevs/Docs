@@ -133,4 +133,8 @@ As an example, here's the random patch used to generate dead bushes in the badla
     3. Set the y-coordinate to the world surface.
     4. Make sure that the feature only generates if the position hasn't moved outside the biome that contains dead bushes.
 
-![Example](https://i.imgur.com/KlN0sG2.jpeg)
+## Result
+
+<p class="text-center">
+  <img src="https://i.imgur.com/cPaH1UW.png" width="90%" alt="Example"/>
+</p>

@@ -118,4 +118,6 @@ As an example, here's the configured- and placed feature for blackstone blobs in
     3. Set the y-coordinate to a random value.
     4. Only place the blobs in biomes that have blackstone blobs.
 
-![Example](https://i.imgur.com/h7FQVkv.jpeg)
+## Result
+
+![Example](https://i.imgur.com/dVus6n5.gif)

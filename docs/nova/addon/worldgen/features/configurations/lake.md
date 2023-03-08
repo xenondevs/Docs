@@ -157,4 +157,6 @@ As an example, here's the configured- and placed feature for the underground lav
     5. Only place the lake if it's at least 5 blocks below the ocean floor.
     6. Only place the lake if the location hasn't moved to a biome without lava lakes.
 
-![Example](https://i.imgur.com/0qX9lE7.png)
+## Result
+
+![Example](https://i.imgur.com/arPELZy.gif)
