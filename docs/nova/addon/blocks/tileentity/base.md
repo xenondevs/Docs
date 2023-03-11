@@ -1,18 +1,14 @@
 # Creating a basic TileEntity class
 
 Before registering the material, you need to create a TileEntity class with a constructor that takes a `NovaTileEntityState` instance.
-We will reference this constructor when registering the TileEntity later.
 
 ```kotlin
 class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockState) {
-    
-    override val gui: Lazy<TileEntityGui>
-        get() = TODO("We'll implement this later")
 
 }
 ```
 
-Don't worry about the ``gui`` property or ``NetworkedTileEntity`` yet. Now we can finally register the material.
+Now, we can register the material:
 
 ```kotlin
 val SOLAR_PANEL = NovaMaterialRegistry.tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
