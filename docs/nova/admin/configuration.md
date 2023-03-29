@@ -106,11 +106,10 @@ Example configs:
 
 ## Upgrade values
 
-The upgrade values for the default upgrade types `speed`, `efficiency`, `energy`, `fluid` and `range`
-are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`.
-This separation is done intentionally to indicate that every addon can have its own `upgrade_values.json` file for their own upgrade types.
+Every addon can register its own upgrade types. As a server administrator, you can configure these values in the
+`plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
 
-The config for the default upgrades looks like this:
+The config of the `simple_upgrades` addon looks like this:
 ```yaml
 speed: [ 1.0, 1.91, 2.82, 3.73, 4.64, 5.55, 6.46, 7.37, 8.28, 9.19, 10.0 ]
 efficiency: [ 1.0, 1.25, 1.75, 2.75, 3.75, 4.75, 5.75, 6.75, 7.75, 8.75, 9.75 ]

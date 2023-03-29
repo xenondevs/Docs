@@ -9,24 +9,27 @@ upgrade holder to the different energy holders, if you have one.
 ### Calculating upgraded values
 
 While the energy holder automatically changes it's `maxEnergy` or `energyConsumption` values, you might want to implement
-your own logic that is called whenever upgrades change. To do this, override the `reload` method in your TileEntity
-(make sure to keep the super call). This method is called when an upgrade is added/removed or the configs are reloaded,
-which could also affect upgrade modifiers.  
-Then, retrieve the current upgrade modifier for a certain upgrade type by calling `UpgradeHolder#getValue(UpgradeType)`
+your own logic that is called whenever upgrades change.  
+To do this, you can either:
+
+* Override the `reload` method in your TileEntity (make sure to keep the super call) and retrieve the current upgrade modifier
+  for a certain upgrade type by calling `UpgradeHolder#getValue(UpgradeType)`. (The reload method is called whenever an
+  upgrades were added or removed and when reloading configs.)
+* Use `UpgradeHolder.getValueProvider(UpgradeType)` to get a provider that will automatically update whenever the upgrade modifier
+  changes.
 
 ??? example
 
-    ```kotlin title="AutoFisher"
+    ```kotlin title="Using reload function"
     override fun reload() {
         super.reload()
         maxIdleTime = (IDLE_TIME / upgradeHolder.getValue(UpgradeType.SPEED)).toInt()
-        if (timePassed > maxIdleTime) timePassed = maxIdleTime
     }
     ```
 
-!!! tip
-
-    Consider calling the `reload` method in the init block instead of duplicating the calculation code.
+    ```kotlin title="Using value provider"
+    val maxIdleTime by upgradeHolder.getValueProvider(UpgradeType.SPEED) { (IDLE_TIME / it).toInt() }
+    ```
 
 ## Using the UpgradesGui
 
@@ -108,5 +111,5 @@ called `upgrade_values.yml` in your `configs/` directory. Then add your upgrade 
 example_upgrade: [ 1.0, 1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1, 10.0 ]
 ```
 
-For more information about the upgrade values format, check out the
-[configuration page](../../../admin/configuration.md#upgrade-values) on it.
+For more information about the `upgrade_values.json` format, check out
+[Configuration - Upgrade Values](../../../admin/configuration.md#upgrade-values).
