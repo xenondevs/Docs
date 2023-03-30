@@ -1,5 +1,4 @@
-**This guide is not beginner-friendly! Making Nova addons requires a lot of
-knowledge about Kotlin, the Spigot API, Maven and Gradle.**
+**This guide is not beginner-friendly! Making Nova addons requires a lot of knowledge about Kotlin, the Spigot API, Maven and Gradle.**
 
 ## Prerequisites
 
@@ -13,7 +12,7 @@ downloading BuildTools, run the following command:
 java -jar BuildTools.jar --remapped
 ```
 
-This will install the latest mojang-mapped Spigot version on your local maven repository.
+This will install the latest mojang-mapped Spigot version in your local maven repository.
 
 ### IntelliJ
 
@@ -73,6 +72,13 @@ gradlew addonJar -PoutDir="<Path to your addons directory here>" -Pmojang-mapped
 
 ## Enabling dev mode
 
-Nova's reload prevention can get pretty annoying while making addons. To bypass this check, you can enable dev mode by 
-adding ``-DNovaDev`` in front of ``-jar`` in your server start script. This also allows you to bypass other restrictions,
-like joining the server during startup or using addons that were made for a newer version of Nova.
+To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.  
+This allows you to bypass some restrictions, like joining the server during startup or using addons that require a different version of Nova.
+
+## Use JBR for improved hot swapping
+
+Since it is not possible to use Spigot's reloading feature with Nova, we recommend you to use hot swapping.  
+Most JDKs do not support hot swapping for anything other than method instructions, which is why you should use the
+[JetBrains Runtime](https://github.com/JetBrains/JetBrainsRuntime) (JBR) for development.
+You can download the latest version of JBR on their [GitHub Releases page](https://github.com/JetBrains/JetBrainsRuntime/releases).
+You will also need to explicitly enable enhanced class redefinition with `-XX:+AllowEnhancedClassRedefinition`.
