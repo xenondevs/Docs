@@ -13,7 +13,7 @@ You can either use their names:
 ```kotlin
 NovaConfig["example:ruby"] // namespace:name (drop the .yml)
 ```
-Or if the name matches the name of one of your [items](items/registering-materials.md), the NovaMaterial:
+Or if the name matches the name of one of your [items](items/registering-items.md), the NovaMaterial:
 ```kotlin
 NovaConfig[Items.RUBY]
 ```

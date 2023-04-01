@@ -8,33 +8,12 @@ Item behaviors are used to add functionality to items. There are some default im
 
     These are the default item behaviors that Nova provides:
 
-    === "Chargeable"
-    
-        Allows you to make an item that stores energy. This should mostly be used with other custom item behaviors, since
-        there is no default implementation for consuming energy.
-    
-        ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Chargeable)
-        ```
-        
-        The above example uses the durability bar to display the item's charge. If you don't want this, you can disable this behavior:
-        
-        ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Chargeable(false))
-        ```
-
-        The energy capacity can then be configured in the material config file:
-        
-        ```yaml title="configs/example_item.yml"
-        max_energy: 100000
-        ```
-
     === "Consumable"
 
         Allows you to make a custom consumable item. Example:
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Consumable)
+        val EXAMPLE_ITEM = registerItem("example_item", Consumable)
         ```
 
         ```yaml title="configs/example_item.yml"
@@ -95,7 +74,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Allows you to make an item that can be equipped in a players armor slots.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Wearable(ArmorType.CHESTPLATE, Sound.ITEM_ARMOR_EQUIP_DIAMOND))
+        val EXAMPLE_ITEM = registerItem("example_item", Wearable(ArmorType.CHESTPLATE, Sound.ITEM_ARMOR_EQUIP_DIAMOND))
         ```
 
         ```yaml title="configs/example_item.yml"
@@ -112,7 +91,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Allows you to create a custom tool.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Tool)
+        val EXAMPLE_ITEM = registerItem("example_item", Tool)
         ```
 
         ```yaml title="configs/example_item.yml"
@@ -139,7 +118,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Makes an item damageable.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Damageable)
+        val EXAMPLE_ITEM = registerItem("example_item", Damageable)
         ```
 
         ```yaml title="configs/example_item.yml"
@@ -158,7 +137,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Makes your item enchantable.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Enchantable)
+        val EXAMPLE_ITEM = registerItem("example_item", Enchantable)
         ```
         
         ```yaml title="configs/example_item.yml"
@@ -180,7 +159,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Gives your item the ability to strip wood, logs, oxidization layers and wax.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Stripping)
+        val EXAMPLE_ITEM = registerItem("example_item", Stripping)
         ```
 
     === "Flattening"
@@ -188,7 +167,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Gives your item the ability to create dirt paths.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Flattening)
+        val EXAMPLE_ITEM = registerItem("example_item", Flattening)
         ```
 
     === "Extinguishing"
@@ -196,7 +175,7 @@ Item behaviors are used to add functionality to items. There are some default im
         Gives your item the ability to extinguish campfires.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Extinguishing)
+        val EXAMPLE_ITEM = registerItem("example_item", Extinguishing)
         ```
 
     === "Tilling"
@@ -204,7 +183,50 @@ Item behaviors are used to add functionality to items. There are some default im
         Gives your item the ability to till dirt.
 
         ```kotlin
-        val EXAMPLE_ITEM = registerDefaultItem(ExampleAddon, "example_item", Tilling)
+        val EXAMPLE_ITEM = registerItem("example_item", Tilling)
+        ```
+
+    === "Fuel"
+
+        Allows your item to be used as fuel in furnaces.
+
+        ```kotlin
+        val EXAMPLE_ITEM = registerItem("example_item", Fuel)
+        ```
+
+        ```yaml title="configs/example_item.yml"
+        burn_time: 20 # (1)!
+        ```
+        
+        1. The burn time of the item in ticks.
+
+    === "FireResistant"
+
+        Makes your item fire resistant.
+
+        ```kotlin
+        val EXAMPLE_ITEM = registerItem("example_item", FireResistant)
+        ```
+
+    === "Chargeable"
+    
+        Allows you to make an item that stores energy. This should mostly be used with other custom item behaviors, since
+        there is no default implementation for consuming energy.
+    
+        ```kotlin
+        val EXAMPLE_ITEM = registerItem("example_item", Chargeable)
+        ```
+        
+        The above example uses the durability bar to display the item's charge. If you don't want this, you can disable this behavior:
+        
+        ```kotlin
+        val EXAMPLE_ITEM = registerItem("example_item", Chargeable(false))
+        ```
+
+        The energy capacity can then be configured in the material config file:
+        
+        ```yaml title="configs/example_item.yml"
+        max_energy: 100000
         ```
 
 ??? abstract "Using hardcoded material options (not recommended)"
@@ -235,9 +257,9 @@ There are of course a lot of cases that don't fit into any of the default item b
 your own. Just create a new class and extend ``ItemBehavior``. Instead of registering event handlers, you can override
 the `handle...()` functions, which are called when something is done with an `ItemStack` of a material with that behavior.
 
-### `val vanillaMaterialProperties`
+### `fun getVanillaMaterialProperties`
 
-A `Provider` for a list of `VanillaMaterialProperty`s.  
+Gets a list of `VanillaMaterialProperty`s.  
 Vanilla material properties define what properties the item should have client-side. Based on the given properties,
 a corresponding vanilla material will be used. Nova will always try to find a vanilla material with the exact same
 properties as requested. If there is no such material, Nova might also choose a vanilla material with more vanilla
@@ -258,9 +280,9 @@ These are the available vanilla material properties:
 | `LEGGINGS`                    | The item can render a custom leggings texture.                           |
 | `BOOTS`                       | The item can render a custom boots texture.                              |
 
-### `val attributeModifiers`
+### `fun getAttributeModifiers`
 
-A `Provider` for a list of `AttributeModifiers`.  
+Gets a list of `AttributeModifier`s.
 
 ```kotlin title="Example Attribute Modifiers"
 override val attributeModifiers = provider(listOf(
@@ -299,13 +321,13 @@ This method is called every time a packet that includes an `ItemStack` of a mate
 Here, you can customize how the item is displayed for the player. Using the given `PacketItemData`, you can modify things
 like the display name, lore (normal and advanced tooltips), the durability bar and more.
 
-Confused? Take a look at [Understanding Packet Items](using-item-nova-material.md#understanding-packet-items).
+Confused? Take a look at [Understanding Packet Items](using-nova-item.md#understanding-packet-items).
 
 ### ItemBehaviorFactory
 
 If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
-to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(ItemNovaMaterial)`
-function. Here, you can create an instance of your `ItemBehavior` based on the `ItemNovaMaterial` that is passed to the function.
+to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(NovaItem)`
+function. Here, you can create an instance of your `ItemBehavior` based on the `NovaItem` that is passed to the function.
 
 With `ConfigAccess`, you easily create a class that houses [config-reloadable properties](../configs.md) for your item behavior.  
 Here is an example of how we implement
@@ -322,5 +344,6 @@ You can also run the command `/nova debug itemData` to take a look at the data o
 
 !!! tip
 
-    Data is serialized using CBF. Make sure to check out the CBF documentation for more information.  
+    Data is serialized using CBF. Make sure to check out the CBF documentation for more information.
+   
     [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }

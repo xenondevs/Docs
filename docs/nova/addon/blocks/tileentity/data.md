@@ -1,8 +1,7 @@
 # TileEntity Data
 
-!!! tip 
-
-    Make sure to check out the CBF documentation for more information.  
+!!! tip "Make sure to check out the CBF documentation for more information."
+    
     [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
 
 ??? example "Default Nova Binary Adapters"

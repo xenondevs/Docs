@@ -50,14 +50,14 @@ nav:
           - "Creating Armor": "addon/asset-packs/creating-armor.md"
           - "Language Files": "addon/asset-packs/language-files.md"
       - "Items":
-          - "Registering Materials": "addon/items/registering-materials.md"
+          - "Registering Items": "addon/items/registering-items.md"
           - "Item Behaviors": "addon/items/item-behaviors.md"
-          - "Using ItemNovaMaterial": "addon/items/using-item-nova-material.md"
+          - "Using NovaItem": "addon/items/using-nova-item.md"
           - "Item Categories": "addon/items/item-categories.md"
           - "Tools": "addon/items/tools.md"
       - "Configs": "addon/configs.md"
       - "Blocks":
-          - "Registering Materials": "addon/blocks/registering-materials.md"
+          - "Registering Blocks": "addon/blocks/registering-blocks.md"
           - "TileEntities":
               - "Basics": "addon/blocks/tileentity/base.md"
               - "Config": "addon/blocks/tileentity/config.md"

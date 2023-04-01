@@ -1,5 +1,3 @@
-# Upgrades
-
 ## Making your TileEntity upgradeable
 
 In order to make your TileEntity upgradeable, you'll need to implement the `Upgradeable` interface.  
@@ -54,46 +52,32 @@ inner class SolarPanelGui : TileEntityGui() {
 
 ## Creating a custom Upgrade Type
 
-### Time and Place of Registration
+### Creating an Upgrade Type Registry
 
-Just like nova materials, upgrade types should be registered during addon initialization, i.e. in the `init()` function
-of your addon object. We recommend creating a singleton object to house all of your upgrade types:
+Create an `UpgradeTypeRegistry` singleton object and annotate it with `@Init` to have it loaded during addon initialization.
 
 ```kotlin
-object UpgradeTypes {
+@Init // (1)!
+object UpgradeTypes : UpgradeTypesRegistry by ExampleAddon.registry {
     
-    // we will register upgrade types here later
-    
-    fun init() = Unit
+    // (2)!
     
 }
 ```
 
-Then, call that init function during addon initialization:
+1. Nova will load this class during addon initialization, causing your upgrade types to be registered.
+2. Register your upgrade types here
 
-```kotlin
-object ExampleAddon : Addon() {
-
-    override fun init() {
-        Items.init()
-        Blocks.init()
-        UpgradeTypes.init()
-    }
-
-}
-```
-
-Now, lets actually register an upgrade type. For that we'll need two `ItemNovaMaterials`:
+Now, lets actually register an upgrade type. For that we'll need two `NovaItems`:
 One for the actual item that is used by players and one for the icon in the GUI, which needs to have an inventory background.
 
 Assuming you have these two items, you can now register your upgrade type:
 
 ```kotlin
+@Init
 object UpgradeTypes {
     
-    val MY_UPGRADE_TYPE = UpgradeTypeRegistry.register<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
-    
-    fun init() = Unit
+    val MY_UPGRADE_TYPE = upgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
     
 }
 ```
