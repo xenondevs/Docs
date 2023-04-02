@@ -29,10 +29,10 @@ nav:
   - "Plugin API":
       - "Getting Started": "api/index.md"
       - "Protection": "api/protection/protectionintegration.md"
-      - "NovaMaterial": "api/material/index.md"
+      - "Items": "api/items/index.md"
       - "Blocks":
+          - "BlockRegistry": "api/blocks/blockregistry.md"
           - "BlockManager": "api/blocks/blockmanager.md"
-          - "BlockState": "api/blocks/blockstate.md"
       - "TileEntity":
           - "TileEntityManager": "api/tileentity/tileentitymanager.md"
           - "TileEntity": "api/tileentity/tileentity.md"

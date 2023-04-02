@@ -79,7 +79,7 @@ Then, you can call `getEntry<Type>(key)` or `getOptionalEntry<Type>(key)`, which
 ??? example "Example ConfigAccess Implementation"
 
     ```kotlin title="FoodOptions.kt"
-    private class ConfigurableFoodOptions(material: ItemNovaMaterial) : ConfigAccess(material) {
+    private class ConfigurableFoodOptions(item: NovaItem) : ConfigAccess(item) {
         
         val type: FoodType by getOptionalEntry<String>("food_type")
             .map { FoodType.valueOf(it.uppercase()) }

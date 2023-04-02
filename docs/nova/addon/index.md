@@ -74,3 +74,7 @@ gradlew addonJar -PoutDir="<Path to your addons directory here>" -Pmojang-mapped
 
 To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.  
 This allows you to bypass some restrictions, like the reload prevention, joining the server during startup, or using addons that require a different version of Nova.
+
+## KDoc
+
+The generated KDoc for Nova can be found on [here](https://nova.dokka.xenondevs.xyz/).
