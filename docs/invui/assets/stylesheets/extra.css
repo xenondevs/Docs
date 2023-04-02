@@ -126,3 +126,12 @@
 .md-footer-meta {
     background-color: var(--md-primary-fg-color);
 }
+
+.md-typeset .md-button {
+    color: #fff;
+}
+
+.md-typeset .md-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0);
+}
