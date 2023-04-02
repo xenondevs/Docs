@@ -6,6 +6,7 @@ edit_uri: edit/main/docs/nova/
 theme:
   features:
     - navigation.tabs
+    - navigation.footer
     - content.tabs.link
     - content.code.annotate
 
