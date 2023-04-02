@@ -35,8 +35,9 @@ Merged windows use the same GUI for the upper and lower inventory.
 
 ### AnvilWindow
 
-The rename-text can be retrieved by calling `AnvilInventory#getRenameText()`. It is also possible to set one or multiple 
-`Consumer<String> renameHandler` in the `WindowBuilder`, which will then be called every time the rename-text is changed.
+The rename-text can be retrieved by calling `AnvilInventory#getRenameText()`. It is also possible to set one or multiple
+`Consumer<String> renameHandler` in the `WindowBuilder`, which will then be called every time the rename-text is
+changed.
 
 ### CartographyWindow
 
@@ -84,4 +85,43 @@ by calling the static builder factory function in the related `Window` interface
         .setTitle("InvUI")
         .addRenameHandler(s -> System.out.println(s))
         .build();
+    ```
+
+## Opening a Window
+
+To show a `Window` to a player, you'll need to call `Window.open(player)`.
+
+=== "Kotlin"
+
+    ```kotlin
+    window.open(player)
+    ```
+
+=== "Java"
+
+    ```java
+    window.open(player);
+    ```
+
+As a shortcut, you can also directly call `.open(player)` on the `Window.Builder`.  
+This will create a new `Window` and then directly show it to the specified player.
+
+=== "Kotlin"
+
+    ```kotlin
+    Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .open(player)
+    ```
+
+=== "Java"
+
+    ```java
+    Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .open(player);
     ```
