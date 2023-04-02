@@ -5,6 +5,7 @@ edit_uri: edit/main/docs/cbf/
 
 theme:
   features:
+    - navigation.footer
     - content.tabs.link
     - content.code.annotate
 
