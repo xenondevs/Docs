@@ -42,7 +42,7 @@ Currently, there are only two types: `default` (can be omitted) and `solid`.
 ### Armor Stand blocks
 
 When using the block type `default`, armor stands are used to display the block in the world.  
-When this type is used, you can also configure the hitbox material with the `hitbox`. This is the material of the block
+When this type is used, you can also configure the hitbox material with the `hitbox` parameter. This is the material of the block
 over which the custom block model will be displayed with the armor stand. By default, the hitbox type is `BARRIER`, which
 comes with several benefits such as being able to use models smaller than the block itself but also not having to set
 the armor stand on fire.

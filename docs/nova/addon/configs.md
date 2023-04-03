@@ -13,7 +13,7 @@ You can either use their names:
 ```kotlin
 NovaConfig["example:ruby"] // namespace:name (drop the .yml)
 ```
-Or if the name matches the name of one of your [items](items/registering-materials.md), the NovaMaterial:
+Or if the name matches the name of one of your [items](items/registering-items.md), the NovaMaterial:
 ```kotlin
 NovaConfig[Items.RUBY]
 ```
@@ -79,7 +79,7 @@ Then, you can call `getEntry<Type>(key)` or `getOptionalEntry<Type>(key)`, which
 ??? example "Example ConfigAccess Implementation"
 
     ```kotlin title="FoodOptions.kt"
-    private class ConfigurableFoodOptions(material: ItemNovaMaterial) : ConfigAccess(material) {
+    private class ConfigurableFoodOptions(item: NovaItem) : ConfigAccess(item) {
         
         val type: FoodType by getOptionalEntry<String>("food_type")
             .map { FoodType.valueOf(it.uppercase()) }

@@ -1,5 +1,6 @@
 /.idea
 docs/.obsidian
+/.scripts
 
 # Mac Stuff
 .DS_Store

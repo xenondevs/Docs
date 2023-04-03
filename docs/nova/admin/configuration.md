@@ -106,11 +106,10 @@ Example configs:
 
 ## Upgrade values
 
-The upgrade values for the default upgrade types `speed`, `efficiency`, `energy`, `fluid` and `range`
-are not located in the main config `plugins/Nova/configs/config.yml` but in `plugins/Nova/configs/nova/upgrade_values.json`.
-This separation is done intentionally to indicate that every addon can have its own `upgrade_values.json` file for their own upgrade types.
+Every addon can register its own upgrade types. As a server administrator, you can configure these values in the
+`plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
 
-The config for the default upgrades looks like this:
+The config of the `simple_upgrades` addon looks like this:
 ```yaml
 speed: [ 1.0, 1.91, 2.82, 3.73, 4.64, 5.55, 6.46, 7.37, 8.28, 9.19, 10.0 ]
 efficiency: [ 1.0, 1.25, 1.75, 2.75, 3.75, 4.75, 5.75, 6.75, 7.75, 8.75, 9.75 ]
@@ -209,4 +208,115 @@ resource_pack:
           pattern_type: regex
           filter: minecraft\/lang\/(en_us|de_de).json
           directory: minecraft/lang/
+    ```
+
+## WAILA Positioning
+
+If you want to change the vertical position of the WAILA overlay, you can do so by defining which boss bars should be
+above or below it. This is done by defining matchers in `waila.positioning.above` (defines the boss bars that should
+be below WAILA) and `waila.positioning.below` (defines the boss bars that should be above WAILA).
+
+There are five different types of matchers available:
+
+| Type      | Description                                                                                                               |
+|-----------|---------------------------------------------------------------------------------------------------------------------------|
+| `origin`  | Matches against the origin of the boss bar. (Either `minecraft` or a plugin name.)                                        |
+| `text`    | Matches against the text of the boss bar using either a regex or wildcard.                                                |
+| `overlay` | Matches against the overlay id of a boss bar overlay from a different Nova addon.                                         |
+| `uuid`    | Matches against the UUID of the boss bar.                                                                                 |
+| `index`   | Matches against the index of the boss bar (before Nova rearranges them), with the uppermost boss bar starting at index 0. |
+
+=== "Origin"
+
+    ```yaml
+    waila:
+      positioning:
+        above:
+        - type: origin
+          origin: <origin> # (1)!
+    ```
+
+    1. The origin to match against. Can be `minecraft` or a plugin name.
+
+=== "Text"
+
+    === "Wildcard"
+
+
+        ```yaml
+        waila:
+          positioning:
+            above:
+            - type: text
+              wildcard: <pattern> # (1)!
+        ```
+
+        1. The wildcard pattern to match against.  
+           Use `*` to match any number of characters and `?` to match a single character.
+
+    === "Regex"
+
+        ```yaml
+        waila:
+          positioning:
+            above:
+            - type: text
+              regex: <pattern> # (1)!
+        ```
+
+        1. The regex pattern to match against.  
+           You can try out your regex pattern on [RegExr](https://regexr.com/).
+
+=== "Overlay"
+
+    ```yaml
+    waila:
+      positioning:
+        above:
+        - type: overlay
+          overlay: <overlay id> # (1)!
+    ```
+
+    1. The overlay id of a boss bar overlay from a different Nova addon.  
+       For example, WAILA's overlay id is `nova:waila`.
+
+=== "UUID"
+
+    ```yaml
+    waila:
+      positioning:
+        above:
+        - type: uuid
+          uuid: <uuid> # (1)!
+    ```
+
+    1. The UUID to match against.
+
+=== "Index"
+
+    ```yaml
+    waila:
+      positioning:
+        above:
+        - type: index
+          index: <index> # (1)!
+    ```
+
+    1. The index of the boss bar. Starts at 0, from the top down.
+
+??? example "Example configuration"
+
+    This example configuration places WAILA above all vanilla boss bars, but below all boss bars registered by `PluginA` and `PluginB`.
+
+    ```yaml
+    waila:
+      positioning:
+        above:
+        - type: origin
+          origin: minecraft
+        below:
+        - type: origin
+          origin: PluginA
+        - type: origin
+          origin: PluginB
     ```

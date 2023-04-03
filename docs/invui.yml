@@ -5,6 +5,7 @@ edit_uri: edit/main/docs/invui/
 
 theme:
   features:
+    - navigation.footer
     - content.tabs.link
     - content.code.annotate
 
@@ -21,3 +22,4 @@ nav:
       - "Tab GUI": "guis/tab.md"
   - "Windows": "windows.md"
   - "VirtualInventory": "virtualinventory.md"
+  - "Localization": "localization.md"

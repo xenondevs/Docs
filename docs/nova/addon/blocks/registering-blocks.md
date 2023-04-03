@@ -1,37 +1,18 @@
-# Registering Materials
+## Creating a Block Registry
 
-## Time and Place of Registration
-
-The registration is pretty similar to the [item registration](../items/registering-materials.md). Create
-the [block assets](../asset-packs/creating-blocks.md)
-and create a `Blocks` singleton object that contains all `BlockNovaMaterials` of your addon. All materials need to be
-registered when `Addon#init` is called, materials registered later won't work properly. Similar to the `Items` singleton
-object, your singleton object might then look like this:
+Create a `BlockRegistry` singleton object and annotate it with `@Init` to have it loaded during addon initialization.
 
 ```kotlin
-object Blocks {
+@Init // (1)!
+object Blocks : BlockRegistry by ExampleAddon.registry {
     
-    // we will register blocks here later
+    // (2)!
     
-    fun init() = Unit
-
 }
 ```
 
-Now add the init call to your main class:
-
-```kotlin
-object ExampleAddon : Addon() {
-    
-    override fun init() {
-        Items.init()
-        Blocks.init()
-    }
-
-}
-```
-
-Again, calling the init function will cause the class and all its fields to be loaded.
+1. Nova will load this class during addon initialization, causing your blocks to be registered.
+2. Register your blocks here
 
 ## BlockOptions
 
@@ -41,12 +22,11 @@ breaking/placing custom blocks. Let's create an instance that can be broken with
 ```kotlin
 private val STONE = BlockOptions(
     3.0, // (1)!
-    listOf(ToolCategory.PICKAXE), // (2)!
-    ToolTier.STONE, // (3)!
+    VanillaToolCategories.PICKAXE, // (2)!
+    VanillaToolTiers.STONE, // (3)!
     true, // (4)!
     SoundGroup.STONE, // (5)!
-    Material.NETHERITE_BLOCK, // (6)!
-    true // (7)!
+    Material.NETHERITE_BLOCK // (6)!
 )
 ```
 
@@ -58,48 +38,37 @@ private val STONE = BlockOptions(
    stepping and falling on a block. You can also create your own sound group with your own custom sounds.
 6. The break particles that spawn when the block is broken. This is only relevant for armor stand based blocks, but since
    you can't know if your block will end up being and armor stand block, you'll always have to set this value.
-7. Whether a break animation should be displayed while breaking the block.
 
 ## Registering the block
 
 Using the options specified above, you can now register your block material via the builders obtained by calling
-`NovaMaterialRegistry#block` or `NovaMaterialRegistry#tileEntity`. Unlike item materials, block- and tile-entity materials
+`BlockRegistry#block` or `BlockRegistry#tileEntity`. Unlike items, block- and tile-entities
 can only be registered using the builder functions.
 
 ```kotlin
 // normal block
-val MY_BLOCK = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).register()
+val MY_BLOCK = block("example_block").blockOptions(STONE).register()
 
 // normal directional block (North, East, South, West)
-val MY_BLOCK_1 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.NORMAL).register()
+val MY_BLOCK_1 = block("example_block").blockOptions(STONE).properties(Directional.NORMAL).register()
 
 // normal directional block (North, East, South, West, Up, Down)
-val MY_BLOCK_2 = NovaMaterialRegistry.block(ExampleAddon, "example_block").blockOptions(STONE).properties(Directional.ALL).register()
+val MY_BLOCK_2 = block("example_block").blockOptions(STONE).properties(Directional.ALL).register()
 
 // directional tile entity block (North, East, South, West)
-val MY_TILE_ENTITY_1 = NovaMaterialRegistry.tileEntity(ExampleAddon, "example_block", ::ExampleTileEntity).blockOptions(STONE).properties(Directional.NORMAL).register()
+val MY_TILE_ENTITY_1 = tileEntity("example_block", ::ExampleTileEntity).blockOptions(STONE).properties(Directional.NORMAL).register()
 ```
 
-Don't forget to call `register()` at the end of the builder chain.
-
-!!! tip
-
-    The examples above are far from everything you can do, as it is also possible to set a custom `NovaBlock`,
-    `NovaItem`, `PlaceCheckFun` or `MultiBlockLoader`.
+!!! bug "Don't forget to call `register()` at the end of the builder chain."
 
 ## Additional properties
 
-### NovaBlock
+### BlockBehavior
 
-The `NovaBlock` handles the logic of all blocks of that material (or multiple materials, if the same `NovaBlock` is
+The `BlockBehavior` handles the logic of all blocks of that material (or multiple materials, if the same `BlockBehavior` is
 registered to them). This logic includes handling interacts, returning drops, playing the break sound, showing break
-particles and more. Depending on if you register a TileEntity or a normal block, the `TileEntityBlock` or
-`NovaBlock$Default` is used.
-
-!!! info
-
-    `NovaBlock` is very similar to `NovaItem` in concept, with the exception of it being for blocks and it's ability
-    to be used in multiple materials.
+particles and more. Depending on if you register a TileEntity or a normal block, the `TileEntityBlockBehavior` or
+`BlockBehavior$Default` is used.
 
 ### Block properties
 
@@ -117,3 +86,18 @@ block positions that are also part of this block. This list should not include t
 
 The `PlaceCheckFun` is a typealias for `((Player, ItemStack, Location) -> CompletableFuture<Boolean>)` used to check
 for placement permissions of multi blocks.
+
+## Registering the block item
+
+After you've registered your block, you will also need to register the item for it:
+
+```kotlin
+@Init
+object Items : ItemRegistry by ExampleAddon.registry {
+    
+    /* ... your other items ... */
+    
+    val MY_BLOCK = registerItem(Blocks.MY_BLOCK)
+    
+}
+```

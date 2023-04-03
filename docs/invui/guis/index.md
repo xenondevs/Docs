@@ -11,10 +11,12 @@ GUIs cannot display anything to a player, a Window is used for that.
 
 There are four different GUI types available:
 
-* [Normal GUI](normal.md)
-* [Paged GUI](paged.md)
-* [Scroll GUI](scroll.md)
-* [Tab GUI](tab.md)
+| Gui Type                | Builder Factory Function(s)                                        | Description                                                                                                                                                       |
+|-------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Normal GUI](normal.md) | `Gui.normal()`                                                     | A normal GUI without any special functionality.                                                                                                                   |
+| [Paged GUI](paged.md)   | `PagedGui.items()`, `PagedGui.guis()`                              | A GUI with paging functionality. You can either provide a list of `Items` that should be shown on the pages or directly provide the pages (as `Guis`) themselves. |
+| [Scroll GUI](scroll.md) | `ScrollGui.items()`, `ScrollGui.guis()`, `ScrollGui.inventories()` | A GUI with scrolling functionality. You can scroll through `Items`, `Guis` or `VirtualInventories`                                                                |
+| [Tab GUI](tab.md)       | `TabGui.normal()`                                                  | A GUI with tabs. Each tab is associated to a `Gui`, you can switch between tabs using tab items.                                                                  |
 
 ## Animations
 

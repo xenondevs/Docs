@@ -125,7 +125,7 @@ override val itemHolder = NovaItemHolder(
 ## FluidHolder
 
 Similar to ``ItemHolders``, ``FluidHolders`` are used provide an interface for networks to interact with your TileEntity's tanks.
-But instead of ``VirtualInventories``, they use ``FluidTanks`` which you can get from the ``getFluidContainer`` function:
+But instead of ``VirtualInventories``, they use ``FluidContainers`` which you can get from the ``getFluidContainer`` function:
 
 ```kotlin
 private val waterTank = getFluidContainer(
@@ -141,8 +141,9 @@ private val waterTank = getFluidContainer(
 3. A config reloadable value that stores the maximum amount of fluid that can be stored (See [Config](../../configs.md) for more info).
 4. (optional) The amount of fluid that is initially stored in the tank. Defaults to 0 if omitted.
 
-Again, you can handle changes in the tank by passing a lambda or method reference to the ``getFluidContainer`` function.
-But unlike The ``ItemHolder`` you can also pass a [``UpgradeHolder``](upgrades.md) to the ``getFluidContainer`` function.
+Again, you can handle changes in the container by passing a lambda or method reference to the ``getFluidContainer`` function.  
+Additionally, you can also pass an [``UpgradeHolder``](upgrades.md) and the `UpgradeType` that should affect your
+container's capacity to the ``getFluidContainer`` function.
 
 ```kotlin
 private val waterTank = getFluidContainer(
@@ -150,12 +151,11 @@ private val waterTank = getFluidContainer(
     setOf(FluidType.WATER),
     WATER_CAPACITY,
     0,
-    ::updateWaterLevel,
-    upgradeHolder
+    ::updateWaterLevel
 )
-// ...
+
 private fun updateWaterLevel() {
-    // ...
+    /* ... */
 }
 ```
 
@@ -165,7 +165,7 @@ Now we can override the ``fluidHolder`` property.
 override val fluidHolder = NovaFluidHolder(
     this, // (1)!
     waterTank to NetworkConnectionType.BUFFER// (2)!
-    // You can add additional tanks here // (3) !
+    // You can add additional tanks containers // (3) !
 ) { createSideConfig(NetworkConnectionType.INSERT, BlockSide.FRONT) } // (4)!
 ```
 
@@ -174,25 +174,3 @@ override val fluidHolder = NovaFluidHolder(
 3. Vararg of additional tanks.
 4. A lambda that creates a default side config for the holder. You can use ``createSideConfig`` or ``createExclusiveSideConfig`` if
    you have a simple default config. In this case, a config with insert on all sides except the front will be created.
-
-## Back to the original Solar Panel
-
-For our solar panel, we only have to override the ``energyHolder`` property.
-
-```kotlin title="SolarPanel.kt"
-override val energyHolder = ProviderEnergyHolder(this, MAX_ENERGY, ENERGY_PER_TICK, null) {
-    createExclusiveSideConfig(NetworkConnectionType.EXTRACT, BlockSide.BOTTOM)
-}
-```
-
-Now that we've got our energyHolder set up, we can start giving it energy. To do that, we just override the ``handleTick`` method
-and check if it's still day time.
-
-```kotlin title="SolarPanel.kt"
-override fun handleTick() {
-    if(world.time < 13000)
-        energyHolder.energy += ENERGY_PER_TICK
-}
-```
-
-And that's it! We now have a working solar panel.

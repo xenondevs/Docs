@@ -38,7 +38,51 @@ The BlockManager also allows you to get a BlockState at a specific location.
 
 You can also check if a block at a specific location is a Nova block via ``BlockManager.hasBlock(Location)``
 
-See [BlockState](blockstate.md) for more information.
+### Block Type
+
+`NovaBlock` is a block type, similar to `Material` in Bukkit, except that it is only for blocks.  
+To retrieve the block type of block at a specific location, you can do the following:
+
+=== "Kotlin"
+
+    ```kotlin
+    val blockState = blockManager.getBlock(location) ?: return
+    val block = blockState.block
+    ```
+
+=== "Java"
+
+    ```java
+    NovaBlockState blockState = blockManager.getBlock(location);
+    if (blockState == null)
+        return;
+    NovaBlock block = blockState.getBlock();
+    ```
+
+### Tile Entity
+
+[TileEntities](../tileentity/tileentity.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity
+instance of the block.
+
+=== "Kotlin"
+
+    ```kotlin
+    val blockState = blockManager.getBlock(location) ?: return
+    if (blockState is NovaTileEntityState) {
+        val tileEntity = blockState.tileEntity
+    }
+    ```
+
+=== "Java"
+
+    ```java
+    NovaBlockState blockState = blockManager.getBlock(location);
+    if (blockState == null)
+        return;
+    if (blockState instanceof NovaTileEntityState tileEntityState) {
+        TileEntity tileEntity = tileEntityState.getTileEntity();
+    }
+    ```
 
 ## Placing a block
 
