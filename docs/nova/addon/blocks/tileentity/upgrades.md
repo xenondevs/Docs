@@ -77,7 +77,7 @@ Assuming you have these two items, you can now register your upgrade type:
 @Init
 object UpgradeTypes {
     
-    val MY_UPGRADE_TYPE = upgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
+    val MY_UPGRADE_TYPE = registerUpgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
     
 }
 ```

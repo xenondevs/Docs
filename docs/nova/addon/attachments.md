@@ -15,7 +15,7 @@ Create an `AttachmentTypeRegistry` and annotate it with `@Init` to have it loade
 @Init
 object Attachments : AttachmentTypeRegistry by ExampleAddon.registry {
     
-    val EXAMPLE_ATTACHMENT = attachmentType("example_attachment") { ItemAttachment(it, Items.ATTACHMENT_ITEM) }
+    val EXAMPLE_ATTACHMENT = registerAttachmentType("example_attachment") { ItemAttachment(it, Items.ATTACHMENT_ITEM) }
     
 }
 ```
