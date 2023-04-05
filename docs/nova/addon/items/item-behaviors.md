@@ -346,4 +346,4 @@ You can also run the command `/nova debug itemData` to take a look at the data o
 
     Data is serialized using CBF. Make sure to check out the CBF documentation for more information.
    
-    [:material-file-document-outline: CBF Documentation](../../../../../cbf/){ .md-button }
+    [:material-file-document-outline: CBF Documentation](../../../../cbf/){ .md-button }
