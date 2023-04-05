@@ -1,6 +1,6 @@
 !!! info "Creating custom tools"
 
-    If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md).
+    If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md#__tabbed_1_3).
 
 ## Tool Tiers
 
