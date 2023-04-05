@@ -80,6 +80,7 @@ nav:
       - "Miscellaneous": "addon/misc.md"
       - "World Generation":
           - "Overview": "addon/worldgen/worldgen.md"
+          - "Codecs": "addon/worldgen/codecs.md"
           - "Height Providers": "addon/worldgen/height-provider.md"
           - "Features":
                 - "Overview": "addon/worldgen/features/features.md"
