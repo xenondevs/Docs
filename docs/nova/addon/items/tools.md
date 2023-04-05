@@ -47,9 +47,9 @@ Then, assign a numerical tool level value to your registered tier in the `tool_l
 example_tier: 4
 ```
 
-The specified level of '4' would give your custom tool the ability to break all blocks that `diamond` or `netherite` tools
+The specified level of `4` would give your custom tool the ability to break all blocks that `DIAMOND` or `NETHERITE` tools
 could break and would also be able to break custom blocks that have a tool tier configured which resolves to a tool level of
-`4`. This way, your tool can even break blocks that require a custom tool category of another addon, as long as your
+`4`. This way, your tool can even break blocks that require a custom tool tier of another addon, as long as your
 tool level is high enough.
 
 ## Tool Categories
