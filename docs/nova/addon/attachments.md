@@ -9,7 +9,7 @@ Once a player is given an attachment, it will stay on that player until it is re
 
 ## Creating an AttachmentType
 
-Create an `AttachmentTypeRegistry` and annotate it with `@Init` to have it loaded during addon initialization.
+Create an `AttachmentTypeRegistry` and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
 @Init
