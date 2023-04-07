@@ -4,7 +4,7 @@ InvUI makes it easy for you to translate your GUIs into different languages.
 
 ## Adding translations
 
-To add translations for a new language, you can call `Languages.getInstance().addLanguage(String lang, Map<String, String> translations)`.
+To add translations for a new language, you can call `#!java Languages.getInstance().addLanguage(String lang, Map<String, String> translations)`.
 The `lang` parameter is the language code of the language you want to add. The `translations` parameter should be a
 map containing the translation keys and their translations.
 
@@ -33,7 +33,7 @@ You can also load them using `Languages#loadLanguage`:
 
 ## Specifying Player language
 
-By default, the player's locale is retrieved using `Player#getLocale()`. If you want to change this behavior, you can
+By default, the player's locale is retrieved using `#!java Player.getLocale();`. If you want to change this behavior, you can
 do so by calling `Languages#setLanguageProvider`:
 
 === "Kotlin"
@@ -54,12 +54,12 @@ To use translations in your GUIs, simply use translatable components using eithe
 adventure text api. If you're not using Kotlin and the `invui-kotlin` module, you'll need to wrap adventure components
 using the `AdventureComponentWrapper` class before you can pass them to the `ItemBuilder` or `Window.Builder`.
 
-!!! note
+!!! question "When are translations applied?"
 
-    Because it is not possible to set the display name or lore of `ItemStacks` to anything other than a String, you'll
-    need to use InvUI's built-in `ItemBuilder` in order to apply translatable components.
+    Translations are applied server-side. This is done during `#!java ItemBuilder.get();` or, for the inventory title, `#!java Window.open();`.  
+    If you need to use server-side translations in other places, you'll need to manually call `#!java ComponentWrapper.localized(String locale);`.
 
 ## Disabling server-side translations
 
 If you do not want your items and GUIs to be translated server-side and instead want to actually send translatable
-components to your players, you can disable server-side translations by calling `Languages#enableServerSideTranslations(false)`.
+components to your players, you can disable server-side translations by calling `#!java Languages.getInstance().enableServerSideTranslations(false);`.

@@ -133,4 +133,4 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
     }
     ```
 
-The `getItemProvider` method will get called when the page changes, as `PagedGui` internally calls `Controllable#updateControlItems`, so the displayed page number in this example item will always be correct.
+The `getItemProvider` method will get called when the page changes, as `PagedGui` internally calls `AbstractGui#updateControlItems`, so the displayed page number in this example item will always be correct.

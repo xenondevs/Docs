@@ -6,10 +6,10 @@ Minecraft's inventories, virtual inventories do not have a defined width or heig
 
 ## Creating a Virtual Inventory
 
-To create a `VirtualInventory`, you can do one of two things:
+To create a `#!java VirtualInventory`, you can do one of two things:
 
-* Call the `VirtualInventory` constructor directly
-* Use the `VirtualInventoryManager` to get a previously serialized `VirtualInventory`. This `VirtualInventory` will then also be serialized when the plugin gets disabled.
+* Call the `#!java VirtualInventory` constructor directly
+* Use the `#!java VirtualInventoryManager` to get a previously serialized `#!java VirtualInventory`. This `#!java VirtualInventory` will then also be serialized when the plugin gets disabled.
 
 !!! info
 
@@ -32,15 +32,15 @@ without it having an effect on the source of the change. This might be useful tr
 
 Adding a `VirtualInventory` to a GUI can be done the same way as adding Items.
 You either define an ingredient for the VirtualInventory in `Structure`, use the filling
-methods in `GUI`, or create a `SlotElement.VISlotElement` which links to the specific slot.  
+methods in `Gui`, or create a `SlotElement.VISlotElement` which links to the specific slot.  
 When creating a `VISlotElement`, you can also define a background `ItemProvider`, which will
 be shown until an actual ItemStack has been placed in the `VirtualInventory`.
 
-### GUI shift priority
+### GUI priority
 
 If you have multiple virtual inventories in one GUI, you might want to change the order of
-which items are added to them with shift-clicks. This can be done by setting the `guiShiftPriority`
-in `VirtualInventory`. The inventory with the highest priority will be used first.
+which items are added to them with shift-clicks or collected using double clicks.
+This can be done by setting the `guiPriority` in `VirtualInventory`. The inventory with the highest priority will be used first.
 
 ### Custom Stack Sizes
 
@@ -56,7 +56,7 @@ This will make InvUI respect your maximum stack sizes.
 
 If you want your virtual inventory slots to have a background `ItemProvider` (which is an item that is technically
 in the slot, but will be ignored by all click actions) you can set the `background` parameter in
-`Structure.addIngredient(char key, VirtualInventory inventory, ItemProvider background)` or in the delegating `Gui.Builder`
+`#!java Structure.addIngredient(char key, VirtualInventory inventory, ItemProvider background)` or in the delegating `Gui.Builder`
 method for it.  
 Alternatively, you can also create the `SlotElement.VISlotElement` yourself.
 
