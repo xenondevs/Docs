@@ -1,6 +1,6 @@
 ## Creating a Block Registry
 
-Create a `BlockRegistry` singleton object and annotate it with `@Init` to have it loaded during addon initialization.
+Create a `BlockRegistry` singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
 @Init // (1)!

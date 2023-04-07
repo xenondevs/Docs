@@ -3,7 +3,7 @@ After [creating the item asset](../asset-packs/creating-items.md), they need to 
 To do this, you will need to create a registry for your items. This can be done by creating a singleton object that implements
 `ItemRegistry`. In order to not need to implement the `getAddon` method, you can delegate to `ExampleAddon.registry`.
 All items need to be registered during initialization, so you can either load the class from the `init` block of your
-addon or annotate your registry with `@Init`.
+addon or annotate your registry with `#!kotlin @Init`.
 
 Your singleton object might then look like this:  
 ```kotlin

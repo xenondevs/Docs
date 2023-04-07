@@ -54,7 +54,7 @@ inner class SolarPanelGui : TileEntityGui() {
 
 ### Creating an Upgrade Type Registry
 
-Create an `UpgradeTypeRegistry` singleton object and annotate it with `@Init` to have it loaded during addon initialization.
+Create an `UpgradeTypeRegistry` singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
 @Init // (1)!
@@ -77,7 +77,7 @@ Assuming you have these two items, you can now register your upgrade type:
 @Init
 object UpgradeTypes {
     
-    val MY_UPGRADE_TYPE = upgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
+    val MY_UPGRADE_TYPE = registerUpgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
     
 }
 ```

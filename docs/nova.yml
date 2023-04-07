@@ -9,6 +9,8 @@ theme:
     - navigation.footer
     - content.tabs.link
     - content.code.annotate
+    - content.code.copy
+    - content.code.select
 
 nav:
   - "Setup & Configuration":

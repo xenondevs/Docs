@@ -28,7 +28,7 @@ Then, register a new ability type for that ability:
 @Init
 object Abilities : AbilityTypeRegistry by ExampleAddon.registry {
     
-    val EXAMPLE_ABILITY = abilityType("example_ability", ::MyAbility)
+    val EXAMPLE_ABILITY = registerAbilityType("example_ability", ::MyAbility)
     
 }
 ```
