@@ -8,7 +8,7 @@ The following configuration options are available:
 
 | Option              | Type                                                      | Description                                                                                                                                                      |
 |---------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `layers`            | An array of `Layer`s. See below for more information      | Defines which block states should be used at specific heights.                                                                                                   |
+| `layers`            | An array of `Layers`. See below for more information      | Defines which block states should be used at specific heights.                                                                                                   |
 | `direction`         | `north`, `east`, `south`, `west`, `up` or `down`          | Determines the direction of the column.                                                                                                                          |
 | `allowed_placement` | A [BlockPredicate](../placed-feature.md#block-predicates) | A predicate that has to match every block in the column **before** the block is placed.                                                                          |
 | `prioritize_tip`    | A `boolean`                                               | When set to `true`, all underlying block will be removed if the current block doesn't match the provided [BlockPredicate](../placed-feature.md#block-predicates) |
@@ -31,17 +31,22 @@ As an example, here's the configured feature used to place cacti in the desert.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val CACTUS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "cactus",
-        Feature.BLOCK_COLUMN,
-        BlockColumnConfiguration(
-            listOf(BlockColumnConfiguration.Layer(BiasedToBottomInt.of(1, 3), SimpleStateProvider.simple(Blocks.CACTUS))), // (1)!
-            Direction.UP, // (2)!
-            BlockPredicate.matchesBlocks(Blocks.AIR), // (3)!
-            false // (4)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val CACTUS = registerConfiguredFeature(
+            "cactus",
+            Feature.BLOCK_COLUMN,
+            BlockColumnConfiguration(
+                listOf(BlockColumnConfiguration.Layer(BiasedToBottomInt.of(1, 3), SimpleStateProvider.simple(Blocks.CACTUS))), // (1)!
+                Direction.UP, // (2)!
+                BlockPredicate.matchesBlocks(Blocks.AIR), // (3)!
+                false // (4)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. The cactus only has a single layer of the `cactus` block which can be 1, 2 or 3 blocks high, biased towards a shorter height.
@@ -113,45 +118,50 @@ Or, as another example, here's the configured and placed feature for glow berrie
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val CAVE_VINE: Holder<ConfiguredFeature<BlockColumnConfiguration, Feature<BlockColumnConfiguration>>>
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
-    init {
+        val CAVE_VINE: ConfiguredFeature<BlockColumnConfiguration, Feature<BlockColumnConfiguration>>
         
-        val upperStateProvider = WeightedStateProvider( // (1)!
-            SimpleWeightedRandomList.builder<BlockState>()
-                .add(Blocks.CAVE_VINES_PLANT.defaultBlockState(), 4)
-                .add(Blocks.CAVE_VINES_PLANT.defaultBlockState().setValue(CaveVines.BERRIES, true), 1)
-        )
+        init {
+            val upperStateProvider = WeightedStateProvider( // (1)!
+                SimpleWeightedRandomList.builder<BlockState>()
+                    .add(Blocks.CAVE_VINES_PLANT.defaultBlockState(), 4)
+                    .add(Blocks.CAVE_VINES_PLANT.defaultBlockState().setValue(CaveVines.BERRIES, true), 1)
+            )
         
-        val bottomStateProvider = RandomizedIntStateProvider(WeightedStateProvider( // (2)!
-            SimpleWeightedRandomList.builder<BlockState>()
-                .add(Blocks.CAVE_VINES.defaultBlockState(), 4)
-                .add(Blocks.CAVE_VINES.defaultBlockState().setValue(CaveVines.BERRIES, true), 1)
-        ), CaveVinesBlock.AGE, UniformInt.of(23, 25))
+            val bottomStateProvider = RandomizedIntStateProvider(WeightedStateProvider( // (2)!
+                SimpleWeightedRandomList.builder<BlockState>()
+                    .add(Blocks.CAVE_VINES.defaultBlockState(), 4)
+                    .add(Blocks.CAVE_VINES.defaultBlockState().setValue(CaveVines.BERRIES, true), 1)
+            ), CaveVinesBlock.AGE, UniformInt.of(23, 25))
         
-        val config = BlockColumnConfiguration(
-            listOf( // (3)!
-                BlockColumnConfiguration.Layer(
-                    WeightedListInt( // (4)!
-                        SimpleWeightedRandomList.builder<IntProvider>()
-                            .add(UniformInt.of(0, 19), 2)
-                            .add(UniformInt.of(0, 2), 3)
-                            .add(UniformInt.of(0, 6), 10)
-                            .build()
+            val config = BlockColumnConfiguration(
+                listOf( // (3)!
+                    BlockColumnConfiguration.Layer(
+                        WeightedListInt( // (4)!
+                            SimpleWeightedRandomList.builder<IntProvider>()
+                                .add(UniformInt.of(0, 19), 2)
+                                .add(UniformInt.of(0, 2), 3)
+                                .add(UniformInt.of(0, 6), 10)
+                                .build()
+                        ),
+                        upperStateProvider // (5)!
                     ),
-                    upperStateProvider // (5)!
+                    BlockColumnConfiguration.Layer(
+                        ConstantInt.of(1), // (6)!
+                        bottomStateProvider // (7)!
+                    )
                 ),
-                BlockColumnConfiguration.Layer(
-                    ConstantInt.of(1), // (6)!
-                    bottomStateProvider // (7)!
-                )
-            ),
-            Direction.DOWN, // (8)!
-            BlockPredicate.ONLY_IN_AIR_PREDICATE, // (9)!
-            true // (10)!
-        )
+                Direction.DOWN, // (8)!
+                BlockPredicate.ONLY_IN_AIR_PREDICATE, // (9)!
+                true // (10)!
+            )
         
-        CAVE_VINE = FeatureRegistry.registerConfiguredFeature(Machines, "cave_vine", Feature.BLOCK_COLUMN, config)
+            CAVE_VINE = registerConfiguredFeature("cave_vine", Feature.BLOCK_COLUMN, config)
+        }
+    
     }
     ```
 
@@ -167,24 +177,25 @@ Or, as another example, here's the configured and placed feature for glow berrie
     10. If the predicate fails, the entire vine will be removed.
 
     ```kotlin title="PlacedFeatures.kt"
-    val CAVE_VINE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "cave_vine",
-        ConfiguredFeatures.CAVE_VINE,
-        listOf(
-            CountPlacement.of(188), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.absolute(256)), // (3)!
-            EnvironmentScanPlacement.scanningFor( // (4)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val CAVE_VINE = placedFeature("cave_vine", ConfiguredFeatures.CAVE_VINE)
+            .count(188) // (1)!
+            .inSquareSpread() // (2)!
+            .heightRangeUniform(VerticalAnchor.BOTTOM, VerticalAnchor.absolute(256)) // (3)!
+            .environmentScan( // (4)!
                 Direction.UP,
                 BlockPredicate.hasSturdyFace(Direction.DOWN),
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
                 12
-            ),
-            RandomOffsetPlacement.of(ConstantInt.ZERO, ConstantInt.of(-1)), // (5)!
-            BiomeFilter.biome() // (6)!
-        )
-    )
+            )
+            .randomVerticalOffset(-1) // (5)!
+            .biomeFilter() // (6)!
+            .register()
+    
+    }
     ```
 
     1. 188 tries per chunk.

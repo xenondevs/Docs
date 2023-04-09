@@ -26,45 +26,51 @@ As an example, here's the configured- and placed feature for sculk veins.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val SCULK_VEIN = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "sculk_vein",
-        Feature.MULTIFACE_GROWTH,
-        MultifaceGrowthConfiguration(
-            Blocks.SCULK_VEIN as MultifaceBlock, // block to use
-            20, // search range
-            true, // canPlaceOnFloor
-            true, // canPlaceOnCeiling
-            true, // canPlaceOnWall
-            1.0F, // chanceOfSpreading // (1)!
-            HolderSet.direct( // (2)!
-                Block::builtInRegistryHolder,
-                Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.DRIPSTONE_BLOCK, Blocks.CALCITE, Blocks.TUFF, Blocks.DEEPSLATE
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SCULK_VEIN = registerConfiguredFeature(
+            "sculk_vein",
+            Feature.MULTIFACE_GROWTH,
+            MultifaceGrowthConfiguration(
+                Blocks.SCULK_VEIN as MultifaceBlock, // block to use
+                20, // search range
+                true, // canPlaceOnFloor
+                true, // canPlaceOnCeiling
+                true, // canPlaceOnWall
+                1.0F, // chanceOfSpreading // (1)!
+                HolderSet.direct( // (2)!
+                    Block::builtInRegistryHolder,
+                    Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.DRIPSTONE_BLOCK, Blocks.CALCITE, Blocks.TUFF, Blocks.DEEPSLATE
+                )
             )
         )
-    )
+    
+    }
     ```
 
     1. Combined with the search range of 20, this ensures that every block in a 20 block radius will have a sculk vein.
     2. Only grow on typical cave blocks.
 
     ```kotlin title="PlacedFeatures.kt"
-    val SCULK_VEIN = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "sculk_vein",
-        ConfiguredFeatures.SCULK_VEIN,
-        listOf(
-            CountPlacement.of(UniformInt.of(204, 250)), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SCULK_VEIN = placedFeature("sculk_vein", ConfiguredFeatures.SCULK_VEIN)
+            .count(UniformInt.of(204, 250)) // (1)!
+            .inSquareSpread() // (2)!
+            .inYWorldBounds() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. Generate 204-250 attempts per chunk.
     2. Randomly offset the attempts horizontally.
-    3. Set the y-level to a random int up to 256. The static constant is equivalent to
+    3. Set the y-level to a random int up to 256. The call is equivalent to
        ```kotlin
        HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256));
        ```

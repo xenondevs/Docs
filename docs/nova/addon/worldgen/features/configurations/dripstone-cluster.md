@@ -33,41 +33,47 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val DRIPSTONE_CLUSTER = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "dripstone_cluster",
-        Feature.DRIPSTONE_CLUSTER,
-        DripstoneClusterConfiguration(
-            12, // floorToCeilingSearchRange
-            UniformInt.of(3, 6), // height
-            UniformInt.of(2, 8), // radius
-            1, // maxStalagmiteStalactiteHeightDiff
-            3, // heightDeviation
-            UniformInt.of(2, 4), // dripstoneBlockLayerThickness
-            UniformFloat.of(0.3f, 0.7f), // density
-            ClampedNormalFloat.of(0.1f, 0.3f, 0.1f, 0.9f), // wetness
-            0.1f, // chanceOfDripstoneColumnAtMaxDistanceFromCenter
-            3, // maxDistanceFromEdgeAffectingChanceOfDripstoneColumn
-            8 // maxDistanceFromCenterAffectingHeightBias
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val DRIPSTONE_CLUSTER = registerConfiguredFeature(
+            "dripstone_cluster",
+            Feature.DRIPSTONE_CLUSTER,
+            DripstoneClusterConfiguration(
+                12, // floorToCeilingSearchRange
+                UniformInt.of(3, 6), // height
+                UniformInt.of(2, 8), // radius
+                1, // maxStalagmiteStalactiteHeightDiff
+                3, // heightDeviation
+                UniformInt.of(2, 4), // dripstoneBlockLayerThickness
+                UniformFloat.of(0.3f, 0.7f), // density
+                ClampedNormalFloat.of(0.1f, 0.3f, 0.1f, 0.9f), // wetness
+                0.1f, // chanceOfDripstoneColumnAtMaxDistanceFromCenter
+                3, // maxDistanceFromEdgeAffectingChanceOfDripstoneColumn
+                8 // maxDistanceFromCenterAffectingHeightBias
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val DRIPSTONE_CLUSTER = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "dripstone_cluster",
-        ConfiguredFeatures.DRIPSTONE_CLUSTER,
-        listOf(
-            CountPlacement.of(UniformInt.of(48, 96)),
-            InSquarePlacement.spread(),
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (1)!
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val DRIPSTONE_CLUSTER = placedFeature("dripstone_cluster", ConfiguredFeatures.DRIPSTONE_CLUSTER)
+            .count(UniformInt.of(48, 96))
+            .inSquareSpread()
+            .inYWorldBounds() // (1)!
+            .biomeFilter()
+            .register()
+    
+    }
     ```
 
-    1. Constant for 
+    1. Call is equivalent to: 
        ```kotlin
        HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256))
        ```

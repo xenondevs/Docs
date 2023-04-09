@@ -23,18 +23,23 @@ As an example, here's the configured- and placed feature for the warped fungus:
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val WARPED_FUNGUS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "warped_fungus",
-        Feature.HUGE_FUNGUS,
-        HugeFungusConfiguration(
-            Blocks.WARPED_NYLIUM.defaultBlockState(), // (1)!
-            Blocks.WARPED_STEM.defaultBlockState(), // (2)!
-            Blocks.WARPED_WART_BLOCK.defaultBlockState(), // (3)!
-            Blocks.SHROOMLIGHT.defaultBlockState(), // (4)!
-            false // (5)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val WARPED_FUNGUS = registerConfiguredFeature(
+            "warped_fungus",
+            Feature.HUGE_FUNGUS,
+            HugeFungusConfiguration(
+                Blocks.WARPED_NYLIUM.defaultBlockState(), // (1)!
+                Blocks.WARPED_STEM.defaultBlockState(), // (2)!
+                Blocks.WARPED_WART_BLOCK.defaultBlockState(), // (3)!
+                Blocks.SHROOMLIGHT.defaultBlockState(), // (4)!
+                false // (5)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Only place the fungus on warped nylium.
@@ -44,15 +49,16 @@ As an example, here's the configured- and placed feature for the warped fungus:
     5. The fungus is automatically generated, so it shouldn't drop items when another fungus grows into it.
 
     ```kotlin title="PlacedFeatures.kt"
-    val WARPED_FUNGUS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "warped_fungus",
-        ConfiguredFeatures.WARPED_FUNGUS,
-        listOf(
-            CountOnEveryLayerPlacement.of(8),
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val WARPED_FUNGUS = placedFeature("warped_fungus", ConfiguredFeatures.WARPED_FUNGUS)
+            .countOnEveryLayer(8)
+            .biomeFilter()
+            .register()
+    
+    }
     ```
 
 === "Json"

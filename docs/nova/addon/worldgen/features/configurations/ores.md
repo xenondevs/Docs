@@ -179,7 +179,12 @@ The following `RuleTests` are available:
     === "Inline RuleTestType"
 
         ```kotlin title="RuleTests.kt"
-        val MATERIAL_MATCH_TEST_TYPE = FeatureRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTest.CODEC)
+        object RuleTests : MinecraftUtilTypeRegistry by ExampleAddon.registry {
+        
+            @OptIn(ExperimentalWorldGen::class)
+            val MATERIAL_MATCH_TEST_TYPE = registerRuleTestType("material_match", MaterialMatchTest.CODEC)
+        
+        }
         ```
         
         ```kotlin title="MaterialMatchTest.kt"
@@ -225,7 +230,12 @@ The following `RuleTests` are available:
         ```
     
         ```kotlin title="RuleTests.kt"
-        val MATERIAL_MATCH_TEST_TYPE = FeatureRegistry.registerRuleTestType(Machines, "material_match", MaterialMatchTestType)
+        object RuleTests : MinecraftUtilTypeRegistry by ExampleAddon.registry {
+        
+            @OptIn(ExperimentalWorldGen::class)
+            val MATERIAL_MATCH_TEST_TYPE = registerRuleTestType("material_match", MaterialMatchTestType)
+        
+        }
         ```
 
         ```kotlin title="MaterialMatchTest.kt"
@@ -248,25 +258,30 @@ As an example, here's the configured- and placed feature of star shards ore from
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val ORE_STAR_SHARDS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "ore_star_shards",
-        Feature.ORE,
-        OreConfiguration(
-            listOf( // (1)!
-                OreConfiguration.target(
-                    TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
-                    WrapperBlockState(Blocks.STAR_SHARDS_ORE) // (2)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ORE_STAR_SHARDS = registerConfiguredFeature(
+            "ore_star_shards",
+            Feature.ORE,
+            OreConfiguration(
+                listOf( // (1)!
+                    OreConfiguration.target(
+                        TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
+                        WrapperBlockState(Blocks.STAR_SHARDS_ORE) // (2)!
+                    ),
+                    OreConfiguration.target(
+                        TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
+                        WrapperBlockState(Blocks.DEEPSLATE_STAR_SHARDS_ORE)
+                    )
                 ),
-                OreConfiguration.target(
-                    TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
-                    WrapperBlockState(Blocks.DEEPSLATE_STAR_SHARDS_ORE)
-                )
-            ),
-            4, // (3)!
-            0.0f // (4)!
+                4, // (3)!
+                0.0f // (4)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Specify that `star_shards_ore` should be used to replace normal stone and `deepslate_star_shards_ore` should be used to replace deepslate.
@@ -313,12 +328,17 @@ As an example, here's the configured- and placed feature of star shards ore from
         ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val ORE_STAR_SHARDS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "ore_star_shards",
-        ConfiguredFeatures.ORE_STAR_SHARDS,
-        commonOrePlacement(30, HeightRangePlacement.uniform(VerticalAnchor.absolute(120), VerticalAnchor.top())) // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ORE_STAR_SHARDS = placedFeature("ore_star_shards", ConfiguredFeatures.ORE_STAR_SHARDS)
+            .modifiers(commonOrePlacement(30, HeightRangePlacement.uniform(VerticalAnchor.absolute(120), VerticalAnchor.top()))) // (1)!
+            .register()
+
+        /* ... util placement functions ... */
+
+    }
     ```
 
     1. 30 tries per chunk and only place the ore at a high altitude (y>120).

@@ -22,31 +22,37 @@ As an example, here's the placed and configured feature used to place magma bloc
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val UNDERWATER_MAGMA = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "underwater_magma",
-        Feature.UNDERWATER_MAGMA,
-        UnderwaterMagmaConfiguration(
-            5, // floor_search_range
-            1, // placement_radius_around_floor
-            0.5F // placement_probability_per_valid_position
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val UNDERWATER_MAGMA = registerConfiguredFeature(
+            "underwater_magma",
+            Feature.UNDERWATER_MAGMA,
+            UnderwaterMagmaConfiguration(
+                5, // floor_search_range
+                1, // placement_radius_around_floor
+                0.5F // placement_probability_per_valid_position
+            )
         )
-    )
+    
+    }
     ```
     
     ```kotlin
-    val UNDERWATER_MAGMA = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "underwater_magma",
-        Configurations.UNDERWATER_MAGMA,
-        listOf(
-            CountPlacement.of(UniformInt.of(44, 52)), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (3)!
-            SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Int.MIN_VALUE, -2), // (4)!
-            BiomeFilter.biome() // (5)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val UNDERWATER_MAGMA = placedFeature("underwater_magma", ConfiguredFeatures.UNDERWATER_MAGMA)
+            .count(UniformInt.of(44, 52)) // (1)!
+            .inSquareSpread() // (2)!
+            .inYWorldBounds() // (3)!
+            .surfaceRelativeThresholdFilter(Heightmap.Types.OCEAN_FLOOR_WG, Int.MIN_VALUE, -2) // (4)!
+            .biomeFilter() // (5)!
+            .register()
+    
+    }
     ```
     
     1. Random amount between 44 and 52.

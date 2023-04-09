@@ -22,40 +22,46 @@ randomly choose between a stalactite and a stalagmite. Si here's the full config
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val POINTED_DRIPSTONE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "pointed_dripstone",
-        Feature.SIMPLE_RANDOM_SELECTOR,
-        SimpleRandomFeatureConfiguration(HolderSet.direct(
-            PlacementUtils.inlinePlaced(
-                Feature.POINTED_DRIPSTONE,
-                PointedDripstoneConfiguration(0.2f, 0.7f, 0.5f, 0.5f),
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(1))
-            ),
-            PlacementUtils.inlinePlaced(
-                Feature.POINTED_DRIPSTONE,
-                PointedDripstoneConfiguration(0.2f, 0.7f, 0.5f, 0.5f),
-                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(-1)))
-        ))
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val POINTED_DRIPSTONE = registerConfiguredFeature(
+            "pointed_dripstone",
+            Feature.SIMPLE_RANDOM_SELECTOR,
+            SimpleRandomFeatureConfiguration(HolderSet.direct(
+                PlacementUtils.inlinePlaced(
+                    Feature.POINTED_DRIPSTONE,
+                    PointedDripstoneConfiguration(0.2f, 0.7f, 0.5f, 0.5f),
+                    EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, 12),
+                    RandomOffsetPlacement.vertical(ConstantInt.of(1))
+                ),
+                PlacementUtils.inlinePlaced(
+                    Feature.POINTED_DRIPSTONE,
+                    PointedDripstoneConfiguration(0.2f, 0.7f, 0.5f, 0.5f),
+                    EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, 12),
+                    RandomOffsetPlacement.vertical(ConstantInt.of(-1)))
+            ))
+        )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val POINTED_DRIPSTONE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "pointed_dripstone",
-        ConfiguredFeatures.POINTED_DRIPSTONE,
-        listOf(
-            CountPlacement.of(UniformInt.of(192, 256)),
-            InSquarePlacement.spread(),
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-            CountPlacement.of(UniformInt.of(1, 5)),
-            RandomOffsetPlacement.of(ClampedNormalInt.of(0.0f, 3.0f, -10, 10), ClampedNormalInt.of(0.0f, 0.6f, -2, 2)),
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val POINTED_DRIPSTONE = placedFeature("pointed_dripstone", ConfiguredFeatures.POINTED_DRIPSTONE)
+            .count(UniformInt.of(192, 256))
+            .inSquareSpread()
+            .inYWorldBounds()
+            .count(UniformInt.of(1, 5))
+            .randomOffset(ClampedNormalInt.of(0.0f, 3.0f, -10, 10), ClampedNormalInt.of(0.0f, 0.6f, -2, 2))
+            .biomeFilter()
+            .register()
+    
+    }
     ```
 
 === "Json"

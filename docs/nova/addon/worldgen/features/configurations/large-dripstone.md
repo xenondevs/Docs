@@ -33,37 +33,48 @@ As an example, here's the configured and placed feature for the vanilla large dr
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val LARGE_DRIPSTONE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "large_dripstone",
-        Feature.LARGE_DRIPSTONE,
-        LargeDripstoneConfiguration(
-            30, // floorToCeilingSearchRange
-            UniformInt.of(3, 19), // columnRadius
-            UniformFloat.of(0.4f, 2.0f), // heightScale
-            0.33f, // maxColumnRadiusToCaveHeightRatio
-            UniformFloat.of(0.3f, 0.9f), // stalactiteBluntness
-            UniformFloat.of(0.4f, 1.0f), // stalagmiteBluntness
-            UniformFloat.of(0.0f, 0.3f), // windSpeed
-            4, // minRadiusForWind
-            0.6f // minBluntnessForWind
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val LARGE_DRIPSTONE = registerConfiguredFeature(
+            "large_dripstone",
+            Feature.LARGE_DRIPSTONE,
+            LargeDripstoneConfiguration(
+                30, // floorToCeilingSearchRange
+                UniformInt.of(3, 19), // columnRadius
+                UniformFloat.of(0.4f, 2.0f), // heightScale
+                0.33f, // maxColumnRadiusToCaveHeightRatio
+                UniformFloat.of(0.3f, 0.9f), // stalactiteBluntness
+                UniformFloat.of(0.4f, 1.0f), // stalagmiteBluntness
+                UniformFloat.of(0.0f, 0.3f), // windSpeed
+                4, // minRadiusForWind
+                0.6f // minBluntnessForWind
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val LARGE_DRIPSTONE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "large_dripstone",
-        ConfiguredFeatures.LARGE_DRIPSTONE,
-        listOf(
-            CountPlacement.of(UniformInt.of(10, 48)),
-            InSquarePlacement.spread(),
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val LARGE_DRIPSTONE = placedFeature("large_dripstone", ConfiguredFeatures.LARGE_DRIPSTONE)
+            .count(UniformInt.of(10, 48))
+            .inSquareSpread()
+            .inYWorldBounds() // (1)!
+            .biomeFilter()
+            .register()
+    
+    }
     ```
+
+    1. Call is equivalent to: 
+       ```kotlin
+       HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256))
+       ```
 
 === "Json"
 

@@ -2,7 +2,7 @@
 
 !!! warning "Hardcoded block check"
 
-    This feature has a hardcoded check for the block below the feature being `netherrack, `warped_nylium` or `warped_wart_block` and will not work on other blocks
+    This feature has a hardcoded check for the block below the feature being `netherrack`, `warped_nylium` or `warped_wart_block` and will not work on other blocks
 
 The `twisting_vines` can be used to generate twisting vines in the world.
 
@@ -25,30 +25,36 @@ As an example, here's the configured- and placed feature to generate twisting vi
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val TWISTING_VINES = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "twisting_vines",
-        Feature.TWISTING_VINES,
-        TwistingVinesConfig(
-            8, // spreadWidth
-            4, // spreadHeight
-            8 // maxHeight
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val TWISTING_VINES = registerConfiguredFeature(
+            "twisting_vines",
+            Feature.TWISTING_VINES,
+            TwistingVinesConfig(
+                8, // spreadWidth
+                4, // spreadHeight
+                8 // maxHeight
+            )
         )
-    )
+    
+    }
     ```
     
     ```kotlin title="PlacedFeatures.kt"
-    val TWISTING_VINES = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "twisting_vines",
-        Configurations.TWISTING_VINES,
-        listOf(
-            CountPlacement.of(10), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.FULL_RANGE, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val TWISTING_VINES = placedFeature("twisting_vines", ConfiguredFeatures.TWISTING_VINES)
+            .count(10) // (1)!
+            .inSquareSpread() // (2)!
+            .modifier(PlacementUtils.FULL_RANGE) // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
     
     1. 10 twisting vines per chunk.

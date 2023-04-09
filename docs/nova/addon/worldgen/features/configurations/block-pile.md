@@ -19,26 +19,32 @@ As an example, here's the placed and configured feature used to place piles of h
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val PILE_HAY = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "pile_hay",
-        Feature.BLOCK_PILE,
-        BlockPileConfiguration(RotatedBlockProvider(Blocks.HAY_BLOCK)) // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val PILE_HAY = registerConfiguredFeature(
+            "pile_hay",
+            Feature.BLOCK_PILE,
+            BlockPileConfiguration(RotatedBlockProvider(Blocks.HAY_BLOCK)) // (1)!
+        )
+    
+    }
     ```
 
     1. Randomly rotate the hay bales.
 
     ```kotlin title="PlacedFeatures.kt"
-    val PILE_HAY = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "pile_hay",
-        ConfiguredFeatures.PILE_HAY,
-        emptyList() // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val PILE_HAY = placedFeature("pile_hay", ConfiguredFeatures.PILE_HAY).register() // (1)!
+    
+    }
     ```
 
-     1. The feature does all the location resolving itself.
+     1. The feature does all the location resolving itself, so no extra `PlacementModifiers` are needed.
 
 === "Json"
 

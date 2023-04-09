@@ -21,17 +21,18 @@ Here's an example of Minecraft's large diamond ore placed feature:
 === "Kotlin"
 
     ```kotlin
-    val ORE_DIAMOND_LARGE_PLACEMENT = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "ore_diamond_large",
-        ORE_DIAMOND_LARGE_CONFIG, // (1)!
-        listOf(
-            RarityFilter.onAverageOnceEvery(9), // (2)!
-            InSquarePlacement.spread(), // (3)!
-            HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), // (4)!
-            BiomeFilter.biome() // (5)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ORE_DIAMOND_LARGE_PLACEMENT = placedFeature("ore_diamond_large", OreFeatures.ORE_DIAMOND_LARGE) // (1)!
+            .rarityFilter(9) // (2)!
+            .inSquareSpread() // (3)!
+            .heightRangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)) // (4)!
+            .biomeFilter() // (5)!
+            .register()
+    
+    }
     ```
 
     1. The configured feature to place

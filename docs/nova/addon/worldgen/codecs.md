@@ -26,8 +26,8 @@ Keep these functions in mind for the following examples.
 
 !!! tip
 
-    Nova also has a `Result<R>.asDataResult()` extension function to convert Kotlin's `Result` into a `DataResult`. So
-    `runCatching { /* ... */ }.asDataResult()` is a valid way to safely deserialize a value and return a `DataResult`.
+    Nova also has a `#!kotlin Result<R>.asDataResult()` extension function to convert Kotlin's `Result` into a `DataResult`.  
+    So for a convenient way to safely deserialize a value and return a `DataResult`, you can run `#!kotlin runCatching { /* ... */ }.asDataResult()`
 
 ## DynamicOps
 

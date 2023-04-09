@@ -20,15 +20,20 @@ Here's the configured and placed feature for the vanilla return end gateway:
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val END_GATEWAY_RETURN = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "end_gateway_return",
-        Feature.END_GATEWAY,
-        EndGatewayConfiguration.knownExit( // (1)!
-            ServerLevel.END_SPAWN_POINT, // (2)!
-            true // (3)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val END_GATEWAY_RETURN = registerConfiguredFeature(
+            "end_gateway_return",
+            Feature.END_GATEWAY,
+            EndGatewayConfiguration.knownExit( // (1)!
+                ServerLevel.END_SPAWN_POINT, // (2)!
+                true // (3)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. If the exit location is still unknown during registration (for example for random teleportation), use
@@ -39,23 +44,24 @@ Here's the configured and placed feature for the vanilla return end gateway:
     3. Entities should be teleported to the exact exit location.
 
     ```kotlin title="PlacedFeatures.kt"
-    val END_GATEWAY_RETURN = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "end_gateway_return",
-        ConfiguredFeatures.END_GATEWAY_RETURN,
-        listOf(
-            RarityFilter.onAverageOnceEvery(700), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP, // (3)!
-            RandomOffsetPlacement.vertical(UniformInt.of(3, 9)), // (4)!
-            BiomeFilter.biome() // (5)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val END_GATEWAY_RETURN = placedFeature("end_gateway_return", ConfiguredFeatures.END_GATEWAY_RETURN)
+            .rarityFilter(700) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToMotionBlocking() // (3)!
+            .randomVerticalOffset(UniformInt.of(3, 9)) // (4)!
+            .biomeFilter() // (5)!
+            .register()
+    
+    }
     ```
 
     1. Give the end gateway a chance of $^1/_{700}$ to spawn. Or in other words, the end gateway will spawn in 1 out of 700 chunks.
     2. Randomly offset the gateways in a square.
-    3. Move the gateways to the surface. The static constant is equivalent to
+    3. Move the gateways to the surface. The call is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING)
        ```

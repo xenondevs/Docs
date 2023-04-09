@@ -14,31 +14,37 @@ In code, the `CountConfiguration` class is used to configure the feature.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val SEA_PICKLE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "sea_pickle",
-        Feature.SEA_PICKLE,
-        CountConfiguration(20)
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SEA_PICKLE = registerConfiguredFeature(
+            "sea_pickle",
+            Feature.SEA_PICKLE,
+            CountConfiguration(20)
+        )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val SEA_PICKLE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "sea_pickle",
-        ConfiguredFeatures.SEA_PICKLE,
-        listOf(
-            RarityFilter.onAverageOnceEvery(16), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP_TOP_SOLID, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SEA_PICKLE = placedFeature("sea_pickle", ConfiguredFeatures.SEA_PICKLE)
+            .rarityFilter(16) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToTopSolid() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. Place sea pickles in every 16th chunk.
     2. Randomly offset the placement horizontally.
-    3. Set y-coordinate to the ocean floor. This static constant is equivalent to
+    3. Set y-coordinate to the ocean floor. This call is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR_WG)
        ```

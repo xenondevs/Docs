@@ -29,22 +29,27 @@ As an example, here's the configured and placed feature for sand disks in lakes:
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val DISK_SAND = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "disk_sand",
-        Feature.DISK,
-        DiskConfiguration(
-            RuleBasedBlockStateProvider(
-                BlockStateProvider.simple(Blocks.SAND), // (1)!
-                listOf(
-                    RuleBasedBlockStateProvider.Rule(BlockPredicate.matchesBlocks(Direction.DOWN.normal, Blocks.AIR), BlockStateProvider.simple(Blocks.SANDSTONE)), // (2)!
-                )
-            ),
-            BlockPredicate.matchesBlocks(Blocks.DIRT, Blocks.GRASS_BLOCK), // (3)!
-            UniformInt.of(2, 6), // (4)!
-            2 // (5)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val DISK_SAND = registerConfiguredFeature(
+            "disk_sand",
+            Feature.DISK,
+            DiskConfiguration(
+                RuleBasedBlockStateProvider(
+                    BlockStateProvider.simple(Blocks.SAND), // (1)!
+                    listOf(
+                        RuleBasedBlockStateProvider.Rule(BlockPredicate.matchesBlocks(Direction.DOWN.normal, Blocks.AIR), BlockStateProvider.simple(Blocks.SANDSTONE)), // (2)!
+                    )
+                ),
+                BlockPredicate.matchesBlocks(Blocks.DIRT, Blocks.GRASS_BLOCK), // (3)!
+                UniformInt.of(2, 6), // (4)!
+                2 // (5)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. This is the fallback block used if none of the rules listed below apply.
@@ -53,26 +58,27 @@ As an example, here's the configured and placed feature for sand disks in lakes:
     3. Only allow `dirt` or `grass_block` in the center.
     4. Randomly chooses a radius between 2 and 6.
     5. The `half_height` of the disk.  
-       So the actual height will be $2 \times 2 + 1 = 5$ blocks.
+       The actual height will be $2 \times 2 + 1 = 5$ blocks.
     
     ```kotlin title="PlacedFeatures.kt"
-    val DISK_SAND = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "disk_sand",
-        ConfiguredFeatures.DISK_SAND,
-        listOf(
-            CountPlacement.of(3), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP_TOP_SOLID, // (3)!
-            BlockPredicateFilter.forPredicate(BlockPredicate.matchesFluids(Fluids.WATER)), // (4)!
-            BiomeFilter.biome() // (5)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val DISK_SAND = placedFeature("disk_sand", ConfiguredFeatures.DISK_SAND)
+            .count(3) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToTopSolid() // (3)!
+            .blockPredicateFilter(BlockPredicate.matchesFluids(Fluids.WATER)) // (4)!
+            .biomeFilter() // (5)!
+            .register()
+    
+    }
     ```
 
     1. 3 tries per chunk.
     2. Spread the disks in a square.
-    3. Makes sure to move the y coordinate to one block above the first solid block. This static constant is equivalent to 
+    3. Makes sure to move the y coordinate to one block above the first solid block. This call is equivalent to 
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR_WG)
        ```

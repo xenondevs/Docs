@@ -23,32 +23,40 @@ one of the features used to place upwards pointing dripstone.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val POINTED_DRIPSTONE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "pointed_dripstone",
-        Feature.POINTED_DRIPSTONE,
-        PointedDripstoneConfiguration(
-            0.2F, // chance_of_taller_dripstone
-            0.7F, // chance_of_directional_spread
-            0.5F, // chance_of_spread_radius2
-            0.5F  // chance_of_spread_radius3
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val POINTED_DRIPSTONE = registerConfiguredFeature(
+            "pointed_dripstone",
+            Feature.POINTED_DRIPSTONE,
+            PointedDripstoneConfiguration(
+                0.2F, // chance_of_taller_dripstone
+                0.7F, // chance_of_directional_spread
+                0.5F, // chance_of_spread_radius2
+                0.5F  // chance_of_spread_radius3
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val POINTED_DRIPSTONE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "pointed_dripstone",
-        ConfiguredFeatures.POINTED_DRIPSTONE,
-        EnvironmentScanPlacement.scanningFor( // (1)!
-            Direction.DOWN,
-            BlockPredicate.solid(),
-            BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, // (2)!
-            12 // max_steps
-        ),
-        RandomOffsetPlacement.vertical(ConstantInt.of(1)) // (3)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val POINTED_DRIPSTONE = placedFeature("pointed_dripstone", ConfiguredFeatures.POINTED_DRIPSTONE)
+            .environmentScan( // (1)!
+                Direction.DOWN,
+                BlockPredicate.solid(),
+                BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE, // (2)!
+                12 // max_steps
+            )
+            .randomVerticalOffset(1) // (3)!
+            .register()
+    
+    }
     ```
 
     1. Searches downwards for a solid block.
@@ -74,7 +82,7 @@ one of the features used to place upwards pointing dripstone.
 
     The placed feature is also located in the random selector:
 
-    ```json title="configured_feature/pointed_dripstone.json"
+    ```json title="placed_feature/pointed_dripstone.json"
     {
       "feature": "minecraft:pointed_dripstone",
       "placement": [

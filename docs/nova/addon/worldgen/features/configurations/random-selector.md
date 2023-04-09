@@ -20,24 +20,29 @@ As an example, here's the random selector used to generate tree in the old growt
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val TREES_OLD_GROWTH_SPRUCE_TAIGA = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "trees_old_growth_spruce_taiga",
-        Feature.RANDOM_SELECTOR,
-        RandomFeatureConfiguration(
-            listOf(
-                WeightedPlacedFeature(
-                    NMSUtils.getHolder(TreePlacements.MEGA_SPRUCE_CHECKED), // (1)!
-                    1f / 3f // (2)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val TREES_OLD_GROWTH_SPRUCE_TAIGA = registerConfiguredFeature(
+            "trees_old_growth_spruce_taiga",
+            Feature.RANDOM_SELECTOR,
+            RandomFeatureConfiguration(
+                listOf(
+                    WeightedPlacedFeature(
+                        VanillaRegistryAccess.getHolder(TreePlacements.MEGA_SPRUCE_CHECKED), // (1)!
+                        1f / 3f // (2)!
+                    ),
+                    WeightedPlacedFeature(
+                        VanillaRegistryAccess.getHolder(TreePlacements.PINE_CHECKED),
+                        1f / 3f // (3)!
+                    )
                 ),
-                WeightedPlacedFeature(
-                    NMSUtils.getHolder(TreePlacements.PINE_CHECKED),
-                    1f / 3f // (3)!
-                )
-            ),
-            NMSUtils.getHolder(TreePlacements.SPRUCE_CHECKED) // (4)!
+                VanillaRegistryAccess.getHolder(TreePlacements.SPRUCE_CHECKED) // (4)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Get the registry holder for the mega spruce tree placed feature. (Also support [inlined placed features](../placed-feature.md#inlined)

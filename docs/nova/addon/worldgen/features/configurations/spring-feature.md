@@ -23,40 +23,46 @@ As an example, here's the placed and configured feature used to place water spri
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val SPRING_WATER = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "spring_water",
-        Feature.SPRING,
-        SpringConfiguration(
-            Fluids.WATER.defaultFluidState(), // state
-            true, // requires_block_below
-            4, // rock_count
-            1, // hole_count
-            HolderSet.direct( // valid_blocks
-                Block::builtInRegistryHolder,
-                Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DEEPSLATE, Blocks.TUFF, Blocks.CALCITE, Blocks.DIRT, Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW, Blocks.PACKED_ICE
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SPRING_WATER = registerConfiguredFeature(
+            "spring_water",
+            Feature.SPRING,
+            SpringConfiguration(
+                Fluids.WATER.defaultFluidState(), // state
+                true, // requires_block_below
+                4, // rock_count
+                1, // hole_count
+                HolderSet.direct( // valid_blocks
+                    Block::builtInRegistryHolder,
+                    Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DEEPSLATE, Blocks.TUFF, Blocks.CALCITE, Blocks.DIRT, Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW, Blocks.PACKED_ICE
+                )
             )
         )
-    )
+    
+    }
     ```
     
     ```kotlin title="PlacedFeatures.kt"
-    val SPRING_WATER = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "spring_water",
-        ConfiguredFeatures.SPRING_WATER,
-        listOf(
-            CountPlacement.of(25), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SPRING_WATER = placedFeature("spring_water", ConfiguredFeatures.SPRING_WATER)
+            .count(25) // (1)!
+            .inSquareSpread() // (2)!
+            .heightRangeUniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)) // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
     
     1. 25 attempts per chunk.
     2. Spread the springs out.
-    3. Set the y-coordinate to a random value between 0 and 192.
+    3. Set the y-coordinate to a random value between the minimum y-level and 192.
     4. Only place the springs in biomes that have the configured feature.
 
 === "Json"

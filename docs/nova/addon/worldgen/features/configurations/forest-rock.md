@@ -17,31 +17,37 @@ In code, the `BlockStateConfiguration` class is used to configure the feature.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val FOREST_ROCK = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "forest_rock",
-        Feature.FOREST_ROCK,
-        BlockStateConfiguration(Blocks.MOSSY_COBBLESTONE.defaultBlockState())
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val FOREST_ROCK = registerConfiguredFeature(
+            "forest_rock",
+            Feature.FOREST_ROCK,
+            BlockStateConfiguration(Blocks.MOSSY_COBBLESTONE.defaultBlockState())
+        )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val FOREST_ROCK = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "forest_rock",
-        ConfiguredFeatures.FOREST_ROCK,
-        listOf(
-            CountPlacement.of(2), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val FOREST_ROCK = placedFeature("forest_rock", ConfiguredFeatures.FOREST_ROCK)
+            .count(2) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToMotionBlocking() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. Generate 2 rocks per chunk.
     2. Randomly offset the x- and z-coordinates of the rock.
-    3. Set the y-coordinate of the rock to the highest motion-blocking block. The static constant is equivalent to
+    3. Set the y-coordinate of the rock to the highest motion-blocking block. The call is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING)
        ```

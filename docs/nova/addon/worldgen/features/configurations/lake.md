@@ -24,38 +24,44 @@ As an example, here's the configured- and placed feature for the underground lav
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val LAKE_LAVA = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "lake_lava",
-        Feature.LAKE,
-        LakeFeature.Configuration(
-            BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), // (1)!
-            BlockStateProvider.simple(Blocks.STONE.defaultBlockState()) // (2)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val LAKE_LAVA = registerConfiguredFeature(
+            "lake_lava",
+            Feature.LAKE,
+            LakeFeature.Configuration(
+                BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), // (1)!
+                BlockStateProvider.simple(Blocks.STONE.defaultBlockState()) // (2)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Used as the fluid of the lake.
     2. Used as the barrier of the lake.
 
     ```kotlin title="PlacedFeatures.kt"
-    val LAKE_LAVA_UNDERGROUND = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "lake_lava_underground",
-        ConfiguredFeatures.LAKE_LAVA,
-        listOf(
-            RarityFilter.onAverageOnceEvery(9), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(0), VerticalAnchor.top())), // (3)!
-            EnvironmentScanPlacement.scanningFor( // (4)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val LAKE_LAVA_UNDERGROUND = placedFeature("lake_lava_underground", ConfiguredFeatures.LAKE_LAVA)
+            .rarityFilter(9) // (1)!
+            .inSquareSpread() // (2)!
+            .heightRangeUniform(VerticalAnchor.absolute(0), VerticalAnchor.top()) // (3)!
+            .environmentScan( // (4)!
                 Direction.DOWN,
                 BlockPredicate.allOf(BlockPredicate.not(BlockPredicate.ONLY_IN_AIR_PREDICATE), BlockPredicate.insideWorld(BlockPos(0, -5, 0))),
                 32
-            ),
-            SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Int.MIN_VALUE, -5), // (5)!
-            BiomeFilter.biome() // (6)!
-        )
-    )
+            )
+            .surfaceRelativeThresholdFilter(Heightmap.Types.OCEAN_FLOOR_WG, Int.MIN_VALUE, -5) // (5)!
+            .biomeFilter() // (6)!
+            .register()
+    
+    }
     ```
 
     1. Only place a lake every 9 chunks.

@@ -19,25 +19,31 @@ As an example, here's the configured and placed feature for the blue icebergs in
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val ICEBERG_BLUE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "iceberg_blue",
-        Feature.ICEBERG,
-        BlockStateConfiguration(Blocks.BLUE_ICE.defaultBlockState())
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ICEBERG_BLUE = registerConfiguredFeature(
+            "iceberg_blue",
+            Feature.ICEBERG,
+            BlockStateConfiguration(Blocks.BLUE_ICE.defaultBlockState())
+        )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val ICEBERG_BLUE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "iceberg_blue",
-        ConfiguredFeatures.ICEBERG_BLUE,
-        listOf(
-            RarityFilter.onAverageOnceEvery(200), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            BiomeFilter.biome() // (3)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ICEBERG_BLUE = placedFeature("iceberg_blue", ConfiguredFeatures.ICEBERG_BLUE)
+            .rarityFilter(200) // (1)!
+            .inSquareSpread() // (2)!
+            .biomeFilter() // (3)!
+            .register()
+    
+    }
     ```
 
     1. Only place an iceberg every 200 chunks.

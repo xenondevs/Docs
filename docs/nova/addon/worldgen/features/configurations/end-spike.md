@@ -9,14 +9,14 @@ The following configuration options are available:
 | Option                                                         | Type                                                                                                                            | Description                                                                   |
 |----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `crystal_invulnerable` (optional in Json, defaults to `false`) | `boolean`                                                                                                                       | Whether the crystals on top of the end spikes should be invulnerable.         |
-| `spikes`                                                       | A list of `Spikes`s. See below for more information                                                                             | The spikes to place. If the array is empty, the default end spikes are placed |
+| `spikes`                                                       | A `List` of `EndSpikes`. See below for more information                                                                         | The spikes to place. If the array is empty, the default end spikes are placed |
 | `crystal_beam_target` (optional)                               | A `BlockPos` (In Json, the `BlockPos` is represented via an array of coordinates. First element is the x coordinate and so on.) | The target of the crystal beam.                                               |
 
 In code, the `SpikeConfiguration` class is used to configure the feature.
 
-### Spike
+### EndSpikes
 
-The spikes can be configured with the following options:
+The `EndSpikes` can be configured with the following options:
 
 | Option                                            | Type      | Description                                               |
 |---------------------------------------------------|-----------|-----------------------------------------------------------|
@@ -35,12 +35,17 @@ As an example, here's the configured feature used to place the default end spike
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val END_SPIKE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "end_spike",
-        Feature.END_SPIKE,
-        SpikeConfiguration(false, emptyList(), null) // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val END_SPIKE = registerConfiguredFeature(
+            "end_spike",
+            Feature.END_SPIKE,
+            SpikeConfiguration(false, emptyList(), null) // (1)!
+        )
+    
+    }
     ```
 
     1. Since Minecraft only needs the default end spikes, we don't need to configure anything. `false` means that the 
@@ -65,23 +70,22 @@ As an example, here's the configured feature used to place the default end spike
     === "Kotlin"
 
         ```kotlin title="ConfiguredFeatures.kt"
-        val END_SPIKE = FeatureRegistry.registerConfiguredFeature(
-            Machines,
+        val END_SPIKE = registerConfiguredFeature(
             "end_spike",
             Feature.END_SPIKE,
             SpikeConfiguration(
                 false, // (1)!
                 listOf(
-                    Spike(42, 0, 2, 82, true), // (2)!
-                    Spike(33, 24, 4, 94, false),
-                    Spike(12, 39, 5, 103, false),
-                    Spike(-13, 39, 2, 79, true),
-                    Spike(-34, 24, 4, 97, false),
-                    Spike(-42, -1, 3, 88, false),
-                    Spike(-34, -25, 3, 91, false),
-                    Spike(-13, -40, 3, 85, false),
-                    Spike(12, -40, 4, 100, false),
-                    Spike(33, -25, 2, 76, false)
+                    EndSpike(42, 0, 2, 82, true), // (2)!
+                    EndSpike(33, 24, 4, 94, false),
+                    EndSpike(12, 39, 5, 103, false),
+                    EndSpike(-13, 39, 2, 79, true),
+                    EndSpike(-34, 24, 4, 97, false),
+                    EndSpike(-42, -1, 3, 88, false),
+                    EndSpike(-34, -25, 3, 91, false),
+                    EndSpike(-13, -40, 3, 85, false),
+                    EndSpike(12, -40, 4, 100, false),
+                    EndSpike(33, -25, 2, 76, false)
                 ),
                 null // (3)!
             )
@@ -179,12 +183,14 @@ As an example, here's the configured feature used to place the default end spike
 === "Kotlin"
 
     ```kotlin title="PlacedFeatures.kt"
-    val END_SPIKE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "end_spike",
-        ConfiguredFeatures.END_SPIKE,
-        BiomeFilter.biome() // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val END_SPIKE = placedFeature("end_spike", ConfiguredFeatures.END_SPIKE)
+            .biomeFilter() // (1)!
+            .register()
+    
+    }
     ```
 
     1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 

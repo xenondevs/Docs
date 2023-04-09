@@ -25,28 +25,34 @@ As an example, here's the configured- and placed feature to spread nether sprout
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val NETHER_SPROUTS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "nether_sprouts",
-        Feature.NETHER_FOREST_VEGETATION,
-        NetherForestVegetationConfig(
-            BlockStateProvider.simple(Blocks.NETHER_SPROUTS), // block used for the vegetation
-            8, // spreadWidth
-            4 // spreadHeight
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val NETHER_SPROUTS = registerConfiguredFeature(
+            "nether_sprouts",
+            Feature.NETHER_FOREST_VEGETATION,
+            NetherForestVegetationConfig(
+                BlockStateProvider.simple(Blocks.NETHER_SPROUTS), // block used for the vegetation
+                8, // spreadWidth
+                4 // spreadHeight
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val NETHER_SPROUTS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "nether_sprouts",
-        ConfiguredFeatures.NETHER_SPROUTS,
-        listOf(
-            CountOnEveryLayerPlacement.of(4), // (1)!
-            BiomeFilter.biome() // (2)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val NETHER_SPROUTS = placedFeature("nether_sprouts", ConfiguredFeatures.NETHER_SPROUTS)
+            .countOnEveryLayer(4) // (1)!
+            .biomeFilter() // (2)!
+            .register()
+    
+    }
     ```
 
     1. Make sure to place the nether sprouts on every layer if multiple exist in the biome.

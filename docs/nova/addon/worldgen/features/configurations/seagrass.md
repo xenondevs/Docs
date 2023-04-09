@@ -16,30 +16,36 @@ As an example, here's the configured- and placed feature of seagrass in the warm
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val SEAGRASS_TALL = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "seagrass_tall",
-        Feature.SEAGRASS,
-        ProbabilityFeatureConfiguration(0.3f)
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SEAGRASS_TALL = registerConfiguredFeature(
+            "seagrass_tall",
+            Feature.SEAGRASS,
+            ProbabilityFeatureConfiguration(0.3f)
+        )
+    
+    }
     ```
     
     ```kotlin title="PlacedFeatures.kt"
-    val SEAGRASS_TALL = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "seagrass_tall",
-        ConfiguredFeatures.SEAGRASS_TALL,
-        listOf(
-            InSquarePlacement.spread(), // (1)!
-            PlacementUtils.HEIGHTMAP_TOP_SOLID, // (2)!
-            CountPlacement.of(80), // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SEAGRASS_TALL = placedFeature("seagrass_tall", ConfiguredFeatures.SEAGRASS_TALL)
+            .inSquareSpread() // (1)!
+            .moveToTopSolid() // (2)!
+            .count(80) // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
     
     1. Randomly offset the placement horizontally.
-    2. Set y-coordinate to the ocean floor. This static constant is equivalent to
+    2. Set y-coordinate to the ocean floor. This call is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR_WG)
        ```

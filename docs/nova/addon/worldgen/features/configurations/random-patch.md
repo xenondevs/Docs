@@ -27,42 +27,48 @@ As an example, here's the random patch used to generate dead bushes in the badla
     Minecraft offers a few util functions in the `FeatureUtils` class to make the creation of the `RandomPatchConfiguration` easier.
     
     ```kotlin title="ConfiguredFeatures.kt"
-    val PATCH_DEAD_BUSH = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "patch_dead_bush",
-        Feature.RANDOM_PATCH,
-        FeatureUtils.simpleRandomPatchConfiguration( // (1)!
-            4, // tries
-            PlacementUtils.onlyWhenEmpty( // (2)!
-                Feature.SIMPLE_BLOCK,
-                SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.DEAD_BUSH)) // (3)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val PATCH_DEAD_BUSH = registerConfiguredFeature(
+            "patch_dead_bush",
+            Feature.RANDOM_PATCH,
+            FeatureUtils.simpleRandomPatchConfiguration( // (1)!
+                4, // tries
+                PlacementUtils.onlyWhenEmpty( // (2)!
+                    Feature.SIMPLE_BLOCK,
+                    SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.DEAD_BUSH)) // (3)!
+                )
             )
         )
-    )
+    
+    }
     ```
     
     1. The `simpleRandomPatchConfiguration` function creates a `RandomPatchConfiguration` with the given tries and placed feature.
-       `xz_spread` and `y_spread` are set to 7 and 3 respectively.
-    2. The `onlyWhenEmpty` function creates an [inlined `PlacedFeature`](../placed-feature#inlined) that only places the feature when the block at the position is air.
+       `xz_spread` and `y_spread` are set to `7` and `3` respectively.
+    2. The `onlyWhenEmpty` function creates an [inlined `PlacedFeature`](../../placed-feature#inlined) that only places the feature when the block at the position is air.
     3. Place single dead bushes.
     
     ```kotlin title="PlacedFeatures.kt"
-    val PATCH_DEAD_BUSH = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "patch_dead_bush",
-        ConfiguredFeatures.PATCH_DEAD_BUSH,
-        listOf(
-            CountPlacement.of(20), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP_WORLD_SURFACE, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val PATCH_DEAD_BUSH = placedFeature("patch_dead_bush", ConfiguredFeatures.PATCH_DEAD_BUSH)
+            .count(20) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToWorldSurface() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
     
     1. 20 tries to generate the feature.
     2. Spread the feature horizontally.
-    3. Set the y-coordinate to the world surface. This static constant is equivalent to
+    3. Set the y-coordinate to the world surface. This call is equivalent to
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
        ```

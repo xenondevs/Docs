@@ -19,16 +19,21 @@ As an example, here's the configured- and placed feature for the default huge re
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val HUGE_RED_MUSHROOM = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "huge_red_mushroom",
-        Feature.HUGE_RED_MUSHROOM,
-        HugeMushroomFeatureConfiguration(
-            BlockStateProvider.simple(Blocks.RED_MUSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (1)!
-            BlockStateProvider.simple((Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, false) as BlockState).setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (2)! 
-            2 // (3)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val HUGE_RED_MUSHROOM = registerConfiguredFeature(
+            "huge_red_mushroom",
+            Feature.HUGE_RED_MUSHROOM,
+            HugeMushroomFeatureConfiguration(
+                BlockStateProvider.simple(Blocks.RED_MUSHROOM_BLOCK.defaultBlockState().setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (1)!
+                BlockStateProvider.simple((Blocks.MUSHROOM_STEM.defaultBlockState().setValue(HugeMushroomBlock.UP, false) as BlockState).setValue(HugeMushroomBlock.DOWN, false) as BlockState), // (2)!
+                2 // (3)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Use a mushroom block with the `down` property set to `false` as the cap.
@@ -36,12 +41,13 @@ As an example, here's the configured- and placed feature for the default huge re
     3. Use a radius of 2 for the cap.
 
     ```kotlin title="PlacedFeatures.kt"
-    val HUGE_RED_MUSHROOM = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "huge_red_mushroom",
-        ConfiguredFeatures.HUGE_RED_MUSHROOM,
-        emptyList()
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val HUGE_RED_MUSHROOM = placedFeature("huge_red_mushroom", ConfiguredFeatures.HUGE_RED_MUSHROOM).register()
+    
+    }
     ```
 
 === "Json"

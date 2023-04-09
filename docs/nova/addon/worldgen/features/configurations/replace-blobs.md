@@ -22,32 +22,38 @@ As an example, here's the configured- and placed feature for blackstone blobs in
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val BLACKSTONE_BLOBS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "blackstone_blobs",
-        Feature.REPLACE_BLOBS,
-        ReplaceSphereConfiguration(
-            Blocks.NETHERRACK.defaultBlockState(), // targetState
-            Blocks.BLACKSTONE.defaultBlockState(), // replaceState
-            UniformInt.of(3, 7) // radius // (1)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val BLACKSTONE_BLOBS = registerConfiguredFeature(
+            "blackstone_blobs",
+            Feature.REPLACE_BLOBS,
+            ReplaceSphereConfiguration(
+                Blocks.NETHERRACK.defaultBlockState(), // targetState
+                Blocks.BLACKSTONE.defaultBlockState(), // replaceState
+                UniformInt.of(3, 7) // radius // (1)!
+            )
         )
-    )
+    
+    }
     ```
 
     1. Random radius between 3 and 7.
 
     ```kotlin title="PlacedFeatures.kt"
-    val BLACKSTONE_BLOBS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "blackstone_blobs",
-        ConfiguredFeatures.BLACKSTONE_BLOBS,
-        listOf(
-            CountPlacement.of(25), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.FULL_RANGE, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val BLACKSTONE_BLOBS = placedFeature("blackstone_blobs", ConfiguredFeatures.BLACKSTONE_BLOBS)
+            .count(25) // (1)!
+            .inSquareSpread() // (2)!
+            .modifier(PlacementUtils.FULL_RANGE) // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. 25 tries to place the blobs per chunk.

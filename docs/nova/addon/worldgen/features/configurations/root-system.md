@@ -36,52 +36,58 @@ As an example, here's the configured- and placed feature for the azalea tree
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val ROOTED_AZALEA_TREE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "rooted_azalea_tree",
-        Feature.ROOT_SYSTEM,
-        RootSystemConfiguration(
-            PlacementUtils.inlinePlaced(NMSUtils.getHolder(TreeFeatures.AZALEA_TREE)), // feature
-            3, // required_vertical_space_for_tree
-            3, // root_radius
-            BlockTags.AZALEA_ROOT_REPLACEABLE, // root_replaceable
-            BlockStateProvider.simple(Blocks.ROOTED_DIRT), // root_state_provider
-            20, // root_placement_attempts
-            100, // root_column_max_height
-            3, // hanging_root_radius
-            2, // hanging_roots_vertical_span
-            BlockStateProvider.simple(Blocks.HANGING_ROOTS), // hanging_root_state_provider
-            20, // hanging_root_placement_attempts
-            2, // allowed_vertical_water_for_tree
-            BlockPredicate.allOf( // allowed_tree_position
-                BlockPredicate.anyOf(
-                    BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR, Blocks.WATER),
-                    BlockPredicate.matchesTag(BlockTags.LEAVES),
-                    BlockPredicate.matchesTag(BlockTags.REPLACEABLE_PLANTS)
-                ),
-                BlockPredicate.matchesTag(Direction.DOWN.normal, BlockTags.AZALEA_GROWS_ON)
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ROOTED_AZALEA_TREE = registerConfiguredFeature(
+            "rooted_azalea_tree",
+            Feature.ROOT_SYSTEM,
+            RootSystemConfiguration(
+                PlacementUtils.inlinePlaced(VanillaRegistryAccess.getHolder(TreeFeatures.AZALEA_TREE)), // feature
+                3, // required_vertical_space_for_tree
+                3, // root_radius
+                BlockTags.AZALEA_ROOT_REPLACEABLE, // root_replaceable
+                BlockStateProvider.simple(Blocks.ROOTED_DIRT), // root_state_provider
+                20, // root_placement_attempts
+                100, // root_column_max_height
+                3, // hanging_root_radius
+                2, // hanging_roots_vertical_span
+                BlockStateProvider.simple(Blocks.HANGING_ROOTS), // hanging_root_state_provider
+                20, // hanging_root_placement_attempts
+                2, // allowed_vertical_water_for_tree
+                BlockPredicate.allOf( // allowed_tree_position
+                    BlockPredicate.anyOf(
+                        BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR, Blocks.WATER),
+                        BlockPredicate.matchesTag(BlockTags.LEAVES),
+                        BlockPredicate.matchesTag(BlockTags.REPLACEABLE_PLANTS)
+                    ),
+                    BlockPredicate.matchesTag(Direction.DOWN.normal, BlockTags.AZALEA_GROWS_ON)
+                )
             )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val PATCH_DEAD_BUSH = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "patch_dead_bush",
-        ConfiguredFeatures.ROOTED_AZALEA_TREE,
-        listOf(
-            CountPlacement.of(UniformInt.of(1, 2)),
-            InSquarePlacement.spread(),
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (1)!
-            EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), // (2)!
-            RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ROOTED_AZALEA_TREE = placedFeature("rooted_azalea_tree", ConfiguredFeatures.ROOTED_AZALEA_TREE)
+            .count(UniformInt.of(1, 2))
+            .inSquareSpread()
+            .inYWorldBounds() // (1)!
+            .environmentScan(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12)
+            .randomVerticalOffset(-1)
+            .biomeFilter()
+            .register()
+    
+    }
     ```
 
-    1. Set the y-level to a random int up to 256. The static constant is equivalent to
+    1. Set the y-level to a random int up to 256. The call is equivalent to
        ```kotlin
        HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256));
        ```

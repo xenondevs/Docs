@@ -20,26 +20,32 @@ As an example, here's the configured and placed feature for the large basalt col
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val LARGE_BASALT_COLUMNS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "large_basalt_columns",
-        Feature.BASALT_COLUMNS,
-        ColumnFeatureConfiguration(UniformInt.of(2, 3), UniformInt.of(5, 10)) // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val LARGE_BASALT_COLUMNS = registerConfiguredFeature(
+            "large_basalt_columns",
+            Feature.BASALT_COLUMNS,
+            ColumnFeatureConfiguration(UniformInt.of(2, 3), UniformInt.of(5, 10)) // (1)!
+        )
+    
+    }
     ```
 
     1. Randomly chooses a radius between 2 and 3 and a height between 5 and 10.
 
     ```kotlin title="PlacedFeatures.kt"
-    val LARGE_BASALT_COLUMNS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "large_basalt_columns",
-        ConfiguredFeatures.LARGE_BASALT_COLUMNS,
-        listOf(
-            CountOnEveryLayerPlacement.of(2), // (1)!
-            BiomeFilter.biome() // (2)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val LARGE_BASALT_COLUMNS = placedFeature("large_basalt_columns", ConfiguredFeatures.LARGE_BASALT_COLUMNS)
+            .countOnEveryLayer(2) // (1)!
+            .biomeFilter() // (2)!
+            .register()
+    
+    }
     ```
 
     1. Spreads the basalt columns to multiple layers.

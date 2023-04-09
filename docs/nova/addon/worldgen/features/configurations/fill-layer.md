@@ -20,24 +20,30 @@ As an example, here's a configured- and placed feature to add a layer of grass o
 
 === "Kotlin"
 
-    ```kotlin title="ConfiguredFeatures.kt"
-    val FILL_LAYER_GRASS = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "fill_layer_grass",
-        Feature.FILL_LAYER,
-        LayerConfiguration(4, Blocks.GRASS.defaultBlockState()) // (1)!
-    )
+    ```kotlin title="ConfiguredFeatures.kt
+    @Init"
+    @OptIn(ExperimentalWorldGen::class)
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val FILL_LAYER_GRASS = registerConfiguredFeature(
+            "fill_layer_grass",
+            Feature.FILL_LAYER,
+            LayerConfiguration(4, Blocks.GRASS.defaultBlockState()) // (1)!
+        )
+    
+    }
     ```
 
     1. Add a layer of grass at height 4.
 
     ```kotlin title="PlacedFeatures.kt"
-    val FILL_LAYER_GRASS = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "fill_layer_grass",
-        ConfiguredFeatures.FILL_LAYER_GRASS,
-        emptyList()
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val FILL_LAYER_GRASS = placedFeature("fill_layer_grass", ConfiguredFeatures.FILL_LAYER_GRASS).register()
+    
+    }
     ```
 
 === "Json"

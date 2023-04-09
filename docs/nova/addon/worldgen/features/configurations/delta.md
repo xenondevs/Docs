@@ -23,31 +23,37 @@ As an example, here's the placed and configured feature used to place deltas in 
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val DELTA = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "delta",
-        Feature.DELTA_FEATURE,
-        DeltaFeatureConfiguration(
-            Blocks.LAVA.defaultBlockState(), // contents
-            Blocks.MAGMA_BLOCK.defaultBlockState(), // rim
-            UniformInt.of(3, 7), // size (1)
-            UniformInt.of(0, 2) // rim_size
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val DELTA = registerConfiguredFeature(
+            "delta",
+            Feature.DELTA_FEATURE,
+            DeltaFeatureConfiguration(
+                Blocks.LAVA.defaultBlockState(), // contents
+                Blocks.MAGMA_BLOCK.defaultBlockState(), // rim
+                UniformInt.of(3, 7), // size (1)
+                UniformInt.of(0, 2) // rim_size
+            )
         )
-    )
+    
+    }
     ```
 
     1. Random `int` in the range $[3;7]$.
     
     ```kotlin title="PlacedFeatures.kt"
-    val DELTA = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "delta",
-        ConfiguredFeatures.DELTA,
-        listOf(
-            CountOnEveryLayerPlacement.of(40), // (1)!
-            BiomeFilter.biome() // (2)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val DELTA = placedFeature("delta", ConfiguredFeatures.DELTA)
+            .countOnEveryLayer(40) // (1)!
+            .biomeFilter() // (2)!
+            .register()
+    
+    }
     ```
 
     1. Spreads the deltas to multiple layers.

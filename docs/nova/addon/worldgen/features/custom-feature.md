@@ -2,7 +2,7 @@
 
 !!! info "Check out the `Codecs` page"
 
-    Make sure to check out the [Codecs](../codecs) page before creating a custom feature.
+    Make sure to check out the [Codecs](../../codecs) page before creating a custom feature.
 
 ## 1. Empty Feature
 
@@ -130,11 +130,11 @@ object ExampleFeature : FeatureType<ExampleConfiguration>(ExampleConfiguration.C
 Now we can register the feature type using Nova's `FeatureRegistry`.
 
 ```kotlin title="FeatureTypes.kt"
-object FeatureTypes {
+@OptIn(ExperimentalWorldGen::class)
+@Init
+object FeatureTypes : FeatureRegistry by ExampleAddon.registry {
     
-    val EXAMPLE = FeatureRegistry.registerFeatureType(Machines, "example", ExampleFeature)
-    
-    fun init() = Unit // (1)!
+    val EXAMPLE = registerFeatureType("example", ExampleFeature)
     
 }
 ```
@@ -149,11 +149,12 @@ We can now properly use our newly defined feature.
     
     First, let's create our [`ConfiguredFeature`](features.md#2-configured-feature) using the previously defined `ExampleConfiguration`:
     
-    ```kotlin title="Configurations.kt"
-    object Configurations {
+    ```kotlin title="ConfiguredFeatures.kt"
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
         
-        val EXAMPLE = FeatureRegistry.registerConfiguredFeature(
-            Machines,
+        val EXAMPLE = registerConfiguredFeature(
             "example",
             FeatureTypes.EXAMPLE,
             ExampleConfiguration( // (1)!
@@ -162,9 +163,7 @@ We can now properly use our newly defined feature.
                 width = UniformInt.of(1, 3)
             )
         )
-        
-        fun init() = Unit
-        
+
     }
     ```
 
@@ -173,21 +172,17 @@ We can now properly use our newly defined feature.
     And now just register our [`PlacedFeature`](placed-feature.md):
     
     ```kotlin
-    object Placements {
-        
-        val EXAMPLE = FeatureRegistry.registerPlacedFeature(
-            Machines,
-            "example",
-            Configurations.EXAMPLE,
-            listOf(
-                RarityFilter.onAverageOnceEvery(10),
-                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG),
-                RandomOffsetPlacement.vertical(ConstantInt.of(10))
-            )
-        )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
-        fun init() = Unit
-        
+        val EXAMPLE = placedFeature("example", ConfiguredFeatures.EXAMPLE)
+            .rarityFilter(10)
+            .moveToWorldSurface()
+            .randomVerticalOffset(10)
+            .biomeFilter()
+            .register()
+    
     }
     ```
     
@@ -195,9 +190,15 @@ We can now properly use our newly defined feature.
     [`BiomeInjections`](../inject/biome.md):
     
     ```kotlin
-    BiomeInjectionRegistry.registerBiomeInjection(Machines, "example") {
-        biomes(BiomeTags.IS_OVERWORLD)
-        feature(Decoration.VEGETAL_DECORATION, EXAMPLE)
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object BiomeInjections : BiomeRegistry by ExampleAddon.registry {
+    
+        val OVERWORLD_INJECTIONS = biomeInjection("overworld_injections")
+            .biomes(BiomeTags.IS_OVERWORLD)
+            .feature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatures.EXAMPLE)
+            .register()
+    
     }
     ```
 

@@ -28,46 +28,52 @@ As an example, here's the configured- and placed feature for placing moss in cav
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val MOSS_PATCH = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "moss_patch",
-        Feature.VEGETATION_PATCH,
-        VegetationPatchConfiguration(
-            BlockTags.MOSS_REPLACEABLE, // replaceable
-            BlockStateProvider.simple(Blocks.MOSS_BLOCK), // ground_state
-            PlacementUtils.inlinePlaced(NMSUtils.getHolder(CaveFeatures.MOSS_VEGETATION)), // vegetation_feature (1)
-            CaveSurface.FLOOR, // surface
-            ConstantInt.of(1), // depth
-            0.0F, // extra_bottom_block_chance
-            5, // vertical_range
-            0.8F, // vegetation_chance
-            UniformInt.of(4, 7), // xz_radius
-            0.3F // extra_edge_column_chance
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val MOSS_PATCH = registerConfiguredFeature(
+            "moss_patch",
+            Feature.VEGETATION_PATCH,
+            VegetationPatchConfiguration(
+                BlockTags.MOSS_REPLACEABLE, // replaceable
+                BlockStateProvider.simple(Blocks.MOSS_BLOCK), // ground_state
+                PlacementUtils.inlinePlaced(VanillaRegistryAccess.getHolder(CaveFeatures.MOSS_VEGETATION)), // vegetation_feature (1)
+                CaveSurface.FLOOR, // surface
+                ConstantInt.of(1), // depth
+                0.0F, // extra_bottom_block_chance
+                5, // vertical_range
+                0.8F, // vegetation_chance
+                UniformInt.of(4, 7), // xz_radius
+                0.3F // extra_edge_column_chance
+            )
         )
-    )
+    
+    }
     ```
 
     1. Check out [inlined placed features](../placed-feature.md#inlined) for more information.
 
     ```kotlin title="PlacedFeatures.kt"
-    val LUSH_CAVES_VEGETATION = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "lush_caves_vegetation",
-        Configurations.MOSS_PATCH,
-        listOf(
-            CountPlacement.of(125), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (3)!
-            EnvironmentScanPlacement.scanningFor( // (4)!
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val MOSS_PATCH = placedFeature("lush_caves_vegetation", ConfiguredFeatures.MOSS_PATCH)
+            .count(125) // (1)!
+            .inSquareSpread() // (2)!
+            .inYWorldBounds() // (3)!
+            .environmentScan( // (4)!
                 Direction.DOWN,
                 BlockPredicate.solid(),
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
                 12
-            ),
-            RandomOffsetPlacement.vertical(ConstantInt.of(1)), // (5)!
-            BiomeFilter.biome() // (6)!
-        )
-    )
+            )
+            .randomVerticalOffset(1) // (5)!
+            .biomeFilter() // (6)!
+            .register()
+    
+    }
     ```
     
     1. 125 attempts per chunk.

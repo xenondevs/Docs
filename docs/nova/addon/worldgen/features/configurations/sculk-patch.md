@@ -25,39 +25,45 @@ As an example, here's the default sculk patch configured- and placed feature use
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val SCULK_PATCH_DEEP_DARK = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "sculk_patch_deep_dark",
-        Feature.SCULK_PATCH,
-        SculkPatchConfiguration(
-            10, // charge_count
-            32, // amount_per_charge
-            64, // spread_attempts
-            0, // growth_rounds
-            1, // spread_rounds
-            ConstantInt.of(0), // extra_rare_growths
-            0.5f // catalyst_chance
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SCULK_PATCH_DEEP_DARK = registerConfiguredFeature(
+            "sculk_patch_deep_dark",
+            Feature.SCULK_PATCH,
+            SculkPatchConfiguration(
+                10, // charge_count
+                32, // amount_per_charge
+                64, // spread_attempts
+                0, // growth_rounds
+                1, // spread_rounds
+                ConstantInt.of(0), // extra_rare_growths
+                0.5f // catalyst_chance
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val SCULK_PATCH_DEEP_DARK = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "sculk_patch_deep_dark",
-        ConfiguredFeatures.SCULK_PATCH_DEEP_DARK,
-        listOf(
-            CountPlacement.of(256), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val SCULK_PATCH_DEEP_DARK = placedFeature("sculk_patch_deep_dark", ConfiguredFeatures.SCULK_PATCH_DEEP_DARK)
+            .count(256) // (1)!
+            .inSquareSpread() // (2)!
+            .inYWorldBounds() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. 256 attempts to generate sculk patches per chunk.
     2. Randomly offset the attempts horizontally.
-    3. Set the y-coordinate to a random value up to 256. The static constant is equivalent to
+    3. Set the y-coordinate to a random value up to 256. The call is equivalent to
        ```kotlin
        HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256));
        ```

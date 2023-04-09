@@ -21,30 +21,40 @@ As an example, here's a feature to randomly replace acacia logs with stone.
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val ACACIA_LOGS_TO_STONE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "acacia_logs_to_stone",
-        Feature.REPLACE_SINGLE_BLOCK,
-        ReplaceBlockConfiguration(
-            listOf(
-                OreConfiguration.target(TagMatchTest(BlockTags.ACACIA_LOGS), Blocks.STONE.defaultBlockState())
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ACACIA_LOGS_TO_STONE = registerConfiguredFeature(
+            "acacia_logs_to_stone",
+            Feature.REPLACE_SINGLE_BLOCK,
+            ReplaceBlockConfiguration(
+                listOf(
+                    OreConfiguration.target(TagMatchTest(BlockTags.ACACIA_LOGS), Blocks.STONE.defaultBlockState())
+                )
             )
         )
-    )
+    
+    }
     ```
 
     Or, if you only want to replace one specific block state
     
     ```kotlin title="ConfiguredFeatures.kt"
-    val ACACIA_LOGS_TO_STONE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "acacia_logs_to_stone",
-        Feature.REPLACE_SINGLE_BLOCK,
-        ReplaceBlockConfiguration(
-            Blocks.ACACIA_LOG.defaultBlockState(),
-            Blocks.STONE.defaultBlockState(),
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val ACACIA_LOGS_TO_STONE = registerConfiguredFeature(
+            "acacia_logs_to_stone",
+            Feature.REPLACE_SINGLE_BLOCK,
+            ReplaceBlockConfiguration(
+                Blocks.ACACIA_LOG.defaultBlockState(),
+                Blocks.STONE.defaultBlockState(),
+            )
         )
-    )
+    
+    }
     ```
 
 === "Json"

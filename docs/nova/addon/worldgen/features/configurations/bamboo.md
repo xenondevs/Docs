@@ -19,34 +19,40 @@ As an example, here's the configured and placed feature for the bamboo in the ju
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "bamboo_some_podzol",
-        Feature.BAMBOO,
-        ProbabilityFeatureConfiguration(0.2f) // (1)!
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val BAMBOO_SOME_PODZOL = registerConfiguredFeature(
+            "bamboo_some_podzol",
+            Feature.BAMBOO,
+            ProbabilityFeatureConfiguration(0.2f) // (1)!
+        )
+    
+    }
     ```
 
     1. Gives a $20\%$ chance of spawning a podzol disk under the bamboo.
 
     ```kotlin title="PlacedFeatures.kt"
-    val BAMBOO_SOME_PODZOL = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "bamboo_some_podzol",
-        ConfiguredFeatures.BAMBOO_SOME_PODZOL,
-        listOf(
-            NoiseBasedCountPlacement.of(170, 80.0, 0.3), // (1)!
-            InSquarePlacement.spread(), // (2)!
-            PlacementUtils.HEIGHTMAP_WORLD_SURFACE, // (3)!
-            BiomeFilter.biome() // (4)!
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
+    
+        val BAMBOO_SOME_PODZOL = placedFeature("bamboo_some_podzol", ConfiguredFeatures.BAMBOO_SOME_PODZOL)
+            .noiseBasedCount(170, 80.0, 0.3) // (1)!
+            .inSquareSpread() // (2)!
+            .moveToWorldSurface() // (3)!
+            .biomeFilter() // (4)!
+            .register()
+    
+    }
     ```
 
     1. Use noise to determine bamboo amount.   
        See [Noise-based count placement](../placed-feature.md#minecraftnoise_based_count) for more information.
     2. Spread the tries in a square.
-    3. Make sure to place the bamboo on the world surface. This static constant is equivalent to 
+    3. Make sure to place the bamboo on the world surface. This call is equivalent to 
        ```kotlin
        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
        ```

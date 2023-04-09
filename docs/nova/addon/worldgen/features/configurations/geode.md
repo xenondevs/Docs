@@ -77,63 +77,69 @@ In code, the `GeodeCrackSettings` class is used to configure the crack of the ge
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    val AMETHYST_GEODE = FeatureRegistry.registerConfiguredFeature(
-        Machines,
-        "amethyst_geode",
-        Feature.GEODE,
-        GeodeConfiguration(
-            GeodeBlockSettings(
-                BlockStateProvider.simple(Blocks.AIR), // fillingProvider
-                BlockStateProvider.simple(Blocks.AMETHYST_BLOCK), // innerLayerProvider
-                BlockStateProvider.simple(Blocks.BUDDING_AMETHYST), // alternateInnerLayerProvider
-                BlockStateProvider.simple(Blocks.CALCITE), // middleLayerProvider
-                BlockStateProvider.simple(Blocks.SMOOTH_BASALT), // outerLayerProvider
-                listOf( // innerPlacements
-                    Blocks.SMALL_AMETHYST_BUD.defaultBlockState(),
-                    Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(),
-                    Blocks.LARGE_AMETHYST_BUD.defaultBlockState(),
-                    Blocks.AMETHYST_CLUSTER.defaultBlockState()
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val AMETHYST_GEODE = registerConfiguredFeature(
+            "amethyst_geode",
+            Feature.GEODE,
+            GeodeConfiguration(
+                GeodeBlockSettings(
+                    BlockStateProvider.simple(Blocks.AIR), // fillingProvider
+                    BlockStateProvider.simple(Blocks.AMETHYST_BLOCK), // innerLayerProvider
+                    BlockStateProvider.simple(Blocks.BUDDING_AMETHYST), // alternateInnerLayerProvider
+                    BlockStateProvider.simple(Blocks.CALCITE), // middleLayerProvider
+                    BlockStateProvider.simple(Blocks.SMOOTH_BASALT), // outerLayerProvider
+                    listOf( // innerPlacements
+                        Blocks.SMALL_AMETHYST_BUD.defaultBlockState(),
+                        Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(),
+                        Blocks.LARGE_AMETHYST_BUD.defaultBlockState(),
+                        Blocks.AMETHYST_CLUSTER.defaultBlockState()
+                    ),
+                    BlockTags.FEATURES_CANNOT_REPLACE, // cannotReplace
+                    BlockTags.GEODE_INVALID_BLOCKS // invalidBlocks
                 ),
-                BlockTags.FEATURES_CANNOT_REPLACE, // cannotReplace
-                BlockTags.GEODE_INVALID_BLOCKS // invalidBlocks
-            ),
-            GeodeLayerSettings(
-                1.7, // filling
-                2.2, // innerLayer
-                3.2, // middleLayer
-                4.2 // outerLayer
-            ),
-            GeodeCrackSettings(
-                0.95, // generateCrackChance
-                2.0, // baseCrackSize
-                2 // crackPointOffset
-            ),
-            .35, // usePotentialPlacementsChance
-            .083, // useAlternateLayer0Chance
-            true, // placementsRequireLayer0Alternate
-            UniformInt.of(4, 6), // outerWallDistance
-            UniformInt.of(3, 4), // distributionPoints
-            UniformInt.of(1, 2), // pointOffset
-            -16, // minGenOffset
-            16, // maxGenOffset
-            0.05, // noiseMultiplier
-            1 // invalidBlocksThreshold
+                GeodeLayerSettings(
+                    1.7, // filling
+                    2.2, // innerLayer
+                    3.2, // middleLayer
+                    4.2 // outerLayer
+                ),
+                GeodeCrackSettings(
+                    0.95, // generateCrackChance
+                    2.0, // baseCrackSize
+                    2 // crackPointOffset
+                ),
+                .35, // usePotentialPlacementsChance
+                .083, // useAlternateLayer0Chance
+                true, // placementsRequireLayer0Alternate
+                UniformInt.of(4, 6), // outerWallDistance
+                UniformInt.of(3, 4), // distributionPoints
+                UniformInt.of(1, 2), // pointOffset
+                -16, // minGenOffset
+                16, // maxGenOffset
+                0.05, // noiseMultiplier
+                1 // invalidBlocksThreshold
+            )
         )
-    )
+    
+    }
     ```
 
     ```kotlin title="PlacedFeatures.kt"
-    val AMETHYST_GEODE = FeatureRegistry.registerPlacedFeature(
-        Machines,
-        "amethyst_geode",
-        ConfiguredFeatures.AMETHYST_GEODE,
-        listOf(
-            RarityFilter.onAverageOnceEvery(24),
-            InSquarePlacement.spread(),
-            HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
-            BiomeFilter.biome()
-        )
-    )
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
+    
+        val AMETHYST_GEODE = placedFeature("amethyst_geode", ConfiguredFeatures.AMETHYST_GEODE)
+            .rarityFilter(24)
+            .inSquareSpread()
+            .heightRangeUniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30))
+            .biomeFilter()
+            .register()
+    
+    }
     ```
 
 === "Json"
