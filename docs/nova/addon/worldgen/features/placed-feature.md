@@ -513,92 +513,105 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
     }
     ```
 
-??? tip "Custom `PlacementModifiers`"
-    You can also implement your own custom `PlacementModifiers` by extending Minecraft's `PlacementModifier` class. You can
-    then register your custom `PlacementModifier` via the `FeatureRegistry` either by creating a `PlacementModifierType` or
-    by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codecs)
-    page for more information on Mojang's serialization system.  
-    Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementModifier` as an example:
-    
-    === "Inline PlacementModifierType"
-    
-        ```kotlin title="PlacementModifiers.kt"
-        val COUNT_PLACEMENT = FeatureRegistry.registerPlacementModifierType(Machines, "count", CountPlacement.CODEC)
-        ```
-        
-        ```kotlin title="CountPlacement.kt"
-        class CountPlacement(val count: IntProvider) : PlacementModifier() {
-            
-            override fun getPositions(ctx: PlacementContext, random: RandomSource, pos: BlockPos): Stream<BlockPos> =
-                Stream.generate { pos }.limit(count.sample(random).toLong())
-            
-            override fun type(): PlacementModifierType<*> = PlacementModifiers.COUNT_PLACEMENT
-            
-            companion object {
-                
-                @JvmField // (1)!
-                val CODEC: Codec<CountPlacement> = IntProvider
-                    .codec(0, 256)
-                    .fieldOf("count")
-                    .xmap(::CountPlacement, CountPlacement::count)
-                    .codec()
-                
-                @JvmStatic
-                fun of(count: Int) = CountPlacement(ConstantInt.of(count))
-                
-                @JvmStatic
-                fun of(count: IntProvider) = CountPlacement(count)
-            
-            }
-        
-        }
-        ```
+### Custom `PlacementModifiers`
 
-        1. This allows `CODEC` to be accessed as a field from Java code instead of having to call `getCODEC()`
+You can also implement your own custom `PlacementModifiers` by extending Minecraft's `PlacementModifier` class. You can
+then register your custom `PlacementModifier` via the `FeatureRegistry` either by creating a `PlacementModifierType` or
+by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codecs)
+page for more information on Mojang's serialization system.  
+Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementModifier` as an example:
+
+=== "Inline PlacementModifierType"
+
+    ```kotlin title="PlacementModifiers.kt"
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacementModifiers : FeatureRegistry by ExampleAddon.registry {
     
-    === "PlacementModifierType object"
+        val COUNT_PLACEMENT = registerPlacementModifierType("count", CountPlacement.CODEC)
     
-        ```kotlin title="CountPlacement.kt"
-        object CountPlacementType : PlacementModifierType<CountPlacement> {
+    }
+    ```
+    
+    ```kotlin title="CountPlacement.kt"
+    class CountPlacement(val count: IntProvider) : PlacementModifier() {
+        
+        override fun getPositions(ctx: PlacementContext, random: RandomSource, pos: BlockPos): Stream<BlockPos> =
+            Stream.generate { pos }.limit(count.sample(random).toLong())
+        
+        override fun type(): PlacementModifierType<*> = PlacementModifiers.COUNT_PLACEMENT
+        
+        companion object {
             
-            private val CODEC: Codec<CountPlacement> = IntProvider
+            @JvmField // (1)!
+            val CODEC: Codec<CountPlacement> = IntProvider
                 .codec(0, 256)
                 .fieldOf("count")
                 .xmap(::CountPlacement, CountPlacement::count)
                 .codec()
             
-            override fun codec() = CODEC
+            @JvmStatic
+            fun of(count: Int) = CountPlacement(ConstantInt.of(count))
             
-        }
-        ```
+            @JvmStatic
+            fun of(count: IntProvider) = CountPlacement(count)
         
-        ```kotlin title="PlacementModifiers.kt"
-        val COUNT_PLACEMENT = FeatureRegistry.registerPlacementModifierType(Machines, "count", CountPlacementType)
-        ```
-        
-        ```kotlin title="CountPlacement.kt"
-        class CountPlacement(val count: IntProvider) : PlacementModifier() {
-            
-            override fun getPositions(ctx: PlacementContext, random: RandomSource, pos: BlockPos): Stream<BlockPos> =
-                Stream.generate { pos }.limit(count.sample(random).toLong())
-            
-            override fun type(): PlacementModifierType<*> = CountPlacementType
-            
-            companion object {
-                
-                @JvmStatic
-                fun of(count: Int) = CountPlacement(ConstantInt.of(count))
-                
-                @JvmStatic
-                fun of(count: IntProvider) = CountPlacement(count)
-            
-            }
-            
         }
-        ```
     
-    Minecraft also offers further abstraction via the `RepeatingPlacement` and `PlacementFilter` classes. They both override
-    the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
+    }
+    ```
+
+    1. This allows `CODEC` to be accessed as a field from Java code instead of having to call `getCODEC()`
+
+=== "PlacementModifierType object"
+
+    ```kotlin title="CountPlacement.kt"
+    object CountPlacementType : PlacementModifierType<CountPlacement> {
+        
+        private val CODEC: Codec<CountPlacement> = IntProvider
+            .codec(0, 256)
+            .fieldOf("count")
+            .xmap(::CountPlacement, CountPlacement::count)
+            .codec()
+        
+        override fun codec() = CODEC
+        
+    }
+    ```
+    
+    ```kotlin title="PlacementModifiers.kt"
+    @OptIn(ExperimentalWorldGen::class)
+    @Init
+    object PlacementModifiers : FeatureRegistry by ExampleAddon.registry {
+    
+        val COUNT_PLACEMENT = registerPlacementModifierType("count", CountPlacementType)
+    
+    }
+    ```
+    
+    ```kotlin title="CountPlacement.kt"
+    class CountPlacement(val count: IntProvider) : PlacementModifier() {
+        
+        override fun getPositions(ctx: PlacementContext, random: RandomSource, pos: BlockPos): Stream<BlockPos> =
+            Stream.generate { pos }.limit(count.sample(random).toLong())
+        
+        override fun type(): PlacementModifierType<*> = CountPlacementType
+        
+        companion object {
+            
+            @JvmStatic
+            fun of(count: Int) = CountPlacement(ConstantInt.of(count))
+            
+            @JvmStatic
+            fun of(count: IntProvider) = CountPlacement(count)
+        
+        }
+        
+    }
+    ```
+
+Minecraft also offers further abstraction via the `RepeatingPlacement` and `PlacementFilter` classes. They both override
+the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
 
 ## Inlined
 
