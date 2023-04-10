@@ -7,13 +7,13 @@ You can get the ``BlockRegistry`` using [the previously retrieved Nova instance]
 === "Kotlin"
 
     ```kotlin
-    val blockManager = Nova.blockRegistry
+    val blockRegistry = Nova.blockRegistry
     ```
 
 === "Java"
 
     ```java
-    BlockRegistry blockManager = Nova.getNova().getBlockRegistry();
+    BlockRegistry blockRegistry = Nova.getNova().getBlockRegistry();
     ```
 
 After that, you can retrieve a block type by its id:
@@ -21,11 +21,11 @@ After that, you can retrieve a block type by its id:
 === "Kotlin"
 
     ```kotlin
-    val block = blockManager.getBlock("machines:pulverizer")
+    val block = blockRegistry.getBlock("machines:pulverizer")
     ```
 
 === "Java"
 
     ```java
-    NovaBlock block = blockManager.getBlock("machines:pulverizer");
+    NovaBlock block = blockRegistry.getBlock("machines:pulverizer");
     ```
