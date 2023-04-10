@@ -635,7 +635,3 @@ for (layer = 0; layer < layers.size(); ++layer) {
 
 /* ... */
 ```
-
-# TODO \/ move to different section \/
-
-## Block predicates
