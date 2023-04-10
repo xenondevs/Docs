@@ -2,6 +2,18 @@
 
 Of course, you can also use Bukkit's events. To register an event listener, use the `Listener.registerListener()` extension function.
 
+## Working with Packet Events
+
+You can also listen to incoming and outgoing packets. To do so, register your class as a packet listener using the `Any.registerPacketHandler()`
+extension function. Then, you can use the `@PacketHandler` annotation to mark event methods.
+
+!!! abstract "Packet Event Types"
+
+    The packet event system is part of [NMS-Utilities](https://github.com/xenondevs/NMS-Utilities/). A list of all possible
+    event types can be found [here](https://github.com/xenondevs/NMS-Utilities/tree/main/src/main/kotlin/xyz/xenondevs/nmsutils/network/event).  
+    Please note that this currently does not include all possible packets, as the system is still in development.
+    Feel free to open a pull request if you need another packet type.
+
 ## Calling events from Nova's Plugin API
 
 You might've noticed that the `nova-api` module is not in your classpath. This module is explicitly for developers of

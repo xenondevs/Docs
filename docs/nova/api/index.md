@@ -20,9 +20,7 @@ To use the Nova API you first have to add the xenondevs maven repository to your
 === "Gradle Kotlin"
 
     ```kotlin
-    maven {
-        url = uri("https://repo.xenondevs.xyz/releases")
-    }
+    maven("https://repo.xenondevs.xyz/releases")
     ```
 
 Now you can add the API dependency to your build configuration:
@@ -33,7 +31,7 @@ Now you can add the API dependency to your build configuration:
     <dependency>
         <groupId>xyz.xenondevs.nova</groupId>
         <artifactId>nova-api</artifactId>
-        <version>0.11</version>
+        <version>VERSION</version>
         <scope>provided</scope>
     </dependency>
     ```
@@ -41,13 +39,13 @@ Now you can add the API dependency to your build configuration:
 === "Gradle Groovy"
 
     ```groovy
-    implementation "xyz.xenondevs.nova:nova-api:0.11"
+    implementation "xyz.xenondevs.nova:nova-api:VERSION"
     ```
 
 === "Gradle Kotlin"
 
     ```kotlin
-    implementation("xyz.xenondevs.nova:nova-api:0.11")
+    implementation("xyz.xenondevs.nova:nova-api:VERSION")
     ```
 
 To get the Nova instance you can use the `Nova` class:
@@ -69,7 +67,8 @@ To get the Nova instance you can use the `Nova` class:
 You can use this instance to access everything else:
 
 - [Adding custom protection checks](./protection/protectionintegration.md)
-- [Getting ``NovaMaterials``](./material/index.md)
-- [Working with TileEntities](./tileentity/tileentitymanager.md)
-- [Managing Nova Blocks](./blocks/blockmanager.md)
+- [Getting `NovaItems`](./items/index.md)
+- [Getting `NovaBlocks`](./blocks/blockregistry.md)
+- [Working with `NovaBlocks` and `NovaBlockStates`](./blocks/blockmanager.md)
+- [Working with `TileEntities`](./tileentity/tileentitymanager.md)
 - [Toggling the WAILA overlay](./player/wailamanager.md)
