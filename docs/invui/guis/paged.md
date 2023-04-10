@@ -120,7 +120,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
             "# x x x x x x x #",
             "# x x x x x x x #",
             "# # # < # > # # #")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put
         .addIngredient('#', border)
         .addIngredient('<', BackItem())
         .addIngredient('>', ForwardItem())
@@ -146,7 +146,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
             "# x x x x x x x #",
             "# x x x x x x x #",
             "# # # < # > # # #")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put
         .addIngredient('#', border)
         .addIngredient('<', new BackItem())
         .addIngredient('>', new ForwardItem())
@@ -173,7 +173,7 @@ Now I can switch between two paged GUIs.
             "x x x x x x x x x",
             "x x x x x x x x x",
             ". . < . . . > . .")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
         .addIngredient('<', BackItem())
         .addIngredient('>', ForwardItem())
         .setContent(listOf(page1GUI, page2GUI))
@@ -190,7 +190,7 @@ Now I can switch between two paged GUIs.
             "x x x x x x x x x",
             "x x x x x x x x x",
             ". . < . . . > . .")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put (in this case: the parts of the nested GUI)
         .addIngredient('<', new BackItem())
         .addIngredient('>', new ForwardItem())
         .setContent(Arrays.asList(page1GUI, page2GUI))

@@ -16,7 +16,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         "# x x x x x x x #",
         "# x x x x x x x #",
         "# # # < # > # # #")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put
         .addIngredient('#', ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r")) // this will just create a SimpleItem with the given ItemBuilder
         .addIngredient('<', BackItem())
         .addIngredient('>', ForwardItem())
@@ -37,7 +37,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
         "# x x x x x x x #",
         "# x x x x x x x #",
         "# # # < # > # # #")
-        .addIngredient('x', Markers.ITEM_LIST_SLOT_HORIZONTAL) // where paged items should be put
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL) // where paged items should be put
         .addIngredient('#', new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r")) // this will just create a SimpleItem with the given ItemBuilder
         .addIngredient('<', new BackItem())
         .addIngredient('>', new ForwardItem());
