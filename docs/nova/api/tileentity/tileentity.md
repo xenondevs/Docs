@@ -22,7 +22,7 @@ A TileEntity is a block that has internal logic and tick-based updates.
 
 ##  Getting the localized name of a TileEntity
 
-Using the [``NovaMaterial``](../material/index.md) of a TileEntity, you can get the name of a TileEntity.
+Using the [`NovaBlock`](../blocks/blockregistry.md) of a TileEntity, you can get the name of a TileEntity.
 
 For this example, we'll get the english name of a Pulverizer.
 
@@ -30,7 +30,7 @@ For this example, we'll get the english name of a Pulverizer.
 
     ```kotlin
     val tileEntity = tileEntityManager.getTileEntityAt(location) ?: return
-    val name = tileEntity.material.getLocalizedName("en_us")
+    val name = tileEntity.block.getLocalizedName("en_us")
     println(name) // prints "Pulverizer"
     ```
 
