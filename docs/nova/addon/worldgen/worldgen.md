@@ -15,7 +15,8 @@ Below you'll find a quick overview of the format how to use it. Check the sideba
 
 ### Structures
 
-**TODO**
+Structures are used to generate structures or connected structures in the world (e.g. jungle temple, villages, etc.).  
+**Currently not fully supported.**
 
 ### Features
 <small>Check out the [`Features` Overview](features/features.md) page for more information.</small>
@@ -29,7 +30,8 @@ Carvers are used to carve out caves and ravines in the world.
 
 ### Noise
 
-**TODO**
+Noise setting are responsible for generating the terrain of worlds and determines which blocks to use. Because Nova's region
+file format is currently pretty inefficient, these settings aren't currently supported.
 
 ### Biomes
 <small>Check out the [`Biomes`](biome.md) and [`BiomeInjections`](inject/biome.md) page for more information.</small>

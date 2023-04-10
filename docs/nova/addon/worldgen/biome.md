@@ -3,7 +3,8 @@
 !!! warning
 
     This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be
-    added in the future.
+    added in the future. Custom biomes also aren't fully supported yet. Injecting them into `LevelStems` has to be done
+    manually for now.
 
 Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), [climate](#climate),
 [effects](#special-effects) and much more. This page only covers the `BiomeBuilder` for now. If you're looking for the Json
