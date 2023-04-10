@@ -40,6 +40,7 @@ There are currently three main ways to configure the auto-uploader:
         Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
     
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -54,6 +55,7 @@ There are currently three main ways to configure the auto-uploader:
         Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
     
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -75,8 +77,23 @@ There are currently three main ways to configure the auto-uploader:
     === "Custom Multipart Request (advanced)"
     
         For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
-    
-        For [this php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455), the config would be the following:
+
+        A few examples:
+
+        ### [PloudOS' resource pack CDN](https://resourcepack.host/)
+
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: CustomMultiPart
+            url: https://resourcepack.host/index.php
+            filePartName: pack
+            urlRegex: ="(http:\/\/resourcepack\.host\/dl\/[^"]+)"
+        ```
+
+        ### Simple [upload php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455)
+
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -88,21 +105,13 @@ There are currently three main ways to configure the auto-uploader:
               key: "" # This key also needs to be set in the php script mentioned above
         ```
     
-        If the response of your uploader is in a different format such as JSON, you will need to set the ``urlRegex`` parameter which encloses the URL in the first group of the first match.
-        For example, for a response like this 
-        ```json
-        {
-          "state": "success",
-          "url": "https://example.com/ResourcePack.zip"
-        }
-        ```
-        the regex could be ``"url": "([\w:/\.]*)``.
     === "Amazon S3"
 
         If you are using Amazon S3, you can use the S3 service to upload the resource pack. **You have to expose your S3 
         bucket to the Internet yourself.**
 
         Example config:
+        
         ```yaml title="plugins/Nova/configs/config.yml"
         resource_pack:
           auto_upload:
@@ -113,6 +122,19 @@ There are currently three main ways to configure the auto-uploader:
             bucket: examplebucket # The name of your S3 bucket
             key_id: "" # Your S3 key id
             key_secret: "" # Your S3 key secret
+        ```
+
+    === "Oraxen"
+
+        If you are using Oraxen on your server, you can configure Nova to use the PolyMath instance [configured in Oraxen's config.yml](https://docs.oraxen.com/configuration/plugin-settings#upload).
+
+        Example config:
+        
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: Oraxen
         ```
 
 ## Step 3: Installing addons
@@ -145,8 +167,9 @@ Currently, there are two ways to define base packs:
     Example:
     ```yaml title="plugins/Nova/configs/config.yml"
     resource_pack:
-      base_packs:
-        - plugins/ItemsAdder/output/generated.zip
+      generation:
+        base_packs:
+          - plugins/ItemsAdder/output/generated.zip
     ```
 
     !!! info

@@ -6,8 +6,11 @@ edit_uri: edit/main/docs/nova/
 theme:
   features:
     - navigation.tabs
+    - navigation.footer
     - content.tabs.link
     - content.code.annotate
+    - content.code.copy
+    - content.code.select
 
 nav:
   - "Setup & Configuration":
@@ -28,10 +31,10 @@ nav:
   - "Plugin API":
       - "Getting Started": "api/index.md"
       - "Protection": "api/protection/protectionintegration.md"
-      - "NovaMaterial": "api/material/index.md"
+      - "Items": "api/items/index.md"
       - "Blocks":
+          - "BlockRegistry": "api/blocks/blockregistry.md"
           - "BlockManager": "api/blocks/blockmanager.md"
-          - "BlockState": "api/blocks/blockstate.md"
       - "TileEntity":
           - "TileEntityManager": "api/tileentity/tileentitymanager.md"
           - "TileEntity": "api/tileentity/tileentity.md"
@@ -47,30 +50,91 @@ nav:
           - "Creating Items": "addon/asset-packs/creating-items.md"
           - "Creating Blocks": "addon/asset-packs/creating-blocks.md"
           - "Creating GUIs": "addon/asset-packs/creating-guis.md"
+          - "Creating Armor": "addon/asset-packs/creating-armor.md"
           - "Language Files": "addon/asset-packs/language-files.md"
       - "Items":
-          - "Registering Materials": "addon/items/registering-materials.md"
+          - "Registering Items": "addon/items/registering-items.md"
           - "Item Behaviors": "addon/items/item-behaviors.md"
-          - "Using ItemNovaMaterial": "addon/items/using-item-nova-material.md"
+          - "Using NovaItem": "addon/items/using-nova-item.md"
           - "Item Categories": "addon/items/item-categories.md"
           - "Tools": "addon/items/tools.md"
       - "Configs": "addon/configs.md"
       - "Blocks":
-          - "Registering Materials": "addon/blocks/registering-materials.md"
+          - "Registering Blocks": "addon/blocks/registering-blocks.md"
           - "TileEntities":
               - "Basics": "addon/blocks/tileentity/base.md"
               - "Config": "addon/blocks/tileentity/config.md"
-              - "GUI": "addon/blocks/tileentity/gui.md"
+              - "Menu (GUI)": "addon/blocks/tileentity/gui.md"
               - "TileEntity Data": "addon/blocks/tileentity/data.md"
               - "Holders": "addon/blocks/tileentity/holders.md"
               - "Upgrades": "addon/blocks/tileentity/upgrades.md"
               - "Regions": "addon/blocks/tileentity/region.md"
               - "Particles": "addon/blocks/tileentity/particles.md"
       - "GUI Textures": "addon/guitexture.md"
-      - "Overlays": "addon/overlays.md"
+      - "Overlays":
+            - "Action Bar Overlay": "addon/overlays/actionbar.md"
+            - "Boss Bar Overlay": "addon/overlays/bossbar.md"
+      - "Recipes": "addon/recipes.md"
       - "Advancements": "addon/advancements.md"
       - "Attachments": "addon/attachments.md"
       - "Abilities": "addon/abilities.md"
-      - "Recipes": "addon/recipes.md"
+      - "Hitboxes": "addon/hitboxes.md"
+      - "Miscellaneous": "addon/misc.md"
+      - "World Generation":
+          - "Overview": "addon/worldgen/worldgen.md"
+          - "Codecs": "addon/worldgen/codec.md"
+          - "Features":
+                - "Overview": "addon/worldgen/features/features.md"
+                - "Placed Features": "addon/worldgen/features/placed-feature.md"
+                - "Configurations":
+                      - "Bamboo": "addon/worldgen/features/configurations/bamboo.md"
+                      - "Basalt Columns": "addon/worldgen/features/configurations/basalt-columns.md"
+                      - "Block Column": "addon/worldgen/features/configurations/block-column.md"
+                      - "Block Pile": "addon/worldgen/features/configurations/block-pile.md"
+                      - "Delta": "addon/worldgen/features/configurations/delta.md"
+                      - "Disk": "addon/worldgen/features/configurations/disk.md"
+                      - "Dripstone Cluster": "addon/worldgen/features/configurations/dripstone-cluster.md"
+                      - "End Gateway": "addon/worldgen/features/configurations/end-gateway.md"
+                      - "End Spikes": "addon/worldgen/features/configurations/end-spike.md"
+                      - "Fill Layer": "addon/worldgen/features/configurations/fill-layer.md"
+                      - "Forest Rock": "addon/worldgen/features/configurations/forest-rock.md"
+                      - "Fossils": "addon/worldgen/features/configurations/fossil.md"
+                      - "Geodes": "addon/worldgen/features/configurations/geode.md"
+                      - "Huge Fungi": "addon/worldgen/features/configurations/huge-fungus.md"
+                      - "Huge Mushrooms": "addon/worldgen/features/configurations/huge-mushrooms.md"
+                      - "Icebergs": "addon/worldgen/features/configurations/iceberg.md"
+                      - "Lakes": "addon/worldgen/features/configurations/lake.md"
+                      - "Large Dripstone": "addon/worldgen/features/configurations/large-dripstone.md"
+                      - "Multiface Growth": "addon/worldgen/features/configurations/multiface-growth.md"
+                      - "Nether Forest Vegetation": "addon/worldgen/features/configurations/nether-forest-vegetation.md"
+                      - "Ores": "addon/worldgen/features/configurations/ores.md"
+                      - "Pointed Dripstone": "addon/worldgen/features/configurations/pointed-dripstone.md"
+                      - "Random Patch": "addon/worldgen/features/configurations/random-patch.md"
+                      - "Random Selector": "addon/worldgen/features/configurations/random-selector.md"
+                      - "Replace Blobs": "addon/worldgen/features/configurations/replace-blobs.md"
+                      - "Replace Single Block": "addon/worldgen/features/configurations/replace-single-block.md"
+                      - "Trees With Roots": "addon/worldgen/features/configurations/root-system.md"
+                      - "Sculk Patch": "addon/worldgen/features/configurations/sculk-patch.md"
+                      - "Sea Pickles": "addon/worldgen/features/configurations/sea-pickle.md"
+                      - "Seagrass": "addon/worldgen/features/configurations/seagrass.md"
+                      - "Simple Block": "addon/worldgen/features/configurations/simple-block.md"
+                      - "Simple Random Selector": "addon/worldgen/features/configurations/simple-random-selector.md"
+                      - "Spring Feature": "addon/worldgen/features/configurations/spring-feature.md"
+                      - "Trees": "addon/worldgen/features/configurations/tree.md"
+                      - "Twisting Vines": "addon/worldgen/features/configurations/twisting-vines.md"
+                      - "Underwater Magma": "addon/worldgen/features/configurations/underwater-magma.md"
+                      - "Vegetation Patch": "addon/worldgen/features/configurations/vegetation-patch.md"
+                - "Custom Features": "addon/worldgen/features/custom-feature.md"
+          - "Carvers": "addon/worldgen/carver.md"
+          - "Biomes": "addon/worldgen/biome.md"
+          - "Injections":
+              - "BiomeInjections": "addon/worldgen/inject/biome.md"
+          - "Utility Types":
+              - "Height Providers": "addon/worldgen/types/height-provider.md"
+              - "Number Providers": "addon/worldgen/types/number-provider.md"
+              - "BlockState Providers": "addon/worldgen/types/block-state-provider.md"
+              - "BlockState": "addon/worldgen/types/block-state.md"
+              - "Block Predicate": "addon/worldgen/types/block-predicate.md"
       - "Migration Guide":
+          - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

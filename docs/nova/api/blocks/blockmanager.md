@@ -38,47 +38,87 @@ The BlockManager also allows you to get a BlockState at a specific location.
 
 You can also check if a block at a specific location is a Nova block via ``BlockManager.hasBlock(Location)``
 
-See [BlockState](blockstate.md) for more information.
+### Block Type
 
-## Placing a block
-
-You can also place a nova block at a specific location by using a [``NovaMaterial``](../material/index.md).
-
-!!! warning
-
-    This function will throw an ``IllegalArgumentException`` if the provided ``NovaMaterial`` is not a block.
+`NovaBlock` is a block type, similar to `Material` in Bukkit, except that it is only for blocks.  
+To retrieve the block type of block at a specific location, you can do the following:
 
 === "Kotlin"
 
     ```kotlin
-    val material = materialRegistry.get("machines:pulverizer")
+    val blockState = blockManager.getBlock(location) ?: return
+    val block = blockState.block
+    ```
+
+=== "Java"
+
+    ```java
+    NovaBlockState blockState = blockManager.getBlock(location);
+    if (blockState == null)
+        return;
+    NovaBlock block = blockState.getBlock();
+    ```
+
+### Tile Entity
+
+[TileEntities](../tileentity/tileentity.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity
+instance of the block.
+
+=== "Kotlin"
+
+    ```kotlin
+    val blockState = blockManager.getBlock(location) ?: return
+    if (blockState is NovaTileEntityState) {
+        val tileEntity = blockState.tileEntity
+    }
+    ```
+
+=== "Java"
+
+    ```java
+    NovaBlockState blockState = blockManager.getBlock(location);
+    if (blockState == null)
+        return;
+    if (blockState instanceof NovaTileEntityState tileEntityState) {
+        TileEntity tileEntity = tileEntityState.getTileEntity();
+    }
+    ```
+
+## Placing a block
+
+You can also place a nova block at a specific location by using a [`NovaBlock`](blockregistry.md).
+
+=== "Kotlin"
+
+    ```kotlin
+    val block = blockRegistry.get("machines:pulverizer")
     blockManager.placeBlock(
         location, // (1)!
-        material, // (2)!
+        block, // (2)!
         player, // (3)!
         true // (4)!
     )
     ```
 
     1. The location at which to place the block.
-    2. The material to place.
+    2. The block type to place.
     3. The source of the block placement. This doesn't have to be a player, it can also be a tile-entity or similar.
     4. Whether to play a sound when the block is placed.
 
 === "Java"
 
     ```java
-    NovaMaterial material = materialRegistry.get("machines:pulverizer");
+    NovaBlock block = blockRegistry.get("machines:pulverizer");
     blockManager.placeBlock(
         location, // (1)!
-        material, // (2)!
+        block, // (2)!
         player, // (3)!
         true // (4)!
     );
     ```
 
     1. The location at which to place the block.
-    2. The material to place.
+    2. The block type to place.
     3. The source of the block placement. This doesn't have to be a player, it can also be a tile-entity or similar.
     4. Whether to play a sound when the block is placed.
 

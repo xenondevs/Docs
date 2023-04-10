@@ -24,14 +24,14 @@ InvUI provides a few basic items, but you will probably have to create your own 
 If you don't need any behavior at all and just want to make your ``GUI`` look pretty, you can use the ``SimpleItem``. It cannot update it's ``ItemProvider`` later on and does not have any on-click functionality.
 
 ## Creating your own Item
-To create your own Item, you'll need to inherit from either ``BaseItem`` (if you want to be able to change its appearance) or ``SimpleItem`` (if you don't need to change its appearance).
-In this example, I inherited from ``BaseItem``.
+To create your own Item, you'll need to inherit from either ``AbstractItem`` (if you want to be able to change its appearance) or ``SimpleItem`` (if you don't need to change its appearance).
+In this example, I inherited from ``AbstractItem``.
 Every time a player clicks on the Item, a counter will be incremented and the number on the Item will change.
 
 === "Kotlin"
 
     ```kotlin
-    class CountItem : BaseItem() {
+    class CountItem : AbstractItem() {
         
         private var count = 0
         
@@ -54,7 +54,7 @@ Every time a player clicks on the Item, a counter will be incremented and the nu
 === "Java"
 
     ```java
-    public class CountItem extends BaseItem {
+    public class CountItem extends AbstractItem {
         
         private int count;
         
@@ -90,7 +90,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
 === "Kotlin"
 
     ```kotlin
-    class ChangePageItem : ControlItem<PagedGUI>() {
+    class ChangePageItem : ControlItem<PagedGui<*>>() {
         
         override fun handleClick(clickType: ClickType, player: Player, event: InventoryClickEvent) {
             if (clickType == ClickType.LEFT) {
@@ -100,9 +100,9 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
             }
         }
         
-        override fun getItemProvider(gui: PagedGUI): ItemProvider {
+        override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             return ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.currentPageIndex + 1)) // + 1 because we don't want to have "Current page: 0"
+                .setDisplayName("§7Current page: " + (gui.currentPage + 1)) // + 1 because we don't want to have "Current page: 0"
                 .addLoreLines("§8Left-click to go forward", "§8Right-click to go back")
         }
         
@@ -112,7 +112,7 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
 === "Java"
 
     ```java
-    public class ChangePageItem extends ControlItem<PagedGUI> {
+    public class ChangePageItem extends ControlItem<PagedGui<?>> {
         
         @Override
         public void handleClick(@NotNull ClickType clickType, @NotNull Player player, @NotNull InventoryClickEvent event) {
@@ -124,13 +124,13 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
         }
         
         @Override
-        public ItemProvider getItemProvider(PagedGUI gui) {
+        public ItemProvider getItemProvider(PagedGui<?> gui) {
             return new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.getCurrentPageIndex() + 1)) // + 1 because we don't want to have "Current page: 0"
+                .setDisplayName("§7Current page: " + (gui.getCurrentPage() + 1)) // + 1 because we don't want to have "Current page: 0"
                 .addLoreLines("§8Left-click to go forward", "§8Right-click to go back");
         }
         
     }
     ```
 
-The `getItemProvider` method will get called when the page changes, as `PagedGUI` internally calls `Controllable#updateControlItems`, so the displayed page number in this example item will always be correct.
+The `getItemProvider` method will get called when the page changes, as `PagedGui` internally calls `AbstractGui#updateControlItems`, so the displayed page number in this example item will always be correct.

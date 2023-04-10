@@ -13,7 +13,7 @@ All of the following values are required to create a new `RecipeType`:
 |:--------------:|:------------------------:|---------------------------------------------------------------------------------------------------------------|
 |   `dirName`    |         `String`         | The name for the directory of your recipe type.                                                               |
 | `recipeClass`  |       `KClass<T>`        | The class of your recipe type, must be a subclass of `NovaRecipe`.                                            |
-|    `group`     |      `RecipeGroup?`      | The recipe group that displays the recipe in the recipe explorer gui.                                         |
+|    `group`     |    `RecipeGroup<T>?`     | The recipe group that displays the recipe in the recipe explorer gui.                                         |
 | `deserializer` | `RecipeDeserializer<T>?` | The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`. |
 
 !!! danger "Attention"
@@ -86,7 +86,7 @@ All of the following values are required to create a new `RecipeType`:
 
         As always, it is very easy to create a recipe group for conversion recipes:
         ```kotlin title="PulverizingRecipeGroup"
-        object PulverizingRecipeGroup : ConversionRecipeGroup() {
+        object PulverizingRecipeGroup : ConversionRecipeGroup<PulverizerRecipe>() {
             override val priority = 4 // (1)!
             override val icon = Blocks.PULVERIZER.basicClientsideProvider // (2)!
             override val texture = GUITextures.RECIPE_PULVERIZER // (3)!
@@ -97,17 +97,17 @@ All of the following values are required to create a new `RecipeType`:
         2. The icon displayed for your recipe type.
         3. The GUI Texture used when displaying your recipe type.
 
-        However, if your recipe is not a `ConversionNovaRecipe`, your recipe group might be a bit more work:
+        However, if your recipe is not a `ConversionNovaRecipe`, your recipe group might be a bit more work:  
+        (The resulting GUI needs to be in the dimensions `9x3`)
+
         ```kotlin title="FluidInfuserRecipeGroup"
-        object FluidInfuserRecipeGroup : RecipeGroup() {
+        object FluidInfuserRecipeGroup : RecipeGroup<FluidInfuserRecipe>() {
         
             override val texture = GUITextures.RECIPE_FLUID_INFUSER
             override val icon = Blocks.FLUID_INFUSER.basicClientsideProvider
             override val priority = 6
         
-            override fun createGUI(container: RecipeContainer): GUI {
-                val recipe = container.recipe as FluidInfuserRecipe
-            
+            override fun createGUI(recipe: FluidInfuserRecipe): GUI {
                 val progressItem: ItemBuilder
                 val translate: String
                 if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) {
@@ -146,9 +146,4 @@ All of the following values are required to create a new `RecipeType`:
         1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that
             item. It also automatically cycles through all possible input options if there is more than one.
 
-        If you're not familiar with the InvUI library, you'll have to trouble understanding the code above.  
         [:material-file-document-outline: InvUI Documentation](../../../invui/){ .md-button }
-
-        !!! info
-
-            The resulting GUI needs to be in the dimensions `9x3`

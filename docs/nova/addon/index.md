@@ -1,5 +1,4 @@
-**This guide is not beginner-friendly! Making Nova addons requires a lot of
-knowledge about Kotlin, the Spigot API, Maven and Gradle.**
+**This guide is not beginner-friendly! Making Nova addons requires a lot of knowledge about Kotlin, the Spigot API, Maven and Gradle.**
 
 ## Prerequisites
 
@@ -13,7 +12,7 @@ downloading BuildTools, run the following command:
 java -jar BuildTools.jar --remapped
 ```
 
-This will install the latest mojang-mapped Spigot version on your local maven repository.
+This will install the latest mojang-mapped Spigot version in your local maven repository.
 
 ### IntelliJ
 
@@ -27,7 +26,7 @@ if you don't want to use git commands.
 
 ### Codestyle
 
-You can find the xenondevs' codestyle [here](https://github.com/xenondevs/Nova/blob/main/codestyle.xml). To apply it, open 
+You can find the xenondevs codestyle [here](https://github.com/xenondevs/Nova/blob/main/codestyle.xml). To apply it, open 
 your Intellij settings and import the codestyle.xml file here:
 
 ![importing](https://i.imgur.com/gvLfaQg.png)
@@ -64,19 +63,18 @@ nova("commons-net:commons-net:3.8.0")
 
 To build, run
 ```bash title="Build with Gradle"
-gradle addonJar "-DoutDir=<Path to your addons directory here>"
+gradlew addonJar -PoutDir="<Path to your addons directory here>"
 ```
 Or if you're on a mojang-mapped server, run
 ```bash title="Build with Gradle"
-gradle addonJar "-DoutDir=<Path to your addons directory here>" -Dmojang-mapped
+gradlew addonJar -PoutDir="<Path to your addons directory here>" -Pmojang-mapped
 ```
-
-!!! warning
-
-    Some things like particles won't work on mojang-mapped servers
 
 ## Enabling dev mode
 
-Nova's reload prevention can get pretty annoying while making addons. To bypass this check, you can enable dev mode by 
-adding ``-DNovaDev`` in front of ``-jar`` in your server start script. This also allows you to bypass other restrictions,
-like joining the server during startup.
+To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.  
+This allows you to bypass some restrictions, like the reload prevention, joining the server during startup, or using addons that require a different version of Nova.
+
+## KDoc
+
+The generated KDoc for Nova can be found on [here](https://nova.dokka.xenondevs.xyz/).

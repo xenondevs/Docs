@@ -23,25 +23,12 @@ class ExampleAbility(player: Player) : Ability(player) {
 }
 ```
 
-Then, register a new ability type for that ability.  
-We recommend creating a singleton object to store all ability types. These should be registered during Addon initialization.
-
+Then, register a new ability type for that ability:
 ```kotlin
-object ExampleAddon : Addon() {
+@Init
+object Abilities : AbilityTypeRegistry by ExampleAddon.registry {
     
-    override fun init() {
-        Items.init()
-        Blocks.init()
-        Abilities.init()
-    }
-    
-}
-```
-
-```kotlin
-object Abilities {
-    
-    val EXAMPLE_ABILITY = AbilityTypeRegistry.register(ExampleAddon, "example_ability", ::MyAbility)
+    val EXAMPLE_ABILITY = registerAbilityType("example_ability", ::MyAbility)
     
 }
 ```

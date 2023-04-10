@@ -1,6 +1,4 @@
-# Creating GUIs
-
-## Registering a GUI Texture
+# Registering a GUI Texture
 
 In order to register GUI textures, you first need to create a `guis.json` in `assets/`:
 

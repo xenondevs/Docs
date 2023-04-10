@@ -1,10 +1,9 @@
-# Creating items
+# Creating Items
 
 ## Creating your first material
 
-To start of open the newly created ``materials.json`` file. This file will contain all materials needed by your addon.
-Both
-items and blocks are described in this file. So let's create a simple ruby item. We can use minecraft's [old unused ruby
+To start off, open the newly created ``materials.json`` file. This file will contain all materials needed by your addon.
+Both items and blocks are described in this file. So let's create a simple ruby item. We can use minecraft's [old unused ruby
 texture](https://i.imgur.com/VW3UMqh.png).
 
 We just have to add it to our materials file:
@@ -78,5 +77,20 @@ If your models don't have a fixed number format, you can also list them by hand:
   }
 }
 ```
+
+## Applying an armor texture
+
+To apply an armor texture to your item, simple add the `armor` property:
+
+```json title="materials.json"
+{
+  "star_chestplate": {
+    "item": "item/star_chestplate",
+    "armor": "star" // (1)!
+  }
+}
+```
+
+1. The name of your armor texture. See: [registering an armor texture](creating-armor.md#registering-an-armor-texture)
 
 We'll implement these items in code later. Let's create a block in the asset-pack in the next section.

@@ -12,35 +12,116 @@ one of them to see the wrong language.
 
 ## List of Window types
 
-| Name                   | Description                                                                                                                                              |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| SimpleWindow           | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the GUI. The player's inventory stays untouched.                   |
-| AnvilWindow            | An anvil inventory. The player's inventory stays untouched.                                                                                              |
-| CartographyWindow      | The inventory of the cartography table. The player's inventory stays untouched.                                                                          |
-| SimpleSplitWindow      | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the first GUI. The player's inventory is filled by the second GUI. |
-| AnvilSplitWindow       | The anvil inventory is filled by the first GUI. The player's inventory is filled by the second GUI.                                                      |
-| CartographySplitWindow | The inventory of the cartography table is filled by the first GUI. The player's inventory is filled by the second GUI.                                   |
-| SimpleCombinedWindow   | The default chest inventory and the player's inventory are filled by the same GUI.                                                                       |
+| Name                      | Builder Factory Function     | Description                                                                                                                                              |
+|---------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Normal Single Window      | `Window.single()`            | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the GUI. The player's inventory stays untouched.                   |
+| Normal Merged Window      | `Window.merged()`            | The default chest inventory and the player's inventory are filled by the same GUI.                                                                       |
+| Normal Split Window       | `Window.split()`             | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the first GUI. The player's inventory is filled by the second GUI. |
+| Anvil Single Window       | `AnvilWindow.single()`       | An anvil inventory. The player's inventory stays untouched.                                                                                              |
+| Anvil Split Window        | `AnvilWindow.split()`        | The anvil inventory is filled by the first GUI. The player's inventory is filled by the second GUI.                                                      |
+| Cartography Single Window | `CartographyWindow.single()` | The inventory of the cartography table. The player's inventory stays untouched.                                                                          |
+| Cartography Split Window  | `CartographyWindow.split()`  | The inventory of the cartography table is filled by the first GUI. The player's inventory is filled by the second GUI.                                   |
 
-Generally, there are three different categories of windows: single, split and combined.  
+Generally, there are three different categories of windows: single, split and merged.  
 Single windows do not use the player's own inventory.  
 Split windows use one GUI for the upper inventory and another GUI for the player's inventory.
-Combined windows use the same GUI for the upper and lower inventory.
+Merged windows use the same GUI for the upper and lower inventory.
 
-While the player's inventory in use by a window, the contents are saved and restored after
-the inventory has been closed or the player dies.
-Additionally, the player is not able to pick up any items and advancement listening is also
-temporarily turned off. Therefore, the feature is safe to use in survival mode.
+!!! note "When using merged or split windows:"
 
-### Anvil Window
+    * The contents of the player's inventory are saved and restored after the inventory has been closed
+    * The player is not able to pick up any items
+    * The player will not be able to trigger advancements
 
-In both `AnvilWindow` and `AnvilSplitWindow`, the rename-text can be retrieved either using
-the `Consumer<String> renameHandler` provided in the constructor or with `getRenameText()`.
+### AnvilWindow
 
-### Cartography Window
+The rename-text can be retrieved by calling `AnvilInventory#getRenameText()`. It is also possible to set one or multiple
+`Consumer<String> renameHandler` in the `WindowBuilder`, which will then be called every time the rename-text is
+changed.
 
-You're also able to set the map preview in both `CartographyWindow` and `CartographySplitWindow`.
-To do this, you can use the methods `updateMap(MapPatch)`, `updateMap(List<MapIcon>)` and `resetMap()`.
+### CartographyWindow
 
-Note: The first slot of the cartography inventory is not accessible to you, as it is required to contain
+To update the map preview, you can use the methods `updateMap(MapPatch)`, `updateMap(List<MapIcon>)` and `resetMap()`.
+
+Please note that the first slot of the cartography inventory is not accessible to you, as it is required to contain
 a map item for the map preview to work. Therefore, your GUI's size has to be 2x1 instead of 3x1.
+
+## Creating a new Window
+
+To create a new `Window`, you'll need to use the `Window.Builder` for your desired window type which can be obtained
+by calling the static builder factory function in the related `Window` interface. (See table above)
+
+=== "Kotlin"
+
+    ```kotlin
+    val normalWindow = Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .build()
+
+    val anvilWindow = AnvilWindow.split()
+        .setViewer(player)
+        .setUpperGui(anvilGui)
+        .setLowerGui(playerGui)
+        .setTitle("InvUI")
+        .addRenameHandler { println(it) }
+        .build()
+    ```
+
+=== "Java"
+
+    ```java
+    Window window = Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .build();
+
+    AnvilWindow window = AnvilWindow.split()
+        .setViewer(player)
+        .setUpperGui(anvilGui)
+        .setLowerGui(playerGui)
+        .setTitle("InvUI")
+        .addRenameHandler(s -> System.out.println(s))
+        .build();
+    ```
+
+## Opening a Window
+
+To show a `Window` to a player, you'll need to call `Window.open(player)`.
+
+=== "Kotlin"
+
+    ```kotlin
+    window.open(player)
+    ```
+
+=== "Java"
+
+    ```java
+    window.open(player);
+    ```
+
+As a shortcut, you can also directly call `.open(player)` on the `Window.Builder`.  
+This will create a new `Window` and then directly show it to the specified player.
+
+=== "Kotlin"
+
+    ```kotlin
+    Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .open(player)
+    ```
+
+=== "Java"
+
+    ```java
+    Window.single()
+        .setViewer(player)
+        .setGui(gui)
+        .setTitle("InvUI")
+        .open(player);
+    ```

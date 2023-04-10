@@ -1,7 +1,6 @@
 # Item Categories
 
-In order for your items to appear in the `/nova items` GUI or be accessible via `/nova give`, they need to be in the
-`item_categories.yml` file in your addon resources.
+In order for your items to appear in the `/nova items`, they need to be in the `item_categories.yml` file in your addon resources.
 
 ## File Structure
 

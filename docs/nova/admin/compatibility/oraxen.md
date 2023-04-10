@@ -1,4 +1,8 @@
-# Oraxen (work in progress)
+## Using the Oraxen Upload Service
 
-Oraxen was previously marked as a "compatible" plugin. However, due to changes in both Nova and Oraxen,
-they can currently not be called compatible. [We're already working on fixing compatibility issues between Nova and Oraxen](https://github.com/xenondevs/Nova/tree/oraxen-integration).
+You can use Oraxen's upload service to automatically upload the resource pack.  
+[Resource Pack Hosting - Available Upload Services](http://localhost/nova/admin/setup/#automatic-resource-pack-hosting)
+
+## Known Issues
+
+* Duplicated and wrong block sounds

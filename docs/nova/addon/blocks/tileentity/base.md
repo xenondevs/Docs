@@ -1,21 +1,17 @@
 # Creating a basic TileEntity class
 
 Before registering the material, you need to create a TileEntity class with a constructor that takes a `NovaTileEntityState` instance.
-We will reference this constructor in the ``registerTileEntity`` function later.
 
 ```kotlin
 class SolarPanel(blockState: NovaTileEntityState) : NetworkedTileEntity(blockState) {
-    
-    override val gui: Lazy<TileEntityGUI>
-        get() = TODO("We'll implement this later")
 
 }
 ```
 
-Don't worry about the ``gui`` property or ``NetworkedTileEntity`` yet. Now we can finally register the material.
+Now, we can register the material:
 
 ```kotlin
-val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
+val SOLAR_PANEL = NovaMaterialRegistry.tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
 ```
 
 So your ``Blocks`` object might look something like this:
@@ -23,9 +19,9 @@ So your ``Blocks`` object might look something like this:
 ```kotlin
 object Blocks {
     
-    private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolLevel.STONE, true, Material.BARRIER, SoundEffect(Sound.BLOCK_STONE_PLACE), SoundEffect(Sound.BLOCK_STONE_BREAK), Material.NETHERITE_BLOCK)
+    private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolTier.WOOD, true, SoundGroup.STONE, Material.NETHERITE_BLOCK)
     
-    val SOLAR_PANEL = registerTileEntity(ExampleAddon, "solar_panel", STONE, ::SolarPanel)
+    val SOLAR_PANEL = tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
     
     fun init() = Unit
 
@@ -144,7 +140,7 @@ override fun saveData() {
 
 * ``getInventory()`` - See [ItemHolders](holders.md#itemholder).
 * ``getFluidContainer()`` - See [FluidHolders](holders.md#fluidholder).
-* ``createParticleTask()`` - See [Particles](particles.md).
+* ``createPacketTask()`` - Repeatedly sends the same packets to all players in range. See [Particles](particles.md).
 * ``createSideConfig()``, ``createExclusiveSideConfig()`` - See [Holders](holders.md).
 * ``getBlockFrontRegion()``, ``getFrontRegion()``, ``getSurroundingRegion()`` - See [Region](region.md)
 * ``createStaticRegion()``, ``getDynamicRegion()``, ``getUpgradableRegion()`` - See [Reloadable Region](region.md#reloadableregion)

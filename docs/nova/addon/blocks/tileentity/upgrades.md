@@ -1,5 +1,3 @@
-# Upgrades
-
 ## Making your TileEntity upgradeable
 
 In order to make your TileEntity upgradeable, you'll need to implement the `Upgradeable` interface.  
@@ -9,33 +7,36 @@ upgrade holder to the different energy holders, if you have one.
 ### Calculating upgraded values
 
 While the energy holder automatically changes it's `maxEnergy` or `energyConsumption` values, you might want to implement
-your own logic that is called whenever upgrades change. To do this, override the `reload` method in your TileEntity
-(make sure to keep the super call). This method is called when an upgrade is added/removed or the configs are reloaded,
-which could also affect upgrade modifiers.  
-Then, retrieve the current upgrade modifier for a certain upgrade type by calling `UpgradeHolder#getValue(UpgradeType)`
+your own logic that is called whenever upgrades change.  
+To do this, you can either:
+
+* Override the `reload` method in your TileEntity (make sure to keep the super call) and retrieve the current upgrade modifier
+  for a certain upgrade type by calling `UpgradeHolder#getValue(UpgradeType)`. (The reload method is called whenever an
+  upgrades were added or removed and when reloading configs.)
+* Use `UpgradeHolder.getValueProvider(UpgradeType)` to get a provider that will automatically update whenever the upgrade modifier
+  changes.
 
 ??? example
 
-    ```kotlin title="AutoFisher"
+    ```kotlin title="Using reload function"
     override fun reload() {
         super.reload()
         maxIdleTime = (IDLE_TIME / upgradeHolder.getValue(UpgradeType.SPEED)).toInt()
-        if (timePassed > maxIdleTime) timePassed = maxIdleTime
     }
     ```
 
-!!! tip
+    ```kotlin title="Using value provider"
+    val maxIdleTime by upgradeHolder.getValueProvider(UpgradeType.SPEED) { (IDLE_TIME / it).toInt() }
+    ```
 
-    Consider calling the `reload` method in the init block instead of duplicating the calculation code.
+## Using the UpgradesGui
 
-## Using the Upgrades GUI
-
-The `UpgradesGUI` can easily be added to your `TileEntityGUI` by creating an `OpenUpgradesItem` with your `upgradeHolder`.
+The `UpgradesGui` can easily be added to your `TileEntityGui` by creating an `OpenUpgradesItem` with your `upgradeHolder`.
 
 ```kotlin
-inner class SolarPanelGUI : TileEntityGUI() {
+inner class SolarPanelGui : TileEntityGui() {
     
-    override val gui: GUI = GUIBuilder(GUIType.NORMAL)
+    override val gui = Gui.normal()
         .setStructure(
             "1 - - - - - - - 2",
             "| u # # e # # # |",
@@ -51,46 +52,32 @@ inner class SolarPanelGUI : TileEntityGUI() {
 
 ## Creating a custom Upgrade Type
 
-### Time and Place of Registration
+### Creating an Upgrade Type Registry
 
-Just like nova materials, upgrade types should be registered during addon initialization, i.e. in the `init()` function
-of your addon object. We recommend creating a singleton object to house all of your upgrade types:
+Create an `UpgradeTypeRegistry` singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
-object UpgradeTypes {
+@Init // (1)!
+object UpgradeTypes : UpgradeTypesRegistry by ExampleAddon.registry {
     
-    // we will register upgrade types here later
-    
-    fun init() = Unit
+    // (2)!
     
 }
 ```
 
-Then, call that init function during addon initialization:
+1. Nova will load this class during addon initialization, causing your upgrade types to be registered.
+2. Register your upgrade types here
 
-```kotlin
-object ExampleAddon : Addon() {
-
-    override fun init() {
-        Items.init()
-        Blocks.init()
-        UpgradeTypes.init()
-    }
-
-}
-```
-
-Now, lets actually register an upgrade type. For that we'll need two `ItemNovaMaterials`:
+Now, lets actually register an upgrade type. For that we'll need two `NovaItems`:
 One for the actual item that is used by players and one for the icon in the GUI, which needs to have an inventory background.
 
 Assuming you have these two items, you can now register your upgrade type:
 
 ```kotlin
+@Init
 object UpgradeTypes {
     
-    val MY_UPGRADE_TYPE = UpgradeTypeRegistry.register<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
-    
-    fun init() = Unit
+    val MY_UPGRADE_TYPE = registerUpgradeType<Double>(ExampleAddon, "example_upgrade", Items.EXAMPLE_UPGRADE, Items.GUI_EXAMPLE_UPGRADE)
     
 }
 ```
@@ -108,5 +95,5 @@ called `upgrade_values.yml` in your `configs/` directory. Then add your upgrade 
 example_upgrade: [ 1.0, 1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1, 10.0 ]
 ```
 
-For more information about the upgrade values format, check out the
-[configuration page](../../../admin/configuration.md#upgrade-values) on it.
+For more information about the `upgrade_values.json` format, check out
+[Configuration - Upgrade Values](../../../admin/configuration.md#upgrade-values).
