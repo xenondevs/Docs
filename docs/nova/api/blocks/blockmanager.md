@@ -86,43 +86,39 @@ instance of the block.
 
 ## Placing a block
 
-You can also place a nova block at a specific location by using a [``NovaMaterial``](../material/index.md).
-
-!!! warning
-
-    This function will throw an ``IllegalArgumentException`` if the provided ``NovaMaterial`` is not a block.
+You can also place a nova block at a specific location by using a [`NovaBlock`](blockregistry.md).
 
 === "Kotlin"
 
     ```kotlin
-    val material = materialRegistry.get("machines:pulverizer")
+    val block = blockRegistry.get("machines:pulverizer")
     blockManager.placeBlock(
         location, // (1)!
-        material, // (2)!
+        block, // (2)!
         player, // (3)!
         true // (4)!
     )
     ```
 
     1. The location at which to place the block.
-    2. The material to place.
+    2. The block type to place.
     3. The source of the block placement. This doesn't have to be a player, it can also be a tile-entity or similar.
     4. Whether to play a sound when the block is placed.
 
 === "Java"
 
     ```java
-    NovaMaterial material = materialRegistry.get("machines:pulverizer");
+    NovaBlock block = blockRegistry.get("machines:pulverizer");
     blockManager.placeBlock(
         location, // (1)!
-        material, // (2)!
+        block, // (2)!
         player, // (3)!
         true // (4)!
     );
     ```
 
     1. The location at which to place the block.
-    2. The material to place.
+    2. The block type to place.
     3. The source of the block placement. This doesn't have to be a player, it can also be a tile-entity or similar.
     4. Whether to play a sound when the block is placed.
 
