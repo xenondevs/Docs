@@ -5,12 +5,12 @@
 Checked plugins are fully supported (e.g. their items can be used in recipes, their blocks can be broken by machines, etc.)  
 Unchecked plugins are partially supported, some features might not work.
 
-- [x] [ItemsAdder](itemsadder.md)
+- [x] [ItemsAdder](itemsadder.md) | [Known Issues](itemsadder.md#known-issues)
+- [x] [Oraxen](oraxen.md)         | [Known Issues](oraxen.md#known-issues)
 - [ ] MMOItems
 
 Planned:
 
-* [Oraxen](oraxen.md)
 * [Slimefun](utp.md)
 * [Space](utp.md)
 

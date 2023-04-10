@@ -1,3 +1,14 @@
+## Initialization
+
+Nova provides you with the aforementioned `#!kotlin @Init` annotation. Simply annotate your class with it and Nova will load it during
+the initialization phase of your addon. You can also specify dependencies which will be loaded before your class.
+
+If your class is annotated with `#!kotlin @Init`, you can also annotate your functions with `#!kotlin @InitFun` and `#!kotlin @DisableFun`:
+
+* `#!kotlin @InitFun`: Specify one or more functions that should be called during initialization.
+* `#!kotlin @DisableFun` Specify one or more functions that should be called when your addon is disabled. These functions are called
+  in reverse dependency order.
+
 ## Working with Bukkit Events
 
 Of course, you can also use Bukkit's events. To register an event listener, use the `Listener.registerListener()` extension function.
