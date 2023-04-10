@@ -23,5 +23,5 @@ nav:
       - "Scroll GUI": "guis/scroll.md"
       - "Tab GUI": "guis/tab.md"
   - "Windows": "windows.md"
-  - "VirtualInventory": "virtualinventory.md"
+  - "Inventory": "inventory.md"
   - "Localization": "localization.md"

@@ -26,9 +26,7 @@ To use InvUI, you first have to add the xenondevs maven repository to your build
 === "Gradle Kotlin"
 
     ```kotlin
-    maven {
-        url = uri("https://repo.xenondevs.xyz/releases")
-    }
+    maven("https://repo.xenondevs.xyz/releases")
     ```
 
 Now you can add InvUI as to your build configuration:
@@ -53,6 +51,30 @@ Now you can add InvUI as to your build configuration:
 
     ```kotlin
     implementation("xyz.xenondevs.invui:invui:VERSION")
+    ```
+
+If you're using Kotlin, you should also add the `invui-kotlin` module:
+
+=== "Maven"
+
+    ```xml
+    <dependency>
+        <groupId>xyz.xenondevs.invui</groupId>
+        <artifactId>invui-kotlin</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+
+=== "Gradle Groovy"
+
+    ```groovy
+    implementation "xyz.xenondevs.invui:invui-kotlin:VERSION"
+    ```
+
+=== "Gradle Kotlin"
+
+    ```kotlin
+    implementation("xyz.xenondevs.invui:invui-kotlin:VERSION")
     ```
 
 To find the latest InvUI version, you can explore the [Maven Repository](https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/invui/invui/)
