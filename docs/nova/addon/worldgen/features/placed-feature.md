@@ -125,6 +125,10 @@ otherwise.
 
 Returns the position if the [block predicate](#block-predicates) matches the block at the given position. Empty otherwise.
 
+| Name        | Description                               |
+|-------------|-------------------------------------------|
+| `predicate` | The [`BlockPredicate`](#block-predicates) |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -132,10 +136,6 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
     ```
 
 === "Json"
-
-    | Name        | Description                              |
-    |-------------|------------------------------------------|
-    | `predicate` | The [block predicate](#block-predicates) |
 
     ```json title="Example"
     {
@@ -151,6 +151,10 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
 
 Returns all positions in the given position's chunk that were carved out by a [carver](../carvers.md).
 
+| Name   | Description                               |
+|--------|-------------------------------------------|
+| `step` | The carver step. Can be `air` or `liquid` |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -158,10 +162,6 @@ Returns all positions in the given position's chunk that were carved out by a [c
     ```
 
 === "Json"
-
-    | Name   | Description                               |
-    |--------|-------------------------------------------|
-    | `step` | The carver step. Can be `air` or `liquid` |
     
     ```json title="Example"
     {
@@ -173,6 +173,10 @@ Returns all positions in the given position's chunk that were carved out by a [c
 ### `minecraft:count`
 
 Returns the given position `count` times.
+
+| Name    | Description                                                                                                                               |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `count` | An [`IntProvider`](#int-providers) (Range limit in Json is $[0;256]$). The provided value is the number of times the position is returned |
 
 === "Kotlin"
 
@@ -186,10 +190,6 @@ Returns the given position `count` times.
 
 === "Json"
 
-    | Name    | Description                                                                                                                                           |
-    |---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | `count` | Either an `int` value in the range $[0;256]$ or an [int provider](#int-providers). The provided value is the number of times the position is returned |
-    
     ```json title="Example - Simple"
     {
       "type": "minecraft:count",
@@ -217,6 +217,13 @@ Returns the given position `count` times.
 Scans for blocks matching the given [block predicate](#block-predicates) up/down until it finds a matching block or the
 max number of steps is reached. If no matching block is found, empty is returned.
 
+| Name                                  | Description                                                                                                                |
+|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `direction_of_search`                 | The direction of the scan. Can be `up` or `down`                                                                           |
+| `target_condition`                    | The [`BlockPredicate`](#block-predicates) to match                                                                         |
+| `allowed_search_condition` (optional) | A `BlockPredicate` that each scanned block must match to allow further scanning. If not provided, no condition is applied. |
+| `max_steps`                           | An `int` that determines the max number of steps. (Range limit in Json is $[1;32]$)                                        |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -229,13 +236,6 @@ max number of steps is reached. If no matching block is found, empty is returned
     ```
 
 === "Json"
-
-    | Name                                  | Description                                                                                                                                   |
-    |---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-    | `direction_of_search`                 | The direction of the scan. Can be `up` or `down`                                                                                              |
-    | `max_steps`                           | Max number of steps to scan. An `int` value in the range $[1;32]$                                                                             |
-    | `target_condition`                    | The [block predicate](#block-predicates) to match                                                                                             |
-    | `allowed_search_condition` (optional) | A [block predicate](#block-predicates) that each scanned block must match to allow further scanning. If not provided, no condition is applied |
     
     ```json title="Example"
     {
@@ -259,6 +259,10 @@ max number of steps is reached. If no matching block is found, empty is returned
 
 Takes the input position and sets the y coordinate to a value provided by the given [height provider](../height-provider.md).
 
+| Name     | Description                                                              |
+|----------|--------------------------------------------------------------------------|
+| `height` | The [`HeightProvider`](../height-provider.md) providing the y-coordinate |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -267,10 +271,6 @@ Takes the input position and sets the y coordinate to a value provided by the gi
 
 === "Json"
 
-    | Name     | Description                                                             |
-    |----------|-------------------------------------------------------------------------|
-    | `height` | The [height provider](../height-provider.md) providing the y-coordinate |
-    
     ```json title="Example"
     {
       "type": "minecraft:height_range",
@@ -288,8 +288,12 @@ Takes the input position and sets the y coordinate to a value provided by the gi
 
 ### `minecraft:heightmap`
 
-Takes the input position and sets the y coordinate to one block above the heightmap at the given position. Check out the 
-[heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+Takes the input position and sets the y coordinate to one block above the heightmap at the given position.  
+Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+
+| Name        | Description                                                                                                                                               |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `heightmap` | The heightmap type to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. |
 
 === "Kotlin"
 
@@ -298,10 +302,6 @@ Takes the input position and sets the y coordinate to one block above the height
     ```
 
 === "Json"
-
-    | Name        | Description                                                                                                                                                                                                                                                                      |
-    |-------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | `heightmap` | The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. |
     
     ```json title="Example"
     {
@@ -334,8 +334,14 @@ Gets the noise value at the given position and, if the value is positive, return
 amount of times the position is returned is determined by the following code:
 ```java
 double noise = Biome.BIOME_INFO_NOISE.getValue((double)pos.getX() / noiseFactor, (double)pos.getZ() / noiseFactor, false);
-int n = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
+int count = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
 ```
+
+| Name                              | Description                                                                               |
+|-----------------------------------|-------------------------------------------------------------------------------------------|
+| `noise_to_count_ratio`            | An `int` that defines the ratio of noise to count.                                        |
+| `noise_factor`                    | A `double` that scales the noise horizontally. The higher the value, the wider the peaks. |
+| `noise_offset` (optional in Json) | A `double` that offsets the noise vertically.                                             |
 
 === "Kotlin"
 
@@ -348,12 +354,6 @@ int n = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
     ```
 
 === "Json"
-
-    | Name                      | Description                                                                                     |
-    |---------------------------|-------------------------------------------------------------------------------------------------|
-    | `noise_factor`            | A `double` value that scales the noise horizontally. The higher the value, the wider the peaks. |
-    | `noise_offset` (optional) | A `double` value that offsets the noise vertically.                                             |
-    | `noise_to_count_ratio`    | An `int` value that defines the ratio of noise to count.                                        |
     
     ```json title="Example"
     {
@@ -372,10 +372,16 @@ position is returned `below_noise` times. Otherwise, it is returned `above_noise
 ```java
 if (noise < threshold) {
   return below_noise;
-} else {
+} else { // noise >= threshold
   return above_noise;
 }
 ```
+
+| Name          | Description                                                                                                              |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|
+| `noise_level` | A `double` value of the threshold that determines whether the position is returned `below_noise` or `above_noise` times. |
+| `below_noise` | An `int` that determines how often the position is returned if the noise value is below the threshold.                   |
+| `above_noise` | An `int` that determines how often the position is returned if the noise value is above/equal to the threshold.          |
 
 === "Kotlin"
 
@@ -388,12 +394,6 @@ if (noise < threshold) {
     ```
 
 === "Json"
-
-    | Name          | Description                                                                                                              |
-    |---------------|--------------------------------------------------------------------------------------------------------------------------|
-    | `noise_level` | A `double` value of the threshold that determines whether the position is returned `below_noise` or `above_noise` times. |
-    | `above_noise` | An `int` value that determines how often the position is returned if the noise value is above/equal to the threshold.    |
-    | `below_noise` | An `int` value that determines how often the position is returned if the noise value is below the threshold.             |
     
     ```json title="Example"
     {
@@ -408,6 +408,11 @@ if (noise < threshold) {
 
 Offsets the given position by the provided [int provider's](#int-providers) values.
 
+| Name        | Description                                                                                                  |
+|-------------|--------------------------------------------------------------------------------------------------------------|
+| `xz_spread` | An [`IntProvider`](#int-providers). (Range limit in Json is $[-16;16]$). **x and z are sampled separately!** |
+| `y_spread`  | An `IntProvider`. (Range limit in Json is $[-16;16]$).                                                       |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -415,11 +420,6 @@ Offsets the given position by the provided [int provider's](#int-providers) valu
     ```
 
 === "Json"
-
-    | Name        | Description                                                                                                                  |
-    |-------------|------------------------------------------------------------------------------------------------------------------------------|
-    | `xz_spread` | Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers). **x and z are sampled separately!** |
-    | `y_spread`  | Either a fixed `int` value in the range $[-16;16]$ or an [int provider](#int-providers).                                     |
     
     ```json title="Example"
     {
@@ -440,6 +440,10 @@ Offsets the given position by the provided [int provider's](#int-providers) valu
 Either returns the given position or empty. The chance of returning the position is determined by the given chance and
 calculated via `1 / chance`.
 
+| Name     | Description                                                                     |
+|----------|---------------------------------------------------------------------------------|
+| `chance` | A positive `int` that determines the average amount of tries between a success. |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -447,10 +451,6 @@ calculated via `1 / chance`.
     ```
 
 === "Json"
-
-    | Name     | Description                                                            |
-    |----------|------------------------------------------------------------------------|
-    | `chance` | A positive `int` that determines the chance of returning the position. |
     
     ```json title="Example"
     {
@@ -461,8 +461,14 @@ calculated via `1 / chance`.
 
 ### `minecraft:surface_relative_threshold_filter`
 
-Returns the given position if the surface height at the given position is inside the specified range. Otherwise, returns empty.
+Returns the given position if the surface height at the given position is inside the specified range. Otherwise, returns empty.  
 Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40a0f0fe9cd) for image examples.
+
+| Name                                                         | Description                                                                                                                                          |
+|--------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `heightmap`                                                  | The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. |
+| `min_inclusive` (Optional in Json, defaults to $-2^{31}$)    | A `double` value that defines the minimum surface level.                                                                                             |
+| `max_inclusive` (Optional in Json, defaults to $2^{31} - 1$) | A `double` value that defines the maximum surface level.                                                                                             |
 
 === "Kotlin"
 
@@ -475,12 +481,6 @@ Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052
     ```
 
 === "Json"
-
-    | Name            | Description                                                                                                                                                                                                                                                                      |
-    |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | `heightmap`     | The heightmap to use. Can be `WORLD_SURFACE_WG`, `WORLD_SURFACE`, `OCEAN_FLOOR_WG`, `OCEAN_FLOOR`, `MOTION_BLOCKING` or `MOTION_BLOCKING_NO_LEAVES`. |
-    | `max_inclusive` | A `double` value that defines the maximum surface level. Defaults to $2^{31} - 1$.                                                                                                                                                                                               |
-    | `min_inclusive` | A `double` value that defines the minimum surface level. Defaults to $-2^{31}$.                                                                                                                                                                                                  |
     
     ```json title="Example"
     {
@@ -494,6 +494,10 @@ Check out the [heightmap gist page](https://gist.github.com/ByteZ1337/31f10b0052
 
 If the amount of motion-blocking blocks under the surface is less than/equal to `max_water_depth`, returns the given position. Otherwise, returns empty.
 
+| Name              | Description                                  |
+|-------------------|----------------------------------------------|
+| `max_water_depth` | An `int` defining the maximum allowed depth. |
+
 === "Kotlin"
 
     ```kotlin title="Example"
@@ -502,10 +506,6 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
 
 === "Json"
 
-    | Name              | Description                                  |
-    |-------------------|----------------------------------------------|
-    | `max_water_depth` | An `int` defining the maximum allowed depth. |
-    
     ```json title="Example"
     {
       "type": "minecraft:surface_water_depth_filter",
@@ -614,6 +614,27 @@ Minecraft also offers further abstraction via the `RepeatingPlacement` and `Plac
 the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
 
 ## Inlined
+
+Some placed features might not be worth registering in the `Registry` (e.g. `fill_layer` features for flat worlds). In
+such cases, `#!kotlin PlacementUtils.inlinePlaced` can be used to get a `Holder` that contains a `PlacedFeature` constructed
+from the `ConfiguredFeature` and `PlacementModifiers` provided.
+
+As an example, here's how `fill_layer` placed features are inlined in Minecraft's flat level generator:
+
+```java title="FlatLevelGeneratorSettings.java"
+/* ... */
+
+for (layer = 0; layer < layers.size(); ++layer) {
+    BlockState blockstate = layers.get(layer);
+
+    if (!Heightmap.Types.MOTION_BLOCKING.isOpaque().test(blockstate)) {
+        layers.set(layer, null);
+        builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacementUtils.inlinePlaced(Feature.FILL_LAYER, new LayerConfiguration(layer, blockstate)));
+    }
+}
+
+/* ... */
+```
 
 # TODO \/ move to different section \/
 
