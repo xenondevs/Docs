@@ -149,7 +149,7 @@ Returns the position if the [block predicate](#block-predicates) matches the blo
 
 ### `minecraft:carving_mask`
 
-Returns all positions in the given position's chunk that were carved out by a [carver](../carvers.md).
+Returns all positions in the given position's chunk that were carved out by a [carver](../carver.md).
 
 | Name   | Description                               |
 |--------|-------------------------------------------|
