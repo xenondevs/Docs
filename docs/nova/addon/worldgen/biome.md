@@ -1,9 +1,9 @@
 # Biomes
 
 !!! warning
-    
-    This worldgen page is still a work in progress. Some Json formats/code examples might be missing and will be added in
-    the future.
+
+    This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be
+    added in the future.
 
 Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), [climate](#climate),
 [effects](#special-effects) and much more. This page only covers the `BiomeBuilder` for now. If you're looking for the Json
@@ -32,7 +32,7 @@ kdoc for more information.
 ```kotlin title="Biomes.kt"
 @OptIn(ExperimentalWorldGen::class)
 @Init
-object Biomes : BiomeRegistry by Machines.registry {
+object Biomes : BiomeRegistry by ExampleAddon.registry {
     
     private val MISC_ORES = listOf(OrePlacements.ORE_DIRT, OrePlacements.ORE_GRAVEL, OrePlacements.ORE_GRANITE_UPPER, OrePlacements.ORE_GRANITE_LOWER, OrePlacements.ORE_DIORITE_UPPER, OrePlacements.ORE_DIORITE_LOWER, OrePlacements.ORE_ANDESITE_UPPER, OrePlacements.ORE_ANDESITE_LOWER, OrePlacements.ORE_TUFF)
     private val MINERAL_ORES = listOf(OrePlacements.ORE_COAL_UPPER, OrePlacements.ORE_COAL_LOWER, OrePlacements.ORE_IRON_UPPER, OrePlacements.ORE_IRON_MIDDLE, OrePlacements.ORE_IRON_SMALL, OrePlacements.ORE_GOLD, OrePlacements.ORE_GOLD_LOWER, OrePlacements.ORE_REDSTONE, OrePlacements.ORE_REDSTONE_LOWER, OrePlacements.ORE_DIAMOND, OrePlacements.ORE_DIAMOND_LARGE, OrePlacements.ORE_DIAMOND_BURIED, OrePlacements.ORE_LAPIS, OrePlacements.ORE_LAPIS_BURIED, OrePlacements.ORE_COPPER)

@@ -18,21 +18,26 @@ Below you'll find a quick overview of the format how to use it. Check the sideba
 **TODO**
 
 ### Features
-<small>Check out the [Features Overview](features/features.md) page for more information.</small>
+<small>Check out the [`Features` Overview](features/features.md) page for more information.</small>
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).
 
 ### Carvers
+<small>Check out the [`Carvers` Overview](carver.md) page for more information.</small>
 
-**TODO**
+Carvers are used to carve out caves and ravines in the world.
 
 ### Noise
 
 **TODO**
 
 ### Biomes
+<small>Check out the [`Biomes`](biome.md) and [`BiomeInjections`](inject/biome.md) page for more information.</small>
 
-**TODO**
+Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), 
+[climate](biome.md#climate), [effects](biome.md#special-effects) and much more.
+
+If you want to add `PlacedFeatures` to an already existing biome, check out the [`BiomeInjections`](inject/biome.md) page.
 
 ### Custom Dimensions
 

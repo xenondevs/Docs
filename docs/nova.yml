@@ -128,6 +128,8 @@ nav:
                 - "Custom Features": "addon/worldgen/features/custom-feature.md"
           - "Carvers": "addon/worldgen/carver.md"
           - "Biomes": "addon/worldgen/biome.md"
+          - "Injections":
+              - "BiomeInjections": "addon/worldgen/inject/biome.md"
       - "Migration Guide":
           - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"
