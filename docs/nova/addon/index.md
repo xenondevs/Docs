@@ -26,7 +26,7 @@ if you don't want to use git commands.
 
 ### Codestyle
 
-You can find the xenondevs' codestyle [here](https://github.com/xenondevs/Nova/blob/main/codestyle.xml). To apply it, open 
+You can find the xenondevs codestyle [here](https://github.com/xenondevs/Nova/blob/main/codestyle.xml). To apply it, open 
 your Intellij settings and import the codestyle.xml file here:
 
 ![importing](https://i.imgur.com/gvLfaQg.png)
