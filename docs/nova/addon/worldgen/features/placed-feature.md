@@ -123,11 +123,11 @@ otherwise.
 
 ### `minecraft:block_predicate_filter`
 
-Returns the position if the [block predicate](#block-predicates) matches the block at the given position. Empty otherwise.
+Returns the position if the [block predicate](../types/block-predicate.md) matches the block at the given position. Empty otherwise.
 
-| Name        | Description                               |
-|-------------|-------------------------------------------|
-| `predicate` | The [`BlockPredicate`](#block-predicates) |
+| Name        | Description                                         |
+|-------------|-----------------------------------------------------|
+| `predicate` | The [`BlockPredicate`](../types/block-predicate.md) |
 
 === "Kotlin"
 
@@ -214,13 +214,13 @@ Returns the given position `count` times.
 
 ### `minecraft:environment_scan`
 
-Scans for blocks matching the given [block predicate](#block-predicates) up/down until it finds a matching block or the
+Scans for blocks matching the given [block predicate](../types/block-predicate.md) up/down until it finds a matching block or the
 max number of steps is reached. If no matching block is found, empty is returned.
 
 | Name                                  | Description                                                                                                                |
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `direction_of_search`                 | The direction of the scan. Can be `up` or `down`                                                                           |
-| `target_condition`                    | The [`BlockPredicate`](#block-predicates) to match                                                                         |
+| `target_condition`                    | The [`BlockPredicate`](../types/block-predicate.md) to match                                                               |
 | `allowed_search_condition` (optional) | A `BlockPredicate` that each scanned block must match to allow further scanning. If not provided, no condition is applied. |
 | `max_steps`                           | An `int` that determines the max number of steps. (Range limit in Json is $[1;32]$)                                        |
 

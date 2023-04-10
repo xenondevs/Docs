@@ -25,7 +25,7 @@ A root system feature has the following configuration options:
 | `hanging_root_state_provider`      | A `BlockStateProvider`                                        | The block state to use for the hanging root.                |
 | `hanging_root_placement_attempts`  | An `int`. (Range limit in Json is $[1;256]$)                  | The amount of attempts to place a hanging root.             |
 | `allowed_vertical_water_for_tree`  | An `int`. (Range limit in Json is $[0;64]$)                   | The amount of vertical water allowed for the tree to grow.  |
-| `allowed_tree_position`            | A [`BlockPredicate`](../placed-feature.md#block-predicates)   | A predicate to check if the tree position is valid.         |
+| `allowed_tree_position`            | A [`BlockPredicate`](../../types/block-predicate.md)          | A predicate to check if the tree position is valid.         |
 
 In code, the `RootSystemConfiguration` class is used to configure the feature.
 

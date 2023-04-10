@@ -9,7 +9,7 @@ The `disk` feature has the following configuration options:
 | Option           | Type                                                                                             | Description                                   |
 |------------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------|
 | `state_provider` | See below.                                                                                       | The block state to use for the disk.          |
-| `target`         | A [`BlockPredicate`](../placed-feature.md#block-predicates).                                     | Must be passed in order to generate the disk. |
+| `target`         | A [`BlockPredicate`](../../types/block-predicate.md).                                            | Must be passed in order to generate the disk. |
 | `radius`         | An [`IntProvider`](../../types/number-provider.md#intprovider) (Range limit in Json is $[0;8]$). | Determines the radius of the disk.            |
 | `half_height`    | An `int`. (Range limit in Json is $[0;8]$).                                                      | Defines half of the height of the disk.       |
 
@@ -18,7 +18,7 @@ In code, the `DiskConfiguration` class is used to configure the feature.
 ### State provider
 
 The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../types/block-state-provider.md) that is used
-if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../placed-feature.md#block-predicates)
+if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../../types/block-predicate.md)
 via the `if_true` option, and a [`BlockStateProvider`](../../types/block-state-provider.md) via the `then` option. In code, the
 class is called `RuleBasedBlockStateProvider`.
 
