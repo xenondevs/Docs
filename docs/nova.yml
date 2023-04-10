@@ -83,7 +83,9 @@ nav:
       - "World Generation":
           - "Overview": "addon/worldgen/worldgen.md"
           - "Codecs": "addon/worldgen/codec.md"
-          - "Height Providers": "addon/worldgen/height-provider.md"
+          - "Utility Types":
+              - "Height Providers": "addon/worldgen/types/height-provider.md"
+              - "Number Providers": "addon/worldgen/types/number-provider.md"
           - "Features":
                 - "Overview": "addon/worldgen/features/features.md"
                 - "Placed Features": "addon/worldgen/features/placed-feature.md"

@@ -4,7 +4,7 @@ As the name suggests, the `sea_pickle` feature generates sea pickles in the ocea
 
 ## Configuration
 
-The `sea_pickle` feature only has a `count` [`IntProvider`](../placed-feature.md#int-providers) option. It determines the
+The `sea_pickle` feature only has a `count` [`IntProvider`](../../types/number-provider.md#intprovider) option. It determines the
 max amount of sea pickles per placement.
 
 In code, the `CountConfiguration` class is used to configure the feature.

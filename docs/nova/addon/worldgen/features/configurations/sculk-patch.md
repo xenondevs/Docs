@@ -6,15 +6,15 @@ The `sculk_patch` feature allows you to generate sculk patches in the world.
 
 The `sculk_patch` feature has the following configuration options:
 
-| Option               | Type                                                                                     | Description                                        |
-|----------------------|------------------------------------------------------------------------------------------|----------------------------------------------------|
-| `charge_count`       | An `int`. (Range limit in Json is $[1;32]$)                                              | The amount of charges the sculk patch should have. |
-| `amount_per_charge`  | An `int`. (Range limit in Json is $[1;500]$)                                             | The initial value of each charge.                  |
-| `spread_attempts`    | An `int`. (Range limit in Json is $[1;64]$)                                              | The amount of attempts to spread the sculk patch.  |
-| `growth_rounds`      | An `int`. (Range limit in Json is $[0;8]$)                                               | The amount of times to generate the patch.         |
-| `spread_rounds`      | An `int`. (Range limit in Json is $[0;8]$)                                               | The amount of times to spread the patch.           |
-| `extra_rare_growths` | An [`IntProvider`](../placed-feature.md#int-providers). (Range limit in Json is $[0;8]$) | The amount of extra sculk shriekers to generate.   |
-| `catalyst_chance`    | A `float` in the range $[0.0;1.0]$                                                       | The chance for a sculk catalyst to generate.       |
+| Option               | Type                                                                                             | Description                                        |
+|----------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| `charge_count`       | An `int`. (Range limit in Json is $[1;32]$)                                                      | The amount of charges the sculk patch should have. |
+| `amount_per_charge`  | An `int`. (Range limit in Json is $[1;500]$)                                                     | The initial value of each charge.                  |
+| `spread_attempts`    | An `int`. (Range limit in Json is $[1;64]$)                                                      | The amount of attempts to spread the sculk patch.  |
+| `growth_rounds`      | An `int`. (Range limit in Json is $[0;8]$)                                                       | The amount of times to generate the patch.         |
+| `spread_rounds`      | An `int`. (Range limit in Json is $[0;8]$)                                                       | The amount of times to spread the patch.           |
+| `extra_rare_growths` | An [`IntProvider`](../../types/number-provider.md#intprovider). (Range limit in Json is $[0;8]$) | The amount of extra sculk shriekers to generate.   |
+| `catalyst_chance`    | A `float` in the range $[0.0;1.0]$                                                               | The chance for a sculk catalyst to generate.       |
 
 In code, the `SculkPatchConfiguration` class is used to configure the feature.
 

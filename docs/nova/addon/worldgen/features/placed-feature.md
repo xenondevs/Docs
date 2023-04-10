@@ -174,9 +174,9 @@ Returns all positions in the given position's chunk that were carved out by a [c
 
 Returns the given position `count` times.
 
-| Name    | Description                                                                                                                               |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `count` | An [`IntProvider`](#int-providers) (Range limit in Json is $[0;256]$). The provided value is the number of times the position is returned |
+| Name    | Description                                                                                                                                                        |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `count` | An [`IntProvider`](../types/number-provider.md#intprovider) (Range limit in Json is $[0;256]$). The provided value is the number of times the position is returned |
 
 === "Kotlin"
 
@@ -257,11 +257,11 @@ max number of steps is reached. If no matching block is found, empty is returned
 
 ### `minecraft:height_range`
 
-Takes the input position and sets the y coordinate to a value provided by the given [height provider](../height-provider.md).
+Takes the input position and sets the y coordinate to a value provided by the given [height provider](../types/height-provider.md).
 
-| Name     | Description                                                              |
-|----------|--------------------------------------------------------------------------|
-| `height` | The [`HeightProvider`](../height-provider.md) providing the y-coordinate |
+| Name     | Description                                                                    |
+|----------|--------------------------------------------------------------------------------|
+| `height` | The [`HeightProvider`](../types/height-provider.md) providing the y-coordinate |
 
 === "Kotlin"
 
@@ -406,12 +406,12 @@ if (noise < threshold) {
 
 ### `minecraft:random_offset`
 
-Offsets the given position by the provided [int provider's](#int-providers) values.
+Offsets the given position by the provided [`IntProvider's`](../types/number-provider.md#intprovider) values.
 
-| Name        | Description                                                                                                  |
-|-------------|--------------------------------------------------------------------------------------------------------------|
-| `xz_spread` | An [`IntProvider`](#int-providers). (Range limit in Json is $[-16;16]$). **x and z are sampled separately!** |
-| `y_spread`  | An `IntProvider`. (Range limit in Json is $[-16;16]$).                                                       |
+| Name        | Description                                                                                                                           |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `xz_spread` | An [`IntProvider`](../types/number-provider.md#intprovider). (Range limit in Json is $[-16;16]$). **x and z are sampled separately!** |
+| `y_spread`  | An `IntProvider`. (Range limit in Json is $[-16;16]$).                                                                                |
 
 === "Kotlin"
 
@@ -639,7 +639,3 @@ for (layer = 0; layer < layers.size(); ++layer) {
 # TODO \/ move to different section \/
 
 ## Block predicates
-
-## Int Providers
-
-## Float Providers

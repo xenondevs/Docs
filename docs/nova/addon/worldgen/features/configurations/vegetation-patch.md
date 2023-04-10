@@ -6,18 +6,18 @@ The `vegetation_patch` and `waterlogged_vegetation_patch` features can be used t
 
 The vegetation patch feature has the following configuration options:
 
-| Option                      | Type                                                                                       | Description                                                               |
-|-----------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| `replaceable`               | A block tag (Starting with `#` in Json).                                                   | The blocks that can be replaced by the vegetation.                        |
-| `ground_state`              | A [`BlockStateProvider`](../../block-state-provider.md)                                    | The block state of the vegetation.                                        |
-| `vegetation_feature`        | A [`PlacedFeature`](../placed-feature.md) (or id in Json).                                 | The vegetation to place.                                                  |
-| `surface`                   | Enum constants of `CaveSurface` (`ceiling` or `floor`).                                    | The surface to place the vegetation on.                                   |
-| `depth`                     | An [`IntProvider`](../placed-feature.md#int-providers) (Range limit in Json is $[0;128]$). | The search depth.                                                         |
-| `extra_bottom_block_chance` | A `float` (Range limit in Json is $[0.0;1.0]$).                                            | The chance that an extra block is placed at the bottom of the vegetation. |
-| `vertical_range`            | An `int` (Range limit in Json is $[1;256]$).                                               | The vertical range of the vegetation.                                     |
-| `vegetation_chance`         | A `float` (Range limit in Json is $[0.0;1.0]$).                                            | The chance that the vegetation is placed.                                 |
-| `xz_radius`                 | An `IntProvider` (Range limit in Json is $[0;128]$).                                       | The horizontal radius of the vegetation.                                  |
-| `extra_edge_column_chance`  | A `float` (Range limit in Json is $[0.0;1.0]$).                                            | The chance that an extra column is placed at the edge of the vegetation.  |
+| Option                      | Type                                                                                               | Description                                                               |
+|-----------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `replaceable`               | A block tag (Starting with `#` in Json).                                                           | The blocks that can be replaced by the vegetation.                        |
+| `ground_state`              | A [`BlockStateProvider`](../../block-state-provider.md)                                            | The block state of the vegetation.                                        |
+| `vegetation_feature`        | A [`PlacedFeature`](../placed-feature.md) (or id in Json).                                         | The vegetation to place.                                                  |
+| `surface`                   | Enum constants of `CaveSurface` (`ceiling` or `floor`).                                            | The surface to place the vegetation on.                                   |
+| `depth`                     | An [`IntProvider`](../../types/number-provider.md#intprovider) (Range limit in Json is $[0;128]$). | The search depth.                                                         |
+| `extra_bottom_block_chance` | A `float` (Range limit in Json is $[0.0;1.0]$).                                                    | The chance that an extra block is placed at the bottom of the vegetation. |
+| `vertical_range`            | An `int` (Range limit in Json is $[1;256]$).                                                       | The vertical range of the vegetation.                                     |
+| `vegetation_chance`         | A `float` (Range limit in Json is $[0.0;1.0]$).                                                    | The chance that the vegetation is placed.                                 |
+| `xz_radius`                 | An `IntProvider` (Range limit in Json is $[0;128]$).                                               | The horizontal radius of the vegetation.                                  |
+| `extra_edge_column_chance`  | A `float` (Range limit in Json is $[0.0;1.0]$).                                                    | The chance that an extra column is placed at the edge of the vegetation.  |
 
 In code, the `VegetationPatchConfiguration` class is used to configure the feature.
 

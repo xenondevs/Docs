@@ -7,12 +7,12 @@ the deltas in the basalt deltas biome.
 
 The following configuration options are available:
 
-| Option     | Type                                                                                      | Description                                                         |
-|------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `contents` | A [`BlockState`](../../block-state.md)                                                    | The block state to use inside of the delta.                         |
-| `rim`      | A `BlockState`                                                                            | The block state to use for the rim.                                 |
-| `size`     | An [`IntProvider`](../placed-feature.md#int-providers). (Range limit in Json is $[0;16]$) | Determines the maximum radius from the center of the current delta. |
-| `rim_size` | An `IntProvider`. (Range limit in Json is $[0;16]$)                                       | Determines the size of the rim.                                     |
+| Option     | Type                                                                                              | Description                                                         |
+|------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `contents` | A [`BlockState`](../../block-state.md)                                                            | The block state to use inside of the delta.                         |
+| `rim`      | A `BlockState`                                                                                    | The block state to use for the rim.                                 |
+| `size`     | An [`IntProvider`](../../types/number-provider.md#intprovider). (Range limit in Json is $[0;16]$) | Determines the maximum radius from the center of the current delta. |
+| `rim_size` | An `IntProvider`. (Range limit in Json is $[0;16]$)                                               | Determines the size of the rim.                                     |
 
 In code, the `DeltaFeatureConfiguration` class is used to configure the feature.
 

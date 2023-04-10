@@ -17,7 +17,7 @@ In code, the `BlockColumnConfiguration` class is used to configure the feature.
 
 ### Layer
 
-Layers have 2 options: `height`, an [`IntProvider`](../placed-feature.md#int-providers) that determines the height of this 
+Layers have 2 options: `height`, an [`IntProvider`](../../types/number-provider.md#intprovider) that determines the height of this 
 layer, and `block`, a [`BlockStateProvider`](../../block-state-provider.md) that determines the block state to use for this
 layer.
 
