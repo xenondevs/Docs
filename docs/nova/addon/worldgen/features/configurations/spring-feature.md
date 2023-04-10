@@ -6,13 +6,13 @@ The `spring_feature` allows you to single-block fluid springs in the world.
 
 The `spring_feature` has the following configuration options:
 
-| Option                                                        | Type                                                       | Description                                                        |
-|---------------------------------------------------------------|------------------------------------------------------------|--------------------------------------------------------------------|
-| `state`                                                       | A [`BlockState`](../../block-state.md) (Has to be a fluid) | The fluid state to use for the spring.                             |
-| `requires_block_below` (optional in Json, defaults to `true`) | A `boolean`                                                | Whether the spring requires a block in `valid_blocks` below.       |
-| `rock_count` (optional in Json, defaults to 4)                | An `int`                                                   | The required amount of blocks in `valid_blocks` around the spring. |
-| `hole_count` (optional in Json, defaults to 1)                | An `int`                                                   | The required amount of air blocks around the spring.               |
-| `valid_blocks`                                                | A list of `BlockStates`                                    | The blocks that are valid for the spring to spawn in.              |
+| Option                                                        | Type                                                             | Description                                                        |
+|---------------------------------------------------------------|------------------------------------------------------------------|--------------------------------------------------------------------|
+| `state`                                                       | A [`BlockState`](../../types/block-state.md) (Has to be a fluid) | The fluid state to use for the spring.                             |
+| `requires_block_below` (optional in Json, defaults to `true`) | A `boolean`                                                      | Whether the spring requires a block in `valid_blocks` below.       |
+| `rock_count` (optional in Json, defaults to 4)                | An `int`                                                         | The required amount of blocks in `valid_blocks` around the spring. |
+| `hole_count` (optional in Json, defaults to 1)                | An `int`                                                         | The required amount of air blocks around the spring.               |
+| `valid_blocks`                                                | A list of `BlockStates`                                          | The blocks that are valid for the spring to spawn in.              |
 
 In code, the `SpringConfiguration` class is used to configure the feature.
 

@@ -6,9 +6,9 @@ The `block_pile` can be used to place piles of blocks (for example hay/melons in
 
 A block pile feature only has the `state_provider` option:
 
-| Option           | Type                                                     | Description                          |
-|------------------|----------------------------------------------------------|--------------------------------------|
-| `state_provider` | A  [`BlockStateProvider`](../../block-state-provider.md) | The block state to use for the pile. |
+| Option           | Type                                                           | Description                          |
+|------------------|----------------------------------------------------------------|--------------------------------------|
+| `state_provider` | A  [`BlockStateProvider`](../../types/block-state-provider.md) | The block state to use for the pile. |
 
 In code, the `BlockPileConfiguration` class is used to configure the feature.
 

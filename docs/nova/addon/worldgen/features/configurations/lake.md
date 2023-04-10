@@ -10,10 +10,10 @@ The `lake` feature can be used to add lakes to a biome (for example the undergro
 
 The `lake` feature has the following configuration options:
 
-| Option    | Type                                   | Description                           |
-|-----------|----------------------------------------|---------------------------------------|
-| `fluid`   | A [`BlockState`](../../block-state.md) | The fluid block to use for the lake.  |
-| `barrier` | A `BlockState`                         | The block to use for the lake's edge. |
+| Option    | Type                                         | Description                           |
+|-----------|----------------------------------------------|---------------------------------------|
+| `fluid`   | A [`BlockState`](../../types/block-state.md) | The fluid block to use for the lake.  |
+| `barrier` | A `BlockState`                               | The block to use for the lake's edge. |
 
 In code, the `LakeFeature.Configuration` class is used to configure the feature.
 

@@ -17,9 +17,9 @@ In code, the `DiskConfiguration` class is used to configure the feature.
 
 ### State provider
 
-The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../block-state-provider.md) that is used
+The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../types/block-state-provider.md) that is used
 if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../placed-feature.md#block-predicates)
-via the `if_true` option, and a [`BlockStateProvider`](../../block-state-provider.md) via the `then` option. In code, the
+via the `if_true` option, and a [`BlockStateProvider`](../../types/block-state-provider.md) via the `then` option. In code, the
 class is called `RuleBasedBlockStateProvider`.
 
 ## Examples

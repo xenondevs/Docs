@@ -9,7 +9,7 @@ The vegetation patch feature has the following configuration options:
 | Option                      | Type                                                                                               | Description                                                               |
 |-----------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | `replaceable`               | A block tag (Starting with `#` in Json).                                                           | The blocks that can be replaced by the vegetation.                        |
-| `ground_state`              | A [`BlockStateProvider`](../../block-state-provider.md)                                            | The block state of the vegetation.                                        |
+| `ground_state`              | A [`BlockStateProvider`](../../types/block-state-provider.md)                                      | The block state of the vegetation.                                        |
 | `vegetation_feature`        | A [`PlacedFeature`](../placed-feature.md) (or id in Json).                                         | The vegetation to place.                                                  |
 | `surface`                   | Enum constants of `CaveSurface` (`ceiling` or `floor`).                                            | The surface to place the vegetation on.                                   |
 | `depth`                     | An [`IntProvider`](../../types/number-provider.md#intprovider) (Range limit in Json is $[0;128]$). | The search depth.                                                         |

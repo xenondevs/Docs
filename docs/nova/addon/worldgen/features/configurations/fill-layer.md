@@ -10,7 +10,7 @@ The following configuration options are available:
 | Option   | Type                                           | Description                                                         |
 |----------|------------------------------------------------|---------------------------------------------------------------------|
 | `height` | An `int`. (Range limit in Json is $[0;4064 ]$) | The height of the layer to fill (starting at the min build height). |
-| `state`  | A [`BlockState`](../../block-state.md)         | The block state to use for the layer.                               |
+| `state`  | A [`BlockState`](../../types/block-state.md)   | The block state to use for the layer.                               |
 
 In code, the `LayerConfiguration` class is used to configure the feature.
 

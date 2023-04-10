@@ -9,7 +9,7 @@ The `replace_blobs` feature has the following configuration options:
 
 | Option   | Type                                                                                              | Description                                 |
 |----------|---------------------------------------------------------------------------------------------------|---------------------------------------------|
-| `target` | A [`BlockState`](../../block-state.md).                                                           | The block state to replace.                 |
+| `target` | A [`BlockState`](../../types/block-state.md).                                                     | The block state to replace.                 |
 | `state`  | A `BlockState`.                                                                                   | The block state to replace the target with. |
 | `radius` | An [`IntProvider`](../../types/number-provider.md#intprovider). (Range limit in Json is $[0;12]$) | The radius of the blob.                     |
 

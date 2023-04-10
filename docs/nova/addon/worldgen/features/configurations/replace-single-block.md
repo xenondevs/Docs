@@ -10,7 +10,7 @@ allows you to specify which block states should be replaced with which other blo
 | Option   | Type                                                                             | Description                                        |
 |----------|----------------------------------------------------------------------------------|----------------------------------------------------|
 | `target` | A `RuleTest`. Check out the [`ores`](ores.md#targets) page for more information. | The test to check if the block should be replaced. |
-| `state`  | A [`BlockState`](../../block-state.md)                                           | The block state to replace the target with.        |
+| `state`  | A [`BlockState`](../../types/block-state.md)                                     | The block state to replace the target with.        |
 
 In code, the `ReplaceBlockConfiguration` class is used to configure the feature.
 

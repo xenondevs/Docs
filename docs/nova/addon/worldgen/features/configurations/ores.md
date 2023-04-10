@@ -18,7 +18,7 @@ In code, the `OreConfiguration` class is used to configure the feature.
 ### Targets
 
 As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
-pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../block-state-provider.md)
+pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../types/block-state-provider.md)
 which determines what block to use for the specific target.  
 The following `RuleTests` are available:
 
@@ -173,7 +173,7 @@ The following `RuleTests` are available:
     `BlockPos` (or even the `NovaMaterial` via `NovaMaterialTest`).   
     You will also need to provide a `RuleTestType`, which  specifies how your RuleTest implementation is (de)serialized.
     This can either be done by implementing the `RuleTestType` interface or creating it inline by just registering the `Codec`
-    in the `FeatureRegistry`. Check out the [Codecs](../../codecs) page for more information on Mojang's serialization system.  
+    in the `FeatureRegistry`. Check out the [Codecs](../../codec.md) page for more information on Mojang's serialization system.  
     Here's the code for Nova's `MaterialMatchTest` implementation as an example:
 
     === "Inline RuleTestType"

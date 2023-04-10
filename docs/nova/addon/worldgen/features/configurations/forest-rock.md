@@ -6,9 +6,9 @@ The `forest_rock` feature can be used to generate small $3x3$ rocks in the world
 
 Only the block state used for the rocks is configurable:
 
-| Option  | Type                                    | Description                          |
-|---------|-----------------------------------------|--------------------------------------|
-| `state` | A  [`BlockState`](../../block-state.md) | The block state to use for the rock. |
+| Option  | Type                                          | Description                          |
+|---------|-----------------------------------------------|--------------------------------------|
+| `state` | A  [`BlockState`](../../types/block-state.md) | The block state to use for the rock. |
 
 In code, the `BlockStateConfiguration` class is used to configure the feature.
 

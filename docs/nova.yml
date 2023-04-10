@@ -83,9 +83,6 @@ nav:
       - "World Generation":
           - "Overview": "addon/worldgen/worldgen.md"
           - "Codecs": "addon/worldgen/codec.md"
-          - "Utility Types":
-              - "Height Providers": "addon/worldgen/types/height-provider.md"
-              - "Number Providers": "addon/worldgen/types/number-provider.md"
           - "Features":
                 - "Overview": "addon/worldgen/features/features.md"
                 - "Placed Features": "addon/worldgen/features/placed-feature.md"
@@ -132,6 +129,12 @@ nav:
           - "Biomes": "addon/worldgen/biome.md"
           - "Injections":
               - "BiomeInjections": "addon/worldgen/inject/biome.md"
+          - "Utility Types":
+              - "Height Providers": "addon/worldgen/types/height-provider.md"
+              - "Number Providers": "addon/worldgen/types/number-provider.md"
+              - "BlockState Providers": "addon/worldgen/types/block-state-provider.md"
+              - "BlockState": "addon/worldgen/types/block-state.md"
+              - "Block Predicate": "addon/worldgen/types/block-predicate.md"
       - "Migration Guide":
           - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

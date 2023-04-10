@@ -4,7 +4,7 @@ The `simple_block` feature allows you to randomly place blocks in the world.
 
 ## Configuration
 
-The `simple_block` feature has a single option, `to_place` which is a [`BlockStateProvider`](../../block-state-provider.md)
+The `simple_block` feature has a single option, `to_place` which is a [`BlockStateProvider`](../../types/block-state-provider.md)
 that specifies which block states should be placed.
 
 In code, the `SimpleBlockConfiguration` class is used to configure the feature.

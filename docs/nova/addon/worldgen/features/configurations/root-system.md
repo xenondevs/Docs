@@ -11,21 +11,21 @@ The `root_system` feature can be used to generate trees with roots.
 
 A root system feature has the following configuration options:
 
-| Option                             | Type                                                        | Description                                                 |
-|------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
-| `feature`                          | A [`PlacedFeature`](../placed-feature.md) (or id in Json)   | The feature to place at the tree position.                  |
-| `required_vertical_space_for_tree` | An `int`. (Range limit in Json is $[1;64]$)                 | The amount of vertical space required for the tree to grow. |
-| `root_radius`                      | An `int`. (Range limit in Json is $[1;64]$)                 | The radius of the root system.                              |
-| `root_replaceable`                 | A block tag (prefixed with `#` in Json)                     | The blocks that can be replaced by roots.                   |
-| `root_state_provider`              | A [`BlockStateProvider`](../../block-state-provider.md)     | The block state to use for the root.                        |
-| `root_placement_attempts`          | An `int`. (Range limit in Json is $[1;256]$)                | The amount of attempts to place a root.                     |
-| `root_column_max_height`           | An `int`. (Range limit in Json is $[1;4096]$)               | The maximum height of a root column.                        |
-| `hanging_root_radius`              | An `int`. (Range limit in Json is $[1;64]$)                 | The radius of hanging roots.                                |
-| `hanging_roots_vertical_span`      | An `int`. (Range limit in Json is $[0;16]$)                 | The vertical span of hanging roots.                         |
-| `hanging_root_state_provider`      | A `BlockStateProvider`                                      | The block state to use for the hanging root.                |
-| `hanging_root_placement_attempts`  | An `int`. (Range limit in Json is $[1;256]$)                | The amount of attempts to place a hanging root.             |
-| `allowed_vertical_water_for_tree`  | An `int`. (Range limit in Json is $[0;64]$)                 | The amount of vertical water allowed for the tree to grow.  |
-| `allowed_tree_position`            | A [`BlockPredicate`](../placed-feature.md#block-predicates) | A predicate to check if the tree position is valid.         |
+| Option                             | Type                                                          | Description                                                 |
+|------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------|
+| `feature`                          | A [`PlacedFeature`](../placed-feature.md) (or id in Json)     | The feature to place at the tree position.                  |
+| `required_vertical_space_for_tree` | An `int`. (Range limit in Json is $[1;64]$)                   | The amount of vertical space required for the tree to grow. |
+| `root_radius`                      | An `int`. (Range limit in Json is $[1;64]$)                   | The radius of the root system.                              |
+| `root_replaceable`                 | A block tag (prefixed with `#` in Json)                       | The blocks that can be replaced by roots.                   |
+| `root_state_provider`              | A [`BlockStateProvider`](../../types/block-state-provider.md) | The block state to use for the root.                        |
+| `root_placement_attempts`          | An `int`. (Range limit in Json is $[1;256]$)                  | The amount of attempts to place a root.                     |
+| `root_column_max_height`           | An `int`. (Range limit in Json is $[1;4096]$)                 | The maximum height of a root column.                        |
+| `hanging_root_radius`              | An `int`. (Range limit in Json is $[1;64]$)                   | The radius of hanging roots.                                |
+| `hanging_roots_vertical_span`      | An `int`. (Range limit in Json is $[0;16]$)                   | The vertical span of hanging roots.                         |
+| `hanging_root_state_provider`      | A `BlockStateProvider`                                        | The block state to use for the hanging root.                |
+| `hanging_root_placement_attempts`  | An `int`. (Range limit in Json is $[1;256]$)                  | The amount of attempts to place a hanging root.             |
+| `allowed_vertical_water_for_tree`  | An `int`. (Range limit in Json is $[0;64]$)                   | The amount of vertical water allowed for the tree to grow.  |
+| `allowed_tree_position`            | A [`BlockPredicate`](../placed-feature.md#block-predicates)   | A predicate to check if the tree position is valid.         |
 
 In code, the `RootSystemConfiguration` class is used to configure the feature.
 

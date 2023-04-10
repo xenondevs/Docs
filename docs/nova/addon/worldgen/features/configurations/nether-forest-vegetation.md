@@ -10,11 +10,11 @@ The `nether_forest_vegetation` feature is a feature that randomly spreads a spec
 
 The nether forest vegetation feature has the following configuration options:
 
-| Option           | Type                                                     | Description                                         |
-|------------------|----------------------------------------------------------|-----------------------------------------------------|
-| `state_provider` | A [`BlockStateProvider`](../../block-state-provider.md). | The block state to use for the vegetation.          |
-| `spread_width`   | A positive `int`.                                        | The width of the area to spread the vegetation in.  |
-| `spread_height`  | A positive `int`.                                        | The height of the area to spread the vegetation in. |
+| Option           | Type                                                           | Description                                         |
+|------------------|----------------------------------------------------------------|-----------------------------------------------------|
+| `state_provider` | A [`BlockStateProvider`](../../types/block-state-provider.md). | The block state to use for the vegetation.          |
+| `spread_width`   | A positive `int`.                                              | The width of the area to spread the vegetation in.  |
+| `spread_height`  | A positive `int`.                                              | The height of the area to spread the vegetation in. |
 
 In code, the `NetherForestVegetationConfig` class is used to configure the feature.
 
