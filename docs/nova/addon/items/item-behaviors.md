@@ -285,16 +285,15 @@ These are the available vanilla material properties:
 Gets a list of `AttributeModifier`s.
 
 ```kotlin title="Example Attribute Modifiers"
-override val attributeModifiers = provider(listOf(
-    AttributeModifier(
+override fun getAttributeModifiers(): List<AttributeModifier> =
+    listOf(AttributeModifier(
         name = "Example Attribute Modifier (${novaMaterial.id}})", // (1)!
         attribute = Attributes.MOVEMENT_SPEED, // (2)!
         operation = Operation.MULTIPLY_TOTAL, // (3)!
         value = 0.1, // (4)!
         showInLore = true, // (5)!
         EquipmentSlot.MAINHAND // (6)!
-    )
-))
+    ))
 ```
 
 1. The name of the attribute modifier. This is also used to create a `UUID` for your `AttributeModifier` to distinguish
