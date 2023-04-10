@@ -20,8 +20,8 @@ As an example, here's a configured- and placed feature to add a layer of grass o
 
 === "Kotlin"
 
-    ```kotlin title="ConfiguredFeatures.kt
-    @Init"
+    ```kotlin title="ConfiguredFeatures.kt"
+    @Init
     @OptIn(ExperimentalWorldGen::class)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
