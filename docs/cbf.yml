@@ -1,6 +1,7 @@
 INHERIT: base.yml
 docs_dir: cbf
 site_name: CBF Documentation
+site_url: https://xenondevs.xyz/docs/cbf/
 edit_uri: edit/main/docs/cbf/
 
 theme:

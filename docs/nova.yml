@@ -1,6 +1,7 @@
 INHERIT: base.yml
 docs_dir: nova
 site_name: Nova Documentation
+site_url: https://xenondevs.xyz/docs/nova/
 edit_uri: edit/main/docs/nova/
 
 theme:

@@ -1,6 +1,7 @@
 INHERIT: base.yml
 docs_dir: invui
 site_name: InvUI Documentation
+site_url: https://xenondevs.xyz/docs/invui/
 edit_uri: edit/main/docs/invui/
 
 theme:
