@@ -11,16 +11,16 @@ GUIs cannot display anything to a player, a Window is used for that.
 
 There are four different GUI types available:
 
-| Gui Type                | Builder Factory Function(s)                                        | Description                                                                                                                                                       |
-|-------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Normal GUI](normal.md) | `Gui.normal()`                                                     | A normal GUI without any special functionality.                                                                                                                   |
-| [Paged GUI](paged.md)   | `PagedGui.items()`, `PagedGui.guis()`                              | A GUI with paging functionality. You can either provide a list of `Items` that should be shown on the pages or directly provide the pages (as `Guis`) themselves. |
-| [Scroll GUI](scroll.md) | `ScrollGui.items()`, `ScrollGui.guis()`, `ScrollGui.inventories()` | A GUI with scrolling functionality. You can scroll through `Items`, `Guis` or `VirtualInventories`                                                                |
-| [Tab GUI](tab.md)       | `TabGui.normal()`                                                  | A GUI with tabs. Each tab is associated to a `Gui`, you can switch between tabs using tab items.                                                                  |
+| Gui Type                | Builder Factory Function(s)                                                             | Description                                                                                                                                                                      |
+|-------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Normal GUI](normal.md) | `#!java Gui.normal()`                                                                   | A normal GUI without any special functionality.                                                                                                                                  |
+| [Paged GUI](paged.md)   | `#!java PagedGui.items()`, `#!java PagedGui.guis()`                                     | A GUI with paging functionality. You can either provide a list of [`Items`](../items.md) that should be shown on the pages or directly provide the pages (as `Guis`) themselves. |
+| [Scroll GUI](scroll.md) | `#!java ScrollGui.items()`, `#!java ScrollGui.guis()`, `#!java ScrollGui.inventories()` | A GUI with scrolling functionality. You can scroll through [`Items`](../items.md), `Guis` or [`Inventories`](../inventory.md)                                                    |
+| [Tab GUI](tab.md)       | `#!java TabGui.normal()`                                                                | A GUI with tabs. Each tab is associated to a `Gui`, you can switch between tabs using tab items.                                                                                 |
 
 ## Animations
 
-GUIs can also play animations with `gui.playAnimation(animation);`.  
+GUIs can also play animations with `#!java gui.playAnimation(animation);`.  
 While an animation is running, the player can't interact with any Item in the GUI.
 
 
@@ -34,7 +34,7 @@ Available Animations:
 * ColumnAnimation
 * RandomAnimation
 
-To cancel a running animation, use `gui.cancelAnimation();`
+To cancel a running animation, use `#!java gui.cancelAnimation();`
 
 ## Filling methods
 

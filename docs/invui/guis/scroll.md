@@ -161,5 +161,5 @@ This would result in the gui scrolling from left to right:
 ### `ScrollGui<Gui>` & `ScrollGui<VirtualInventory>`
 
 There are two additional Scroll GUI types available: `ScrollGui.guis()` and `ScrollGui.inventories()`.
-They behave in a very similar way to `ScrollGui.items()`, but instead of Items, they accept GUIs or VirtualInventories.
+They behave in a very similar way to `ScrollGui.items()`, but instead of Items, they accept GUIs or [Inventories](../inventory.md).
 For the case of `ScrollGui<Gui>`, you'll want to make sure that the width of the GUIs matches the line size of your Scroll GUI.

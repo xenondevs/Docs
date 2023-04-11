@@ -12,15 +12,15 @@ one of them to see the wrong language.
 
 ## List of Window types
 
-| Name                      | Builder Factory Function     | Description                                                                                                                                              |
-|---------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Normal Single Window      | `Window.single()`            | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the GUI. The player's inventory stays untouched.                   |
-| Normal Merged Window      | `Window.merged()`            | The default chest inventory and the player's inventory are filled by the same GUI.                                                                       |
-| Normal Split Window       | `Window.split()`             | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the first GUI. The player's inventory is filled by the second GUI. |
-| Anvil Single Window       | `AnvilWindow.single()`       | An anvil inventory. The player's inventory stays untouched.                                                                                              |
-| Anvil Split Window        | `AnvilWindow.split()`        | The anvil inventory is filled by the first GUI. The player's inventory is filled by the second GUI.                                                      |
-| Cartography Single Window | `CartographyWindow.single()` | The inventory of the cartography table. The player's inventory stays untouched.                                                                          |
-| Cartography Split Window  | `CartographyWindow.split()`  | The inventory of the cartography table is filled by the first GUI. The player's inventory is filled by the second GUI.                                   |
+| Name                      | Builder Factory Function            | Description                                                                                                                                              |
+|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Normal Single Window      | `#!java Window.single()`            | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the GUI. The player's inventory stays untouched.                   |
+| Normal Merged Window      | `#!java Window.merged()`            | The default chest inventory and the player's inventory are filled by the same GUI.                                                                       |
+| Normal Split Window       | `#!java Window.split()`             | The default chest / dropper / hopper inventory, chosen depending on the dimensions of the first GUI. The player's inventory is filled by the second GUI. |
+| Anvil Single Window       | `#!java AnvilWindow.single()`       | An anvil inventory. The player's inventory stays untouched.                                                                                              |
+| Anvil Split Window        | `#!java AnvilWindow.split()`        | The anvil inventory is filled by the first GUI. The player's inventory is filled by the second GUI.                                                      |
+| Cartography Single Window | `#!java CartographyWindow.single()` | The inventory of the cartography table. The player's inventory stays untouched.                                                                          |
+| Cartography Split Window  | `#!java CartographyWindow.split()`  | The inventory of the cartography table is filled by the first GUI. The player's inventory is filled by the second GUI.                                   |
 
 Generally, there are three different categories of windows: single, split and merged.  
 Single windows do not use the player's own inventory.  
@@ -89,7 +89,7 @@ by calling the static builder factory function in the related `Window` interface
 
 ## Opening a Window
 
-To show a `Window` to a player, you'll need to call `Window.open()`.
+To show a `Window` to a player, you'll need to call `#!java Window.open();`.
 
 === "Kotlin"
 
