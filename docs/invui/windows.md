@@ -89,18 +89,18 @@ by calling the static builder factory function in the related `Window` interface
 
 ## Opening a Window
 
-To show a `Window` to a player, you'll need to call `Window.open(player)`.
+To show a `Window` to a player, you'll need to call `Window.open()`.
 
 === "Kotlin"
 
     ```kotlin
-    window.open(player)
+    window.open()
     ```
 
 === "Java"
 
     ```java
-    window.open(player);
+    window.open();
     ```
 
 As a shortcut, you can also directly call `.open(player)` on the `Window.Builder`.  
@@ -110,7 +110,6 @@ This will create a new `Window` and then directly show it to the specified playe
 
     ```kotlin
     Window.single()
-        .setViewer(player)
         .setGui(gui)
         .setTitle("InvUI")
         .open(player)
@@ -120,8 +119,31 @@ This will create a new `Window` and then directly show it to the specified playe
 
     ```java
     Window.single()
-        .setViewer(player)
         .setGui(gui)
         .setTitle("InvUI")
         .open(player);
+    ```
+
+Alternatively, you can also call `.build(player)` on the `Window.Builder` to build a new `Window` for a specified player.
+
+=== "Kotlin"
+
+    ```kotlin
+    val window = Window.single()
+        .setGui(gui)
+        .setTitle("InvUI")
+        .build(player)
+
+    window.open()
+    ```
+
+=== "Java"
+
+    ```java
+    Window window = Window.single()
+        .setGui(gui)
+        .setTitle("InvUI")
+        .build(player);
+
+    window.open();
     ```
