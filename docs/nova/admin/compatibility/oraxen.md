@@ -1,7 +1,7 @@
 ## Using the Oraxen Upload Service
 
 You can use Oraxen's upload service to automatically upload the resource pack.  
-[Resource Pack Hosting - Available Upload Services](http://localhost/nova/admin/setup/#automatic-resource-pack-hosting)
+[Resource Pack Hosting - Available Upload Services](../setup.md#__tabbed_1_5)
 
 ## Known Issues
 
