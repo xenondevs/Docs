@@ -330,19 +330,29 @@ function. Here, you can create an instance of your `ItemBehavior` based on the `
 
 With `ConfigAccess`, you easily create a class that houses [config-reloadable properties](../configs.md) for your item behavior.  
 Here is an example of how we implement
-[ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L151-L154) and
-[ConfigAccess](https://github.com/xenondevs/Nova/blob/main/nova/src/main/kotlin/xyz/xenondevs/nova/material/options/FoodOptions.kt)
+[ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/c87b0ab1e5a7e9cd441576425b9c6f20914e45c2/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L153-L156) and
+[ConfigAccess](https://github.com/xenondevs/Nova/blob/c87b0ab1e5a7e9cd441576425b9c6f20914e45c2/nova/src/main/kotlin/xyz/xenondevs/nova/item/options/FoodOptions.kt)
 for food items.
 
 ## Item Data
 
-If you need to store or retrieve data from an `ItemStack`, you can use `ItemStack.storeData` and `ItemStack.retrieveData`.
-Additionally, you can also retrieve the underlying `NamespacedCompound` by calling `ItemStack.novaCompound`.
+Data for Nova's ItemStacks is stored in a `NamespacedCompound`, which serializes data using [CBF](../../../../cbf/).  
+You can retrieve the `NamespacedCompound` of an `ItemStack` by calling `#!kotlin ItemStack.novaCompound`.
 
-You can also run the command `/nova debug itemData` to take a look at the data of the item stack in your hand.
+!!! warning "NamespacedCompound"
 
-!!! tip
+    Unlike `ItemStack.itemMeta`, this `NamespacedCompound` is not a copy, so any changes you make to it will be reflected in the `ItemStack`.  
+    However, the `NamespacedCompound` inside the `ItemStack` might be copied during normal tick logic, so you should not rely on the same
+    (NMS) `ItemStack` to always contain the same `NamespacedCompound` instance.  
+    *For example, while modifying the `ItemStack` retrieved during an `PlayerInteractEvent` a few ticks later will still
+    change the `ItemStack` in the world, modifying the `NamespacedCompound` you've retrieved during the event will not affect
+    the `ItemStack`. Instead, you'll need to retreive the `NovaCompound` again.*
 
-    Data is serialized using CBF. Make sure to check out the CBF documentation for more information.
+Alternatively, you can also read and write data using `#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`, which write
+data to the `NamespacedCompound` for you.
+
+!!! tip "Inspecting Item Data"
    
-    [:material-file-document-outline: CBF Documentation](../../../../cbf/){ .md-button }
+    You can also run the command `/nova debug itemData` to take a look at the data of the item stack in your hand.  
+    Some of this data might be of an unknown type and will be displayed in binary format. The type will be known
+    after `NamespacedCompound.get` and `NamespacedCompound.set` calls.
