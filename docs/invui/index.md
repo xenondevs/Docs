@@ -76,7 +76,7 @@ Now you can add InvUI as a dependency:
     </dependency>
     ```
 
-    1. You can find a list of inventory-access revisions and which Minecraft version to map to [here](https://github.com/NichtStudioCode/InvUI/blob/main/inventoryaccess/inventory-access/src/main/java/xyz/xenondevs/inventoryaccess/version/InventoryAccessRevision.java).
+    1. You can find a list of inventory-access revisions and which Minecraft version they map to [here](https://github.com/NichtStudioCode/InvUI/blob/main/inventoryaccess/inventory-access/src/main/java/xyz/xenondevs/inventoryaccess/version/InventoryAccessRevision.java).
     2. You can also add the `remapped-mojang` classifier to get InvUI working on mojang-mapped servers.
 
 If you're using Kotlin, you should also add the `invui-kotlin` module:

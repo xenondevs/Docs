@@ -1,5 +1,7 @@
 # FAQ
 
+## Nova
+
 ??? faq "How do I get the resource pack?"
 
     Please follow the tutorial on the [setup page](setup.md).
@@ -34,10 +36,16 @@
     
     All compatible plugins and setup requirements are listed on the [compatibility page](compatibility/index.md).
 
+## Official Addons
+
+### Logistics
+
 ??? faq "How does the Item Filter work?"
 
     Right click in the air to set the items, then put the item filter in a cable or vacuum chest.
 
+### Machines
+
 ??? faq "How do I get Star Shards?"
 
-    You can only find them in chests (like mineshafts, dungeons, desert temples...).
+    You can find them in chests (like mineshafts, dungeons, desert temples...) or as star shards ore above ``y = 120``.
