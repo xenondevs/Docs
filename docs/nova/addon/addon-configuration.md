@@ -87,7 +87,7 @@ Example:
 main.set("com.example.ExampleAddon")
 ```
 
-## author/authors
+## author/authors*
 
 A list of author(s) of your addon.
 
