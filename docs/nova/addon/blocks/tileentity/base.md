@@ -17,16 +17,17 @@ val SOLAR_PANEL = NovaMaterialRegistry.tileEntity(ExampleAddon, "solar_panel", :
 So your ``Blocks`` object might look something like this:
 
 ```kotlin
-object Blocks {
+@Init // (1)!
+object Blocks : BlockRegistry by ExampleAddon.registry {
     
     private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolTier.WOOD, true, SoundGroup.STONE, Material.NETHERITE_BLOCK)
     
     val SOLAR_PANEL = tileEntity(ExampleAddon, "solar_panel", ::SolarPanel).blockOptions(STONE).register()
     
-    fun init() = Unit
-
 }
 ```
+
+1. Nova will load this class during addon initialization, causing your blocks to be registered.
 
 ## NetworkedTileEntity
 
