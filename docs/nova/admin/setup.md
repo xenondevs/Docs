@@ -157,12 +157,12 @@ The new resource pack will be automatically generated and uploaded using the con
 
 Due to technical limitations, it is only possible to have one server resource pack. To circumvent this issue, Nova can automatically merge existing resource packs with its own.  
 
-Currently, there are two ways to define base packs:  
+There are two ways to define base packs:  
 
 === "With Config"
 
     * Make sure to turn off the resource pack prompt in the config of the plugin providing it
-    * Link to the resource pack directory or zip file in the Nova config under ``resource_pack.base_packs``
+    * Link to the resource pack directory or zip file in the Nova config under `resource_pack` > `generation` > `base_packs`
 
     Example:
     ```yaml title="plugins/Nova/configs/config.yml"

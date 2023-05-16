@@ -2,7 +2,7 @@
 
 To make ItemsAdder and Nova work together, you need to follow these steps:
 
-1. Change the following values in the ItemsAdder `config.yml`:
+1. Change the following values in ItemsAdder's `config.yml`:
     - Set `resource-pack` > `hosting` > `no-host` > `enabled` to `true` (all other options under `hosting` must be `false`).
     - Under `resource-pack` > `zip` > `protect-file-from-unzip` set both `protection_1` and `protection_2` to `false`.
     - Set `resource-pack` > `zip` > `disable-overwrite-leather-armor-layers-textures` to `true`.
