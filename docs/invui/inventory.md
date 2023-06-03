@@ -81,7 +81,7 @@ the amount gets changed to 32 in the event -> the player will keep 32 items on t
 
 The handler for the `ItemPostUpdateEvent` registered with `setPostUpdateHandler` will be called after
 changes were processed. You can't cancel this event, but you can use it to remove items from the inventory
-without it having an effect on the source of the change. This might be useful trash can inventories or similar.
+without it having an effect on the source of the change. This might be useful for trash can inventories or similar.
 
 ## Inventories in GUIs
 
