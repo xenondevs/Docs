@@ -103,19 +103,6 @@ Or for multiple authors:
 authors.set(listOf("ExampleAuthor", "Another Author"))
 ```
 
-## spigotResourceId
-
-The id of your addon's Spigot resource. This is used to automatically check for updates. You can find this id after the
-period in the url of your addon's Spigot page.
-
-Example (With Nova's id):
-
-![Nova url example](https://i.imgur.com/grLp3UZ.png)
-
-```kotlin title="build.gradle.kts addon { }"
-spigotResourceId.set(93648)
-```
-
 ## depend/softdepend
 
 You can use these options to specify which addons your addon depends on and thus needs to be loaded before your addon
