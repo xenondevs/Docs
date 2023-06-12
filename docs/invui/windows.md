@@ -24,7 +24,7 @@ one of them to see the wrong language.
 
 Generally, there are three different categories of windows: single, split and merged.  
 Single windows do not use the player's own inventory.  
-Split windows use one GUI for the upper inventory and another GUI for the player's inventory.
+Split windows use one GUI for the upper inventory and another GUI for the player's inventory (9x4).
 Merged windows use the same GUI for the upper and lower inventory.
 
 !!! note "When using merged or split windows:"
