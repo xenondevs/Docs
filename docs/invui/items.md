@@ -1,12 +1,18 @@
 # Items
 
-In InvUI, the UI Elements are just called Items.  
-Every item has an ``ItemProvider`` which returns ``ItemStacks`` based on player UUIDs. This behavior allows for easy localization of UI Elements, as you just need to inherit from ``ItemProvider`` and implement your localization code there.  
-Unlike other inventory libraries, InvUI does not redraw items every tick. To trigger an update, call ``item.notifyWindows();``. This will notify all ``Windows`` that are currently displaying that ``Item`` to call ``Item#getItemProvider`` and ``ItemProvider#getFor`` and display the updated item to their viewer.
+In InvUI, the UI elements are just called `Item`s.  
+
+Every `Item` has an ``ItemProvider`` which returns ``ItemStacks`` based on a locale.
+This behavior allows for easy localization of UI elements, as you can show the same `Item` and `Gui` instances to multiple
+players while still having everything translated into their respective languages.
+
+Unlike other inventory libraries, InvUI does not redraw items every tick. To trigger an update, call ``item.notifyWindows();``.
+This will notify all ``Windows`` that are currently displaying that ``Item`` to call ``Item#getItemProvider`` and ``ItemProvider#get`` and display the updated item to their viewer.
 
 ### Default ItemProviders
-There are also two default ``ItemProviders`` in InvUI: ``ItemWrapper`` and ``ItemBuilder``.  
-Both implementations will ignore the provided UUID in ``ItemProvider#getFor``, but you can always inherit from ``ItemProvider`` to change this behavior.
+InvUI comes with two default implementations of `ItemProvider`: `ItemWrapper` and `ItemBuilder`.  
+`ItemWrapper` just wraps an existing `ItemStack` and returns it when asked, `ItemBuilder` allows you to create
+`ItemStacks` using a builder pattern with [localization support](localization.md) through translatable components.
 
 ## Default UI Items in InvUI
 InvUI provides a few basic items, but you will probably have to create your own ones for more complicated behavior.
