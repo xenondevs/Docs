@@ -123,8 +123,12 @@
     border-color: #3593ff;
 }
 
-.md-footer-meta {
+.md-footer {
     background-color: var(--md-primary-fg-color);
+}
+
+.md-footer-meta {
+    background: none;
 }
 
 .md-typeset .md-button {
