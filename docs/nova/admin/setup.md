@@ -188,29 +188,26 @@ There are two ways to define base packs:
 
 === "With Config"
 
-    * Make sure to turn off the resource pack prompt in the config of the plugin providing it
-    * Link to the resource pack directory or zip file in the Nova config under `resource_pack` > `generation` > `base_packs`
+    1. Make sure to turn off the resource pack prompt in the config of the plugin providing it.
+    2. Link to the resource pack directory or zip file in the Nova config under `resource_pack` > `generation` > `base_packs`.
 
-    Example:
-    ```yaml title="plugins/Nova/configs/config.yml"
-    resource_pack:
-      generation:
-        base_packs:
-          - plugins/ItemsAdder/output/generated.zip
-    ```
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          generation:
+            base_packs:
+              - plugins/ItemsAdder/output/generated.zip
+        ```
 
-    !!! info
-    
-        You can add as many base packs as you want.
-    
-        **Note:** Before building the resource pack with Nova, make sure that the listed base packs have been properly generated.
-        For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.
+    3. Make sure that the listed base pack has been properly generated. (For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.)
+    4. Reload the config using `/nova reload configs` or restart the server.
+    5. Regenerate the resource pack using `/nova resourcePack create`.
 
 === "With Folder"
 
-    * Make sure to turn off the resource pack prompt in the config of the plugin providing it
-    * Copy the resource pack directory or zip file to `plugins/Nova/resource_pack/base_packs/`
+    1. Make sure to turn off the resource pack prompt in the config of the plugin providing it.
+    2. Copy the resource pack directory or zip file to `plugins/Nova/resource_pack/base_packs/`.
+    3. Regenerate the resource pack using `/nova resourcePack create`.
 
-        !!! info
-    
-            You can add as many base packs as you want.
+!!! info
+
+    You can add as many base packs as you want.
