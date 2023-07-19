@@ -15,8 +15,9 @@ This is an example for a "Page Back" Item:
             builder.setDisplayName("§7Previous page")
                 .addLoreLines(
                     if (gui.hasPreviousPage())
-                        "§7Go to page §e" + gui.currentPage + "§7/§e" + gui.pageAmount 
-                    else "§cYou can't go further back"
+                        "§7Go to page §e${gui.currentPage}§7/§e${gui.pageAmount}"
+                    else
+                        "§cYou can't go further back"
                 )
             return builder
         }
@@ -59,8 +60,9 @@ This is an example for a "Page Forward" Item:
             builder.setDisplayName("§7Next page")
                 .addLoreLines(
                     if (gui.hasNextPage())
-                        "§7Go to page §e" + (gui.currentPage + 2) + "§7/§e" + gui.pageAmount 
-                    else "§cThere are no more pages"
+                        "§7Go to page §e${gui.currentPage + 2}§7/§e${gui.pageAmount}"
+                    else
+                        "§cThere are no more pages"
                 )
             return builder
         }
