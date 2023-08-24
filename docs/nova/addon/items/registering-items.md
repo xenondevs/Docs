@@ -8,7 +8,7 @@ addon or annotate your registry with `#!kotlin @Init`.
 Your singleton object might then look like this:  
 ```kotlin
 @Init // (1)! 
-object Items ItemRegistry by ExampleAddon.registry {
+object Items : ItemRegistry by ExampleAddon.registry {
     
     // (2)!
     
