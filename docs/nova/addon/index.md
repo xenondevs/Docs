@@ -2,18 +2,6 @@
 
 ## Prerequisites
 
-### BuildTools
-
-While you don't necessarily need to access NMS while making an addon, installing a mojang-mapped Spigot version is still
-required. If you're not familiar with BuildTools you can read [this guide](https://www.spigotmc.org/wiki/buildtools/). After
-downloading BuildTools, run the following command:
-
-```bash
-java -jar BuildTools.jar --remapped
-```
-
-This will install the latest mojang-mapped Spigot version in your local maven repository.
-
 ### IntelliJ
 
 Even though Eclipse does have Kotlin support via a plugin, it's not the best option. We recommend using [IntelliJ](https://www.jetbrains.com/idea/)

@@ -20,7 +20,7 @@ As an example, here's the configured and placed feature for the bamboo in the ju
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val BAMBOO_SOME_PODZOL = registerConfiguredFeature(
@@ -36,7 +36,7 @@ As an example, here's the configured and placed feature for the bamboo in the ju
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val BAMBOO_SOME_PODZOL = placedFeature("bamboo_some_podzol", ConfiguredFeatures.BAMBOO_SOME_PODZOL)

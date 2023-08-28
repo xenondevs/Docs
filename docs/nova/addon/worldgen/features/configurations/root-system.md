@@ -37,7 +37,7 @@ As an example, here's the configured- and placed feature for the azalea tree
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val ROOTED_AZALEA_TREE = registerConfiguredFeature(
@@ -72,7 +72,7 @@ As an example, here's the configured- and placed feature for the azalea tree
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val ROOTED_AZALEA_TREE = placedFeature("rooted_azalea_tree", ConfiguredFeatures.ROOTED_AZALEA_TREE)

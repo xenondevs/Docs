@@ -131,7 +131,7 @@ Now we can register the feature type using Nova's `FeatureRegistry`.
 
 ```kotlin title="FeatureTypes.kt"
 @OptIn(ExperimentalWorldGen::class)
-@Init
+@Init(stage = InitStage.POST_PACK_PRE_WORLD)
 object FeatureTypes : FeatureRegistry by ExampleAddon.registry {
     
     val EXAMPLE = registerFeatureType("example", ExampleFeature)
@@ -151,7 +151,7 @@ We can now properly use our newly defined feature.
     
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
         
         val EXAMPLE = registerConfiguredFeature(
@@ -173,7 +173,7 @@ We can now properly use our newly defined feature.
     
     ```kotlin
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val EXAMPLE = placedFeature("example", ConfiguredFeatures.EXAMPLE)
@@ -191,7 +191,7 @@ We can now properly use our newly defined feature.
     
     ```kotlin
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object BiomeInjections : BiomeRegistry by ExampleAddon.registry {
     
         val OVERWORLD_INJECTIONS = biomeInjection("overworld_injections")

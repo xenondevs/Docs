@@ -36,7 +36,7 @@ As an example, here's the configured feature used to place the default end spike
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val END_SPIKE = registerConfiguredFeature(

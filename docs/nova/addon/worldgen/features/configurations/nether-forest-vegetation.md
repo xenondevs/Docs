@@ -26,7 +26,7 @@ As an example, here's the configured- and placed feature to spread nether sprout
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val NETHER_SPROUTS = registerConfiguredFeature(
@@ -44,7 +44,7 @@ As an example, here's the configured- and placed feature to spread nether sprout
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val NETHER_SPROUTS = placedFeature("nether_sprouts", ConfiguredFeatures.NETHER_SPROUTS)

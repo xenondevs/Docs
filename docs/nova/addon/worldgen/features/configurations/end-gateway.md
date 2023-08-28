@@ -21,7 +21,7 @@ Here's the configured and placed feature for the vanilla return end gateway:
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val END_GATEWAY_RETURN = registerConfiguredFeature(
@@ -45,7 +45,7 @@ Here's the configured and placed feature for the vanilla return end gateway:
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val END_GATEWAY_RETURN = placedFeature("end_gateway_return", ConfiguredFeatures.END_GATEWAY_RETURN)

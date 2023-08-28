@@ -53,13 +53,14 @@ nav:
           - "Creating GUIs": "addon/asset-packs/creating-guis.md"
           - "Creating Armor": "addon/asset-packs/creating-armor.md"
           - "Language Files": "addon/asset-packs/language-files.md"
+      - "Configs": "addon/configs.md" 
       - "Items":
           - "Registering Items": "addon/items/registering-items.md"
-          - "Item Behaviors": "addon/items/item-behaviors.md"
           - "Using NovaItem": "addon/items/using-nova-item.md"
-          - "Item Categories": "addon/items/item-categories.md"
+          - "Item Behaviors": "addon/items/item-behaviors.md"
           - "Tools": "addon/items/tools.md"
-      - "Configs": "addon/configs.md"
+          - "Enchantments": "addon/items/enchantments.md"
+          - "Recipes": "addon/recipes.md"
       - "Blocks":
           - "Registering Blocks": "addon/blocks/registering-blocks.md"
           - "TileEntities":
@@ -71,16 +72,17 @@ nav:
               - "Upgrades": "addon/blocks/tileentity/upgrades.md"
               - "Regions": "addon/blocks/tileentity/region.md"
               - "Particles": "addon/blocks/tileentity/particles.md"
-      - "GUI Textures": "addon/guitexture.md"
-      - "Overlays":
-            - "Action Bar Overlay": "addon/overlays/actionbar.md"
-            - "Boss Bar Overlay": "addon/overlays/bossbar.md"
-      - "Recipes": "addon/recipes.md"
+      - "Fonts & Overlays":
+            - "Custom Fonts": "addon/fonts/fonts.md"
+            - "GUI Textures": "addon/fonts/guitextures.md"
+            - "Action Bar Overlay": "addon/fonts/actionbar.md"
+            - "Boss Bar Overlay": "addon/fonts/bossbar.md"
+      - "Resource Pack":
+            - "Custom Build Logic": "addon/resourcepack/build-logic.md"
       - "Advancements": "addon/advancements.md"
       - "Attachments": "addon/attachments.md"
       - "Abilities": "addon/abilities.md"
       - "Hitboxes": "addon/hitboxes.md"
-      - "Miscellaneous": "addon/misc.md"
       - "World Generation":
           - "Overview": "addon/worldgen/worldgen.md"
           - "Codecs": "addon/worldgen/codec.md"
@@ -136,7 +138,12 @@ nav:
               - "BlockState Providers": "addon/worldgen/types/block-state-provider.md"
               - "BlockState": "addon/worldgen/types/block-state.md"
               - "Block Predicate": "addon/worldgen/types/block-predicate.md"
+      - "Miscellaneous":
+          - "Initialization": "addon/misc/initialization.md"
+          - "Events": "addon/misc/events.md"
+          - "Project Distributors": "addon/misc/project-distributors.md"
       - "Migration Guide":
+          - "0.14 ➝ 0.15": "addon/migration-guide/0.14-0.15.md"
           - "0.13 ➝ 0.14": "addon/migration-guide/0.13-0.14.md"
           - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
           - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

@@ -24,7 +24,7 @@ As an example, here's the placed and configured feature used to place water spri
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SPRING_WATER = registerConfiguredFeature(
@@ -47,7 +47,7 @@ As an example, here's the placed and configured feature used to place water spri
     
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SPRING_WATER = placedFeature("spring_water", ConfiguredFeatures.SPRING_WATER)

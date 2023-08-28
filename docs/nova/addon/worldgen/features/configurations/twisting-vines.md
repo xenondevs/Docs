@@ -26,7 +26,7 @@ As an example, here's the configured- and placed feature to generate twisting vi
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val TWISTING_VINES = registerConfiguredFeature(
@@ -44,7 +44,7 @@ As an example, here's the configured- and placed feature to generate twisting vi
     
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val TWISTING_VINES = placedFeature("twisting_vines", ConfiguredFeatures.TWISTING_VINES)

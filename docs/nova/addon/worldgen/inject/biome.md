@@ -16,7 +16,7 @@ Here's how you could inject the `star_shards_ore` `PlacedFeature` from Machines 
 
     ```kotlin title="BiomeInjections.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object BiomeInjections : BiomeRegistry by ExampleAddon.registry {
         
         private val OVERWORLD = biomeInjection("overworld")

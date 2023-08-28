@@ -20,7 +20,7 @@ As an example, here's the placed and configured feature used to place piles of h
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val PILE_HAY = registerConfiguredFeature(
@@ -36,7 +36,7 @@ As an example, here's the placed and configured feature used to place piles of h
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val PILE_HAY = placedFeature("pile_hay", ConfiguredFeatures.PILE_HAY).register() // (1)!

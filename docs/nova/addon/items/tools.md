@@ -1,6 +1,31 @@
-!!! info "Creating custom tools"
+# Tools
 
-    If you're looking to create custom tools, check out the [`Tool` item behavior](item-behaviors.md#__tabbed_1_3).
+## Creating Tools
+
+To create a custom tool, apply the `Tool` item behavior:
+
+```kotlin
+val EXAMPLE_ITEM = registerItem("example_item", Tool)
+```
+
+```yaml title="configs/example_item.yml"
+# The tool level
+tool_level: minecraft:iron
+# The tool category
+tool_category: minecraft:sword
+# The block breaking speed
+break_speed: 1.5
+# The attack damage
+attack_damage: 6
+# The attack speed
+attack_speed: 2.0
+# The knockback bonus
+knockback_bonus: 1
+# If sweep attacks can be performed with this tool
+can_sweep_attack: true
+# If this tool can break blocks in creative
+can_break_blocks_in_creative: false
+```
 
 ## Tool Tiers
 
@@ -31,7 +56,7 @@ diamond: 3
 To register custom tool tiers, create a new `ToolTierRegistry` and annotate it with `#!kotlin @Init` to load it during addon initialization:
 
 ```kotlin
-@Init // (1)!
+@Init(stage = InitStage.PRE_PACK) // (1)!
 object ToolTiers : ToolTierRegistry by ExampleAddon.registry {
     
     val EXAMPLE_TIER = registerToolTier("example_tier")
@@ -71,7 +96,7 @@ By default, there are six tool categories available:
 To register custom tool categories, create a new `ToolCategoryRegistry` and annotate it with `#!kotlin @Init` to load it during addon initialization:
 
 ```kotlin
-@Init // (1)!
+@Init(stage = InitStage.PRE_PACK) // (1)!
 object ToolCategories : ToolCategoryRegistry by ExampleAddon.registry {
     
     val EXAMPLE_CATEGORY = registerToolCategory("example_category")

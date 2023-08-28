@@ -30,7 +30,7 @@ As an example, here's the configured and placed feature for sand disks in lakes:
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val DISK_SAND = registerConfiguredFeature(
@@ -62,7 +62,7 @@ As an example, here's the configured and placed feature for sand disks in lakes:
     
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val DISK_SAND = placedFeature("disk_sand", ConfiguredFeatures.DISK_SAND)

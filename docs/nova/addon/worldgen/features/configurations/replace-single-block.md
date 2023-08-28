@@ -22,7 +22,7 @@ As an example, here's a feature to randomly replace acacia logs with stone.
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val ACACIA_LOGS_TO_STONE = registerConfiguredFeature(
@@ -42,7 +42,7 @@ As an example, here's a feature to randomly replace acacia logs with stone.
     
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val ACACIA_LOGS_TO_STONE = registerConfiguredFeature(

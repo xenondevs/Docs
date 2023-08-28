@@ -1,10 +1,5 @@
 # GUI Textures
 
-!!! tip
-    
-    In order to understand Nova's GUI textures and overlays, it might be beneficial for you to read our
-    [spigot thread on using the font renderer to render guis](https://www.spigotmc.org/threads/520187/).
-
 The GUITextures [registered previously](asset-packs/creating-guis.md) can simply be accessed by calling  
 ```kotlin
 val EXAMPLE_GUI = GuiTexture.of(ExampleAddon, "example_gui")

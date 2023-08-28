@@ -17,7 +17,7 @@ As an example, here's the feature used to randomly place spore blossoms.
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SPORE_BLOSSOM = registerConfiguredFeature(
@@ -31,7 +31,7 @@ As an example, here's the feature used to randomly place spore blossoms.
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SPORE_BLOSSOM = placedFeature("spore_blossom", ConfiguredFeatures.SPORE_BLOSSOM)

@@ -23,7 +23,7 @@ randomly choose between a stalactite and a stalagmite. Si here's the full config
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val POINTED_DRIPSTONE = registerConfiguredFeature(
@@ -49,7 +49,7 @@ randomly choose between a stalactite and a stalagmite. Si here's the full config
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val POINTED_DRIPSTONE = placedFeature("pointed_dripstone", ConfiguredFeatures.POINTED_DRIPSTONE)

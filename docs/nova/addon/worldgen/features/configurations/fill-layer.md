@@ -21,7 +21,7 @@ As an example, here's a configured- and placed feature to add a layer of grass o
 === "Kotlin"
 
     ```kotlin title="ConfiguredFeatures.kt"
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     @OptIn(ExperimentalWorldGen::class)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
@@ -38,7 +38,7 @@ As an example, here's a configured- and placed feature to add a layer of grass o
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val FILL_LAYER_GRASS = placedFeature("fill_layer_grass", ConfiguredFeatures.FILL_LAYER_GRASS).register()

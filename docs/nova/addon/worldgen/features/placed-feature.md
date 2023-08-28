@@ -22,7 +22,7 @@ Here's an example of Minecraft's large diamond ore placed feature:
 
     ```kotlin
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val ORE_DIAMOND_LARGE_PLACEMENT = placedFeature("ore_diamond_large", OreFeatures.ORE_DIAMOND_LARGE) // (1)!
@@ -525,7 +525,7 @@ Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementMo
 
     ```kotlin title="PlacementModifiers.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacementModifiers : FeatureRegistry by ExampleAddon.registry {
     
         val COUNT_PLACEMENT = registerPlacementModifierType("count", CountPlacement.CODEC)
@@ -581,7 +581,7 @@ Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementMo
     
     ```kotlin title="PlacementModifiers.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacementModifiers : FeatureRegistry by ExampleAddon.registry {
     
         val COUNT_PLACEMENT = registerPlacementModifierType("count", CountPlacementType)

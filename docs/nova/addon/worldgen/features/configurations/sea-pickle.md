@@ -15,7 +15,7 @@ In code, the `CountConfiguration` class is used to configure the feature.
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SEA_PICKLE = registerConfiguredFeature(
@@ -29,7 +29,7 @@ In code, the `CountConfiguration` class is used to configure the feature.
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SEA_PICKLE = placedFeature("sea_pickle", ConfiguredFeatures.SEA_PICKLE)

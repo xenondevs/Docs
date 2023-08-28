@@ -32,7 +32,7 @@ As an example, here's the configured feature used to place cacti in the desert.
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val CACTUS = registerConfiguredFeature(
@@ -119,7 +119,7 @@ Or, as another example, here's the configured and placed feature for glow berrie
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val CAVE_VINE: ConfiguredFeature<BlockColumnConfiguration, Feature<BlockColumnConfiguration>>
@@ -178,7 +178,7 @@ Or, as another example, here's the configured and placed feature for glow berrie
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val CAVE_VINE = placedFeature("cave_vine", ConfiguredFeatures.CAVE_VINE)

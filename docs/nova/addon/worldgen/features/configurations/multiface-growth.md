@@ -27,7 +27,7 @@ As an example, here's the configured- and placed feature for sculk veins.
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SCULK_VEIN = registerConfiguredFeature(
@@ -55,7 +55,7 @@ As an example, here's the configured- and placed feature for sculk veins.
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SCULK_VEIN = placedFeature("sculk_vein", ConfiguredFeatures.SCULK_VEIN)

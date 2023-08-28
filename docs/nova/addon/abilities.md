@@ -25,7 +25,7 @@ class ExampleAbility(player: Player) : Ability(player) {
 
 Then, register a new ability type for that ability:
 ```kotlin
-@Init
+@Init(stage = InitStage.PRE_PACK)
 object Abilities : AbilityTypeRegistry by ExampleAddon.registry {
     
     val EXAMPLE_ABILITY = registerAbilityType("example_ability", ::MyAbility)

@@ -28,7 +28,7 @@ As an example, here's the random patch used to generate dead bushes in the badla
     
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val PATCH_DEAD_BUSH = registerConfiguredFeature(
@@ -53,7 +53,7 @@ As an example, here's the random patch used to generate dead bushes in the badla
     
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val PATCH_DEAD_BUSH = placedFeature("patch_dead_bush", ConfiguredFeatures.PATCH_DEAD_BUSH)

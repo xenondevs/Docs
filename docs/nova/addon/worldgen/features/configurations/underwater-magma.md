@@ -23,7 +23,7 @@ As an example, here's the placed and configured feature used to place magma bloc
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val UNDERWATER_MAGMA = registerConfiguredFeature(
@@ -41,7 +41,7 @@ As an example, here's the placed and configured feature used to place magma bloc
     
     ```kotlin
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val UNDERWATER_MAGMA = placedFeature("underwater_magma", ConfiguredFeatures.UNDERWATER_MAGMA)
