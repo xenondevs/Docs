@@ -183,7 +183,7 @@ under `resource_pack.generation.resource_filters`.
 ```yaml
 resource_pack:
   generation:
-    content_filters:
+    resource_filters:
     - stage: "" # (1)!
       type: "" # (2)!
       pattern_type: "" # (3)!
