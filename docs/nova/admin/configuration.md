@@ -17,7 +17,7 @@ You might want to customize the Nova items menu. In order to do that, just edit 
 ## Tile-Entity limits
 
 With tile-entity limits, you can create restrictions on which tile-entities players are allowed to place.  
-Tile-Entity limits are configured in the `performance.tile_entity_limits` section.  
+Tile-Entity limits are configured in the `performance` > `tile_entity_limits` section.  
 Players with the permission `nova.misc.bypassTileEntityLimits` will be able to bypass these restrictions.
 
 There are 6 different limiters. You can choose one or combine multiple:
@@ -177,8 +177,8 @@ attribute_modifiers:
 
 ## Resource Filters
 
-Resource filters allow you to exclude certain files from the resource pack. They are configured in the main config
-under `resource_pack.generation.resource_filters`.
+Resource filters allow you to exclude certain files from the resource pack.  
+They are configured in the main config under `resource_pack` > `generation` > `resource_filters`.
 
 ```yaml
 resource_pack:
@@ -194,27 +194,46 @@ resource_pack:
 1. The stage at which the filter should be applied. Can be `asset_pack` or `resource_pack`.
 2. The type of the filter. Can be `whitelist` or `blacklist`.
 3. The pattern type of the `filter` field. Can be `regex` or `wildcard`.
+   You can test your regex pattern on [RegExr](https://regexr.com/) or similar sites.
 4. The filter pattern to match against. The `pattern_type` field determines how the pattern is interpreted.
-5. The directory to apply the filter to. This property is optional and defaults to the root directory.
+5. (Optional) The directory to apply the filter to. Relative to the `assets` directory.
 
-??? example "Example: Excluding all language files except en_us.json and de_de.json"
+??? example "Examples"
 
-    ```yaml
-    resource_pack:
-      generation:
-        resource_filters:
-        - stage: resource_pack
-          type: whitelist
-          pattern_type: regex
-          filter: minecraft\/lang\/(en_us|de_de).json
-          directory: minecraft/lang/
+    Excluding all langauge files except `en_us.json` and `de_de.json`:
+
+    ```yaml title="config.yml: resource_pack > generation > resource_filters"
+    - stage: resource_pack
+      type: whitelist
+      pattern_type: regex
+      filter: minecraft\/lang\/(en_us|de_de).json
+      directory: minecraft/lang/
+    ```
+
+    Excluding an entire directory:
+
+    ```yaml title="config.yml: resource_pack > generation > resource_filters"
+    - stage: resource_pack
+      type: blacklist
+      pattern_type: regex
+      filter: .*
+      directory: path/to/directory/
+    ```
+
+    Excluding all png files:
+
+    ```yaml title="config.yml: resource_pack > generation > resource_filters"
+    - stage: resource_pack
+      type: blacklist
+      pattern_type: regex
+      filter: *.png
     ```
 
 ## WAILA Positioning
 
 If you want to change the vertical position of the WAILA overlay, you can do so by defining which boss bars should be
-above or below it. This is done by defining matchers in `waila.positioning.above` (defines the boss bars that should
-be below WAILA) and `waila.positioning.below` (defines the boss bars that should be above WAILA).
+above or below it. This is done by defining matchers in `waila` > `positioning` > `above` (defines the boss bars that should
+be below WAILA) and `waila` > `positioning` > `below` (defines the boss bars that should be above WAILA).
 
 There are five different types of matchers available:
 
