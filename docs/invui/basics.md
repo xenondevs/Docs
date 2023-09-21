@@ -4,6 +4,18 @@ Displaying an inventory to a player requires two things: a [GUI](guis/index.md) 
 The GUI contains all UI Elements [Items](items.md), while a Window actually displays it to a user and is directly tied to a Bukkit inventory.  
 Not tying the GUI to a specific inventory type (like Chest, Dropper, Hopper or Anvil) allows for a much more flexible usage as well as nested GUIs, which can be very helpful when you're trying to create a more complex menu.
 
+## Paper plugins
+For paper plugins it is necessary to set the plugin that is using InvUI through InvUI.setPlugin so that InvUI can recognize your classloader
+
+=== "Java"
+    ```java
+    @Override
+    public void onEnable() {
+        InvUI.getInstance().setPlugin(this);
+        ...
+    }
+    ```
+    
 ## Creating a GUI with the GuiBuilder
 Every `...Gui` interface has static methods to create the specific `Gui.Builder`.  
 If the GUI can have multiple types, such as paged GUIs being able to display a list of items or a list of GUIs,
