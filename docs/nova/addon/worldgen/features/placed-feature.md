@@ -210,7 +210,7 @@ Returns the given position `count` times.
 
 ### `minecraft:count_on_every_layer`
 
-**Deprecated**. For more information, check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Custom_feature#count_on_every_layer)
+**Deprecated**. For more information, check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_feature#count_on_every_layer)
 
 ### `minecraft:environment_scan`
 

@@ -6,7 +6,7 @@ After creating all advancements, you can register them using `AdvancementManager
 !!! important
 
     Before continuing, make sure to be familiar with
-    [Minecraft's advancement format](https://minecraft.fandom.com/wiki/Advancement/JSON_format) which is used in datapacks,
+    [Minecraft's advancement format](https://minecraft.wiki/w/Advancement/JSON_format) which is used in datapacks,
     as Nova's way of registering advancements is basically just a kotlin DSL builder for that.
 
 ## Creating the root advancement

@@ -83,7 +83,7 @@ Example for ``nova:wrench``:
 
 Nova uses the resource pack to translate items client side. However, if you still need to get the translated name of an item,
 you can use ``NovaItem.getLocalizedName(locale)``. The locale is the language code of the language you want to get the name in.
-The code is the same as the language code used by [Minecraft](https://minecraft.fandom.com/wiki/Language).
+The code is the same as the language code used by [Minecraft](https://minecraft.wiki/w/Language).
 
 !!! info
 

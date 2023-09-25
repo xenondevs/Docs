@@ -90,7 +90,7 @@ The following `RuleTests` are available:
     </tr>
     <tr>
         <td><code>minecraft:tag_match</code></td>
-        <td>Matches a specific <a href="https://minecraft.fandom.com/wiki/Tag#Blocks">block tag</a></td>
+        <td>Matches a specific <a href="https://minecraft.wiki/w/Tag#Blocks">block tag</a></td>
         <td>
             ```kotlin
             TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES)

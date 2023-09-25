@@ -4,7 +4,7 @@ Nova provides you with two built-in ways to handle left- and right-click detecti
 
 ### PhysicalHitbox
 
-A `PhysicalHitbox` uses an [Interaction Entity](https://minecraft.fandom.com/wiki/Interaction).
+A `PhysicalHitbox` uses an [Interaction Entity](https://minecraft.wiki/w/Interaction).
 This means that the hitbox can be shown by pressing `F3+B` and functions similar to a normal entity, with it
 not allowing to interact with anything behind it.
 `PhysicalHitboxes` are also restricted to a square base area, as they only have a `width` and a `height`.
