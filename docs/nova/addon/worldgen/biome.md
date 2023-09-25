@@ -8,7 +8,7 @@
 
 Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), [climate](#climate),
 [effects](#special-effects) and much more. This page only covers the `BiomeBuilder` for now. If you're looking for the Json
-format, check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Custom_biome).
+format, check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_biome).
 
 First, let's get into more detail on the individual components of a biome.
 

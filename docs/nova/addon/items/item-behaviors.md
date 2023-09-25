@@ -58,7 +58,7 @@ Item behaviors are used to add functionality to items. There are some default im
             ```
 
             1. The type of the effect.  
-               A list of all effect types can be found [here](https://minecraft.fandom.com/wiki/Effect#Effect_list).
+               A list of all effect types can be found [here](https://minecraft.wiki/w/Effect#Effect_list).
             2. The duration of the effect in ticks.
             3. The amplifier of the effect. An amplifier of 0 is a level 1 effect.
             4. Whether the effect is ambient or not.  
@@ -84,7 +84,7 @@ Item behaviors are used to add functionality to items. There are some default im
         ```
 
         If you need some examples for the `armor`, `armorToughness` and `knockback_resistance` values,
-        you can check out the [Minecraft wiki](https://minecraft.fandom.com/wiki/Armor#Defense_points).
+        you can check out the [Minecraft wiki](https://minecraft.wiki/w/Armor#Defense_points).
 
     === "Tool"
     

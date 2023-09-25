@@ -7,8 +7,8 @@
 
 ## `IntProvider`
 
-TODO - Check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Configured_feature/int_provider) in the meantime.
+TODO - Check out the [Minecraft Wiki](https://minecraft.wiki/w/Configured_feature/int_provider) in the meantime.
 
 ## `FloatProvider`
 
-TODO - Check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Configured_feature/float_provider) in the meantime.
+TODO - Check out the [Minecraft Wiki](https://minecraft.wiki/w/Configured_feature/float_provider) in the meantime.

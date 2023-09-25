@@ -6,7 +6,7 @@ Most features are registered in 3 "steps":
 ### 1. Feature Type
 
 The feature type is the logic behind the feature. It's the only part that needs to be written in code. Minecraft already
-has a ton of default feature types (Although they're just called `Feature` in NMS). Check out the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Custom_feature#Feature_Type)
+has a ton of default feature types (Although they're just called `Feature` in NMS). Check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_feature#Feature_Type)
 for an up-to-date list of all feature types.
 
 ### 2. Configured Feature
