@@ -17,7 +17,7 @@ val SOLAR_PANEL = NovaMaterialRegistry.tileEntity(ExampleAddon, "solar_panel", :
 So your ``Blocks`` object might look something like this:
 
 ```kotlin
-@Init // (1)!
+@Init(stage = InitStage.PRE_PACK) // (1)!
 object Blocks : BlockRegistry by ExampleAddon.registry {
     
     private val STONE = BlockOptions(3.0, ToolCategory.PICKAXE, ToolTier.WOOD, true, SoundGroup.STONE, Material.NETHERITE_BLOCK)

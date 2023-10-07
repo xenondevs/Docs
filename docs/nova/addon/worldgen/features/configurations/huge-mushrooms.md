@@ -20,7 +20,7 @@ As an example, here's the configured- and placed feature for the default huge re
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val HUGE_RED_MUSHROOM = registerConfiguredFeature(
@@ -42,7 +42,7 @@ As an example, here's the configured- and placed feature for the default huge re
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val HUGE_RED_MUSHROOM = placedFeature("huge_red_mushroom", ConfiguredFeatures.HUGE_RED_MUSHROOM).register()

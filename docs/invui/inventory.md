@@ -72,16 +72,12 @@ or any other custom implementation of `Inventory`.
 
 ## Inventory Events
 
-You can also register update handlers to your `Inventory`.
+You can also register update handlers to your `Inventory`. There are two different types of events:
 
-The handler for the `ItemPreUpdateEvent` registered with `setPreUpdateHandler` will be called before changes were fully processed.
-This means that both cancelling the event and modifying the stack size of the new item stack
-will have effects on the source of the change. (i.e. A player put 64 items into the inventory, but
-the amount gets changed to 32 in the event -> the player will keep 32 items on their cursor)
-
-The handler for the `ItemPostUpdateEvent` registered with `setPostUpdateHandler` will be called after
-changes were processed. You can't cancel this event, but you can use it to remove items from the inventory
-without it having an effect on the source of the change. This might be useful for trash can inventories or similar.
+| Event type            | Registered with                         | Description                                                                                                                                                                                            | Use-case                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ItemPreUpdateEvent`  | `#!java Inventory.setPreUpdateHandler`  | Called before changes were fully processed. Cancelling this event or changing the amount of items that were added/removed will affect the source of the change (which is the player most of the time). | Restricting which or how many items can be put into an inventory or a specific slot.<br><br>**Example 1:** A player tries to put a full stack of 64 items into the inventory, but the amount gets changed to 32 in the event, so the remaining 32 items stay on the player's cursor.<br><br>**Example 2:** A player shift-clicks a dirt block into the inventory, but the event is cancelled in such a way that only diamonds can be placed on slot 1, and everything else can be placed on slot 2, so the dirt is put on slot 2. |
+| `ItemPostUpdateEvent` | `#!java Inventory.setPostUpdateHandler` | After changes were fully processed. This event cannot be cancelled and changes done to the inventory during this event will not affect the source of the change.                                       | Removing or editing items after they've been added to the inventory.<br><br>**Example:** A trash can inventory that immediately removes all items that have been put into it.                                                                                                                                                                                                                                                                                                                                                     |
 
 ## Inventories in GUIs
 

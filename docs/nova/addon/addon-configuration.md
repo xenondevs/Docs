@@ -1,4 +1,5 @@
 # Configure Addon
+
 Now that you've created your project, you need to set several values in the `addon` task.
 :material-information-outline:{ title="Part of the xyz.xenondevs.nova:nova-gradle-plugin" }
 If you're using the addon template, most of these values are already set for you.
@@ -8,14 +9,18 @@ If you're using the addon template, most of these values are already set for you
 ## id*
 
 This is the id of your addon. It is used for multiple things like the addon's config folder name or the namespace for
-items and blocks. This id has to start with a letter and can only contain lowercase letters, numbers and underscores.
-There are also a few reserved words that can't be used as id. These are:
+items and blocks.  
+Please note that:
 
-* ``nova``
-* ``minecraft``
-* ``itemsadder``
-* ``oraxen``
-* ``mmoitems``
+<div class="annotate" markdown>
+* The id has to start with a letter and can only contain lowercase letters, numbers and `_`, `-`. (1)
+* Addon ids should not be changed after release, as that will break items and blocks in existing worlds.   
+* There are also a few reserved namespaces that cannot be used: `minecraft`, `nova`, `itemsadder`, `oraxen`, `mmoitems`.
+  This list might be expanded in the future, so you should generally avoid using namespaces that are already used by other
+  well-known plugins.
+</div>
+
+1. Regex: `^[a-z][a-z\d_-]*$`
 
 Example:
 
@@ -32,6 +37,7 @@ id.set(project.name)
 ## name*
 
 This is the displayed name of your addon. Unlike the addon id, there are no naming restrictions.
+The name can be changed at any time.
 
 Example:
 
@@ -39,7 +45,7 @@ Example:
 name.set("Example Addon")
 ```
 
-In most cases, you can just use your project name: 
+In most cases, you can just use your project name:
 
 ```kotlin title="build.gradle.kts addon { }"
 name.set(project.name)
@@ -133,7 +139,6 @@ addon {
     novaVersion.set("0.11")
     main.set("com.example.ExampleAddon")
     authors.set(listOf("Example Author", "Another Author"))
-    spigotResourceId.set(12345)
     depend.add("machines")
     softdepend.add("logistics")
 }

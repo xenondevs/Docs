@@ -29,7 +29,7 @@ As an example, here's the configured- and placed feature for placing moss in cav
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val MOSS_PATCH = registerConfiguredFeature(
@@ -56,7 +56,7 @@ As an example, here's the configured- and placed feature for placing moss in cav
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val MOSS_PATCH = placedFeature("lush_caves_vegetation", ConfiguredFeatures.MOSS_PATCH)

@@ -21,7 +21,7 @@ As an example, here's the random selector used to generate tree in the old growt
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val TREES_OLD_GROWTH_SPRUCE_TAIGA = registerConfiguredFeature(

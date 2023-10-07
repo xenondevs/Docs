@@ -32,7 +32,7 @@ kdoc for more information.
 
 ```kotlin title="Biomes.kt"
 @OptIn(ExperimentalWorldGen::class)
-@Init
+@Init(stage = InitStage.POST_PACK_PRE_WORLD)
 object Biomes : BiomeRegistry by ExampleAddon.registry {
     
     private val MISC_ORES = listOf(OrePlacements.ORE_DIRT, OrePlacements.ORE_GRAVEL, OrePlacements.ORE_GRANITE_UPPER, OrePlacements.ORE_GRANITE_LOWER, OrePlacements.ORE_DIORITE_UPPER, OrePlacements.ORE_DIORITE_LOWER, OrePlacements.ORE_ANDESITE_UPPER, OrePlacements.ORE_ANDESITE_LOWER, OrePlacements.ORE_TUFF)

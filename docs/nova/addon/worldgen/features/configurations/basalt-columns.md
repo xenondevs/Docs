@@ -21,7 +21,7 @@ As an example, here's the configured and placed feature for the large basalt col
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val LARGE_BASALT_COLUMNS = registerConfiguredFeature(
@@ -37,7 +37,7 @@ As an example, here's the configured and placed feature for the large basalt col
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val LARGE_BASALT_COLUMNS = placedFeature("large_basalt_columns", ConfiguredFeatures.LARGE_BASALT_COLUMNS)

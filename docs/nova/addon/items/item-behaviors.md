@@ -88,30 +88,7 @@ Item behaviors are used to add functionality to items. There are some default im
 
     === "Tool"
     
-        Allows you to create a custom tool.
-
-        ```kotlin
-        val EXAMPLE_ITEM = registerItem("example_item", Tool)
-        ```
-
-        ```yaml title="configs/example_item.yml"
-        # The tool level
-        tool_level: minecraft:iron
-        # The tool category
-        tool_category: minecraft:sword
-        # The block breaking speed
-        break_speed: 1.5
-        # The attack damage
-        attack_damage: 6
-        # The attack speed
-        attack_speed: 2.0
-        # The knockback bonus
-        knockback_bonus: 1
-        # If sweep attacks can be performed with this tool
-        can_sweep_attack: true
-        # If this tool can break blocks in creative
-        can_break_blocks_in_creative: false
-        ```
+        See [Tools](../tools).
 
     === "Damageable"
 
@@ -134,25 +111,7 @@ Item behaviors are used to add functionality to items. There are some default im
 
     === "Enchantable"
 
-        Makes your item enchantable.
-
-        ```kotlin
-        val EXAMPLE_ITEM = registerItem("example_item", Enchantable)
-        ```
-        
-        ```yaml title="configs/example_item.yml"
-        # The enchantment value
-        enchantment_value: 10 # (1)!
-        # The enchantment categories
-        enchantment_categories: ["weapon", "breakable"] # (2)!
-        ```
-        
-        1. The enchantment value of the item. This value defines how enchantable an item is.
-           A higher enchantment value means more secondary and higher-level enchantments.  
-           Vanilla enchantment values: wood: `15`, stone: `5`, iron: `14`, diamond: `10`, gold: `22`, netherite: `15`
-        2. The enchantment categories of the item. This defines which enchantments can be applied to this item.  
-           Available enchantment categories: `armor`, `armor_feet`, `armor_legs`, `armor_chest`, `armor_head`, `weapon`,
-           `digger`, `fishing_rod`, `trident`, `breakable`, `bow`, `wearable`, `crossbow`, `vanishable`
+        See [Enchantments](../enchantments).
 
     === "Stripping"
 
@@ -254,8 +213,9 @@ Item behaviors are used to add functionality to items. There are some default im
 ## Custom Item Behaviors
 
 There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
-your own. Just create a new class and extend ``ItemBehavior``. Instead of registering event handlers, you can override
-the `handle...()` functions, which are called when something is done with an `ItemStack` of a material with that behavior.
+your own. Just create a new class and implement the ``ItemBehavior`` interface.
+Instead of registering event handlers, you can override the `handle...()` functions, which are invoked when something is done
+with an `ItemStack` of a `NovaItem` with that behavior.
 
 ### `fun getVanillaMaterialProperties`
 
@@ -282,7 +242,7 @@ These are the available vanilla material properties:
 
 ### `fun getAttributeModifiers`
 
-Gets a list of `AttributeModifier`s.
+Gets a list of `AttributeModifiers`.
 
 ```kotlin title="Example Attribute Modifiers"
 override fun getAttributeModifiers(): List<AttributeModifier> =
@@ -297,22 +257,17 @@ override fun getAttributeModifiers(): List<AttributeModifier> =
 ```
 
 1. The name of the attribute modifier. This is also used to create a `UUID` for your `AttributeModifier` to distinguish
-   it from other `AttributeModifier`s. It is important that different `AttributeModifier`s have different `UUID`s.
+   it from other `AttributeModifiers`. It is important that different `AttributeModifier`s have different `UUID`s.
 2. The attribute that should be modified.
 3. The operation that should be done.
 4. The value that should be used for the operation. In this case, the movement speed will be increased by 10%.
 5. Whether the attribute modifier should be shown in the `ItemStack`'s lore.
 6. The equipment slot(s) that this attribute modifier should be applied to.
 
-### `fun modifyItemBuilder`
+### `fun getDefaultCompound`
 
-This function is called when an `ItemBuilder` is created for an `ItemStack` of a material with this behavior.  
-Here, you can add additional NBT data to the `ItemStack` by calling `ItemBuilder.addModifer`.
-
-!!! bug "Modifying display name, lore and other attributes"
-
-    Do not use this method to modify the item's display name, lore, or other properties that are not required for the item to work server-side.  
-    For that, use the `updatePacketItemData` function instead.
+This function is used to specify default CBF data for all `ItemStacks` of `NovaItems` that use this `ItemBehavior`.  
+All default compounds from all `ItemBehehaviors` are merged together and always applied to new `ItemStack` of that type.
 
 ### `fun updatePacketItemData`
 
@@ -322,17 +277,46 @@ like the display name, lore (normal and advanced tooltips), the durability bar a
 
 Confused? Take a look at [Understanding Packet Items](using-nova-item.md#understanding-packet-items).
 
-### ItemBehaviorFactory
+### ItemBehaviorHolder and ItemBehaviorFactory
 
-If you want to create item behaviors that can be added with a similar syntax as the default item behaviors, you'll need
-to inherit from `ItemBehaviorFactory` in the companion object of your `ItemBehavior`. Then, implement the `create(NovaItem)`
-function. Here, you can create an instance of your `ItemBehavior` based on the `NovaItem` that is passed to the function.
+`ItemBehaviorHolder` is a sealed interface with two implementations: `ItemBehavior` and `ItemBehaviorFactory`, where
+`ItemBehaviorFactory` creates `ItemBehavior` instances based on a `NovaItem` instance. This allows you to create
+factories for your `ItemBehaviors` that read from the item's config file.  
 
-With `ConfigAccess`, you easily create a class that houses [config-reloadable properties](../configs.md) for your item behavior.  
-Here is an example of how we implement
-[ItemBehaviorFactory](https://github.com/xenondevs/Nova/blob/c87b0ab1e5a7e9cd441576425b9c6f20914e45c2/nova/src/main/kotlin/xyz/xenondevs/nova/item/behavior/Consumable.kt#L153-L156) and
-[ConfigAccess](https://github.com/xenondevs/Nova/blob/c87b0ab1e5a7e9cd441576425b9c6f20914e45c2/nova/src/main/kotlin/xyz/xenondevs/nova/item/options/FoodOptions.kt)
-for food items.
+```kotlin title="Example custom ItemBehavior with ItemBehaviorFactory"
+class MyBehavior(value: Provider<Int>) : ItemBehavior {
+
+   private val value by value // (1)!
+
+   companion object : ItemBehaviorFactory<MyBehavior> {
+       
+      override fun create(item: NovaItem): MyBehavior {
+         return MyBehavior(item.config.entry<Int>("value"))
+      }
+      
+   }
+
+}
+```
+
+1. Delegating to the obtained provider makes this property config-reloadable without any additional code.
+
+Now, you could, for example, assign the same `ItemBehaviorFactory` to multiple items, while still accessing
+different configs.
+
+```kotlin
+@Init(stage = InitStage.PRE_PACK) // (1)!
+object Items : ItemRegistry by ExampleAddon.registry {
+    
+    val EXAMPLE_ITEM_1 = registerItem("example_1", MyBehavior) // configs/example_1.yml
+    val EXAMPLE_ITEM_2 = registerItem("example_2", MyBehavior) // configs/example_2.yml
+    val EXAMPLE_ITEM_3 = registerItem("example_3", MyBehavior) // configs/example_3.yml
+    
+   
+}
+```
+
+1. Nova will load this class during addon initialization, causing the item fields to be initialized and your items to be registered.
 
 ## Item Data
 

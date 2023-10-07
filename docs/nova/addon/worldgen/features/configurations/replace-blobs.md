@@ -23,7 +23,7 @@ As an example, here's the configured- and placed feature for blackstone blobs in
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val BLACKSTONE_BLOBS = registerConfiguredFeature(
@@ -43,7 +43,7 @@ As an example, here's the configured- and placed feature for blackstone blobs in
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val BLACKSTONE_BLOBS = placedFeature("blackstone_blobs", ConfiguredFeatures.BLACKSTONE_BLOBS)

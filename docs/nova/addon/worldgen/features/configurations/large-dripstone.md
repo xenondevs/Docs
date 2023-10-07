@@ -34,7 +34,7 @@ As an example, here's the configured and placed feature for the vanilla large dr
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val LARGE_DRIPSTONE = registerConfiguredFeature(
@@ -58,7 +58,7 @@ As an example, here's the configured and placed feature for the vanilla large dr
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val LARGE_DRIPSTONE = placedFeature("large_dripstone", ConfiguredFeatures.LARGE_DRIPSTONE)

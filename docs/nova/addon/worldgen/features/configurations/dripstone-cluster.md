@@ -34,7 +34,7 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val DRIPSTONE_CLUSTER = registerConfiguredFeature(
@@ -60,7 +60,7 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures: FeatureRegistry by ExampleAddon.registry {
     
         val DRIPSTONE_CLUSTER = placedFeature("dripstone_cluster", ConfiguredFeatures.DRIPSTONE_CLUSTER)

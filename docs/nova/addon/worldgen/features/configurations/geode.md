@@ -78,7 +78,7 @@ In code, the `GeodeCrackSettings` class is used to configure the crack of the ge
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val AMETHYST_GEODE = registerConfiguredFeature(
@@ -129,7 +129,7 @@ In code, the `GeodeCrackSettings` class is used to configure the crack of the ge
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val AMETHYST_GEODE = placedFeature("amethyst_geode", ConfiguredFeatures.AMETHYST_GEODE)

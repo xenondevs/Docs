@@ -26,7 +26,7 @@ As an example, here's the default sculk patch configured- and placed feature use
 
     ```kotlin title="ConfiguredFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object ConfiguredFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SCULK_PATCH_DEEP_DARK = registerConfiguredFeature(
@@ -48,7 +48,7 @@ As an example, here's the default sculk patch configured- and placed feature use
 
     ```kotlin title="PlacedFeatures.kt"
     @OptIn(ExperimentalWorldGen::class)
-    @Init
+    @Init(stage = InitStage.POST_PACK_PRE_WORLD)
     object PlacedFeatures : FeatureRegistry by ExampleAddon.registry {
     
         val SCULK_PATCH_DEEP_DARK = placedFeature("sculk_patch_deep_dark", ConfiguredFeatures.SCULK_PATCH_DEEP_DARK)

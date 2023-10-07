@@ -7,28 +7,10 @@ which is why Nova gets rid of all vanilla boss bars and re-renders them using cu
 Additionally, we also create what we call "vertically moved fonts", which are variations of a font that are moved on the
 vertical axis.
 
-When creating a font for a boss bar overlay, you will also need to create those vertically moved font variations.  
-For that, create a file called `moved_fonts.json` in your `assets` directory:
+When creating a custom font for a boss bar overlay, you will also need to
+[create those vertically moved font variations.](fonts.md#vertical-movement)
 
-```json title="moved_fonts.json"
-{
-  "exampleaddon:myfont": {
-    "range": [1, 19] // (1)!
-  }
-}
-```
-
-1. Specifies the range of vertically moved fonts to generate. For boss bar overlays, it is required to generate vertically
-   moved fonts from 1 to 19 with 1px increments, as this is the spacing between the actual boss bars.
-
-??? tip "Optional: Using vertically moved fonts in code"
-
-      For boss bar overlays, you will not need to access or use your vertically moved fonts at any time, as Nova will automatically
-      apply to correct font based on your overlay's offset and positioning. However, you can still use them in your code if you
-      need them for other reasons. Vertically moved fonts are generated to `exampleaddon:myfont/1`, `exampleaddon:myfont/2`, etc. and
-      you can also automatically apply them to a `Component` using `MovedFonts.moveVertically`.
-
-!!! info "Vertically moved fonts for `minecraft:default` are already included in Nova."
+!!! info "Vertically moved fonts for `minecraft:default` will be automatically generated if the boss bar overlay is enabled in main config."
 
 After you've created your vertically moved fonts, you can start implementing the boss bar overlay in code.
 For that, you'll need to create a `BossBarOverlayCompound` consisting of at least one `BossBarOverlay`.

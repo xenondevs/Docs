@@ -3,7 +3,7 @@
 Create a `BlockRegistry` singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
-@Init // (1)!
+@Init(stage = InitStage.PRE_PACK) // (1)!
 object Blocks : BlockRegistry by ExampleAddon.registry {
     
     // (2)!
@@ -92,7 +92,7 @@ for placement permissions of multi blocks.
 After you've registered your block, you will also need to register the item for it:
 
 ```kotlin
-@Init
+@Init(stage = InitStage.PRE_PACK)
 object Items : ItemRegistry by ExampleAddon.registry {
     
     /* ... your other items ... */
