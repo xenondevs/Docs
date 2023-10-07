@@ -1,36 +1,35 @@
 # Advancements
 
+!!! warning "Advancement DSL builder has been removed"
+
+    The built-in advancement DSL builder has been removed in 0.15.  
+    However, you can still create advancements using Mojang's internal advancement builders and then register them using
+    `AdvancementLoader` like before.
+    
+    Alternatively, you could also use a third-party advancement api.
+
 Advancements can be created with the top level function `advancement`.  
-After creating all advancements, you can register them using `AdvancementManager#registerAdvancements`
-
-!!! important
-
-    Before continuing, make sure to be familiar with
-    [Minecraft's advancement format](https://minecraft.fandom.com/wiki/Advancement/JSON_format) which is used in datapacks,
-    as Nova's way of registering advancements is basically just a kotlin DSL builder for that.
+From there, you'll need to use Mojang's internal advancement builders.
 
 ## Creating the root advancement
 
 When creating the root advancement, make sure to set a background image and a criterion that is obtained automatically,
 such as an empty tick.
 
-??? example "Example root advancement"
-
-    ```kotlin
-    private val ROOT = advancement(ExampleAddon, "root") {
-        display {
-            icon(Blocks.EXAMPLE_BLOCK)
-            title(TranslatableComponent("advancement.example_addon.root.title"))
-            description("")
-            background("minecraft:textures/block/tuff.png")
-            
-            announceToChat(false)
-            showToast(false)
-        }
-        
-        criteria { tick("tick") {} }
-    }
-    ```
+```kotlin title="Example root advancement"
+private val ROOT = advancement(ExampleAddon, "root") {
+    display(DisplayInfo(
+        Items.MY_ITEM.clientsideProvider.get().nmsCopy,
+        Component.translatable("advancement.example_addon.root.title").toNMSComponent(),
+        Component.empty().toNMSComponent(),
+        ResourceLocation("minecraft", "textures/block/tuff.png"),
+        FrameType.TASK,
+        false, false, false
+    ))
+    
+    addCriterion("tick", PlayerTrigger.TriggerInstance.tick())
+}
+```
 
 ## Advancements for obtaining Nova items
 
