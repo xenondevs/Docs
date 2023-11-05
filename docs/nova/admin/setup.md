@@ -65,7 +65,7 @@ This can be done either automatically or manually:
               auto_upload:
                 enabled: true
                 service: self_host
-                port: 12345 # The port on which the server will be running, needs to be open to the Internet.
+                port: 12345 # The port on which the web server will be running, needs to be open to the Internet.
             ```
         
             !!! info "`host` parameter"
