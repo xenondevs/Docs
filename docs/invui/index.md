@@ -105,3 +105,7 @@ If you're using Kotlin, you should also add the `invui-kotlin` module:
 
 To find the latest InvUI version, you can explore the [Maven Repository](https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/invui/invui/)
 or check out the [GitHub Releases Page](https://github.com/NichtStudioCode/InvUI/releases).
+
+## Javadoc
+
+You may also want to check out the [InvUI javadoc](https://invui.javadoc.xenondevs.xyz).
