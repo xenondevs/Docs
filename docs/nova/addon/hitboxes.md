@@ -23,7 +23,7 @@ hitbox.unregister()
 
 ### VirtualHitbox
 
-`VirtualHitboxes` use server-side path tracing, which has a bigger performance impact than `PhysicalHitboxes`, but
+`VirtualHitboxes` use server-side ray casts, which have a bigger performance impact than `PhysicalHitboxes`, but
 allows for more complex and flexible hitboxes. For one, their size is completely customizable, and they're not limited
 to a square base area. Additionally, you can also specify a `qualifier` function, which allows you to filter out
 certain cases where the hitbox should not be triggered and the player should be able to interact with the block behind it.

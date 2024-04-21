@@ -103,7 +103,7 @@ Resource filters are used to filter out resources that should not be included in
 They can be configured by server admins and addon developers
 using `#!kotlin ResourcePackBuilder.registerResourceFilter`.  
 During the build process, you can retrieve the filters using `#!kotlin resourcePackBuilder.getResourceFilters(stage)`.
-If writes additional files, you should check whether are configured to be excluded.
+If you write additional files, you should check whether they are configured to be excluded.
 
 ## Important built-in task holders
 
