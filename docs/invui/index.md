@@ -58,8 +58,8 @@ Now you can add InvUI as a dependency:
 
     InvUI uses `inventory-access` for multi-version support. If you depend on the `invui` module, you'll automatically
     get all available `inventory-access` revisions.  
-    If your plugin does not have multi-version support or you only need versions, you can either exclude the
-    related `inventory-access` revisions or instead depend on the `invui-core` module which does not have any transitive
+    If your plugin does not have multi-version support or you only need certain versions, you can either exclude the
+    related `inventory-access` revisions or instead depend on the `invui-core` module which does not have transitive
     dependencies on any `inventory-access` revisions.
 
     ```xml
