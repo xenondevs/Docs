@@ -6,13 +6,11 @@
 
     Please follow the tutorial on the [setup page](setup.md).
 
-??? faq "Which Minecraft versions are supported by Nova?"
+??? faq "Which Minecraft versions are supported by Nova? Is there multi-version support?"
 
-    Nova always only supports the latest version of Minecraft.
-
-??? faq "Will multi-version support be added to Nova?"
-
-    No, multi-version support is not planned
+    The goal for Nova is to always target the latest version of Minecraft. There is no multi-version support.
+    If that latest version of Nova does not support the latest Minecraft version yet, please be patient
+    while we work on updating it.
 
 ??? faq "Can I use Nova with Bedrock bridges like Geyser?"
 
