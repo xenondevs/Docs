@@ -1,5 +1,7 @@
 # Setting up Nova
 
+Before installing Nova, please make sure that you're running a [supported server software](compatibility/index.md#compatible-server-software).
+
 ## Step 1: Plugin Installation
 
 * Like any other plugin, the Nova plugin jar file downloaded from [Hangar](https://hangar.papermc.io/xenondevs/Nova), [Modrinth](https://modrinth.com/plugin/nova-framework), [GitHub](https://github.com/xenondevs/Nova) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
@@ -24,7 +26,9 @@ Please follow Step 3 to configure resource pack hosting.
 
 !!! info
 
-    Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons: `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
+    Some addons might require other addons in order to work.
+    If this is the case, an error in the console will notify you of the missing addons:  
+    `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
 
 ## Step 3: Configure resource pack hosting
 

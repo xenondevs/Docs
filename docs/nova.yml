@@ -16,7 +16,6 @@ theme:
 nav:
   - "Setup & Configuration":
       - "Setup": "admin/setup.md"
-      - "Configuration": "admin/configuration.md"
       - "Compatibility":
           - "Server Software & third-party Plugins": "admin/compatibility/index.md"
           - "Troubleshooting": "admin/compatibility/troubleshooting.md"
@@ -24,6 +23,7 @@ nav:
           - "Oraxen": "admin/compatibility/oraxen.md"
           - "GriefDefender": "admin/compatibility/griefdefender.md"
           - "UTP": "admin/compatibility/utp.md"
+      - "Configuration": "admin/configuration.md"
       - "Recipes":
           - "Custom Recipes": "admin/recipes/index.md"
           - "Vanilla Recipe Types": "admin/recipes/vanilla.md"
