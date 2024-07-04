@@ -21,8 +21,6 @@ nav:
           - "Troubleshooting": "admin/compatibility/troubleshooting.md"
           - "ItemsAdder": "admin/compatibility/itemsadder.md"
           - "Oraxen": "admin/compatibility/oraxen.md"
-          - "GriefDefender": "admin/compatibility/griefdefender.md"
-          - "UTP": "admin/compatibility/utp.md"
       - "Configuration": "admin/configuration.md"
       - "Recipes":
           - "Custom Recipes": "admin/recipes/index.md"
