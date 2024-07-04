@@ -106,6 +106,37 @@ If you're using Kotlin, you should also add the `invui-kotlin` module:
 To find the latest InvUI version, you can explore the [Maven Repository](https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/invui/invui/)
 or check out the [GitHub Releases Page](https://github.com/NichtStudioCode/InvUI/releases).
 
+## Paper Plugin
+
+Starting with 1.20.5, Paper now ships with a Mojang-mapped runtime by default.  
+If you're creating a paper plugin, i.e. you have a `paper-plugin.yml`, you'll need to make sure that
+InvUI's `inventory-access` modules are remapped by Paper.
+(If you don't have a `paper-plugin.yml`, you can ignore this section.)  
+This can be achieved by loading InvUI through Paper's library loader:
+
+```java
+public class MyPluginLoader implements PluginLoader {
+    
+    @Override
+    public void classloader(@NotNull PluginClasspathBuilder pluginClasspathBuilder) {
+        MavenLibraryResolver resolver = new MavenLibraryResolver();
+        resolver.addRepository(new RemoteRepository.Builder("xenondevs", "default", "https://repo.xenondevs.xyz/releases/").build());
+        resolver.addDependency(new Dependency(new DefaultArtifact("xyz.xenondevs.invui:invui:pom:VERSION"), null));
+        pluginClasspathBuilder.addLibrary(resolver);
+    }
+    
+}
+```
+
+Alternatively, if you're creating a fat jar, you can also set the `paperweight-mappings-namespace`manifest attribute to `spigot`.  
+For more information, refer to the [Paper Documentation](https://docs.papermc.io/paper/dev/project-setup#plugin-remapping).
+
+!!! warning "Mojang-mapped artifacts on the repository"
+
+    While there are Mojang-mapped artifacts for the `inventory-access` revisions on the repository, they are not
+    compatible with Paper's Mojang-mapped runtime, as they still use versioned CraftBukkit package names,
+    which are also no longer present in the Paper runtime. They can however be used on Mojang-mapped Spigot servers.
+
 ## Javadoc
 
 You may also want to check out the [InvUI javadoc](https://invui.javadoc.xenondevs.xyz).
