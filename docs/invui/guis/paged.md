@@ -166,7 +166,7 @@ Now I can switch between two paged GUIs.
 === "Kotlin"
 
     ```kotlin
-    val gui = PagedGui.items()
+    val gui = PagedGui.guis()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",
