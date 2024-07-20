@@ -183,7 +183,7 @@ Now I can switch between two paged GUIs.
 === "Java"
 
     ```java
-    Gui gui = PagedGui.items()
+    Gui gui = PagedGui.guis()
         .setStructure(
             "x x x x x x x x x",
             "x x x x x x x x x",
