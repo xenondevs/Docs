@@ -41,23 +41,17 @@ This is an example recipe for inserting water into a bucket to create a water bu
 
 ```json title="bucket_to_water_bucket.json"
 {
-  "mode": "INSERT",
-  "fluid_type": "WATER",
+  "mode": "INSERT", // (1)!
+  "fluid_type": "WATER", // (2)!
   "fluid_amount": 1000,
   "input": "minecraft:bucket",
   "result": "minecraft:water_bucket",
   "time": 100
 }
 ```
-!!! abstract "Parameters"
 
-    === "Mode"
-
-        The mode specifies if this should be a recipe for inserting (``INSERT``) or extracting (``EXTRACT``) fluids.
-
-    === "Fluid Type"
-
-        Currently, there are only ``WATER`` and ``LAVA``. Custom fluids from other plugins are not supported.
+1. The mode specifies if this should be a recipe for inserting (``INSERT``) or extracting (``EXTRACT``) fluids.
+2. Currently, there are only ``WATER`` and ``LAVA``. Custom fluids from other plugins are not supported.
 
 This is an example recipe for extract water from a water bottle to create an empty bottle:
 
@@ -87,11 +81,11 @@ This recipe would add the luck effect type to the electric brewing stand:
 ```json title="luck.json"
 {
   "result": "minecraft:luck",
-  "default_time": 1800,
-  "redstone_multiplier": 2,
-  "glowstone_multiplier": 0.5,
-  "max_duration_level": 5,
-  "max_amplifier_level": 5,
+  "default_time": 1800, // (1)!
+  "redstone_multiplier": 2, // (2)!
+  "glowstone_multiplier": 0.5, // (3)!
+  "max_duration_level": 5, // (4)!
+  "max_amplifier_level": 5, // (5)!
   "inputs": [
     "minecraft:nether_wart",
     "minecraft:grass_block"
@@ -99,28 +93,9 @@ This recipe would add the luck effect type to the electric brewing stand:
 }
 ```
 
-!!! abstract "Parameters"
-
-    === "default_time"
-
-        The default time a potion with this effect would have. In ticks, 20 ticks = 1s. This potion would have a default time of 1:30
-
-    === "redstone_multiplier"
-
-         The time multiplier when a duration level (one redstone) is added. This means a luck potion with level two duration would last 3:00, level three 4:30 and so on.
-
-    === "glowstone_multiplier"
-
-        In Minecraft, when glowstone is added to a potion in order to increase the amplifier level, the duration is reduced. This is represented by this multiplier. A potion with an amplifier of level two would have a duration of 0:45, level three 0:11 and so on.
-
-    === "max_duration_level"
-
-        The maximum allowed duration level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
-
-    === "max_amplifier_level"
-
-        The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
-
-!!! info "Multiple Choices for Ingredients"
-
-    In this recipe type, multiple item choices for one ingredient are **not** allowed.
+1. The default time a potion with this effect would have. In ticks, 20 ticks = 1s. This potion would have a default time of 1:30
+2. The time multiplier when a duration level (one redstone) is added. This means a luck potion with level two duration would last 3:00, level three 4:30 and so on.
+3. In Minecraft, when glowstone is added to a potion in order to increase the amplifier level, the duration is reduced. This is represented by this multiplier. A potion with an amplifier of level two would have a duration of 0:45, level three 0:11 and so on.
+4. The maximum allowed duration level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
+5. The maximum allowed amplifier level for a potion of this effect. By default, you cannot create an effect with both an increased duration level and an increased amplifier level, but you are able to change this in the config file for the electric brewing stand.
+6. In this recipe type, multiple item choices for one ingredient are **not** allowed.
