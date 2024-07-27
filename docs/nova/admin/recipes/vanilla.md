@@ -94,7 +94,7 @@ This is an example recipe for smelting iron dust into iron ingots:
 
 ## Stonecutter Recipes
 
-Directory: `stonectuter`
+Directory: `stonecutter`
 
 This is an example recipe for the Stonecutter that allows players to craft three stone slabs from a stone block:
 
