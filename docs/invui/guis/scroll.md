@@ -14,9 +14,9 @@ This would be an example for an Item that scrolls down:
         
         override fun getItemProvider(gui: ScrollGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
-            builder.setDisplayName("§7Scroll down")
+            builder.setDisplayName("Scroll down")
             if (!gui.canScroll(1))
-                builder.addLoreLines("§cYou can't scroll further down")
+                builder.addLoreLines("You can't scroll further down")
             return builder
         }
         
@@ -35,9 +35,9 @@ This would be an example for an Item that scrolls down:
         @Override
         public ItemProvider getItemProvider(ScrollGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
-            builder.setDisplayName("§7Scroll down");
+            builder.setDisplayName("Scroll down");
             if (!gui.canScroll(1))
-                builder.addLoreLines("§cYou can't scroll further down");
+                builder.addLoreLines("You can't scroll further down");
             
             return builder;
         }
@@ -54,9 +54,9 @@ And this Item scrolls up:
         
         override fun getItemProvider(gui: ScrollGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
-            builder.setDisplayName("§7Scroll up")
+            builder.setDisplayName("Scroll up")
             if (!gui.canScroll(-1))
-                builder.addLoreLines("§cYou've reached the top")
+                builder.addLoreLines("You've reached the top")
             return builder
         }
         
@@ -75,9 +75,9 @@ And this Item scrolls up:
         @Override
         public ItemProvider getItemProvider(ScrollGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
-            builder.setDisplayName("§7Scroll up");
+            builder.setDisplayName("Scroll up");
             if (!gui.canScroll(-1))
-                builder.addLoreLines("§cYou've reached the top");
+                builder.addLoreLines("You've reached the top");
             
             return builder;
         }
@@ -98,7 +98,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
 === "Kotlin"
 
     ```kotlin
-    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"))
+    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""))
     
     // an example list of items to display
     val items = Material.values()
@@ -123,7 +123,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
 === "Java"
 
     ```java
-    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
+    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""));
     
     // an example list of items to display
     List<Item> items = Arrays.stream(Material.values())

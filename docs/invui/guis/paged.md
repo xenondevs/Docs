@@ -12,11 +12,11 @@ This is an example for a "Page Back" Item:
         
         override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.RED_STAINED_GLASS_PANE)
-            builder.setDisplayName("§7Previous page")
+            builder.setDisplayName("Previous page")
                 .addLoreLines(
                     if (gui.hasPreviousPage())
-                        "§7Go to page §e" + gui.currentPage + "§7/§e" + gui.pageAmount 
-                    else "§cYou can't go further back"
+                        "Go to page " + gui.currentPage + "/" + gui.pageAmount 
+                    else "You can't go further back"
                 )
             return builder
         }
@@ -36,10 +36,10 @@ This is an example for a "Page Back" Item:
         @Override
         public ItemProvider getItemProvider(PagedGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.RED_STAINED_GLASS_PANE);
-            builder.setDisplayName("§7Previous page")
+            builder.setDisplayName("Previous page")
                 .addLoreLines(gui.hasPreviousPage()
-                    ? "§7Go to page §e" + gui.getCurrentPage() + "§7/§e" + gui.getPageAmount()
-                    : "§cYou can't go further back");
+                    ? "Go to page " + gui.getCurrentPage() + "/" + gui.getPageAmount()
+                    : "You can't go further back");
             
             return builder;
         }
@@ -56,11 +56,11 @@ This is an example for a "Page Forward" Item:
         
         override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             val builder = ItemBuilder(Material.GREEN_STAINED_GLASS_PANE)
-            builder.setDisplayName("§7Next page")
+            builder.setDisplayName("Next page")
                 .addLoreLines(
                     if (gui.hasNextPage())
-                        "§7Go to page §e" + (gui.currentPage + 2) + "§7/§e" + gui.pageAmount 
-                    else "§cThere are no more pages"
+                        "Go to page " + (gui.currentPage + 2) + "/" + gui.pageAmount 
+                    else "There are no more pages"
                 )
             return builder
         }
@@ -80,10 +80,10 @@ This is an example for a "Page Forward" Item:
         @Override
         public ItemProvider getItemProvider(PagedGui<?> gui) {
             ItemBuilder builder = new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE);
-            builder.setDisplayName("§7Next page")
+            builder.setDisplayName("Next page")
                 .addLoreLines(gui.hasNextPage()
-                    ? "§7Go to page §e" + (gui.getCurrentPage() + 2) + "§7/§e" + gui.getPageAmount()
-                    : "§cThere are no more pages");
+                    ? "Go to page " + (gui.getCurrentPage() + 2) + "/" + gui.getPageAmount()
+                    : "There are no more pages");
         
             return builder;
         }
@@ -106,7 +106,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
 === "Kotlin"
 
     ```kotlin
-    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"))
+    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""))
     
     // an example list of items to display
     val items = Material.values()
@@ -131,7 +131,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
 === "Java"
 
     ```java
-    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
+    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""));
     
     // an example list of items to display
     List<Item> items = Arrays.stream(Material.values())

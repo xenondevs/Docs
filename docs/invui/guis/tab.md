@@ -57,7 +57,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
 === "Kotlin"
 
     ```kotlin
-    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"))
+    val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""))
     
     val gui1 = Guis.empty(9, 3)
     gui1.fill(SimpleItem(ItemBuilder(Material.DIRT)), true)
@@ -82,7 +82,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
 === "Java"
 
     ```java
-    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
+    Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(""));
     
     Gui gui1 = Guis.empty(9, 3);
     gui1.fill(new SimpleItem(new ItemBuilder(Material.DIRT)), true);

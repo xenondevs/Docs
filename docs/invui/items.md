@@ -108,8 +108,8 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
         
         override fun getItemProvider(gui: PagedGui<*>): ItemProvider {
             return ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.currentPage + 1)) // + 1 because we don't want to have "Current page: 0"
-                .addLoreLines("§8Left-click to go forward", "§8Right-click to go back")
+                .setDisplayName("Current page: " + (gui.currentPage + 1)) // + 1 because we don't want to have "Current page: 0"
+                .addLoreLines("Left-click to go forward", "Right-click to go back")
         }
         
     }
@@ -132,8 +132,8 @@ This would be a simple implementation of `ControlItem` for a paged GUI:
         @Override
         public ItemProvider getItemProvider(PagedGui<?> gui) {
             return new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                .setDisplayName("§7Current page: " + (gui.getCurrentPage() + 1)) // + 1 because we don't want to have "Current page: 0"
-                .addLoreLines("§8Left-click to go forward", "§8Right-click to go back");
+                .setDisplayName("Current page: " + (gui.getCurrentPage() + 1)) // + 1 because we don't want to have "Current page: 0"
+                .addLoreLines("Left-click to go forward", "Right-click to go back");
         }
         
     }
