@@ -5,7 +5,7 @@ Depending on the type of window, they display one or two GUI(s).
 
 **A window can only have one viewer.** This is because InvUI's GUIs are designed to be easy to translate.
 Up until this point, we've only dealt with `ItemProviders`, which unlike `ItemStacks` have a
-method to retrieve the represented `ItemStack` with a `UUID` for translation purposes.  
+method to retrieve the represented `ItemStack` with a language code for translation purposes.  
 Now, the window is the first part in the chain that uses `ItemStacks` - and as these are already
 translated to a specific language, allowing multiple people to view the same window might cause
 one of them to see the wrong language.
