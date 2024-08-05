@@ -10,8 +10,8 @@ recipe for the Advanced Cable:
 ```json title="advanced_cable.json"
 {
   "result": "logistics:advanced_cable",
-  "amount": 3, // (1)!
-  "shape": [ // (2)!
+  "amount": 3, // (2)!
+  "shape": [ // (1)!
     "ggg",
     "ccc",
     "ggg"
