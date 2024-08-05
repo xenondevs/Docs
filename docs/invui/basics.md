@@ -127,7 +127,7 @@ Every time a player clicks on the `Item`, a counter will be incremented and the 
 === "Kotlin"
 
     ```kotlin
-    class CountItem : BaseItem() {
+    class CountItem : AbstractItem() {
         
         private var count = 0
         
@@ -150,7 +150,7 @@ Every time a player clicks on the `Item`, a counter will be incremented and the 
 === "Java"
 
     ```java
-    public class CountItem extends BaseItem {
+    public class CountItem extends AbstractItem {
         
         private int count;
         
