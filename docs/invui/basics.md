@@ -120,8 +120,8 @@ If you don't want to use the GuiBuilder, you can also call the static factory me
 So now that you know how to create GUIs, you'll need to add UI Elements (`Items`) to them.
 I have already shown one type of `Item`, the `SimpleItem`.  
 The `SimpleItem` is a static `Item`. It cannot change its appearance and doesn't do anything when clicked. This makes it perfect for placeholders like glass panes, which don't do anything.  
-To create your own Item type, you'll need to inherit from either `BaseItem` (if you want to be able to change its appearance) or `SimpleItem` (if you don't need to change its appearance).
-In this example, I inherited from `BaseItem`.  
+To create your own Item type, you'll need to inherit from either `AbstractItem` (if you want to be able to change its appearance) or `SimpleItem` (if you don't need to change its appearance).
+In this example, I inherited from `AbstractItem`.  
 Every time a player clicks on the `Item`, a counter will be incremented and the number on the Item will change.
 
 === "Kotlin"
