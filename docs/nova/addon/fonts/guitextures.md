@@ -1,11 +1,26 @@
-# GUI Textures
+## Creating a GuiTexture
 
-The GUITextures [registered previously](asset-packs/creating-guis.md) can simply be accessed by calling  
+To create a `GuiTexture`, you'll need to use a `GuiTextureRegistry`:
+
 ```kotlin
-val EXAMPLE_GUI = GuiTexture.of(ExampleAddon, "example_gui")
+@Init(stage = InitStage.PRE_PACK) // (1)!
+object GuiTextures : GuiTextureRegistry by ExampleAddon.registry {
+    
+    val EXAMPLE = guiTexture("example") {
+        texture {
+            alignment(/*...*/) // (2)!
+            path("gui/example")
+        }
+    }
+    
+}
 ```
-you might then want to store them in a singleton object `GuiTexture`, similar to [blocks](blocks/registering-blocks.md)
-and [items](items/registering-items.md).  
+
+1. Nova will load this class during addon initialization, causing your gui textures to be registered.
+2. The alignment of the texture. Depending on the inventory that your gui texture is intended for, and
+   how the texture is intended to be displayed (left-aligned, centered, etc.) you can set the alignment accordingly.
+
+## Using GuiTextures
 
 In order to use a gui texture, call the `getTitle` method on it, and use the resulting title for a Gui.  
-If you're making a `TileEntityGui`, the `GuiTexture` can be directly set in its constructor.
+If you're making a [tile-entity menu](../tile-entity/gui.md), the `GuiTexture` can be set directly in its constructor.

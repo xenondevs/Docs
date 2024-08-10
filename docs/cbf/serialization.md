@@ -1,17 +1,13 @@
-# Serialization
-
-To actually (de)serialize data, you need to use the CBF singleton.
-
 ## Serialization
 
-To serialize data, you can use the ``write`` functions. You can either directly pass a ``ByteBuffer`` instance, or automatically 
-let the previously set ``defaultBufferProvider`` provide one and get the bytes directly.
+To serialize objects, you can use `#!kotlin CBF.write`:
 
 ```kotlin
-val buf = CBF.buffer() // Also uses the default buffer provider
+val out = ByteArrayOutputStream()
+val writer = ByteWriter.fromStream(out)
 val list = listOf("test1", "test2", "test3")
-CBF.write(list, buf)
-val bytes = buf.toByteArray()
+CBF.write(list, writer)
+val bytes = out.toByteArray()
 ```
 
 or
@@ -19,16 +15,16 @@ or
 ```kotlin
 val list = listOf("test1", "test2", "test3")
 val bytes = CBF.write(list)
-// ...
 ```
 
 ## Deserialization
 
-Deserialization is pretty similar, but you obviously need to pass input data here. Both ``ByteBuffer`` and ``ByteArray`` are
-supported.
+To deserialize binary data, you can use `#!kotlin CBF.read`:
 
 ```kotlin
-val list = CBF.read<List<String>>(buffer)
+val inp: InputStream // ...
+val reader = ByteReader.fromStream(inp)
+val list = CBF.read<List<String>>(reader)
 ```
 
 or
@@ -36,10 +32,3 @@ or
 ```kotlin
 val list = CBF.read<List<String>>(bytes)
 ```
-
-Check out the [``Compound``](compound.md) section to see how to store related data in a single object.
-
-!!! tip
-
-    The ``NettyBufferProvider`` also registers a few extension functions allowing you to directly pass a netty ``ByteBuf``
-    instead of the cbf buffer. You can also get a cbf buffer via Netty's ``ByteBufAllocator``. Just call ``ByteBufAllocator.cbfBuffer()``.

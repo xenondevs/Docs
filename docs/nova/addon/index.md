@@ -12,13 +12,6 @@ to make addons.
 This guide uses a GitHub repo template so having a GitHub account is recommended. You can also install [GitHub Desktop](https://desktop.github.com/)
 if you don't want to use git commands.
 
-### Codestyle
-
-You can find the xenondevs codestyle [here](https://github.com/xenondevs/Nova/blob/main/codestyle.xml). To apply it, open 
-your Intellij settings and import the codestyle.xml file here:
-
-![importing](https://i.imgur.com/gvLfaQg.png)
-
 ## Setting up your project
 
 You can now create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).
@@ -53,15 +46,12 @@ To build, run
 ```bash title="Build with Gradle"
 gradlew addonJar -PoutDir="<Path to your addons directory here>"
 ```
-Or if you're on a mojang-mapped server, run
-```bash title="Build with Gradle"
-gradlew addonJar -PoutDir="<Path to your addons directory here>" -Pmojang-mapped
-```
 
 ## Enabling dev mode
 
 To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.  
-This allows you to bypass some restrictions, like the reload prevention, joining the server during startup, or using addons that require a different version of Nova.
+This allows you to bypass some restrictions like using addons that require a different version of Nova and
+enables general-purpose debugging functionality.
 
 ## KDoc
 

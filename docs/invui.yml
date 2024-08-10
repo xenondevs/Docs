@@ -14,7 +14,7 @@ theme:
 
 nav:
   - "Getting Started": "index.md"
-  - "Basics": "basics.md"
+  - "Basics": "introduction.md"
   - "Items": "items.md"
   - "Structure": "structure.md"
   - "GUIs":

@@ -1,10 +1,11 @@
 # Item Behaviors
 
-Item behaviors are used to add functionality to items. There are some default implementations, but you can also create your own.
+In Nova, item logic is implemented via `ItemBehaviors`.
+There are some default behaviors available, but you can also create your own custom behaviors.
 
 ## Default Item Behaviors
 
-???+ example "Default Item Behaviors"
+!!! example "Default Item Behaviors"
 
     These are the default item behaviors that Nova provides:
 
@@ -17,32 +18,20 @@ Item behaviors are used to add functionality to items. There are some default im
         ```
 
         ```yaml title="configs/example_item.yml"
-        # The type of food (normal, fast, always_eatable).
-        food_type: normal
-        # The time it takes for the food to be consumed, in ticks.
-        consume_time: 40
+         
         # The nutrition value this food provides.
         nutrition: 4
-        # The saturation modifier this food provides.
-        saturation_modifier: 0.3
-        # The amount of health to be restored immediately.
-        instant_health: 5
+        # The saturation this food provides.
+        saturation: 0.3
+        # Whether the food can always be eaten, or only when hungry.
+        can_always_eat: false
+        # The time it takes for the food to be consumed, in ticks.
+        consume_time: 40
+        # The item stack that remains after the food is consumed.
+        remains: "minecraft:bowl"
         # A list of effects to apply to the player when this food is consumed.
         effects: []
         ```
-
-        ??? info "Saturation & Nutrition"
-
-            This is how the `saturation_modifier` and `nutrition` value affects your player's food level and saturation:
-            ```kotlin title="foodLevel"
-            min(player.foodLevel + options.nutrition, 20)
-            ```
-            ```kotlin title="saturation"
-            min(saturation + nutrition * saturationModifier * 2.0f, foodLevel)
-            ```
-
-            You can find the `nutrition` and `saturationModifier` for vanilla items by decompiling the mojang-mapped
-            class `net.minecraft.world.food.Foods`.
 
         ??? example "Example Effect"
 
@@ -55,6 +44,7 @@ Item behaviors are used to add functionality to items. There are some default im
               ambient: true # (4)!
               particles: true # (5)!
               icon: true # (6)!
+              probability: 1.0 # (7)!
             ```
 
             1. The type of the effect.  
@@ -67,6 +57,8 @@ Item behaviors are used to add functionality to items. There are some default im
                Default value: `true`
             6. Whether the effect has an icon or not.  
                Default value: `true`
+            7. The probability of the effect being applied.
+               Defaults to `1.0`.
                
 
     === "Wearable"
@@ -85,6 +77,8 @@ Item behaviors are used to add functionality to items. There are some default im
 
         If you need some examples for the `armor`, `armorToughness` and `knockback_resistance` values,
         you can check out the [Minecraft wiki](https://minecraft.wiki/w/Armor#Defense_points).
+
+        You can also use this behavior with [custom armor textures](armor.md).
 
     === "Tool"
     
@@ -188,94 +182,21 @@ Item behaviors are used to add functionality to items. There are some default im
         max_energy: 100000
         ```
 
-??? abstract "Using hardcoded material options (not recommended)"
-
-    If you don't want your material options to be configurable or your specific use-case does not work well with
-    configurable values, you can using the factory functions named after the material options interfaces.  
-    For example, this is how you would create hardcoded `ToolOptions`:
-    
-    ```kotlin title="Hardcoded ToolOptions"
-    @OptIn(HardcodedMaterialOptions::class)
-    val toolOptions = ToolOptions(
-        ToolLevel.STONE,
-        ToolCategory.PICKAXE,
-        breakSpeed = 12.0,
-        attackDamage = 4.0,
-        attackSpeed = 1.0,
-        canSweepAttack = false,
-        canBreakBlocksInCreative = false
-    )
-    ```
-    
-    Since hardcoding those values is strongly discouraged, you need to opt-in via the `@OptIn(HardcodedMaterialOptions::class)` annotation.
-
-
 ## Custom Item Behaviors
 
-There are of course a lot of cases that don't fit into any of the default item behaviors which is why you can easily make
-your own. Just create a new class and implement the ``ItemBehavior`` interface.
-Instead of registering event handlers, you can override the `handle...()` functions, which are invoked when something is done
-with an `ItemStack` of a `NovaItem` with that behavior.
+You can create a custom item behavior by implementing the `ItemBehavior` interface.
 
-### `fun getVanillaMaterialProperties`
+There, you'll be able to override `baseDataComponents`, which are the default
+[data components](https://minecraft.wiki/w/Data_component_format) of `NovaItems` with that behavior.
 
-Gets a list of `VanillaMaterialProperty`s.  
-Vanilla material properties define what properties the item should have client-side. Based on the given properties,
-a corresponding vanilla material will be used. Nova will always try to find a vanilla material with the exact same
-properties as requested. If there is no such material, Nova might also choose a vanilla material with more vanilla
-material properties. If there is no material that has all requested properties, properties of low importance will be ignored.
+Alternatively, you can also override `defaultPatch`, which is the default component patch that will be present
+on all item stacks of `NovaItems` with that behavior.
 
-These are the available vanilla material properties:
+### Vanilla material properties
 
-| Property Name                 | Effect                                                                   |
-|-------------------------------|--------------------------------------------------------------------------|
-| `DAMAGEABLE`                  | The item has a durability bar.                                           |
-| `FIRE_RESISTANT`              | The item will not catch on fire.                                         |
-| `CREATIVE_NON_BLOCK_BREAKING` | The item cannot break blocks in creative mode.                           |
-| `CONSUMABLE_NORMAL`           | The item can be consumed normally.                                       |
-| `CONSUMABLE_ALWAYS`           | The item can always be consumed.                                         |
-| `CONSUMABLE_FAST`             | The item can be consumed fast, the eating process start without a delay. |
-| `HELMET`                      | The item can render a custom helmet texture.                             |
-| `CHESTPLATE`                  | The item can render a custom chestplate texture.                         |
-| `LEGGINGS`                    | The item can render a custom leggings texture.                           |
-| `BOOTS`                       | The item can render a custom boots texture.                              |
-
-### `fun getAttributeModifiers`
-
-Gets a list of `AttributeModifiers`.
-
-```kotlin title="Example Attribute Modifiers"
-override fun getAttributeModifiers(): List<AttributeModifier> =
-    listOf(AttributeModifier(
-        name = "Example Attribute Modifier (${novaMaterial.id}})", // (1)!
-        attribute = Attributes.MOVEMENT_SPEED, // (2)!
-        operation = Operation.MULTIPLY_TOTAL, // (3)!
-        value = 0.1, // (4)!
-        showInLore = true, // (5)!
-        EquipmentSlot.MAINHAND // (6)!
-    ))
-```
-
-1. The name of the attribute modifier. This is also used to create a `UUID` for your `AttributeModifier` to distinguish
-   it from other `AttributeModifiers`. It is important that different `AttributeModifier`s have different `UUID`s.
-2. The attribute that should be modified.
-3. The operation that should be done.
-4. The value that should be used for the operation. In this case, the movement speed will be increased by 10%.
-5. Whether the attribute modifier should be shown in the `ItemStack`'s lore.
-6. The equipment slot(s) that this attribute modifier should be applied to.
-
-### `fun getDefaultCompound`
-
-This function is used to specify default CBF data for all `ItemStacks` of `NovaItems` that use this `ItemBehavior`.  
-All default compounds from all `ItemBehehaviors` are merged together and always applied to new `ItemStack` of that type.
-
-### `fun updatePacketItemData`
-
-This method is called every time a packet that includes an `ItemStack` of a material with this `ItemBehavior` is sent to a player.  
-Here, you can customize how the item is displayed for the player. Using the given `PacketItemData`, you can modify things
-like the display name, lore (normal and advanced tooltips), the durability bar and more.
-
-Confused? Take a look at [Understanding Packet Items](using-nova-item.md#understanding-packet-items).
+Some functionality can not yet be achieved by using data components, as it is still bound to the vanilla item type.
+As such, you can specify [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html)
+which will change the **client-side** item type.
 
 ### ItemBehaviorHolder and ItemBehaviorFactory
 
@@ -320,23 +241,14 @@ object Items : ItemRegistry by ExampleAddon.registry {
 
 ## Item Data
 
-Data for Nova's ItemStacks is stored in a `NamespacedCompound`, which serializes data using [CBF](../../../../cbf/).  
+Data for Nova's ItemStacks can be stored in a `NamespacedCompound`, which serializes data using [CBF](../../../../cbf/).  
 You can retrieve the `NamespacedCompound` of an `ItemStack` by calling `#!kotlin ItemStack.novaCompound`.
+After updating it, you'll need to write it back to the `ItemStack`.
 
-!!! warning "NamespacedCompound"
+Alternatively, you can also read and write data using `#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`,
+which access the `NamespacedCompound` for you.
 
-    Unlike `ItemStack.itemMeta`, this `NamespacedCompound` is not a copy, so any changes you make to it will be reflected in the `ItemStack`.  
-    However, the `NamespacedCompound` inside the `ItemStack` might be copied during normal tick logic, so you should not rely on the same
-    (NMS) `ItemStack` to always contain the same `NamespacedCompound` instance.  
-    *For example, while modifying the `ItemStack` retrieved during an `PlayerInteractEvent` a few ticks later will still
-    change the `ItemStack` in the world, modifying the `NamespacedCompound` you've retrieved during the event will not affect
-    the `ItemStack`. Instead, you'll need to retreive the `NovaCompound` again.*
+`NovaItems` can also have default data stored in their `NamespacedCompound`, which can be applied using the `defaultCompound`
+property in a custom `ItemBehavior`.
 
-Alternatively, you can also read and write data using `#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`, which write
-data to the `NamespacedCompound` for you.
-
-!!! tip "Inspecting Item Data"
-   
-    You can also run the command `/nova debug itemData` to take a look at the data of the item stack in your hand.  
-    Some of this data might be of an unknown type and will be displayed in binary format. The type will be known
-    after `NamespacedCompound.get` and `NamespacedCompound.set` calls.
+Of course, you can also use Bukkit's [persistent data container](https://docs.papermc.io/paper/dev/pdc) for data storage.

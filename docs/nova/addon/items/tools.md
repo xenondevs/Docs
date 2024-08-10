@@ -5,7 +5,10 @@
 To create a custom tool, apply the `Tool` item behavior:
 
 ```kotlin
-val EXAMPLE_ITEM = registerItem("example_item", Tool)
+val EXAMPLE_ITEM = item("example_item") {
+    behaviors(Tool)
+    maxStackSize(1)
+}
 ```
 
 ```yaml title="configs/example_item.yml"
@@ -106,5 +109,4 @@ object ToolCategories : ToolCategoryRegistry by ExampleAddon.registry {
 
 1. Nova will load this class during addon initialization, causing your tool categories to be registered.
 
-You can then use your new tool category in the `BlockOptions` of your custom block to make those blocks only breakable
-with a tool of that category.
+You can then use your new tool category in the `Breakable` behavior of your custom block.

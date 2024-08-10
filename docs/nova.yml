@@ -44,40 +44,35 @@ nav:
   - "Addon API":
       - "Getting Started": "addon/index.md"
       - "Configure Addon": "addon/addon-configuration.md"
-      - "AssetPacks":
-          - "Basics": "addon/asset-packs/assetpack-basics.md"
-          - "Creating Items": "addon/asset-packs/creating-items.md"
-          - "Creating Blocks": "addon/asset-packs/creating-blocks.md"
-          - "Creating GUIs": "addon/asset-packs/creating-guis.md"
-          - "Creating Armor": "addon/asset-packs/creating-armor.md"
-          - "Language Files": "addon/asset-packs/language-files.md"
+      - "Resource Pack":
+          - "Addon Assets": "addon/resourcepack/addon-assets.md"
+          - "Custom Build Logic": "addon/resourcepack/build-logic.md"
       - "Configs": "addon/configs.md" 
       - "Items":
-          - "Registering Items": "addon/items/registering-items.md"
+          - "Creating Items": "addon/items/creating-items.md"
           - "Using NovaItem": "addon/items/using-nova-item.md"
           - "Item Behaviors": "addon/items/item-behaviors.md"
           - "Tools": "addon/items/tools.md"
           - "Enchantments": "addon/items/enchantments.md"
+          - "Armor": "addon/items/armor.md"
           - "Recipes": "addon/recipes.md"
+      - "Contexts": "addon/contexts.md"
       - "Blocks":
-          - "Registering Blocks": "addon/blocks/registering-blocks.md"
-          - "TileEntities":
-              - "Basics": "addon/blocks/tileentity/base.md"
-              - "Config": "addon/blocks/tileentity/config.md"
-              - "Menu (GUI)": "addon/blocks/tileentity/gui.md"
-              - "TileEntity Data": "addon/blocks/tileentity/data.md"
-              - "Holders": "addon/blocks/tileentity/holders.md"
-              - "Upgrades": "addon/blocks/tileentity/upgrades.md"
-              - "Regions": "addon/blocks/tileentity/region.md"
-              - "Particles": "addon/blocks/tileentity/particles.md"
+          - "Creating Blocks": "addon/blocks/creating-blocks.md"
+          - "Block Behaviors": "addon/blocks/block-behaviors.md"
+      - "Tile-Entities":
+          - "Introduction": "addon/tile-entity/introduction.md"
+          - "Menu (GUI)": "addon/tile-entity/gui.md"
+          - "Regions": "addon/tile-entity/region.md"
+      - "Tile-Entity Networks":
+        - "Introduction": "addon/tile-entity-networks/introduction.md"
+        - "Networked Tile-Entity": "addon/tile-entity-networks/networked-tile-entity.md"
+        - "Custom Network Types": "addon/tile-entity-networks/custom-network-types.md"
       - "Fonts & Overlays":
             - "Custom Fonts": "addon/fonts/fonts.md"
             - "GUI Textures": "addon/fonts/guitextures.md"
             - "Action Bar Overlay": "addon/fonts/actionbar.md"
             - "Boss Bar Overlay": "addon/fonts/bossbar.md"
-      - "Resource Pack":
-            - "Custom Build Logic": "addon/resourcepack/build-logic.md"
-      - "Advancements": "addon/advancements.md"
       - "Attachments": "addon/attachments.md"
       - "Abilities": "addon/abilities.md"
       - "Hitboxes": "addon/hitboxes.md"
@@ -141,6 +136,8 @@ nav:
           - "Events": "addon/misc/events.md"
           - "Project Distributors": "addon/misc/project-distributors.md"
       - "Migration Guide":
+          - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
+          - "0.15 ➝ 0.16": "addon/migration-guide/0.15-0.16.md"
           - "0.14 ➝ 0.15": "addon/migration-guide/0.14-0.15.md"
           - "0.13 ➝ 0.14": "addon/migration-guide/0.13-0.14.md"
           - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"

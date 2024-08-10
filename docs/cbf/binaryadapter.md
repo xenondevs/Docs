@@ -4,39 +4,16 @@ Binary adapters are used to serialize and deserialize objects into binary data.
  
 ??? example "Default adapters"
 
-    The following adapters are available by default:
-
-    * Byte
-    * ByteArray
-    * Short
-    * ShortArray
-    * Int
-    * IntArray
-    * Long
-    * LongArray
-    * Float
-    * FloatArray
-    * Double
-    * DoubleArray
-    * Boolean
-    * BooleanArray
-    * Char
-    * CharArray
-    * String
-    * StringArray
-    * Enum
-    * UUID
-    * Pair
-    * Triple
-    * Map
-    * Collection
-    * Compound
+    The following adapters are available by default:  
+    `Byte`, `ByteArray`, `Short`, `ShortArray`, `Int`, `IntArray`, `Long`, `LongArray`, `Float`, `FloatArray`,
+    `Double`, `DoubleArray`, `Boolean`, `BooleanArray`, `Char`, `CharArray`, `String`, `Array<String>`, 
+    `Enum`, `UUID`, `Pair`, `Triple`, `List<T>`, `Set<T>`, `Map<K, V>`, `Compound`
 
 ## Creating your own adapter
 
 Creating your own adapter is easy. You just need to implement the `BinaryAdapter` interface and register it via the
 ``CBF.registerBinaryAdapter`` function. If you also want subclasses of a type to be serialized, you can use the
-``CBF.registerBinaryHierarchyAdapter`` function. (For example, the Collection adapter)
+``CBF.registerBinaryHierarchyAdapter`` function. (For example, the `List` adapter)
 
 Let's create a simple adapter that serializes and deserializes a ``java.awt.Color`` instance.
 

@@ -7,12 +7,16 @@ when calling a serialization function to pass the enum class.
 ```kotlin title="EnumMapInstanceCreator"
 object EnumMapInstanceCreator : InstanceCreator<EnumMap<*, *>> {
     
-    private val ENUM_MAP_CONSTRUCTOR = EnumMap::class.java.getConstructor(Class::class.java)
-    
-    override fun createInstance(type: Type): EnumMap<*, *> {
-        return ENUM_MAP_CONSTRUCTOR.newInstance((type as ParameterizedType).actualTypeArguments[0] as Class<*>)
+    override fun createInstance(type: KType): EnumMap<*, *> {
+        val clazz = type.arguments[0].type!!.classifierClass!!.java
+        return createEnumMap(clazz)
     }
     
+    @Suppress("UNCHECKED_CAST")
+    private fun <E : Enum<E>> createEnumMap(clazz: Class<*>): EnumMap<*, *> {
+        return EnumMap<E, Any>(clazz as Class<E>)
+    }
+
 }
 ```
 

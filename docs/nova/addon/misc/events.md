@@ -2,19 +2,18 @@
 
 ## Working with Bukkit Events
 
-Of course, you can also use Bukkit's events. To register an event listener, use the `Listener.registerEvents()` extension function.
+Of course, you can also use Bukkit's events. To register an event listener, use the `#!kotlin Listener.registerEvents()`
+extension function.
 
 ## Working with Packet Events
 
 You can also listen to incoming and outgoing packets.
 To do so, implement the `PacketListener` interface and register your listener using the
-`PacketListener.registerPacketHandler()` extension function.
-Then, you can use the `@PacketHandler` annotation to mark event methods.
+`#!kotlin PacketListener.registerPacketHandler()` extension function.
+Then, you can use the `#!kotlin @PacketHandler` annotation to mark event methods.
 
 !!! abstract "Packet Event Types"
 
-    The packet event system is part of [NMS-Utilities](https://github.com/xenondevs/NMS-Utilities/). A list of all possible
-    event types can be found [here](https://github.com/xenondevs/NMS-Utilities/tree/main/src/main/kotlin/xyz/xenondevs/nmsutils/network/event).  
     Please note that this currently does not include all possible packets, as the system is still in development.
     Feel free to open an issue or a pull request if you need another packet type.
 

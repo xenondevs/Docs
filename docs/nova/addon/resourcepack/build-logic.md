@@ -63,6 +63,8 @@ private fun write() {
 }
 ```
 
+_This is just an example, EnchantmentContent was made obsolete with data-driven enchantments in Minecraft 1.21_
+
 ## ResourcePackBuilder
 
 As shown in the example above, you'll register a task holder constructor that accepts a `ResourcePackBuilder` instance
@@ -114,6 +116,14 @@ generally more convenient and performant to use.
 !!! abstract "All other pack tasks"
 
     A list of all pack tasks and their execution order will be shown in the console every time the resource pack is built.
+
+### ModelContent
+
+Provides you with access to block and item models.
+Everything related to the creation of custom models should run through this.
+
+Using `ModelContent#rememberUsage`, you can mark a model as used, so it (and all its parents) will be included in
+the resource pack. This is performed automatically for all models that are assigned to `NovaItems` or `NovaBlocks`.
 
 ### LanguageContent
 

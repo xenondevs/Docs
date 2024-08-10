@@ -16,6 +16,7 @@ one instance per player.
 
 To mark your menu class as a TileEntity menu, you'll have to annotate it with the `@TileEntityMenuClass` annotation.
 Nova will automatically instantiate your menu class when needed.
+(Note that your `NovaBlock` will require the `TileEntityInteractive` behavior to open the GUI.)
 
 !!! example "Example GUIs"
 
@@ -69,51 +70,4 @@ Nova will automatically instantiate your menu class when needed.
 
 !!! info "Gui Textures"
     
-    If you want to use a `GuiTexture`, simply pass it to the `GlobalTileEntityMenu` / `IndividualTileEntityMenu` constructor.
-
-## Using the SideConfigMenu
-
-If you want to allow players to change the side configuration of your TileEntity through the Menu, you can use the
-built-in `SideConfigMenu`.
-
-```kotlin
-class SideConfigMenu(
-    endPoint: NetworkEndPoint, // (1)!
-    inventoryNames: List<Pair<NetworkedInventory, String>>? = null, // (2)!
-    fluidContainerNames: List<Pair<FluidContainer, String>>? = null, // (3)!
-    openPrevious: (Player) -> Unit // (4)!
-) 
-```
-
-1. Your TileEntity
-2. A list of `NetworkedInventory` to inventory name (localized) pairs. The `NetworkedInventory` instance can be obtained
-    from the `VirtualInventory` by calling `NovaItemHolder#getNetworkedInventory`
-3. A list of `FluidContainer` to container name (localized) pairs.
-4. A method to open the previous GUI. In a `TileEntityGui`, this can reference `::openWindow`
-
-Depending on the network types of your TileEntity, the SideConfigMenu will adjust accordingly.
-
-The UI item for opening the side config menu is called `OpenSideConfigItem` and just takes the `SideConfigMenu` as parameter:
-
-```kotlin
-@TileEntityMenuClass
-private inner class SolarPanelMenu : GlobalTileEntityMenu() {
-    
-    private val sideConfigGui = SideConfigGui(
-        this@SolarPanel,
-        ::openWindow
-    )
-    
-    override val gui = Gui.normal()
-        .setStructure(
-            "1 - - - - - - - 2",
-            "| u # # e # # # |",
-            "| # # # e # # # |",
-            "| # # # e # # # |",
-            "3 - - - - - - - 4")
-        .addIngredient('e', EnergyBar(3, energyHolder))
-        .addIngredient('s', OpenSideConfigItem(sideConfigGui))
-        .build()
-
-}
-```
+    If you want to use a [GuiTexture](../fonts/guitextures.md), simply pass it to the `GlobalTileEntityMenu` / `IndividualTileEntityMenu` constructor.

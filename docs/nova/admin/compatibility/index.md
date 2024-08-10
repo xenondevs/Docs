@@ -23,11 +23,6 @@ Unchecked plugins are partially supported, some features might not work.
 - [x] [Oraxen](oraxen.md) | [Known Issues](oraxen.md#known-issues)
 - [ ] MMOItems
 
-Planned:
-
-* [Slimefun](utp.md)
-* [Space](utp.md)
-
 !!! warning
 
     Most of these plugins require [resource pack merging](../setup.md#optional-resourcepack-merging).  

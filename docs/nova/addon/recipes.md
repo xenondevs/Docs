@@ -81,15 +81,15 @@ All of the following values are required to create a new `RecipeType`:
 
     === "Recipe Group"
 
-        The recipe group is only used for recipe explorer GUI, so your recipes will already work without it.  
+        The recipe group is only used for the recipe explorer GUI, so your recipes will already work without it.  
         However, it is still required to create a recipe group.
 
         As always, it is very easy to create a recipe group for conversion recipes:
         ```kotlin title="PulverizingRecipeGroup"
         object PulverizingRecipeGroup : ConversionRecipeGroup<PulverizerRecipe>() {
             override val priority = 4 // (1)!
-            override val icon = Blocks.PULVERIZER.basicClientsideProvider // (2)!
-            override val texture = GUITextures.RECIPE_PULVERIZER // (3)!
+            override val icon = Items.PULVERIZER.model.clientsideProvider // (2)!
+            override val texture = GuiTextures.RECIPE_PULVERIZER // (3)!
         }
         ```
         
@@ -102,29 +102,29 @@ All of the following values are required to create a new `RecipeType`:
 
         ```kotlin title="FluidInfuserRecipeGroup"
         object FluidInfuserRecipeGroup : RecipeGroup<FluidInfuserRecipe>() {
-        
-            override val texture = GUITextures.RECIPE_FLUID_INFUSER
-            override val icon = Blocks.FLUID_INFUSER.basicClientsideProvider
+            
+            override val texture = GuiTextures.RECIPE_FLUID_INFUSER
+            override val icon = Items.FLUID_INFUSER.model.clientsideProvider
             override val priority = 6
-        
-            override fun createGUI(recipe: FluidInfuserRecipe): GUI {
+            
+            override fun createGui(recipe: FluidInfuserRecipe): Gui {
                 val progressItem: ItemBuilder
                 val translate: String
                 if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) {
-                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_LEFT_RIGHT.createClientsideItemBuilder()
+                    progressItem = GuiItems.TP_FLUID_PROGRESS_LEFT_RIGHT.model.createClientsideItemBuilder()
                     translate = "menu.machines.recipe.insert_fluid"
                 } else {
-                    progressItem = GUIMaterials.TP_FLUID_PROGRESS_RIGHT_LEFT.createClientsideItemBuilder()
+                    progressItem = GuiItems.TP_FLUID_PROGRESS_RIGHT_LEFT.model.createClientsideItemBuilder()
                     translate = "menu.machines.recipe.extract_fluid"
                 }
-            
-                progressItem.setDisplayName(TranslatableComponent(
+                
+                progressItem.setDisplayName(Component.translatable(
                     translate,
-                    recipe.fluidAmount,
-                    TranslatableComponent(recipe.fluidType.localizedName)
+                    Component.text(recipe.fluidAmount),
+                    Component.translatable(recipe.fluidType.localizedName)
                 ))
-            
-                return GUIBuilder(GUIType.NORMAL)
+                
+                return Gui.normal()
                     .setStructure(
                         ". f . t . . . . .",
                         ". f p i . . . r .",
@@ -132,12 +132,11 @@ All of the following values are required to create a new `RecipeType`:
                     .addIngredient('i', createRecipeChoiceItem(recipe.input)) // (1)!
                     .addIngredient('r', createRecipeChoiceItem(listOf(recipe.result)))
                     .addIngredient('p', progressItem)
-                    .addIngredient('f', StaticFluidBar(recipe.fluidType, recipe.fluidAmount, FLUID_CAPACITY, 3))
-                    .addIngredient('t', CoreGUIMaterial.TP_STOPWATCH
+                    .addIngredient('f', StaticFluidBar(3, FLUID_CAPACITY, recipe.fluidType, recipe.fluidAmount))
+                    .addIngredient('t', DefaultGuiItems.TP_STOPWATCH.model
                         .createClientsideItemBuilder()
-                        .setDisplayName(TranslatableComponent("menu.nova.recipe.time", recipe.time / 20.0))
-                    )
-                    .build()
+                        .setDisplayName(Component.translatable("menu.nova.recipe.time", Component.text(recipe.time / 20.0)))
+                    ).build()
             }
         
         }

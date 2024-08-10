@@ -1,44 +1,44 @@
-# Creating Armor
-## Registering an Armor Texture
+## Creating armor
 
-In order to register an armor texture, you'll first need to create a `armor.json` in `assets/`:  
-![](https://i.imgur.com/G3gVSO7.png)
+Custom armor can be registered via an `ArmorRegistry`:
 
-Then, create an armor entry:
-```json
-{
-  "my_armor": {
-    "layer_1": "", // (1)!
-    "layer_2": "", // (2)!
-    "layer_1_emissivity_map": "", // (3)!
-    "layer_2_emissivity_map": "", // (4)!
-    "interpolation": "", // (5)!
-    "fps": 0 // (6)!
-  }
+```kotlin
+@Init(stage = InitStage.PRE_PACK) // (1)!
+object Armor : ArmorRegistry by ExampleAddon.registry {
+    
+    val EXAMPLE = armor("example") {
+        texture {
+            texture(layer1 = "armor/example_layer_1", layer2 = "armor/example_layer_2") // (2)!
+            emissivityMap(layer1 = "armor/example_layer_1_emissivity_map", layer2 = "armor/example_layer_2_emissivity_map") // (3)!
+            animated(fps = 20.0, InterpolationMode.LINEAR) // (4)!
+        }
+    }
+
 }
 ```
 
-1. The first layer of the armor texture.  
+1. Nova will load this class during addon initialization, causing your armor to be registered.
+2. The texture of any armor consists of two layers.  
    This is the first layer of the diamond armor texture:  
    ![](https://i.imgur.com/dguEiQo.png)
-2. The second layer of the armor texture.  
-    This is the second layer of the diamond armor texture:  
-    ![](https://i.imgur.com/F2ORgNQ.png)
-3. (optional) The emissivity map of the first layer of the armor texture. Black pixels are interpreted as not emissive, white
+   This is the second layer of the diamond armor texture:  
+   ![](https://i.imgur.com/F2ORgNQ.png)
+3. (optional) The emissivity maps of the armor texture. Black pixels are interpreted as not emissive, white
    pixels are interpreted as fully emissive.
-4. (optional) The emissivity map of the second layer of the armor texture. Black pixels are interpreted as not emissive, white
-   pixels are interpreted as fully emissive.
-5. (optional) The interpolation mode used for the case that this is an animated armor texture.
-   Valid values are `none` and `linear`. This value is optional and defaults to `none`.
-6. (optional) The frames per second of the animation, for the case that this is an animated armor texture.
-   This value is optional and defaults to `0`.
+4. (optional) The animation settings in case this is an animated armor texture.
 
-## Higher Resolution Armor Textures
+After creating the armor, you can apply it to items using the `Wearable` behavior:
+
+```kotlin
+val EXAMPLE_HELMET = registerItem("example_helmet", Werable(Armor.EXAMPLE, EquipmentSlot.HEAD))
+```
+
+### Higher Resolution Armor Textures
 
 You can create armor textures of higher resolutions, as long as the aspect ratio is 2:1.  
 If you do this, make sure that all layers (including emissivity maps) are of the same resolution.
 
-## Animated Armor Textures
+### Animated Armor Textures
 
 You can create animated armor textures by creating an animated texture, similar to how block and item textures are animated.
 If you create an animated texture, make sure that the `interpolation` and `fps` properties are set and that all layers
