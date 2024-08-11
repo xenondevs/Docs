@@ -41,6 +41,8 @@ To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.
 This allows you to bypass some restrictions like using addons that require a different version of Nova and
 enables general-purpose debugging functionality.
 
+Additionally, you can use `-DNovaForceRegenerateResourcePack` to force the resource pack to be regenerated on startup.
+
 ## KDoc
 
 The generated KDoc for Nova can be found on [here](https://nova.dokka.xenondevs.xyz/).
