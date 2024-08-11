@@ -1,21 +1,9 @@
-**This guide is not beginner-friendly! Making Nova addons requires a lot of knowledge about Kotlin, the Spigot API, Maven and Gradle.**
-
-## Prerequisites
-
-### IntelliJ
-
-Even though Eclipse does have Kotlin support via a plugin, it's not the best option. We recommend using [IntelliJ](https://www.jetbrains.com/idea/)
-to make addons.
-
-### GitHub
-
-This guide uses a GitHub repo template so having a GitHub account is recommended. You can also install [GitHub Desktop](https://desktop.github.com/)
-if you don't want to use git commands.
+**This guide is not beginner-friendly! Creating Nova addons requires advanced knowledge of Kotlin, the Paper API, and Gradle.**
 
 ## Setting up your project
 
-You can now create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).
-After creating the new repo and cloning it, make sure to edit the following files:
+You can create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).
+After creating the repo and cloning it, make sure to edit the following files:
 
 ### src/main/kotlin
 

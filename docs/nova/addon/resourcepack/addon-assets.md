@@ -1,6 +1,6 @@
 !!! tip "Minecraft Resource Pack Format"
 
-    Before continuing here, make sure to read up on the
+    Before continuing here, make sure to familiarize yourself with the
     [Minecraft Resource Pack Format](https://minecraft.wiki/w/Resource_pack#Pack_format) if you haven't already.
 
 All assets intended for the resource pack should be placed in `src/main/resources/assets/`.  

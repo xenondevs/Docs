@@ -24,13 +24,9 @@ several modified versions from the same `Provider`.
 
 You might also be interested in these `Provider`-related top-level functions:
 
-* `provider` - Creates a static `Provider` from a given value.
+* `#!kotlin provider(value: T)` - Creates a constant `Provider` from a given value.
+* `#!kotlin provider(loadValue: () -> T)` - Creates a `Provider` with the given value loader.
 * `combinedProvider` - Creates a `#!kotlin Provider<List<T>>` from a list of `#!kotlin Provider<T>`s.
-* `lazyProvider` - Creates a `Provider` whose parent is only created lazily using the given `initializer` lambda.
-* `combinedLazyProvider` - Creates a `#!kotlin Provider<List<T>>` from a list of `#!kotlin Provider<T>`s, where the `#!kotlin Provider<T>`s are
-  created lazily using the given `initializer` lambda.
-* `lazyProviderWrapper` - Creates a `Provider` that wraps a lazily initialized static value from given `initializer`
-  lambda.
 
 ## Config extraction
 Nova will automatically extract all configs from `resources/configs/` on startup.

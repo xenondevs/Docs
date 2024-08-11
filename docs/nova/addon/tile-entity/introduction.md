@@ -28,8 +28,7 @@ object Blocks : BlockRegistry by ExampleAddon.registry {
             TileEntityDrops, // (3)!
             TileEntityInteractive // (4)!
         )
-        syncTickrate(20) // (5)!
-        asyncTickrate(20.0) // (6)!
+        tickrate(20) // (5)!
     }
     
 }
@@ -39,12 +38,10 @@ object Blocks : BlockRegistry by ExampleAddon.registry {
 2. Enables [tile-entity limits](../../admin/configuration.md#tile-entity-limits).
    (Note that if this behavior is not present, tile-entity limit tracking will also be disabled and placing this tile-entity
    will not count towards global limits.)
-3. Delegates the drop logic to `TileEntity#getDrops`. See [overriding drops](#overriding-drops).
-4. Delegates interactions to `TileEntity#handleRightClick`. This is also required if your tile-entity has a [GUI](gui.md).
-5. The `syncTickrate` is the tickrate at which the `TileEntity#handleTick` function is called.
+3. Delegates the drop logic to `#!kotlin TileEntity.getDrops`.
+4. Delegates interactions to `#!kotlin TileEntity.handleRightClick`. This is also required if your tile-entity has a [GUI](gui.md).
+5. The rate at which `#!kotlin TileEntity.handleTick` function is called.
    This defaults to `20`, so you wouldn't need to specify it in this case.
-6. The `asyncTickrate` is the tickrate at which the `TileEntity#handleAsyncTick` function is called.
-   Async-ticking is disabled by default.
 
 !!! danger "Tile-Entities are instantiated off-main"
 
