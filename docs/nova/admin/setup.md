@@ -116,6 +116,7 @@ This can be done either automatically or manually:
                 bucket: examplebucket # The name of your S3 bucket
                 key_id: "" # Your S3 key id
                 key_secret: "" # Your S3 key secret
+                force_path_style: false # Forces path style URLs (Defaults to false)
             ```
     
         === "Oraxen"
