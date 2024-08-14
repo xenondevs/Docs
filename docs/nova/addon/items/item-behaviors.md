@@ -198,6 +198,14 @@ Some functionality can not yet be achieved by using data components, as it is st
 As such, you can specify [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html)
 which will change the **client-side** item type.
 
+### Client-side item stack
+
+To modify the [client-side item](using-nova-item.md#client-side-items), you can override `modifyClientSideStack`.
+The data of the client-side stack will not be stored in the world and is only intended for display purposes.
+Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the `DAMAGE` component
+will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova
+via `/nova advancedTooltips`).
+
 ### ItemBehaviorHolder and ItemBehaviorFactory
 
 `ItemBehaviorHolder` is a sealed interface with two implementations: `ItemBehavior` and `ItemBehaviorFactory`, where
