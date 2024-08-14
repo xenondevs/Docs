@@ -25,8 +25,7 @@ Unchecked plugins are partially supported, some features might not work.
 
 !!! warning
 
-    Most of these plugins require [resource pack merging](../setup.md#optional-resourcepack-merging).  
-    You might also want to check out the [troubleshooting page](troubleshooting.md).
+    Most of these plugins require [resource pack merging](../setup.md#optional-resourcepack-merging).
 
 ### World Protection Plugins
 
