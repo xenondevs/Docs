@@ -176,3 +176,11 @@ object Items : ItemRegistry by ExampleAddon.registry {
 
 To place or break custom blocks, you'll need a [Context](../contexts.md). Then, use `#!kotlin BlockUtils.placeBlock`,
 `#!kotlin BlockUtils.breakBlock` or `#!kotlin BlockUtils.updateBlockState`.
+
+There are extension properties available on `org.bukkit.Block` to get the `novaBlockState` or `novaBlock`.
+
+!!! warning "Direct world access via WorldDataManager"
+
+      You can also directly read / write to Nova's world data storage via `WorldDataManager`. However, note that setting a 
+      block state via `WorldDataManager` will not perform any other logic such as tile-entity creation, calling
+      block behaviors, placing the backing state, or spawning the associated display entity.
