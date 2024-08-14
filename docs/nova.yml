@@ -18,7 +18,6 @@ nav:
       - "Setup": "admin/setup.md"
       - "Compatibility":
           - "Server Software & third-party Plugins": "admin/compatibility/index.md"
-          - "Troubleshooting": "admin/compatibility/troubleshooting.md"
           - "ItemsAdder": "admin/compatibility/itemsadder.md"
           - "Oraxen": "admin/compatibility/oraxen.md"
       - "Configuration": "admin/configuration.md"
