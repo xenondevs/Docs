@@ -71,7 +71,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
             "x x x x x x x x x",
             "x x x x x x x x x",
             "x x x x x x x x x")
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_VERTICAL)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
         .addIngredient('#', border)
         .addIngredient('0', MyTabItem(0))
         .addIngredient('1', MyTabItem(1))
@@ -96,7 +96,7 @@ Now, lets create the actual TabGui. In this example, I've only created two tabs,
             "x x x x x x x x x",
             "x x x x x x x x x",
             "x x x x x x x x x")
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_VERTICAL)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
         .addIngredient('#', border)
         .addIngredient('0', new MyTabItem(0))
         .addIngredient('1', new MyTabItem(1))

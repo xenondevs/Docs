@@ -112,7 +112,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
             "x x x x x x x x #",
             "x x x x x x x x #",
             "x x x x x x x x d")
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_VERTICAL)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
         .addIngredient('#', border)
         .addIngredient('u', ScrollUpItem())
         .addIngredient('d', ScrollDownItem())
@@ -138,7 +138,7 @@ Now that we've created the ControlItems, let's make the actual GUI:
             "x x x x x x x x #",
             "x x x x x x x x #",
             "x x x x x x x x d")
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_VERTICAL)
+        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
         .addIngredient('#', border)
         .addIngredient('u', new ScrollUpItem())
         .addIngredient('d', new ScrollDownItem())
