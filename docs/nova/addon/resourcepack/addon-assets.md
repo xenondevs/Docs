@@ -24,7 +24,7 @@ If you want to take advantage of this, you'll need to deactivate Blockbench's si
 ## Language Files
 
 Language files belong in the `lang` folder.
-The format for these files is the same the one minecraft uses.
+The format for these files is the same one minecraft uses.
 If you need the locale code for a language, you can search for it [here](https://minecraft.wiki/w/Language).
 
 !!! warning
