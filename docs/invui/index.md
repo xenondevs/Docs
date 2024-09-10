@@ -128,6 +128,12 @@ public class MyPluginLoader implements PluginLoader {
 }
 ```
 
+!!! bug "Make sure to not also include InvUI classes in your plugin jar"
+
+    If you're loading InvUI using the PluginLoader approach above, make sure to not also include InvUI classes in
+    your plugin jar. For example, if you're using Maven Shade, make sure that InvUI is marked as `<scope>provided</scope>`,
+    or that you're using the `compileOnly` configuration in Gradle.
+
 Alternatively, if you're creating a fat jar, you can also set the `paperweight-mappings-namespace`manifest attribute to `spigot`.  
 For more information, refer to the [Paper Documentation](https://docs.papermc.io/paper/dev/project-setup#plugin-remapping).
 
