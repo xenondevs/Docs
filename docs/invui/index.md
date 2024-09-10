@@ -128,6 +128,20 @@ public class MyPluginLoader implements PluginLoader {
 }
 ```
 
+When InvUI is loaded through the `PluginLoader`, it will not be able to read your plugin instance from the ClassLoader,
+so you'll need to set it manually in your plugin's `onEnable` like this:
+    
+```java
+public class MyPlugin extends JavaPlugin {
+    
+    @Override
+    public void onEnable() {
+        InvUI.getInstance().setPlugin(this);
+    }
+    
+}
+```
+
 !!! bug "Make sure to not also include InvUI classes in your plugin jar"
 
     If you're loading InvUI using the PluginLoader approach above, make sure to not also include InvUI classes in
