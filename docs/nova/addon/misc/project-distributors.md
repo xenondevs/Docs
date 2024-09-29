@@ -14,7 +14,6 @@ By default, there are four different distributors available:
 
 | Distributor | Code                                          |
 |-------------|-----------------------------------------------|
-| SpigotMC    | `ProjectDistributor.spigotmc(/*project id*/)` |
 | Hangar      | `ProjectDistributor.hangar(/*project id*/)`   |
 | Modrinth    | `ProjectDistributor.modrinth(/*project id*/)` |
 | GitHub      | `ProjectDistributor.github(/*project id*/)`   |

@@ -2,7 +2,7 @@
 
 ## Configuring Maven / Gradle
 
-CBF is xenondevs' lazy evaluation binary format used primarily in [Nova](https://spigotmc.org/resources/93648/).  
+CBF is xenondevs' lazy evaluation binary format used primarily in [Nova](https://github.com/xenondevs/Nova/).  
 To use CBF, you first have to add the xenondevs maven repository to your build configuration.
 
 === "Maven"

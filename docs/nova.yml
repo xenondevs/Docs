@@ -133,6 +133,7 @@ nav:
       - "Miscellaneous":
           - "Initialization": "addon/misc/initialization.md"
           - "Events": "addon/misc/events.md"
+          - "Scheduler": "addon/misc/scheduler.md"
           - "Project Distributors": "addon/misc/project-distributors.md"
       - "Migration Guide":
           - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
