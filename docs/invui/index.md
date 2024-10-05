@@ -109,12 +109,12 @@ or check out the [GitHub Releases Page](https://github.com/NichtStudioCode/InvUI
 ## Paper Plugin
 
 Starting with 1.20.5, Paper now ships with a Mojang-mapped runtime by default.  
-If you're creating a paper plugin, i.e. you have a `paper-plugin.yml`, you'll need to make sure that
-InvUI's `inventory-access` modules are remapped by Paper.
-(If you don't have a `paper-plugin.yml`, you can ignore this section.)  
-This can be achieved by loading InvUI through Paper's library loader:
+If you're creating a [paper plugin](https://docs.papermc.io/paper/dev/getting-started/paper-plugins),
+i.e. you have a `paper-plugin.yml`, you'll need to make sure that InvUI's `inventory-access` modules are remapped by Paper.
+_(If you don't have a `paper-plugin.yml`, you can ignore this section.)_  
+This can be achieved by loading InvUI through [Paper's library loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders):
 
-```java
+```java title="org.example.MyPluginLoader"
 public class MyPluginLoader implements PluginLoader {
     
     @Override
@@ -127,9 +127,12 @@ public class MyPluginLoader implements PluginLoader {
     
 }
 ```
+```yaml title="paper-plugin.yml"
+loader: org.example.MyPluginLoader
+```
 
-When InvUI is loaded through the `PluginLoader`, it will not be able to read your plugin instance from the ClassLoader,
-so you'll need to set it manually in your plugin's `onEnable` like this:
+When InvUI is loaded through the [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders),
+it will not be able to read your plugin instance from the class loader, so you'll need to set it manually in your plugin's `onEnable` like this:
     
 ```java
 public class MyPlugin extends JavaPlugin {
@@ -145,10 +148,10 @@ public class MyPlugin extends JavaPlugin {
 !!! bug "Make sure to not also include InvUI classes in your plugin jar"
 
     If you're loading InvUI using the PluginLoader approach above, make sure to not also include InvUI classes in
-    your plugin jar. For example, if you're using Maven Shade, make sure that InvUI is marked as `<scope>provided</scope>`,
-    or that you're using the `compileOnly` configuration in Gradle.
+    your plugin jar. (i.e. mark the dependency as `<scope>provided</scope>` in Maven or use the `compileOnly` dependency
+    configuration in Gradle)
 
-Alternatively, if you're creating a fat jar, you can also set the `paperweight-mappings-namespace`manifest attribute to `spigot`.  
+Alternatively, if you want to create a fat jar, you can also set the `paperweight-mappings-namespace`manifest attribute to `spigot`.  
 For more information, refer to the [Paper Documentation](https://docs.papermc.io/paper/dev/project-setup#plugin-remapping).
 
 !!! warning "Mojang-mapped artifacts on the repository"
