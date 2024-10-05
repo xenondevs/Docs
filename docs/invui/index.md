@@ -151,7 +151,8 @@ public class MyPlugin extends JavaPlugin {
     your plugin jar. (i.e. mark the dependency as `<scope>provided</scope>` in Maven or use the `compileOnly` dependency
     configuration in Gradle)
 
-Alternatively, if you want to create a fat jar, you can also set the `paperweight-mappings-namespace`manifest attribute to `spigot`.  
+Alternatively, if you want to create a fat jar, you'll need to set the `paperweight-mappings-namespace`
+manifest attribute to `spigot` and make sure that your own classes are remapped accordingly.  
 For more information, refer to the [Paper Documentation](https://docs.papermc.io/paper/dev/project-setup#plugin-remapping).
 
 !!! warning "Mojang-mapped artifacts on the repository"
