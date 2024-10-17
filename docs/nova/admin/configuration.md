@@ -7,12 +7,45 @@ Most of the options in the configs are self-explanatory or explained using comme
 The following section explains the more complex configuration options.
 
 ## Items Menu
-You might want to customize the Nova items menu. In order to do that, just edit `plugins/Nova/configs/item_categories.yml`. You can add or remove categories and change icon, name and items.
 
-!!! warning
+To customize the items menu (accessible via `/nova items`), create a file named `item_categories.yml` in `plugins/Nova/configs/nova/`.
 
-    After modifying `item_categories.json`, the file will not be automatically updated anymore.
-    This will prevent items from newly added addons from appearing, so you will have to add those yourself.
+```yaml title="item_categories.yml"
+- icon: <item id> # (1)!
+  name: <name> # (2)!
+  items: # (3)!
+    - <item id 1>
+    - <item id 2>
+    ...
+- icon: <item id>
+...
+```
+
+1. The item type to use as the icon for the category.
+2. The name of the category, which will be used as the hover name of the icon.
+   In [MiniMessage format](https://docs.advntr.dev/minimessage/format.html).
+3. A list of items in the category.
+
+??? example "Example configuration"
+
+      ```yaml title="item_categories.yml"
+      - icon: machines:quarry
+        name: "<rainbow>Example Category Name</rainbow>" 
+        items:
+          - machines:quarry
+          - machines:pulverizer
+          - machines:electric_furnace
+      - icon: minecraft:dirt
+        name: "Dirts"
+        items:
+          - minecraft:grass_block
+          - minecraft:dirt
+          - minecraft:dirt_path
+          - minecraft:coarse_dirt
+          - minecraft:rooted_dirt
+      ```
+      
+      ![](https://i.imgur.com/IDCkw1A.png)
 
 ## Tile-Entity limits
 
