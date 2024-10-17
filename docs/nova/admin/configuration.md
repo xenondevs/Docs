@@ -104,7 +104,7 @@ Example configs:
           machines:quarry: 1
     ```
 
-## Upgrade values
+## Upgrade values (Simple-Upgrades addon)
 
 Every addon can register its own upgrade types. As a server administrator, you can configure these values in the
 `plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
@@ -138,20 +138,15 @@ attribute_modifiers:
   - attribute: <attribute> # (2)!
     operation: <operation> # (3)!
     value: <value> # (4)!
-    hidden: <hidden> # (5)!
 ```
 
-1. The equipment slot that this item needs to be in for the attribute modifier to apply.  
-    Possible values: `mainhand`, `offhand`, `feet`, `legs`, `chest`, `head`
-2. The attribute to modify.  
-    Available attributes: `generic.maxHealth`, `generic.followRange`, `generic.knockbackResistance`, `generic.movementSpeed`,
-    `generic.flying_speed`, `generic.attackDamage`, `generic.attack_knockback`, `generic.attackSpeed`, `generic.armor`,
-    `generic.armorToughness`, `generic.luck`
+1. The equipment slot group that this item needs to be in for the attribute modifier to apply.  
+    Possible values: `any`, `mainhand`, `offhand`, `hand`, `feet`, `legs`, `chest`, `head`, `armor`, `body`
+2. The attribute to modify.
+     You can find a list of all available attributes on the [Minecraft Wiki](https://minecraft.wiki/w/Attribute#Attributes)
 3. The operation to perform.  
-    Possible operations: `addition`, `multiply_base`, `multiply_total`
+    Possible operations: `add_value`, `add_multiplied_base`, `add_multiplied_total`
 4. The value to modify the attribute with.
-5. Whether the attribute should be hidden from the item's lore.  
-    Default: `false`
 
 ??? example "Example configuration"
 
@@ -162,14 +157,14 @@ attribute_modifiers:
     attribute_modifiers:
       mainhand:
       - attribute: generic.attack_damage
-        operation: addition
+        operation: add_value
         value: 5.0
       offhand:
       - attribute: generic.movement_speed
-        operation: multiply_base
+        operation: add_multiplied_base
         value: 0.1
       - attribute: generic.movement_speed
-        operation: multiply_base
+        operation: add_multiplied_base
         value: 0.1
     ```
     
