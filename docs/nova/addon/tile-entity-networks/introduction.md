@@ -39,11 +39,16 @@ from [NetworkedTileEntity](networked-tile-entity.md) to make your tile-entity ne
 
 ??? tip "Visualization: Networks vs. Network Clusters"
 
-    **(Item-)Networks** `/nova debug showNetwork nova:item`:
+    **(Item-)Networks** `/nova debug showNetwork nova:item`:  
+    The particles visualize what network a block belongs to.
+    As you can see, each cable section is a different network and every chest is part of two networks.
 
     ![](https://imgur.com/LqBLa73.png)
 
-    **Network Clusters** `/nova debug showNetworkClusters`:
+    **Network Clusters** `/nova debug showNetworkClusters`:  
+    The particles visualize what network cluster a block belongs to.
+    Since the four left networks all share chests, and the four right networks all share chests, there are only
+    two network clusters.
 
     ![](https://imgur.com/9YbSwKr.png)
 
