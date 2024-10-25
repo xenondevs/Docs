@@ -8,7 +8,7 @@ The following section explains the more complex configuration options.
 
 ## Items Menu
 
-To customize the items menu (accessible via `/nova items`), create a file named `item_categories.yml` in `plugins/Nova/configs/nova/`.
+To customize the items menu (accessible via `/nova items`), create a file named `item_categories.yml` in `plugins/Nova/configs/`.
 
 ```yaml title="item_categories.yml"
 - icon: <item id> # (1)!
