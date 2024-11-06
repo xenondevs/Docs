@@ -1,6 +1,6 @@
 # Initialization
 
-Simply annotate your class with `#!kotlin @Init` and Nova will load it during the specified initialization stage.
+Simply annotate singleton object with `#!kotlin @Init` and Nova will load the class during the specified initialization stage.
 
 ## Initialization Stages
 
@@ -16,7 +16,7 @@ These are the available initialization stages:
 
 ```kotlin title="Example initializable class"
 @Init(stage = InitStage.PRE_PACK)
-class ExampleClass
+object Example
 ```
 
 ## Dispatcher
@@ -29,7 +29,7 @@ other initializables, or `ASYNC` to perform the initialization asynchronously, i
     stage = InitStage.POST_WORLD,
     dispatcher = Dispatcher.ASYNC
 )
-class ExampleClass {
+object Example {
 
     @InitFun
     private fun init() {
@@ -50,7 +50,7 @@ initialized before (`runAfter`) or after (`runBefore`) your class:
     runAfter = [ClassA::class], // This class will be initialized after ClassA
     runBefore = [ClassB::class] // This class will be initialized before ClassB
 )
-class ExampleClass
+object Example
 ```
 
 ## Functions
@@ -64,7 +64,7 @@ For `#!kotlin @InitFun`.
 
 ```kotlin title="Example initializable class with functions"
 @Init(stage = InitStage.PRE_PACK)
-class ExampleClass {
+object Example {
     
     @InitFun
     private fun init() {
