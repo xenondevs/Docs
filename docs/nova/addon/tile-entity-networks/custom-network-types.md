@@ -65,15 +65,11 @@ class ExampleNetwork(data: NetworkData<ExampleNetwork>) : Network<ExampleNetwork
 }
 ```
 
-!!! warning "Which nodes will be part of the network?"
+!!! abstract "Which nodes will be part of the network?"
 
       Generally, only network nodes that qualify for the network type will be part of networks of that type.
       For bridges, this means that they were registered as supporting the given network type. For end points, this means
-      that they have the required data holders.  
-      However, if a network spans multiple chunks and one of them is not loaded, the network nodes at that position will
-      be replaced by `GhostNetworkNode`, which will of course not be your expected network node implementation and will
-      also not have any data holders. As such, you cannot assume that the required data holders will be present in all
-      end points that are included in the network's nodes.
+      that they have the required data holders.
 
 ## Local Network Validation
 

@@ -16,7 +16,7 @@ class ExampleTileEntity(
 ## End Point Data Holders
 
 To make data available for networks, we need to add `EndPointDataHolders` to our tile-entity.  
-For the built-in network types, there are utility functions in `NetworkEndPoint` to easily create them from
+For the built-in network types, there are utility functions in `NetworkedTileEntity` to easily create them from
 the tile-entity's internal data.
 
 ### Energy
