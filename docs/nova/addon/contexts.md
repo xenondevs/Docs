@@ -12,7 +12,7 @@ The documentation also notes which types are parameter types are required for wh
 
 The context system can also infer parameters from other parameters, for example, you don't need to provide a
 `BLOCK_WORLD` parameter if you provide a `BLOCK_POS` parameter, and you can still read `BLOCK_WORLD` from the context.
-Which parameters are inferred from other parameters is also noted in the context intention documentation.
+Which parameters are inferred from other parameters is also noted in the context param type documentation.
 
 ## Creating and using a Context
 
