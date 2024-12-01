@@ -139,8 +139,6 @@ object FeatureTypes : FeatureRegistry by ExampleAddon.registry {
 }
 ```
 
-1. Make sure to call this function in your addon's `init` function to ensure all fields are initialized.
-
 ## 6. Using the feature
 
 We can now properly use our newly defined feature.
