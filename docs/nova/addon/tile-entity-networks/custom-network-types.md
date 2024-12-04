@@ -28,7 +28,7 @@ class NetworkTypes : NetworkTypeRegistry by Logistics.registry {
 ## Network Group
 
 A `NetworkGroup` is a subset of a network cluster containing only the networks of your specific network type.
-It is an immutable data structure that is re-created every time changes are made to the layout of one of its networks.
+The given network list is immutable and the NetworkGroup is re-created every time a network of the group is changed.
 
 The following implementation simply delegates the main `tick` function to all networks of the group. Depending on your
 needs, you may implement more complex logic here. For example, item networks take a snapshot of all inventories on a
@@ -51,7 +51,7 @@ class ExampleNetworkGroup(data: NetworkGroupData<ExampleNetwork>) : NetworkGroup
 ## Network
 
 A `Network` is a collection of `NetworkNodes` that are directly connected to each other.
-Like `NetworkGroup`, it is an immutable data structure that is re-created every time changes are made to its layout.
+The given nodes map is immutable and the network is re-created every time changes are made to its layout.
 
 To prevent code duplication, simply delegate the data properties to the `NetworkData` that you receive in the constructor:
 
