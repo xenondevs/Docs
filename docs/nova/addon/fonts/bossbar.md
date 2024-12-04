@@ -27,7 +27,7 @@ Each `BossBarOverlay` defines a `Component` to be rendered at one specific verti
 Similar to action bar overlays, you can override the `getWidth` and also the `getVerticalRange` methods to improve performance.
 
 ## BossBarOverlayCompound
-A `BossBarOverlayCompound` is a collection of `BossBarOverlays`. The overlays in this compound will never be seperated.
+A `BossBarOverlayCompound` is a collection of `BossBarOverlays`. The overlays in this compound will never be separated.
 
 | property    | description                                                                                                                                                                                                           |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
