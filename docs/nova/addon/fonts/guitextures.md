@@ -7,10 +7,8 @@ To create a `GuiTexture`, you'll need to use a `GuiTextureRegistry`:
 object GuiTextures : GuiTextureRegistry by ExampleAddon.registry {
     
     val EXAMPLE = guiTexture("example") {
-        texture {
-            alignment(/*...*/) // (2)!
-            path("gui/example")
-        }
+         alignment(/*...*/) // (2)!
+         path("gui/example")
     }
     
 }

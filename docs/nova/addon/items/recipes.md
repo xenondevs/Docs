@@ -19,7 +19,6 @@ All of the following values are required to create a new `RecipeType`:
 !!! danger "Attention"
 
     Setting `RecipeGroup` to null can lead to exceptions being thrown when players try to view recipes from that type.  
-    This parameter might be made non-null in the future.
 
 !!! example "Creating a custom Recipe Type"
 

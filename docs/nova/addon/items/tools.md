@@ -6,7 +6,7 @@ To create a custom tool, apply the `Tool` item behavior:
 
 ```kotlin
 val EXAMPLE_ITEM = item("example_item") {
-    behaviors(Tool)
+    behaviors(Tool())
     maxStackSize(1)
 }
 ```

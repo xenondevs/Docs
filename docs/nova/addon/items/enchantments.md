@@ -5,7 +5,7 @@
 To make a `NovaItem` enchantable, add the `Enchantable` behavior:
 
 ```kotlin
-val EXAMPLE_ITEM = registerItem("example_item", Enchantable)
+val EXAMPLE_ITEM = registerItem("example_item", Enchantable())
 ```
 
 ```yaml title="configs/example_item.yml"

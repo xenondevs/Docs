@@ -22,17 +22,20 @@ In the `addon` task, set `main` to your addon main class.
 
 ## Adding dependencies
 
-If your addon requires dependencies that need to be present at runtime, add them under the `nova` configuration:
+If your addon requires dependencies that need to be present at runtime, add them under the `libraryLoader` configuration:
 
 ```kotlin title="build.gradle.kts dependencies { }"
-nova("commons-net:commons-net:3.8.0")
+libraryLoader("commons-net:commons-net:3.8.0")
 ```
+
+The requested library will be downloaded at startup. Note that using this mechanism exposes **all** urls of the
+maven repositories you use in your build configuration.
 
 ## Building
 
 To build, run
 ```bash title="Build with Gradle"
-gradlew addonJar -PoutDir="<Path to your addons directory here>"
+gradlew addonJar
 ```
 
 ## Enabling dev mode

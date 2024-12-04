@@ -49,12 +49,11 @@ nav:
       - "Configs": "addon/configs.md" 
       - "Items":
           - "Creating Items": "addon/items/creating-items.md"
-          - "Using NovaItem": "addon/items/using-nova-item.md"
           - "Item Behaviors": "addon/items/item-behaviors.md"
           - "Tools": "addon/items/tools.md"
           - "Enchantments": "addon/items/enchantments.md"
-          - "Armor": "addon/items/armor.md"
-          - "Recipes": "addon/recipes.md"
+          - "Equipment": "addon/items/equipment.md"
+          - "Recipes": "addon/items/recipes.md"
       - "Contexts": "addon/contexts.md"
       - "Blocks":
           - "Creating Blocks": "addon/blocks/creating-blocks.md"
@@ -136,6 +135,7 @@ nav:
           - "Scheduler": "addon/misc/scheduler.md"
           - "Project Distributors": "addon/misc/project-distributors.md"
       - "Migration Guide":
+          - "0.17 ➝ 0.18": "addon/migration-guide/0.17-0.18.md"
           - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
           - "0.15 ➝ 0.16": "addon/migration-guide/0.15-0.16.md"
           - "0.14 ➝ 0.15": "addon/migration-guide/0.14-0.15.md"

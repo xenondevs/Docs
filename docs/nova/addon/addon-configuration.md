@@ -6,43 +6,17 @@ If you're using the addon template, most of these values are already set for you
 
 **Options marked with a * are required.**
 
-## id*
-
-This is the id of your addon. It is used for multiple things like the addon's config folder name or the namespace for
-items and blocks.  
-Please note that:
-
-<div class="annotate" markdown>
-* The id has to start with a letter and can only contain lowercase letters, numbers and `_`, `-`. (1)
-* Addon ids should not be changed after release, as that will break items and blocks in existing worlds.   
-* There are also a few reserved namespaces that cannot be used: `minecraft`, `nova`, `itemsadder`, `oraxen`, `mmoitems`.
-  This list might be expanded in the future, so you should generally avoid using namespaces that are already used by other
-  well-known plugins.
-</div>
-
-1. Regex: `^[a-z][a-z\d_-]*$`
-
-Example:
-
-```kotlin title="build.gradle.kts addon { }"
-id.set("example")
-```
-
-In most cases, you can just use your project name:
-
-```kotlin title="build.gradle.kts addon { }"
-id.set(project.name)
-```
-
 ## name*
 
-This is the displayed name of your addon. Unlike the addon id, there are no naming restrictions.
-The name can be changed at any time.
+This is the name of your addon.
+Names may only contain alphanumeric characters, periods, underscores, and hyphens (`[A-Za-z0-9._-]+`).  
+The lowercase version of this name is used as your addon's id.
+Your items and blocks are linked to this id, so you cannot change it later, without breaking existing worlds.
 
 Example:
 
 ```kotlin title="build.gradle.kts addon { }"
-name.set("Example Addon")
+name.set("example")
 ```
 
 In most cases, you can just use your project name:
@@ -67,25 +41,9 @@ Or to automatically get the version from your project:
 version.set(project.version.toString())
 ```
 
-## novaVersion*
-
-The minimum version of Nova that your addon requires.
-
-Example:
-
-```kotlin title="build.gradle.kts addon { }"
-novaVersion.set("0.11")
-```
-
-Or use the version set in your version catalog:
-
-```kotlin title="build.gradle.kts addon { }"
-novaVersion.set(deps.versions.nova)
-```
-
 ## main*
 
-Full path to your main class (without the .class extension).
+Full path to your addon main class (without the .class extension).
 
 Example:
 
@@ -93,7 +51,61 @@ Example:
 main.set("com.example.ExampleAddon")
 ```
 
-## author/authors*
+## dependency
+
+You can declare dependencies on other plugins / addons using `dependency`:
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+dependency("machines")
+```
+
+## pluginMain
+
+Full path to your plugin main class (without the .class extension).  
+If you don't define this property, Nova will generate a plugin main class for you.
+You will be able to access your plugin instance via your addon object.
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+pluginMain.set("com.example.ExamplePlugin")
+```
+
+## loader
+
+A custom [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders).
+Defining a custom plugin loader will disable Nova's library loading mechanism via that can be
+accessed via the `libraryLoader` dependency configuration.
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+loader.set("com.example.ExampleLoader")
+```
+
+## bootstrapper
+
+A custom [bootstrapper](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#bootstrapper).
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+bootstrapper.set("com.example.ExampleBootstrapper")
+```
+
+## description
+
+A description of your addon.
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+description.set("This is an example addon.")
+```
+
+## authors
 
 A list of author(s) of your addon.
 
@@ -103,43 +115,50 @@ Example:
 authors.add("ExampleAuthor")
 ```
 
+## contributors
+
+A list of contributors to your addon.
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }"
+contributors.add("ExampleContributor")
+```
+
 Or for multiple authors:
 
 ```kotlin title="build.gradle.kts addon { }"
 authors.set(listOf("ExampleAuthor", "Another Author"))
 ```
 
-## depend/softdepend
+## website
 
-You can use these options to specify which addons your addon depends on and thus needs to be loaded before your addon
-is.
-The difference between ``depend`` and ``softdepend`` is that ``softdepend`` will not cause the addon to fail if the
-dependency is not
-loaded.
+A website for your addon.
 
 Example:
 
 ```kotlin title="build.gradle.kts addon { }"
-depend.add("machines")
-softdepend.add("logistics")
+website.set("https://example.com")
 ```
 
-!!! info
+## prefix
 
-    Unlike in spigot plugins, `depdend` and `softdepend` actually change which classes can be accessed from your addon.
-    Without a (soft)dependency configured, you will not be able to access the classes of different addons at runtime.
+The prefix used in log messages.
+
+Example:
+
+```kotlin title="build.gradle.kts addon { }" 
+prefix.set("example")
+```
 
 ## Example configuration
 
 ```kotlin title="build.gradle.kts"
 addon {
-    id.set("example")
-    name.set("Example Addon")
+    name.set("ExampleAddon")
     version.set("0.1")
-    novaVersion.set("0.11")
     main.set("com.example.ExampleAddon")
     authors.set(listOf("Example Author", "Another Author"))
-    depend.add("machines")
-    softdepend.add("logistics")
+    dependency("machines")
 }
 ```

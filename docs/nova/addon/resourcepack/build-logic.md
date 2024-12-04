@@ -77,9 +77,7 @@ directory,
 depending on the server configuration. In-memory resource pack generation is implemented using
 [JIMFS](https://github.com/google/jimfs) and is the reason why all file access runs over `java.nio.Path` instead of
 `java.io.File`.  
-You can find the most important directories as properties in the companion object of `ResourcePackBuilder`, such as
-`RESOURCE_PACK_BUILD_DIR` and `ASSETS_DIR`. These paths will always point to the correct file system, so you don't need
-to worry about whether the resource pack is being built in memory or on disk.
+You can resolve any file using `resourcePackBuilder.resolve(ResourcePath)`.
 
 ### Retrieving `PackTaskHolder` instances
 
