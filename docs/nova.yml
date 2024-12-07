@@ -43,6 +43,7 @@ nav:
   - "Addon API":
       - "Getting Started": "addon/index.md"
       - "Configure Addon": "addon/addon-configuration.md"
+      - "Initialization": "addon/initialization.md"
       - "Resource Pack":
           - "Addon Assets": "addon/resourcepack/addon-assets.md"
           - "Custom Build Logic": "addon/resourcepack/build-logic.md"
@@ -130,7 +131,6 @@ nav:
               - "BlockState": "addon/worldgen/types/block-state.md"
               - "Block Predicate": "addon/worldgen/types/block-predicate.md"
       - "Miscellaneous":
-          - "Initialization": "addon/misc/initialization.md"
           - "Events": "addon/misc/events.md"
           - "Scheduler": "addon/misc/scheduler.md"
           - "Project Distributors": "addon/misc/project-distributors.md"

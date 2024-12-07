@@ -1,6 +1,7 @@
 # Initialization
 
-Simply annotate singleton object with `#!kotlin @Init` and Nova will load the class during the specified initialization stage.
+Simply annotate any singleton object with `#!kotlin @Init` and Nova will load the class during
+the specified initialization stage.
 
 ## Initialization Stages
 

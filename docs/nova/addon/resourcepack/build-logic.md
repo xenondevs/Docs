@@ -6,15 +6,10 @@ Pack tasks are functions annotated with `#!kotlin @PackTask` and need to be loca
 with `#!kotlin ResourcePackBuilder.registerTaskHolders`.
 
 ```kotlin
+ResourcePackBuilder.registerTaskHolders(::CustomTaskHolder)
+```
 
-object ExampleAddon : Addon() {
-    
-    override fun init() {
-        ResourcePackBuilder.registerTaskHolders(::CustomTaskHolder)
-    }
-
-}
-
+```kotlin title="CustomTaskHolder.kt"
 class CustomTaskHolder(private val builder: ResourcePackBuilder) : PackTaskHolder {
     
     @PackTask
@@ -23,7 +18,6 @@ class CustomTaskHolder(private val builder: ResourcePackBuilder) : PackTaskHolde
     }
 
 }
-
 ```
 
 ## PackTask
@@ -77,7 +71,7 @@ directory,
 depending on the server configuration. In-memory resource pack generation is implemented using
 [JIMFS](https://github.com/google/jimfs) and is the reason why all file access runs over `java.nio.Path` instead of
 `java.io.File`.  
-You can resolve any file using `resourcePackBuilder.resolve(ResourcePath)`.
+You can resolve any file using `ResourcePackBuilder#resolve`.
 
 ### Retrieving `PackTaskHolder` instances
 
@@ -155,11 +149,6 @@ This map shows both `vanillaFonts` and `customFonts` merged together in the same
 This might be useful if you want to add custom characters to the `minecraft:default` font without overriding existing
 characters. Using `#!kotlin Font.findFirstUnoccupied` or `#!kotlin Font.findFirstUnoccupiedRange` you could then search
 for an unoccupied range of code points.
-
-!!! warning "Resource-intensive operation"
-
-    Because `customFonts` might change at any time, retrieving the `mergedFonts` map will always merge the `vanillaFonts`
-    and `customFonts` map again, which is a relatively resource-intesive operation.
 
 ### MovedFontContent
 
