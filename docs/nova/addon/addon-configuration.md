@@ -76,7 +76,7 @@ pluginMain.set("com.example.ExamplePlugin")
 ## loader
 
 A custom [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders).
-Defining a custom plugin loader will disable Nova's library loading mechanism via that can be
+Defining a custom plugin loader will disable Nova's library loading mechanism that can be
 accessed via the `libraryLoader` dependency configuration.
 
 Example:
