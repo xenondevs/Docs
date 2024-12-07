@@ -35,7 +35,7 @@ maven repositories you use in your build configuration.
 
 To build, run
 ```bash title="Build with Gradle"
-gradlew addonJar
+gradlew addonJar -PoutDir="<Path to your addons directory here>"
 ```
 
 ## Enabling dev mode

@@ -8,18 +8,27 @@ Before installing Nova, please make sure that you're running a [supported server
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
-!!! bug "**Do NOT put addons in the plugins folder**"
+=== "0.18"
 
-    Nova addons are not plugins and won't load in the `plugins/` folder.  
-    Please follow Step 2 to install addons.
+    ## Step 2: Installing addons
 
-## Step 2: Installing addons
+    Starting with 0.18, Nova addons are now loaded as plugins.
+    Therefore, you can just put them into the plugins/ directory of your server.
 
-To install an addon:
+=== "0.17 or older"
 
-* Stop the server
-* Drag & drop the addon jar file into ``plugins/Nova/addons/``
-* Start the server again
+    !!! bug "**Do NOT put addons in the plugins folder**"
+    
+        Nova addons are not plugins and won't load in the `plugins/` folder.  
+        Please follow Step 2 to install addons.
+    
+    ## Step 2: Installing addons
+    
+    To install an addon:
+    
+    * Stop the server
+    * Drag & drop the addon jar file into ``plugins/Nova/addons/``
+    * Start the server again
 
 The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.  
 Please follow Step 3 to configure resource pack hosting.
