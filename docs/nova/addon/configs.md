@@ -2,7 +2,7 @@
 
 ## Configuration Library
 Nova uses [SpongePowered/Configurate](https://github.com/SpongePowered/Configurate), but most of the
-time you'll be dealing with Nova's `ConfigProvider`, which helps you with config reloading.
+time you'll be dealing with Nova's `Provider<ConfigurationNode>`, which helps you with config reloading.
 
 ## Provider
 
@@ -50,5 +50,5 @@ val exampleValue2: Int? by Items.EXAMPLE_ITEM.config.optionalEntry<Int>("optiona
 ```
 
 1. Delegating to the `Provider<Int>` will cause this field automatically change every time the config is reloaded.
-2. Using `ConfigProvider#optionalEntry`, you can get a `Provider<Int?>`, where the value is null if the key is not present
-   in the config.
+2. Using `Provider<ConfigurationNode>#optionalEntry`, you can get a `Provider<Int?>`, where the value is null if the key
+   is not present in the config.
