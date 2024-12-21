@@ -9,7 +9,7 @@
 ??? faq "Which Minecraft versions are supported by Nova? Is there multi-version support?"
 
     The goal for Nova is to always target the latest version of Minecraft. There is no multi-version support.
-    If that latest version of Nova does not support the latest Minecraft version yet, please be patient
+    If the latest version of Nova does not support the latest Minecraft version yet, please be patient
     while we work on updating it.
 
 ??? faq "Can I use Nova with Bedrock bridges like Geyser?"
