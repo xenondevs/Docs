@@ -57,8 +57,15 @@ You can declare dependencies on other plugins / addons using `dependency`:
 
 Example:
 
+The following creates a dependency in both `BOOTSTRAP` and `SERVER` phase on the given plugin:  
+(If you're depending on a Nova addon, do this)
 ```kotlin title="build.gradle.kts addon { }"
 dependency("machines")
+```
+
+For plugins that don't have a bootstrapper, you can instead specify the phase:
+```kotlin title="build.gradle.kts addon { }"
+dependency("some-plugin", PluginDependency.Stage.SERVER)
 ```
 
 ## pluginMain
