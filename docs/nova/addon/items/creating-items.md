@@ -33,7 +33,7 @@ with the texture `textures/item/example_item.png`.
 
 !!! info "Item Model Definitions - Minecraft Wiki"
     
-    Item Model Defintions are a 1.21.4 feature. You may interested in the
+    Item Model Defintions are a 1.21.4 feature. You may be interested in the
     [Minecraft wiki page](https://minecraft.wiki/w/Items_model_definition) on this topic.
 
 Nova offers a DSL builder for creating item model definitions:

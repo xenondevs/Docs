@@ -37,8 +37,6 @@ supported_enchantments: # (2)!
       Once you add `primary_enchantments` to the config, you'll need to add all enchantments from `supported_enchantments`
       to `primary_enchantments` it.
 
-      `Enchantable` behaviors instantiated in code do not have such defaulting functionality.
-
 ### Custom Enchantments
 
 To create a custom enchantment, you'll need to create an `EnchantmentRegistry`:
