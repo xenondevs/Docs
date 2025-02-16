@@ -1,7 +1,7 @@
 # NetworkedTileEntity
 
 `NetworkedTileEntity` inherits from `TileEntity` and `NetworkEndPoint` and provides you with an easy way
-to make your `TileEntity` network compatible.
+to make your `TileEntity` network-compatible.
 
 ```kotlin
 class ExampleTileEntity(

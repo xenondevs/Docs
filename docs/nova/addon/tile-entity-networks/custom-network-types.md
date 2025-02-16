@@ -4,7 +4,7 @@ To create a custom network type, implement `NetworkTypeRegistry` as usual:
 
 ```kotlin
 @Init(stage = InitStage.PRE_WORLD)
-class NetworkTypes : NetworkTypeRegistry by Logistics.registry {
+class NetworkTypes : NetworkTypeRegistry by ExampleAddon.registry {
     
     val EXAMPLE = registerNetworkType(
         name = "example",
