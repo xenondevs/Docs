@@ -7,31 +7,43 @@ For more detailed information, check out the KDocs.
 
 ```mermaid
 classDiagram
-  class NetworkCluster {
-      A collection of networks that share at least one NetworkNode.
-  }
+  note for NetworkCluster "A collection of networks that\nshare at least one NetworkNode."
+  class NetworkCluster
+  
+  note for NetworkGroup "A subset of a network cluster,\ngrouped by network type."
   class NetworkGroup {
-      A subset of a network cluster, grouped by network type.
+      <<interface>>
   }
+  
+  note for Network "A collection of network nodes\nthat are connected to each other."
   class Network {
-      A collection of network nodes that are connected to each other.
+      <<interface>>
   }
-  class NetworkNode
-  class NetworkEndPoint
+  
+  class NetworkNode {
+      <<interface>>
+  }
+  
+  class NetworkEndPoint {
+      <<interface>>
+  }
+  
+  note for NetworkBridge "Cables / Pipes / etc."
   class NetworkBridge {
-      Cables / Pipes / etc.
+      <<interface>>
   }
+  
+  note for EndPointDataHolder "Holds data for a specific\nnetwork type."
   class EndPointDataHolder {
-      Holds data for a specific network type.
+      <<interface>>
   }
   
   NetworkCluster o-- NetworkGroup : contains
   NetworkGroup o-- Network : contains
   Network o-- NetworkNode : contains
-  NetworkNode <|-- NetworkEndPoint : is
-  NetworkNode <|-- NetworkBridge : is
+  NetworkNode <|-- NetworkEndPoint : implements
+  NetworkNode <|-- NetworkBridge : implements
   NetworkEndPoint *-- EndPointDataHolder : contains
-
 ```
 
 In most cases, you won't need to worry about the network system and will just inherit
