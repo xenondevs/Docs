@@ -144,4 +144,4 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 
 ![](https://i.imgur.com/WrTEssR.png){width=40%}
 
-Of course, nothing stops you from creating your own gui side-config gui.
+Of course, nothing stops you from creating your own side-config gui.
