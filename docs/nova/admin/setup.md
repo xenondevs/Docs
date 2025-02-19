@@ -127,19 +127,6 @@ This can be done either automatically or manually:
                 key_secret: "" # Your S3 key secret
                 force_path_style: false # Forces path style URLs (Defaults to false)
             ```
-    
-        === "Oraxen"
-    
-            If you are using Oraxen on your server, you can configure Nova to use the PolyMath instance [configured in Oraxen's config.yml](https://docs.oraxen.com/configuration/plugin-settings#upload).
-    
-            Example config:
-            
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: oraxen
-            ```
 
 === "Manual resource pack hosting"
 

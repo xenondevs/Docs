@@ -19,7 +19,7 @@ nav:
       - "Compatibility":
           - "Server Software & third-party Plugins": "admin/compatibility/index.md"
           - "ItemsAdder": "admin/compatibility/itemsadder.md"
-          - "Oraxen": "admin/compatibility/oraxen.md"
+          - "Nexo": "admin/compatibility/nexo.md"
       - "Configuration": "admin/configuration.md"
       - "Recipes":
           - "Custom Recipes": "admin/recipes/index.md"

@@ -16,12 +16,9 @@ We're planning to add support for the following server software in the future:
 
 ### Custom Item Plugins
 
-Checked plugins are fully supported (e.g. their items can be used in recipes, their blocks can be broken by machines, etc.)  
-Unchecked plugins are partially supported, some features might not work.
-
-- [x] [ItemsAdder](itemsadder.md) | [Known Issues](itemsadder.md#known-issues)
-- [x] [Oraxen](oraxen.md) | [Known Issues](oraxen.md#known-issues)
-- [ ] MMOItems
+- [ItemsAdder](itemsadder.md)
+- [Nexo](nexo.md) | [Known Issues](nexo#known-issues)
+- MMOItems
 
 !!! warning
 

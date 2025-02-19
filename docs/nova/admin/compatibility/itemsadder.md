@@ -16,8 +16,3 @@ To make ItemsAdder and Nova work together, you need to follow these steps:
 ## Adding new assets to ItemsAdder
 
 After adding new assets to ItemsAdder and running `/iazip`, you will now also need to run `/nova resourcePack create`.
-
-## Known Issues
-
-* [ItemsAdder-2043](https://github.com/PluginBugs/Issues-ItemsAdder/issues/2043): ItemsAdder blocks update Nova block states
-  (This is an ItemsAdder issue, please do not message us about it)
