@@ -1,6 +1,6 @@
 repo_url: https://github.com/xenondevs/Docs
 repo_name: xenondevs/Docs
-copyright: Copyright &copy; 2024 xenondevs
+copyright: Copyright &copy; 2025 xenondevs
 
 extra:
   social:
@@ -8,8 +8,6 @@ extra:
       link: https://github.com/xenondevs
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/EpVMXtXB2t
-    - icon: fontawesome/brands/patreon
-      link: https://patreon.com/xenondevs
 
 theme:
   name: material
