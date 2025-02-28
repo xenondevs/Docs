@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - run: pip install mkdocs-material
+
+      - run: mkdocs build -f docs/nova.yml -d ../build/nova
+      - run: mkdocs build -f docs/invui.yml -d ../build/invui
+      - run: mkdocs build -f docs/cbf.yml -d ../build/cbf
+
+      - name: Deploy Nova Docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/nova
+          target-folder: nova
+
+      - name: Deploy InvUI Docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/invui
+          target-folder: invui
+
+      - name: Deploy CBF Docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/cbf
+          target-folder: cbf
