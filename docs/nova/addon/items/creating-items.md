@@ -19,7 +19,7 @@ You can register a really simple item like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Items ItemRegistry by ExampleAddon.registry {
+object Items : ItemRegistry by ExampleAddon.registry {
 
    val EXAMPLE_ITEM = registerItem("example_item", /* Item Behaviors */)
    
@@ -40,7 +40,7 @@ Nova offers a DSL builder for creating item model definitions:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Items ItemRegistry by ExampleAddon.registry {
+object Items : ItemRegistry by ExampleAddon.registry {
 
    val EXAMPLE_ITEM = item("example_item") {
       modelDefinition {
