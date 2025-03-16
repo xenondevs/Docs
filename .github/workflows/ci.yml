@@ -27,20 +27,7 @@ jobs:
       - run: mkdocs build -f docs/invui.yml -d ../build/invui
       - run: mkdocs build -f docs/cbf.yml -d ../build/cbf
 
-      - name: Deploy Nova Docs
+      - name: Deploy Docs
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/nova
-          target-folder: nova
-
-      - name: Deploy InvUI Docs
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/invui
-          target-folder: invui
-
-      - name: Deploy CBF Docs
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/cbf
-          target-folder: cbf
+          folder: build
