@@ -3790,7 +3790,7 @@ This can be done either automatically or manually:</p>
 You can configure it in the main config file <code>plugins/Nova/configs/config.yml</code> under <code>resource_pack</code> &gt; <code>auto_upload</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Available Upload Services</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Self-hosted</label><label for="__tabbed_2_2">Custom Multipart Request</label><label for="__tabbed_2_3">Amazon S3</label><label for="__tabbed_2_4">Patreon Upload Service</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Self-hosted</label><label for="__tabbed_2_2">Custom Multipart Request</label><label for="__tabbed_2_3">Amazon S3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>If you're able to open a port on your server, this option will make the most sense for you.
@@ -3842,17 +3842,6 @@ bucket to the Internet yourself.</strong></p>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">force_path_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># Forces path style URLs (Defaults to false)</span>
 </code></pre></div>
 </div>
-<div class="tabbed-block">
-<p>Patrons are given access to upload to our servers.
-Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.</p>
-<p>Example config:</p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xenondevs</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your Patreon-Uploader Key</span>
-</code></pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -3860,8 +3849,8 @@ Due to hosting costs and the potential for abuse, this service is only available
 <div class="tabbed-block">
 <p>For manual resource pack hosting, upload the resource pack found under <code>plugins/Nova/resource_pack/ResourcePack.zip</code> to a file uploader of your choice.
 Then set the url to download the resource pack in the main config file <code>plugins/Nova/configs/config.yml</code> under <code>resource_pack</code> &gt; <code>url</code>:</p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/resource_pack.zip</span>
+<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/resource_pack.zip</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">URL needs to be a direct download link</p>
@@ -3893,10 +3882,10 @@ to prevent conflicts.<br />
 <li>Make sure to turn off the resource pack prompt in the config of the plugin providing it.</li>
 <li>
 <p>Link to the resource pack directory or zip file in the Nova config under <code>resource_pack</code> &gt; <code>generation</code> &gt; <code>base_packs</code>.</p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">generation</span><span class="p">:</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">base_packs</span><span class="p">:</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plugins/ItemsAdder/output/generated.zip</span>
+<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">generation</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">base_packs</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plugins/ItemsAdder/output/generated.zip</span>
 </code></pre></div>
 </li>
 <li>
