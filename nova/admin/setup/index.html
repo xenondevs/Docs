@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -380,36 +380,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-plugin-installation" class="md-nav__link">
+  <a href="#step-1-installing-nova-and-addons" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Plugin Installation
+      Step 1: Installing Nova and addons
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-installing-addons" class="md-nav__link">
+  <a href="#step-2-configure-resource-pack-hosting" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Installing addons
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-installing-addons_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 2: Installing addons
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-configure-resource-pack-hosting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3: Configure resource pack hosting
+      Step 2: Configure resource pack hosting
     </span>
   </a>
   
@@ -3737,36 +3719,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-plugin-installation" class="md-nav__link">
+  <a href="#step-1-installing-nova-and-addons" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Plugin Installation
+      Step 1: Installing Nova and addons
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-installing-addons" class="md-nav__link">
+  <a href="#step-2-configure-resource-pack-hosting" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Installing addons
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-installing-addons_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 2: Installing addons
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-configure-resource-pack-hosting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3: Configure resource pack hosting
+      Step 2: Configure resource pack hosting
     </span>
   </a>
   
@@ -3802,75 +3766,41 @@
 
 <h1 id="setting-up-nova">Setting up Nova</h1>
 <p>Before installing Nova, please make sure that you're running a <a href="../compatibility/#compatible-server-software">supported server software</a>.</p>
-<h2 id="step-1-plugin-installation">Step 1: Plugin Installation</h2>
+<h2 id="step-1-installing-nova-and-addons">Step 1: Installing Nova and addons</h2>
 <ul>
 <li>Like any other plugin, the Nova plugin jar file downloaded from <a href="https://hangar.papermc.io/xenondevs/Nova">Hangar</a>, <a href="https://modrinth.com/plugin/nova-framework">Modrinth</a>, <a href="https://github.com/xenondevs/Nova">GitHub</a> or our <a href="https://discord.gg/hnEknVWvUe">Discord</a> just needs to be put in the <code>plugins/</code> folder of your server.</li>
+<li>Since 0.18, addons are loaded as plugins. Therefore, you can also just put them into the <code>plugins/</code> folder.<ul>
+<li>Some addons might require other addons in order to work.
+    If this is the case, an error in the console will notify you of the missing addons:<br />
+<code>Failed to initialize &lt;Name of the Addon&gt;: Missing addon(s): &lt;Name(s) of the required addon(s) that are missing&gt;</code></li>
+</ul>
+</li>
 <li>Start your server and wait until Nova is done loading. (Indicated by the message in the console <code>[Nova] Done loading</code>). This creates config files and directories which you will need to access in the following steps.</li>
 <li>Stop your server.</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">0.18</label><label for="__tabbed_1_2">0.17 or older</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<h2 id="step-2-installing-addons">Step 2: Installing addons</h2>
-<p>Starting with 0.18, Nova addons are now loaded as plugins.
-Therefore, you can just put them into the plugins/ directory of your server.</p>
-</div>
-<div class="tabbed-block">
-<div class="admonition bug">
-<p class="admonition-title"><strong>Do NOT put addons in the plugins folder</strong></p>
-<p>Nova addons are not plugins and won't load in the <code>plugins/</code> folder.<br />
-Please follow Step 2 to install addons.</p>
-</div>
-<h2 id="step-2-installing-addons_1">Step 2: Installing addons</h2>
-<p>To install an addon:</p>
-<ul>
-<li>Stop the server</li>
-<li>Drag &amp; drop the addon jar file into <code>plugins/Nova/addons/</code></li>
-<li>Start the server again</li>
-</ul>
-</div>
-</div>
-</div>
-<p>The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.<br />
-Please follow Step 3 to configure resource pack hosting.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Some addons might require other addons in order to work.
-If this is the case, an error in the console will notify you of the missing addons:<br />
-<code>Failed to initialize &lt;Name of the Addon&gt;: Missing addon(s): &lt;Name(s) of the required addon(s) that are missing&gt;</code></p>
-</div>
-<h2 id="step-3-configure-resource-pack-hosting">Step 3: Configure resource pack hosting</h2>
+<p>The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.
+Please follow Step 2 to configure resource pack hosting.</p>
+<h2 id="step-2-configure-resource-pack-hosting">Step 2: Configure resource pack hosting</h2>
 <p>Due to the way server resource packs work, it is required to upload them to a web server first before they can be sent to players.<br />
 This can be done either automatically or manually:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Automatic resource pack hosting (recommended)</label><label for="__tabbed_2_2">Manual resource pack hosting</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Automatic resource pack hosting (recommended)</label><label for="__tabbed_1_2">Manual resource pack hosting</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The auto uploader automatically uploads the  resource pack after it changes.
 You can configure it in the main config file <code>plugins/Nova/configs/config.yml</code> under <code>resource_pack</code> &gt; <code>auto_upload</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Available Upload Services</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Patreon Upload Service</label><label for="__tabbed_3_2">Self-hosted</label><label for="__tabbed_3_3">Custom Multipart Request</label><label for="__tabbed_3_4">Amazon S3</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Self-hosted</label><label for="__tabbed_2_2">Custom Multipart Request</label><label for="__tabbed_2_3">Amazon S3</label><label for="__tabbed_2_4">Patreon Upload Service</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block">
-<p><a href="https://www.patreon.com/xenondevs">Patrons</a> are given access to upload to our servers.
-Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.</p>
-<p>Example config:</p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xenondevs</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your Patreon-Uploader Key</span>
-</code></pre></div>
-</div>
 <div class="tabbed-block">
 <p>If you're able to open a port on your server, this option will make the most sense for you.
 Nova will automatically start a lightweight web server from which the resource pack can be downloaded.</p>
 <p>Example config:</p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">self_host</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12345</span><span class="w"> </span><span class="c1"># The port on which the web server will be running, needs to be open to the Internet.</span>
+<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">self_host</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12345</span><span class="w"> </span><span class="c1"># The port on which the web server will be running, needs to be open to the Internet.</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title"><code>host</code> parameter</p>
@@ -3886,30 +3816,41 @@ If this is not the case, set <code>append_port: true</code>.</p>
 <div class="tabbed-block">
 <p>For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.</p>
 <p>Example: <a href="https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455">upload php script</a></p>
-<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_multi_part</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/upload.php</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">filePartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pack</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">extraParams</span><span class="p">:</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># This key also needs to be set in the php script mentioned above</span>
+<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_multi_part</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/upload.php</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">filePartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pack</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">extraParams</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># This key also needs to be set in the php script mentioned above</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>If you are using Amazon S3, you can use the S3 service to upload the resource pack. <strong>You have to expose your S3 
 bucket to the Internet yourself.</strong></p>
 <p>Example config:</p>
+<div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amazon_s3</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.amazonaws.com</span><span class="w"> </span><span class="c1"># The endpoint of your S3 service</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-central-1</span><span class="w"> </span><span class="c1"># The region of your S3 endpoint</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examplebucket</span><span class="w"> </span><span class="c1"># The name of your S3 bucket</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">key_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your S3 key id</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">key_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your S3 key secret</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">force_path_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># Forces path style URLs (Defaults to false)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Patrons are given access to upload to our servers.
+Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.</p>
+<p>Example config:</p>
 <div class="highlight"><span class="filename">plugins/Nova/configs/config.yml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">resource_pack</span><span class="p">:</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">auto_upload</span><span class="p">:</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amazon_s3</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.amazonaws.com</span><span class="w"> </span><span class="c1"># The endpoint of your S3 service</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-central-1</span><span class="w"> </span><span class="c1"># The region of your S3 endpoint</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examplebucket</span><span class="w"> </span><span class="c1"># The name of your S3 bucket</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">key_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your S3 key id</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">key_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your S3 key secret</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">force_path_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># Forces path style URLs (Defaults to false)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xenondevs</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># Your Patreon-Uploader Key</span>
 </code></pre></div>
 </div>
 </div>
@@ -3940,12 +3881,12 @@ any of its addons or when you change config values that affect resource pack gen
 </div>
 <h2 id="optional-resource-pack-merging">(optional) resource pack merging</h2>
 <p>This step is only required if your server is already using a custom resource pack.</p>
-<p>Due to technical limitations, it is only possible to have one server resource pack.
-To circumvent this issue, Nova can automatically merge existing resource packs with its own.
-Additionally, Nova also analyzes the existing resource pack and adjust its own data accordingly to prevent conflicts.
+<p>In the past, there could be only one server resource pack. While this is no longer the case, resource pack
+merging is still important as Nova uses it to analyze the existing resource pack and adjusts its own data accordingly
+to prevent conflicts.<br />
 <strong>Therefore, it is NOT possible to manually merge resource packs, and it is also NOT possible to use merging services from other plugins.</strong></p>
-<p>There are two ways to define base packs:  </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">With Config</label><label for="__tabbed_4_2">With Folder</label></div>
+<p>You can define "base packs", which are resource packs that Nova should merge, in two ways:  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">With Config</label><label for="__tabbed_3_2">With Folder</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
