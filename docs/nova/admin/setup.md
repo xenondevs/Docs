@@ -2,44 +2,20 @@
 
 Before installing Nova, please make sure that you're running a [supported server software](compatibility/index.md#compatible-server-software).
 
-## Step 1: Plugin Installation
+## Step 1: Installing Nova and addons
 
 * Like any other plugin, the Nova plugin jar file downloaded from [Hangar](https://hangar.papermc.io/xenondevs/Nova), [Modrinth](https://modrinth.com/plugin/nova-framework), [GitHub](https://github.com/xenondevs/Nova) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
+* Since 0.18, addons are loaded as plugins. Therefore, you can also just put them into the `plugins/` folder.
+    * Some addons might require other addons in order to work.
+        If this is the case, an error in the console will notify you of the missing addons:  
+        `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
-=== "0.18"
+The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.
+Please follow Step 2 to configure resource pack hosting.
 
-    ## Step 2: Installing addons
-
-    Starting with 0.18, Nova addons are now loaded as plugins.
-    Therefore, you can just put them into the plugins/ directory of your server.
-
-=== "0.17 or older"
-
-    !!! bug "**Do NOT put addons in the plugins folder**"
-    
-        Nova addons are not plugins and won't load in the `plugins/` folder.  
-        Please follow Step 2 to install addons.
-    
-    ## Step 2: Installing addons
-    
-    To install an addon:
-    
-    * Stop the server
-    * Drag & drop the addon jar file into ``plugins/Nova/addons/``
-    * Start the server again
-
-The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.  
-Please follow Step 3 to configure resource pack hosting.
-
-!!! info
-
-    Some addons might require other addons in order to work.
-    If this is the case, an error in the console will notify you of the missing addons:  
-    `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
-
-## Step 3: Configure resource pack hosting
+## Step 2: Configure resource pack hosting
 
 Due to the way server resource packs work, it is required to upload them to a web server first before they can be sent to players.  
 This can be done either automatically or manually:
@@ -50,21 +26,6 @@ This can be done either automatically or manually:
     You can configure it in the main config file `plugins/Nova/configs/config.yml` under `resource_pack` > `auto_upload`.
     
     !!! info "Available Upload Services"
-    
-        === "Patreon Upload Service"
-        
-            [Patrons](https://www.patreon.com/xenondevs) are given access to upload to our servers.
-            Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
-        
-            Example config:
-            
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: xenondevs
-                key: "" # Your Patreon-Uploader Key
-            ```
         
         === "Self-hosted"
         
@@ -128,6 +89,21 @@ This can be done either automatically or manually:
                 force_path_style: false # Forces path style URLs (Defaults to false)
             ```
 
+        === "Patreon Upload Service"
+        
+            Patrons are given access to upload to our servers.
+            Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
+        
+            Example config:
+            
+            ```yaml title="plugins/Nova/configs/config.yml"
+            resource_pack:
+              auto_upload:
+                enabled: true
+                service: xenondevs
+                key: "" # Your Patreon-Uploader Key
+            ```
+
 === "Manual resource pack hosting"
 
     For manual resource pack hosting, upload the resource pack found under `plugins/Nova/resource_pack/ResourcePack.zip` to a file uploader of your choice.
@@ -155,12 +131,12 @@ This can be done either automatically or manually:
 
 This step is only required if your server is already using a custom resource pack.
 
-Due to technical limitations, it is only possible to have one server resource pack.
-To circumvent this issue, Nova can automatically merge existing resource packs with its own.
-Additionally, Nova also analyzes the existing resource pack and adjust its own data accordingly to prevent conflicts.
+In the past, there could be only one server resource pack. While this is no longer the case, resource pack
+merging is still important as Nova uses it to analyze the existing resource pack and adjusts its own data accordingly
+to prevent conflicts.  
 **Therefore, it is NOT possible to manually merge resource packs, and it is also NOT possible to use merging services from other plugins.**
 
-There are two ways to define base packs:  
+You can define "base packs", which are resource packs that Nova should merge, in two ways:  
 
 === "With Config"
 

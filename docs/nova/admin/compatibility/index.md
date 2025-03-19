@@ -36,3 +36,9 @@ add support on their end using [the API](../../api/protection/protectionintegrat
 - [x] ProtectionStones
 - [x] QuickShop
 - [x] Residence
+
+## Incompatible Plugins
+
+The following plugins cannot be used with Nova:
+
+- [FastAsyncWorldEdit](https://www.spigotmc.org/resources/13932/) - Please consider using normal [WorldEdit](https://dev.bukkit.org/projects/worldedit) instead.
