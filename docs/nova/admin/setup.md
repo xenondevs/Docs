@@ -89,21 +89,6 @@ This can be done either automatically or manually:
                 force_path_style: false # Forces path style URLs (Defaults to false)
             ```
 
-        === "Patreon Upload Service"
-        
-            Patrons are given access to upload to our servers.
-            Due to hosting costs and the potential for abuse, this service is only available to Patrons and not available publicly.
-        
-            Example config:
-            
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: xenondevs
-                key: "" # Your Patreon-Uploader Key
-            ```
-
 === "Manual resource pack hosting"
 
     For manual resource pack hosting, upload the resource pack found under `plugins/Nova/resource_pack/ResourcePack.zip` to a file uploader of your choice.
