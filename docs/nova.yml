@@ -135,6 +135,7 @@ nav:
           - "Scheduler": "addon/misc/scheduler.md"
           - "Project Distributors": "addon/misc/project-distributors.md"
       - "Migration Guide":
+          - "0.18 ➝ 0.19": "addon/migration-guide/0.18-0.19.md"
           - "0.17 ➝ 0.18": "addon/migration-guide/0.17-0.18.md"
           - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
           - "0.15 ➝ 0.16": "addon/migration-guide/0.15-0.16.md"

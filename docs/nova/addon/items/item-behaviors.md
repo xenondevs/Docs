@@ -14,13 +14,10 @@ You can create a custom item behavior by implementing the `ItemBehavior` interfa
 There, you'll be able to override `baseDataComponents`, which are the default
 [data components](https://minecraft.wiki/w/Data_component_format) of `NovaItems` with that behavior.
 
-Alternatively, you can also override `defaultPatch`, which is the default component patch that will be present
-on all item stacks of `NovaItems` with that behavior.
-
 ### Vanilla material properties
 
 Some functionality can not yet be achieved by using data components, as it is still bound to the vanilla item type.
-As such, you can specify [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html)
+For such cases, you can specify [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html)
 which will change the **client-side** item type.
 
 ### Client-side item stack
