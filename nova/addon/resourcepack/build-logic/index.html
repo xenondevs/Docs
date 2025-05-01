@@ -4357,8 +4357,8 @@ for an unoccupied range of code points.</p>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">textureIconContent</span><span class="p">.</span><span class="na">addIcons</span><span class="p">(</span><span class="s">&quot;minecraft:item/diamond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;minecraft:item/emerald&quot;</span><span class="p">)</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
 </code></pre></div>
-<p>They can then be retrieved from the <code>TEXTURE_ICON_LOOKUP</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">component</span><span class="p">:</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceLookups</span><span class="p">.</span><span class="na">TEXTURE_ICON_LOOKUP</span><span class="o">[</span><span class="n">ResourceLocation</span><span class="p">(</span><span class="s">&quot;minecraft:item/diamond&quot;</span><span class="p">)</span><span class="o">]</span><span class="p">.</span><span class="na">component</span>
+<p>They can then be retrieved later:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">component</span><span class="p">:</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextureIconContent</span><span class="p">.</span><span class="na">getIcon</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="na">key</span><span class="p">(</span><span class="s">&quot;minecraft:item/diamond&quot;</span><span class="p">)).</span><span class="na">component</span>
 </code></pre></div>
 
 

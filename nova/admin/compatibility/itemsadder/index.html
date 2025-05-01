@@ -3934,16 +3934,11 @@
 <li>Change the following values in ItemsAdder's <code>config.yml</code>:<ul>
 <li>Set <code>resource-pack</code> &gt; <code>hosting</code> &gt; <code>no-host</code> &gt; <code>enabled</code> to <code>true</code> (all other options under <code>hosting</code> must be <code>false</code>).</li>
 <li>Under <code>resource-pack</code> &gt; <code>zip</code> &gt; <code>protect-file-from-unzip</code> set both <code>protection_1</code> and <code>protection_2</code> to <code>false</code>.</li>
-<li>Set <code>resource-pack</code> &gt; <code>zip</code> &gt; <code>disable-overwrite-leather-armor-layers-textures</code> to <code>true</code>.</li>
 </ul>
 </li>
 <li>Add the ItemsAdder resource pack zip file as a <a href="../../setup/#optional-resourcepack-merging">base pack</a> in Nova's main config.</li>
 <li>Regenerate Nova's resource pack with <code>/nova resourcePack create</code> (make sure that you've run <code>/iazip</code> before and the resource pack zip exists)</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">Unsupported Features</p>
-<p>ItemsAdder's recolored armor <em>"mineral armor"</em> is not supported. Please use custom textures.</p>
-</div>
 <h2 id="adding-new-assets-to-itemsadder">Adding new assets to ItemsAdder</h2>
 <p>After adding new assets to ItemsAdder and running <code>/iazip</code>, you will now also need to run <code>/nova resourcePack create</code>.</p>
 

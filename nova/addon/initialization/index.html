@@ -1219,15 +1219,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initialization-stages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Initialization Stages
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dispatcher" class="md-nav__link">
     <span class="md-ellipsis">
       Dispatcher
@@ -3912,15 +3903,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initialization-stages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Initialization Stages
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dispatcher" class="md-nav__link">
     <span class="md-ellipsis">
       Dispatcher
@@ -3969,38 +3951,6 @@
 <h1 id="initialization">Initialization</h1>
 <p>Simply annotate any singleton object with <code class="highlight"><span class="nd">@Init</span></code> and Nova will load the class during
 the specified initialization stage.</p>
-<h2 id="initialization-stages">Initialization Stages</h2>
-<p>These are the available initialization stages:</p>
-<table>
-<thead>
-<tr>
-<th>Stage</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="highlight"><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_WORLD</span></code></td>
-<td>Before the world is loaded.</td>
-</tr>
-<tr>
-<td><code class="highlight"><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_PACK</span></code></td>
-<td>Before the resource pack generation starts.</td>
-</tr>
-<tr>
-<td><code class="highlight"><span class="n">InitStage</span><span class="p">.</span><span class="na">POST_PACK_PRE_WORLD</span></code></td>
-<td>After the first stage of resource pack generation ("pre-world") has finished. Lookup registries are now loaded.</td>
-</tr>
-<tr>
-<td><code class="highlight"><span class="n">InitStage</span><span class="p">.</span><span class="na">POST_WORLD</span></code></td>
-<td>After the world has been loaded.</td>
-</tr>
-<tr>
-<td><code class="highlight"><span class="n">InitStage</span><span class="p">.</span><span class="na">POST_PACK</span></code></td>
-<td>After the second (and last) stage of resource pack generation ("post-world") has finished.</td>
-</tr>
-</tbody>
-</table>
 <div class="highlight"><span class="filename">Example initializable class</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@Init</span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_PACK</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">object</span><span class="w"> </span><span class="nc">Example</span>
 </code></pre></div>
