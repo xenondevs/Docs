@@ -3,18 +3,6 @@
 Simply annotate any singleton object with `#!kotlin @Init` and Nova will load the class during
 the specified initialization stage.
 
-## Initialization Stages
-
-These are the available initialization stages:
-
-| Stage                                    | Description                                                                                                     |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| `#!kotlin InitStage.PRE_WORLD`           | Before the world is loaded.                                                                                     |
-| `#!kotlin InitStage.PRE_PACK`            | Before the resource pack generation starts.                                                                     |
-| `#!kotlin InitStage.POST_PACK_PRE_WORLD` | After the first stage of resource pack generation ("pre-world") has finished. Lookup registries are now loaded. |
-| `#!kotlin InitStage.POST_WORLD`          | After the world has been loaded.                                                                                |
-| `#!kotlin InitStage.POST_PACK`           | After the second (and last) stage of resource pack generation ("post-world") has finished.                      |
-
 ```kotlin title="Example initializable class"
 @Init(stage = InitStage.PRE_PACK)
 object Example

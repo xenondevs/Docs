@@ -7,7 +7,7 @@ For more information about the recipe format and default recipe types, [read the
 
 ## Creating a custom Recipe Type
 Recipe types are registered over the `RecipeTypeRegistry`.  
-All of the following values are required to create a new `RecipeType`:
+All the following values are required to create a new `RecipeType`:
 
 |      Name      |           Type           | Usage                                                                                                         |
 |:--------------:|:------------------------:|---------------------------------------------------------------------------------------------------------------|
@@ -15,10 +15,6 @@ All of the following values are required to create a new `RecipeType`:
 | `recipeClass`  |       `KClass<T>`        | The class of your recipe type, must be a subclass of `NovaRecipe`.                                            |
 |    `group`     |    `RecipeGroup<T>?`     | The recipe group that displays the recipe in the recipe explorer gui.                                         |
 | `deserializer` | `RecipeDeserializer<T>?` | The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`. |
-
-!!! danger "Attention"
-
-    Setting `RecipeGroup` to null can lead to exceptions being thrown when players try to view recipes from that type.  
 
 !!! example "Creating a custom Recipe Type"
 
@@ -123,7 +119,7 @@ All of the following values are required to create a new `RecipeType`:
                     Component.translatable(recipe.fluidType.localizedName)
                 ))
                 
-                return Gui.normal()
+                return Gui.builder()
                     .setStructure(
                         ". f . t . . . . .",
                         ". f p i . . . r .",

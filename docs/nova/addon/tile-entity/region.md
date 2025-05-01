@@ -28,7 +28,7 @@ VisualRegion.toggleView(player, regionUUID, region)
 If you want a "Visualize Region" button in your GUI, you can use the `VisualRegionItem`:
 
 ```kotlin
-VisualizeRegionItem(player, regionUuid) { region }
+VisualizeRegionItem(regionUuid) { region }
 ```
 
 ## Dynamic Region
@@ -52,7 +52,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
     @TileEntityMenuClass
     inner class ExampleTileEntityMenu(player: Player) : IndividualTileEntityMenu(player) {
         
-        override val gui = Gui.normal()
+        override val gui = Gui.builder()
             .setStructure(
                 "v # # # # # # # #",
                 "# # + # d # - # #",
@@ -60,7 +60,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
             .addIngredient('+', region.increaseSizeItem)
             .addIngredient('-', region.decreaseSizeItem)
             .addIngredient('d', region.displaySizeItem)
-            .addIngredient('v', region.createVisualizeRegionItem(player))
+            .addIngredient('v', region.visualizeRegionItem)
             .build()
         
     }

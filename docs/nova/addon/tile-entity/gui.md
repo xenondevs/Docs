@@ -25,7 +25,7 @@ Nova will automatically instantiate your menu class when needed.
         @TileEntityMenuClass
         private inner class SolarPanelMenu : GlobalTileEntityMenu() {
             
-            override val gui = Gui.normal()
+            override val gui = Gui.builder()
                 .setStructure(
                     "1 - - - - - - - 2",
                     "| u # # e # # # |",
@@ -48,7 +48,7 @@ Nova will automatically instantiate your menu class when needed.
         @TileEntityMenuClass
         private inner class VacuumChestMenu(player: Player) : IndividualTileEntityMenu(player) {
             
-            override val gui = Gui.normal()
+            override val gui = Gui.builder()
                 .setStructure(
                     "1 - - - - - - - 2",
                     "| s u # i i i p |",

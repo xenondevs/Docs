@@ -174,8 +174,8 @@ fun task() {
 }
 ```
 
-They can then be retrieved from the `TEXTURE_ICON_LOOKUP`:
+They can then be retrieved later:
 
 ```kotlin
-val component: Component = ResourceLookups.TEXTURE_ICON_LOOKUP[ResourceLocation("minecraft:item/diamond")].component
+val component: Component = TextureIconContent.getIcon(Key.key("minecraft:item/diamond")).component
 ```

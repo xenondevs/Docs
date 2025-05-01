@@ -10,7 +10,7 @@ object MyAddon : Addon() {
 }
 ```
 
-By default, there are four different distributors available:
+By default, there are three different distributors available:
 
 | Distributor | Code                                          |
 |-------------|-----------------------------------------------|

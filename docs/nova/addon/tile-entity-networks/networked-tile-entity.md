@@ -125,7 +125,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
             openPrevious = ::openWindow
         )
         
-        override val gui = Gui.normal()
+        override val gui = Gui.builder()
             .setStructure(
                 "s # # # # # # # #",
                 "# i i i # o o o #",
