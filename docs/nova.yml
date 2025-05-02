@@ -72,6 +72,7 @@ nav:
             - "GUI Textures": "addon/fonts/guitextures.md"
             - "Action Bar Overlay": "addon/fonts/actionbar.md"
             - "Boss Bar Overlay": "addon/fonts/bossbar.md"
+      - "Entity Variants": "addon/entity-variants.md"
       - "Attachments": "addon/attachments.md"
       - "Abilities": "addon/abilities.md"
       - "Hitboxes": "addon/hitboxes.md"
