@@ -20,9 +20,9 @@ Now, you can register the block:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
     
-    val EXAMPLE_TILE_ENTITY = tileEntity("example_tile_entity", ::ExampleTileEntity) {
+    val EXAMPLE_TILE_ENTITY = ExampleAddon.tileEntity("example_tile_entity", ::ExampleTileEntity) {
         behaviors(
             TileEntityLimited, // (2)!
             TileEntityDrops, // (3)!

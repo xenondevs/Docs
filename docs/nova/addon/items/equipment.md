@@ -1,12 +1,12 @@
 ## Creating equipment
 
-Custom equipment (armor) can be registered via an `EquipmentRegistry`:
+Custom equipment (armor) can be registered like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object Equipment : EquipmentRegistry by ExampleAddon.registry {
+object Equipment {
     
-   val EXAMPLE = equipment("example") {
+   val EXAMPLE = ExampleAddon.equipment("example") {
       humanoid  { // (2)!
          layer { // (3)!
             texture("example") // (4)!
@@ -50,7 +50,7 @@ val EXAMPLE_HELMET = registerItem("example_helmet", Equippable(Armor.EXAMPLE, Eq
 You can also create animated armor:
 
 ```kotlin title="Equipment.kt"
-val EXAMPLE = animatedEquipment("example") {
+val EXAMPLE = ExampleAddon.animatedEquipment("example") {
    humanoid  {
       layer {
           texture(5, InterpolationMode.NONE, "frame_1", "frame_2", "frame_3") // (1)!

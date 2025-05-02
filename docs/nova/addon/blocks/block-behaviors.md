@@ -2,9 +2,9 @@ Similar to [ItemBehaviors](../items/item-behaviors.md), you can implement block 
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
 
-   val EXAMPLE_BLOCK = block("example_block") {
+   val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
        behaviors(/*...*/)
    }
 

@@ -1,12 +1,12 @@
 ## Network Type
 
-To create a custom network type, implement `NetworkTypeRegistry` as usual:
+You can register a custom network type like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_WORLD)
-class NetworkTypes : NetworkTypeRegistry by ExampleAddon.registry {
+class NetworkTypes {
     
-    val EXAMPLE = registerNetworkType(
+    val EXAMPLE = ExampleAddon.registerNetworkType(
         name = "example",
         createNetwork = ::ExampleNetwork, // (1)!
         createGroup = ::ExampleNetworkGroup, // (2)!

@@ -56,13 +56,13 @@ diamond: 3
 
 ### Registering a custom tool tier
 
-To register custom tool tiers, create a new `ToolTierRegistry` and annotate it with `#!kotlin @Init` to load it during addon initialization:
+You can register a custom tool tier like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object ToolTiers : ToolTierRegistry by ExampleAddon.registry {
+object ToolTiers {
     
-    val EXAMPLE_TIER = registerToolTier("example_tier")
+    val EXAMPLE_TIER = ExampleAddon.registerToolTier("example_tier")
     
 }
 ```
@@ -96,13 +96,13 @@ By default, there are six tool categories available:
 
 ### Registering a custom tool category
 
-To register custom tool categories, create a new `ToolCategoryRegistry` and annotate it with `#!kotlin @Init` to load it during addon initialization:
+You can register a custom tool category like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object ToolCategories : ToolCategoryRegistry by ExampleAddon.registry {
+object ToolCategories {
     
-    val EXAMPLE_CATEGORY = registerToolCategory("example_category")
+    val EXAMPLE_CATEGORY = ExampleAddon.registerToolCategory("example_category")
     
 }
 ```

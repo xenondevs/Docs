@@ -57,11 +57,11 @@ different configs.
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object Items : ItemRegistry by ExampleAddon.registry {
+object Items {
     
-    val EXAMPLE_ITEM_1 = registerItem("example_1", MyBehavior) // configs/example_1.yml
-    val EXAMPLE_ITEM_2 = registerItem("example_2", MyBehavior) // configs/example_2.yml
-    val EXAMPLE_ITEM_3 = registerItem("example_3", MyBehavior) // configs/example_3.yml
+    val EXAMPLE_ITEM_1 = ExampleAddon.registerItem("example_1", MyBehavior) // configs/example_1.yml
+    val EXAMPLE_ITEM_2 = ExampleAddon.registerItem("example_2", MyBehavior) // configs/example_2.yml
+    val EXAMPLE_ITEM_3 = ExampleAddon.registerItem("example_3", MyBehavior) // configs/example_3.yml
    
 }
 ```

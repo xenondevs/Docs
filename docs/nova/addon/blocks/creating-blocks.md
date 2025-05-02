@@ -48,11 +48,11 @@ need to check for each individual scope, but can just use `#!kotlin DefaultBlock
 
 ## Creating a Block Registry
 
-Create a `BlockRegistry` singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
+Create a singleton object and annotate it with `#!kotlin @Init` to have it loaded during addon initialization.
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
     
     // (2)!
     
@@ -68,9 +68,9 @@ You can create a very simple block like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
 
-   val EXAMPLE_BLOCK = block("example_block") {}
+   val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {}
 
 }
 ```
@@ -96,9 +96,9 @@ In the following code snippet, I chose to back the custom block via mushroom blo
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
     
-    val EXAMPLE_BLOCK = block("example_block") {
+    val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
        stateBacked(BackingStateCategory.MUSHROOM_BLOCK)
     }
 }
@@ -110,9 +110,9 @@ To override which model is used for your block, use the `selectModel` scope to s
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
     
-    val EXAMPLE_BLOCK = block("example_block") {
+    val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
         stateProperties(DefaultScopedBlockStateProperties.FACING_HORIZONTAL) // (1)!
         
         stateBacked(BackingStateCategory.MUSHROOM_BLOCK) { // (2)!
@@ -135,9 +135,9 @@ and use that to rotate the model:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Blocks : BlockRegistry by ExampleAddon.registry {
+object Blocks {
     
-    val EXAMPLE_BLOCK = block("example_block") {
+    val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
         stateProperties(DefaultScopedBlockStateProperties.FACING_HORIZONTAL)
         
         models {
@@ -157,13 +157,13 @@ object Blocks : BlockRegistry by ExampleAddon.registry {
 
 ## Creating an Item for the Block
 
-To create an item for your block, simply reference your block while registering the item in your `ItemRegistry`:
+To create an item for your block, simply reference your block while registering the item:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Items : ItemRegistry by ExampleAddon.registry {
+object Items {
     
-    val EXAMPLE_BLOCK = item(Blocks.EXAMPLE_BLOCK) {}
+    val EXAMPLE_BLOCK = ExampleAddon.item(Blocks.EXAMPLE_BLOCK) {}
     
 }
 ```

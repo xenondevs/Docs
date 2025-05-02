@@ -1,12 +1,12 @@
 ## Creating a GuiTexture
 
-To create a `GuiTexture`, you'll need to use a `GuiTextureRegistry`:
+Register your gui texture using initialization:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object GuiTextures : GuiTextureRegistry by ExampleAddon.registry {
+object GuiTextures {
     
-    val EXAMPLE = guiTexture("example") {
+    val EXAMPLE = ExampleAddon.guiTexture("example") {
          alignment(/*...*/) // (2)!
          path("gui/example")
     }

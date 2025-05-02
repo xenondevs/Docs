@@ -1,9 +1,9 @@
 ## Creating an Item Registry
 
-To create a custom item, you'll first need to create an `ItemRegistry`:
+First, create an empty singleton object and annotate it like this:
 ```kotlin
 @Init(stage = InitStage.PRE_PACK) // (1)! 
-object Items ItemRegistry by ExampleAddon.registry {
+object Items {
     
     // (2)!
     
@@ -19,9 +19,9 @@ You can register a really simple item like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Items : ItemRegistry by ExampleAddon.registry {
+object Items {
 
-   val EXAMPLE_ITEM = registerItem("example_item", /* Item Behaviors */)
+   val EXAMPLE_ITEM = ExampleAddon.registerItem("example_item", /* Item Behaviors */)
    
 }
 ```
@@ -40,9 +40,9 @@ Nova offers a DSL builder for creating item model definitions:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
-object Items : ItemRegistry by ExampleAddon.registry {
+object Items {
 
-   val EXAMPLE_ITEM = item("example_item") {
+   val EXAMPLE_ITEM = ExampleAddon.item("example_item") {
       modelDefinition {
           model = /* ... */
       }

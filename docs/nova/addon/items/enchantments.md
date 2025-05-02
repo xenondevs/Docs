@@ -39,13 +39,13 @@ supported_enchantments: # (2)!
 
 ### Custom Enchantments
 
-To create a custom enchantment, you'll need to create an `EnchantmentRegistry`:
+You can register a custom enchantment like this:
 
 ```kotlin title="Enchantments.kt"
 @Init(stage = InitStage.PRE_PACK) // (1)!
-object Enchantments : EnchantmentRegistry by ExampleAddon.registry {
+object Enchantments {
     
-    val EXAMPLE_ENCHANTMENT = enchantment("example_enchantment") {
+    val EXAMPLE_ENCHANTMENT = ExampleAddon.enchantment("example_enchantment") {
         // ...
     }
    
