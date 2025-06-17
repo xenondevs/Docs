@@ -90,7 +90,6 @@ with a custom item model definition (`#!kotlin entityItemBacked(/*...*/)`) for c
 All options have their own advantages and disadvantages, which are explained in more detail in the KDocs
 ([here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html),
 [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.block/-backing-state-category/index.html)).
-Additionally, only tile-entities can use entity-backed models.
 
 In the following code snippet, I chose to back the custom block via mushroom blocks:
 
