@@ -189,14 +189,14 @@ attribute_modifiers:
     
     attribute_modifiers:
       mainhand:
-      - attribute: generic.attack_damage
+      - attribute: attack_damage
         operation: add_value
         value: 5.0
       offhand:
-      - attribute: generic.movement_speed
+      - attribute: movement_speed
         operation: add_multiplied_base
         value: 0.1
-      - attribute: generic.movement_speed
+      - attribute: movement_speed
         operation: add_multiplied_base
         value: 0.1
     ```

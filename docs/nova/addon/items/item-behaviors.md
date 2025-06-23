@@ -11,8 +11,22 @@ For a list of all available default item behaviors, refer to the [KDocs](https:/
 
 You can create a custom item behavior by implementing the `ItemBehavior` interface.
 
-There, you'll be able to override `baseDataComponents`, which are the default
+### Base data components
+
+The `ItemBehavior` interface specifies a `baseDataComponents` property, which are the default
 [data components](https://minecraft.wiki/w/Data_component_format) of `NovaItems` with that behavior.
+
+Example usage:
+```kotlin
+override val baseDataComponents: Provider<DataComponentMap> = buildDataComponentMapProvider {
+    // item has max damage of 500
+    this[DataComponentTypes.MAX_DAMAGE] = 500
+    
+    // item has a config-reloadable enchantable level taken from the "my_level" config entry
+    this[DataComponentTypes.ENCHANTABLE] = Items.EXAMPLE_ITEM.config.entry<Int>("my_level")
+        .map { level -> Enchantable.enchantable(level) }
+}
+```
 
 ### Vanilla material properties
 
@@ -27,6 +41,11 @@ The data of the client-side stack will not be stored in the world and is only in
 Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the `DAMAGE` component
 will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova
 via `/nova advancedTooltips`).
+
+!!! note "Inspecting client-side item data"
+
+    You can inspect the client-side version of a server-side item stack by creating a client-side copy via
+    `/nova debug giveClientsideStack`, then run `/paper dumpitem` to print the item data in chat.
 
 ### ItemBehaviorHolder and ItemBehaviorFactory
 
@@ -70,14 +89,8 @@ object Items {
 
 ## Item Data
 
-Data for Nova's ItemStacks can be stored in a `NamespacedCompound`, which serializes data using [CBF](../../../../cbf/).  
-You can retrieve the `NamespacedCompound` of an `ItemStack` by calling `#!kotlin ItemStack.novaCompound`.
-After updating it, you'll need to write it back to the `ItemStack`.
+Data for Nova's ItemStacks can be stored using [CBF](../../../../cbf/) via the extension functions 
+`#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`.
+Default data for this can be added into an ItemBehavior's `defaultCompound`.
 
-Alternatively, you can also read and write data using `#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`,
-which access the `NamespacedCompound` for you.
-
-`NovaItems` can also have default data stored in their `NamespacedCompound`, which can be applied using the `defaultCompound`
-property in a custom `ItemBehavior`.
-
-Of course, you can also use Bukkit's [persistent data container](https://docs.papermc.io/paper/dev/pdc) for data storage.
+Alternatively, it is also possible to store data in Bukkit's [persistent data container](https://docs.papermc.io/paper/dev/pdc).

@@ -80,7 +80,7 @@ private val someString: String? by storedValue("someString")
 
 And that's it! When the tile-entity gets saved, those properties will automatically be saved with it.
 
-!!! abstract "Providers are lazy"
+!!! note "Providers are lazy"
 
     Since Providers are lazy, it is safe to use them to access things that are initialized post world, as long as
     their values are not resolved immediately.
