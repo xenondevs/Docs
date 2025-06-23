@@ -14,7 +14,5 @@ theme:
 
 nav:
   - "Getting Started": "index.md"
-  - "Binary Adapters": "binaryadapter.md"
-  - "Instance Creators": "instancecreator.md"
   - "Serialization": "serialization.md"
   - "Compounds": "compound.md"

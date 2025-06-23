@@ -53,3 +53,6 @@ Now you can add CBF to your build configuration:
     ```kotlin
     implementation("xyz.xenondevs.cbf:cosmic-binary-format:VERSION")
     ```
+
+To find the latest CBF version, you can explore the [Maven Repository](https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/cbf/cosmic-binary-format)
+or check out the [GitHub Releases Page](https://github.com/xenondevs/Cosmic-Binary-Format/releases).
