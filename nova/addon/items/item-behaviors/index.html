@@ -1445,6 +1445,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#base-data-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base data components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vanilla-material-properties" class="md-nav__link">
     <span class="md-ellipsis">
       Vanilla material properties
@@ -3742,6 +3751,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../migration-guide/0.19-0.20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0.19 ➝ 0.20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../migration-guide/0.18-0.19/" class="md-nav__link">
         
   
@@ -3980,6 +4012,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#base-data-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base data components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vanilla-material-properties" class="md-nav__link">
     <span class="md-ellipsis">
       Vanilla material properties
@@ -4046,8 +4087,19 @@ There are some default behaviors available, but you can also create your own cus
 <p>For a list of all available default item behaviors, refer to the <a href="https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.behavior/index.html">KDocs</a>.</p>
 <h2 id="custom-item-behaviors">Custom Item Behaviors</h2>
 <p>You can create a custom item behavior by implementing the <code>ItemBehavior</code> interface.</p>
-<p>There, you'll be able to override <code>baseDataComponents</code>, which are the default
+<h3 id="base-data-components">Base data components</h3>
+<p>The <code>ItemBehavior</code> interface specifies a <code>baseDataComponents</code> property, which are the default
 <a href="https://minecraft.wiki/w/Data_component_format">data components</a> of <code>NovaItems</code> with that behavior.</p>
+<p>Example usage:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">baseDataComponents</span><span class="p">:</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="n">DataComponentMap</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildDataComponentMapProvider</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="c1">// item has max damage of 500</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">this</span><span class="o">[</span><span class="n">DataComponentTypes</span><span class="p">.</span><span class="na">MAX_DAMAGE</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="c1">// item has a config-reloadable enchantable level taken from the &quot;my_level&quot; config entry</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">this</span><span class="o">[</span><span class="n">DataComponentTypes</span><span class="p">.</span><span class="na">ENCHANTABLE</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Items</span><span class="p">.</span><span class="na">EXAMPLE_ITEM</span><span class="p">.</span><span class="na">config</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;my_level&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Enchantable</span><span class="p">.</span><span class="na">enchantable</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</code></pre></div></p>
 <h3 id="vanilla-material-properties">Vanilla material properties</h3>
 <p>Some functionality can not yet be achieved by using data components, as it is still bound to the vanilla item type.
 For such cases, you can specify <a href="https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html">VanillaMaterialProperties</a>
@@ -4058,50 +4110,51 @@ The data of the client-side stack will not be stored in the world and is only in
 Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the <code>DAMAGE</code> component
 will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova
 via <code>/nova advancedTooltips</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Inspecting client-side item data</p>
+<p>You can inspect the client-side version of a server-side item stack by creating a client-side copy via
+<code>/nova debug giveClientsideStack</code>, then run <code>/paper dumpitem</code> to print the item data in chat.</p>
+</div>
 <h3 id="itembehaviorholder-and-itembehaviorfactory">ItemBehaviorHolder and ItemBehaviorFactory</h3>
 <p><code>ItemBehaviorHolder</code> is a sealed interface with two implementations: <code>ItemBehavior</code> and <code>ItemBehaviorFactory</code>, where
 <code>ItemBehaviorFactory</code> creates <code>ItemBehavior</code> instances based on a <code>NovaItem</code> instance. This allows you to create
 factories for your <code>ItemBehaviors</code> that read from the item's config file.  </p>
-<div class="highlight"><span class="filename">Example custom ItemBehavior with ItemBehaviorFactory</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MyBehavior</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ItemBehavior</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="c1">// (1)!</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">   </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">: </span><span class="nc">ItemBehaviorFactory</span><span class="o">&lt;</span><span class="n">MyBehavior</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">NovaItem</span><span class="p">):</span><span class="w"> </span><span class="n">MyBehavior</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">config</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">))</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="p">}</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">   </span><span class="p">}</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
+<div class="highlight"><span class="filename">Example custom ItemBehavior with ItemBehaviorFactory</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MyBehavior</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ItemBehavior</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">   </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">: </span><span class="nc">ItemBehaviorFactory</span><span class="o">&lt;</span><span class="n">MyBehavior</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">NovaItem</span><span class="p">):</span><span class="w"> </span><span class="n">MyBehavior</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">config</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">))</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">   </span><span class="p">}</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
 </code></pre></div>
 <ol>
 <li>Delegating to the obtained provider makes this property config-reloadable without any additional code.</li>
 </ol>
 <p>Now, you could, for example, assign the same <code>ItemBehaviorFactory</code> to multiple items, while still accessing
 different configs.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@Init</span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_PACK</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">object</span><span class="w"> </span><span class="nc">Items</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_1.yml</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_2.yml</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_3.yml</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Init</span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_PACK</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">object</span><span class="w"> </span><span class="nc">Items</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_1.yml</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_2.yml</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_ITEM_3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">&quot;example_3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MyBehavior</span><span class="p">)</span><span class="w"> </span><span class="c1">// configs/example_3.yml</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
 </code></pre></div>
 <ol>
 <li>Nova will load this class during addon initialization, causing the item fields to be initialized and your items to be registered.</li>
 </ol>
 <h2 id="item-data">Item Data</h2>
-<p>Data for Nova's ItemStacks can be stored in a <code>NamespacedCompound</code>, which serializes data using <a href="../../../../cbf/">CBF</a>.<br />
-You can retrieve the <code>NamespacedCompound</code> of an <code>ItemStack</code> by calling <code class="highlight"><span class="n">ItemStack</span><span class="p">.</span><span class="na">novaCompound</span></code>.
-After updating it, you'll need to write it back to the <code>ItemStack</code>.</p>
-<p>Alternatively, you can also read and write data using <code class="highlight"><span class="n">ItemStack</span><span class="p">.</span><span class="na">storeData</span></code> and <code class="highlight"><span class="n">ItemStack</span><span class="p">.</span><span class="na">retrieveData</span></code>,
-which access the <code>NamespacedCompound</code> for you.</p>
-<p><code>NovaItems</code> can also have default data stored in their <code>NamespacedCompound</code>, which can be applied using the <code>defaultCompound</code>
-property in a custom <code>ItemBehavior</code>.</p>
-<p>Of course, you can also use Bukkit's <a href="https://docs.papermc.io/paper/dev/pdc">persistent data container</a> for data storage.</p>
+<p>Data for Nova's ItemStacks can be stored using <a href="../../../../cbf/">CBF</a> via the extension functions 
+<code class="highlight"><span class="n">ItemStack</span><span class="p">.</span><span class="na">storeData</span></code> and <code class="highlight"><span class="n">ItemStack</span><span class="p">.</span><span class="na">retrieveData</span></code>.
+Default data for this can be added into an ItemBehavior's <code>defaultCompound</code>.</p>
+<p>Alternatively, it is also possible to store data in Bukkit's <a href="https://docs.papermc.io/paper/dev/pdc">persistent data container</a>.</p>
 
 
 

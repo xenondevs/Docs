@@ -248,50 +248,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../binaryadapter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Binary Adapters
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../instancecreator/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Instance Creators
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../serialization/" class="md-nav__link">
         
   
@@ -323,6 +279,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Compounds
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -334,6 +303,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entry providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-defaulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-defaulting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defaulting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -359,6 +389,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entry providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-defaulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-defaulting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaulting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defaulting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -377,10 +457,10 @@
 
 
 <h1 id="compound">Compound</h1>
-<p>Compounds allow you store a lot of data in a single object. This makes it easier to get desired data on demand instead of
-continuously reading from a byte stream. You can pretty much see compounds as maps or json objects. Similar to json, data
-in compounds can be nested and is deserialized lazily. This means that until you specifically request a value, it will be
-stored as a byte array (It will of course be cached after the first time it is requested). Let's create a compound:</p>
+<p>A <code>Compound</code> is a key-value store that serializes its data using the registered <a href="../serialization/">serializers</a>.</p>
+<p>Data is deserialized lazily. This means that until you specifically request a value, it will be
+stored as binary data (It will of course be cached after the first time it is requested).</p>
+<h2 id="basic-usage">Basic usage</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test1&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">123</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test2&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test&quot;</span>
@@ -400,15 +480,67 @@ stored as a byte array (It will of course be cached after the first time it is r
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>}
 </code></pre></div>
 <p>We can serialize it the same way we serialize any other object:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CBF</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">compound</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cbf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">compound</span><span class="p">)</span>
 </code></pre></div>
 <p>We can then deserialize it, and get back the same data:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CBF</span><span class="p">.</span><span class="na">read</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">!!</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cbf</span><span class="p">.</span><span class="na">read</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">!!</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test1&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints 123</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test2&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints test</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test3&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints true</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;test4&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints {test=123, test2=321}</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test5&quot;</span><span class="p">)</span><span class="o">!!</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints [123, 321]</span>
+</code></pre></div>
+<h2 id="entry-providers">Entry providers</h2>
+<p>Using <code class="highlight"><span class="n">Compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span></code>, you can obtain a 
+<a href="https://commons.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/-mutable-provider/index.html">MutableProvider&lt;T?&gt;</a>
+that will contain the value of type <code>T</code> under the given key.</p>
+<h3 id="non-defaulting">Non-defaulting</h3>
+<p>Non-defaulting entry providers will contain <code>null</code> if there is no value under the given key.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Changing the value of the provider updates the value stored inside the compound:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// null</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+</code></pre></div>
+<p>And vice versa, if you update the value inside the compound, the provider will be automatically updated as well:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 2</span>
+</code></pre></div>
+<p>Once you've registered an entry provider for a key, the type under this key is constrained to the type of the entry
+provider.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// no entry provider: type under key &quot;a&quot; can be changed</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">// with entry provider: type is constrained to provider&#39;s type</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Int (value type) is not a subtype of kotlin.String? (entry type)</span>
+</code></pre></div>
+<h3 id="defaulting">Defaulting</h3>
+<p>Defaulting entry providers cannot be <code>null</code>. Instead, a default value is lazily generated using a predefined lambda
+if there initially is no value under the given key.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+</code></pre></div>
+<p>Note that defaulting entry providers introduce an additional type constraint of non-nullability to the type under the
+key, meaning entries cannot be removed (i.e. set to <code>null</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">// non-defaulting entry provider: value can be removed (set to null)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">// default entry provider: value cannot be removed (set to null)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry1</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;b&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Nothing? (value type) is not a subtype of kotlin.Int (entry type)</span>
 </code></pre></div>
 
 

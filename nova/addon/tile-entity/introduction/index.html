@@ -3711,6 +3711,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../migration-guide/0.19-0.20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0.19 ➝ 0.20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../migration-guide/0.18-0.19/" class="md-nav__link">
         
   
@@ -4046,7 +4069,7 @@ If you require a binary adapter for a type from Java / Minecraft / Paper, please
 <div class="highlight"><span class="filename">storedValue (nullable)</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">someString</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">storedValue</span><span class="p">(</span><span class="s">&quot;someString&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>And that's it! When the tile-entity gets saved, those properties will automatically be saved with it.</p>
-<div class="admonition abstract">
+<div class="admonition note">
 <p class="admonition-title">Providers are lazy</p>
 <p>Since Providers are lazy, it is safe to use them to access things that are initialized post world, as long as
 their values are not resolved immediately.</p>
