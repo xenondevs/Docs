@@ -70,7 +70,7 @@ Component.text("A").font("my_font")
 
 ### Horizontal movement
 
-Nova also has built-in (negative) spaces in the `minecraft:default` font, so you will not have to implement those yourself.  
+Nova also has built-in (negative) spaces in a custom font, so you will not have to implement those yourself.  
 To generate a movement string, you can use `#!kotlin MoveCharacters.getMovingString(distance)` or directly get a  component
 using `#!kotlin MoveCharacters.getMovingComponent(distance)`.
 
