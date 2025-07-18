@@ -4218,14 +4218,17 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
 </code></pre></div>
-<p>This item will default to the model under <code>models/item/example_item.json</code> or alternatively create a basic item model
-with the texture <code>textures/item/example_item.png</code>.</p>
+<p>This item will default to the model under <code>models/item/example_item.json</code> or, if no such model exists, create a basic item model
+with the texture under <code>textures/item/example_item.png</code>.</p>
 <h2 id="item-model-definitions">Item Model Definitions</h2>
 <div class="admonition info">
 <p class="admonition-title">Item Model Definitions - Minecraft Wiki</p>
 <p>Item Model Defintions are a 1.21.4 feature. You may be interested in the
 <a href="https://minecraft.wiki/w/Items_model_definition">Minecraft wiki page</a> on this topic.</p>
 </div>
+<p>Item model definitions allow defining rules that are then used by the client to select a model for an item
+at runtime. These rules are constantly evaluated by the client, so the item model can change very dynamically
+based on the player's actions, such as holding a keybind, or the state of the item, such as its use duration.</p>
 <p>Nova offers a DSL builder for creating item model definitions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Init</span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InitStage</span><span class="p">.</span><span class="na">PRE_PACK</span><span class="p">)</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">object</span><span class="w"> </span><span class="nc">Items</span><span class="w"> </span><span class="p">{</span>
