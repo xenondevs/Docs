@@ -26,8 +26,8 @@ object Items {
 }
 ```
 
-This item will default to the model under `models/item/example_item.json` or alternatively create a basic item model
-with the texture `textures/item/example_item.png`.
+This item will default to the model under `models/item/example_item.json` or, if no such model exists, create a basic item model
+with the texture under `textures/item/example_item.png`.
 
 ## Item Model Definitions
 
@@ -35,6 +35,10 @@ with the texture `textures/item/example_item.png`.
     
     Item Model Defintions are a 1.21.4 feature. You may be interested in the
     [Minecraft wiki page](https://minecraft.wiki/w/Items_model_definition) on this topic.
+
+Item model definitions allow defining rules that are then used by the client to select a model for an item
+at runtime. These rules are constantly evaluated by the client, so the item model can change very dynamically
+based on the player's actions, such as holding a keybind, or the state of the item, such as its use duration.
 
 Nova offers a DSL builder for creating item model definitions:
 
