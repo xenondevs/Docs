@@ -66,7 +66,7 @@ There are also some shortcut functions available for generating `rangeDispatch` 
 
 Models are nested, so you can have, for example, a `select` model that chooses another `select` model.
 
-!!! note "Refer to the [KDocs](TODO) for a full list of available functions and properties."
+!!! note "Refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.item/-item-model-creation-scope/index.html) for a full list of available functions and properties."
 
 ### Model
 
