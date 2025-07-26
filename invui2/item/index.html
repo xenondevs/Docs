@@ -681,7 +681,7 @@ This is where bound items come in: This special item type remembers the first <c
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p">.</span><span class="na">addClickHandler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">gui</span><span class="p">,</span><span class="w"> </span><span class="n">click</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">()</span><span class="w">    </span>
 </code></pre></div>
-<p>The topic of bound items will be covered again in the <a href="guis.md">gui</a> section where needed. </p>
+<p>The topic of bound items will be covered again in the <a href="../gui/">gui</a> section where needed. </p>
 <div class="admonition bug">
 <p class="admonition-title">Re-using bound item instances</p>
 <p>Note that bound items are bound to the <strong>first</strong> gui they are added to. This means that you cannot re-use the same <code>BoundItem</code> instance across multiple guis. If you're registering bound items as global ingredients or in ingredient presets, make sure to pass the <code>BoundItem.Builder</code> and not a concrete <code>BoundItem</code> instance:</p>
