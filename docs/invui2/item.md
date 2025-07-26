@@ -131,7 +131,7 @@ val boundItem: BoundItem = BoundItem.builder()
     .build()    
 ```
 
-The topic of bound items will be covered again in the [gui](guis.md) section where needed. 
+The topic of bound items will be covered again in the [gui](gui.md) section where needed. 
 
 !!! bug "Re-using bound item instances"
 

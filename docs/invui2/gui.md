@@ -269,7 +269,7 @@ val gui: TabGui = TabGui.builder()
         .build()
     ```
 
-### Global Ingredients
+## Global Ingredients
 
 Some ingredients, like content list slot markers or navigation buttons, are expected to stay the same across guis. For such cases, it may make sense to register the ingredients globally. Once you have defined a global ingredient, it will be automatically used by all gui builders, without having to manually call `addIngredient` every time.
 
