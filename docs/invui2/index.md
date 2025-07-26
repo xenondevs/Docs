@@ -61,6 +61,29 @@ Now you can add InvUI as a dependency:
     </dependency>
     ```
 
+If you're using Kotlin, consider adding the `invui-kotlin` module:
+
+=== "Gradle Kotlin"
+
+    ```kotlin
+    implementation("xyz.xenondevs.invui:invui-kotlin:VERSION")
+    ```
+
+=== "Gradle Groovy"
+
+    ```groovy
+    implementation "xyz.xenondevs.invui:invui-kotlin:VERSION"
+    ```
+
+=== "Maven"
+
+    ```xml
+    <dependency>
+        <groupId>xyz.xenondevs.invui</groupId>
+        <artifactId>invui-kotlin</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
 
 To find the latest InvUI version, check out the [GitHub Releases Page](https://github.com/NichtStudioCode/InvUI/releases) or explore the [Maven Repository](https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/invui/invui/).
 
