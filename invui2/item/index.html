@@ -331,9 +331,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#item-updating" class="md-nav__link">
+  <a href="#updating-items" class="md-nav__link">
     <span class="md-ellipsis">
-      Item Updating
+      Updating Items
     </span>
   </a>
   
@@ -533,9 +533,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#item-updating" class="md-nav__link">
+  <a href="#updating-items" class="md-nav__link">
     <span class="md-ellipsis">
-      Item Updating
+      Updating Items
     </span>
   </a>
   
@@ -580,11 +580,11 @@
 
 <h1 id="item">Item</h1>
 <h2 id="what-is-an-item">What is an Item?</h2>
-<p>InvUI's UI elements are called <code>Item</code>. You can think of an <code>Item</code> as a button, though not every <code>Item</code> needs to do something when it is clicked.
+<p>InvUI's UI elements are called <code>Item</code>. You can think of an <code>Item</code> as a button, though not every <code>Item</code> needs to do something when clicked.
 An <code>Item</code> consists of the following components:</p>
 <ul>
 <li><code>ItemProvider</code>: This is the visual representation of the <code>Item</code>, i.e. an <code>ItemStack</code>. <code>ItemProvider</code> also allows for easy localization. InvUI's built-in <code>ItemBuilder</code> is an <code>ItemProvider</code>, but you can also just wrap any <code>ItemStack</code> using <code>ItemWrapper</code>.</li>
-<li>Click handler(s): Click handlers are code that is run when a player clicks on the item. An item can also have no click handlers, i.e. nothing happens and the item remains where it was. (and will not be picked up!)</li>
+<li>Click handler(s): Click handlers are code that runs when a player clicks on the item. An item can also have no click handlers, i.e. nothing happens and the item remains where it was. (and will not be picked up!)</li>
 </ul>
 <p>You can create a very simple item like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
@@ -595,7 +595,7 @@ An <code>Item</code> consists of the following components:</p>
 <p>For purely decorative items, you can use <code class="highlight"><span class="n">Item</span><span class="p">.</span><span class="na">simple</span></code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">ItemBuilder</span><span class="p">(</span><span class="n">Material</span><span class="p">.</span><span class="na">DIAMOND</span><span class="p">))</span>
 </code></pre></div>
-<h2 id="item-updating">Item Updating</h2>
+<h2 id="updating-items">Updating Items</h2>
 <p>Of course, in a real-world scenario, you'll want to update the visual representation of the item dynamically. To do that, first define an item provider lambda instead of a constant item provider. However, that alone will not automatically update your item. To trigger an update, which calls your item provider lambda and refreshes the displayed <code>ItemStack</code>, you will need to call <code class="highlight"><span class="n">Item</span><span class="p">.</span><span class="na">notifyWindows</span><span class="p">()</span></code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">var</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">item</span><span class="p">:</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
@@ -605,7 +605,7 @@ An <code>Item</code> consists of the following components:</p>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="n">item</span><span class="p">.</span><span class="na">notifyWindows</span><span class="p">()</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}.</span><span class="na">build</span><span class="p">()</span>
 </code></pre></div>
-<p>This can be shortened a little by using <code>updateOnClick</code>:</p>
+<p>This can be simplified using <code>updateOnClick</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">var</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">item</span><span class="p">:</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p">.</span><span class="na">setItemProvider</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ItemBuilder</span><span class="p">(</span><span class="n">Material</span><span class="p">.</span><span class="na">DIAMOND</span><span class="p">).</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Click count: </span><span class="si">$</span><span class="n">count</span><span class="s">&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
@@ -675,7 +675,7 @@ This is where bound items come in: This special item type remembers the first <c
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">boundItem</span><span class="p">:</span><span class="w"> </span><span class="n">BoundItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BoundItem</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="c1">// The bind handlers are run when the item is bound to a gui, i.e. when it is added to a gui.</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// They can be used to register handlers on the gui, which then in turn refresh the item on certain actions (like page a change)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="c1">// You will likely not need to register bind handlers yourself, as pre-made bound items exist for all gui types that do this for you already</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="c1">// You will likely not need to register bind handlers yourself, as pre-made bound items exist for all gui types and already handle this for you.</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">.</span><span class="na">addBindHandler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">gui</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="c1">// Like a normal item&#39;s click handler, except that it also retrieves the gui instance</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p">.</span><span class="na">addClickHandler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">gui</span><span class="p">,</span><span class="w"> </span><span class="n">click</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>

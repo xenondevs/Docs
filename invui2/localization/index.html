@@ -421,7 +421,7 @@
         <li class="md-nav__item">
   <a href="#specifying-player-language" class="md-nav__link">
     <span class="md-ellipsis">
-      Specifying Player language
+      Specifying player language
     </span>
   </a>
   
@@ -535,7 +535,7 @@
         <li class="md-nav__item">
   <a href="#specifying-player-language" class="md-nav__link">
     <span class="md-ellipsis">
-      Specifying Player language
+      Specifying player language
     </span>
   </a>
   
@@ -587,7 +587,7 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;other.translation.key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World 2&quot;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
 </code></pre></div>
-<p>These translations are interpreted as <a href="https://docs.advntr.dev/minimessage/index.html">MiniMessage</a> strings. Arguments placeholders in translations are defined using <code>&lt;arg:index&gt;</code> or with custom names like <code>&lt;name&gt;</code>, as explained on the <a href="https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator">MiniMessage Translator</a> page.</p>
+<p>These translations are interpreted as <a href="https://docs.advntr.dev/minimessage/index.html">MiniMessage</a> strings. Argument placeholders in translations are defined using <code>&lt;arg:index&gt;</code> or with custom names like <code>&lt;name&gt;</code>, as explained on the <a href="https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator">MiniMessage Translator</a> page.</p>
 <p>You can also load them using <code>Languages#loadLanguage</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Kotlin</label><label for="__tabbed_1_2">Java</label></div>
 <div class="tabbed-content">
@@ -601,7 +601,7 @@
 </div>
 </div>
 </div>
-<h2 id="specifying-player-language">Specifying Player language</h2>
+<h2 id="specifying-player-language">Specifying player language</h2>
 <p>By default, the player's locale is retrieved using <code class="highlight"><span class="n">Player</span><span class="p">.</span><span class="na">locale</span><span class="p">()</span></code>. If you want to change this behavior, you can do so by calling <code>Languages#setLocaleProvider</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Kotlin</label><label for="__tabbed_2_2">Java</label></div>
 <div class="tabbed-content">
@@ -641,7 +641,7 @@
 <p>Translations are applied server-side. This is done during <code class="highlight"><span class="n">ItemBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">()</span></code> or, for the inventory title, <code class="highlight"><span class="n">Window</span><span class="p">.</span><span class="na">open</span><span class="p">()</span></code>. If you need to use server-side translations in other places, you'll need to manually call <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">localized</span><span class="p">(</span><span class="n">Locale</span><span class="w"> </span><span class="n">locale</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="n">component</span><span class="p">)</span></code>.</p>
 </div>
 <h2 id="disabling-server-side-translations">Disabling server-side translations</h2>
-<p>If you do not want your items and window titles to be translated server-side and instead want to actually send translatable components to your players, you can disable server-side translations by calling <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">enableServerSideTranslations</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span></code>.</p>
+<p>If you do not want your items and window titles to be translated server-side and instead want to send translatable components to your players, you can disable server-side translations by calling <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">enableServerSideTranslations</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span></code>.</p>
 
 
 

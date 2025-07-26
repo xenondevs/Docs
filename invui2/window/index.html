@@ -785,9 +785,9 @@
   <h1>Window</h1>
 
 <h2 id="what-is-a-window">What is a Window?</h2>
-<p>In InvUI, windows represent the actual Minecraft inventories that are displayed to the player. Windows are made up of <a href="../gui/">guis</a>, the amount of which varies based on the window type. For example, a normal chest window has two guis: one for the upper and one for the lower inventory. Some window types also have special functionality, like the rename bar in anvil windows or the trade buttons in merchant windows.</p>
+<p>In InvUI, windows represent the actual Minecraft inventories that are displayed to the player. Windows are made up of <a href="../gui/">guis</a>, whose number varies based on the window type. For example, a normal chest window has two guis: one for the upper and one for the lower inventory. Some window types also have special functionality, like the rename bar in anvil windows or the trade buttons in merchant windows.</p>
 <p><strong>A window can only have one viewer.</strong> This makes localization easy, as up until this point we have dealt with <code>ItemProviders</code>, which can return an <code>ItemStack</code> based on a locale. Now, the window is the first part in the chain that actually resolves the <code>ItemStacks</code> - and as these are translated into a specific language, allowing multiple people to view the same window might cause one of them to see the wrong language.</p>
-<p>Every window encompasses both the upper- and the lower inventory (i.e. the player's inventory), even if you don't define a lower gui. However, by default, the lower gui is just a <a href="../inventory/">referencing inventory</a> to the player's actual inventory. This allows the player to still interact with their inventory contents. When a window is open, InvUI controls the entire view at all times and no interactions are handled by Bukkit.</p>
+<p>Every window encompasses both the upper- and the lower inventory (i.e. the player's inventory), even if you don't set a lower gui. However, by default, the lower gui is just a <a href="../inventory/">referencing inventory</a> to the player's actual inventory. This allows the player to still interact with their inventory contents. When a window is open, InvUI controls the entire view at all times and no interactions are handled by Bukkit.</p>
 <h2 id="window-types">Window Types</h2>
 <h3 id="normal-window">Normal Window</h3>
 <p>The normal window, which can be built using <code class="highlight"><span class="n">Window</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span></code>, is very flexible in the dimensions of the upper gui. Possible dimensions are: <code>9x6</code>, <code>9x5</code>, <code>9x4</code>, <code>9x3</code>, <code>9x2</code>, <code>9x1</code>, <code>5x1</code> and <code>3x3</code>. The lower gui is always <code>9x4</code>. For upper guis of width <code>9</code>, the generic chest inventory is used. <code>5x1</code> is a hopper inventory and <code>3x3</code> is a dropper inventory.</p>
@@ -816,7 +816,7 @@
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="" src="../assets/img/window/normal_split.png" width="500" /></p>
-<p>Every window type also allows setting a <code>lowerGui</code>, which is the player's inventory. For the normal window, you can also create a <code>mergedBuilder()</code>, which accepts a singular gui that is then used for both of what were previously known as the upper and lower guis:</p>
+<p>Every window type also allows you to set a <code>lowerGui</code>, which is the player's inventory. For the normal window, you can also create a <code>mergedBuilder()</code>, which accepts a singular gui that is then used for both of what were previously known as the upper and lower guis:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Window</span><span class="p">.</span><span class="na">mergedBuilder</span><span class="p">()</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Example Window&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">.</span><span class="na">setGui</span><span class="p">(</span><span class="n">Gui</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
@@ -948,7 +948,7 @@
 <p>The grindstone window can be created using <code class="highlight"><span class="n">GrindstoneWindow</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span></code>. It consists of a <code>1x2</code> input gui, a <code>1x1</code> result gui and a <code>9x4</code> lower gui.</p>
 <p><img alt="" src="../assets/img/window/grindstone.png" width="500" /></p>
 <h3 id="merchant-window">Merchant Window</h3>
-<p>The merchant window can be created using <code class="highlight"><span class="n">MerchantWindow</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span></code>. It consists of a <code>3x1</code> upper gui and a <code>9x4</code> lower gui. Additionally, you can define a list of trades that will show up as a scrollable list of buttons on the left side. A trade consists of three <a href="../item/">items</a> and some additional metadata. When a trade is clicked, the click handlers of all three items are fired.</p>
+<p>The merchant window can be created using <code class="highlight"><span class="n">MerchantWindow</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span></code>. It consists of a <code>3x1</code> upper gui and a <code>9x4</code> lower gui. Additionally, you can set a list of trades that will show up as a scrollable list of buttons on the left side. A trade consists of three <a href="../item/">items</a> and some additional metadata. When a trade is clicked, the click handlers of all three items are fired.</p>
 <p><img alt="" src="../assets/img/window/merchant.png" width="500" /></p>
 <details class="example">
 <summary>Example: Using trades as tab buttons</summary>
@@ -1004,7 +1004,7 @@
 <p><img alt="" src="../assets/img/window/stonecutter_buttons_as_inventory.gif" width="500" /></p>
 </details>
 <h2 id="using-the-player-inventory">Using the player inventory</h2>
-<p>As mentioned before, the player inventory is always part of the window and thereby always handled by InvUI, even if you don't define a lower gui. InvUI's windows are also packet-based, which has the following benefits:</p>
+<p>As mentioned before, the player inventory is always part of the window and thereby always handled by InvUI, even if you don't set a lower gui. InvUI's windows are also packet-based, which has the following benefits:</p>
 <ul>
 <li>Window items inside the player inventory cannot be accidentally saved to the world and end up in the actual player's inventory.</li>
 <li>UI items in the player inventory cannot trigger advancements.</li>
@@ -1019,7 +1019,7 @@
 <p>However, you can put any <code>9x4</code> gui as the lower gui, which will then be used instead of the default one. For example, this can be used to implement a search preview when using an <a href="#anvil-window">anvil window</a> as text input.</p>
 <details class="example">
 <summary>Example: Using another player's inventory as the lower gui</summary>
-<p>Just for fun, the following example embeds another player's inventory into the lower gui instead of the player's own inventory:</p>
+<p>The following example embeds another player's inventory into the lower gui instead of the player's own inventory:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReferencingInventory</span><span class="p">.</span><span class="na">fromPlayerStorageContents</span><span class="p">(</span><span class="n">otherPlayer</span><span class="p">.</span><span class="na">inventory</span><span class="p">)</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">inv</span><span class="p">.</span><span class="na">reverseIterationOrder</span><span class="p">(</span><span class="n">OperationCategory</span><span class="p">.</span><span class="na">ADD</span><span class="p">)</span><span class="w"> </span><span class="c1">// shift-clicking moves to bottom right instead of top left</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">inv</span><span class="p">.</span><span class="na">setGuiPriority</span><span class="p">(</span><span class="n">OperationCategory</span><span class="p">.</span><span class="na">ADD</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span><span class="w"> </span><span class="c1">// shift-click always moves between upper and lower inv</span>
@@ -1033,7 +1033,7 @@
 <p><img alt="" src="../assets/img/window/other_player_inventory.gif" /></p>
 </details>
 <h2 id="fallback-window">Fallback Window</h2>
-<p>When designing menus that span multiple windows, it may often make sense to have some way of going back to a previous window. Apart from just adding an item that opens said window, you can also define a window that should be opened when the player closes the window by pressing <code>E</code> or <code>ESC</code>. This is called the fallback window.</p>
+<p>When designing menus that span multiple windows, it may often make sense to have some way of going back to a previous window. Apart from just adding an item that opens said window, you can also set a window that should be opened when the player closes the window by pressing <code>E</code> or <code>ESC</code>. This is called the fallback window.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CartographyWindow</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="p">.</span><span class="na">setViewer</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="c1">// no fallback, pressing ESC in cartography window closes it</span>
