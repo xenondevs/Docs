@@ -72,7 +72,7 @@ val gui: PagedGui<Item> = PagedGui.itemsBuilder()
 
 ??? example "Example: Page buttons with proper item names"
 
-    The above example omits names from the navigation buttons for simplicity. In real world cases, you will likely want to do something like this:
+    The above example omits names from the navigation buttons for simplicity. In real-world cases, you will likely want to do something like this:
     
     ```kotlin
     val back: BoundItem = BoundItem.pagedBuilder()
@@ -153,7 +153,7 @@ val gui: ScrollGui<Item> = ScrollGui.itemsBuilder()
 
 A `TabGui` allows you to define a list of tabs, which themselves are also guis. You can then create tab buttons to switch between them.
 
-First, lets create the tab buttons:
+First, let's create the tab buttons:
 
 ```kotlin
 val tab0Btn: BoundItem = BoundItem.tabBuilder()
@@ -319,7 +319,7 @@ val gui: Gui = Gui.builder()
 
 ## Animations
 
-An animation lets slots of a gui pop in, in a specific order with a specific delay.
+An animation lets slots of a gui pop in following a specific order with a specific delay.
 
 Animations consist of the following five components:
 
@@ -424,6 +424,6 @@ To start an animation, call `#!kotlin Gui.playAnimation(animation)`.
         .build()
     ```
     
-    1. By default, animations freeze the gui while they are running. This means that the player cannot interact with the gui until the animation is finished. Disabling freezing allows the user to switch to the next page before the animation finished playing.
+    1. By default, animations freeze the gui while they are running. This means that the player cannot interact with the gui until the animation is finished. Disabling freezing allows the user to switch to the next page before the animation finishes playing.
     
     ![](assets/img/gui/animation2.gif){width=500}

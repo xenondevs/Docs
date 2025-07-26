@@ -30,7 +30,7 @@ InvUI's inventories have a powerful event system. There are multiple events that
 
 This event is called before changes were fully processed. Cancelling this event or changing the amount of items that were added or removed will affect the source of the change (i.e. the player's cursor most of the time) appropriately, if possible. This allows restricting which or how many items can be put into an inventory or even a specific slot of an inventory.
 
-In the following example, the `ItemPreUpdateEvent` is cancelled / handled in such a way that only red and orange wool can be put into the inventory. Additionally, orange wool can no longer be stacked:
+In the following example, the `ItemPreUpdateEvent` is cancelled or handled in such a way that only red and orange wool can be put into the inventory. Additionally, orange wool can no longer be stacked:
 
 ```kotlin
 inv.addPreUpdateHandler { event ->
@@ -101,7 +101,7 @@ val inv: VirtualInventory = VirtualInventory.deserialize(bin)
 val inv2: VirtualInventory = file.inputStream().use { VirtualInventory.deserialize(it) }
 ```
 
-There is also `VirtualInventoryManager`, which automatically writes virtual inventories registered with it to disk on shutdown and reads them back on startup. This allows for very easy persistent inventories, but note that using `VirtualInventoryManager` with a large amount of inventories will cause a slowdown on startup as all inventories are loaded on startup at once.
+There is also `VirtualInventoryManager`, which automatically writes virtual inventories registered with it to disk on shutdown and reads them back on startup. This allows you to very easily create persistent inventories, but note that using `VirtualInventoryManager` with a large amount of inventories will cause a slowdown on startup as all inventories are loaded on startup at once.
 
 ```kotlin
 val inv: VirtualInventory = VirtualInventoryManager.getInstance().getOrCreate(uuid, size)
@@ -109,7 +109,7 @@ val inv: VirtualInventory = VirtualInventoryManager.getInstance().getOrCreate(uu
 
 ## Referencing Inventory
 
-The `ReferencingInventory` can be used to reference a bukkit inventory, such as the player's inventory. For example, you can easily implement a gui to look at another player's inventory using it:
+The `ReferencingInventory` can be used to reference a Bukkit inventory, such as the player's inventory. For example, you can easily implement a gui to look at another player's inventory using it:
 
 ```kotlin
 val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
@@ -123,7 +123,7 @@ Window.builder()
 
 ### Gui priority
 
-The gui priority defines the order in which inventories of a gui are iterated over for actions like shift-clicking items or collecting them to the cursor via a double click. Gui priority is categorized, so you can define different priorities per category.
+The gui priority defines the order in which inventories of a gui are iterated over for actions like shift-clicking items or collecting them to the cursor with a double click. Gui priority is categorized, so you can define different priorities per category.
 
 In the following example, the gui priorities are configured in such a way that items are shift-clicked into the right inventory first, but collecting to the cursor prioritizes the left inventory:
 
@@ -153,7 +153,7 @@ val gui = Gui.builder()
 
 The iteration order defines in which order the slots of multi-slot operations like adding or collecting are chosen. By default, the iteration order is from first to the last slot (i.e. items are added into the first available slot and collected from the first matching slot). Like the gui priority, the iteration order is categorized, so you can define different orders per category.
 
-You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reversed the iteration order for adding items, but keeps the iteration order for collection items:
+You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reverses the iteration order for adding items, but keeps the iteration order for collection items:
 
 ```kotlin 
 val inv = VirtualInventory(7 * 4)
@@ -194,7 +194,7 @@ val gui = Gui.builder()
 
 ![](assets/img/inventory/background.gif){width=500}
 
-!!! warning "Item dragging does not work on slots with a background item"
+!!! warning "Item dragging does not work on slots with a background item."
 
 ### Obscured slots
 

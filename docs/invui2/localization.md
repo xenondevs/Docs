@@ -13,7 +13,7 @@ If your translations are stored in a json structure like this:
 }
 ```
 
-These translations are interpreted as [MiniMessage](https://docs.advntr.dev/minimessage/index.html) strings. Arguments placeholders in translations are defined using `<arg:index>` or with custom names like `<name>`, as explained on the [MiniMessage Translator](https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator) page.
+These translations are interpreted as [MiniMessage](https://docs.advntr.dev/minimessage/index.html) strings. Argument placeholders in translations are defined using `<arg:index>` or with custom names like `<name>`, as explained on the [MiniMessage Translator](https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator) page.
 
 You can also load them using `Languages#loadLanguage`:
 
@@ -29,7 +29,7 @@ You can also load them using `Languages#loadLanguage`:
     Languages.getInstance().loadLanguage("en_us", new File("en_us.json"), StandardCharsets.UTF_8);
     ```
 
-## Specifying Player language
+## Specifying player language
 
 By default, the player's locale is retrieved using `#!java Player.locale()`. If you want to change this behavior, you can do so by calling `Languages#setLocaleProvider`:
 
@@ -76,4 +76,4 @@ Window.builder()
 
 ## Disabling server-side translations
 
-If you do not want your items and window titles to be translated server-side and instead want to actually send translatable components to your players, you can disable server-side translations by calling `#!java Languages.getInstance().enableServerSideTranslations(false)`.
+If you do not want your items and window titles to be translated server-side and instead want to send translatable components to your players, you can disable server-side translations by calling `#!java Languages.getInstance().enableServerSideTranslations(false)`.

@@ -1,10 +1,10 @@
 ## What is a Window?
 
-In InvUI, windows represent the actual Minecraft inventories that are displayed to the player. Windows are made up of [guis](gui.md), the amount of which varies based on the window type. For example, a normal chest window has two guis: one for the upper and one for the lower inventory. Some window types also have special functionality, like the rename bar in anvil windows or the trade buttons in merchant windows.
+In InvUI, windows represent the actual Minecraft inventories that are displayed to the player. Windows are made up of [guis](gui.md), whose number varies based on the window type. For example, a normal chest window has two guis: one for the upper and one for the lower inventory. Some window types also have special functionality, like the rename bar in anvil windows or the trade buttons in merchant windows.
 
 **A window can only have one viewer.** This makes localization easy, as up until this point we have dealt with `ItemProviders`, which can return an `ItemStack` based on a locale. Now, the window is the first part in the chain that actually resolves the `ItemStacks` - and as these are translated into a specific language, allowing multiple people to view the same window might cause one of them to see the wrong language.
 
-Every window encompasses both the upper- and the lower inventory (i.e. the player's inventory), even if you don't define a lower gui. However, by default, the lower gui is just a [referencing inventory](inventory.md) to the player's actual inventory. This allows the player to still interact with their inventory contents. When a window is open, InvUI controls the entire view at all times and no interactions are handled by Bukkit.
+Every window encompasses both the upper- and the lower inventory (i.e. the player's inventory), even if you don't set a lower gui. However, by default, the lower gui is just a [referencing inventory](inventory.md) to the player's actual inventory. This allows the player to still interact with their inventory contents. When a window is open, InvUI controls the entire view at all times and no interactions are handled by Bukkit.
 
 ## Window Types
 
@@ -42,7 +42,7 @@ Window.builder()
 
 ![](assets/img/window/normal_split.png){width=500}
 
-Every window type also allows setting a `lowerGui`, which is the player's inventory. For the normal window, you can also create a `mergedBuilder()`, which accepts a singular gui that is then used for both of what were previously known as the upper and lower guis:
+Every window type also allows you to set a `lowerGui`, which is the player's inventory. For the normal window, you can also create a `mergedBuilder()`, which accepts a singular gui that is then used for both of what were previously known as the upper and lower guis:
 
 
 ```kotlin
@@ -211,7 +211,7 @@ The grindstone window can be created using `#!kotlin GrindstoneWindow.builder()`
 
 ### Merchant Window
 
-The merchant window can be created using `#!kotlin MerchantWindow.builder()`. It consists of a `3x1` upper gui and a `9x4` lower gui. Additionally, you can define a list of trades that will show up as a scrollable list of buttons on the left side. A trade consists of three [items](item.md) and some additional metadata. When a trade is clicked, the click handlers of all three items are fired.
+The merchant window can be created using `#!kotlin MerchantWindow.builder()`. It consists of a `3x1` upper gui and a `9x4` lower gui. Additionally, you can set a list of trades that will show up as a scrollable list of buttons on the left side. A trade consists of three [items](item.md) and some additional metadata. When a trade is clicked, the click handlers of all three items are fired.
 
 ![](assets/img/window/merchant.png){width=500}
 
@@ -282,7 +282,7 @@ The stonecutter window can be created using `#!kotlin StonecutterWindow.builder(
 
 ## Using the player inventory
 
-As mentioned before, the player inventory is always part of the window and thereby always handled by InvUI, even if you don't define a lower gui. InvUI's windows are also packet-based, which has the following benefits:
+As mentioned before, the player inventory is always part of the window and thereby always handled by InvUI, even if you don't set a lower gui. InvUI's windows are also packet-based, which has the following benefits:
 
 * Window items inside the player inventory cannot be accidentally saved to the world and end up in the actual player's inventory.
 * UI items in the player inventory cannot trigger advancements.
@@ -302,7 +302,7 @@ However, you can put any `9x4` gui as the lower gui, which will then be used ins
 
 ??? example "Example: Using another player's inventory as the lower gui"
 
-    Just for fun, the following example embeds another player's inventory into the lower gui instead of the player's own inventory:
+    The following example embeds another player's inventory into the lower gui instead of the player's own inventory:
     
     ```kotlin
     val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
@@ -320,7 +320,7 @@ However, you can put any `9x4` gui as the lower gui, which will then be used ins
 
 ## Fallback Window
 
-When designing menus that span multiple windows, it may often make sense to have some way of going back to a previous window. Apart from just adding an item that opens said window, you can also define a window that should be opened when the player closes the window by pressing `E` or `ESC`. This is called the fallback window.
+When designing menus that span multiple windows, it may often make sense to have some way of going back to a previous window. Apart from just adding an item that opens said window, you can also set a window that should be opened when the player closes the window by pressing `E` or `ESC`. This is called the fallback window.
 
 ```kotlin
 val fallback = CartographyWindow.builder()

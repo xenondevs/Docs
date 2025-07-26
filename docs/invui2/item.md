@@ -2,11 +2,11 @@
 
 ## What is an Item?
 
-InvUI's UI elements are called `Item`. You can think of an `Item` as a button, though not every `Item` needs to do something when it is clicked.
+InvUI's UI elements are called `Item`. You can think of an `Item` as a button, though not every `Item` needs to do something when clicked.
 An `Item` consists of the following components:
 
 * `ItemProvider`: This is the visual representation of the `Item`, i.e. an `ItemStack`. `ItemProvider` also allows for easy localization. InvUI's built-in `ItemBuilder` is an `ItemProvider`, but you can also just wrap any `ItemStack` using `ItemWrapper`.
-* Click handler(s): Click handlers are code that is run when a player clicks on the item. An item can also have no click handlers, i.e. nothing happens and the item remains where it was. (and will not be picked up!)
+* Click handler(s): Click handlers are code that runs when a player clicks on the item. An item can also have no click handlers, i.e. nothing happens and the item remains where it was. (and will not be picked up!)
 
 You can create a very simple item like this:
 
@@ -23,7 +23,7 @@ For purely decorative items, you can use `#!kotlin Item.simple`:
 val item = Item.simple(ItemBuilder(Material.DIAMOND))
 ```
 
-## Item Updating
+## Updating Items
 
 Of course, in a real-world scenario, you'll want to update the visual representation of the item dynamically. To do that, first define an item provider lambda instead of a constant item provider. However, that alone will not automatically update your item. To trigger an update, which calls your item provider lambda and refreshes the displayed `ItemStack`, you will need to call `#!kotlin Item.notifyWindows()`:
 
@@ -37,7 +37,7 @@ val item: Item = Item.builder()
     }.build()
 ```
 
-This can be shortened a little by using `updateOnClick`:
+This can be simplified using `updateOnClick`:
 
 ```kotlin
 var count = 0
@@ -124,7 +124,7 @@ This is where bound items come in: This special item type remembers the first `G
 val boundItem: BoundItem = BoundItem.builder()
     // The bind handlers are run when the item is bound to a gui, i.e. when it is added to a gui.
     // They can be used to register handlers on the gui, which then in turn refresh the item on certain actions (like page a change)
-    // You will likely not need to register bind handlers yourself, as pre-made bound items exist for all gui types that do this for you already
+    // You will likely not need to register bind handlers yourself, as pre-made bound items exist for all gui types and already handle this for you.
     .addBindHandler { item, gui -> /* ... */ }
     // Like a normal item's click handler, except that it also retrieves the gui instance
     .addClickHandler { item, gui, click -> /* ... */ }
