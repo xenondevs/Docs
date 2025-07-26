@@ -25,6 +25,7 @@ jobs:
 
       - run: mkdocs build -f docs/nova.yml -d ../build/nova
       - run: mkdocs build -f docs/invui.yml -d ../build/invui
+      - run: mkdocs build -f docs/invui2.yml -d ../build/invui2
       - run: mkdocs build -f docs/cbf.yml -d ../build/cbf
 
       - name: Deploy Docs

@@ -1,0 +1,24 @@
+INHERIT: base.yml
+docs_dir: invui2
+site_name: InvUI Documentation
+site_url: https://xenondevs.xyz/docs/invui2/
+edit_uri: edit/main/docs/invui2/
+
+theme:
+  features:
+    - navigation.footer
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+
+nav:
+  - "Getting Started": "index.md"
+  - "Quick Overview": "overview.md"
+  - "Item": "item.md"
+  - "Gui": "gui.md"
+  - "Window": "window.md"
+  - "Inventory": "inventory.md"
+  - "Localization": "localization.md"
+  - "Declarative Menu Design": "declarative-menu-design.md"
+  - "FAQ": "faq.md"
