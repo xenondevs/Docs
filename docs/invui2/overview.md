@@ -31,7 +31,7 @@ To create a menu, you need to combine all of these concepts:
         .setViewer(player)
         .build()
 
-    window.open(player)
+    window.open()
     ```
 
 === "Java"
