@@ -35,7 +35,7 @@ supported_enchantments: # (2)!
 
       If you're defining `supported_enchantments` via the config, `primary_enchantments` will default to `supported_enchantments`.
       Once you add `primary_enchantments` to the config, you'll need to add all enchantments from `supported_enchantments`
-      to `primary_enchantments` it.
+      to `primary_enchantments`.
 
 ### Custom Enchantments
 
