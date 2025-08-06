@@ -17,7 +17,7 @@ supported_enchantments: # (2)!
    - minecraft:knockback
    - minecraft:fire_aspect
    - minecraft:looting
-   - minecraft:sweeping
+   - minecraft:sweeping_edge
    - minecraft:unbreaking
    - minecraft:mending
 ```
