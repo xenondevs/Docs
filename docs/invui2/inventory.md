@@ -6,19 +6,35 @@ InvUI has its own inventories, not to be confused with `org.bukkit.inventory.Inv
 
 For most use cases, you will want to use a `VirtualInventory`. This is just a container for item stacks that you can add to your guis like so:
 
-```kotlin
-val inv = VirtualInventory(7 * 4)
-val gui = Gui.builder()
-    .setStructure(
-        "# # # # # # # # #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# # # # # # # # #",
-    )
-    .addIngredient('x', inv)
-    .build()
-```
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 4)
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', inv)
+        .build()
+    ```
+
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', inv)
+        .build();
+    ```
 
 ![](assets/img/inventory/virtual_inventory.gif){width=500}
 
@@ -32,17 +48,31 @@ This event is called before changes were fully processed. Cancelling this event 
 
 In the following example, the `ItemPreUpdateEvent` is cancelled or handled in such a way that only red and orange wool can be put into the inventory. Additionally, orange wool can no longer be stacked:
 
-```kotlin
-inv.addPreUpdateHandler { event ->
-    if (event.isAdd || event.isSwap) {
-        when (event.newItem?.type) {
-            Material.RED_WOOL -> Unit // red wool can be added normally
-            Material.ORANGE_WOOL -> event.newItem?.amount = 1 // orange wool stack size is limited to 1
-            else -> event.isCancelled = true // cancel event for all other item types
+=== "Kotlin"
+    ```kotlin
+    inv.addPreUpdateHandler { event ->
+        if (event.isAdd || event.isSwap) {
+            when (event.newItem?.type) {
+                Material.RED_WOOL -> Unit // red wool can be added normally
+                Material.ORANGE_WOOL -> event.newItem?.amount = 1 // orange wool stack size is limited to 1
+                else -> event.isCancelled = true // cancel event for all other item types
+            }
         }
     }
-}
-```
+    ```
+
+=== "Java"
+    ```java
+    inv.addPreUpdateHandler(event -> {
+        if (event.isAdd() || event.isSwap()) {
+            switch (event.getNewItem().getType()) {
+                case Material.RED_WOOL -> {} // red wool can be added normally
+                case Material.ORANGE_WOOL -> event.getNewItem().setAmount(1); // orange wool stack size is limited to 1
+                default -> event.setCancelled(true); // cancel event for all other item types
+            }
+        }
+    });
+    ```
 
 ![](assets/img/inventory/item_pre_update_event.gif){width=500}
 
@@ -53,13 +83,23 @@ This event is called after changes were performed on a slot. It is not cancellab
 
 In the following example, the `ItemPostUpdateEvent` is used to implement a trash can menu:
 
-```kotlin
-inv.addPostUpdateHandler { event -> 
-    event.inventory.setItem(UpdateReason.SUPPRESSED, 0, null) // (1)!
-}
-```
+=== "Kotlin"
+    ```kotlin
+    inv.addPostUpdateHandler { event -> 
+        event.inventory.setItem(UpdateReason.SUPPRESSED, 0, null) // (1)!
+    }
+    ```
 
-1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
+    1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
+
+=== "Java"
+    ```java
+    inv.addPostUpdateHandler(event -> {
+        event.getInventory().setItem(UpdateReason.SUPPRESSED, 0, null); // (1)!
+    });
+    ```
+
+    1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
 
 ![](assets/img/inventory/item_post_update_event.gif){width=500}
 
@@ -69,15 +109,29 @@ InvUI also has its own inventory click event, not to be confused with `org.bukki
 
 In the following example, the `InventoryClickEvent` is used to change the number key presses from moving the item to the hotbar slots to changing their amount instead:
 
-```kotlin
-inv.addClickHandler { event ->
-    if (event.clickType == ClickType.NUMBER_KEY) {
-        event.isCancelled = true
-        val newItem = event.inventory.getItem(event.slot)?.apply { amount = event.hotbarButton + 1 }
-        event.inventory.setItem(null, event.slot, newItem)
+=== "Kotlin"
+    ```kotlin
+    inv.addClickHandler { event ->
+        if (event.clickType == ClickType.NUMBER_KEY) {
+            event.isCancelled = true
+            val newItem = event.inventory.getItem(event.slot)?.apply { amount = event.hotbarButton + 1 }
+            event.inventory.setItem(null, event.slot, newItem)
+        }
     }
-}
-```
+    ```
+
+=== "Java"
+    ```java
+    inv.addClickHandler(event -> {
+        if (event.getClickType() == ClickType.NUMBER_KEY) {
+            event.setCancelled(true);
+            var newItem = event.getInventory().getItem(event.getSlot());
+            if (newItem != null)
+                newItem.setAmount(event.getHotbarButton() + 1);
+            event.getInventory().setItem(null, event.getSlot(), newItem);
+        }
+    });
+    ```
 
 ![](assets/img/inventory/inventory_click_event.gif){width=500}
 
@@ -85,38 +139,81 @@ inv.addClickHandler { event ->
 
 You can also serialize and deserialize `VirtualInventory` (i.e. saving and loading it):
 
-```kotlin title="Serializing a VirtualInventory"
-// serialize a VirtualInventory to a ByteArray
-val bin: ByteArray = virtualInventory.serialize()
+Serializing a `VirtualInventory`:
+=== "Kotlin"
+    ```kotlin
+    // serialize a VirtualInventory to a ByteArray
+    val bin: ByteArray = virtualInventory.serialize()
+    
+    // write a VirtualInventory directly to an output stream
+    file.outputStream().use { virtualInventory.serialize(it) }
+    ```
 
-// write a VirtualInventory directly to an output stream
-file.outputStream().use { virtualInventory.serialize(it) }
-```
+=== "Java"
+    ```java
+    // serialize a VirtualInventory to a ByteArray
+    byte[] bin = virtualInventory.serialize();
+    
+    // write a VirtualInventory directly to an output stream    
+    try (var out = new FileOutputStream(file)) {
+        virtualInventory.serialize(out);
+    }
+    ```
 
-```kotlin title="Deserializing a VirtualInventory"
-// deserialize a VirtualInventory from a ByteArray
-val inv: VirtualInventory = VirtualInventory.deserialize(bin)
+Deserializing a `VirtualInventory`:
+=== "Kotlin"
+    ```kotlin
+    // deserialize a VirtualInventory from a ByteArray
+    val inv: VirtualInventory = VirtualInventory.deserialize(bin)
+    
+    // read a VirtualInventory directly from an input stream
+    val inv2: VirtualInventory = file.inputStream().use { VirtualInventory.deserialize(it) }
+    ```
 
-// read a VirtualInventory directly from an input stream
-val inv2: VirtualInventory = file.inputStream().use { VirtualInventory.deserialize(it) }
-```
+=== "Java"
+    ```java
+    // deserialize a VirtualInventory from a ByteArray
+    VirtualInventory inv = VirtualInventory.deserialize(bin);
+    
+    // read a VirtualInventory directly from an input stream
+    VirtualInventory inv2;
+    try (var in = new FileInputStream(file)) {
+        inv2 = VirtualInventory.deserialize(in);
+    }
+    ```
 
 There is also `VirtualInventoryManager`, which automatically writes virtual inventories registered with it to disk on shutdown and reads them back on startup. This allows you to very easily create persistent inventories, but note that using `VirtualInventoryManager` with a large amount of inventories will cause a slowdown on startup as all inventories are loaded on startup at once.
 
-```kotlin
-val inv: VirtualInventory = VirtualInventoryManager.getInstance().getOrCreate(uuid, size)
-```
+=== "Kotlin"
+    ```kotlin
+    val inv: VirtualInventory = VirtualInventoryManager.getInstance().getOrCreate(uuid, size)
+    ```
+
+=== "Java"
+    ```java
+    VirtualInventory inv = VirtualInventoryManager.getInstance().getOrCreate(uuid, size);
+    ```
 
 ## Referencing Inventory
 
 The `ReferencingInventory` can be used to reference a Bukkit inventory, such as the player's inventory. For example, you can easily implement a gui to look at another player's inventory using it:
 
-```kotlin
-val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
-Window.builder()
-    .setUpperGui(Gui.of(9, 4, inv))
-    .open(player)
-```
+=== "Kotlin"
+    ```kotlin
+    val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
+    Window.builder()
+        .setUpperGui(Gui.of(9, 4, inv))
+        .open(player)
+    ```
+
+=== "Java"
+    ```java
+    var inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.getInventory());
+    Window.builder()
+        .setUpperGui(Gui.of(9, 4, inv))
+        .open(player);
+    ```
+
 ![](assets/img/inventory/invsee.gif)
 
 ## Other configuration options
@@ -127,25 +224,47 @@ The gui priority defines the order in which inventories of a gui are iterated ov
 
 In the following example, the gui priorities are configured in such a way that items are shift-clicked into the right inventory first, but collecting to the cursor prioritizes the left inventory:
 
-```kotlin
-val left = VirtualInventory(9)
-left.setGuiPriority(OperationCategory.ADD, -1)
-left.setGuiPriority(OperationCategory.COLLECT, 1)
-
-val right = VirtualInventory(9)
-
-val gui = Gui.builder()
-    .setStructure(
-        "# # # # # # # # #",
-        "# x x x # y y y #",
-        "# x x x # y y y #",
-        "# x x x # y y y #",
-        "# # # # # # # # #",
-    )
-    .addIngredient('x', left)
-    .addIngredient('y', right)
-    .build()
-```
+=== "Kotlin"
+    ```kotlin
+    val left = VirtualInventory(9)
+    left.setGuiPriority(OperationCategory.ADD, -1)
+    left.setGuiPriority(OperationCategory.COLLECT, 1)
+    
+    val right = VirtualInventory(9)
+    
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', left)
+        .addIngredient('y', right)
+        .build()
+    ```
+    
+=== "Java"
+    ```java
+    var left = new VirtualInventory(9);
+    left.setGuiPriority(OperationCategory.ADD, -1);
+    left.setGuiPriority(OperationCategory.COLLECT, 1);
+    
+    var right = new VirtualInventory(9)
+    
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', left)
+        .addIngredient('y', right)
+        .build();
+    ```
 
 ![](assets/img/inventory/gui_priority.gif){width=500}
 
@@ -155,22 +274,41 @@ The iteration order defines in which order the slots of multi-slot operations li
 
 You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reverses the iteration order for adding items, but keeps the iteration order for collection items:
 
-```kotlin 
-val inv = VirtualInventory(7 * 4)
-inv.reverseIterationOrder(OperationCategory.ADD)
+=== "Kotlin"
+    ```kotlin 
+    val inv = VirtualInventory(7 * 4)
+    inv.reverseIterationOrder(OperationCategory.ADD)
+    
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        .addIngredient('x', inv)
+        .build()
+    ```
 
-val gui = Gui.builder()
-    .setStructure(
-        "# # # # # # # # #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# # # # # # # # #",
-    )
-    .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
-    .addIngredient('x', inv)
-    .build()
-```
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    inv.reverseIterationOrder(OperationCategory.ADD);
+    
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('#', Item.simple(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        .addIngredient('x', inv)
+        .build();
+    ```
 
 ![](assets/img/inventory/iteration_order.gif){width=500}
 
@@ -178,23 +316,39 @@ val gui = Gui.builder()
 
 The slots in your inventory may be empty, but this does not mean that they have to be visually empty as well. You can set a background `ItemProvider` for your inventory, which will be used to display empty slots. Inventory interactions will keep working as if the slots were empty.
 
-```kotlin
-val inv = VirtualInventory(7 * 4)
-val gui = Gui.builder()
-    .setStructure(
-        "# # # # # # # # #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# x x x x x x x #",
-        "# # # # # # # # #",
-    )
-    .addIngredient('x', inv, ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).hideTooltip(true))
-    .build()
-```
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 4)
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', inv, ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).hideTooltip(true))
+        .build()
+    ```
+
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', inv, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).hideTooltip(true))
+        .build();
+    ```
 
 ![](assets/img/inventory/background.gif){width=500}
 
-!!! warning "Item dragging does not work on slots with a background item."
+!!! warning "Item dragging does not work on slots with a background."
 
 ### Obscured slots
 
@@ -202,21 +356,42 @@ By default, multi-slot operations like shift-clicking into or collecting from in
 
 The following example uses a [scroll gui](gui.md#scroll-gui) to display a large inventory that does not fit on one screen. By default, shift-clicking does nothing if there are no empty visible slots, but with `setIgnoreObscuredInventorySlots(false)`, this is not the case:
 
-```kotlin
-val inv = VirtualInventory(7 * 6)
-repeat(7 * 3) { inv.addItem(null, ItemStack.of(Material.DIAMOND, 64)) }
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 6)
+    repeat(7 * 3) { inv.addItem(null, ItemStack.of(Material.DIAMOND, 64)) }
+    
+    val gui = ScrollGui.inventoriesBuilder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x u",
+            "# x x x x x x x #",
+            "# x x x x x x x d",
+            "# # # # # # # # #",
+        )
+        .setContent(listOf(inv))
+        .setIgnoreObscuredInventorySlots(false)
+        .build()
+    ```
 
-val gui = ScrollGui.inventoriesBuilder()
-    .setStructure(
-        "# # # # # # # # #",
-        "# x x x x x x x u",
-        "# x x x x x x x #",
-        "# x x x x x x x d",
-        "# # # # # # # # #",
-    )
-    .setContent(listOf(inv))
-    .setIgnoreObscuredInventorySlots(false)
-    .build()
-```
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 6);
+    for (int i = 0; i < 7 * 3; i++) {
+        inv.addItem(null, ItemStack.of(Material.DIAMOND, 64));
+    }
+    
+    var gui = ScrollGui.inventoriesBuilder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x u",
+            "# x x x x x x x #",
+            "# x x x x x x x d",
+            "# # # # # # # # #"
+        )
+        .setContent(List.of(inv))
+        .setIgnoreObscuredInventorySlots(false)
+        .build();
+    ```
 
 ![](assets/img/inventory/obscured.gif){width=500}

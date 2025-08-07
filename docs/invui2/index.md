@@ -6,10 +6,6 @@ Minimum required Java version: `21`
 
     Starting with v2, InvUI no longer supports multiple Minecraft versions. Instead, InvUI only targets the latest Minecraft version. Additionally, InvUI no longer supports Spigot, but only Paper and its forks.
 
-!!! warning "Documentation is work in progress"
-
-    This documentation is still WIP. All code examples are currently Kotlin, the Java translations will be added in the future.
-
 ## Configuring Maven / Gradle
 
 To use InvUI, you first have to add the xenondevs maven repository to your build configuration.

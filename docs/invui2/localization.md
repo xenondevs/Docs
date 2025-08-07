@@ -49,24 +49,45 @@ By default, the player's locale is retrieved using `#!java Player.locale()`. If 
 
 To use translations in your menus, simply use `TranslatableComponent`:
 
-```kotlin
-Languages.getInstance().addLanguage(Locale.US, mapOf(
-    "invui.example_window.title" to "<aqua>Example Window",
-    "invui.example_window.btn.name" to "<red>Example translation! <arg:0> <placeholder>"
-))
+=== "Kotlin"
+    ```kotlin
+    Languages.getInstance().addLanguage(Locale.US, mapOf(
+        "invui.example_window.title" to "<aqua>Example Window",
+        "invui.example_window.btn.name" to "<red>Example translation! <arg:0> <placeholder>"
+    ))
+    
+    val itemBuilder = ItemBuilder(Material.DIAMOND)
+        .setName(Component.translatable("invui.example_window.btn.name", Component.text("A"))) // (1)!
+        .setPlaceholder("placeholder", Component.text("B")) // (2)!
+    
+    Window.builder()
+        .setUpperGui(Gui.of(9, 1, Item.simple(itemBuilder)))
+        .setTitle(Component.translatable("invui.example_window.title"))
+        .open(player)
+    ```
 
-val itemBuilder = ItemBuilder(Material.DIAMOND)
-    .setName(Component.translatable("invui.example_window.btn.name", Component.text("A"))) // (1)!
-    .setPlaceholder("placeholder", Component.text("B")) // (2)!
+    1. You can pass the arguments directly using the translatable component, as explained [here](https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator).
+    2. Alternatively, you can also use the ItemBuilder's placeholder system. This fills in placeholders across all components, i.e. the name and lore of the item.
 
-Window.builder()
-    .setUpperGui(Gui.of(9, 1, Item.simple(itemBuilder)))
-    .setTitle(Component.translatable("invui.example_window.title"))
-    .open(player)
-```
+=== "Java"
+    ```java
+    Languages.getInstance().addLanguage(Locale.US, Map.of(
+        "invui.example_window.title", "<aqua>Example Window",
+        "invui.example_window.btn.name", "<red>Example translation! <arg:0> <placeholder>"
+    ));
+    
+    var itemBuilder = new ItemBuilder(Material.DIAMOND)
+        .setName(Component.translatable("invui.example_window.btn.name", Component.text("A"))) // (1)!
+        .setPlaceholder("placeholder", Component.text("B")); // (2)!
+    
+    Window.builder()
+        .setUpperGui(Gui.of(9, 1, Item.simple(itemBuilder)))
+        .setTitle(Component.translatable("invui.example_window.title"))
+        .open(player);
+    ```
 
-1. You can pass the arguments directly using the translatable component, as explained [here](https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator).
-2. Alternatively, you can also use the ItemBuilder's placeholder system. This fills in placeholders across all components, i.e. the name and lore of the item.
+    1. You can pass the arguments directly using the translatable component, as explained [here](https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator).
+    2. Alternatively, you can also use the ItemBuilder's placeholder system. This fills in placeholders across all components, i.e. the name and lore of the item.
 
 ![](assets/img/localization/1.png){width=500}
 

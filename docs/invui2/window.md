@@ -23,48 +23,89 @@ The normal window, which can be built using `#!kotlin Window.builder()`, is very
 
 The following example creates a window with an upper gui of dimensions `9x6`:
 
-```kotlin
-Window.builder()
-    .setTitle("Example Window")
-    .setUpperGui(Gui.builder()
-        .setStructure(
-            "# # # # # # # # #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# # # # # # # # #"
+=== "Kotlin"
+    ```kotlin
+    Window.builder()
+        .setTitle("Example Window")
+        .setUpperGui(Gui.builder()
+            .setStructure(
+                "# # # # # # # # #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# # # # # # # # #"
+            )
+            .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
         )
-        .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
-    )
-    .open(player)
-```
+        .open(player)
+    ```
+
+=== "Java"
+    ```java
+    Window.builder()
+        .setTitle("Example Window")
+        .setUpperGui(Gui.builder()
+            .setStructure(
+                "# # # # # # # # #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# # # # # # # # #"
+            )
+            .addIngredient('#', Item.simple(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        )
+        .open(player);
+    ```
 
 ![](assets/img/window/normal_split.png){width=500}
 
 Every window type also allows you to set a `lowerGui`, which is the player's inventory. For the normal window, you can also create a `mergedBuilder()`, which accepts a singular gui that is then used for both of what were previously known as the upper and lower guis:
 
-
-```kotlin
-Window.mergedBuilder()
-    .setTitle("Example Window")
-    .setGui(Gui.builder()
-        .setStructure(
-            "# # # # # # # # #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# x x x x x x x #",
-            "# # # # # # # # #"
+=== "Kotlin"
+    ```kotlin
+    Window.mergedBuilder()
+        .setTitle("Example Window")
+        .setGui(Gui.builder()
+            .setStructure(
+                "# # # # # # # # #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# # # # # # # # #"
+            )
+            .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
         )
-        .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
-    )
-    .open(player)
-```
+        .open(player)
+    ```
+
+=== "Java"
+    ```java
+    Window.mergedBuilder()
+        .setTitle("Example Window")
+        .setGui(Gui.builder()
+            .setStructure(
+                "# # # # # # # # #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# x x x x x x x #",
+                "# # # # # # # # #"
+            )
+            .addIngredient('#', Item.simple(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        )
+        .open(player);
+    ```
 
 ![](assets/img/window/normal_merged.png){width=500}
 
@@ -76,29 +117,80 @@ The anvil window can be created using `#!kotlin AnvilWindow.builder()`. It consi
 
 ??? example "Example: Anvil-based search window"
 
-    ```kotlin
-    fun getItems(search: String): List<Item> =  Material.entries
-        .filter { !it.isLegacy && it.isItem }
-        .filter { it.name.contains(search, true) }
-        .map { Item.simple(ItemBuilder(it)) }
+    === "Kotlin"
+        ```kotlin
+        fun getItems(search: String): List<Item> =  Material.entries
+            .filter { !it.isLegacy && it.isItem }
+            .filter { it.name.contains(search, true) }
+            .map { Item.simple(ItemBuilder(it)) }
+        
+        val gui: PagedGui<Item> = PagedGui.itemsBuilder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setContent(getItems(""))
+            .build()
+        
+        AnvilWindow.builder()
+            .addRenameHandler { search -> gui.setContent(getItems(search)) }
+            .setLowerGui(gui)
+            .open(player)
+        ```
+
+    === "Kotlin (DSL)"
+        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+
+        ```kotlin
+        anvilWindow(player) {
+            lowerGui by pagedItemsGui(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            ) {
+                'x' by Markers.CONTENT_LIST_SLOT_HORIZONTAL
+                content by this@anvilWindow.text.map { search ->
+                    Material.entries
+                        .filter { !it.isLegacy && it.isItem }
+                        .filter { it.name.contains(search, true) }
+                        .map { Item.simple(ItemBuilder(it)) }
+                }
+            }
+        }.open()
+        ```
     
-    val gui: PagedGui<Item> = PagedGui.itemsBuilder()
-        .setStructure(
-            "x x x x x x x x x",
-            "x x x x x x x x x",
-            "x x x x x x x x x",
-            "x x x x x x x x x"
-        )
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
-        .setContent(getItems(""))
-        .build()
-    
-    AnvilWindow.builder()
-        .addRenameHandler { search -> gui.setContent(getItems(search)) }
-        .setLowerGui(gui)
-        .open(player)
-    ```
-    
+    === "Java"
+        ```java
+        public static List<Item> getItems(String search) {
+            return Arrays.stream(Material.values())
+                .filter(m -> !m.isLegacy() && m.isItem())
+                .filter(m -> m.name().toLowerCase().contains(search.toLowerCase()))
+                .map(m -> Item.simple(new ItemBuilder(m)))
+                .toList();
+        }
+        ```
+        ```java
+        PagedGui<Item> gui = PagedGui.itemsBuilder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setContent(getItems(""))
+            .build();
+        
+        AnvilWindow.builder()
+            .addRenameHandler(search -> gui.setContent(getItems(search)))
+            .setLowerGui(gui)
+            .open(player);
+        ```
+
     ![](assets/img/window/anvil_search.gif){width=500}
 
 ### Brewing Window
@@ -117,53 +209,109 @@ The cartography window can be created using `#!kotlin CartographyWindow.builder(
 
     The following example takes advantage of the fact that bundles select slot `-1` when the mouse cursor leaves them.
     
-    ```kotlin
-    lateinit var window: CartographyWindow
-    
-    val img = BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB)
-    val lowerGui = Gui.empty(9, 4)
-    for (x in 0..<9) {
-        for (y in 0..<4) {
-            lowerGui[x, y] = Item.builder()
-                .setItemProvider {
-                    ItemBuilder(Material.BUNDLE)
-                        .set(DataComponentTypes.ITEM_MODEL, Key.key("minecraft", "black_stained_glass_pane"))
-                        .hideTooltip(true)
-                }
-                .addBundleSelectHandler { _, _, _ ->
-                    val graphics = img.createGraphics()
-                    graphics.color = Color.WHITE
-                    graphics.fillRect(
-                        (x / 9.0 * 128).toInt(),
-                        (y / 4.0 * 128).toInt(),
-                        ceil(1.0 / 9.0 * 128).toInt(),
-                        ceil(1.0 / 4.0 * 128).toInt()
-                    )
-                    graphics.dispose()
-                    window.applyPatch(0, 0, img)
-                }
-                .build()
+    === "Kotlin"
+        ```kotlin
+        lateinit var window: CartographyWindow
+        
+        val img = BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB)
+        val lowerGui = Gui.empty(9, 4)
+        for (x in 0..<9) {
+            for (y in 0..<4) {
+                lowerGui[x, y] = Item.builder()
+                    .setItemProvider {
+                        ItemBuilder(Material.BUNDLE)
+                            .set(DataComponentTypes.ITEM_MODEL, Key.key("minecraft", "black_stained_glass_pane"))
+                            .hideTooltip(true)
+                    }
+                    .addBundleSelectHandler { _, _, _ ->
+                        val graphics = img.createGraphics()
+                        graphics.color = Color.WHITE
+                        graphics.fillRect(
+                            (x / 9.0 * 128).toInt(),
+                            (y / 4.0 * 128).toInt(),
+                            ceil(1.0 / 9.0 * 128).toInt(),
+                            ceil(1.0 / 4.0 * 128).toInt()
+                        )
+                        graphics.dispose()
+                        window.applyPatch(0, 0, img)
+                    }
+                    .build()
+            }
         }
-    }
-    
-    val resetItem = Item.builder()
-        .setItemProvider(ItemBuilder(Material.BARRIER).setName("<red>Clear"))
-        .addClickHandler { _, _ ->
-            val graphics = img.createGraphics()
-            graphics.color = Color.BLACK
-            graphics.fillRect(0, 0, img.width, img.height)
-            graphics.dispose()
-            window.applyPatch(0, 0, img)
-        }.build()
-    
-    window = CartographyWindow.builder()
-        .setViewer(player)
-        .setResultGui(Gui.single(resetItem))
-        .setLowerGui(lowerGui)
-        .build()
-    
-    window.open()
-    ```
+        
+        val resetItem = Item.builder()
+            .setItemProvider(ItemBuilder(Material.BARRIER).setName("<red>Clear"))
+            .addClickHandler { _, _ ->
+                val graphics = img.createGraphics()
+                graphics.color = Color.BLACK
+                graphics.fillRect(0, 0, img.width, img.height)
+                graphics.dispose()
+                window.applyPatch(0, 0, img)
+            }.build()
+        
+        window = CartographyWindow.builder()
+            .setViewer(player)
+            .setResultGui(Gui.single(resetItem))
+            .setLowerGui(lowerGui)
+            .build()
+        
+        window.open()
+        ```
+
+    === "Java"
+        ```java
+        AtomicReference<CartographyWindow> window = new AtomicReference<>();
+        
+        var img = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
+        var lowerGui = Gui.empty(9, 4);
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 4; y++) {
+                final int finalX = x;
+                final int finalY = y;
+                
+                Item item = Item.builder()
+                    .setItemProvider(p ->
+                        new ItemBuilder(Material.BUNDLE)
+                            .set(DataComponentTypes.ITEM_MODEL, Key.key("minecraft", "black_stained_glass_pane"))
+                            .hideTooltip(true)
+                    )
+                    .addBundleSelectHandler(selectedSlot -> {
+                        var graphics = img.createGraphics();
+                        graphics.setColor(Color.WHITE);
+                        graphics.fillRect(
+                            (int) (finalX / 9.0 * 128),
+                            (int) (finalY / 4.0 * 128),
+                            (int) Math.ceil(1.0 / 9.0 * 128),
+                            (int) Math.ceil(1.0 / 4.0 * 128)
+                        );
+                        graphics.dispose();
+                        window.get().applyPatch(0, 0, img);
+                    })
+                    .build();
+                
+                lowerGui.setItem(x, y, item);
+            }
+        }
+        
+        var resetItem = Item.builder()
+            .setItemProvider(new ItemBuilder(Material.BARRIER).setName("<red>Clear"))
+            .addClickHandler(click -> {
+                var graphics = img.createGraphics();
+                graphics.setColor(Color.BLACK);
+                graphics.fillRect(0, 0, img.getWidth(), img.getHeight());
+                graphics.dispose();
+                window.get().applyPatch(0, 0, img);
+            })
+            .build();
+        
+        window.set(CartographyWindow.builder()
+            .setViewer(player)
+            .setResultGui(Gui.single(resetItem))
+            .setLowerGui(lowerGui)
+            .build());
+        
+        window.get().open();
+        ```
 
     ![](assets/img/window/cartography_drawing.gif){width=500}
 
@@ -184,15 +332,21 @@ The crafting window can be created using `#!kotlin CraftingWindow.builder()`. It
 
     The following example registers a recipe click handler that ignores the clicked recipe and always suggests a diamond hoe instead.
     
-    ```kotlin
-    lateinit var w: CraftingWindow 
-    w = CraftingWindow.builder()
-        .setCraftingGui(Gui.of(3, 3, VirtualInventory(9)))
-        .addRecipeClickHandler { _ -> w.sendGhostRecipe(Key.key("minecraft:diamond_hoe")) }
-        .setViewer(player)
-        .build()
-    w.open()
-    ```
+    === "Kotlin"
+        ```kotlin
+        CraftingWindow.builder()
+            .setCraftingGui(Gui.of(3, 3, VirtualInventory(9)))
+            .addModifier { w -> w.addRecipeClickHandler { w.sendGhostRecipe(Key.key("minecraft:diamond_hoe")) } }
+            .open(player)
+        ```
+
+    === "Java"
+        ```java
+        CraftingWindow.builder()
+            .setCraftingGui(Gui.of(3, 3, new VirtualInventory(9)))
+            .addModifier(w -> w.addRecipeClickHandler(key -> w.sendGhostRecipe(Key.key("minecraft:diamond_hoe"))))
+            .open(player);
+        ```
 
     ![](assets/img/window/crafting_diamond_hoe.gif)
 
@@ -219,37 +373,102 @@ The merchant window can be created using `#!kotlin MerchantWindow.builder()`. It
 
     In the following example, the trade buttons are used to switch the tabs of a [TabGui](gui.md#tab-gui):
 
-    ```kotlin 
-    val woolItems: List<ItemStack> = Tag.WOOL.values.map(ItemStack::of)
-    
-    val tabGui: TabGui = TabGui.builder()
-        .setStructure(
-            "x x x x x x x x x",
-            "x x x x x x x x x",
-            "x x x x x x x x x",
-            "x x x x x x x x x"
-        )
-        .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
-        .setTabs(woolItems.map { Gui.of(9, 4, Item.simple(it)) })
-        .build()
-    
-    val trades: List<MerchantWindow.Trade> = woolItems.mapIndexed { i, woolItem ->
-        val tabItem = Item.builder()
-            .setItemProvider(woolItem)
-            .addClickHandler { _, _ -> tabGui.tab = i }
+    === "Kotlin"
+        ```kotlin 
+        val woolItems: List<ItemStack> = Tag.WOOL.values.map(ItemStack::of)
+        
+        val tabGui: TabGui = TabGui.builder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setTabs(woolItems.map { Gui.of(9, 4, Item.simple(it)) })
             .build()
         
-        MerchantWindow.Trade.builder()
-            .setFirstInput(tabItem)
-            .build()
-    }
+        val trades: List<MerchantWindow.Trade> = woolItems.mapIndexed { i, woolItem ->
+            val tabItem = Item.builder()
+                .setItemProvider(woolItem)
+                .addClickHandler { tabGui.tab = i }
+                .build()
+            
+            MerchantWindow.Trade.builder()
+                .setFirstInput(tabItem)
+                .build()
+        }
+        
+        MerchantWindow.builder()
+            .setLowerGui(tabGui)
+            .setTrades(trades)
+            .open(player)
+        ```
     
-    MerchantWindow.builder()
-        .setLowerGui(tabGui)
-        .setTrades(trades)
-        .open(player)
-    ```
-    
+    === "Kotlin (DSL)"
+        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+
+        ```kotlin
+        merchantWindow(player) {
+            val woolItems = Tag.WOOL.values.map(ItemStack::of)
+            val tab = mutableProvider(0)
+            
+            lowerGui by tabGui(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            ) {
+                'x' by Markers.CONTENT_LIST_SLOT_HORIZONTAL
+                tabs by woolItems.map { Gui.of(9, 4, Item.simple(it)) }
+                this.tab by tab
+            }
+            
+            trades by woolItems.mapIndexed { i, wool ->
+                trade {
+                    firstInput by item {
+                        itemProvider by ItemBuilder(wool)
+                        onClick { tab.set(i) }
+                    }
+                }
+            }
+        }.open()
+        ```
+
+    === "Java"
+        ```java
+        List<ItemStack> woolItems = Tag.WOOL.getValues().stream().map(ItemStack::of).toList();
+        
+        TabGui tabGui = TabGui.builder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setTabs(woolItems.stream().map(it -> Gui.of(9, 4, Item.simple(it))).toList())
+            .build();
+        
+        List<MerchantWindow.Trade> trades = IntStream.range(0, woolItems.size())
+            .mapToObj(i -> {
+                Item tabItem = Item.builder()
+                    .setItemProvider(woolItems.get(i))
+                    .addClickHandler(click -> tabGui.setTab(i))
+                    .build();
+                
+                return MerchantWindow.Trade.builder()
+                    .setFirstInput(tabItem)
+                    .build();
+            })
+            .toList();
+        
+        MerchantWindow.builder()
+            .setLowerGui(tabGui)
+            .setTrades(trades)
+            .open(player);
+        ```
+
     ![](assets/img/window/merchant_tabs.gif){width=750}
 
 ### Smithing Window
@@ -268,14 +487,38 @@ The stonecutter window can be created using `#!kotlin StonecutterWindow.builder(
 
     The following example embeds a `VirtualInventory` into the buttons gui. Note that updating the buttons resets the scroll bar to the top, so this is not a practical use case.
 
-    ```kotlin
-    StonecutterWindow.builder()
-        .setButtonsGui(Gui.of(4, 100, VirtualInventory(400)))
-        .addModifier { w -> w.addSelectedSlotChangeHandler { _, to -> if (to != -1) w.selectedSlot = -1 } } // (1)!
-        .open(player)
-    ```
+    === "Kotlin"
+        ```kotlin
+        StonecutterWindow.builder()
+            .setButtonsGui(Gui.of(4, 100, VirtualInventory(400)))
+            .addModifier { w -> w.addSelectedSlotChangeHandler { _, to -> if (to != -1) w.selectedSlot = -1 } } // (1)!
+            .open(player)
+        ```
+
+        1. This immediately unselects selected buttons.
+        
+
+    === "Kotlin (DSL)"
+        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+
+        ```kotlin
+        stonecutterWindow(player) {
+            buttonsGui by VirtualInventory(400)
+            selectedSlot by mutableProvider(-1).apply { subscribe { to -> if (to != -1) set(-1) } } // (1)!
+        }.open()
+        ```
     
-    1. This immediately unselects selected buttons.
+        1. This immediately unselects selected buttons.
+
+    === "Java"
+        ```java
+        StonecutterWindow.builder()
+            .setButtonsGui(Gui.of(4, 100, new VirtualInventory(400)))
+            .addModifier(w -> w.addSelectedSlotChangeHandler((from, to) -> {
+                if (to != -1) w.setSelectedSlot(-1);
+            }))
+            .open(player);    
+        ```
 
     ![](assets/img/window/stonecutter_buttons_as_inventory.gif){width=500}
 
@@ -304,17 +547,31 @@ However, you can put any `9x4` gui as the lower gui, which will then be used ins
 
     The following example embeds another player's inventory into the lower gui instead of the player's own inventory:
     
-    ```kotlin
-    val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
-    inv.reverseIterationOrder(OperationCategory.ADD) // shift-clicking moves to bottom right instead of top left
-    inv.setGuiPriority(OperationCategory.ADD, Int.MAX_VALUE) // shift-click always moves between upper and lower inv
-    inv.setGuiPriority(OperationCategory.COLLECT, Int.MIN_VALUE) // double-click collects from lower inv last
-    
-    Window.builder()
-        .setUpperGui(Gui.empty(5, 1))
-        .setLowerGui(Gui.of(9, 4, inv))
-        .open(player)
-    ```
+    === "Kotlin"
+        ```kotlin
+        val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
+        inv.reverseIterationOrder(OperationCategory.ADD) // shift-clicking moves to bottom right instead of top left
+        inv.setGuiPriority(OperationCategory.ADD, Int.MAX_VALUE) // shift-click always moves between upper and lower inv
+        inv.setGuiPriority(OperationCategory.COLLECT, Int.MIN_VALUE) // double-click collects from lower inv last
+        
+        Window.builder()
+            .setUpperGui(Gui.empty(5, 1))
+            .setLowerGui(Gui.of(9, 4, inv))
+            .open(player)
+        ```
+
+    === "Java"
+        ```java
+        var inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory);
+        inv.reverseIterationOrder(OperationCategory.ADD); // shift-clicking moves to bottom right instead of top left
+        inv.setGuiPriority(OperationCategory.ADD, Integer.MAX_VALUE); // shift-click always moves between upper and lower inv
+        inv.setGuiPriority(OperationCategory.COLLECT, Integer.MIN_VALUE); // double-click collects from lower inv last
+        
+        Window.builder()
+            .setUpperGui(Gui.empty(5, 1))
+            .setLowerGui(Gui.of(9, 4, inv))
+            .open(player);
+        ```
     
     ![](assets/img/window/other_player_inventory.gif)
 
@@ -322,14 +579,26 @@ However, you can put any `9x4` gui as the lower gui, which will then be used ins
 
 When designing menus that span multiple windows, it may often make sense to have some way of going back to a previous window. Apart from just adding an item that opens said window, you can also set a window that should be opened when the player closes the window by pressing `E` or `ESC`. This is called the fallback window.
 
-```kotlin
-val fallback = CartographyWindow.builder()
-    .setViewer(player)
-    // no fallback, pressing ESC in cartography window closes it
-    .build()
-AnvilWindow.builder()
-    .setFallbackWindow(fallback) // pressing ESC in anvil window opens cartography window
-    .open(player)
-```
+=== "Kotlin"
+    ```kotlin
+    val fallback = CartographyWindow.builder()
+        .setViewer(player)
+        // no fallback, pressing ESC in cartography window closes it
+        .build()
+    AnvilWindow.builder()
+        .setFallbackWindow(fallback) // pressing ESC in anvil window opens cartography window
+        .open(player)
+    ```
+
+=== "Java"
+    ```java
+    var fallback = CartographyWindow.builder()
+        .setViewer(player)
+        // no fallback, pressing ESC in cartography window closes it
+        .build();
+    AnvilWindow.builder()
+        .setFallbackWindow(fallback) // pressing ESC in anvil window opens cartography window
+        .open(player);
+    ```
 
 ![](assets/img/window/fallback.gif){width=500}

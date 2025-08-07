@@ -15,7 +15,7 @@ To create a menu, you need to combine all of these concepts:
     // item: a (clickable) ui element
     val helloWorldItem: Item = Item.builder()
         .setItemProvider(ItemBuilder(Material.DIAMOND)) // the item is represented by a diamond (ItemBuilder acts as ItemProvider)
-        .addClickHandler { _, _ -> println("Hello World!") } // "Hello World" is printed to the console on click
+        .addClickHandler { println("Hello World!") } // "Hello World" is printed to the console on click
         .build()
     
     // gui: a rectangular arrangement of ui elements
@@ -37,6 +37,26 @@ To create a menu, you need to combine all of these concepts:
 === "Java"
 
     ```java
+    // item: a (clickable) ui element
+    Item helloWorldItem = Item.builder()
+        .setItemProvider(new ItemBuilder(Material.DIAMOND)) // the item is represented by a diamond (ItemBuilder acts as ItemProvider)
+        .addClickHandler(click -> System.out.println("Hello World!")) // "Hello World" is printed to the console on click
+        .build();
+    
+    // gui: a rectangular arrangement of ui elements
+    Gui gui = Gui.builder()
+        .setStructure("x x x x x x x x x") // the gui is of dimensions 9x1 and uses the item 'x' everywhere
+        .addIngredient('x', helloWorldItem) // by item 'x', we mean helloWorldItem
+        .build();
+    
+    // window: the menu that is shown to the player, containing the gui(s), which contain the item(s)
+    Window window = Window.builder()
+        .setTitle("Hello World!")
+        .setUpperGui(gui)
+        .setViewer(player)
+        .build();
+    
+    window.open();
     ```
 
 ![](assets/img/basics_1.png){width=500}
