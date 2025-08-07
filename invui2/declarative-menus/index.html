@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://xenondevs.xyz/docs/invui2/declarative-menu-design/">
+        <link rel="canonical" href="https://xenondevs.xyz/docs/invui2/declarative-menus/">
       
       
         <link rel="prev" href="../localization/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Declarative Menu Design - InvUI Documentation</title>
+        <title>Declarative Menus - InvUI Documentation</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Declarative Menu Design
+              Declarative Menus
             
           </span>
         </div>
@@ -389,7 +389,7 @@
   
   
   <span class="md-ellipsis">
-    Declarative Menu Design
+    Declarative Menus
     
   </span>
   
@@ -457,7 +457,7 @@
   
 
 
-  <h1>Declarative Menu Design</h1>
+  <h1>Declarative Menus</h1>
 
 <div class="admonition warning">
 <p class="admonition-title">This functionality is experimental</p>
@@ -465,20 +465,18 @@
 <div class="admonition warning">
 <p class="admonition-title">This functionality is exclusive to invui-kotlin</p>
 </div>
-<p>Windows, Guis, and Items can be designed in a declarative-ish / reactive fashion.</p>
-<p>For that, InvUI uses <code>Provider&lt;T&gt;</code> and <code>MutableProvider&lt;T&gt;</code> from <a href="https://commons.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/index.html">commons-provider</a>.</p>
-<p>In a nutshell, with providers you can define a reactive data transformation flow:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableProvider</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$</span><span class="n">it</span><span class="s">, World!&quot;</span><span class="w"> </span><span class="p">}</span>
+<p>When designing non-trivial menus, managing state and performing manual updates can become difficult. To help with this, InvUI provides a way to design menus in a declarative / reactive fashion.</p>
+<p>For that, InvUI uses <code class="highlight"><span class="n">Provider</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> and <code class="highlight"><span class="n">MutableProvider</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> from <a href="https://commons.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/index.html">commons-provider</a>, with which you can model a reactive data flow. This means that you can have a top <code class="highlight"><span class="n">Provider</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> that holds your state and then derive other providers from it, like transforming a <code>String</code> to an <code>ItemProvider</code>, which can then be used for display purposes in a gui. The derived providers will automatically update when the top provider (i.e. your state) changes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableProvider</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">println</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="c1">// prints &quot;Hello, World!&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">println</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="c1">// 2</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">p</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;Goodbye&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">p1</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">println</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="c1">// prints &quot;Goodbye, World!&quot;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">println</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="c1">// 3</span>
 </code></pre></div>
-<p>This is very useful for creating menus, as it removes the need for manual updates like <code>notifyWindows()</code> or <code>setContent()</code>.</p>
-<p>For example, the following menu automatically updates its search preview as the user types.</p>
+<p>For example, the following menu automatically updates its search preview as the user types. The state of the text input is stored in a <code class="highlight"><span class="n">MutableProvider</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span></code> and the content of the paged gui is derived from it by searching the available materials for a matching name.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableProvider</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">AnvilWindow</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">.</span><span class="na">addRenameHandler</span><span class="p">(</span><span class="n">search</span><span class="p">)</span><span class="w"> </span><span class="c1">// automatically writes text into search provider</span>
@@ -508,6 +506,28 @@
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">ItemBuilder</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">})</span>
 </code></pre></div></li>
+</ol>
+<p>Additionally, InvUI provides a <a href="https://kotlinlang.org/docs/type-safe-builders.html">DSL (domain-specific language)</a> that makes creating windows, guis, and items more concise. This DSL is focused entirely around managing state via providers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">anvilWindow</span><span class="p">(</span><span class="n">player</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">lowerGui</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">pagedItemsGui</span><span class="p">(</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="s">&quot;x x x x x x x x x&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="s">&quot;x x x x x x x x x&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="s">&quot;x x x x x x x x x&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="s">&quot;x x x x x x x x x&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="sc">&#39;x&#39;</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Markers</span><span class="p">.</span><span class="na">CONTENT_LIST_SLOT_HORIZONTAL</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="n">content</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">this</span><span class="nd">@anvilWindow.text.map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="c1">// (2)!</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">            </span><span class="n">Material</span><span class="p">.</span><span class="na">entries</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">!</span><span class="nb">it</span><span class="p">.</span><span class="na">isLegacy</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isItem</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">search</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">                </span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">ItemBuilder</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">}.</span><span class="na">open</span><span class="p">()</span>
+</code></pre></div>
+<ol>
+<li>The <code>by</code> infix function is used to assign a value to the key <code>x</code>. You can also set other ingredient types like <code>Item</code> or <code>Inventory</code>.</li>
+<li><code class="highlight"><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span></code> is brought into scope by the <code>anvilWindow</code> function. This provider contains to up-to-date anvil input text. In this DSL, <code>by</code> infix functions are used instead of assignment (<code>=</code>) to allow overloading. For example, you can also set a <code>List&lt;Item&gt;</code> directly, if you want to use a static list of items.</li>
 </ol>
 <p><img alt="" src="../assets/img/window/anvil_search.gif" width="500" /></p>
 

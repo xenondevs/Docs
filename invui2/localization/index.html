@@ -14,7 +14,7 @@
         <link rel="prev" href="../inventory/">
       
       
-        <link rel="next" href="../declarative-menu-design/">
+        <link rel="next" href="../declarative-menus/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -460,12 +460,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../declarative-menu-design/" class="md-nav__link">
+      <a href="../declarative-menus/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Declarative Menu Design
+    Declarative Menus
     
   </span>
   
@@ -617,6 +617,9 @@
 </div>
 <h2 id="using-translations">Using translations</h2>
 <p>To use translations in your menus, simply use <code>TranslatableComponent</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Kotlin</label><label for="__tabbed_3_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">,</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="s">&quot;invui.example_window.title&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">&quot;&lt;aqua&gt;Example Window&quot;</span><span class="p">,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">&quot;&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;&quot;</span>
@@ -635,6 +638,29 @@
 <li>You can pass the arguments directly using the translatable component, as explained <a href="https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator">here</a>.</li>
 <li>Alternatively, you can also use the ItemBuilder's placeholder system. This fills in placeholders across all components, i.e. the name and lore of the item.</li>
 </ol>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="s">&quot;invui.example_window.title&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;aqua&gt;Example Window&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">));</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">var</span><span class="w"> </span><span class="n">itemBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ItemBuilder</span><span class="p">(</span><span class="n">Material</span><span class="p">.</span><span class="na">DIAMOND</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)))</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="p">.</span><span class="na">setPlaceholder</span><span class="p">(</span><span class="s">&quot;placeholder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// (2)!</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">Window</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">.</span><span class="na">setUpperGui</span><span class="p">(</span><span class="n">Gui</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">itemBuilder</span><span class="p">)))</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.title&quot;</span><span class="p">))</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+</code></pre></div>
+<ol>
+<li>You can pass the arguments directly using the translatable component, as explained <a href="https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator">here</a>.</li>
+<li>Alternatively, you can also use the ItemBuilder's placeholder system. This fills in placeholders across all components, i.e. the name and lore of the item.</li>
+</ol>
+</div>
+</div>
+</div>
 <p><img alt="" src="../assets/img/localization/1.png" width="500" /></p>
 <div class="admonition question">
 <p class="admonition-title">When are translations applied?</p>
@@ -690,13 +716,13 @@
         
         
           
-          <a href="../declarative-menu-design/" class="md-footer__link md-footer__link--next" aria-label="Next: Declarative Menu Design">
+          <a href="../declarative-menus/" class="md-footer__link md-footer__link--next" aria-label="Next: Declarative Menus">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Declarative Menu Design
+                Declarative Menus
               </div>
             </div>
             <div class="md-footer__button md-icon">
