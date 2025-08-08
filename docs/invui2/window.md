@@ -191,7 +191,7 @@ The anvil window can be created using `#!kotlin AnvilWindow.builder()`. It consi
             .open(player);
         ```
 
-    ![](assets/img/window/anvil_search.gif){width=500}
+    ![](assets/img/window/anvil_search.avif){width=500}
 
 ### Brewing Window
 
@@ -313,7 +313,7 @@ The cartography window can be created using `#!kotlin CartographyWindow.builder(
         window.get().open();
         ```
 
-    ![](assets/img/window/cartography_drawing.gif){width=500}
+    ![](assets/img/window/cartography_drawing.avif){width=500}
 
 ### Crafter Window
 
@@ -348,7 +348,7 @@ The crafting window can be created using `#!kotlin CraftingWindow.builder()`. It
             .open(player);
         ```
 
-    ![](assets/img/window/crafting_diamond_hoe.gif)
+    ![](assets/img/window/crafting_diamond_hoe.avif)
 
 
 ### Furnace Window
@@ -469,7 +469,7 @@ The merchant window can be created using `#!kotlin MerchantWindow.builder()`. It
             .open(player);
         ```
 
-    ![](assets/img/window/merchant_tabs.gif){width=750}
+    ![](assets/img/window/merchant_tabs.avif){width=750}
 
 ### Smithing Window
 
@@ -520,7 +520,7 @@ The stonecutter window can be created using `#!kotlin StonecutterWindow.builder(
             .open(player);    
         ```
 
-    ![](assets/img/window/stonecutter_buttons_as_inventory.gif){width=500}
+    ![](assets/img/window/stonecutter_buttons_as_inventory.avif){width=500}
 
 
 ## Using the player inventory
@@ -573,7 +573,7 @@ However, you can put any `9x4` gui as the lower gui, which will then be used ins
             .open(player);
         ```
     
-    ![](assets/img/window/other_player_inventory.gif)
+    ![](assets/img/window/other_player_inventory.avif)
 
 ## Fallback Window
 
@@ -601,4 +601,4 @@ When designing menus that span multiple windows, it may often make sense to have
         .open(player);
     ```
 
-![](assets/img/window/fallback.gif){width=500}
+![](assets/img/window/fallback.avif){width=500}

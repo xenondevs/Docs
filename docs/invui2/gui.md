@@ -117,7 +117,7 @@ When creating the `PagedGui`, you will need to tell InvUI where to put the page 
         .build();
     ```
 
-![](assets/img/gui/paged.gif){width=500}
+![](assets/img/gui/paged.avif){width=500}
 
 !!! info "`Markers.CONTENT_LIST_SLOT_HORIZONTAL` vs. `Markers.CONTENT_LIST_SLOT_VERTICAL`"
     
@@ -189,7 +189,7 @@ When creating the `PagedGui`, you will need to tell InvUI where to put the page 
 
         1. Names in `ItemBuilder` are in [MiniMessage](https://docs.advntr.dev/minimessage/format) format.
 
-    ![](assets/img/gui/paged2.gif){width=500}
+    ![](assets/img/gui/paged2.avif){width=500}
 
 ### Scroll Gui
 
@@ -270,7 +270,7 @@ Like for paged guis, the content slots can be defined by adding a content list s
         .build();
     ```
 
-![](assets/img/gui/scroll.gif){width=500}
+![](assets/img/gui/scroll.avif){width=500}
 
 ### Tab Gui
 
@@ -342,7 +342,7 @@ Like before, you can define the content list slots for the tab area using a cont
         .build();
     ```
 
-![](assets/img/gui/tab.gif){width=500}
+![](assets/img/gui/tab.avif){width=500}
 
 ??? example "Full code"
 
@@ -631,7 +631,7 @@ There are various built-in slot selectors available. In the following example, I
 
 To start an animation, call `#!kotlin Gui.playAnimation(animation)`.
 
-![](assets/img/gui/animation.gif){width=500}
+![](assets/img/gui/animation.avif){width=500}
 
 ??? example "Example: Playing animations on window open"
 
@@ -797,4 +797,4 @@ To start an animation, call `#!kotlin Gui.playAnimation(animation)`.
 
         1. By default, animations freeze the gui while they are running. This means that the player cannot interact with the gui until the animation is finished. Disabling freezing allows the user to switch to the next page before the animation finishes playing.
     
-    ![](assets/img/gui/animation2.gif){width=500}
+    ![](assets/img/gui/animation2.avif){width=500}

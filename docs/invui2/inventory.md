@@ -36,7 +36,7 @@ For most use cases, you will want to use a `VirtualInventory`. This is just a co
         .build();
     ```
 
-![](assets/img/inventory/virtual_inventory.gif){width=500}
+![](assets/img/inventory/virtual_inventory.avif){width=500}
 
 ### Inventory Events
 
@@ -74,7 +74,7 @@ In the following example, the `ItemPreUpdateEvent` is cancelled or handled in su
     });
     ```
 
-![](assets/img/inventory/item_pre_update_event.gif){width=500}
+![](assets/img/inventory/item_pre_update_event.avif){width=500}
 
 
 #### ItemPostUpdateEvent
@@ -101,7 +101,7 @@ In the following example, the `ItemPostUpdateEvent` is used to implement a trash
 
     1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
 
-![](assets/img/inventory/item_post_update_event.gif){width=500}
+![](assets/img/inventory/item_post_update_event.avif){width=500}
 
 #### InventoryClickEvent
 
@@ -133,7 +133,7 @@ In the following example, the `InventoryClickEvent` is used to change the number
     });
     ```
 
-![](assets/img/inventory/inventory_click_event.gif){width=500}
+![](assets/img/inventory/inventory_click_event.avif){width=500}
 
 ### Serialization
 
@@ -214,7 +214,7 @@ The `ReferencingInventory` can be used to reference a Bukkit inventory, such as 
         .open(player);
     ```
 
-![](assets/img/inventory/invsee.gif)
+![](assets/img/inventory/invsee.avif)
 
 ## Other configuration options
 
@@ -266,7 +266,7 @@ In the following example, the gui priorities are configured in such a way that i
         .build();
     ```
 
-![](assets/img/inventory/gui_priority.gif){width=500}
+![](assets/img/inventory/gui_priority.avif){width=500}
 
 ### Iteration order
 
@@ -310,7 +310,7 @@ You can change the iteration to a completely custom sequence of slots, but there
         .build();
     ```
 
-![](assets/img/inventory/iteration_order.gif){width=500}
+![](assets/img/inventory/iteration_order.avif){width=500}
 
 ### Background
 
@@ -346,7 +346,7 @@ The slots in your inventory may be empty, but this does not mean that they have 
         .build();
     ```
 
-![](assets/img/inventory/background.gif){width=500}
+![](assets/img/inventory/background.avif){width=500}
 
 !!! warning "Item dragging does not work on slots with a background."
 
@@ -394,4 +394,4 @@ The following example uses a [scroll gui](gui.md#scroll-gui) to display a large 
         .build();
     ```
 
-![](assets/img/inventory/obscured.gif){width=500}
+![](assets/img/inventory/obscured.avif){width=500}

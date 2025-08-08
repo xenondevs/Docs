@@ -65,7 +65,7 @@ Of course, in a real-world scenario, you'll want to update the visual representa
         .build();
     ```
     
-    1. Uses `AtomicInteger` because Java lambdas capture by value (requires final or effectively final variables). Alternatively, you may want to store the state in the field of a class.
+    1. Uses `AtomicInteger` because Java lambdas capture by value (requires final or effectively final variables). Alternatively, you may want to store the state in a field of a class.
 
 
 This can be simplified using `updateOnClick`:
@@ -90,7 +90,7 @@ This can be simplified using `updateOnClick`:
         .build();
     ```
 
-![](assets/img/item/updateOnClick.gif){width=500}
+![](assets/img/item/updateOnClick.avif){width=500}
 
 In certain scenarios, it may make sense to update your item based on a timer:
 
@@ -110,7 +110,7 @@ In certain scenarios, it may make sense to update your item based on a timer:
         .build();
     ```
 
-![](assets/img/item/updatePeriodically.gif){width=500}
+![](assets/img/item/updatePeriodically.avif){width=500}
 
 There are also various methods available on gui-level that allow mass-updating multiple items at the same time. 
 
@@ -218,7 +218,7 @@ Minecraft's bundle item adds unique inventory interactions to the game. You can 
             .open(player);
         ```
     
-    ![](assets/img/item/bundleSelect.gif){width=500}
+    ![](assets/img/item/bundleSelect.avif){width=500}
 
 ## Bound Item
 

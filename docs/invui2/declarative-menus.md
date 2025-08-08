@@ -75,4 +75,4 @@ anvilWindow(player) {
 1. The `by` infix function is used to assign a value to the key `x`. You can also set other ingredient types like `Item` or `Inventory`.
 2. `#!kotlin text: Provider<String>` is brought into scope by the `anvilWindow` function. This provider contains to up-to-date anvil input text. In this DSL, `by` infix functions are used instead of assignment (`=`) to allow overloading. For example, you can also set a `List<Item>` directly, if you want to use a static list of items.
 
-![](assets/img/window/anvil_search.gif){width=500}
+![](assets/img/window/anvil_search.avif){width=500}
