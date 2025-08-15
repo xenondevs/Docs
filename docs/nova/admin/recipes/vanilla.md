@@ -73,7 +73,7 @@ The following recipe would allow players to either use paper or an iron plate to
 
 ## Furnace Recipes
 
-Directories: `furance`, `blast_furnace`, `smoker`, `campfire`
+Directories: `furnace`, `blast_furnace`, `smoker`, `campfire`
 
 This is an example recipe for smelting iron dust into iron ingots:
 
