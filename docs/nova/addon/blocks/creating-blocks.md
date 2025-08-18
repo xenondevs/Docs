@@ -139,9 +139,8 @@ object Blocks {
     val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
         stateProperties(DefaultScopedBlockStateProperties.FACING_HORIZONTAL)
         
-        models {
-            stateBacked(BackingStateCategory.MUSHROOM_BLOCK)
-            selectModel { defaultModel.rotated() } // (1)!
+        stateBacked(BackingStateCategory.MUSHROOM_BLOCK) {
+           defaultModel.rotated() // (1)!
         }
     }
    
