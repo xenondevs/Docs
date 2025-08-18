@@ -4247,13 +4247,12 @@ and use that to rotate the model:</p>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">EXAMPLE_BLOCK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleAddon</span><span class="p">.</span><span class="na">block</span><span class="p">(</span><span class="s">&quot;example_block&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">stateProperties</span><span class="p">(</span><span class="n">DefaultScopedBlockStateProperties</span><span class="p">.</span><span class="na">FACING_HORIZONTAL</span><span class="p">)</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="n">models</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="n">stateBacked</span><span class="p">(</span><span class="n">BackingStateCategory</span><span class="p">.</span><span class="na">MUSHROOM_BLOCK</span><span class="p">)</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="n">selectModel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">defaultModel</span><span class="p">.</span><span class="na">rotated</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// (1)!</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="n">stateBacked</span><span class="p">(</span><span class="n">BackingStateCategory</span><span class="p">.</span><span class="na">MUSHROOM_BLOCK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">           </span><span class="n">defaultModel</span><span class="p">.</span><span class="na">rotated</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
 </code></pre></div>
 <ol>
 <li>Automatically rotates your model based on <code>DefaultBlockStateProperties.FACING</code> or <code>DefaultBlockStateProperties.AXIS</code>.
