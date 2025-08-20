@@ -4,7 +4,7 @@
 
 When designing non-trivial menus, managing state and performing manual updates can become difficult. To help with this, InvUI provides a way to design menus in a declarative / reactive fashion.
 
-For that, InvUI uses `#!kotlin Provider<T>` and `#!kotlin MutableProvider<T>` from [commons-provider](https://commons.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/index.html), with which you can model a reactive data flow. This means that you can have a top `#!kotlin Provider<T>` that holds your state and then derive other providers from it, like transforming a `String` to an `ItemProvider`, which can then be used for display purposes in a gui. The derived providers will automatically update when the top provider (i.e. your state) changes.
+For that, InvUI uses `#!kotlin Provider<T>` and `#!kotlin MutableProvider<T>` from [commons-provider](https://commons-provider.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/index.html), with which you can model a reactive data flow. This means that you can have a top `#!kotlin Provider<T>` that holds your state and then derive other providers from it, like transforming a `String` to an `ItemProvider`, which can then be used for display purposes in a gui. The derived providers will automatically update when the top provider (i.e. your state) changes.
 
 ```kotlin
 val p = mutableProvider(1)
@@ -62,7 +62,7 @@ anvilWindow(player) {
         "x x x x x x x x x"
     ) {
         'x' by Markers.CONTENT_LIST_SLOT_HORIZONTAL // (1)!
-        content by this@anvilWindow.text.map { search -> // (2)!
+        content by text.map { search -> // (2)!
             Material.entries
                 .filter { !it.isLegacy && it.isItem }
                 .filter { it.name.contains(search, true) }
