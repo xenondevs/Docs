@@ -87,6 +87,7 @@ This can be done either automatically or manually:
                 key_id: "" # Your S3 key id
                 key_secret: "" # Your S3 key secret
                 force_path_style: false # Forces path style URLs (Defaults to false)
+                disable_chunked_encoding: false # Disables chunked encoding (Defaults to false)
             ```
 
 === "Manual resource pack hosting"
