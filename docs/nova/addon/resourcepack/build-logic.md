@@ -1,181 +1,208 @@
 # Custom resource pack build logic
 
-To run code during the resource pack build process, you'll need to register a `PackTask`.  
-Pack tasks are functions annotated with `#!kotlin @PackTask` and need to be located in a class that implements the
-`PackTaskHolder` interface. Those holders then need to be registered
-with `#!kotlin ResourcePackBuilder.registerTaskHolders`.
+Each resource pack to be generated has its own `ResourcePackBuildConfiguration`, which consists of tasks to be executed in a specific order. Addons can add custom tasks to existing resource pack configurations, or create their own ones to generate separate resource packs.
 
-```kotlin
-ResourcePackBuilder.registerTaskHolders(::CustomTaskHolder)
-```
+!!! info "The build process takes place entirely in an [in-memory file system](https://github.com/google/jimfs)."
 
-```kotlin title="CustomTaskHolder.kt"
-class CustomTaskHolder(private val builder: ResourcePackBuilder) : PackTaskHolder {
-    
-    @PackTask
-    fun customTask() {
-        // Do something
+## PackBuildData
+
+`PackBuildData` contains data that can be shared between different `PackTasks`.
+
+??? example
+
+    ```kotlin
+    class ExampleBuildData : PackBuildData {
+        val filesToWrite = HashMap<String, String>()
     }
+    ```
 
-}
-```
+!!! example "Notable built-in `PackBuildData`"
+
+    Prefer using these instead of direct file access to avoid duplicating work.
+
+    === "ModelContent"
+    
+        Provides you with access to block and item models. Everything related to the creation of custom models should run through this.
+        
+        Using `ModelContent#rememberUsage`, you can mark a model as used, so it (and all its parents) will be included in the resource pack. This is performed automatically for all models that are assigned to `NovaItems` or `NovaBlocks`.
+    
+    === "LanguageContent"
+    
+        Provides you with access to language files.
+        
+        ```kotlin
+        override suspend fun run() {
+            val languageContent = builder.getBuildData<LanguageContent>()
+            languageContent.setTranslation("en_us", "translation.key", "Hello World")
+        }
+        ```
+    
+    === "FontContent"
+    
+        Provides you with access to fonts.
+        
+        `vanillaFonts`
+        
+        This map shows the fonts that are part of the base game assets. These fonts are not included in Nova's resource pack.
+        
+        `customFonts`
+        
+        This map stores custom fonts and custom overrides to existing fonts from base packs, Nova, and addons. You can get and create custom fonts using `#!kotlin fontContent.get`, `#!kotlin fontContent.getOrCreate`, `#!kotlin fontContent.add`, etc.
+        
+        `mergedFonts`
+        
+        This map shows both `vanillaFonts` and `customFonts` merged together in the same way they'd be merged for the client. This might be useful if you want to add custom characters to the `minecraft:default` font without overriding existing characters. Using `#!kotlin Font.findFirstUnoccupied` or `#!kotlin Font.findFirstUnoccupiedRange` you could then search for an unoccupied range of code points.
+    
+    === "MovedFontContent"
+    
+        Allows you to request [vertically moved fonts](../fonts/fonts.md#vertical-movement).
+        
+        ```kotlin
+        override suspend fun run() {
+            val movedFontContent = builder.getBuildData<MovedFontContent>()
+            movedFontContent.requestMovedFonts(ResourcePath("namespace", "name"), 0..19)
+        }
+        ```
+    
+    === "TextureIconContent"
+    
+        Allows you to request textures for Nova's texture-icon font.
+        
+        ```kotlin
+        override suspend fun run() {
+            val textureIconContent = builder.getBuildData<TextureIconContent>()
+            textureIconContent.addIcons("minecraft:item/diamond", "minecraft:item/emerald")
+        }
+        ```
+        
+        They can then be retrieved later:
+        
+        ```kotlin
+        val component: Component = TextureIconContent.getIcon(Key.key("minecraft:item/diamond")).component
+        ```
 
 ## PackTask
 
-The `#!kotlin @PackTask` annotation has three optional parameters: `#!kotlin stage: BuildStage`,
-`#!kotlin runAfter: Array<String>` and `#!kotlin runBefore: Array<String>`.
+`PackTasks` contain the actual logic to be run during the build process. They can use the data from registered `PackBuildData` instances by retrieving them using `ResourcePackBuilder#getBuildData`. Dependencies between tasks can be specified by overriding the `runsAfter` and `runsBefore` properties. If necessary, tasks can also explicitly specify the build stage (either post- or pre-world) by overriding the `buildStage` property.
 
-### Build Stages
+If the `NovaDev` system property is set (`-DNovaDev`), Nova will dump the task dependency graph to `debug/nova/resource_pack_<id>.dot`.
 
-There are two build stages: `PRE_WORLD` and `POST_WORLD`. This is because some logic needs to be done before the world
-has been loaded (such as assigning block states to nova block types) but some other logic might need to interact with
-other plugins that are only loaded after the world has been loaded (for example rendering the WAILA textures for blocks
-of custom item services).  
-By default, the stage is `#!kotlin BuildStage.AUTOMATIC`, which means that the build stage will be determined based
-on the given `runAfter` and `runBefore` dependencies. If there are no dependencies, the stage will be `PRE_WORLD`.
+??? abstract "Build Stages"
 
-### Dependencies
+    There are two build stages: `PRE_WORLD` and `POST_WORLD`. This is because some logic needs to be done before the world has been loaded (such as assigning block states to nova block types) but some other logic might need to interact with things that are only possible after the world has been loaded. By default, the stage is `#!kotlin BuildStage.AUTOMATIC`, which means that the build stage will be determined based on the given `runsAfter` and `runsBefore` dependencies. If there are no dependencies, the stage will be `PRE_WORLD`.
 
-You can define which tasks should be run before or after your task using the `runAfter` and `runBefore` parameters.  
-This is quite similar to the [Initialization dependencies](../misc/initialization.md#initialization-dependencies), with
-the exception that you don't define classes but task names. Tasks are named after their simple class- and function name,
-separated by a `#`. So if you have a class `CustomTaskHolder` with the function `customTask`, the task name would be
-`CustomTaskHolder#customTask`. The benefit of using strings instead of class references is that you can configure
-dependencies to specific tasks instead of the whole task holder class.
 
-As an example, Nova's `EnchantmentContent#write` task requires language files to be loaded, certain font characters to
-have been created and char sizes to be calculated, but it also writes to the language files, which means that it needs
-to run before the `LanguageContent#write` task. This is how it's configured:
+??? example
 
-```kotlin
-@PackTask(
-    runAfter = ["LanguageContent#loadLangFiles", "EnchantmentContent#createBackgroundChars", "CharSizeCalculator#calculateCharSizes"],
-    runBefore = ["LanguageContent#write"]
-)
-private fun write() {
-    // ...
-}
-```
+    The following tasks use the previously created `ExampleBuildData` to share data between them. `ExampleChangeValueTask` writes to the `filesToWriteMap`, then `ExampleWriteTask` writes everything to disk.
 
-_This is just an example, EnchantmentContent was made obsolete with data-driven enchantments in Minecraft 1.21_
-
-## ResourcePackBuilder
-
-As shown in the example above, you'll register a task holder constructor that accepts a `ResourcePackBuilder` instance
-as parameter. This builder instance organizes the build process and provides you with access to other task holders.
-
-### Accessing files
-
-Resource pack building might take place entirely in memory or on disk in the `plugins/Nova/resource_pack/.build/`
-directory,
-depending on the server configuration. In-memory resource pack generation is implemented using
-[JIMFS](https://github.com/google/jimfs) and is the reason why all file access runs over `java.nio.Path` instead of
-`java.io.File`.  
-You can resolve any file using `ResourcePackBuilder#resolve`.
-
-### Retrieving `PackTaskHolder` instances
-
-When creating a custom task, you might want to interact with existing task holders from your own addon, Nova, or other
-addons. To retrieve a task holder instance, call `#!kotlin resourcePackBuilder.getHolder<HolderType>()` with the
-holder class as type parameter.
-
-```kotlin
-class CustomTaskHolder(private val builder: ResourcePackBuilder) : PackTaskHolder {
+    ```kotlin
+    class ExampleChangeValueTask(
+        private val builder: ResourcePackBuilder
+    ) : PackTask {
+        
+        override val runsBefore = setOf(ExampleWriteTask::class) // (1)!
+        
+        override suspend fun run() {
+            val buildData = builder.getBuildData<ExampleBuildData>()
+            buildData.filesToWrite["out.txt"] = "Hello World!"
+        }
     
-    @PackTask
-    fun customTask() {
-        val languageContent = builder.getHolder<LanguageContent>()
-        languageContent.setTranslation("en_us", "translation.key", "Hello World")
     }
+    ```
+    
+    1. This task runs before `ExampleWriteTask`. Without this dependency, the execution order would be undefined and `ExampleWriteTask` may be run before anything was added to the `filesToWrite` map.
+    
+    ```kotlin
+    class ExampleWriteTask(
+        private val builder: ResourcePackBuilder
+    ) : PackTask {
+        
+        override suspend fun run() {
+            for ((pathString, content) in builder.getBuildData<ExampleBuildData>().filesToWrite) {
+                val path = builder.resolve(pathString)
+                path.createParentDirectories()
+                path.writeText(content)
+            }
+        }
+    
+    }
+    ```
+    
+    You can also make `PackTasks` inner classes of your own BuildData like this:
+    
+    ```kotlin
+    class ExampleBuildData(
+        private val builder: ResourcePackBuilder
+    ) : PackBuildData {
+    
+        val filesToWrite = HashMap<String, String>()
+        
+        inner class ChangeValue : PackTask {
+            
+            override val runsBefore = setOf(Write::class)
+            
+            override suspend fun run() {
+                filesToWrite["out.txt"] = "Hello World!"
+            }
+            
+        }
+        
+        inner class Write : PackTask {
+            
+            override suspend fun run() {
+                for ((pathString, content) in filesToWrite) {
+                    val path = builder.resolve(pathString)
+                    path.createParentDirectories()
+                    path.writeText(content)
+                }
+            }
+            
+        }
+    
+    }
+    ```
 
+## PackZipper
+
+Generates the resource pack `.zip` file from the in-memory file system of the resource builder. You can switch to a custom `PackZipper` implementation if needed via `#!kotlin ResourcePackConfiguration#setZipper`.
+
+## PackPostProcessor
+
+Tasks that are run after the resource pack has been zipped. May be useful to do post-processing on the generated resource pack using external tools. By default, Nova has no post-processors. You can add post-processors to a pack configuration using `#!kotlin ResourcePackConfiguration#registerPostProcessor`.
+
+## Resource filters
+
+Resource filters are used to filter out resources that should not be included in the resource pack. The resource filters configured in Nova's `config.yml` only affect the `nova:core` resource pack configuration. Addons can register resource filters to existing or additional resource pack configurations via `#!kotlin ResourcePackConfiguration#registerResourceFilters`.
+
+During the build process, you can retrieve the filters using `#!kotlin ResourcePackBuilder#getResourceFilters(stage)`. Depending on what your task is doing, it may be necessary for you to manually check them for exclusions.
+
+## Modifying existing pack configurations
+
+This adds additional tasks to the existing `nova:core` resource pack configuration:
+
+```kotlin
+ResourcePackBuilder.configure(ResourcePackBuilder.CORE_PACK_ID) {
+    registerBuildData(::ExampleBuildData)
+    registerTask(::ExampleChangeValueTask)
+    registerTask(::ExampleWriteTask)
 }
 ```
 
-### Retrieving resource filters
+## Creating a new pack configuration
 
-Resource filters are used to filter out resources that should not be included in the resource pack.
-They can be configured by server admins and addon developers
-using `#!kotlin ResourcePackBuilder.registerResourceFilter`.  
-During the build process, you can retrieve the filters using `#!kotlin resourcePackBuilder.getResourceFilters(stage)`.
-If you write additional files, you should check whether they are configured to be excluded.
-
-## Important built-in task holders
-
-The following are the most important built-in task holders, which you might need to interact with in code.  
-You should prefer using these instead of direct file access, because they would probably overwrite your changes and are
-generally more convenient and performant to use.
-
-!!! abstract "All other pack tasks"
-
-    A list of all pack tasks and their execution order will be shown in the console every time the resource pack is built.
-
-### ModelContent
-
-Provides you with access to block and item models.
-Everything related to the creation of custom models should run through this.
-
-Using `ModelContent#rememberUsage`, you can mark a model as used, so it (and all its parents) will be included in
-the resource pack. This is performed automatically for all models that are assigned to `NovaItems` or `NovaBlocks`.
-
-### LanguageContent
-
-Provides you with access to language files.
+This registers a new resource pack configuration with the key `example:my_resource_pack` that runs only the tasks registered there:
 
 ```kotlin
-@PackTask
-fun task() {
-    val languageContent = builder.getHolder<LanguageContent>()
-    languageContent.setTranslation("en_us", "translation.key", "Hello World")
+ResourcePackBuilder.register(Key.key("example", "my_resource_pack")) {
+    registerBuildData(::ExampleBuildData)
+    registerTask(::ExampleChangeValueTask)
+    registerTask(::ExampleWriteTask)
+    
+    registerTask(::PackMcMetaTask)
 }
 ```
 
-### FontContent
+## Selectively apply packs to players
 
-Provides you with access to fonts.
-
-#### `vanillaFonts`
-
-This map shows the fonts that are part of the base game assets. These fonts are not included in Nova's resource pack.
-
-#### `customFonts`
-
-This map stores custom fonts and custom overrides to existing fonts from base packs, Nova, and addons.  
-You can get and create custom fonts using `#!kotlin fontContent.get`, `#!kotlin fontContent.getOrCreate`,
-`#!kotlin fontContent.add`, etc.
-
-#### `mergedFonts`
-
-This map shows both `vanillaFonts` and `customFonts` merged together in the same way they'd be merged for the client.  
-This might be useful if you want to add custom characters to the `minecraft:default` font without overriding existing
-characters. Using `#!kotlin Font.findFirstUnoccupied` or `#!kotlin Font.findFirstUnoccupiedRange` you could then search
-for an unoccupied range of code points.
-
-### MovedFontContent
-
-Allows you to request [vertically moved fonts](../fonts/fonts.md#vertical-movement).
-
-```kotlin
-@PackTask
-fun task() {
-    val movedFontContent = builder.getHolder<MovedFontContent>()
-    movedFontContent.requestMovedFonts(ResourcePath("namespace", "name"), 0..19)
-}
-```
-
-### TextureIconContent
-
-Allows you to request textures for Nova's texture-icon font.
-
-```kotlin
-@PackTask
-fun task() {
-    val textureIconContent = builder.getHolder<TextureIconContent>()
-    textureIconContent.addIcons("minecraft:item/diamond", "minecraft:item/emerald")
-}
-```
-
-They can then be retrieved later:
-
-```kotlin
-val component: Component = TextureIconContent.getIcon(Key.key("minecraft:item/diamond")).component
-```
+By default, the resource pack will be sent to all players. You can disable this by setting `#!kotlin isEnabledByDefault = false` in the pack configuration. Then, you can selectively apply the resource pack to players using `#!kotlin ResourcePackManager.enablePack(player, id)`,  `#!kotlin ResourcePackManager.disablePack(player, id)`, `#!kotlin ResourcePackManager.resetPack(player, id)`. You can also leave the pack as enabled by default, then disable it for select players.

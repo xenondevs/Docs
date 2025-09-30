@@ -28,15 +28,11 @@ override val baseDataComponents: Provider<DataComponentMap> = buildDataComponent
 }
 ```
 
-### Vanilla material properties
-
-Some functionality can not yet be achieved by using data components, as it is still bound to the vanilla item type.
-For such cases, you can specify [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html)
-which will change the **client-side** item type.
-
 ### Client-side item stack
 
-To modify the [client-side item](using-nova-item.md#client-side-items), you can override `modifyClientSideStack`.
+Some functionality is still hardcoded to the item type. For such cases, you can change the client-side item type via [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html) or by overriding `modifyClientSideItemType`.
+
+To modify the [client-side item stack](using-nova-item.md#client-side-items), you can override `modifyClientSideStack`.
 The data of the client-side stack will not be stored in the world and is only intended for display purposes.
 Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the `DAMAGE` component
 will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova
@@ -46,6 +42,21 @@ via `/nova advancedTooltips`).
 
     You can inspect the client-side version of a server-side item stack by creating a client-side copy via
     `/nova debug giveClientsideStack`, then run `/paper dumpitem` to print the item data in chat.
+
+### Item using (holding right-click)
+
+You can make your item usable (i.e. add a right-click-and-hold action) in two ways:
+
+- Add the `Consumable` component to your `baseDataComponents`
+- Change the client-side item type via `modifyClientSideItemType` to an item type that is usable, for example `minecraft:bow`, and override the server-side use duration via `modifyUseDuration`.
+
+??? question "How does item using work?"
+
+    Item using is generally controlled by the server. When a player sends an interaction packet, the server can decide that the player should start using an item. For Nova items, this will eventually call `modifyUseDuration` of your item behavior. You can also trigger using manually by calling `#!kotlin LivingEntity#startUsingItem(EquipmentSlot)`.
+
+    However, the server does not control the use animation directly. The use animation can only be set via the `minecraft:consumable` data component or by using a client-side item type that is hardcoded for a specific use animation, like `minecraft:bow`. Additionally, some item types have specialized using animations (like the zoom-in effect of `minecraft:bow`) that cannot be replicated by just the consumable component. Problematically, doing this will cause client-side predictions, so disabling the usability of an item (e.g. for a custom bow implementation that only works with non-standard arrows) can only be achieved by dynamically updating the item stack in such a way that the client won't predict it to be usable anymore (e.g. by changing the client-side item type or by removing the consumable component). This may require you to repeatedly run logic in something like `handleEquipmentTick` and update the item stack appropriately if necessary.
+
+While an entity is using the item `handleUseTick` is called. If using is aborted early, `handeUseStopped` has called. Otherwise, `handleUseFinished` is called and `modifyUseRemainder` can be used to override the remaining item stack.
 
 ### ItemBehaviorHolder and ItemBehaviorFactory
 

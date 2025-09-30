@@ -1,14 +1,16 @@
 # Setting up Nova
 
-Before installing Nova, please make sure that you're running a [supported server software](compatibility/index.md#compatible-server-software).
+Before installing Nova, please make sure that you're running a [supported server software](compatibility/index.md#compatible-server-software).  
+
+!!! warning "Note that Nova changes some blocks in your world in order to implement custom blocks. This will cause certain blocks to lose functionality if you remove Nova again (e.g. note blocks resetting, leaves not decaying). Therefore, you should back up your server before installing Nova."
 
 ## Step 1: Installing Nova and addons
 
-* Like any other plugin, the Nova plugin jar file downloaded from [Hangar](https://hangar.papermc.io/xenondevs/Nova), [Modrinth](https://modrinth.com/plugin/nova-framework), [GitHub](https://github.com/xenondevs/Nova) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server.
-* Since 0.18, addons are loaded as plugins. Therefore, you can also just put them into the `plugins/` folder.
+* Like any other plugin, the Nova plugin jar file downloaded from [Hangar](https://hangar.papermc.io/xenondevs/Nova), [Modrinth](https://modrinth.com/plugin/nova-framework), [GitHub](https://github.com/xenondevs/Nova) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server. Addons are also placed in the `plugins` folder.
     * Some addons might require other addons in order to work.
         If this is the case, an error in the console will notify you of the missing addons:  
         `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
+* Add `-javaagent:plugins/<name of Nova jar>` to the JVM arguments (before `-jar`).
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
@@ -17,101 +19,75 @@ Please follow Step 2 to configure resource pack hosting.
 
 ## Step 2: Configure resource pack hosting
 
-Due to the way server resource packs work, it is required to upload them to a web server first before they can be sent to players.  
-This can be done either automatically or manually:
+Server resource packs need to be hosted on a web server in order to be sent to players. Because if this, you'll need to configure an auto uploader in `plugins/Nova/configs/config.yml` under `resource_pack` > `auto_upload`, which automatically uploads the resource packs to a web server.
 
-=== "Automatic resource pack hosting (recommended)"
+!!! info "Available Upload Services"
+    
+    === "Self-hosted"
+    
+        If you're able to open a port on your server, this option will make the most sense for you.
+        Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
+    
+        Example config:
+        
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: self_host
+            port: 38519 # The port on which the web server will be running, needs to be open to the Internet. (Defaults to 38519)
+        ```
+    
+        !!! info "`host` parameter"
+    
+            You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
+            If you are on a local server, you will need to set `host: 127.0.0.1` and add `append_port: true`.
+    
+        !!! warning "`append_port` parameter"
+    
+            When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
+            If this is not the case, set `append_port: true`.
 
-    The auto uploader automatically uploads the  resource pack after it changes.
-    You can configure it in the main config file `plugins/Nova/configs/config.yml` under `resource_pack` > `auto_upload`.
+    === "Custom Multipart Request"
     
-    !!! info "Available Upload Services"
-        
-        === "Self-hosted"
-        
-            If you're able to open a port on your server, this option will make the most sense for you.
-            Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
-        
-            Example config:
-            
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: self_host
-                port: 12345 # The port on which the web server will be running, needs to be open to the Internet.
-            ```
-        
-            !!! info "`host` parameter"
-        
-                You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
-                If you are on a local server, you will need to set `host: 127.0.0.1`
-        
-            !!! warning "`append_port` parameter"
-        
-                When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
-                If this is not the case, set `append_port: true`.
-    
-        === "Custom Multipart Request"
-        
-            For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
- 
-            Example: [upload php script](https://gist.github.com/ByteZ1337/6582b8c31789602119c55770cb095455)
-    
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: custom_multi_part
-                url: https://example.com/upload.php
-                filePartName: pack
-                extraParams:
-                  key: "" # This key also needs to be set in the php script mentioned above
-            ```
-        
-        === "Amazon S3"
-    
-            If you are using Amazon S3, you can use the S3 service to upload the resource pack. **You have to expose your S3 
-            bucket to the Internet yourself.**
-    
-            Example config:
-            
-            ```yaml title="plugins/Nova/configs/config.yml"
-            resource_pack:
-              auto_upload:
-                enabled: true
-                service: amazon_s3
-                endpoint: s3.amazonaws.com # The endpoint of your S3 service
-                region: eu-central-1 # The region of your S3 endpoint
-                bucket: examplebucket # The name of your S3 bucket
-                key_id: "" # Your S3 key id
-                key_secret: "" # Your S3 key secret
-                force_path_style: false # Forces path style URLs (Defaults to false)
-                disable_chunked_encoding: false # Disables chunked encoding (Defaults to false)
-            ```
+        For more advanced users, Nova can also perform a multipart request to a server of your choice and parse the response using a regex.
 
-=== "Manual resource pack hosting"
+        Example: [upload php script](https://gist.github.com/NichtStudioCode/d3e799bd59f53431bc67b2881df3b094)
 
-    For manual resource pack hosting, upload the resource pack found under `plugins/Nova/resource_pack/ResourcePack.zip` to a file uploader of your choice.
-    Then set the url to download the resource pack in the main config file `plugins/Nova/configs/config.yml` under `resource_pack` > `url`:
-    
-    ```yaml title="plugins/Nova/configs/config.yml"
-    resource_pack:
-      url: https://example.com/resource_pack.zip
-    ```
-    
-    !!! warning "URL needs to be a direct download link"
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: custom_multi_part
+            url: https://example.com/upload/
+            file_part_name: pack
+            extra_params:
+              key: "" # This key also needs to be set in the php script mentioned above
+            url_regex: (.*) # The regex to parse the response, the first capturing group is used as the download URL. (Defaults to (.*))
+        ```
 
-        Minecraft requires the server resource pack to be a direct download link, meaning it
-        cannot have any redirects or visual elements (like buttons, text, etc.) on the page.
-        Direct download links often include the file name and extension in the url, so for
-        resource packs, they would end with `.zip`.
+    === "S3"
 
-    !!! bug "Prefer using an auto-upload service instead"
-    
-        You will need to manually re-upload the resource pack every time it is regenerated, which is when you update Nova,
-        any of its addons or when you change config values that affect resource pack generation.  
-        **This is why you should prefer using an auto-upload service instead.**
+        If you are using Amazon S3 or any other cloud object storage with an S3-compatible API, you can use the S3 service to upload the resource pack. **You have to expose your S3 
+        bucket to the Internet yourself.**
+
+        Example config:
+        
+        ```yaml title="plugins/Nova/configs/config.yml"
+        resource_pack:
+          auto_upload:
+            enabled: true
+            service: s3
+            endpoint: s3.amazonaws.com # The endpoint of your S3 service
+            region: eu-central-1 # The region of your S3 endpoint
+            bucket: examplebucket # The name of your S3 bucket
+            key_id: "" # Your S3 key id
+            key_secret: "" # Your S3 key secret
+            # -- optional parameters --
+            acl: public-read # The ACL to use for the uploaded file (Defaults to none)
+            force_path_style: false # Forces path style URLs (Defaults to false)
+            disable_chunked_encoding: false # Disables chunked encoding (Defaults to false)
+        ```
 
 ## (optional) resource pack merging
 

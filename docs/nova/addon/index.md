@@ -18,7 +18,7 @@ Change `rootProject.name` to your addon id.
 Change `group` to your group.  
 Change `version` to your version.
 
-In the `addon` task, set `main` to your addon main class.
+In the `addon` extension, set `main` to your addon main class.
 
 ## Adding dependencies
 
@@ -40,7 +40,7 @@ gradlew addonJar -PoutDir="<Path to your addons directory here>"
 
 ## Enabling dev mode
 
-To enable dev mode, add the `NovaDev` argument using `-DNovaDev`.  
+To enable dev mode, set the `NovaDev` system property using `-DNovaDev`.  
 This allows you to bypass some restrictions like using addons that require a different version of Nova and
 enables general-purpose debugging functionality.
 

@@ -57,7 +57,7 @@ object Example {
     
     @InitFun
     private fun init() {
-        //Run during PRE_PACK init stage
+        // Run during PRE_PACK init stage
     }
   
     @DisableFun
