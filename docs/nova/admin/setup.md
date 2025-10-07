@@ -114,12 +114,12 @@ You can define "base packs", which are resource packs that Nova should merge, in
 
     3. Make sure that the listed base pack has been properly generated. (For example, ItemsAdder requires running ``/iazip`` to generate its resource pack.)
     4. Reload the config using `/nova reload configs` or restart the server.
-    5. Regenerate the resource pack using `/nova resourcePack create`.
+    5. Regenerate the resource pack using `/nova resourcePack build`.
 
 === "With Folder"
 
     1. Make sure to turn off the resource pack prompt in the config of the plugin providing it.
     2. Copy the resource pack directory or zip file to `plugins/Nova/resource_pack/base_packs/`.
-    3. Regenerate the resource pack using `/nova resourcePack create`.
+    3. Regenerate the resource pack using `/nova resourcePack build`.
 
 !!! info "You can add as many base packs as you want."
