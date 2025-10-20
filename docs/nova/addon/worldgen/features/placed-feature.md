@@ -255,6 +255,35 @@ max number of steps is reached. If no matching block is found, empty is returned
     }
     ```
 
+### `minecraft:fixed_placement`
+
+Returns back the given positions if they're in the current chunk. Empty otherwise.
+
+| Name     | Description                  |
+|----------|------------------------------|
+| `height` | A list of x, y, z positions. |
+
+=== "Kotlin"
+
+    ```kotlin title="Example"
+    FixedPlacement.of(
+        BlockPos(0, 64, 0),
+        BlockPos(10, 70, -5)
+    )
+    ```
+
+=== "Json"
+
+    ```json title="Example"
+    {
+      "type": "minecraft:fixed_placement",
+      "positions": [
+        [0, 64, 0],
+        [10, 70, -5]
+      ]
+    }
+    ```
+
 ### `minecraft:height_range`
 
 Takes the input position and sets the y coordinate to a value provided by the given [height provider](../types/height-provider.md).
