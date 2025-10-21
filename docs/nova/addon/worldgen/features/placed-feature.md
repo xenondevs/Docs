@@ -99,8 +99,18 @@ private boolean placeWithContext(PlacementContext ctx, RandomSource random, Bloc
 }
 ```
 
-So you can also think of these positions as attempts to place the configured feature. A list of vanilla placement
-modifiers can be found below.
+??? example "Animated example"
+
+    Below is an animated example of how placement modifiers work together to generate a list of position to place a feature 
+    at. The example uses the following placement modifiers:
+
+    1. [`minecraft:count`](#minecraftcount) with a count of `4`
+    2. [`minecraft:in_square`](#minecraftin_square)
+    3. [`minecraft:height_range`](#minecraftheight_range) with the [`trapezoid`](../types/height-provider.md#minecrafttrapezoid) height provider between y = `-32` and y = `30`
+
+    ![](../../../assets/img/worldgen/placement_modifier_example.avif)
+
+A list of vanilla placement modifiers can be found below.
 
 ### `minecraft:biome`
 
