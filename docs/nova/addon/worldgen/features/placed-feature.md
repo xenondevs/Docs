@@ -546,7 +546,7 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
 
 You can also implement your own custom `PlacementModifiers` by extending Minecraft's `PlacementModifier` class. You can
 then register your custom `PlacementModifier` via the `FeatureRegistry` either by creating a `PlacementModifierType` or
-by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codecs)
+by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codec)
 page for more information on Mojang's serialization system.  
 Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementModifier` as an example:
 

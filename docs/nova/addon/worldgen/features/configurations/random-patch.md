@@ -48,7 +48,7 @@ As an example, here's the random patch used to generate dead bushes in the badla
     
     1. The `simpleRandomPatchConfiguration` function creates a `RandomPatchConfiguration` with the given tries and placed feature.
        `xz_spread` and `y_spread` are set to `7` and `3` respectively.
-    2. The `onlyWhenEmpty` function creates an [inlined `PlacedFeature`](../../placed-feature#inlined) that only places the feature when the block at the position is air.
+    2. The `onlyWhenEmpty` function creates an [inlined `PlacedFeature`](../placed-feature#inlined) that only places the feature when the block at the position is air.
     3. Place single dead bushes.
     
     ```kotlin title="PlacedFeatures.kt"

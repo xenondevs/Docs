@@ -2,12 +2,12 @@
 
 !!! info "Check out the `Codecs` page"
 
-    Make sure to check out the [Codecs](../../codecs) page before creating a custom feature.
+    Make sure to check out the [Codecs](../codec) page before creating a custom feature.
 
 ## 1. Empty Feature
 
 To create a custom feature, you'll need to create a new object and extend Nova's `FeatureType` class. This class needs
-a [`Codec`](../codecs) for your feature configuration in the constructor, but you can just leave a `TODO()` call there 
+a [`Codec`](../codec) for your feature configuration in the constructor, but you can just leave a `TODO()` call there 
 for now. You'll also need a `FeatureConfiguration` class (unless a pre-existing one fits your needs).
 
 So let's keep everything empty for now:
