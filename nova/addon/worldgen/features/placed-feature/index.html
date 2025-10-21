@@ -4530,8 +4530,18 @@ and pretty much act like a lot of <code>flatMap</code> calls. In fact, that's ex
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="c1">// ...</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>So you can also think of these positions as attempts to place the configured feature. A list of vanilla placement
-modifiers can be found below.</p>
+<details class="example">
+<summary>Animated example</summary>
+<p>Below is an animated example of how placement modifiers work together to generate a list of position to place a feature 
+at. The example uses the following placement modifiers:</p>
+<ol>
+<li><a href="#minecraftcount"><code>minecraft:count</code></a> with a count of <code>4</code></li>
+<li><a href="#minecraftin_square"><code>minecraft:in_square</code></a></li>
+<li><a href="#minecraftheight_range"><code>minecraft:height_range</code></a> with the <a href="../../types/height-provider/#minecrafttrapezoid"><code>trapezoid</code></a> height provider between y = <code>-32</code> and y = <code>30</code></li>
+</ol>
+<p><img alt="" src="../../../../assets/img/worldgen/placement_modifier_example.avif" /></p>
+</details>
+<p>A list of vanilla placement modifiers can be found below.</p>
 <h3 id="minecraftbiome"><code>minecraft:biome</code></h3>
 <p>Returns the position if the configured feature is registered in the biome's <code>feature</code> list at the given position. Empty
 otherwise.</p>
@@ -5096,7 +5106,7 @@ Check out the <a href="https://gist.github.com/ByteZ1337/31f10b0052f44acfc177f40
 <h3 id="custom-placementmodifiers">Custom <code>PlacementModifiers</code></h3>
 <p>You can also implement your own custom <code>PlacementModifiers</code> by extending Minecraft's <code>PlacementModifier</code> class. You can
 then register your custom <code>PlacementModifier</code> via the <code>FeatureRegistry</code> either by creating a <code>PlacementModifierType</code> or
-by providing the <code>Codec</code> directly and thus creating an inline <code>PlacementModifierType</code>. Check out the <a href="../codecs">Codecs</a>
+by providing the <code>Codec</code> directly and thus creating an inline <code>PlacementModifierType</code>. Check out the <a href="../codec">Codecs</a>
 page for more information on Mojang's serialization system.<br />
 Here's how you'd implement the <a href="#minecraftcount"><code>minecraft:count</code></a> <code>PlacementModifier</code> as an example:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">Inline PlacementModifierType</label><label for="__tabbed_17_2">PlacementModifierType object</label></div>

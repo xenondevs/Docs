@@ -4191,11 +4191,11 @@
 <h1 id="custom-features">Custom Features</h1>
 <div class="admonition info">
 <p class="admonition-title">Check out the <code>Codecs</code> page</p>
-<p>Make sure to check out the <a href="../../codecs">Codecs</a> page before creating a custom feature.</p>
+<p>Make sure to check out the <a href="../codec">Codecs</a> page before creating a custom feature.</p>
 </div>
 <h2 id="1-empty-feature">1. Empty Feature</h2>
 <p>To create a custom feature, you'll need to create a new object and extend Nova's <code>FeatureType</code> class. This class needs
-a <a href="../codecs"><code>Codec</code></a> for your feature configuration in the constructor, but you can just leave a <code>TODO()</code> call there 
+a <a href="../codec"><code>Codec</code></a> for your feature configuration in the constructor, but you can just leave a <code>TODO()</code> call there 
 for now. You'll also need a <code>FeatureConfiguration</code> class (unless a pre-existing one fits your needs).</p>
 <p>So let's keep everything empty for now:</p>
 <div class="highlight"><span class="filename">ExampleFeature.kt</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">object</span><span class="w"> </span><span class="nc">ExampleFeature</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">FeatureType</span><span class="o">&lt;</span><span class="n">ExampleFeatureConfig</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TODO</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
