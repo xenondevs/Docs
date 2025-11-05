@@ -51,7 +51,7 @@ This is an example I stole from the [Paged GUI](guis/paged.md) section:
 
 As you can see, there are many types of ingredients that can be added:
 `Items`, `Item Supplier`, `SlotElement`, `SlotElement Supplier`, `VirtualInventory`, `Marker`.  
-When using an `Item` or `SlotElement as ingredient, the same instance will be used on every slot.
+When using an `Item` or `SlotElement` as ingredient, the same instance will be used on every slot.
 If you don't want this, use an Item Supplier. This will create a new instance for every slot.
 
 ## Global Ingredients
