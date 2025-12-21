@@ -44,18 +44,18 @@ InvUI's inventories have a powerful event system. There are multiple events that
 
 #### ItemPreUpdateEvent
 
-This event is called before changes were fully processed. Cancelling this event or changing the amount of items that were added or removed will affect the source of the change (i.e. the player's cursor most of the time) appropriately, if possible. This allows restricting which or how many items can be put into an inventory or even a specific slot of an inventory.
+This event is called before changes were fully processed. Cancelling this event will affect the source of the change (i.e. the player's cursor most of the time) appropriately, if possible. This allows restricting which items can be put into an inventory or even a specific slot of an inventory.
 
-In the following example, the `ItemPreUpdateEvent` is cancelled or handled in such a way that only red and orange wool can be put into the inventory. Additionally, orange wool can no longer be stacked:
+In the following example, the `ItemPreUpdateEvent` is cancelled in such a way that only red wool can be placed on slot 10, and only orange wool can be placed on the other slots:
 
 === "Kotlin"
     ```kotlin
     inv.addPreUpdateHandler { event ->
         if (event.isAdd || event.isSwap) {
-            when (event.newItem?.type) {
-                Material.RED_WOOL -> Unit // red wool can be added normally
-                Material.ORANGE_WOOL -> event.newItem?.amount = 1 // orange wool stack size is limited to 1
-                else -> event.isCancelled = true // cancel event for all other item types
+            if (event.slot == 10) {
+                event.isCancelled = event.newItem?.type != Material.RED_WOOL
+            } else {
+                event.isCancelled = event.newItem?.type != Material.ORANGE_WOOL
             }
         }
     }
@@ -65,10 +65,10 @@ In the following example, the `ItemPreUpdateEvent` is cancelled or handled in su
     ```java
     inv.addPreUpdateHandler(event -> {
         if (event.isAdd() || event.isSwap()) {
-            switch (event.getNewItem().getType()) {
-                case Material.RED_WOOL -> {} // red wool can be added normally
-                case Material.ORANGE_WOOL -> event.getNewItem().setAmount(1); // orange wool stack size is limited to 1
-                default -> event.setCancelled(true); // cancel event for all other item types
+            if (event.getSlot() == 10) {
+                event.setCancelled(event.getNewItem().getType() != Material.RED_WOOL);
+            } else {
+                event.setCancelled(event.getNewItem().getType() != Material.ORANGE_WOOL);
             }
         }
     });
