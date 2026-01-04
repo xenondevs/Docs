@@ -1,10 +1,15 @@
 INHERIT: base.yml
 docs_dir: cbf
+site_dir: site/cbf
 site_name: CBF Documentation
 site_url: https://xenondevs.xyz/docs/cbf/
 edit_uri: edit/main/docs/cbf/
 
+extra_javascript:
+  - assets/js/width-toggle.js
+
 theme:
+  custom_dir: cbf/overrides
   features:
     - navigation.footer
     - content.tabs.link

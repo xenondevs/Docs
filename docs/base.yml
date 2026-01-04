@@ -13,7 +13,14 @@ theme:
   name: material
   logo: assets/logo.png
   palette:
-    scheme: slate
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
   icon:
     repo: fontawesome/brands/github
 

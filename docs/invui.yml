@@ -1,10 +1,15 @@
 INHERIT: base.yml
 docs_dir: invui
+site_dir: site/invui
 site_name: InvUI Documentation
 site_url: https://xenondevs.xyz/docs/invui/
 edit_uri: edit/main/docs/invui/
 
+extra_javascript:
+  - assets/js/width-toggle.js
+
 theme:
+  custom_dir: invui/overrides
   features:
     - navigation.footer
     - content.tabs.link

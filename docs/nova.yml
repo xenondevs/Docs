@@ -1,10 +1,15 @@
 INHERIT: base.yml
 docs_dir: nova
+site_dir: site/nova
 site_name: Nova Documentation
 site_url: https://xenondevs.xyz/docs/nova/
 edit_uri: edit/main/docs/nova/
 
+extra_javascript:
+  - assets/js/width-toggle.js
+
 theme:
+  custom_dir: nova/overrides
   features:
     - navigation.tabs
     - navigation.footer

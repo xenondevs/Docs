@@ -21,14 +21,14 @@ jobs:
         with:
           python-version: 3.x
 
-      - run: pip install mkdocs-material
+      - run: pip install zensical
 
-      - run: mkdocs build -f docs/nova.yml -d ../build/nova
-      - run: mkdocs build -f docs/invui.yml -d ../build/invui
-      - run: mkdocs build -f docs/invui2.yml -d ../build/invui2
-      - run: mkdocs build -f docs/cbf.yml -d ../build/cbf
+      - run: zensical build -f docs/nova.yml
+      - run: zensical build -f docs/invui.yml
+      - run: zensical build -f docs/invui2.yml
+      - run: zensical build -f docs/cbf.yml
 
       - name: Deploy Docs
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build
+          folder: docs/site/

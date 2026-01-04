@@ -1,11 +1,4 @@
-/*noinspection CssUnresolvedCustomProperty*/
-:root > * {
-    --md-primary-fg-color: #1B1D1F;
-    --md-primary-bg-color: #FFFFFF;
-    --md-default-bg-color: #151719;
-    --md-typeset-a-color: var(--md-code-hl-function-color);
-    --md-default-fg-color--light: #abb9cb;
-
+[data-md-color-scheme="slate"] {
     --md-code-hl-color: hsla(163, 34%, 67%, 0.5);
     --md-code-hl-number-color: #0aa370;
     --md-code-hl-special-color: #73a0d3;
@@ -21,125 +14,51 @@
     --md-code-hl-variable-color: #7eb6f6;
 }
 
-@media only screen and (min-width: 76.25em) {
-    .md-nav--lifted>.md-nav__list>.md-nav__item--active>.md-nav__link:not(.md-nav__container) {
-        width: 90%;
+[data-md-color-scheme="default"] {
+    --md-code-hl-color: hsla(163, 40%, 50%, 0.3);
+    --md-code-hl-number-color: #087f56;
+    --md-code-hl-special-color: #4a78a8;
+    --md-code-hl-function-color: #3a7fc9;
+    --md-code-hl-constant-color: #6b7a8a;
+    --md-code-hl-keyword-color: #0e9e72;
+    --md-code-hl-string-color: #3a7fc9;
+    --md-code-hl-name-color: var(--md-code-fg-color);
+    --md-code-hl-operator-color: #0e9e72;
+    --md-code-hl-punctuation-color: #5a6a7a;
+    --md-code-hl-comment-color: #7a8a9a;
+    --md-code-hl-generic-color: var(--md-default-fg-color--light);
+    --md-code-hl-variable-color: #3a7fc9;
+}
+
+.md-grid {
+    max-width: 200ch;
+    transition: max-width 0.3s ease;
+}
+
+[data-md-width="wide"] .md-grid {
+    max-width: 270ch;
+}
+
+[data-md-width="full"] .md-grid {
+    max-width: 98%;
+}
+
+.md-header__button.md-width-toggle {
+    cursor: pointer;
+    margin-left: 0.2rem;
+}
+
+.md-header__button.md-width-toggle svg {
+    fill: currentcolor;
+    display: block;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+/* Hide width toggle on smaller screens where it doesn't make a difference */
+@media (max-width: 76.25em) {
+    .md-header__button.md-width-toggle {
+        display: none;
     }
-
-    .md-main__inner {
-        max-width: none;
-    }
-
-    .md-content {
-        max-width: 56.5%;
-    }
-
-    .md-sidebar--primary {
-        margin-left: 3.75%;
-        margin-right: 3.75%;
-    }
-
-    .md-sidebar--secondary {
-        margin-left: 3.75%;
-        margin-right: 3.75%;
-        -webkit-transform: none;
-        transform: none;
-    }
-
-    body::-webkit-scrollbar {
-        width: 15px;
-        height: 15px;
-    }
-
-    body::-webkit-scrollbar-thumb {
-        background-color: #21222c;
-        border-radius: 15px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background-color: #2e303e;
-    }
-
-    body {
-        scrollbar-color: #21222c #2e303e;
-    }
-
 }
 
-.md-nav {
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.md-nav__link {
-    display: inline-flex;
-}
-
-.md-typeset {
-    font-size: .7rem;
-    line-height: 1.5;
-}
-
-.md-typeset :not(pre) > code {
-    background-color: #23262b;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.md-tabs {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0.2rem, rgba(0, 0, 0, 0.2) 0px 0.2rem 0.4rem;
-    transition: transform 0.25s cubic-bezier(0.1, 0.7, 0.1, 1) 0s, box-shadow 0.25s ease 0s;
-}
-
-.md-nav__item .md-nav__link--active {
-    color: #768390;
-}
-
-.md-typeset .admonition {
-    background-color: var(--md-primary-fg-color);
-    border-width: 0;
-    border-left-width: 4px;
-}
-
-.md-typeset details {
-    background-color: var(--md-primary-fg-color);
-    border-width: 0;
-    border-left-width: 4px;
-}
-
-.md-typeset table:not([class]) {
-    border-width: 0;
-    box-shadow: 0 0.2rem 0.5rem hsla(0, 0%, 0%, 0.3),0 0 0.05rem hsla(0, 0%, 0%, 0.2);
-    border-radius: 5px;
-}
-
-.md-typeset th {
-    background-color: #111111;
-}
-
-.md-typeset td {
-    background-color: #1b1d1f;
-}
-
-.md-typeset tbody tr:first-child td {
-    border-color: #3593ff;
-}
-
-.md-footer {
-    background-color: var(--md-primary-fg-color);
-}
-
-.md-footer-meta {
-    background: none;
-}
-
-.md-typeset .md-button {
-    color: #fff;
-}
-
-.md-typeset .md-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0);
-}

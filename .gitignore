@@ -2,6 +2,8 @@
 docs/.obsidian
 /.scripts
 /build
+site/
+.cache
 
 # Mac Stuff
 .DS_Store
