@@ -8,22 +8,22 @@
       
       
       
-        <link rel="canonical" href="https://xenondevs.xyz/docs/invui/localization/">
+        <link rel="canonical" href="https://xenondevs.xyz/docs/cbf/">
       
       
-        <link rel="prev" href="../inventory/">
       
+        <link rel="next" href="serialization/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="zensical-0.0.15">
     
     
       
-        <title>Localization - InvUI Documentation</title>
+        <title>Cosmic Binary Format - CBF Documentation</title>
       
     
     
@@ -41,12 +41,12 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f1b6466b.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/modern/main.f1b6466b.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
   
@@ -95,9 +95,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -122,7 +122,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#localization" class="md-skip">
+        <a href="#cosmic-binary-format" class="md-skip">
           Skip to content
         </a>
       
@@ -138,9 +138,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="InvUI Documentation" class="md-header__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
+    <a href="" title="CBF Documentation" class="md-header__button md-logo" aria-label="CBF Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -151,13 +151,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            InvUI Documentation
+            CBF Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Localization
+              Cosmic Binary Format
             
           </span>
         </div>
@@ -246,12 +246,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="InvUI Documentation" class="md-nav__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
+    <a href="" title="CBF Documentation" class="md-nav__button md-logo" aria-label="CBF Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="assets/logo.png" alt="logo">
 
     </a>
-    InvUI Documentation
+    CBF Documentation
   </label>
   
     <div class="md-nav__source">
@@ -267,362 +267,6 @@
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Getting Started
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../basics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Basics
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../items/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Items
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    GUIs
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    GUIs
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guis/normal/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Normal GUI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guis/paged/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Paged GUI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guis/scroll/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Scroll GUI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guis/tab/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Tab GUI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../windows/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Windows
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../inventory/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Inventory
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
     
       
       
@@ -647,7 +291,7 @@
   <span class="md-ellipsis">
     
   
-    Localization
+    Getting Started
   
 
     
@@ -658,14 +302,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Localization
+    Getting Started
   
 
     
@@ -692,43 +336,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adding-translations" class="md-nav__link">
+  <a href="#configuring-maven-gradle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding translations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specifying-player-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specifying Player language
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-translations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using translations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#disabling-server-side-translations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Disabling server-side translations
+        Configuring Maven / Gradle
       
     </span>
   </a>
@@ -739,6 +350,60 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="serialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serialization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="compound/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compounds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -771,43 +436,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adding-translations" class="md-nav__link">
+  <a href="#configuring-maven-gradle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding translations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specifying-player-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specifying Player language
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-translations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using translations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#disabling-server-side-translations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Disabling server-side translations
+        Configuring Maven / Gradle
       
     </span>
   </a>
@@ -860,58 +492,56 @@
   
 
 
-<h1 id="localization">Localization</h1>
-<p>InvUI makes it easy for you to translate your GUIs into different languages.</p>
-<h2 id="adding-translations">Adding translations</h2>
-<p>To add translations for a new language, you can call <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lang</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">translations</span><span class="p">)</span></code>.
-The <code>lang</code> parameter is the language code of the language you want to add. The <code>translations</code> parameter should be a
-map containing the translation keys and their translations.</p>
-<p>If your translations are stored in a json structure like this:</p>
-<div class="highlight"><span class="filename">en_us.json</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;translation.key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;other.translation.key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World 2&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
-</code></pre></div>
-<p>You can also load them using <code>Languages#loadLanguage</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Kotlin</label><label for="__tabbed_1_2">Java</label></div>
+<h1 id="cosmic-binary-format">Cosmic Binary Format</h1>
+<h2 id="configuring-maven-gradle">Configuring Maven / Gradle</h2>
+<p>CBF is xenondevs' lazy evaluation binary format used primarily in <a href="https://github.com/xenondevs/Nova/">Nova</a>.<br />
+To use CBF, you first have to add the xenondevs maven repository to your build configuration.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Maven</label><label for="__tabbed_1_2">Gradle Groovy</label><label for="__tabbed_1_3">Gradle Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">&quot;en_us&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;en_us.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Charsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;repository&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&lt;id&gt;</span>xenondevs<span class="nt">&lt;/id&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&lt;url&gt;</span>https://repo.xenondevs.xyz/releases<span class="nt">&lt;/url&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">&lt;/repository&gt;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">&quot;en_us&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;en_us.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">maven</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">url</span><span class="w"> </span><span class="s1">&#39;https://repo.xenondevs.xyz/releases&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">maven</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="p">(</span><span class="s">&quot;https://repo.xenondevs.xyz/releases&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="specifying-player-language">Specifying Player language</h2>
-<p>By default, the player's locale is retrieved using <code class="highlight"><span class="n">Player</span><span class="p">.</span><span class="na">getLocale</span><span class="p">();</span></code>. If you want to change this behavior, you can
-do so by calling <code>Languages#setLanguageProvider</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Kotlin</label><label for="__tabbed_2_2">Java</label></div>
+<p>Now you can add CBF to your build configuration:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Maven</label><label for="__tabbed_2_2">Gradle Groovy</label><label for="__tabbed_2_3">Gradle Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">setLanguageProvider</span><span class="p">(</span><span class="n">Player</span><span class="o">::</span><span class="n">getLocale</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>xyz.xenondevs.cbf<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>cosmic-binary-format<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">setLanguageProvider</span><span class="p">(</span><span class="n">Player</span><span class="p">::</span><span class="n">getLocale</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;xyz.xenondevs.cbf:cosmic-binary-format:VERSION&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;xyz.xenondevs.cbf:cosmic-binary-format:VERSION&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="using-translations">Using translations</h2>
-<p>To use translations in your GUIs, simply use translatable components using either md_5's bungee component api or kyori's
-adventure text api. If you're not using Kotlin and the <code>invui-kotlin</code> module, you'll need to wrap adventure components
-using the <code>AdventureComponentWrapper</code> class before you can pass them to the <code>ItemBuilder</code> or <code>Window.Builder</code>.</p>
-<div class="admonition question">
-<p class="admonition-title">When are translations applied?</p>
-<p>Translations are applied server-side. This is done during <code class="highlight"><span class="n">ItemBuilder</span><span class="p">.</span><span class="na">get</span><span class="p">();</span></code> or, for the inventory title, <code class="highlight"><span class="n">Window</span><span class="p">.</span><span class="na">open</span><span class="p">();</span></code>.<br />
-If you need to use server-side translations in other places, you'll need to manually call <code class="highlight"><span class="n">ComponentWrapper</span><span class="p">.</span><span class="na">localized</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">locale</span><span class="p">);</span></code>.</p>
-</div>
-<h2 id="disabling-server-side-translations">Disabling server-side translations</h2>
-<p>If you do not want your items and GUIs to be translated server-side and instead want to actually send translatable
-components to your players, you can disable server-side translations by calling <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">enableServerSideTranslations</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span></code>.</p>
+<p>To find the latest CBF version, you can explore the <a href="https://repo.xenondevs.xyz/#/releases/xyz/xenondevs/cbf/cosmic-binary-format">Maven Repository</a>
+or check out the <a href="https://github.com/xenondevs/Cosmic-Binary-Format/releases">GitHub Releases Page</a>.</p>
 
 
 
@@ -945,22 +575,22 @@ components to your players, you can disable server-side translations by calling 
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+        
           
-          <a href="../inventory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Inventory">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
-            </div>
+          <a href="serialization/" class="md-footer__link md-footer__link--next" aria-label="Next: Serialization">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Previous
+                Next
               </span>
               <div class="md-ellipsis">
-                Inventory
+                Serialization
               </div>
             </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
           </a>
-        
         
       </nav>
     
@@ -1022,18 +652,18 @@ components to your players, you can disable server-side translations by calling 
       
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.00c35305.min.js"></script>
+      <script src="assets/javascripts/bundle.00c35305.min.js"></script>
       
-        <script src="../assets/js/mathjax.js"></script>
+        <script src="assets/js/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../assets/js/width-toggle.js"></script>
+        <script src="assets/js/width-toggle.js"></script>
       
     
   </body>

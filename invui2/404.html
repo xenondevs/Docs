@@ -24,14 +24,14 @@
     
     
 <script>
-(function() {
-    const savedWidth = localStorage.getItem("md-width") || "slim";
-    if (savedWidth === "wide" || savedWidth === "full") {
-        document.documentElement.setAttribute("data-md-width", savedWidth);
-    }
-    // Store for width-toggle.js to use
-    window.__mdWidthMode = savedWidth;
-})();
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
 </script>
 
       
