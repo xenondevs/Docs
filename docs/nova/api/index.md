@@ -53,10 +53,8 @@ To get the Nova instance you can use the `Nova` class:
 === "Kotlin"
 
     ```kotlin
-    val nova = Nova // (1)!
+    val nova = Nova.getNova()
     ```
-
-    1. `Nova` is an interface but the companion object delegates to ``Bukkit.getPluginManager().getPlugin("Nova") as Nova``.
 
 === "Java"
 
