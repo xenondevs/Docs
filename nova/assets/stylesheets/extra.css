@@ -31,12 +31,12 @@
 }
 
 .md-grid {
-    max-width: 200ch;
+    max-width: min(200ch, 98%);
     transition: max-width 0.3s ease;
 }
 
 [data-md-width="wide"] .md-grid {
-    max-width: 270ch;
+    max-width: min(270ch, 98%);
 }
 
 [data-md-width="full"] .md-grid {
