@@ -23,6 +23,30 @@
       
     
     
+<style>
+    .eol-banner {
+        background-color: #f39c12;
+        color: #000;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        font-weight: 500;
+        position: fixed;
+        top: 48px; /* Height of the MkDocs Material header */
+        left: 0;
+        right: 0;
+        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
+    }
+
+    .eol-banner a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    /* Add padding to content so it's not hidden behind the fixed banner */
+    .md-main {
+        padding-top: 40px;
+    }
+</style>
 <script>
     (function () {
         const savedWidth = localStorage.getItem("md-width") || "slim";
