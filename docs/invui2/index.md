@@ -85,4 +85,4 @@ To find the latest InvUI version, check out the [GitHub Releases Page](https://g
 
 ## Javadoc
 
-Not all functionality of InvUI is covered here. For a detailed overview of all classes and methods, take a look at the [InvUI javadoc](https://repo.xenondevs.xyz/javadoc/releases/xyz/xenondevs/invui/invui/2.0.0-alpha.17).
+Not all functionality of InvUI is covered here. For a detailed overview of all classes and methods, take a look at the [InvUI javadoc](https://repo.xenondevs.xyz/javadoc/releases/xyz/xenondevs/invui/invui/2.0.0-beta.1).
