@@ -93,7 +93,7 @@ generate vertically moved variations of a font. To do that, request those variat
 process using [MovedFontContent](../resourcepack/build-logic.md#movedfontcontent).
 
 ```kotlin
-builder.getHolder<MovedFontContent>().requestMovedFonts(ResourcePath("namespace", "name"), 0..19)
+builder.getBuildData<MovedFontContent>().requestMovedFonts(ResourcePath("namespace", "name"), 0..19)
 ```
 
 During runtime, you can then create a vertically moved component using `#!kotlin MovedFonts.moveVertically(component, distance)`.
