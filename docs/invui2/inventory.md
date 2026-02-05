@@ -303,7 +303,7 @@ In the following example, the gui priorities are configured in such a way that i
 
 The iteration order defines in which order the slots of multi-slot operations like adding or collecting are chosen. By default, the iteration order is from first to the last slot (i.e. items are added into the first available slot and collected from the first matching slot). Like the gui priority, the iteration order is categorized, so you can define different orders per category.
 
-You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reverses the iteration order for adding items, but keeps the iteration order for collection items:
+You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reverses the iteration order for adding items, but keeps the iteration order for collecting items:
 
 === "Kotlin"
     ```kotlin 
