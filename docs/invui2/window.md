@@ -479,9 +479,113 @@ The smithing window can be created using `#!kotlin SmithingWindow.builder()`. It
 
 ### Stonecutter Window
 
-The stonecutter window can be created using `#!kotlin StonecutterWindow.builder()`. It consists of a `2x1` upper gui, a `4xN` buttons gui, where `N` can be any number, and a `9x4` lower gui. You can use the scroll bar to scroll through the buttons. A button can be selected and deselected by both the server and the player. You can register a selection handler via `addSelectedSlotChangeHandler`.
+The stonecutter window can be created using `#!kotlin StonecutterWindow.builder()`. It consists of a `2x1` upper gui, a `4xN` buttons gui, where `N` can be any number, and a `9x4` lower gui. You can use the scroll bar to scroll through the buttons. A button can be selected and deselected by both the server and the player. You can register a selection handler via `addSelectedSlotChangeHandler`. Clicking a button also fires the click handlers of the corresponding item.
 
 ![](assets/img/window/stonecutter.png){width=500}
+
+??? example "Example: Using the buttons as tabs"
+
+    === "Kotlin"
+        ```kotlin
+        val woolTypes = Tag.ITEMS_WOOL.values.sortedBy { it.ordinal }
+        
+        val lowerGui = TabGui.builder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setTabs(woolTypes.map { Gui.of(9, 4, Item.simple(ItemStack.of(it))) })
+            .build()
+        
+        val buttonsGui = Gui.empty(4, Math.ceilDiv(woolTypes.size, 4))
+        for (i in woolTypes.indices) {
+            buttonsGui[i] = Item.builder()
+                .setItemProvider(ItemStack.of(woolTypes[i]))
+                .addClickHandler { lowerGui.tab = i }
+                .build()
+        }
+        
+        StonecutterWindow.builder()
+            .setButtonsGui(buttonsGui)
+            .setLowerGui(lowerGui)
+            .setSelectedSlot(0) // (1)!
+            .open(player)
+        ```
+
+        1. By default, no button is selected initially. However, since the default tab is `0`, having button `0` selected initially makes sense in this case.
+
+    === "Kotlin (DSL)"
+        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+
+        ```kotlin
+        stonecutterWindow(player) {
+            val woolTypes = Tag.ITEMS_WOOL.values.sortedBy { it.ordinal }
+            lowerGui by tabGui(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            ) {
+                'x' by Markers.CONTENT_LIST_SLOT_HORIZONTAL
+                tabs by woolTypes.map { Gui.of(9, 4, Item.simple(ItemStack.of(it))) }
+                tab by selectedSlot // (1)!
+            }
+            buttonsGui by Gui.empty(4, Math.ceilDiv(woolTypes.size, 4)).also { gui ->
+                for (i in woolTypes.indices) {
+                    gui[i] = Item.simple(ItemStack.of(woolTypes[i]))
+                }
+            }
+        }.open()
+        ```
+
+        1. This combines the tab- and selected slot properties such that selecting a button automatically switches the tab and switching the tab automatically selects the corresponding button.
+
+    === "Java"
+        ```java
+        var woolTypes = Tag.ITEMS_WOOL.getValues().stream()
+            .sorted(Comparator.comparingInt(Enum::ordinal))
+            .toList();
+        
+        var lowerGui = TabGui.builder()
+            .setStructure(
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x",
+                "x x x x x x x x x"
+            )
+            .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
+            .setTabs(
+                woolTypes.stream()
+                    .map(it -> Gui.of(9, 4, Item.simple(ItemStack.of(it))))
+                    .toList()
+            )
+            .build();
+        
+        var buttonsGui = Gui.empty(4, Math.ceilDiv(woolTypes.size(), 4));
+        for (var i = 0; i < woolTypes.size(); i++) {
+            var finalI = i;
+            buttonsGui.setItem(
+                i,
+                Item.builder()
+                    .setItemProvider(ItemStack.of(woolTypes.get(i)))
+                    .addClickHandler(click -> lowerGui.setTab(finalI))
+                    .build()
+            );
+        }
+        
+        StonecutterWindow.builder()
+            .setButtonsGui(buttonsGui)
+            .setLowerGui(lowerGui)
+            .setSelectedSlot(0) // (1)!
+            .open(player);
+        ```
+
+        1. By default, no button is selected initially. However, since the default tab is `0`, having button `0` selected initially makes sense in this case.
+
+    ![](assets/img/window/stonecutter_buttons_as_tabs.avif){width=500}
 
 ??? example "Example: Using the buttons as an inventory"
 
