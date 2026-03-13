@@ -1,3 +1,5 @@
+# Frequently Asked Questions
+
 ??? question "What Minecraft versions does InvUI v2 support?"
     Starting with v2.0.0, InvUI no longer supports multiple Minecraft versions. Instead, new InvUI versions will always only target the latest Minecraft version. You can find a table mapping InvUI versions to Minecraft versions in the [GitHub readme](https://github.com/NichtStudioCode/InvUI/tree/ver/2.x?tab=readme-ov-file#version-compatibility).
 
