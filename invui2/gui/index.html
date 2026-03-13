@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.21">
+      <meta name="generator" content="zensical-0.0.26">
     
     
       
@@ -43,7 +43,7 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.f28b7ce3.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.50057488.min.css">
       
         
           
@@ -91,7 +91,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -111,12 +111,12 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="InvUI Documentation" class="md-header__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
+    <a href="./.." title="InvUI Documentation" class="md-header__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="InvUI Documentation">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
@@ -170,7 +170,7 @@
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
@@ -219,9 +219,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="InvUI Documentation" class="md-nav__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
+    <a href="./.." title="InvUI Documentation" class="md-nav__button md-logo" aria-label="InvUI Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="InvUI Documentation">
 
     </a>
     InvUI Documentation
@@ -248,7 +248,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="./.." class="md-nav__link">
         
   
   
@@ -354,7 +354,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -809,7 +809,7 @@
   
 
 
-  <h1>Gui</h1>
+  <h1 id="__skip">Gui</h1>
 
 <h2 id="what-is-a-gui">What is a Gui?</h2>
 <p>In InvUI, a <code>Gui</code> is simply a rectangle of slots. Each slot can either be empty or contain something like an <a href="../item/">Item</a>, a link to another <a href="../gui/">Gui</a>, or a link to an <a href="../inventory/">Inventory</a>.</p>
@@ -847,6 +847,9 @@
 </div>
 </div>
 <p><img alt="" src="../assets/img/gui/normal.png" width="500" /></p>
+<div class="admonition note">
+<p class="admonition-title">Spaces and newlines in structure strings are ignored</p>
+</div>
 <h3 id="paged-gui">Paged Gui</h3>
 <p>A <code>PagedGui</code> is a specialized gui type that has pages of content. This content can be either <a href="../item/">items</a>, entire <a href="../gui/">guis</a>, or <a href="../inventory/">inventories</a>. The following example will use <a href="../item/">items</a> as content.</p>
 <p>Before creating a <code>PagedGui</code>, you must first create the page buttons with which the player is supposed to navigate it. For that, <a href="../item/#bound-item">bound items</a> are a useful tool. Using <code class="highlight"><span class="n">BoundItem</span><span class="p">.</span><span class="na">pagedBuilder</span><span class="p">()</span></code>, you can create a builder for a bound item that targets paged guis. This item's <code>ItemProvider</code> will also automatically be updated when the current page or total page count changes:</p>
@@ -1742,7 +1745,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.36a64b72.min.js"></script>
+      <script src="../assets/javascripts/bundle.5fd3284f.min.js"></script>
       
         <script src="../assets/js/mathjax.js"></script>
       
