@@ -38,6 +38,8 @@ Using `#!kotlin Gui.builder()`, you can create a very simple Gui without any spe
 
 ![](assets/img/gui/normal.png){width=500}
 
+!!! note "Spaces and newlines in structure strings are ignored"
+
 ### Paged Gui
 
 A `PagedGui` is a specialized gui type that has pages of content. This content can be either [items](item.md), entire [guis](gui.md), or [inventories](inventory.md). The following example will use [items](item.md) as content.
