@@ -1,8 +1,8 @@
-!!! warning "This functionality is experimental"
+# Reactive Menus (`invui-kotlin`)
 
-!!! warning "This functionality is exclusive to invui-kotlin"
+!!! warning "This functionality is experimental and exclusive to `invui-kotlin`."
 
-When designing non-trivial menus, managing state and performing manual updates can become difficult. To help with this, InvUI provides a way to design menus in a declarative / reactive fashion.
+When designing non-trivial menus, managing state and performing manual updates can become difficult. To help with this, InvUI provides a way to design menus in a reactive fashion.
 
 For that, InvUI uses `#!kotlin Provider<T>` and `#!kotlin MutableProvider<T>` from [commons-provider](https://commons-provider.dokka.xenondevs.xyz/commons-provider/xyz.xenondevs.commons.provider/index.html), with which you can model a reactive data flow. This means that you can have a top `#!kotlin Provider<T>` that holds your state and then derive other providers from it, like transforming a `String` to an `ItemProvider`, which can then be used for display purposes in a gui. The derived providers will automatically update when the top provider (i.e. your state) changes.
 
@@ -31,25 +31,15 @@ AnvilWindow.builder()
             "x x x x x x x x x"
         )
         .addIngredient('x', Markers.CONTENT_LIST_SLOT_HORIZONTAL)
-        .setContent(search) { search -> // content updates based on search provider (1)
+        .setContent(search.map { search -> // content updates based on search provider
             Material.entries
                 .filter { !it.isLegacy && it.isItem }
                 .filter { it.name.contains(search, true) }
                 .map { Item.simple(ItemBuilder(it)) }
-        }
+        })
     )
     .open(player)
 ```
-
-1. This is equivalent to:
-    ```kotlin
-    setContent(search.map { search ->
-        Material.entries
-            .filter { !it.isLegacy && it.isItem }
-            .filter { it.name.contains(search, true) }
-            .map { Item.simple(ItemBuilder(it)) }
-    })
-    ```
 
 Additionally, InvUI provides a [DSL (domain-specific language)](https://kotlinlang.org/docs/type-safe-builders.html) that makes creating windows, guis, and items more concise. This DSL is focused entirely around managing state via providers.
 
@@ -76,3 +66,5 @@ anvilWindow(player) {
 2. `#!kotlin text: Provider<String>` is brought into scope by the `anvilWindow` function. This provider contains to up-to-date anvil input text. In this DSL, `by` infix functions are used instead of assignment (`=`) to allow overloading. For example, you can also set a `List<Item>` directly, if you want to use a static list of items.
 
 ![](assets/img/window/anvil_search.avif){width=500}
+
+Check out the [InvUI-Kotlin KDoc](https://repo.xenondevs.xyz/javadoc/releases/xyz/xenondevs/invui/invui-kotlin/latest) for a more detailed overview of the DSL API. There are also some more examples on the [Window](./window.md) page.

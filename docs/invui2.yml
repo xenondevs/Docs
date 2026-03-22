@@ -25,5 +25,5 @@ nav:
   - "Window": "window.md"
   - "Inventory": "inventory.md"
   - "Localization": "localization.md"
-  - "Declarative Menus": "declarative-menus.md"
+  - "Reactive Menus": "reactive-menus.md"
   - "FAQ": "faq.md"

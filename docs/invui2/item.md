@@ -67,29 +67,6 @@ Of course, in a real-world scenario, you'll want to update the visual representa
     
     1. Uses `AtomicInteger` because Java lambdas capture by value (requires final or effectively final variables). Alternatively, you may want to store the state in a field of a class.
 
-
-This can be simplified using `updateOnClick`:
-
-=== "Kotlin"
-    ```kotlin
-    var count = 0
-    val item: Item = Item.builder()
-        .setItemProvider { ItemBuilder(Material.DIAMOND).setName("Click count: $count") }
-        .addClickHandler { _, click -> count++ }
-        .updateOnClick()
-        .build()
-    ```
-
-=== "Java"
-    ```java        
-    AtomicInteger count = new AtomicInteger(0);
-    Item item = Item.builder()
-        .setItemProvider(p -> new ItemBuilder(Material.DIAMOND).setName("Click count: " + count.get()))
-        .addClickHandler((it, click) -> count.incrementAndGet())
-        .updateOnClick()
-        .build();
-    ```
-
 ![](assets/img/item/updateOnClick.avif){width=500}
 
 In certain scenarios, it may make sense to update your item based on a timer:
@@ -114,7 +91,7 @@ In certain scenarios, it may make sense to update your item based on a timer:
 
 There are also various methods available on gui-level that allow mass-updating multiple items at the same time. 
 
-!!! tip "If you're using `invui-kotlin`, the best way is to handle item updating is to use the [declarative gui](declarative-menus.md) design approach."
+!!! tip "If you're using `invui-kotlin`, the best way is to handle item updating is to use the [reactive API](reactive-menus.md)."
 
 ## Bundle selection
 

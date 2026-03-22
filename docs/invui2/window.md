@@ -142,7 +142,7 @@ The anvil window can be created using `#!kotlin AnvilWindow.builder()`. It consi
         ```
 
     === "Kotlin (DSL)"
-        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+        !!! warning "Experimental, see [Reactive Menus](reactive-menus.md)"
 
         ```kotlin
         anvilWindow(player) {
@@ -406,7 +406,7 @@ The merchant window can be created using `#!kotlin MerchantWindow.builder()`. It
         ```
     
     === "Kotlin (DSL)"
-        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+        !!! warning "Experimental, see [Reactive Menus](reactive-menus.md)"
 
         ```kotlin
         merchantWindow(player) {
@@ -518,7 +518,7 @@ The stonecutter window can be created using `#!kotlin StonecutterWindow.builder(
         1. By default, no button is selected initially. However, since the default tab is `0`, having button `0` selected initially makes sense in this case.
 
     === "Kotlin (DSL)"
-        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+        !!! warning "Experimental, see [Reactive Menus](reactive-menus.md)"
 
         ```kotlin
         stonecutterWindow(player) {
@@ -603,7 +603,7 @@ The stonecutter window can be created using `#!kotlin StonecutterWindow.builder(
         
 
     === "Kotlin (DSL)"
-        !!! warning "Experimental, see [Declarative Menus](declarative-menus.md)"
+        !!! warning "Experimental, see [Reactive Menus](reactive-menus.md)"
 
         ```kotlin
         stonecutterWindow(player) {
