@@ -4,6 +4,7 @@ docs/.obsidian
 /build
 site/
 .cache
+.venv
 
 # Mac Stuff
 .DS_Store
