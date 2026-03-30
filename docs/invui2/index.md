@@ -86,3 +86,9 @@ To find the latest InvUI version, check out the [GitHub Releases Page](https://g
 ## Javadoc
 
 Not all functionality of InvUI is covered here. For a detailed overview of all classes and methods, take a look at the [InvUI javadoc](https://repo.xenondevs.xyz/javadoc/releases/xyz/xenondevs/invui/invui/latest) and the [InvUI-Kotlin KDoc](https://repo.xenondevs.xyz/javadoc/releases/xyz/xenondevs/invui/invui-kotlin/latest).
+
+## Thread Safety & Folia Support
+
+Like most of the Bukkit API, InvUI is also **not** thread-safe and should only be used from the server thread.
+
+InvUI currently **experimentally** supports Folia. If you're running Folia, the correct thread to use InvUI from is the thread that owns the viewing entity (i.e. use the viewer's `EntityScheduler`). Also note that, because of this, you cannot share **anything** (including, but not limited to: `Gui`, `Item`, `ItemProvider`, `VirtualInventory`) between players as they might not be in the same region.
