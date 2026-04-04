@@ -19,15 +19,11 @@ theme:
 
 nav:
   - "Getting Started": "index.md"
-  - "Basics": "basics.md"
-  - "Items": "items.md"
-  - "Structure": "structure.md"
-  - "GUIs":
-      - "Overview": "guis/index.md"
-      - "Normal GUI": "guis/normal.md"
-      - "Paged GUI": "guis/paged.md"
-      - "Scroll GUI": "guis/scroll.md"
-      - "Tab GUI": "guis/tab.md"
-  - "Windows": "windows.md"
+  - "Quick Overview": "overview.md"
+  - "Item": "item.md"
+  - "Gui": "gui.md"
+  - "Window": "window.md"
   - "Inventory": "inventory.md"
   - "Localization": "localization.md"
+  - "Reactive Menus": "reactive-menus.md"
+  - "FAQ": "faq.md"

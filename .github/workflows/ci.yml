@@ -24,8 +24,8 @@ jobs:
       - run: pip install zensical
 
       - run: zensical build -f docs/nova.yml
+      - run: zensical build -f docs/invui1.yml
       - run: zensical build -f docs/invui.yml
-      - run: zensical build -f docs/invui2.yml
       - run: zensical build -f docs/cbf.yml
 
       - name: Deploy Docs

@@ -1,102 +1,428 @@
-The `xyz.xenondevs.invui.inventory.Inventory` is a type of inventory that can be embedded in GUIs.
-It provides several utility methods to easily add and remove items from the inventory, as well as an advanced event
-system allowing to listen for and affect changes in the inventory.
+## What is an Inventory?
 
-The general contracts of `Inventory` and all implementations are:
+InvUI has its own inventories, not to be confused with `org.bukkit.inventory.Inventory`. InvUI's inventories can be embedded in guis, which will allow players to interact with these slots.
 
-* There are no `ItemStacks` of type `Material.AIR` or `ItemStack.getAmount() == 0`.  
-  Empty `ItemStacks` are represented by `null`.
-* Unless otherwise specified, all methods will return a clone of the actual backing `ItemStack`.  
-  Changes to returned `ItemStacks` will never affect the `Inventory`.
-* Unless otherwise specified, all methods accepting `ItemStacks` will always clone them before  
-  putting them in the backing array / inventory.  
-  Changes to the passed `ItemStacks` after calling a method will never affect the `Inventory`.
+## Virtual Inventory
 
-## Types of Inventories
+For most use cases, you will want to use a `VirtualInventory`. This is just a container for item stacks that you can add to your guis like so:
 
-### Virtual Inventory
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 4)
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', inv)
+        .build()
+    ```
 
-Like normal inventories, virtual inventories can store a predefined amount of `ItemStacks`, but unlike
-Minecraft's inventories, they do not have a defined width or height, just a size.
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', inv)
+        .build();
+    ```
 
-To create a `VirtualInventory`, you can do one of three things:
+![](assets/img/inventory/virtual_inventory.avif){width=500}
 
-* Call the `VirtualInventory` constructor directly
-* Deserialize a `VirtualInventory` from an `InputStream` or `byte[]` using `VirtualInventory#deserialize`
-* Use the `VirtualInventoryManager` to get a previously serialized `VirtualInventory` from a file.
-  This `VirtualInventory` will then get written into the file again when the plugin gets disabled.
+### Serialization
 
-#### Custom Stack Sizes
+You can also serialize and deserialize `VirtualInventory` (i.e. saving and loading it):
 
-Virtual inventories also allow customizing the stack sizes of every slot.
-You can change them by providing a `maxStackSizes` array in the constructor, or set them later using
-`VirtualInventory#setMaxStackSizes` or `VirtualInventory#setMaxStackSize`.
+Serializing a `VirtualInventory`:
+=== "Kotlin"
+    ```kotlin
+    // serialize a VirtualInventory to a ByteArray
+    val bin: ByteArray = virtualInventory.serialize()
+    
+    // write a VirtualInventory directly to an output stream
+    file.outputStream().use { virtualInventory.serialize(it) }
+    ```
 
-If you're creating a plugin that modifies maximum stack sizes of items, change the
-`StackSizeProvider` in `InventoryUtils#stackSizeProvider` to a custom one you've created.  
-This will make InvUI respect your maximum stack sizes.
+=== "Java"
+    ```java
+    // serialize a VirtualInventory to a ByteArray
+    byte[] bin = virtualInventory.serialize();
+    
+    // write a VirtualInventory directly to an output stream    
+    try (var out = new FileOutputStream(file)) {
+        virtualInventory.serialize(out);
+    }
+    ```
 
-!!! warning "Stack sizes higher than what is normally allowed in vanilla Minecraft are not possible!"
+Deserializing a `VirtualInventory`:
+=== "Kotlin"
+    ```kotlin
+    // deserialize a VirtualInventory from a ByteArray
+    val inv: VirtualInventory = VirtualInventory.deserialize(bin)
+    
+    // read a VirtualInventory directly from an input stream
+    val inv2: VirtualInventory = file.inputStream().use { VirtualInventory.deserialize(it) }
+    ```
 
-#### Serialization
+=== "Java"
+    ```java
+    // deserialize a VirtualInventory from a ByteArray
+    VirtualInventory inv = VirtualInventory.deserialize(bin);
+    
+    // read a VirtualInventory directly from an input stream
+    VirtualInventory inv2;
+    try (var in = new FileInputStream(file)) {
+        inv2 = VirtualInventory.deserialize(in);
+    }
+    ```
 
-You can either directly (de)serialize a `VirtualInventory` to/from a stream or byte[] using `VirtualInventory#serialize`
-and `VirtualInventory#deserialize`, or use the `VirtualInventoryManager` to automatically do that for you.
+There is also `VirtualInventoryManager`, which automatically writes virtual inventories registered with it to disk on shutdown and reads them back on startup. This allows you to very easily create persistent inventories, but note that using `VirtualInventoryManager` with a large amount of inventories will cause a slowdown on startup as all inventories are loaded on startup at once.
 
-!!! warning "Only the `UUID` and `ItemStack[]` are serialized!"
+=== "Kotlin"
+    ```kotlin
+    val inv: VirtualInventory = VirtualInventoryManager.getInstance().getOrCreate(uuid, size)
+    ```
 
-Using the `VirtualInventoryManager`, inventories obtained with `createNew`, `getByUUID` and `getOrCreate`
-will be automatically serialized when the plugin gets disabled. These inventories are stored under
-`plugins/InvUI/VirtualInventory/<Name of your plugin>/`.
+=== "Java"
+    ```java
+    VirtualInventory inv = VirtualInventoryManager.getInstance().getOrCreate(uuid, size);
+    ```
 
-!!! info
+## Referencing Inventory
 
-    The `uuid` parameter is only required for serialization with the `VirtualInventoryManager`.  
-    You can set it to null, if you're not planning to serialize your inventory this way.
+The `ReferencingInventory` can be used to reference a Bukkit inventory, such as the player's inventory. For example, you can easily implement a gui to look at another player's inventory using it:
 
-### ReferencingInventory
+=== "Kotlin"
+    ```kotlin
+    val inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.inventory)
+    Window.builder()
+        .setUpperGui(Gui.of(9, 4, inv))
+        .open(player)
+    ```
 
-The `ReferencingInventory` is an `Inventory` that is backed by a Bukkit inventory. Changes in this inventory are
-applied in the referenced inventory and changes in the bukkit inventory are visible in this inventory.
+=== "Java"
+    ```java
+    var inv = ReferencingInventory.fromPlayerStorageContents(otherPlayer.getInventory());
+    Window.builder()
+        .setUpperGui(Gui.of(9, 4, inv))
+        .open(player);
+    ```
 
-!!! warning "Window Updating"
-
-    Changes done using the methods provided by InvUI inventory will cause displaying `Windows` to be notified, but
-    changes done directly in the bukkit inventory will not. Therefore, if embedded in a GUI, it is necessary to call
-    `Inventory#notifyWindows` manually in order for changes to be displayed.
-
-### CompositeInventory
-
-The `CompositeInventory` is a composite of multiple inventories. Those can be `VirtualInventories`, `ReferencingInventories`,
-or any other custom implementation of `Inventory`.
+![](assets/img/inventory/invsee.avif)
 
 ## Inventory Events
 
-You can also register update handlers to your `Inventory`. There are two different types of events:
+InvUI's inventories have a powerful event system. There are multiple events that you can listen to, each of which is fired at a different stage of the interaction and can be used for different purposes. `ItemPreUpdateEvent` and `ItemPostUpdateEvent` are fired with an `UpdateReason`. If a player interaction caused the event, this will be a `PlayerUpdateReason` from which you can retrieve the player and additional information about the click.
 
-| Event type            | Registered with                         | Description                                                                                                                                                                                            | Use-case                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|-----------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ItemPreUpdateEvent`  | `#!java Inventory.setPreUpdateHandler`  | Called before changes were fully processed. Cancelling this event or changing the amount of items that were added/removed will affect the source of the change (which is the player most of the time). | Restricting which or how many items can be put into an inventory or a specific slot.<br><br>**Example 1:** A player tries to put a full stack of 64 items into the inventory, but the amount gets changed to 32 in the event, so the remaining 32 items stay on the player's cursor.<br><br>**Example 2:** A player shift-clicks a dirt block into the inventory, but the event is cancelled in such a way that only diamonds can be placed on slot 1, and everything else can be placed on slot 2, so the dirt is put on slot 2. |
-| `ItemPostUpdateEvent` | `#!java Inventory.setPostUpdateHandler` | After changes were fully processed. This event cannot be cancelled and changes done to the inventory during this event will not affect the source of the change.                                       | Removing or editing items after they've been added to the inventory.<br><br>**Example:** A trash can inventory that immediately removes all items that have been put into it.                                                                                                                                                                                                                                                                                                                                                     |
+### ItemPreUpdateEvent
 
-## Inventories in GUIs
+This event is called before changes were fully processed. Cancelling this event will affect the source of the change (i.e. the player's cursor most of the time) appropriately, if possible. This allows restricting which items can be put into an inventory or even a specific slot of an inventory.
 
-Adding an `Inventory` to a GUI can be done the same way as adding Items.  
-You can either:
+In the following example, the `ItemPreUpdateEvent` is cancelled in such a way that only red wool can be placed on slot 10, and only orange wool can be placed on the other slots:
 
-* Define an ingredient for the `Inventory` in `Structure` or the delegating `Gui.Builder` method.
-* Use the filling methods in `Gui`.
-* Create a `SlotElement.InventorySlotElement` which links to the specific slot.
+=== "Kotlin"
+    ```kotlin
+    inv.addPreUpdateHandler { event ->
+        if (event.isAdd || event.isSwap) {
+            if (event.slot == 10) {
+                event.isCancelled = event.newItem?.type != Material.RED_WOOL
+            } else {
+                event.isCancelled = event.newItem?.type != Material.ORANGE_WOOL
+            }
+        }
+    }
+    ```
 
-### GUI priority
+=== "Java"
+    ```java
+    inv.addPreUpdateHandler(event -> {
+        if (event.isAdd() || event.isSwap()) {
+            if (event.getSlot() == 10) {
+                event.setCancelled(event.getNewItem().getType() != Material.RED_WOOL);
+            } else {
+                event.setCancelled(event.getNewItem().getType() != Material.ORANGE_WOOL);
+            }
+        }
+    });
+    ```
 
-If you have multiple virtual inventories in one GUI, you might want to change the order of
-which items are added to them with shift-clicks or collected using double clicks.
-This can be done by setting the `guiPriority` in `Inventory`. The inventory with the highest priority will be used first.
+![](assets/img/inventory/item_pre_update_event.avif){width=500}
+
+
+### ItemPostUpdateEvent
+
+This event is called after changes were performed on a slot. It is not cancellable and changes done to the inventory during this event will not affect the source of the change.
+
+In the following example, the `ItemPostUpdateEvent` is used to implement a trash can menu:
+
+=== "Kotlin"
+    ```kotlin
+    inv.addPostUpdateHandler { event -> 
+        event.inventory.setItem(UpdateReason.SUPPRESSED, 0, null) // (1)!
+    }
+    ```
+
+    1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
+
+=== "Java"
+    ```java
+    inv.addPostUpdateHandler(event -> {
+        event.getInventory().setItem(UpdateReason.SUPPRESSED, 0, null); // (1)!
+    });
+    ```
+
+    1. `UpdateReason.SUPPRESSED` prevents events from firing. Otherwise, this would cause an infinite loop.
+
+![](assets/img/inventory/item_post_update_event.avif){width=500}
+
+### InventoryClickEvent
+
+InvUI also has its own inventory click event, not to be confused with `org.bukkit.event.inventory.InventoryClickEvent`. This event is fired when a player clicks on a slot in a gui-embedded inventory. For most cases, `ItemPreUpdateEvent` and `ItemPostUpdateEvent` are sufficient. However, in very specialized cases, you might want to intercept certain click actions and use them for something else.
+
+In the following example, the `InventoryClickEvent` is used to change the number key presses from moving the item to the hotbar slots to changing their amount instead:
+
+=== "Kotlin"
+    ```kotlin
+    inv.addClickHandler { event ->
+        if (event.clickType == ClickType.NUMBER_KEY) {
+            event.isCancelled = true
+            val newItem = event.inventory.getItem(event.slot)?.apply { amount = event.hotbarButton + 1 }
+            event.inventory.setItem(null, event.slot, newItem)
+        }
+    }
+    ```
+
+=== "Java"
+    ```java
+    inv.addClickHandler(event -> {
+        if (event.getClickType() == ClickType.NUMBER_KEY) {
+            event.setCancelled(true);
+            var newItem = event.getInventory().getItem(event.getSlot());
+            if (newItem != null)
+                newItem.setAmount(event.getHotbarButton() + 1);
+            event.getInventory().setItem(null, event.getSlot(), newItem);
+        }
+    });
+    ```
+
+![](assets/img/inventory/inventory_click_event.avif){width=500}
+
+### Bukkit Events
+
+When embedded in a Gui, InvUI fires Bukkit's `InventoryClickEvent` and `InventoryDragEvent` for `VirtualInventory` and `ReferencingInventory`. This allows other plugins to handle interactions with InvUI inventories. Since other inventory types (`CompositeInventory`, `ObscuredInventory`) at some point delegate to one of these types, actions on them will also lead to an event being fired, but there won't be multiple event calls for one action.
+
+??? info "Behavior"
+
+    To isolate InvUI's gui components from other plugins, these events are fired with custom `Inventory` and `InventoryView` implementations that just expose the slots of the InvUI inventories involved in the action. Refer to the tables below for more details.
+
+    === "InventoryClickEvent"
+    
+        | Clicked Inventory                                                                         | Behavior                                                                                                                                                                                                                                    |
+        |-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+        | `ReferencingInventory` to the viewer's player inventory (e.g. the default lower GUI)      | Fired with a view matching the player's current open view (top inventory of 0 slots, player inventory as bottom). Even if the referencing inventory is embedded in the upper GUI, click events use slots translated to the lower inventory. |
+        | Any other inventory (e.g. `VirtualInventory` or `ReferencingInventory` to something else) | Fired with a custom view using an adapter `Inventory` that delegates to the InvUI inventory as the top inventory. The lower inventory is always the player's inventory.                                                                     |
+
+    === "InventoryDragEvent"
+        
+        | Drag Slots                                                                 | Behavior                                                                                                                                                                                                                    |
+        |----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+        | All slots within a `ReferencingInventory` to the viewer's player inventory | Fired with a view matching the player's current open view. Even if the referencing inventory is embeded in the upper GUI, slots are translated to the lower inventory.                                                      |
+        | Slots from other inventories involved                                      | Fired with a custom view using an adapter `Inventory` to a `CompositeInventory` combining all involved inventories (except `ReferencingInventory` to the viewer's player inventory, which uses the view's lower inventory). |
+
+        !!! note "Drag Event Limitations"
+            - The `InventoryDragEvent` is fired with an expected outcome of the drag action, not taking into account any custom InvUI-inventory logic like update handlers.
+            - While cancelling the `InventoryDragEvent` works as expected, changing the cursor with `InventoryDragEvent#setCursor` or updating the `newItems` map is ignored by InvUI.
+
+Bukkit inventory event firing is enabled by default. You can disable it:
+
+- Per-plugin: `InvUI.getInstance().setFireBukkitInventoryEvents(false)`
+- Globally: Set the system property `-Dinvui.fireBukkitInventoryEvents=false`
+
+## Other configuration options
+
+### Gui priority
+
+The gui priority defines the order in which inventories of a gui are iterated over for actions like shift-clicking items or collecting them to the cursor with a double click. Gui priority is categorized, so you can define different priorities per category.
+
+In the following example, the gui priorities are configured in such a way that items are shift-clicked into the right inventory first, but collecting to the cursor prioritizes the left inventory:
+
+=== "Kotlin"
+    ```kotlin
+    val left = VirtualInventory(9)
+    left.setGuiPriority(OperationCategory.ADD, -1)
+    left.setGuiPriority(OperationCategory.COLLECT, 1)
+    
+    val right = VirtualInventory(9)
+    
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', left)
+        .addIngredient('y', right)
+        .build()
+    ```
+    
+=== "Java"
+    ```java
+    var left = new VirtualInventory(9);
+    left.setGuiPriority(OperationCategory.ADD, -1);
+    left.setGuiPriority(OperationCategory.COLLECT, 1);
+    
+    var right = new VirtualInventory(9)
+    
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# x x x # y y y #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', left)
+        .addIngredient('y', right)
+        .build();
+    ```
+
+![](assets/img/inventory/gui_priority.avif){width=500}
+
+### Iteration order
+
+The iteration order defines in which order the slots of multi-slot operations like adding or collecting are chosen. By default, the iteration order is from first to the last slot (i.e. items are added into the first available slot and collected from the first matching slot). Like the gui priority, the iteration order is categorized, so you can define different orders per category.
+
+You can change the iteration to a completely custom sequence of slots, but there are also utilities to just reverse it. The following example reverses the iteration order for adding items, but keeps the iteration order for collecting items:
+
+=== "Kotlin"
+    ```kotlin 
+    val inv = VirtualInventory(7 * 4)
+    inv.reverseIterationOrder(OperationCategory.ADD)
+    
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('#', Item.simple(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        .addIngredient('x', inv)
+        .build()
+    ```
+
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    inv.reverseIterationOrder(OperationCategory.ADD);
+    
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('#', Item.simple(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).hideTooltip(true)))
+        .addIngredient('x', inv)
+        .build();
+    ```
+
+![](assets/img/inventory/iteration_order.avif){width=500}
 
 ### Background
 
-If you want your inventory slots to have a background `ItemProvider` (which is an item that is technically in the slot,
-but will be ignored by all click actions) you can set the `background` parameter in
-`#!java Structure.addIngredient(char key, Inventory inventory, ItemProvider background)` or in the delegating `Gui.Builder` method for it.  
-Alternatively, you can also create the `SlotElement.InventorySlotElement` yourself.
+The slots in your inventory may be empty, but this does not mean that they have to be visually empty as well. You can set a background `ItemProvider` for your inventory, which will be used to display empty slots. Inventory interactions will keep working as if the slots were empty.
+
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 4)
+    val gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #",
+        )
+        .addIngredient('x', inv, ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).hideTooltip(true))
+        .build()
+    ```
+
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 4);
+    var gui = Gui.builder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# x x x x x x x #",
+            "# # # # # # # # #"
+        )
+        .addIngredient('x', inv, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).hideTooltip(true))
+        .build();
+    ```
+
+![](assets/img/inventory/background.avif){width=500}
+
+!!! warning "Item dragging does not work on slots with a background."
+
+### Obscured slots
+
+By default, multi-slot operations like shift-clicking into or collecting from inventories that are embedded in guis will ignore all slots that are not visible, even if the inventory has more slots. You can change this behavior by setting `Gui.setIgnoreObscuredInventorySlots(false)`:
+
+The following example uses a [scroll gui](gui.md#scroll-gui) to display a large inventory that does not fit on one screen. By default, shift-clicking does nothing if there are no empty visible slots, but with `setIgnoreObscuredInventorySlots(false)`, this is not the case:
+
+=== "Kotlin"
+    ```kotlin
+    val inv = VirtualInventory(7 * 6)
+    repeat(7 * 3) { inv.addItem(null, ItemStack.of(Material.DIAMOND, 64)) }
+    
+    val gui = ScrollGui.inventoriesBuilder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x u",
+            "# x x x x x x x #",
+            "# x x x x x x x d",
+            "# # # # # # # # #",
+        )
+        .setContent(listOf(inv))
+        .setIgnoreObscuredInventorySlots(false)
+        .build()
+    ```
+
+=== "Java"
+    ```java
+    var inv = new VirtualInventory(7 * 6);
+    for (int i = 0; i < 7 * 3; i++) {
+        inv.addItem(null, ItemStack.of(Material.DIAMOND, 64));
+    }
+    
+    var gui = ScrollGui.inventoriesBuilder()
+        .setStructure(
+            "# # # # # # # # #",
+            "# x x x x x x x u",
+            "# x x x x x x x #",
+            "# x x x x x x x d",
+            "# # # # # # # # #"
+        )
+        .setContent(List.of(inv))
+        .setIgnoreObscuredInventorySlots(false)
+        .build();
+    ```
+
+![](assets/img/inventory/obscured.avif){width=500}

@@ -1,0 +1,33 @@
+INHERIT: base.yml
+docs_dir: invui1
+site_dir: site/invui1
+site_name: InvUI Documentation
+site_url: https://xenondevs.xyz/docs/invui1/
+edit_uri: edit/main/docs/invui1/
+
+extra_javascript:
+  - assets/js/width-toggle.js
+
+theme:
+  custom_dir: invui1/overrides
+  features:
+    - navigation.footer
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+
+nav:
+  - "Getting Started": "index.md"
+  - "Basics": "basics.md"
+  - "Items": "items.md"
+  - "Structure": "structure.md"
+  - "GUIs":
+      - "Overview": "guis/index.md"
+      - "Normal GUI": "guis/normal.md"
+      - "Paged GUI": "guis/paged.md"
+      - "Scroll GUI": "guis/scroll.md"
+      - "Tab GUI": "guis/tab.md"
+  - "Windows": "windows.md"
+  - "Inventory": "inventory.md"
+  - "Localization": "localization.md"
