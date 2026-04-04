@@ -1,6 +1,6 @@
 # InvUI
 
-Minimum required Java version: `21`
+Minimum required Java version: `25`
 
 !!! warning "Dropped multi-version and Spigot support in v2"
 
