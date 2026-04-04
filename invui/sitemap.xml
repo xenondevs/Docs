@@ -4,36 +4,27 @@
         <loc>https://xenondevs.xyz/docs/invui/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/invui/basics/</loc>
+        <loc>https://xenondevs.xyz/docs/invui/overview/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/invui/items/</loc>
+        <loc>https://xenondevs.xyz/docs/invui/item/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/invui/structure/</loc>
+        <loc>https://xenondevs.xyz/docs/invui/gui/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/invui/guis/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/invui/guis/normal/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/invui/guis/paged/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/invui/guis/scroll/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/invui/guis/tab/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/invui/windows/</loc>
+        <loc>https://xenondevs.xyz/docs/invui/window/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/invui/inventory/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/invui/localization/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/invui/reactive-menus/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/invui/faq/</loc>
       </url>
 </urlset>

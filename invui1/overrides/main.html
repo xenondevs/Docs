@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+    .eol-banner {
+        background-color: #f39c12;
+        color: #000;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        font-weight: 500;
+        position: fixed;
+        top: 48px; /* Height of the MkDocs Material header */
+        left: 0;
+        right: 0;
+        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
+    }
+
+    .eol-banner a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    /* Add padding to content so it's not hidden behind the fixed banner */
+    .md-main {
+        padding-top: 40px;
+    }
+</style>
+<script>
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
+</script>
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<script>
+    // Inject toggle button immediately when header is available
+    (function () {
+        window.__mdWidthIcons = {
+            maximize: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(45 12 12)"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></g></svg>',
+            minimize: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(45 12 12)"><path d="m14 10 7-7"/><path d="M20 10h-6V4"/><path d="m3 21 7-7"/><path d="M4 14h6v6"/></g></svg>'
+        };
+
+        const mode = window.__mdWidthMode || "slim";
+        const btn = document.createElement("button");
+        btn.id = "md-width-toggle";
+        btn.className = "md-header__button md-width-toggle";
+        btn.setAttribute("aria-label", "Toggle page width");
+        btn.innerHTML = mode === "full" ? window.__mdWidthIcons.minimize : window.__mdWidthIcons.maximize;
+
+        const header = document.querySelector(".md-header__inner");
+        if (header) {
+            const searchButton = header.querySelector(".md-header__button.md-icon[for='__search']")
+                || header.querySelector("label.md-header__button");
+            if (searchButton) {
+                searchButton.parentNode.insertBefore(btn, searchButton);
+            } else {
+                header.appendChild(btn);
+            }
+        }
+    })();
+</script>
+<div class="eol-banner">
+    <strong>End of Life Notice:</strong>
+    InvUI v1 will <strong>NOT</strong> be updated to Minecraft v26.1.
+    Consider migrating to <a href="https://docs.xenondevs.xyz/invui2/">InvUI v2</a> or a different inventory GUI library.
+</div>
+{{ super() }}
+{% endblock %}
+
