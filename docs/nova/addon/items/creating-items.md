@@ -144,13 +144,7 @@ model = rangeDispatch(RangeDispatchItemModelProperty.Cooldown) { // (1)!
 
 ### Special
 
-There are various special model types available. These use hardcoded rendering logic and are not achievable through
-regular model files.
-
-The following special models exist:  
-`bedSpecialModel`, `bannerSpecialModel`, `conduitSpecialModel`, `chestSpecialModel`, `decoratedPotSpecialModel`
-`headSpecialModel`, `shulkerBoxSpecialModel`, `shieldSpecialModel`, `standingSignSpecialModel`, `tridentSpecialModel`,
-`hangingSignSpecialModel`
+There are various special model types available. These use hardcoded rendering logic and are not achievable through regular model files.
 
 ```kotlin title="modelDefinition { }"
 model = chestSpecialModel {

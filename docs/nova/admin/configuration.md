@@ -192,10 +192,10 @@ attribute_modifiers:
       - attribute: attack_damage
         operation: add_value
         value: 5.0
-      offhand:
       - attribute: movement_speed
         operation: add_multiplied_base
-        value: 0.1
+        value: 0.1  
+      offhand:
       - attribute: movement_speed
         operation: add_multiplied_base
         value: 0.1

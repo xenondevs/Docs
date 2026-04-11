@@ -16,7 +16,8 @@ object EntityVariants  {
         }
         
         texture(CowModelType.WARM /*(3)!*/) {
-            texture("entity/cow/blue")
+            adultTexture("entity/cow/blue")
+            babyTexture("entity/cow/blue_baby")
         }
     }
     
