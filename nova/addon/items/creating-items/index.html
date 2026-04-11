@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://xenondevs.xyz/docs/nova/addon/items/creating-items/">
       
       
-        <link rel="prev" href="../../configs/">
+        <link rel="prev" href="../../resourcepack/build-logic/">
       
       
         <link rel="next" href="../item-behaviors/">
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.31">
+      <meta name="generator" content="zensical-0.0.32">
     
     
       
@@ -1390,6 +1390,62 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contexts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1402,10 +1458,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
             
   
   
@@ -1423,8 +1479,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1502,34 +1558,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../configs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1546,10 +1574,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
             
   
   
@@ -1567,8 +1595,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1948,34 +1976,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contexts/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contexts
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4664,6 +4664,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../migration-guide/0.22-0.23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.22 ➝ 0.23
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../migration-guide/0.21-0.22/" class="md-nav__link">
         
   
@@ -5337,12 +5365,7 @@ type that directly links to a model file. Additionally, this type also allows yo
    intermediate models as you want. The client will always render the one with the closest lower value.</li>
 </ol>
 <h3 id="special">Special</h3>
-<p>There are various special model types available. These use hardcoded rendering logic and are not achievable through
-regular model files.</p>
-<p>The following special models exist:<br />
-<code>bedSpecialModel</code>, <code>bannerSpecialModel</code>, <code>conduitSpecialModel</code>, <code>chestSpecialModel</code>, <code>decoratedPotSpecialModel</code>
-<code>headSpecialModel</code>, <code>shulkerBoxSpecialModel</code>, <code>shieldSpecialModel</code>, <code>standingSignSpecialModel</code>, <code>tridentSpecialModel</code>,
-<code>hangingSignSpecialModel</code></p>
+<p>There are various special model types available. These use hardcoded rendering logic and are not achievable through regular model files.</p>
 <div class="highlight"><span class="filename">modelDefinition { }</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chestSpecialModel</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourcePath</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">ResourceType</span><span class="p">.</span><span class="na">ChestTexture</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my_addon:iron_chest&quot;</span><span class="p">)</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">openness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span>
@@ -5403,7 +5426,7 @@ or for <code>FakeEntities</code>.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../configs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configs">
+          <a href="../../resourcepack/build-logic/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Custom Build Logic">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -5413,7 +5436,7 @@ or for <code>FakeEntities</code>.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Configs
+                Custom Build Logic
               </div>
             </div>
           </a>

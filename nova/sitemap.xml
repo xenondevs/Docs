@@ -67,13 +67,16 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/initialization/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/configs/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/contexts/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/addon-assets/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/build-logic/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/configs/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/items/creating-items/</loc>
@@ -92,9 +95,6 @@
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/items/recipes/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/contexts/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/blocks/creating-blocks/</loc>
@@ -308,6 +308,9 @@
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/misc/project-distributors/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.22-0.23/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.21-0.22/</loc>
