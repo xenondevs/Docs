@@ -9,6 +9,8 @@ extra_javascript:
   - assets/js/width-toggle.js
 
 theme:
+  logo: assets/img/icon.svg
+  favicon: assets/img/icon.svg
   custom_dir: nova/overrides
   features:
     - navigation.tabs
