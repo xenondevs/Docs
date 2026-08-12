@@ -1,3 +1,7 @@
+---
+icon: lucide/door-open
+---
+
 # End gateway feature
 
 The `end_gateway` feature can be used to place end gateways in the world.
@@ -128,5 +132,5 @@ Here's the configured and placed feature for the vanilla return end gateway:
 ## Result
 
 <p class="text-center">
-  <img src="https://i.imgur.com/N5NZfbC.png" width="50%" alt="Example"/>
+  <img src="../../../../assets/img/worldgen/features/configurations/end-gateway/standalone.png" width="50%" alt="Example"/>
 </p>

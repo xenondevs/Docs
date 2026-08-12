@@ -1,3 +1,9 @@
+---
+icon: lucide/image
+---
+
+# Addon Assets
+
 !!! tip "Minecraft Resource Pack Format"
 
     Before continuing here, make sure to familiarize yourself with the
@@ -19,7 +25,7 @@ For creating custom block models, we recommend using [Blockbench](https://blockb
 For [entity-backed blocks](../blocks/creating-blocks.md#model-backing), Nova allows you to create oversized models.
 If you want to take advantage of this, you'll need to deactivate Blockbench's size limit:
 
-![](https://i.imgur.com/cbjOKZr.png){width=50%}
+![](../../assets/img/addon/resource-pack/blockbench-size-limit.png){width=50%}
 
 ## Language Files
 

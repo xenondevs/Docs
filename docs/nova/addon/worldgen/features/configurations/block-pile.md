@@ -1,3 +1,7 @@
+---
+icon: lucide/boxes
+---
+
 # Block pile feature
 
 The `block_pile` can be used to place piles of blocks (for example hay/melons in villages) in the world.
@@ -81,11 +85,11 @@ As an example, here's the placed and configured feature used to place piles of h
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/kI3yAnZ.png" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-pile/standalone.png" width="50%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/gnOfX3E.png" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-pile/natural-generation.png" width="50%" alt="Example"/>
     </p>

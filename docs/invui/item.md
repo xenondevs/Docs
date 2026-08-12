@@ -1,3 +1,7 @@
+---
+icon: lucide/square
+---
+
 # Item
 
 ## What is an Item?

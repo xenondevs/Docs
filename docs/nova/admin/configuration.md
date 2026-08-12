@@ -1,3 +1,7 @@
+---
+icon: lucide/settings
+---
+
 # Configuring Nova
 
 All config files are located in under `plugins/Nova/configs/`.
@@ -45,7 +49,7 @@ To customize the items menu (accessible via `/nova items`), create a file named 
           - minecraft:rooted_dirt
       ```
       
-      ![](https://i.imgur.com/IDCkw1A.png)
+      ![](../assets/img/admin/configuration/item-categories.png)
 
 ## Tile-Entity limits
 
@@ -201,7 +205,7 @@ attribute_modifiers:
         value: 0.1
     ```
     
-    ![](https://i.imgur.com/TIjCNto.png)
+    ![](../assets/img/admin/configuration/attribute-modifiers.png)
 
 ## Resource Filters
 

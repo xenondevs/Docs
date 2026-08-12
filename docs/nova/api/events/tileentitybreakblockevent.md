@@ -1,3 +1,7 @@
+---
+icon: lucide/hammer
+---
+
 # TileEntityBreakBlockEvent
 
 The ``TileEntityBreakBlockEvent`` is called when a tile-entity breaks a block. It can be used to manipulate the drops of 

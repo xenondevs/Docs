@@ -1,3 +1,7 @@
+---
+icon: lucide/waves
+---
+
 # Lake feature
 
 !!! warning "Deprecated"
@@ -165,4 +169,4 @@ As an example, here's the configured- and placed feature for the underground lav
 
 ## Result
 
-![Example](https://i.imgur.com/arPELZy.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/lake/natural-generation.gif)

@@ -1,11 +1,17 @@
-# Configure Addon
+---
+icon: lucide/sliders-horizontal
+---
+
+# Addon Configuration
+
+## build.gradle.kts
 
 Now that you've created your project, you need to set several values in the `addon` extension.
 If you're using the addon template, most of these values are already set for you.
 
 **Options marked with a * are required.**
 
-## name*
+### name*
 
 This is the name of your addon.
 Names may only contain alphanumeric characters, periods, underscores, and hyphens (`[A-Za-z0-9._-]+`).  
@@ -24,7 +30,7 @@ In most cases, you can just use your project name:
 name = project.name
 ```
 
-## version*
+### version*
 
 The version of the addon.
 
@@ -40,7 +46,7 @@ Or to automatically get the version from your project:
 version = project.version.toString()
 ```
 
-## main*
+### main*
 
 Full path to your addon main class (without the .class extension).
 
@@ -50,7 +56,7 @@ Example:
 main = "com.example.ExampleAddon"
 ```
 
-## dependency
+### dependency
 
 You can declare dependencies on other plugins / addons using `dependency`:
 
@@ -67,7 +73,7 @@ For plugins that don't have a bootstrapper, you can instead specify the phase:
 dependency("some-plugin", PluginDependency.Stage.SERVER)
 ```
 
-## pluginMain
+### pluginMain
 
 Full path to your plugin main class (without the .class extension).  
 If you don't define this property, Nova will generate a plugin main class for you.
@@ -79,7 +85,7 @@ Example:
 pluginMain = "com.example.ExamplePlugin"
 ```
 
-## loader
+### loader
 
 A custom [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders).
 Defining a custom plugin loader will disable Nova's library loading mechanism that can be
@@ -91,7 +97,7 @@ Example:
 loader = "com.example.ExampleLoader"
 ```
 
-## bootstrapper
+### bootstrapper
 
 A custom [bootstrapper](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#bootstrapper).
 
@@ -101,7 +107,7 @@ Example:
 bootstrapper = "com.example.ExampleBootstrapper"
 ```
 
-## description
+### description
 
 A description of your addon.
 
@@ -111,7 +117,7 @@ Example:
 description = "This is an example addon."
 ```
 
-## authors
+### authors
 
 A list of author(s) of your addon.
 
@@ -121,7 +127,7 @@ Example:
 authors.add("ExampleAuthor")
 ```
 
-## contributors
+### contributors
 
 A list of contributors to your addon.
 
@@ -137,7 +143,7 @@ Or for multiple authors:
 authors = listOf("ExampleAuthor", "Another Author")
 ```
 
-## website
+### website
 
 A website for your addon.
 
@@ -147,7 +153,7 @@ Example:
 website = "https://example.com"
 ```
 
-## prefix
+### prefix
 
 The prefix used in log messages.
 
@@ -157,7 +163,7 @@ Example:
 prefix = "example"
 ```
 
-## Example configuration
+### Example configuration
 
 ```kotlin title="build.gradle.kts"
 addon {
@@ -168,3 +174,35 @@ addon {
     dependency("machines")
 }
 ```
+
+## Project Distributors
+
+To set up update notifications, simply override the `projectDistributors` list in your addon object:
+
+```kotlin title="MyAddon.kt"
+object MyAddon : Addon() {
+    
+    override val projectDistributors = listOf(/*your distributors*/)
+
+}
+```
+
+By default, there are three different distributors available:
+
+| Distributor | Code                                          |
+|-------------|-----------------------------------------------|
+| Hangar      | `ProjectDistributor.hangar(/*project id*/)`   |
+| Modrinth    | `ProjectDistributor.modrinth(/*project id*/)` |
+| GitHub      | `ProjectDistributor.github(/*project id*/)`   |
+
+You can also create your own distributor by implementing the `ProjectDistributor` interface.
+
+!!! abstract "Order of update checks"
+
+    When checking for updates, all registered distributors are checked in the order they are specified in the list.  
+    This means that if you want users to download your updates from a specific distributor, you should put it at the
+    top of the list.
+
+!!! abstract "Pre-release versions"
+
+    Users will only be notified of pre-release versions if they themselves are using a pre-release version.

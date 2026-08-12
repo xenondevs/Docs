@@ -1,3 +1,7 @@
+---
+icon: lucide/rocket
+---
+
 # Setting up Nova
 
 Before installing Nova, please make sure that you're running a [supported server software](compatibility/index.md#compatible-server-software).  

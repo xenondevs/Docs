@@ -1,3 +1,7 @@
+---
+icon: lucide/sparkles
+---
+
 # Enchantments
 
 ## Enchantable Items

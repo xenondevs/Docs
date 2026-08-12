@@ -1,3 +1,14 @@
+---
+icon: lucide/code-xml
+---
+
+# Getting Started
+
+!!! tip "Looking to add custom items and blocks?"
+
+    The Plugin API is only intended for integrating existing plugins with Nova.  
+    To add custom content, create an addon via the [Addon API](../addon/) instead.
+
 To use the Nova API you first have to add the xenondevs maven repository to your build configuration.
 
 === "Maven"
@@ -66,7 +77,6 @@ You can use this instance to access everything else:
 
 - [Adding custom protection checks](./protection/protectionintegration.md)
 - [Getting `NovaItems`](./items/index.md)
-- [Getting `NovaBlocks`](./blocks/blockregistry.md)
-- [Working with `NovaBlocks` and `NovaBlockStates`](./blocks/blockmanager.md)
-- [Working with `TileEntities`](./tileentity/tileentitymanager.md)
+- [Working with `NovaBlocks` and `NovaBlockStates`](./blocks/index.md)
+- [Working with `TileEntities`](./tileentity/index.md)
 - [Toggling the WAILA overlay](./player/wailamanager.md)

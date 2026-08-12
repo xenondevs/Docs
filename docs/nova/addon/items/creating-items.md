@@ -1,3 +1,9 @@
+---
+icon: lucide/apple
+---
+
+# Creating Items
+
 ## Creating an Item Registry
 
 First, create an empty singleton object and annotate it like this:

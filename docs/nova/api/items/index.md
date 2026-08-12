@@ -1,3 +1,9 @@
+---
+icon: lucide/apple
+---
+
+# Items
+
 ``NovaItem`` represents an item type. It is similar to ``Material`` in Bukkit, except that it is only for items.
 
 ## Getting a ``NovaItem`` by name

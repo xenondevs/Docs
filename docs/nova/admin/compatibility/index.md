@@ -1,3 +1,9 @@
+---
+icon: lucide/plug-zap
+---
+
+# Server Software & third-party Plugins
+
 ## Compatible server software
 
 Nova is a paper plugin and needs to be run on a paper server or paper fork. Officially supported are:
@@ -22,7 +28,7 @@ We're planning to add support for the following server software in the future:
 
 !!! warning
 
-    Most of these plugins require [resource pack merging](../setup.md#optional-resourcepack-merging).
+    Most of these plugins require [resource pack merging](../setup.md#optional-resource-pack-merging).
 
 ### World Protection Plugins
 

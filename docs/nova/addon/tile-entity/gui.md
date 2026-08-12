@@ -1,3 +1,7 @@
+---
+icon: lucide/panel-top
+---
+
 # TileEntity Menu
 
 !!! info "Check out the InvUI wiki"

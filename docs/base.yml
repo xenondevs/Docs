@@ -26,6 +26,8 @@ theme:
     repo: fontawesome/brands/github
 
 markdown_extensions:
+  - toc:
+      permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.tabbed:

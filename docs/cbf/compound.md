@@ -1,3 +1,7 @@
+---
+icon: lucide/braces
+---
+
 # Compound
 
 A `Compound` is a key-value store that serializes its data using the registered [serializers](serialization.md).

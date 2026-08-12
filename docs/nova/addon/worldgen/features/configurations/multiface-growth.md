@@ -1,3 +1,7 @@
+---
+icon: lucide/expand
+---
+
 # Multiface growth feature
 
 The `multiface_growth` feature is used to generate plants that grow on multiple faces of a block (for example sculk or
@@ -148,4 +152,4 @@ As an example, here's the configured- and placed feature for sculk veins.
 
 ## Result
 
-![Example](https://i.imgur.com/yq5KlVA.png)
+![Example](../../../../assets/img/worldgen/features/configurations/multiface-growth/natural-generation.png)

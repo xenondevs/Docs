@@ -1,3 +1,7 @@
+---
+icon: lucide/cooking-pot
+---
+
 # Customizing Recipes
 
 In Nova, all recipes are customizable. You can find the recipe files under ``plugins/Nova/recipes``  

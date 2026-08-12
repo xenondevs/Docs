@@ -1,3 +1,7 @@
+---
+icon: lucide/dice-3
+---
+
 # Random patch feature
 
 The `random_patch` feature can be used to place a feature in a random pattern multiple times. It's mostly used for
@@ -142,5 +146,5 @@ As an example, here's the random patch used to generate dead bushes in the badla
 ## Result
 
 <p class="text-center">
-  <img src="https://i.imgur.com/cPaH1UW.png" width="90%" alt="Example"/>
+  <img src="../../../../assets/img/worldgen/features/configurations/random-patch/natural-generation.png" width="90%" alt="Example"/>
 </p>

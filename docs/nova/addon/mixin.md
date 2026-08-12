@@ -1,3 +1,9 @@
+---
+icon: lucide/git-merge
+---
+
+# Mixins
+
 Mixins are a powerful way to modify existing code of the Minecraft server. Nova uses [Mixin](https://github.com/SpongePowered/Mixin) + [MixinExtras](https://github.com/LlamaLad7/MixinExtras/) and [Origami](https://github.com/xenondevs/origami) as mixin loader.
 
 For an improved development experience when creating Mixins, we recommend installing the [Minecraft Development](https://plugins.jetbrains.com/plugin/8327-minecraft-development) IntelliJ plugin.

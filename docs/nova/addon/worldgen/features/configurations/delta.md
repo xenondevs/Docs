@@ -1,3 +1,7 @@
+---
+icon: lucide/flame
+---
+
 # Delta feature
 
 The `delta_feature` is a 1-block deep sheet of a block randomly surrounded by a block (rim). It's normally used to generate
@@ -114,4 +118,4 @@ As an example, here's the placed and configured feature used to place deltas in 
 
 ## Result
 
-![Example](https://i.imgur.com/Bfy18m5.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/delta/natural-generation.gif)

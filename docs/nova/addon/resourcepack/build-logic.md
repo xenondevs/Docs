@@ -1,3 +1,7 @@
+---
+icon: lucide/workflow
+---
+
 # Custom resource pack build logic
 
 Each resource pack to be generated has its own `ResourcePackBuildConfiguration`, which consists of tasks to be executed in a specific order. Addons can add custom tasks to existing resource pack configurations, or create their own ones to generate separate resource packs.

@@ -1,3 +1,7 @@
+---
+icon: lucide/columns-3
+---
+
 # Basalt columns feature
 
 The `basalt_columns` feature allows you to add basalt columns to the world.
@@ -99,5 +103,5 @@ As an example, here's the configured and placed feature for the large basalt col
 ## Result
 
 <p class="text-center">
-  <img src="https://i.imgur.com/29HVOlq.gif" width="40%" alt="Example"/>
+  <img src="../../../../assets/img/worldgen/features/configurations/basalt-columns/natural-generation.gif" width="40%" alt="Example"/>
 </p>

@@ -1,3 +1,7 @@
+---
+icon: lucide/columns-3
+---
+
 # Block column feature
 
 The `block_column` feature allows you to add a column of blocks (e.g. sugar cane or cacti) to the world.
@@ -101,13 +105,13 @@ As an example, here's the configured feature used to place cacti in the desert.
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/MVKK0dp.png" width="30%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-column/cactus-standalone.png" width="30%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/pyugGNl.png" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-column/cactus-natural-generation.png" width="50%" alt="Example"/>
     </p>
 
 
@@ -387,11 +391,11 @@ Or, as another example, here's the configured and placed feature for glow berrie
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/7slobb1.png" width="30%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-column/glow-berry-vines-standalone.png" width="30%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/qFbdk7W.jpeg" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/block-column/glow-berry-vines-natural-generation.jpeg" alt="Example"/>
     </p>

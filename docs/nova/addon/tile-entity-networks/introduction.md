@@ -1,3 +1,7 @@
+---
+icon: lucide/network
+---
+
 # Tile Entity Networks - Introduction
 
 ## Overview
@@ -55,14 +59,14 @@ from [NetworkedTileEntity](networked-tile-entity.md) to make your tile-entity ne
     The particles visualize what network a block belongs to.
     As you can see, each cable section is a different network and every chest is part of two networks.
 
-    ![](https://imgur.com/LqBLa73.png)
+    ![](../../assets/img/addon/tile-entity-networks/item-networks.png)
 
     **Network Clusters** `/nova debug showNetworkClusters`:  
     The particles visualize what network cluster a block belongs to.
     Since the four left networks all share chests, and the four right networks all share chests, there are only
     two network clusters.
 
-    ![](https://imgur.com/9YbSwKr.png)
+    ![](../../assets/img/addon/tile-entity-networks/network-clusters.png)
 
 ## Network Tick
 

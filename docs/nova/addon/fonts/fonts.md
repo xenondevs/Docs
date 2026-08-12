@@ -1,3 +1,7 @@
+---
+icon: lucide/type
+---
+
 # Fonts
 
 ## Importance of custom fonts
@@ -58,7 +62,7 @@ _More information about the font file format can be found on the [Minecraft wiki
 In Nova, you can either:
 
 * Add font files to your asset pack under `fonts/` using the vanilla font format.
-* Generate font files during resource pack generation using [FontContent](../resourcepack/build-logic.md#fontcontent).
+* Generate font files during resource pack generation using [FontContent](../resourcepack/build-logic.md#packbuilddata).
 
 ### Using custom fonts
 
@@ -90,7 +94,7 @@ Nova also provides some useful extension functions to make all of this easier:
 
 Moving text along the vertical axis is a bit more difficult to achieve. Currently, the only way to do this in Nova is to
 generate vertically moved variations of a font. To do that, request those variations during the resource pack build
-process using [MovedFontContent](../resourcepack/build-logic.md#movedfontcontent).
+process using [MovedFontContent](../resourcepack/build-logic.md#packbuilddata).
 
 ```kotlin
 builder.getBuildData<MovedFontContent>().requestMovedFonts(ResourcePath("namespace", "name"), 0..19)

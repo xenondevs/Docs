@@ -1,3 +1,7 @@
+---
+icon: lucide/circle-help
+---
+
 # FAQ
 
 ## Nova

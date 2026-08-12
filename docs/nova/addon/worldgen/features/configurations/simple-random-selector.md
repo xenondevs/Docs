@@ -1,3 +1,7 @@
+---
+icon: lucide/dice-3
+---
+
 # Simple random selector feature
 
 Similar to the [random selector](./random-selector.md) feature, the `simple_random_selector` feature can be used to
@@ -209,4 +213,4 @@ randomly choose between a stalactite and a stalagmite. Si here's the full config
     }
     ```
 
-![Example](https://i.imgur.com/G1ccC52.jpeg)
+![Example](../../../../assets/img/worldgen/features/configurations/simple-random-selector/natural-generation.jpeg)

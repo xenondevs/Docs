@@ -8,13 +8,24 @@ edit_uri: edit/main/docs/nova/
 extra_javascript:
   - assets/js/width-toggle.js
 
+extra:
+  nav_icons:
+    "Features": lucide/sprout
+    "Configurations": lucide/sliders-horizontal
+    "Injections": lucide/route
+    "Utility Types": lucide/shapes
+    "Plugins": lucide/puzzle
+    "Migration Guide": lucide/git-compare-arrows
+
 theme:
   logo: assets/img/icon.svg
   favicon: assets/img/icon.svg
   custom_dir: nova/overrides
   features:
     - navigation.tabs
+    - navigation.sections
     - navigation.footer
+    - content.action.edit
     - content.tabs.link
     - content.code.annotate
     - content.code.copy
@@ -22,37 +33,38 @@ theme:
 
 nav:
   - "Setup & Configuration":
-      - "Setup": "admin/setup.md"
+      - "Basics":
+          - "Setup": "admin/setup.md"
+          - "Configuration": "admin/configuration.md"
+          - "FAQ": "admin/faq.md"
       - "Compatibility":
           - "Server Software & third-party Plugins": "admin/compatibility/index.md"
-          - "ItemsAdder": "admin/compatibility/itemsadder.md"
-          - "Nexo": "admin/compatibility/nexo.md"
-      - "Configuration": "admin/configuration.md"
+          - "Plugins":
+              - "ItemsAdder": "admin/compatibility/itemsadder.md"
+              - "Nexo": "admin/compatibility/nexo.md"
       - "Recipes":
           - "Custom Recipes": "admin/recipes/index.md"
           - "Vanilla Recipe Types": "admin/recipes/vanilla.md"
           - "Machines Recipe Types": "admin/recipes/machines.md"
-      - "FAQ": "admin/faq.md"
   - "Plugin API":
       - "Getting Started": "api/index.md"
-      - "Protection": "api/protection/protectionintegration.md"
-      - "Items": "api/items/index.md"
-      - "Blocks":
-          - "BlockRegistry": "api/blocks/blockregistry.md"
-          - "BlockManager": "api/blocks/blockmanager.md"
-      - "TileEntity":
-          - "TileEntityManager": "api/tileentity/tileentitymanager.md"
-          - "TileEntity": "api/tileentity/tileentity.md"
+      - "Content":
+          - "Items": "api/items/index.md"
+          - "Blocks": "api/blocks/index.md"
+          - "Tile Entities": "api/tileentity/index.md"
       - "Events":
           - "NovaLoadDataEvent": "api/events/novaloaddataevent.md"
           - "TileEntityBreakBlockEvent": "api/events/tileentitybreakblockevent.md"
-      - "WailaManager": "api/player/wailamanager.md"
+      - "Miscellaneous":
+          - "ProtectionIntegration": "api/protection/protectionintegration.md"
+          - "WailaManager": "api/player/wailamanager.md"
   - "Addon API":
-      - "Getting Started": "addon/index.md"
-      - "Configure Addon": "addon/addon-configuration.md"
-      - "Initialization": "addon/initialization.md"
-      - "Configs": "addon/configs.md"
-      - "Contexts": "addon/contexts.md"
+      - "Basics":
+          - "Getting Started": "addon/index.md"
+          - "Addon Configuration": "addon/addon-configuration.md"
+          - "Initialization": "addon/initialization.md"
+          - "Configs": "addon/configs.md"
+          - "Contexts": "addon/contexts.md"
       - "Resource Pack":
           - "Addon Assets": "addon/resourcepack/addon-assets.md"
           - "Custom Build Logic": "addon/resourcepack/build-logic.md"
@@ -66,23 +78,19 @@ nav:
       - "Blocks":
           - "Creating Blocks": "addon/blocks/creating-blocks.md"
           - "Block Behaviors": "addon/blocks/block-behaviors.md"
-      - "Tile-Entities":
+      - "Tile Entities":
           - "Introduction": "addon/tile-entity/introduction.md"
           - "Menu (GUI)": "addon/tile-entity/gui.md"
           - "Regions": "addon/tile-entity/region.md"
-      - "Tile-Entity Networks":
-        - "Introduction": "addon/tile-entity-networks/introduction.md"
-        - "Networked Tile-Entity": "addon/tile-entity-networks/networked-tile-entity.md"
-        - "Custom Network Types": "addon/tile-entity-networks/custom-network-types.md"
+      - "Tile Entity Networks":
+          - "Introduction": "addon/tile-entity-networks/introduction.md"
+          - "Networked Tile Entity": "addon/tile-entity-networks/networked-tile-entity.md"
+          - "Custom Network Types": "addon/tile-entity-networks/custom-network-types.md"
       - "Fonts & Overlays":
-            - "Custom Fonts": "addon/fonts/fonts.md"
-            - "GUI Textures": "addon/fonts/guitextures.md"
-            - "Action Bar Overlay": "addon/fonts/actionbar.md"
-            - "Boss Bar Overlay": "addon/fonts/bossbar.md"
-      - "Entity Variants": "addon/entity-variants.md"
-      - "Attachments": "addon/attachments.md"
-      - "Abilities": "addon/abilities.md"
-      - "Hitboxes": "addon/hitboxes.md"
+          - "Custom Fonts": "addon/fonts/fonts.md"
+          - "GUI Textures": "addon/fonts/guitextures.md"
+          - "Action Bar Overlay": "addon/fonts/actionbar.md"
+          - "Boss Bar Overlay": "addon/fonts/bossbar.md"
       - "World Generation":
           - "Overview": "addon/worldgen/worldgen.md"
           - "Codecs": "addon/worldgen/codec.md"
@@ -138,24 +146,28 @@ nav:
               - "BlockState Providers": "addon/worldgen/types/block-state-provider.md"
               - "BlockState": "addon/worldgen/types/block-state.md"
               - "Block Predicate": "addon/worldgen/types/block-predicate.md"
-      - "Working with server internals":
+      - "Server Internals":
           - "Access Wideners": "addon/access-widener.md"
           - "Mixins": "addon/mixin.md"
       - "Miscellaneous":
+          - "Entity Variants": "addon/entity-variants.md"
+          - "Attachments": "addon/attachments.md"
+          - "Abilities": "addon/abilities.md"
+          - "Hitboxes": "addon/hitboxes.md"
           - "Events": "addon/misc/events.md"
           - "Scheduler": "addon/misc/scheduler.md"
-          - "Project Distributors": "addon/misc/project-distributors.md"
-      - "Migration Guide":
-          - "0.23 ➝ 0.24": "addon/migration-guide/0.23-0.24.md"
-          - "0.22 ➝ 0.23": "addon/migration-guide/0.22-0.23.md"
-          - "0.21 ➝ 0.22": "addon/migration-guide/0.21-0.22.md"
-          - "0.20 ➝ 0.21": "addon/migration-guide/0.20-0.21.md"
-          - "0.19 ➝ 0.20": "addon/migration-guide/0.19-0.20.md"
-          - "0.18 ➝ 0.19": "addon/migration-guide/0.18-0.19.md"
-          - "0.17 ➝ 0.18": "addon/migration-guide/0.17-0.18.md"
-          - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
-          - "0.15 ➝ 0.16": "addon/migration-guide/0.15-0.16.md"
-          - "0.14 ➝ 0.15": "addon/migration-guide/0.14-0.15.md"
-          - "0.13 ➝ 0.14": "addon/migration-guide/0.13-0.14.md"
-          - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
-          - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"
+      - "Versioning":
+          - "Migration Guide":
+              - "0.23 ➝ 0.24": "addon/migration-guide/0.23-0.24.md"
+              - "0.22 ➝ 0.23": "addon/migration-guide/0.22-0.23.md"
+              - "0.21 ➝ 0.22": "addon/migration-guide/0.21-0.22.md"
+              - "0.20 ➝ 0.21": "addon/migration-guide/0.20-0.21.md"
+              - "0.19 ➝ 0.20": "addon/migration-guide/0.19-0.20.md"
+              - "0.18 ➝ 0.19": "addon/migration-guide/0.18-0.19.md"
+              - "0.17 ➝ 0.18": "addon/migration-guide/0.17-0.18.md"
+              - "0.16 ➝ 0.17": "addon/migration-guide/0.16-0.17.md"
+              - "0.15 ➝ 0.16": "addon/migration-guide/0.15-0.16.md"
+              - "0.14 ➝ 0.15": "addon/migration-guide/0.14-0.15.md"
+              - "0.13 ➝ 0.14": "addon/migration-guide/0.13-0.14.md"
+              - "0.12 ➝ 0.13": "addon/migration-guide/0.12-0.13.md"
+              - "0.11 ➝ 0.12": "addon/migration-guide/0.11-0.12.md"

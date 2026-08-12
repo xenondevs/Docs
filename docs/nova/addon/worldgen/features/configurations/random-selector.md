@@ -1,3 +1,7 @@
+---
+icon: lucide/dice-5
+---
+
 # Random selector feature
 
 The `random_selector` feature can be used to randomly choose from a provided list of features to place.
@@ -76,4 +80,4 @@ As an example, here's the random selector used to generate tree in the old growt
     3. A pine tree with a $^1/_{3}$ chance.
     4. A spruce tree with a $^1/_{3}$ chance.
 
-![Example](https://i.imgur.com/JJZoK77.jpeg)
+![Example](../../../../assets/img/worldgen/features/configurations/random-selector/natural-generation.jpeg)

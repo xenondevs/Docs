@@ -1,3 +1,7 @@
+---
+icon: lucide/triangle
+---
+
 # Pointed dripstone feature
 
 The `pointed_dripstone` feature can be used to add pointed dripstone to the world.
@@ -115,4 +119,4 @@ one of the features used to place upwards pointing dripstone.
 
 ## Result
 
-![Example](https://i.imgur.com/DqCS6yo.png)
+![Example](../../../../assets/img/worldgen/features/configurations/pointed-dripstone/natural-generation.png)

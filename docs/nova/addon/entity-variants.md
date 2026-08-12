@@ -1,3 +1,9 @@
+---
+icon: lucide/cat
+---
+
+# Entity Variants
+
 ## What is an Entity Variant?
 
 Entity variants are a vanilla Minecraft feature and allow you to add retextured variants of existing entities to the game. 

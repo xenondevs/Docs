@@ -1,3 +1,7 @@
+---
+icon: lucide/shrub
+---
+
 # Vegetation patch feature
 
 The `vegetation_patch` and `waterlogged_vegetation_patch` features can be used to randomly spread vegetation in the world.
@@ -179,4 +183,4 @@ As an example, here's the configured- and placed feature for placing moss in cav
 
 ## Result
 
-![Example](https://i.imgur.com/2yU5aVp.png)
+![Example](../../../../assets/img/worldgen/features/configurations/vegetation-patch/natural-generation.png)

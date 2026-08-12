@@ -1,3 +1,7 @@
+---
+icon: lucide/shuffle
+---
+
 # BlockState Providers
 
 !!! warning

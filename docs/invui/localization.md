@@ -1,3 +1,7 @@
+---
+icon: lucide/languages
+---
+
 # Localization
 
 ## Adding translations

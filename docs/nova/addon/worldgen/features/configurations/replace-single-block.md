@@ -1,3 +1,7 @@
+---
+icon: lucide/refresh-cw
+---
+
 # Replace single block feature
 
 The `replace_single_block` feature allows you to randomly replace blocks with another block.

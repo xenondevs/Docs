@@ -1,3 +1,7 @@
+---
+icon: lucide/trees
+---
+
 # Bamboo feature
 
 The `bamboo` feature is used to add bamboo to the world.
@@ -102,5 +106,5 @@ As an example, here's the configured and placed feature for the bamboo in the ju
 ## Result
 
 <p class="text-center">
-  <img src="https://i.imgur.com/SJHi7yH.png" alt="Example"/>
+  <img src="../../../../assets/img/worldgen/features/configurations/bamboo/natural-generation.png" alt="Example"/>
 </p>

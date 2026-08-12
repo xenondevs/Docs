@@ -1,3 +1,7 @@
+---
+icon: lucide/shield-check
+---
+
 # ProtectionIntegration
 
 If you want to add a custom protection integration for your own plugin, you can do so by implementing the 

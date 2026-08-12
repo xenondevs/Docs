@@ -1,3 +1,7 @@
+---
+icon: lucide/flame-kindling
+---
+
 # Underwater magma feature
 
 The `underwater_magma` feature can be used to generate magma blocks underwater.
@@ -129,4 +133,4 @@ As an example, here's the placed and configured feature used to place magma bloc
 
 ## Result
 
-![Example](https://i.imgur.com/MERVDnv.png)
+![Example](../../../../assets/img/worldgen/features/configurations/underwater-magma/natural-generation.png)

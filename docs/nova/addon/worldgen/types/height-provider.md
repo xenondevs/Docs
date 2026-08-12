@@ -1,3 +1,7 @@
+---
+icon: lucide/arrow-up-down
+---
+
 # Height Providers
 
 Height providers are used to get a height value for a given position. Before we can get into the details however, we first
@@ -196,7 +200,7 @@ Generates a random y-value between `min_inclusive` and `max_inclusive` with a [t
 
 The Minecraft Wiki explains its usage in ore generation pretty well:
 
-![Trapezoidal distribution](https://i.imgur.com/K7NO5jj.png)
+![Trapezoidal distribution](../../../assets/img/worldgen/types/height-providers/ore-height-distribution.png)
 
 `min_inclusive`
 

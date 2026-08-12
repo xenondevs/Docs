@@ -1,3 +1,9 @@
+---
+icon: lucide/panels-top-left
+---
+
+# Window
+
 ## What is a Window?
 
 In InvUI, windows represent the actual Minecraft inventories that are displayed to the player. Windows are made up of [guis](gui.md), whose number varies based on the window type. For example, a normal chest window has two guis: one for the upper and one for the lower inventory. Some window types also have special functionality, like the rename bar in anvil windows or the trade buttons in merchant windows.

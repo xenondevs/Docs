@@ -1,3 +1,7 @@
+---
+icon: lucide/code-xml
+---
+
 # Cosmic Binary Format
 
 ## Configuring Maven / Gradle

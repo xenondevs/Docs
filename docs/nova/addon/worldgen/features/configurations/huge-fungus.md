@@ -1,3 +1,7 @@
+---
+icon: lucide/trees
+---
+
 # Huge fungus feature
 
 The `huge_fungus` feature can be used to place huge fungi in the world (used for warped and crimson forests in vanilla).
@@ -111,11 +115,11 @@ As an example, here's the configured- and placed feature for the warped fungus:
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/ZQMzj56.gif" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/huge-fungus/standalone.gif" width="50%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/BNJlDNh.png" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/huge-fungus/natural-generation.png" width="50%" alt="Example"/>
     </p>

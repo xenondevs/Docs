@@ -1,3 +1,7 @@
+---
+icon: lucide/cable
+---
+
 # NetworkedTileEntity
 
 `NetworkedTileEntity` inherits from `TileEntity` and `NetworkEndPoint` and provides you with an easy way
@@ -142,6 +146,6 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 }
 ```
 
-![](https://i.imgur.com/WrTEssR.png){width=40%}
+![](../../assets/img/addon/tile-entity-networks/side-configuration.png){width=40%}
 
 Of course, nothing stops you from creating your own side-config gui.

@@ -1,3 +1,9 @@
+---
+icon: lucide/box
+---
+
+# Creating Blocks
+
 ## Block States
 
 Block states in Nova are quite similar to those in vanilla Minecraft. Every block type has at least one block state,

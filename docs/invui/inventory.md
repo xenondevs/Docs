@@ -1,3 +1,9 @@
+---
+icon: lucide/package-open
+---
+
+# Inventory
+
 ## What is an Inventory?
 
 InvUI has its own inventories, not to be confused with `org.bukkit.inventory.Inventory`. InvUI's inventories can be embedded in guis, which will allow players to interact with these slots.

@@ -1,3 +1,7 @@
+---
+icon: lucide/mountain
+---
+
 # Dripstone cluster feature
 
 !!! warning
@@ -169,4 +173,4 @@ In code, the `DripstoneClusterConfiguration` class is used to configure the feat
 
 ## Result
 
-![Example](https://i.imgur.com/bFYJngv.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/dripstone-cluster/natural-generation.gif)

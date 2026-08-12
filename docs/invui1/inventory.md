@@ -1,3 +1,5 @@
+# Inventory
+
 The `xyz.xenondevs.invui.inventory.Inventory` is a type of inventory that can be embedded in GUIs.
 It provides several utility methods to easily add and remove items from the inventory, as well as an advanced event
 system allowing to listen for and affect changes in the inventory.

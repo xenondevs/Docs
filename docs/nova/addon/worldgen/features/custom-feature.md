@@ -1,3 +1,7 @@
+---
+icon: lucide/git-branch
+---
+
 # Custom Features
 
 !!! info "Check out the `Codecs` page"
@@ -278,4 +282,4 @@ We can now properly use our newly defined feature.
 
 And that's it! We now have a fully functional feature that's generated in the overworld.
 
-![Example feature](https://i.imgur.com/89q4oT8.jpeg)
+![Example feature](../../../assets/img/worldgen/features/custom/example-feature.jpeg)

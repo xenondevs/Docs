@@ -1,3 +1,9 @@
+---
+icon: lucide/panel-top
+---
+
+# Boss Bar Overlay
+
 Boss bar overlays are generally similar to action bar overlays, with the difference that they're rendered at boss bar
 position, can be moved vertically, and have a built-in way to dynamically position themselves above/below other overlays.
 

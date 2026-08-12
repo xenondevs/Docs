@@ -1,3 +1,7 @@
+---
+icon: lucide/box
+---
+
 # Simple block feature
 
 The `simple_block` feature allows you to randomly place blocks in the world.
@@ -126,4 +130,4 @@ As an example, here's the feature used to randomly place spore blossoms.
     5. Offset the location by -1 vertically.
     6. Only place spore blossoms in biomes that have the `minecraft:spore_blossom` feature.
 
-![Example](https://i.imgur.com/rFXdXU2.png)
+![Example](../../../../assets/img/worldgen/features/configurations/simple-block/natural-generation.png)

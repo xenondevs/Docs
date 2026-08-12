@@ -1,3 +1,7 @@
+---
+icon: lucide/replace-all
+---
+
 # Reactive Menus (`invui-kotlin`)
 
 !!! warning "This functionality is experimental and exclusive to `invui-kotlin`."

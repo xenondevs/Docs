@@ -1,3 +1,7 @@
+---
+icon: lucide/code-xml
+---
+
 # Getting started
 
 **This guide assumes prior experience with Kotlin and the Paper API.**

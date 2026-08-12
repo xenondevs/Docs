@@ -1,3 +1,7 @@
+---
+icon: lucide/sprout
+---
+
 # Features Overview
 
 Features (sometimes also called decorators) are used to add additional decorations to the world (e.g. trees, ores, etc.).  

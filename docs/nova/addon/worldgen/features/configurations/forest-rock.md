@@ -1,3 +1,7 @@
+---
+icon: lucide/mountain
+---
+
 # Forest rock feature
 
 The `forest_rock` feature can be used to generate small $3x3$ rocks in the world.
@@ -98,11 +102,11 @@ In code, the `BlockStateConfiguration` class is used to configure the feature.
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/DT8h7o3.gif" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/forest-rock/standalone.gif" width="50%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/o8nrBsv.gif" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/forest-rock/natural-generation.gif" width="50%" alt="Example"/>
     </p>

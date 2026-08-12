@@ -1,3 +1,5 @@
+# Windows
+
 ## What is a Window in InvUI?
 
 In InvUI, windows represent the actual Minecraft inventories that are displayed to the player.

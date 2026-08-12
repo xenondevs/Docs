@@ -1,3 +1,7 @@
+---
+icon: lucide/wand-sparkles
+---
+
 # Abilities
 
 ## What are Abilities?

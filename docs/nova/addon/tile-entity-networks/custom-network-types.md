@@ -1,3 +1,9 @@
+---
+icon: lucide/git-fork
+---
+
+# Custom Network Types
+
 ## Network Type
 
 You can register a custom network type like this:

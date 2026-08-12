@@ -1,3 +1,7 @@
+---
+icon: lucide/scan-eye
+---
+
 # WailaManager
 
 The WailaManager allows you to enable / disable the WAILA overlay for players.

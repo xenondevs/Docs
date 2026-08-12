@@ -1,3 +1,7 @@
+---
+icon: lucide/trees
+---
+
 # Root system feature
 
 !!! warning
@@ -222,4 +226,4 @@ As an example, here's the configured- and placed feature for the azalea tree
 
 ## Result
 
-![Example](https://i.imgur.com/KcPb1G5.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/root-system/natural-generation.gif)

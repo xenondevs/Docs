@@ -1,3 +1,7 @@
+---
+icon: lucide/pickaxe
+---
+
 # Ore features
 
 Ore features are used to generate ores in the world. They are configured using the `ore` or `scattered_ore` feature types

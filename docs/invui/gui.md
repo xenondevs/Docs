@@ -1,3 +1,9 @@
+---
+icon: lucide/grid-3x3
+---
+
+# Gui
+
 ## What is a Gui?
 
 In InvUI, a `Gui` is simply a rectangle of slots. Each slot can either be empty or contain something like an [Item](item.md), a link to another [Gui](gui.md), or a link to an [Inventory](inventory.md).

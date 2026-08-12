@@ -1,3 +1,7 @@
+---
+icon: lucide/cone
+---
+
 # End spike feature
 
 The `end_spike` feature can be used to place end spikes (also known as obsidian pillars) in the world.
@@ -214,4 +218,4 @@ As an example, here's the configured feature used to place the default end spike
 
 ## Result
 
-![Example](https://i.imgur.com/75EsKn7.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/end-spikes/natural-generation.gif)

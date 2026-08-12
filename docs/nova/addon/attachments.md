@@ -1,3 +1,7 @@
+---
+icon: lucide/briefcase-conveyor-belt
+---
+
 # Attachments
 
 ## What is an Attachment?

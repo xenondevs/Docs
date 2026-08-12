@@ -1,3 +1,7 @@
+---
+icon: lucide/flame
+---
+
 # Nether forest vegetation feature
 
 !!! warning "Hardcoded block check"

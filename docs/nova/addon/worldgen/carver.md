@@ -1,3 +1,7 @@
+---
+icon: lucide/mountain
+---
+
 # Carvers
 
 !!! warning

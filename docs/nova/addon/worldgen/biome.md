@@ -1,3 +1,7 @@
+---
+icon: lucide/trees
+---
+
 # Biomes
 
 !!! warning

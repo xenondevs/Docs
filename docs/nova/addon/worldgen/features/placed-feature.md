@@ -1,3 +1,7 @@
+---
+icon: lucide/map
+---
+
 # Placed Features
 
 A placed feature determines where and how a configured feature will be placed. Placed features work via placement modifiers 

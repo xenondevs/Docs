@@ -1,3 +1,7 @@
+---
+icon: lucide/power
+---
+
 # Initialization
 
 Simply annotate any singleton object with `#!kotlin @Init` and Nova will load the class during

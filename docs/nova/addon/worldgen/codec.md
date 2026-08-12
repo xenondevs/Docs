@@ -1,3 +1,7 @@
+---
+icon: lucide/binary
+---
+
 # Codecs
 
 <div class="annotate" markdown>

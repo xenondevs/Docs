@@ -1,3 +1,7 @@
+---
+icon: lucide/code-xml
+---
+
 # InvUI
 
 Minimum required Java version: `25`

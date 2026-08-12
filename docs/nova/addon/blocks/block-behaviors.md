@@ -1,3 +1,9 @@
+---
+icon: lucide/component
+---
+
+# Block Behaviors
+
 Similar to [ItemBehaviors](../items/item-behaviors.md), you can implement block logic via `BlockBehavior`. You can find a list of all available default behaviors [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block.behavior/index.html).
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)

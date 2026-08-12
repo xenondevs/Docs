@@ -1,3 +1,7 @@
+---
+icon: lucide/disc-3
+---
+
 # Disk feature
 
 The `disk` feature allows you to place disks of blocks in the world.
@@ -179,4 +183,4 @@ As an example, here's the configured and placed feature for sand disks in lakes:
 
 ## Result
 
-![Example](https://i.imgur.com/G2Ebb1v.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/disk/natural-generation.gif)

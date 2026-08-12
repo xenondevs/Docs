@@ -5,7 +5,9 @@
   }
 </style>
 
-![](https://i.imgur.com/X4Q2ycT.png)
+# Nova Documentation
+
+![](assets/img/overview/nova-banner.png)
 
 Go to...
 

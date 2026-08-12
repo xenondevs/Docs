@@ -1,3 +1,7 @@
+---
+icon: lucide/droplets
+---
+
 # Spring feature
 
 The `spring_feature` allows you to single-block fluid springs in the world.
@@ -134,4 +138,4 @@ As an example, here's the placed and configured feature used to place water spri
 
 ## Result
 
-![Example](https://i.imgur.com/z29PhOL.png)
+![Example](../../../../assets/img/worldgen/features/configurations/spring-feature/natural-generation.png)

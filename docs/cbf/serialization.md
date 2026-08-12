@@ -1,3 +1,9 @@
+---
+icon: lucide/binary
+---
+
+# Serialization
+
 ## Serialization Basics
 
 In CBF, `BinarySerializers` define how objects are (de)serialized to and from binary data.

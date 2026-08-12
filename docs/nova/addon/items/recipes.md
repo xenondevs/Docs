@@ -1,3 +1,7 @@
+---
+icon: lucide/cooking-pot
+---
+
 # Recipes
 
 ## Adding recipes to your addon

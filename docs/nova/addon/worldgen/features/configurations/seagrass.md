@@ -1,3 +1,7 @@
+---
+icon: lucide/waves
+---
+
 # Seagrass feature
 
 The `seagrass` feature allows you to generate seagrass in water.

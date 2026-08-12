@@ -1,3 +1,7 @@
+---
+icon: lucide/snowflake
+---
+
 # Iceberg feature
 
 The `iceberg` feature allows you to add icebergs to the world.
@@ -87,4 +91,4 @@ As an example, here's the configured and placed feature for the blue icebergs in
 
 ## Result
 
-![Example](https://i.imgur.com/hRVHhcb.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/iceberg/natural-generation.gif)

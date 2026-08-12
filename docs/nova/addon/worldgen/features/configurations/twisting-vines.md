@@ -1,3 +1,7 @@
+---
+icon: lucide/sprout
+---
+
 # Twisting vines Feature
 
 !!! warning "Hardcoded block check"
@@ -121,11 +125,11 @@ As an example, here's the configured- and placed feature to generate twisting vi
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/i8gaAoS.png" width="30%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/twisting-vines/standalone.png" width="30%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/xkI1urz.gif" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/twisting-vines/natural-generation.gif" alt="Example"/>
     </p>

@@ -1,3 +1,7 @@
+---
+icon: lucide/cone
+---
+
 # Large dripstone feature
 
 !!! warning
@@ -166,11 +170,11 @@ As an example, here's the configured and placed feature for the vanilla large dr
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/oDNXy5N.png" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/large-dripstone/standalone.png" width="50%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/eRK2Jf9.jpeg" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/large-dripstone/natural-generation.jpeg" alt="Example"/>
     </p>

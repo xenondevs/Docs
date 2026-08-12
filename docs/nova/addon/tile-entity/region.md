@@ -1,3 +1,9 @@
+---
+icon: lucide/scan
+---
+
+# Regions
+
 ## Region
 
 Generally, a region is an area between a `min` and a `max` Location.  

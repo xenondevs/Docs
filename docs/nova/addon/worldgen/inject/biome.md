@@ -1,3 +1,7 @@
+---
+icon: lucide/route
+---
+
 # Biome injections
 
 !!! warning

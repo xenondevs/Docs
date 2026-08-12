@@ -1,3 +1,7 @@
+---
+icon: lucide/layers
+---
+
 # Fill layer feature
 
 The `fill_layer` feature can be used to fill an entire 16x16 chunk area with a single block.

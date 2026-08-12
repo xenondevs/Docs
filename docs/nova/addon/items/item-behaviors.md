@@ -1,3 +1,7 @@
+---
+icon: lucide/component
+---
+
 # Item Behaviors
 
 To add custom functionality to your item type, create a class that implements the `ItemBehavior` interface.

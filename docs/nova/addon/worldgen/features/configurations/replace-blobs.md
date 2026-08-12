@@ -1,3 +1,7 @@
+---
+icon: lucide/replace
+---
+
 # Replace blobs feature
 
 The `replace_blobs` feature can be used to replace specific blobs with a blob of a different block. Although
@@ -126,4 +130,4 @@ As an example, here's the configured- and placed feature for blackstone blobs in
 
 ## Result
 
-![Example](https://i.imgur.com/dVus6n5.gif)
+![Example](../../../../assets/img/worldgen/features/configurations/replace-blobs/natural-generation.gif)

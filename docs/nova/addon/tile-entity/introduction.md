@@ -1,3 +1,9 @@
+---
+icon: lucide/scan-box
+---
+
+# Introduction
+
 Tile-Entities are blocks that have additional data and logic attached to them.
 
 ## Creating a Tile-Entity

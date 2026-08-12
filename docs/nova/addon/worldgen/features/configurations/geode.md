@@ -1,3 +1,7 @@
+---
+icon: lucide/gem
+---
+
 # Geode feature
 
 !!! warning
@@ -288,5 +292,5 @@ In code, the `GeodeCrackSettings` class is used to configure the crack of the ge
 ## Result
 
 <p class="text-center">
-  <img src="https://i.imgur.com/RYgAs6a.png" width="50%" alt="Example"/>
+  <img src="../../../../assets/img/worldgen/features/configurations/geode/natural-generation.png" width="50%" alt="Example"/>
 </p>

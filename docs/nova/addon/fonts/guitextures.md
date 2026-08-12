@@ -1,3 +1,9 @@
+---
+icon: lucide/layout-template
+---
+
+# GUI Textures
+
 ## Creating a GuiTexture
 
 Register your gui texture during initialization:

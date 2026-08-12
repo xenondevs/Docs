@@ -1,3 +1,9 @@
+---
+icon: lucide/key-round
+---
+
+# Access Wideners
+
 Access wideners allow you to loosen the access limits of classes, methods, and fields.
 Currently, access wideners can only be used on classes from NMS or craftbukkit. To use access wideners in your addon, create a file called `<addon_id>.accesswidener` in `src/main/resources`.
 

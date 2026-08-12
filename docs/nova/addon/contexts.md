@@ -1,3 +1,9 @@
+---
+icon: lucide/square-function
+---
+
+# Contexts
+
 A `#!kotlin Context<I : ContextIntention>`, at its core, is a simple key-value storage for `#!kotlin (ContextParamType<T, I>, T)` pairs and
 a `ContextIntention`, which defines their allowed parameter types.
 

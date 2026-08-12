@@ -1,3 +1,9 @@
+---
+icon: lucide/square-dashed
+---
+
+# Hitboxes
+
 ## Hitbox Implementations
 
 Nova provides you with two built-in ways to handle left- and right-click detection in game.

@@ -1,3 +1,7 @@
+---
+icon: lucide/audio-waveform
+---
+
 # Sculk patch feature
 
 The `sculk_patch` feature allows you to generate sculk patches in the world.
@@ -121,4 +125,4 @@ As an example, here's the default sculk patch configured- and placed feature use
     3. Set the y-coordinate to a random value up to 256.
     4. Only generate in the deep dark biome.
 
-![Example](https://i.imgur.com/HrnHSSF.png)
+![Example](../../../../assets/img/worldgen/features/configurations/sculk-patch/natural-generation.png)

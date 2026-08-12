@@ -1,3 +1,7 @@
+---
+icon: lucide/umbrella
+---
+
 # Huge mushroom features
 
 The `huge_brown_mushroom ` and `huge_red_mushroom` features can be used to add huge mushrooms to a biome.
@@ -102,11 +106,11 @@ As an example, here's the configured- and placed feature for the default huge re
 === "Alone"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/ngPLJK8.gif" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/huge-mushrooms/standalone.gif" width="50%" alt="Example"/>
     </p>
 
 === "Naturally generated"
 
     <p class="text-center">
-      <img src="https://i.imgur.com/uBDxTqV.gif" width="50%" alt="Example"/>
+      <img src="../../../../assets/img/worldgen/features/configurations/huge-mushrooms/natural-generation.gif" width="50%" alt="Example"/>
     </p>

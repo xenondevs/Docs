@@ -1,3 +1,7 @@
+---
+icon: lucide/filter
+---
+
 # BlockPredicates
 
 !!! warning

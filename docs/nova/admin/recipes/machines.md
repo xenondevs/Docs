@@ -1,3 +1,7 @@
+---
+icon: lucide/factory
+---
+
 # Recipe Types from the Machines Addon
 
 ## Pulverizer Recipes

@@ -1,3 +1,7 @@
+---
+icon: lucide/hash
+---
+
 # NumberProviders
 
 !!! warning

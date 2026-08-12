@@ -1,3 +1,7 @@
+---
+icon: lucide/bubbles
+---
+
 # Sea pickle feature
 
 As the name suggests, the `sea_pickle` feature generates sea pickles in the ocean.
@@ -88,4 +92,4 @@ In code, the `CountConfiguration` class is used to configure the feature.
     3. Set y-coordinate to the ocean floor.
     4. Only place in the warm ocean biome.
 
-![Example](https://i.imgur.com/0BTepnm.jpeg)
+![Example](../../../../assets/img/worldgen/features/configurations/sea-pickle/natural-generation.jpeg)

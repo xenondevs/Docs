@@ -1,4 +1,42 @@
-# BlockManager
+---
+icon: lucide/box
+---
+
+# Blocks
+
+## BlockRegistry
+
+The block registry contains all registered block types.
+
+You can get the ``BlockRegistry`` using [the previously retrieved Nova instance](../index.md).
+
+=== "Kotlin"
+
+    ```kotlin
+    val blockRegistry = Nova.blockRegistry
+    ```
+
+=== "Java"
+
+    ```java
+    BlockRegistry blockRegistry = Nova.getNova().getBlockRegistry();
+    ```
+
+After that, you can retrieve a block type by its id:
+
+=== "Kotlin"
+
+    ```kotlin
+    val block = blockRegistry.getBlock("machines:pulverizer")
+    ```
+
+=== "Java"
+
+    ```java
+    NovaBlock block = blockRegistry.getBlock("machines:pulverizer");
+    ```
+
+## BlockManager
 
 The BlockManager allows you to interact with Nova's blocks. You can place/destroy/get drops/etc.
 
@@ -18,7 +56,7 @@ You can get the ``BlockManager`` using [the previously retrieved Nova instance](
 
     1. "nova" is the previously retrieved Nova instance, preferably saved in a field/variable.<br>You can also call ``Nova.getNova().getBlockManager()``
 
-## Getting a BlockState
+### Getting a BlockState
 
 The BlockManager also allows you to get a BlockState at a specific location.
 
@@ -29,7 +67,7 @@ The BlockManager also allows you to get a BlockState at a specific location.
     ```
 
 === "Java"
-    
+
     ```java
     NovaBlockState blockState = blockManager.getBlock(location);
     if (blockState == null)
@@ -38,7 +76,7 @@ The BlockManager also allows you to get a BlockState at a specific location.
 
 You can also check if a block at a specific location is a Nova block via ``BlockManager.hasBlock(Location)``
 
-### Block Type
+#### Block Type
 
 `NovaBlock` is a block type, similar to `Material` in Bukkit, except that it is only for blocks.  
 To retrieve the block type of block at a specific location, you can do the following:
@@ -59,9 +97,9 @@ To retrieve the block type of block at a specific location, you can do the follo
     NovaBlock block = blockState.getBlock();
     ```
 
-### Tile Entity
+#### Tile Entity
 
-[TileEntities](../tileentity/tileentity.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity
+[TileEntities](../tileentity/index.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity
 instance of the block.
 
 === "Kotlin"
@@ -84,9 +122,9 @@ instance of the block.
     }
     ```
 
-## Placing a block
+### Placing a block
 
-You can also place a nova block at a specific location by using a [`NovaBlock`](blockregistry.md).
+You can also place a nova block at a specific location by using a [`NovaBlock`](#blockregistry).
 
 === "Kotlin"
 
@@ -126,7 +164,7 @@ You can also place a nova block at a specific location by using a [`NovaBlock`](
 
     The ``BlockManager.placeBlock`` function has a few overrides requiring less arguments.
 
-## Getting the drops of a block
+### Getting the drops of a block
 
 If you want to get the drops of a block, you can use the ``BlockManager.getDrops`` function. Again, there are a few
 overrides requiring less arguments.
@@ -163,10 +201,10 @@ overrides requiring less arguments.
     2. The source, again, this doesn't have to be a player, it can also be a tile-entity or similar.
     3. The tool used to break the block.
 
-## Removing a block
+### Removing a block
 
-You can remove a block at a specific location by using the ``BlockManager.removeBlock`` function. The function will return
-a ``boolean`` whether there was a block at the provided location and whether it was removed successfully.
+You can remove a block at a specific location by using the ``BlockManager.removeBlock`` function. The function will
+return a ``boolean`` whether there was a block at the provided location and whether it was removed successfully.
 
 === "Kotlin"
 

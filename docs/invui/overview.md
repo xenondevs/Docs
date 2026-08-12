@@ -1,3 +1,7 @@
+---
+icon: lucide/map
+---
+
 # Quick Overview
 
 In InvUI, there are four main concepts that you need to understand in order to create your own menus:

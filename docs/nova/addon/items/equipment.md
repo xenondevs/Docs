@@ -1,3 +1,9 @@
+---
+icon: lucide/shirt
+---
+
+# Equipment
+
 ## Creating equipment
 
 Custom equipment (armor) can be registered like this:

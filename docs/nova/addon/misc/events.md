@@ -1,3 +1,7 @@
+---
+icon: lucide/at-sign
+---
+
 # Events
 
 ## Working with Bukkit Events

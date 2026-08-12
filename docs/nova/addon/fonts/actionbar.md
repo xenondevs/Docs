@@ -1,4 +1,10 @@
-Overlays follow the same concept of using fonts to render images as [GUI Textures](../guitextures.md), but are
+---
+icon: lucide/panel-bottom
+---
+
+# Action Bar Overlay
+
+Overlays follow the same concept of using fonts to render images as [GUI Textures](guitextures.md), but are
 a bit more difficult to implement for addon developers, as you need to create the font file yourself.
 
 Font files are stored under `assets/fonts/` and have [this format](https://minecraft.wiki/w/Resource_Pack#Fonts).  

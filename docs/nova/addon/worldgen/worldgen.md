@@ -1,4 +1,13 @@
+---
+icon: lucide/earth
+---
+
 # World Generation Overview
+
+!!! warning "Documentation status"
+
+    Parts of this documentation are outdated. Some examples use older Nova APIs or Minecraft world-generation features
+    that no longer exist, while newer features may not yet be documented.
 
 Nova's worldgen is completely based on [Minecraft's custom worldgen format](https://minecraft.wiki/w/Custom_world_generation) with
 some additions. However, you can also register everything worldgen-related in code if you don't want to use Json. If you 
