@@ -25,44 +25,10 @@
     
     
       
-        <title>Index - InvUI Documentation</title>
+        <title>Overview - InvUI Documentation</title>
       
     
     
-<style>
-    .eol-banner {
-        background-color: #f39c12;
-        color: #000;
-        padding: 0.5rem 1rem;
-        text-align: center;
-        font-weight: 500;
-        position: fixed;
-        top: 48px; /* Height of the MkDocs Material header */
-        left: 0;
-        right: 0;
-        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
-    }
-
-    .eol-banner a {
-        color: #000;
-        text-decoration: underline;
-    }
-
-    /* Add padding to content so it's not hidden behind the fixed banner */
-    .md-main {
-        padding-top: 40px;
-    }
-</style>
-<script>
-    (function () {
-        const savedWidth = localStorage.getItem("md-width") || "slim";
-        if (savedWidth === "wide" || savedWidth === "full") {
-            document.documentElement.setAttribute("data-md-width", savedWidth);
-        }
-        // Store for width-toggle.js to use
-        window.__mdWidthMode = savedWidth;
-    })();
-</script>
 
       
         
@@ -78,6 +44,32 @@
 
 
     
+<style>
+    .md-banner {
+        background-color: #ffc107;
+        color: #1f1f1f;
+    }
+
+    .md-banner__inner {
+        max-width: none;
+        text-align: center;
+    }
+
+    .md-banner a {
+        color: inherit;
+        text-decoration: underline;
+    }
+</style>
+<script>
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
+</script>
 
     
       
@@ -119,12 +111,24 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-a-gui-in-invui" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <strong>End of Life Notice:</strong>
+  InvUI v1 will <strong>not</strong> be updated to Minecraft 26.1.
+  Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -154,7 +158,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Index
+              Overview
             
           </span>
         </div>
@@ -429,6 +433,8 @@
       
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -469,6 +475,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -748,6 +756,8 @@
                     
                     
                     
+                      
+                    
                     
                       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
                       <div class="md-sidebar-button__wrapper">
@@ -762,6 +772,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -865,25 +877,24 @@
         }
     })();
 </script>
-<div class="eol-banner">
-    <strong>End of Life Notice:</strong>
-    InvUI v1 will <strong>NOT</strong> be updated to Minecraft v26.1.
-    Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
-</div>
 
                   
   
+    <a href="https://github.com/xenondevs/Docs/edit/main/docs/invui1/guis/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
   
 
 
-  <h1 id="__skip">Index</h1>
-
-<h2 id="what-is-a-gui-in-invui">What is a GUI in InvUI?</h2>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-a-gui-in-invui">What is a GUI in InvUI?<a class="headerlink" href="#what-is-a-gui-in-invui" title="Permanent link">&para;</a></h2>
 <p>A GUI is basically a container for width * height SlotElements.
 Each SlotElement can either be an Item, a reference to another GUI or a reference to a VirtualInventory.</p>
 <p>Items and other SlotElements can be added using <code>gui.setItem(x, y, item);</code>, <code>gui.setItem(index, item);</code> or by using a Structure and applying that to the GUI <code>gui.applyStructure(structure);</code>.</p>
 <p>GUIs cannot display anything to a player, a Window is used for that.</p>
-<h2 id="different-types-of-guis">Different types of GUIs</h2>
+<h2 id="different-types-of-guis">Different types of GUIs<a class="headerlink" href="#different-types-of-guis" title="Permanent link">&para;</a></h2>
 <p>There are four different GUI types available:</p>
 <table>
 <thead>
@@ -916,7 +927,7 @@ Each SlotElement can either be an Item, a reference to another GUI or a referenc
 </tr>
 </tbody>
 </table>
-<h2 id="animations">Animations</h2>
+<h2 id="animations">Animations<a class="headerlink" href="#animations" title="Permanent link">&para;</a></h2>
 <p>GUIs can also play animations with <code class="highlight"><span class="n">gui</span><span class="p">.</span><span class="na">playAnimation</span><span class="p">(</span><span class="n">animation</span><span class="p">);</span></code>.<br />
 While an animation is running, the player can't interact with any Item in the GUI.</p>
 <p>Available Animations:</p>
@@ -930,7 +941,7 @@ While an animation is running, the player can't interact with any Item in the GU
 <li>RandomAnimation</li>
 </ul>
 <p>To cancel a running animation, use <code class="highlight"><span class="n">gui</span><span class="p">.</span><span class="na">cancelAnimation</span><span class="p">();</span></code></p>
-<h2 id="filling-methods">Filling methods</h2>
+<h2 id="filling-methods">Filling methods<a class="headerlink" href="#filling-methods" title="Permanent link">&para;</a></h2>
 <p>There are also some utility methods for filling available:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Kotlin</label><label for="__tabbed_1_2">Java</label></div>
 <div class="tabbed-content">
@@ -960,7 +971,7 @@ While an animation is running, the player can't interact with any Item in the GU
 </div>
 </div>
 </div>
-<h2 id="background-item">Background Item</h2>
+<h2 id="background-item">Background Item<a class="headerlink" href="#background-item" title="Permanent link">&para;</a></h2>
 <p>Every GUI can also have an <code>ItemProvider</code> as the background. This background Item will be shown when there is nothing occupying that slot. It can be useful for dealing with paged GUIs if you don't want any blank spots in your inventory.
 You can set the background via:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Kotlin</label><label for="__tabbed_2_2">Java</label></div>
@@ -1100,7 +1111,7 @@ You can set the background via:</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>

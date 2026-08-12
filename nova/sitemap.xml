@@ -4,6 +4,12 @@
         <loc>https://xenondevs.xyz/docs/nova/admin/setup/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/admin/configuration/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/admin/faq/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/</loc>
       </url>
       <url>
@@ -11,9 +17,6 @@
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/nexo/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/configuration/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/admin/recipes/</loc>
@@ -25,34 +28,25 @@
         <loc>https://xenondevs.xyz/docs/nova/admin/recipes/machines/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/faq/</loc>
-      </url>
-      <url>
         <loc>https://xenondevs.xyz/docs/nova/api/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/protection/protectionintegration/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/api/items/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/blocks/blockregistry/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/blocks/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/blocks/blockmanager/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/tileentity/tileentitymanager/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/tileentity/tileentity/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/tileentity/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/api/events/novaloaddataevent/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/api/events/tileentitybreakblockevent/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/api/protection/protectionintegration/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/api/player/wailamanager/</loc>
@@ -131,18 +125,6 @@
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/fonts/bossbar/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/entity-variants/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/attachments/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/abilities/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/hitboxes/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/worldgen/</loc>
@@ -301,13 +283,22 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/mixin/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/entity-variants/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/attachments/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/abilities/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/hitboxes/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/misc/events/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/misc/scheduler/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/misc/project-distributors/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.23-0.24/</loc>

@@ -29,40 +29,6 @@
       
     
     
-<style>
-    .eol-banner {
-        background-color: #f39c12;
-        color: #000;
-        padding: 0.5rem 1rem;
-        text-align: center;
-        font-weight: 500;
-        position: fixed;
-        top: 48px; /* Height of the MkDocs Material header */
-        left: 0;
-        right: 0;
-        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
-    }
-
-    .eol-banner a {
-        color: #000;
-        text-decoration: underline;
-    }
-
-    /* Add padding to content so it's not hidden behind the fixed banner */
-    .md-main {
-        padding-top: 40px;
-    }
-</style>
-<script>
-    (function () {
-        const savedWidth = localStorage.getItem("md-width") || "slim";
-        if (savedWidth === "wide" || savedWidth === "full") {
-            document.documentElement.setAttribute("data-md-width", savedWidth);
-        }
-        // Store for width-toggle.js to use
-        window.__mdWidthMode = savedWidth;
-    })();
-</script>
 
       
         
@@ -78,6 +44,32 @@
 
 
     
+<style>
+    .md-banner {
+        background-color: #ffc107;
+        color: #1f1f1f;
+    }
+
+    .md-banner__inner {
+        max-width: none;
+        text-align: center;
+    }
+
+    .md-banner a {
+        color: inherit;
+        text-decoration: underline;
+    }
+</style>
+<script>
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
+</script>
 
     
       
@@ -119,12 +111,24 @@
     <div data-md-component="skip">
       
         
-        <a href="#types-of-inventories" class="md-skip">
+        <a href="#inventory" class="md-skip">
           Skip to content
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <strong>End of Life Notice:</strong>
+  InvUI v1 will <strong>not</strong> be updated to Minecraft 26.1.
+  Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -595,6 +599,8 @@
       
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -635,6 +641,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -819,6 +827,8 @@
                     
                     
                     
+                      
+                    
                     
                       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
                       <div class="md-sidebar-button__wrapper">
@@ -833,6 +843,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1009,19 +1021,18 @@
         }
     })();
 </script>
-<div class="eol-banner">
-    <strong>End of Life Notice:</strong>
-    InvUI v1 will <strong>NOT</strong> be updated to Minecraft v26.1.
-    Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
-</div>
 
                   
   
+    <a href="https://github.com/xenondevs/Docs/edit/main/docs/invui1/inventory.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
   
 
 
-  <h1 id="__skip">Inventory</h1>
-
+<h1 id="inventory">Inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h1>
 <p>The <code>xyz.xenondevs.invui.inventory.Inventory</code> is a type of inventory that can be embedded in GUIs.
 It provides several utility methods to easily add and remove items from the inventory, as well as an advanced event
 system allowing to listen for and affect changes in the inventory.</p>
@@ -1035,8 +1046,8 @@ system allowing to listen for and affect changes in the inventory.</p>
   putting them in the backing array / inventory.<br />
   Changes to the passed <code>ItemStacks</code> after calling a method will never affect the <code>Inventory</code>.</li>
 </ul>
-<h2 id="types-of-inventories">Types of Inventories</h2>
-<h3 id="virtual-inventory">Virtual Inventory</h3>
+<h2 id="types-of-inventories">Types of Inventories<a class="headerlink" href="#types-of-inventories" title="Permanent link">&para;</a></h2>
+<h3 id="virtual-inventory">Virtual Inventory<a class="headerlink" href="#virtual-inventory" title="Permanent link">&para;</a></h3>
 <p>Like normal inventories, virtual inventories can store a predefined amount of <code>ItemStacks</code>, but unlike
 Minecraft's inventories, they do not have a defined width or height, just a size.</p>
 <p>To create a <code>VirtualInventory</code>, you can do one of three things:</p>
@@ -1046,7 +1057,7 @@ Minecraft's inventories, they do not have a defined width or height, just a size
 <li>Use the <code>VirtualInventoryManager</code> to get a previously serialized <code>VirtualInventory</code> from a file.
   This <code>VirtualInventory</code> will then get written into the file again when the plugin gets disabled.</li>
 </ul>
-<h4 id="custom-stack-sizes">Custom Stack Sizes</h4>
+<h4 id="custom-stack-sizes">Custom Stack Sizes<a class="headerlink" href="#custom-stack-sizes" title="Permanent link">&para;</a></h4>
 <p>Virtual inventories also allow customizing the stack sizes of every slot.
 You can change them by providing a <code>maxStackSizes</code> array in the constructor, or set them later using
 <code>VirtualInventory#setMaxStackSizes</code> or <code>VirtualInventory#setMaxStackSize</code>.</p>
@@ -1056,7 +1067,7 @@ This will make InvUI respect your maximum stack sizes.</p>
 <div class="admonition warning">
 <p class="admonition-title">Stack sizes higher than what is normally allowed in vanilla Minecraft are not possible!</p>
 </div>
-<h4 id="serialization">Serialization</h4>
+<h4 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Permanent link">&para;</a></h4>
 <p>You can either directly (de)serialize a <code>VirtualInventory</code> to/from a stream or byte[] using <code>VirtualInventory#serialize</code>
 and <code>VirtualInventory#deserialize</code>, or use the <code>VirtualInventoryManager</code> to automatically do that for you.</p>
 <div class="admonition warning">
@@ -1070,7 +1081,7 @@ will be automatically serialized when the plugin gets disabled. These inventorie
 <p>The <code>uuid</code> parameter is only required for serialization with the <code>VirtualInventoryManager</code>.<br />
 You can set it to null, if you're not planning to serialize your inventory this way.</p>
 </div>
-<h3 id="referencinginventory">ReferencingInventory</h3>
+<h3 id="referencinginventory">ReferencingInventory<a class="headerlink" href="#referencinginventory" title="Permanent link">&para;</a></h3>
 <p>The <code>ReferencingInventory</code> is an <code>Inventory</code> that is backed by a Bukkit inventory. Changes in this inventory are
 applied in the referenced inventory and changes in the bukkit inventory are visible in this inventory.</p>
 <div class="admonition warning">
@@ -1079,10 +1090,10 @@ applied in the referenced inventory and changes in the bukkit inventory are visi
 changes done directly in the bukkit inventory will not. Therefore, if embedded in a GUI, it is necessary to call
 <code>Inventory#notifyWindows</code> manually in order for changes to be displayed.</p>
 </div>
-<h3 id="compositeinventory">CompositeInventory</h3>
+<h3 id="compositeinventory">CompositeInventory<a class="headerlink" href="#compositeinventory" title="Permanent link">&para;</a></h3>
 <p>The <code>CompositeInventory</code> is a composite of multiple inventories. Those can be <code>VirtualInventories</code>, <code>ReferencingInventories</code>,
 or any other custom implementation of <code>Inventory</code>.</p>
-<h2 id="inventory-events">Inventory Events</h2>
+<h2 id="inventory-events">Inventory Events<a class="headerlink" href="#inventory-events" title="Permanent link">&para;</a></h2>
 <p>You can also register update handlers to your <code>Inventory</code>. There are two different types of events:</p>
 <table>
 <thead>
@@ -1108,7 +1119,7 @@ or any other custom implementation of <code>Inventory</code>.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="inventories-in-guis">Inventories in GUIs</h2>
+<h2 id="inventories-in-guis">Inventories in GUIs<a class="headerlink" href="#inventories-in-guis" title="Permanent link">&para;</a></h2>
 <p>Adding an <code>Inventory</code> to a GUI can be done the same way as adding Items.<br />
 You can either:</p>
 <ul>
@@ -1116,11 +1127,11 @@ You can either:</p>
 <li>Use the filling methods in <code>Gui</code>.</li>
 <li>Create a <code>SlotElement.InventorySlotElement</code> which links to the specific slot.</li>
 </ul>
-<h3 id="gui-priority">GUI priority</h3>
+<h3 id="gui-priority">GUI priority<a class="headerlink" href="#gui-priority" title="Permanent link">&para;</a></h3>
 <p>If you have multiple virtual inventories in one GUI, you might want to change the order of
 which items are added to them with shift-clicks or collected using double clicks.
 This can be done by setting the <code>guiPriority</code> in <code>Inventory</code>. The inventory with the highest priority will be used first.</p>
-<h3 id="background">Background</h3>
+<h3 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h3>
 <p>If you want your inventory slots to have a background <code>ItemProvider</code> (which is an item that is technically in the slot,
 but will be ignored by all click actions) you can set the <code>background</code> parameter in
 <code class="highlight"><span class="n">Structure</span><span class="p">.</span><span class="na">addIngredient</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">Inventory</span><span class="w"> </span><span class="n">inventory</span><span class="p">,</span><span class="w"> </span><span class="n">ItemProvider</span><span class="w"> </span><span class="n">background</span><span class="p">)</span></code> or in the delegating <code>Gui.Builder</code> method for it.<br />
@@ -1250,7 +1261,7 @@ Alternatively, you can also create the <code>SlotElement.InventorySlotElement</c
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>

@@ -29,40 +29,6 @@
       
     
     
-<style>
-    .eol-banner {
-        background-color: #f39c12;
-        color: #000;
-        padding: 0.5rem 1rem;
-        text-align: center;
-        font-weight: 500;
-        position: fixed;
-        top: 48px; /* Height of the MkDocs Material header */
-        left: 0;
-        right: 0;
-        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
-    }
-
-    .eol-banner a {
-        color: #000;
-        text-decoration: underline;
-    }
-
-    /* Add padding to content so it's not hidden behind the fixed banner */
-    .md-main {
-        padding-top: 40px;
-    }
-</style>
-<script>
-    (function () {
-        const savedWidth = localStorage.getItem("md-width") || "slim";
-        if (savedWidth === "wide" || savedWidth === "full") {
-            document.documentElement.setAttribute("data-md-width", savedWidth);
-        }
-        // Store for width-toggle.js to use
-        window.__mdWidthMode = savedWidth;
-    })();
-</script>
 
       
         
@@ -78,6 +44,32 @@
 
 
     
+<style>
+    .md-banner {
+        background-color: #ffc107;
+        color: #1f1f1f;
+    }
+
+    .md-banner__inner {
+        max-width: none;
+        text-align: center;
+    }
+
+    .md-banner a {
+        color: inherit;
+        text-decoration: underline;
+    }
+</style>
+<script>
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
+</script>
 
     
       
@@ -125,6 +117,18 @@
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <strong>End of Life Notice:</strong>
+  InvUI v1 will <strong>not</strong> be updated to Minecraft 26.1.
+  Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -849,29 +853,29 @@
         }
     })();
 </script>
-<div class="eol-banner">
-    <strong>End of Life Notice:</strong>
-    InvUI v1 will <strong>NOT</strong> be updated to Minecraft v26.1.
-    Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
-</div>
 
                   
   
+    <a href="https://github.com/xenondevs/Docs/edit/main/docs/invui1/items.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
   
 
 
-<h1 id="items">Items</h1>
+<h1 id="items">Items<a class="headerlink" href="#items" title="Permanent link">&para;</a></h1>
 <p>In InvUI, the UI elements are just called <code>Item</code>s.  </p>
 <p>Every <code>Item</code> has an <code>ItemProvider</code> which returns <code>ItemStacks</code> based on a locale.
 This behavior allows for easy localization of UI elements, as you can show the same <code>Item</code> and <code>Gui</code> instances to multiple
 players while still having everything translated into their respective languages.</p>
 <p>Unlike other inventory libraries, InvUI does not redraw items every tick. To trigger an update, call <code>item.notifyWindows();</code>.
 This will notify all <code>Windows</code> that are currently displaying that <code>Item</code> to call <code>Item#getItemProvider</code> and <code>ItemProvider#get</code> and display the updated item to their viewer.</p>
-<h3 id="default-itemproviders">Default ItemProviders</h3>
+<h3 id="default-itemproviders">Default ItemProviders<a class="headerlink" href="#default-itemproviders" title="Permanent link">&para;</a></h3>
 <p>InvUI comes with two default implementations of <code>ItemProvider</code>: <code>ItemWrapper</code> and <code>ItemBuilder</code>.<br />
 <code>ItemWrapper</code> just wraps an existing <code>ItemStack</code> and returns it when asked, <code>ItemBuilder</code> allows you to create
 <code>ItemStacks</code> using a builder pattern with <a href="../localization/">localization support</a> through translatable components.</p>
-<h2 id="default-ui-items-in-invui">Default UI Items in InvUI</h2>
+<h2 id="default-ui-items-in-invui">Default UI Items in InvUI<a class="headerlink" href="#default-ui-items-in-invui" title="Permanent link">&para;</a></h2>
 <p>InvUI provides a few basic items, but you will probably have to create your own ones for more complicated behavior.</p>
 <table>
 <thead>
@@ -912,7 +916,7 @@ This will notify all <code>Windows</code> that are currently displaying that <co
 </tbody>
 </table>
 <p>If you don't need any behavior at all and just want to make your <code>GUI</code> look pretty, you can use the <code>SimpleItem</code>. It cannot update it's <code>ItemProvider</code> later on and does not have any on-click functionality.</p>
-<h2 id="creating-your-own-item">Creating your own Item</h2>
+<h2 id="creating-your-own-item">Creating your own Item<a class="headerlink" href="#creating-your-own-item" title="Permanent link">&para;</a></h2>
 <p>To create your own Item, you'll need to inherit from either <code>AbstractItem</code> (if you want to be able to change its appearance) or <code>SimpleItem</code> (if you don't need to change its appearance).
 In this example, I inherited from <code>AbstractItem</code>.
 Every time a player clicks on the Item, a counter will be incremented and the number on the Item will change.</p>
@@ -967,7 +971,7 @@ Every time a player clicks on the Item, a counter will be incremented and the nu
 </div>
 <p>After adding the Item to the GUI, it will look like this:<br />
 <img alt="" src="https://i.imgur.com/bTEFRqc.gif" /></p>
-<h2 id="controlitems">ControlItems</h2>
+<h2 id="controlitems">ControlItems<a class="headerlink" href="#controlitems" title="Permanent link">&para;</a></h2>
 <p>A <code>ControlItem</code> is a special sort of <code>Item</code>: When it is added to a <code>GUI</code>, the <code>GUI</code> will be saved inside the <code>ControlItem</code>.<br />
 You can also manually assign a GUI to a <code>ControlItem</code> by calling <code>ControlItem#setGUI</code>.<br />
 So, what are <code>ControlItems</code> used for? You guessed it, controlling <code>GUIs</code>. Page switching buttons are one example, as they need to call <code>PagedGUI#goForward</code> and <code>PagedGUI#goBack</code> which would not be possible without having the instance of the <code>GUI</code> to control saved somewhere.</p>
@@ -1144,7 +1148,7 @@ So, what are <code>ControlItems</code> used for? You guessed it, controlling <co
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>

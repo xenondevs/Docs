@@ -55,6 +55,11 @@
     width: 1.2rem;
 }
 
+.md-nav__version-range {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+
 /* Hide width toggle on smaller screens where it doesn't make a difference */
 @media (max-width: 76.25em) {
     .md-header__button.md-width-toggle {

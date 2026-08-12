@@ -27,40 +27,6 @@
       
     
     
-<style>
-    .eol-banner {
-        background-color: #f39c12;
-        color: #000;
-        padding: 0.5rem 1rem;
-        text-align: center;
-        font-weight: 500;
-        position: fixed;
-        top: 48px; /* Height of the MkDocs Material header */
-        left: 0;
-        right: 0;
-        z-index: 2; /* Lower than sidebar (z-index: 3) and drawer (z-index: 4) */
-    }
-
-    .eol-banner a {
-        color: #000;
-        text-decoration: underline;
-    }
-
-    /* Add padding to content so it's not hidden behind the fixed banner */
-    .md-main {
-        padding-top: 40px;
-    }
-</style>
-<script>
-    (function () {
-        const savedWidth = localStorage.getItem("md-width") || "slim";
-        if (savedWidth === "wide" || savedWidth === "full") {
-            document.documentElement.setAttribute("data-md-width", savedWidth);
-        }
-        // Store for width-toggle.js to use
-        window.__mdWidthMode = savedWidth;
-    })();
-</script>
 
       
         
@@ -76,6 +42,32 @@
 
 
     
+<style>
+    .md-banner {
+        background-color: #ffc107;
+        color: #1f1f1f;
+    }
+
+    .md-banner__inner {
+        max-width: none;
+        text-align: center;
+    }
+
+    .md-banner a {
+        color: inherit;
+        text-decoration: underline;
+    }
+</style>
+<script>
+    (function () {
+        const savedWidth = localStorage.getItem("md-width") || "slim";
+        if (savedWidth === "wide" || savedWidth === "full") {
+            document.documentElement.setAttribute("data-md-width", savedWidth);
+        }
+        // Store for width-toggle.js to use
+        window.__mdWidthMode = savedWidth;
+    })();
+</script>
 
     
       
@@ -123,6 +115,18 @@
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <strong>End of Life Notice:</strong>
+  InvUI v1 will <strong>not</strong> be updated to Minecraft 26.1.
+  Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -847,20 +851,20 @@
         }
     })();
 </script>
-<div class="eol-banner">
-    <strong>End of Life Notice:</strong>
-    InvUI v1 will <strong>NOT</strong> be updated to Minecraft v26.1.
-    Consider migrating to <a href="https://docs.xenondevs.xyz/invui/">InvUI v2</a> or a different inventory GUI library.
-</div>
 
                   
   
+    <a href="https://github.com/xenondevs/Docs/edit/main/docs/invui1/localization.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
   
 
 
-<h1 id="localization">Localization</h1>
+<h1 id="localization">Localization<a class="headerlink" href="#localization" title="Permanent link">&para;</a></h1>
 <p>InvUI makes it easy for you to translate your GUIs into different languages.</p>
-<h2 id="adding-translations">Adding translations</h2>
+<h2 id="adding-translations">Adding translations<a class="headerlink" href="#adding-translations" title="Permanent link">&para;</a></h2>
 <p>To add translations for a new language, you can call <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lang</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">translations</span><span class="p">)</span></code>.
 The <code>lang</code> parameter is the language code of the language you want to add. The <code>translations</code> parameter should be a
 map containing the translation keys and their translations.</p>
@@ -883,7 +887,7 @@ map containing the translation keys and their translations.</p>
 </div>
 </div>
 </div>
-<h2 id="specifying-player-language">Specifying Player language</h2>
+<h2 id="specifying-player-language">Specifying Player language<a class="headerlink" href="#specifying-player-language" title="Permanent link">&para;</a></h2>
 <p>By default, the player's locale is retrieved using <code class="highlight"><span class="n">Player</span><span class="p">.</span><span class="na">getLocale</span><span class="p">();</span></code>. If you want to change this behavior, you can
 do so by calling <code>Languages#setLanguageProvider</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Kotlin</label><label for="__tabbed_2_2">Java</label></div>
@@ -898,7 +902,7 @@ do so by calling <code>Languages#setLanguageProvider</code>:</p>
 </div>
 </div>
 </div>
-<h2 id="using-translations">Using translations</h2>
+<h2 id="using-translations">Using translations<a class="headerlink" href="#using-translations" title="Permanent link">&para;</a></h2>
 <p>To use translations in your GUIs, simply use translatable components using either md_5's bungee component api or kyori's
 adventure text api. If you're not using Kotlin and the <code>invui-kotlin</code> module, you'll need to wrap adventure components
 using the <code>AdventureComponentWrapper</code> class before you can pass them to the <code>ItemBuilder</code> or <code>Window.Builder</code>.</p>
@@ -907,7 +911,7 @@ using the <code>AdventureComponentWrapper</code> class before you can pass them 
 <p>Translations are applied server-side. This is done during <code class="highlight"><span class="n">ItemBuilder</span><span class="p">.</span><span class="na">get</span><span class="p">();</span></code> or, for the inventory title, <code class="highlight"><span class="n">Window</span><span class="p">.</span><span class="na">open</span><span class="p">();</span></code>.<br />
 If you need to use server-side translations in other places, you'll need to manually call <code class="highlight"><span class="n">ComponentWrapper</span><span class="p">.</span><span class="na">localized</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">locale</span><span class="p">);</span></code>.</p>
 </div>
-<h2 id="disabling-server-side-translations">Disabling server-side translations</h2>
+<h2 id="disabling-server-side-translations">Disabling server-side translations<a class="headerlink" href="#disabling-server-side-translations" title="Permanent link">&para;</a></h2>
 <p>If you do not want your items and GUIs to be translated server-side and instead want to actually send translatable
 components to your players, you can disable server-side translations by calling <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">enableServerSideTranslations</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span></code>.</p>
 
@@ -1019,7 +1023,7 @@ components to your players, you can disable server-side translations by calling 
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>

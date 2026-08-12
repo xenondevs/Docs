@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#serialization-basics" class="md-skip">
+        <a href="#serialization" class="md-skip">
           Skip to content
         </a>
       
@@ -252,6 +252,8 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-code-xml" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg>
+  
   <span class="md-ellipsis">
     
   
@@ -280,10 +282,14 @@
       
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-binary" viewBox="0 0 24 24"><rect width="4" height="6" x="14" y="14" rx="2"/><rect width="4" height="6" x="6" y="4" rx="2"/><path d="M6 20h4M14 10h4M6 14h2v6M14 4h2v6"/></svg>
   
   <span class="md-ellipsis">
     
@@ -301,6 +307,8 @@
       <a href="././" class="md-nav__link md-nav__link--active">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-binary" viewBox="0 0 24 24"><rect width="4" height="6" x="14" y="14" rx="2"/><rect width="4" height="6" x="6" y="4" rx="2"/><path d="M6 20h4M14 10h4M6 14h2v6M14 4h2v6"/></svg>
   
   <span class="md-ellipsis">
     
@@ -320,6 +328,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -447,6 +457,8 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-braces" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>
+  
   <span class="md-ellipsis">
     
   
@@ -476,6 +488,8 @@
                     
                     
                     
+                      
+                    
                     
                       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
                       <div class="md-sidebar-button__wrapper">
@@ -490,6 +504,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -641,12 +657,16 @@
 
                   
   
+    <a href="https://github.com/xenondevs/Docs/edit/main/docs/cbf/serialization.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
   
 
 
-  <h1 id="__skip">Serialization</h1>
-
-<h2 id="serialization-basics">Serialization Basics</h2>
+<h1 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Permanent link">&para;</a></h1>
+<h2 id="serialization-basics">Serialization Basics<a class="headerlink" href="#serialization-basics" title="Permanent link">&para;</a></h2>
 <p>In CBF, <code>BinarySerializers</code> define how objects are (de)serialized to and from binary data.
 These serializers are then centrally registered at the <code>Cbf</code> singleton object.</p>
 <details class="example">
@@ -656,7 +676,7 @@ These serializers are then centrally registered at the <code>Cbf</code> singleto
 <code>Double</code>, <code>DoubleArray</code>, <code>Boolean</code>, <code>BooleanArray</code>, <code>Char</code>, <code>CharArray</code>, <code>String</code>, <code>Array&lt;String&gt;</code>, 
 <code>Enum</code>, <code>UUID</code>, <code>kotlin.Uuid</code>, <code>Pair</code>, <code>Triple</code>, <code>List&lt;T&gt;</code>, <code>Set&lt;T&gt;</code>, <code>Map&lt;K, V&gt;</code>, <code>Compound</code></p>
 </details>
-<h3 id="serializing">Serializing</h3>
+<h3 id="serializing">Serializing<a class="headerlink" href="#serializing" title="Permanent link">&para;</a></h3>
 <p>To serialize objects, you can use <code class="highlight"><span class="n">Cbf</span><span class="p">.</span><span class="na">write</span></code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">out</span><span class="p">:</span><span class="w"> </span><span class="n">OutputStream</span><span class="w"> </span><span class="c1">// ...</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">writer</span><span class="p">:</span><span class="w"> </span><span class="n">ByteWriter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ByteWriter</span><span class="p">.</span><span class="na">fromStream</span><span class="p">(</span><span class="k">out</span><span class="p">)</span>
@@ -667,7 +687,7 @@ These serializers are then centrally registered at the <code>Cbf</code> singleto
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">list</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;test1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test3&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bytes</span><span class="p">:</span><span class="w"> </span><span class="n">ByteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cbf</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">list</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="deserializing">Deserializing</h3>
+<h3 id="deserializing">Deserializing<a class="headerlink" href="#deserializing" title="Permanent link">&para;</a></h3>
 <p>To deserialize binary data, you can use <code class="highlight"><span class="n">Cbf</span><span class="p">.</span><span class="na">read</span></code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">inp</span><span class="p">:</span><span class="w"> </span><span class="n">InputStream</span><span class="w"> </span><span class="c1">// ...</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">reader</span><span class="p">:</span><span class="w"> </span><span class="n">ByteReader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ByteReader</span><span class="p">.</span><span class="na">fromStream</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
@@ -682,15 +702,15 @@ These serializers are then centrally registered at the <code>Cbf</code> singleto
 methods, which means that it is determined statically at compile-time. This also means that you can also choose
 to serialize the value as a supertype, e.g. <code>Cbf.write&lt;Any&gt;(list)</code> would look for a serializer for <code>Any</code>.</p>
 </div>
-<h2 id="configuring-existing-serializers">Configuring existing serializers</h2>
+<h2 id="configuring-existing-serializers">Configuring existing serializers<a class="headerlink" href="#configuring-existing-serializers" title="Permanent link">&para;</a></h2>
 <p>Some built-in serializers allow extra configuration via the <code>Cbf</code> object.
 For example, you can specify which enums should be serialized via their ordinal value instead of their name using
 <code class="highlight"><span class="n">Cbf</span><span class="p">.</span><span class="na">addOrdinalEnums</span></code> or tell CBF how to create instances of certain collection types via
 <code class="highlight"><span class="n">Cbf</span><span class="p">.</span><span class="na">addCollectionCreator</span></code>, <code class="highlight"><span class="n">Cbf</span><span class="p">.</span><span class="na">addMapCreator</span></code>.</p>
-<h2 id="custom-serializers">Custom Serializers</h2>
+<h2 id="custom-serializers">Custom Serializers<a class="headerlink" href="#custom-serializers" title="Permanent link">&para;</a></h2>
 <p>You can create a custom serializer by implementing the <code class="highlight"><span class="n">BinarySerializer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> interface.
 However, for most cases, it is easier to extend <code class="highlight"><span class="n">UnversionedBinarySerializer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> or <code class="highlight"><span class="n">VersionedBinarySerializer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> instead.</p>
-<h3 id="unversioned-binary-serializers">Unversioned binary serializers</h3>
+<h3 id="unversioned-binary-serializers">Unversioned binary serializers<a class="headerlink" href="#unversioned-binary-serializers" title="Permanent link">&para;</a></h3>
 <p><code>UnversionedBinarySerializer</code> is a serializer that has already implemented null handling by writing an unsigned byte
 <code>0</code> byte for <code>null</code> and <code>1</code>, followed by the serialized data, for non-null values.
 If you want to change the binary format at a later point, you can switch to <code>VersionedBinarySerializer</code> without
@@ -726,7 +746,7 @@ introducing a breaking change, as the remaining values in the leading byte will 
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Cbf</span><span class="p">.</span><span class="na">registerSerializer</span><span class="p">(</span><span class="n">PersonSerializer</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="versioned-binary-serializers">Versioned binary serializers</h3>
+<h3 id="versioned-binary-serializers">Versioned binary serializers<a class="headerlink" href="#versioned-binary-serializers" title="Permanent link">&para;</a></h3>
 <p><code>VersionedBinarySerializer</code> allows reading older formats of the data and writing to a new format.</p>
 <p>In the following example, an <code>address</code> field has been added to the <code>Person</code> class used above.
 We can now swap out our <code>UnversionedBinarySerializer</code> for a <code>VersionedBinarySerializer</code>.
@@ -777,7 +797,7 @@ The format is now at version <code>2</code>, as the previous version was <code>1
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Cbf</span><span class="p">.</span><span class="na">registerSerializer</span><span class="p">(</span><span class="n">PersonSerializer</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="serializer-factory">Serializer factory</h3>
+<h3 id="serializer-factory">Serializer factory<a class="headerlink" href="#serializer-factory" title="Permanent link">&para;</a></h3>
 <p>For some types, especially container types like <code class="highlight"><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code> or <code class="highlight"><span class="n">Pair</span><span class="o">&lt;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="o">&gt;</span></code>, it is necessary to create
 a custom serializer per generic type parameter. This can be achieved using a <code>BinarySerializerFactory</code>:</p>
 <p>The following example shows how to create a serializer for <code class="highlight"><span class="n">Pair</span><span class="o">&lt;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="o">&gt;</span></code>, where <code>A</code> and <code>B</code> are in turn also serialized
@@ -842,6 +862,9 @@ via a dynamically chosen <code class="highlight"><span class="n">BinarySerialize
 
 
 
+
+  
+  
 
 
 
@@ -959,7 +982,7 @@ via a dynamically chosen <code class="highlight"><span class="n">BinarySerialize
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>
