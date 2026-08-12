@@ -4,8 +4,7 @@ icon: lucide/key-round
 
 # Access Wideners
 
-Access wideners allow you to loosen the access limits of classes, methods, and fields.
-Currently, access wideners can only be used on classes from NMS or craftbukkit. To use access wideners in your addon, create a file called `<addon_id>.accesswidener` in `src/main/resources`.
+Access wideners allow you to loosen the access limits of classes, methods, and fields. Currently, access wideners can only be used on classes from NMS or craftbukkit. To use access wideners in your addon, create a file called `<addon_id>.accesswidener` in `src/main/resources`.
 
 After adding entries to your access widener file run IntelliJ's gradle sync (or `_oriInstallJar` if it doesn't work, or `_oriInstall` to also generate sources) to apply them to your compile-time classpath.
 

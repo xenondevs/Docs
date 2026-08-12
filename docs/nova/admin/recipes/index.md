@@ -5,8 +5,7 @@ icon: lucide/cooking-pot
 # Customizing Recipes
 
 In Nova, all recipes are customizable. You can find the recipe files under ``plugins/Nova/recipes``  
-You can change or delete existing recipes or just create completely new ones. If a recipe gets updated by us, we will
-only update it on your server if you haven't modified or deleted it.
+You can change or delete existing recipes or just create completely new ones. If a recipe gets updated by us, we will only update it on your server if you haven't modified or deleted it.
 
 You can reload all recipes by running the command `/nova reload recipes`.
 
@@ -16,8 +15,7 @@ There are multiple ways for you to specify an item in a recipe:
 
 ### Custom Item Format
 
-This format allows you to use a custom item from Nova or any other supported plugin. For example ``itemsadder:ruby``
-would also work here.
+This format allows you to use a custom item from Nova or any other supported plugin. For example ``itemsadder:ruby`` would also work here.
 
 ```json title="Custom Item Format"
 "machines:copper_gear"
@@ -27,10 +25,8 @@ With items from Nova addons, it is also possible to use the ``nova:`` prefix ins
 
 ### Complex Item Format
 
-This format lets you fully customize the required item. If you use this format, you won't be able to use custom
-namespaces like ``nova:``  
-As this checks the item exactly (only ignoring the item name), you might encounter some issues with enchantments and
-other data stored inside the item.  
+This format lets you fully customize the required item. If you use this format, you won't be able to use custom namespaces like ``nova:``  
+As this checks the item exactly (only ignoring the item name), you might encounter some issues with enchantments and other data stored inside the item.  
 This is the same format as in Minecraft's /give command. As it is in JSON, quotes need to be escaped.
 
 ```json title="Complex Item Format"
@@ -42,8 +38,7 @@ This is the same format as in Minecraft's /give command. As it is in JSON, quote
 While this is more intended for developers, item- and recipe fallbacks can also be used by server administrators.
 
 **What are item- and recipe fallbacks?**  
-Fallbacks can be used to define an item or recipe to fall back to when the item could not be found or the recipe could not be loaded.
-This is useful for addon developers as it allows them to use items from other addons in their crafting recipes without creating a hard dependency on that addon.
+Fallbacks can be used to define an item or recipe to fall back to when the item could not be found or the recipe could not be loaded. This is useful for addon developers as it allows them to use items from other addons in their crafting recipes without creating a hard dependency on that addon.
 
 ### Item Fallbacks
 

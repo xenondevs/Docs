@@ -8,8 +8,7 @@ icon: lucide/code-xml
 
 ## Setting up your project
 
-You can create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate).
-After creating the repo and cloning it, make sure to edit the following files:
+You can create a new repo using our addon template [here](https://github.com/xenondevs/Nova-Addon-Template/generate). After creating the repo and cloning it, make sure to edit the following files:
 
 ### src/main/kotlin
 
@@ -34,8 +33,7 @@ If your addon requires dependencies that need to be present at runtime, add them
 libraryLoader("commons-net:commons-net:3.8.0")
 ```
 
-The requested library will be downloaded at startup. Note that using this mechanism exposes **all** urls of the
-maven repositories you use in your build configuration.
+The requested library will be downloaded at startup. Note that using this mechanism exposes **all** urls of the maven repositories you use in your build configuration.
 
 ## Building
 
@@ -47,8 +45,7 @@ gradlew addonJar -PoutDir="<Path to your addons directory here>"
 ## Enabling dev mode
 
 To enable dev mode, set the `NovaDev` system property using `-DNovaDev`.  
-This allows you to bypass some restrictions like using addons that require a different version of Nova and
-enables general-purpose debugging functionality.
+This allows you to bypass some restrictions like using addons that require a different version of Nova and enables general-purpose debugging functionality.
 
 Additionally, you can use `-DNovaForceRegenerateResourcePack` to force the resource pack to be regenerated on startup.
 

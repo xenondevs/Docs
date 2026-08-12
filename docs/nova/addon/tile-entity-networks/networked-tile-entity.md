@@ -4,8 +4,7 @@ icon: lucide/cable
 
 # NetworkedTileEntity
 
-`NetworkedTileEntity` inherits from `TileEntity` and `NetworkEndPoint` and provides you with an easy way
-to make your `TileEntity` network-compatible.
+`NetworkedTileEntity` inherits from `TileEntity` and `NetworkEndPoint` and provides you with an easy way to make your `TileEntity` network-compatible.
 
 ```kotlin
 class ExampleTileEntity(
@@ -20,8 +19,7 @@ class ExampleTileEntity(
 ## End Point Data Holders
 
 To make data available for networks, we need to add `EndPointDataHolders` to our tile-entity.  
-For the built-in network types, there are utility functions in `NetworkedTileEntity` to easily create them from
-the tile-entity's internal data.
+For the built-in network types, there are utility functions in `NetworkedTileEntity` to easily create them from the tile-entity's internal data.
 
 ### Energy
 
@@ -100,8 +98,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 
 ## Side Configuration Gui
 
-Using `SideConfigMenu`, we can easily add a `Gui` to our tile-entity with which we can change the side-configuration
-for all built-in network types:
+Using `SideConfigMenu`, we can easily add a `Gui` to our tile-entity with which we can change the side-configuration for all built-in network types:
 
 ```kotlin
 class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(pos, blockState, data) {

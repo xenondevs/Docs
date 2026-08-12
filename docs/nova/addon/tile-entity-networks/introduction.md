@@ -50,21 +50,17 @@ classDiagram
   NetworkEndPoint *-- EndPointDataHolder : contains
 ```
 
-In most cases, you won't need to worry about the network system and will just inherit
-from [NetworkedTileEntity](networked-tile-entity.md) to make your tile-entity network compatible.
+In most cases, you won't need to worry about the network system and will just inherit from [NetworkedTileEntity](networked-tile-entity.md) to make your tile-entity network compatible.
 
 ??? tip "Visualization: Networks vs. Network Clusters"
 
     **(Item-)Networks** `/nova debug showNetwork nova:item`:  
-    The particles visualize what network a block belongs to.
-    As you can see, each cable section is a different network and every chest is part of two networks.
+    The particles visualize what network a block belongs to. As you can see, each cable section is a different network and every chest is part of two networks.
 
     ![](../../assets/img/addon/tile-entity-networks/item-networks.png)
 
     **Network Clusters** `/nova debug showNetworkClusters`:  
-    The particles visualize what network cluster a block belongs to.
-    Since the four left networks all share chests, and the four right networks all share chests, there are only
-    two network clusters.
+    The particles visualize what network cluster a block belongs to. Since the four left networks all share chests, and the four right networks all share chests, there are only two network clusters.
 
     ![](../../assets/img/addon/tile-entity-networks/network-clusters.png)
 
@@ -90,9 +86,7 @@ subgraph Parallel
 end
 ```
 
-Because network tick logic is run in parallel, it is imperative that networks do not modify the world state
-(apart from the data stored in the NetworkNodes themselves), which also requires update handlers (for example for
-inventories or fluid containers) to behave in the same way.
+Because network tick logic is run in parallel, it is imperative that networks do not modify the world state (apart from the data stored in the NetworkNodes themselves), which also requires update handlers (for example for inventories or fluid containers) to behave in the same way.
 
 ## Default network types
 
@@ -116,18 +110,14 @@ NetworkManager.queueRemoveEndPoint(endPoint) // unregisters an end point
 NetworkManager.queueRemoveBridge(bridge) // unregisters a bridge
 ```
 
-You'll need to add `NetworkNodes` after they've been placed and also remove them when they're destroyed.
-You don't need to add/remove on chunk (un-)load.
+You'll need to add `NetworkNodes` after they've been placed and also remove them when they're destroyed. You don't need to add/remove on chunk (un-)load.
 
 If you're using [NetworkedTileEntity](networked-tile-entity.md), this will be done for you.
 
 ## Interacting with NetworkState (advanced)
 
-To interact with any network-related data (for example `connectionConfig` of `ItemHolder`),
-you need to queue a network task using `NetworkManager` to prevent concurrency issues.  
-Here, you'll also obtain an instance of `NetworkState`, which gives you access to all network-related data
-of the given chunk's world.
-For more information, check out the KDocs.
+To interact with any network-related data (for example `connectionConfig` of `ItemHolder`), you need to queue a network task using `NetworkManager` to prevent concurrency issues.  
+Here, you'll also obtain an instance of `NetworkState`, which gives you access to all network-related data of the given chunk's world. For more information, check out the KDocs.
 
 ```kotlin
 NetworkManager.queueRead(chunkPos) { state: NetworkState ->

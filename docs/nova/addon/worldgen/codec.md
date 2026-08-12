@@ -17,10 +17,7 @@ primitive types. (1) So here's a quick overview on how to use them.
 
 ## DataResults
 
-Before getting into `Codecs`, we need to take a look at `DataResults`. A `DataResult` is pretty much just a fancier version of
-Kotlin's `Result` type. They either contain a value or an error. The difference is that `DataResult's` can contain a so
-called `PartialResult` (which often is just the input value or a partially deserialized value). `Codecs` can be adapted
-to serialize/deserialize using `DataResults` using the following functions:
+Before getting into `Codecs`, we need to take a look at `DataResults`. A `DataResult` is pretty much just a fancier version of Kotlin's `Result` type. They either contain a value or an error. The difference is that `DataResult's` can contain a so called `PartialResult` (which often is just the input value or a partially deserialized value). `Codecs` can be adapted to serialize/deserialize using `DataResults` using the following functions:
 
 * `Codec.comapFlatMap` - Deserialize into a `DataResult` but serialize normally.
 * `Codec.flatComapMap` - Serialize into a `DataResult` but deserialize normally.
@@ -35,14 +32,11 @@ Keep these functions in mind for the following examples.
 
 ## DynamicOps
 
-`DynamicOps` are Mojang's way of abstracting away the difference between different serialization formats. DFU includes
-`JsonOps` by default. Minecraft adds `NbtOps` and `RegistryOps`. `DynamicOps` are used to define the format in which
-primitive types are serialized and deserialized. All other types are built on top of these primitive types.
+`DynamicOps` are Mojang's way of abstracting away the difference between different serialization formats. DFU includes `JsonOps` by default. Minecraft adds `NbtOps` and `RegistryOps`. `DynamicOps` are used to define the format in which primitive types are serialized and deserialized. All other types are built on top of these primitive types.
 
 ??? example "Number types implementation in `JsonOps`"
 
-    For example, to serialize/deserialize numbers, `DynamicOps` defines the `createNumeric`  and `getNumberValue` functions.
-    `JsonOps` implements these functions like this:
+    For example, to serialize/deserialize numbers, `DynamicOps` defines the `createNumeric`  and `getNumberValue` functions. `JsonOps` implements these functions like this:
     
     ```java title="JsonOps.java"
     public JsonElement createNumeric(Number i) {
@@ -74,9 +68,7 @@ primitive types are serialized and deserialized. All other types are built on to
 
 ## Codecs for simple types.
 
-For classes that can be defined as a single type, a preexisting `PrimitveCodec` should be used to define the `Codec` for
-that type. A simple example would be a `Codec` for Minecraft's `ResourceLocation`. Since a `ResourceLocation` can be 
-constructed from a single `String`, we can use the preexisting `Codec.String` to define our `Codec`.
+For classes that can be defined as a single type, a preexisting `PrimitveCodec` should be used to define the `Codec` for that type. A simple example would be a `Codec` for Minecraft's `ResourceLocation`. Since a `ResourceLocation` can be constructed from a single `String`, we can use the preexisting `Codec.String` to define our `Codec`.
 
 ??? example "ResourceLocation implementation used for this example"
 
@@ -139,14 +131,11 @@ val CODEC: Codec<ResourceLocation> =
    Also use `read` to deserialize the `ResourceLocation` from the provided `String`.
 3. Specify that the `Codec` is stable.
 
-So in other words, we're now just telling the serializer how to serialize and deserialize our `ResourceLocation` type 
-to/from a `String`.
+So in other words, we're now just telling the serializer how to serialize and deserialize our `ResourceLocation` type to/from a `String`.
 
 ## Codecs for more nested types
 
-In the previous example, we just mapped a preexisting `Codec` to our type. But what if we want to define a `Codec` for a
-more complex type with multiple fields? For this, we can use `RecordCodecBuilder` to define a `Codec` for our type. Here's
-the `data class` we want to define a `Codec` for:
+In the previous example, we just mapped a preexisting `Codec` to our type. But what if we want to define a `Codec` for a more complex type with multiple fields? For this, we can use `RecordCodecBuilder` to define a `Codec` for our type. Here's the `data class` we want to define a `Codec` for:
 
 ```kotlin
 data class Example(
@@ -219,8 +208,7 @@ val CODEC: Codec<Example> = RecordCodecBuilder.create { instance ->
 ```
 
 1. List all the fields of the `Example` type.
-2. Apply the fields to the `RecordCodecBuilder` instance and use the `::Example` constructor reference to specify how to
-   construct an `Example` instance from the defined fields.
+2. Apply the fields to the `RecordCodecBuilder` instance and use the `::Example` constructor reference to specify how to construct an `Example` instance from the defined fields.
 
 So let's test it out by serializing and deserializing an `Example` instance:
 
@@ -249,14 +237,9 @@ Example(id=minecraft:stone, ints=[1, 2, 3], defaultString=default)
 
 ### Minecraft/Nova registries
 
-If you want to retrieve an instance of a type that is registered in one of Minecraft's/Nova's registries, you can use
-the `Registry.byNameCodec` function. This will automatically build a `Codec` that will serialize/deserialize a `ResourceLocation`
-and then use that `ResourceLocation` to retrieve the instance from the `Registry`. (`holderByNameCodec` also exists if
-you need a `Holder` instead of an instance).
+If you want to retrieve an instance of a type that is registered in one of Minecraft's/Nova's registries, you can use the `Registry.byNameCodec` function. This will automatically build a `Codec` that will serialize/deserialize a `ResourceLocation` and then use that `ResourceLocation` to retrieve the instance from the `Registry`. (`holderByNameCodec` also exists if you need a `Holder` instead of an instance).
 
-If you also want to allow the `Codec` to serialize/deserialize inline, you can use the `RegistryFileCodec` class. For example,
-the `ConfiguredFeature` class has both a `DIRECT_CODEC`, which only deserializes inline and a `CODEC`, which also checks
-the `Registry` if the deserialized type is a `ResourceLocation`:
+If you also want to allow the `Codec` to serialize/deserialize inline, you can use the `RegistryFileCodec` class. For example, the `ConfiguredFeature` class has both a `DIRECT_CODEC`, which only deserializes inline and a `CODEC`, which also checks the `Registry` if the deserialized type is a `ResourceLocation`:
 
 ```java
 public static final Codec<ConfiguredFeature<?, ?>> DIRECT_CODEC = BuiltInRegistries.FEATURE.byNameCodec().dispatch((config) -> { // (1)!
@@ -270,10 +253,7 @@ public static final Codec<Holder<ConfiguredFeature<?, ?>>> CODEC = RegistryFileC
 
 ### Custom registry-like types
 
-If you want to define a `Codec` for a custom type that is registered in a custom registry-like type, you can use the
-`ExtraCodecs.stringResolverCodec` and `ExtraCodecs.idResolverCodec` functions. These functions take 2 mapping `Functions`
-as parameters: one for element to id and one for id to element (since primitives aren't nullable in Java, the `idResolverCodec`
-function also takes a `int` that represent the id of non-existing elements).
+If you want to define a `Codec` for a custom type that is registered in a custom registry-like type, you can use the `ExtraCodecs.stringResolverCodec` and `ExtraCodecs.idResolverCodec` functions. These functions take 2 mapping `Functions` as parameters: one for element to id and one for id to element (since primitives aren't nullable in Java, the `idResolverCodec` function also takes a `int` that represent the id of non-existing elements).
 
 For example, let's say we have a custom `Registry` that maps `String` to a generic `T`:
 
@@ -301,8 +281,7 @@ fun codec(): Codec<T> {
 
 ### Enums
 
-Minecraft also provides a built-in way of serializing/deserializing enums. Just implement the `StringRepresentable` interface
-and implement the `getSerializedName` function:
+Minecraft also provides a built-in way of serializing/deserializing enums. Just implement the `StringRepresentable` interface and implement the `getSerializedName` function:
 
 ```kotlin
 enum class ExampleEnum: StringRepresentable {
@@ -330,18 +309,14 @@ companion object {
 
 !!! info "Note"
 
-    This section isn't required to properly use `Codecs`, but it contains a lot of useful utilities that might save you
-    some time in the future.
+    This section isn't required to properly use `Codecs`, but it contains a lot of useful utilities that might save you some time in the future.
 
 ### Either/Xor
 
-If your `Codec` should be able to serialize/deserialize 2 different types, you can use the `Codec.either` function 
-(or `EitherCodec` class) to define a `Codec` that can serialize/deserialize both types. One common use case is accepting
-both a `ResourceLocation` and a `TagKey`:
+If your `Codec` should be able to serialize/deserialize 2 different types, you can use the `Codec.either` function (or `EitherCodec` class) to define a `Codec` that can serialize/deserialize both types. One common use case is accepting both a `ResourceLocation` and a `TagKey`:
 
 !!! tip "Already built into Nova"
-    Nova already provides a `ResourceLocationOrTagKey` class that wraps an `Either<ResourceLocation, TagKey<T>>` and
-    provides a `Codec` via the `codec` function.
+    Nova already provides a `ResourceLocationOrTagKey` class that wraps an `Either<ResourceLocation, TagKey<T>>` and provides a `Codec` via the `codec` function.
 
 ```kotlin
 val CODEC: Codec<Either<ResourceLocation, TagKey<Biome>>> = Codec.either(
@@ -350,8 +325,7 @@ val CODEC: Codec<Either<ResourceLocation, TagKey<Biome>>> = Codec.either(
 )
 ```
 
-If you only want to allow one of the types (sometimes both types could be deserialized and lead to confusion), you can
-use the `ExtraCodecs.xor` function:
+If you only want to allow one of the types (sometimes both types could be deserialized and lead to confusion), you can use the `ExtraCodecs.xor` function:
 
 ```kotlin
 val CODEC: Codec<Either<ResourceLocation, TagKey<Biome>>> = ExtraCodecs.xor( // (1)!
@@ -360,14 +334,12 @@ val CODEC: Codec<Either<ResourceLocation, TagKey<Biome>>> = ExtraCodecs.xor( // 
 )
 ```
 
-1. Please note that this is redundant here since `TagKey` needs to start with `#` and `ResourceLocation` can't start 
-   with `#`. But it can be useful for other types.
+1. Please note that this is redundant here since `TagKey` needs to start with `#` and `ResourceLocation` can't start with `#`. But it can be useful for other types.
 
 
 ### Number codecs within a range
 
-If you want to serialize/deserialize a number but only within a certain range, you can use the `Codec.intRange`, `Codec.floatRange`
-and `Codec.doubleRange` functions:
+If you want to serialize/deserialize a number but only within a certain range, you can use the `Codec.intRange`, `Codec.floatRange` and `Codec.doubleRange` functions:
 
 ```kotlin
 val CHANCE_CODEC: Codec<Float> = Codec.floatRange(0.0f, 1.0f)
@@ -375,8 +347,7 @@ val CHANCE_CODEC: Codec<Float> = Codec.floatRange(0.0f, 1.0f)
 
 ### Pair like types
 
-Some types might usually need a `RecordCodecBuilder` to be serialized/deserialized, but if they only have 2 fields of the
-same type, you can use the `ExtraCodecs.intervalCodec` function:
+Some types might usually need a `RecordCodecBuilder` to be serialized/deserialized, but if they only have 2 fields of the same type, you can use the `ExtraCodecs.intervalCodec` function:
 
 ```kotlin title="IntRange Codec"
 val INT_RANGE_CODEC: Codec<IntRange> = ExtraCodecs.intervalCodec(
@@ -391,8 +362,7 @@ val INT_RANGE_CODEC: Codec<IntRange> = ExtraCodecs.intervalCodec(
 
 ### Catching Exceptions
 
-If you don't want to deal with `DataResults` while decoding and just want to throw exceptions instead, you can wrap your
-`Codec` via the `ExtraCodecs.catchDecoderException` function:
+If you don't want to deal with `DataResults` while decoding and just want to throw exceptions instead, you can wrap your `Codec` via the `ExtraCodecs.catchDecoderException` function:
 
 ```kotlin
 val CODEC: Codec<Example> = ExtraCodecs.catchDecoderException(Example.CODEC)

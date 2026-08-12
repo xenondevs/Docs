@@ -11,15 +11,13 @@ Before installing Nova, please make sure that you're running a [supported server
 ## Step 1: Installing Nova and addons
 
 * Like any other plugin, the Nova plugin jar file downloaded from [Hangar](https://hangar.papermc.io/xenondevs/Nova), [Modrinth](https://modrinth.com/plugin/nova-framework), [GitHub](https://github.com/xenondevs/Nova) or our [Discord](https://discord.gg/hnEknVWvUe) just needs to be put in the ``plugins/`` folder of your server. Addons are also placed in the `plugins` folder.
-    * Some addons might require other addons in order to work.
-        If this is the case, an error in the console will notify you of the missing addons:  
+    * Some addons might require other addons in order to work. If this is the case, an error in the console will notify you of the missing addons:  
         `Failed to initialize <Name of the Addon>: Missing addon(s): <Name(s) of the required addon(s) that are missing>`
 * Add `-javaagent:plugins/<name of Nova jar>` to the JVM arguments (before `-jar`).
 * Start your server and wait until Nova is done loading. (Indicated by the message in the console `[Nova] Done loading`). This creates config files and directories which you will need to access in the following steps.
 * Stop your server.
 
-The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet.
-Please follow Step 2 to configure resource pack hosting.
+The new resource pack containing the addon assets will be automatically generated, but it won't be sent to players yet. Please follow Step 2 to configure resource pack hosting.
 
 ## Step 2: Configure resource pack hosting
 
@@ -29,8 +27,7 @@ Server resource packs need to be hosted on a web server in order to be sent to p
     
     === "Self-hosted"
     
-        If you're able to open a port on your server, this option will make the most sense for you.
-        Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
+        If you're able to open a port on your server, this option will make the most sense for you. Nova will automatically start a lightweight web server from which the resource pack can be downloaded.
     
         Example config:
         
@@ -44,13 +41,11 @@ Server resource packs need to be hosted on a web server in order to be sent to p
     
         !!! info "`host` parameter"
     
-            You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used.
-            If you are on a local server, you will need to set `host: 127.0.0.1` and add `append_port: true`.
+            You can also set the host of your server using the `host` parameter. If it is not set, the public ip address of your server gets used. If you are on a local server, you will need to set `host: 127.0.0.1` and add `append_port: true`.
     
         !!! warning "`append_port` parameter"
     
-            When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL.
-            If this is not the case, set `append_port: true`.
+            When setting a `host`, Nova assumes that the configured port does not need to be appened after the host in the download URL. If this is not the case, set `append_port: true`.
 
     === "Custom Multipart Request"
     
@@ -72,8 +67,7 @@ Server resource packs need to be hosted on a web server in order to be sent to p
 
     === "S3"
 
-        If you are using Amazon S3 or any other cloud object storage with an S3-compatible API, you can use the S3 service to upload the resource pack. **You have to expose your S3 
-        bucket to the Internet yourself.**
+        If you are using Amazon S3 or any other cloud object storage with an S3-compatible API, you can use the S3 service to upload the resource pack. **You have to expose your S3 bucket to the Internet yourself.**
 
         Example config:
         
@@ -97,9 +91,7 @@ Server resource packs need to be hosted on a web server in order to be sent to p
 
 This step is only required if your server is already using a custom resource pack.
 
-In the past, there could be only one server resource pack. While this is no longer the case, resource pack
-merging is still important as Nova uses it to analyze the existing resource pack and adjusts its own data accordingly
-to prevent conflicts.  
+In the past, there could be only one server resource pack. While this is no longer the case, resource pack merging is still important as Nova uses it to analyze the existing resource pack and adjusts its own data accordingly to prevent conflicts.  
 **Therefore, it is NOT possible to manually merge resource packs, and it is also NOT possible to use merging services from other plugins.**
 
 You can define "base packs", which are resource packs that Nova should merge, in two ways:  

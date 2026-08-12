@@ -6,13 +6,9 @@ icon: lucide/trees
 
 !!! warning
 
-    This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be
-    added in the future. Custom biomes also aren't fully supported yet. Injecting them into `LevelStems` has to be done
-    manually for now.
+    This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be added in the future. Custom biomes also aren't fully supported yet. Injecting them into `LevelStems` has to be done manually for now.
 
-Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), [climate](#climate),
-[effects](#special-effects) and much more. This page only covers the `BiomeBuilder` for now. If you're looking for the Json
-format, check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_biome).
+Biomes are regions in the world with distinct [features](features/features.md), [carvers](carver.md), [climate](#climate), [effects](#special-effects) and much more. This page only covers the `BiomeBuilder` for now. If you're looking for the Json format, check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_biome).
 
 First, let's get into more detail on the individual components of a biome.
 
@@ -23,14 +19,11 @@ The `BiomeClimateSettingsBuilder` class provides a fluent API for creating `Clim
 
 ### Special effects
 
-The `BiomeSpecialEffects` determine the general look of a biome, including its fog, foliage, water and sky color or even
-ambient particles. These effects also include the ambient sounds of the biome. Check out The `BiomeSpecialEffectsBuilder`
-kdoc for more information.
+The `BiomeSpecialEffects` determine the general look of a biome, including its fog, foliage, water and sky color or even ambient particles. These effects also include the ambient sounds of the biome. Check out The `BiomeSpecialEffectsBuilder` kdoc for more information.
 
 ### Mob spawn settings
 
-The `MobSpawnSettings` determine the mobs and their spawn conditions of a biome. Check out the `MobSpawnSettingsBuilder`
-kdoc for more information.
+The `MobSpawnSettings` determine the mobs and their spawn conditions of a biome. Check out the `MobSpawnSettingsBuilder` kdoc for more information.
 
 # Example
 

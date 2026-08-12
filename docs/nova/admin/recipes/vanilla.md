@@ -8,8 +8,7 @@ icon: lucide/wheat
 
 Directory: `shaped`
 
-Shaped recipes are recipes for the Crafting Table that have to follow a specific structure. This is an example crafting
-recipe for the Advanced Cable:
+Shaped recipes are recipes for the Crafting Table that have to follow a specific structure. This is an example crafting recipe for the Advanced Cable:
 
 ```json title="advanced_cable.json"
 {
@@ -38,8 +37,7 @@ recipe for the Advanced Cable:
 
 Directory: `shapeless`
 
-Shapeless recipes are recipes for the Crafting Table that do not follow a specific structure. This is an example recipe
-for the Basic Item Filter:
+Shapeless recipes are recipes for the Crafting Table that do not follow a specific structure. This is an example recipe for the Basic Item Filter:
 
 ```json title="basic_item_filter.json"
 {

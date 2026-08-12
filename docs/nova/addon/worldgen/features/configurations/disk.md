@@ -21,10 +21,7 @@ In code, the `DiskConfiguration` class is used to configure the feature.
 
 ### State provider
 
-The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../types/block-state-provider.md) that is used
-if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../../types/block-predicate.md)
-via the `if_true` option, and a [`BlockStateProvider`](../../types/block-state-provider.md) via the `then` option. In code, the
-class is called `RuleBasedBlockStateProvider`.
+The state provider has 2 main options. `fallback`, a [`BlockStateProvider`](../../types/block-state-provider.md) that is used if none of the rules apply, and `rules`, a list of `Rule`s. Each rule has a [`BlockPredicate`](../../types/block-predicate.md) via the `if_true` option, and a [`BlockStateProvider`](../../types/block-state-provider.md) via the `then` option. In code, the class is called `RuleBasedBlockStateProvider`.
 
 ## Examples
 
@@ -56,8 +53,7 @@ As an example, here's the configured and placed feature for sand disks in lakes:
     }
     ```
 
-    1. This is the fallback block used if none of the rules listed below apply.
-       Here, we use sand as the fallback if the block below is not air.
+    1. This is the fallback block used if none of the rules listed below apply. Here, we use sand as the fallback if the block below is not air.
     2. If the block below is air, use sandstone since sand would fall down.
     3. Only allow `dirt` or `grass_block` in the center.
     4. Randomly chooses a radius between 2 and 6.

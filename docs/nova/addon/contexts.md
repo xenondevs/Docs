@@ -4,11 +4,9 @@ icon: lucide/square-function
 
 # Contexts
 
-A `#!kotlin Context<I : ContextIntention>`, at its core, is a simple key-value storage for `#!kotlin (ContextParamType<T, I>, T)` pairs and
-a `ContextIntention`, which defines their allowed parameter types.
+A `#!kotlin Context<I : ContextIntention>`, at its core, is a simple key-value storage for `#!kotlin (ContextParamType<T, I>, T)` pairs and a `ContextIntention`, which defines their allowed parameter types.
 
-The context system can also infer parameters from other parameters, for example, you don't need to provide a
-`BLOCK_WORLD` parameter if you provide a `BLOCK_POS` parameter, and you can still read `BLOCK_WORLD` from the context.
+The context system can also infer parameters from other parameters, for example, you don't need to provide a `BLOCK_WORLD` parameter if you provide a `BLOCK_POS` parameter, and you can still read `BLOCK_WORLD` from the context.
 
 You can find a list of default context intentions [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.context.intention/index.html). Each context intention object contains their allowed parameter types as properties and documents which autofillers (which infer context parameter values) are available.
 
@@ -66,8 +64,7 @@ val BLOCK_NAME = RequiredContextParamType<Component, BlockPlace>(
 )
 ```
 
-In this case, you will also need to register it as a required parameter type for the `BlockPlace` intention.
-Otherwise, context builders will not validate whether your required parameter type is present on build.
+In this case, you will also need to register it as a required parameter type for the `BlockPlace` intention. Otherwise, context builders will not validate whether your required parameter type is present on build.
 
 ```kotlin
 BlockPlace.require(BLOCK_NAME)

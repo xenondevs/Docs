@@ -4,8 +4,7 @@ icon: lucide/hammer
 
 # TileEntityBreakBlockEvent
 
-The ``TileEntityBreakBlockEvent`` is called when a tile-entity breaks a block. It can be used to manipulate the drops of 
-the broken block.
+The ``TileEntityBreakBlockEvent`` is called when a tile-entity breaks a block. It can be used to manipulate the drops of the broken block.
 
 !!! warning
 
@@ -23,8 +22,7 @@ The ``Block`` that was broken.
 
 ### drops
 
-A ``MutableList`` of ``ItemStacks`` that will be added to the tile-entities inventory (or dropped on the ground if the
-inventory is full). This list can be modified to change the drops.
+A ``MutableList`` of ``ItemStacks`` that will be added to the tile-entities inventory (or dropped on the ground if the inventory is full). This list can be modified to change the drops.
 
 ## Examples
 

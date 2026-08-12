@@ -6,17 +6,14 @@ icon: lucide/sliders-horizontal
 
 ## build.gradle.kts
 
-Now that you've created your project, you need to set several values in the `addon` extension.
-If you're using the addon template, most of these values are already set for you.
+Now that you've created your project, you need to set several values in the `addon` extension. If you're using the addon template, most of these values are already set for you.
 
 **Options marked with a * are required.**
 
 ### name*
 
-This is the name of your addon.
-Names may only contain alphanumeric characters, periods, underscores, and hyphens (`[A-Za-z0-9._-]+`).  
-The lowercase version of this name is used as your addon's id.
-Your items and blocks are linked to this id, so you cannot change it later, without breaking existing worlds.
+This is the name of your addon. Names may only contain alphanumeric characters, periods, underscores, and hyphens (`[A-Za-z0-9._-]+`).  
+The lowercase version of this name is used as your addon's id. Your items and blocks are linked to this id, so you cannot change it later, without breaking existing worlds.
 
 Example:
 
@@ -76,8 +73,7 @@ dependency("some-plugin", PluginDependency.Stage.SERVER)
 ### pluginMain
 
 Full path to your plugin main class (without the .class extension).  
-If you don't define this property, Nova will generate a plugin main class for you.
-You will be able to access your plugin instance via your addon object.
+If you don't define this property, Nova will generate a plugin main class for you. You will be able to access your plugin instance via your addon object.
 
 Example:
 
@@ -87,9 +83,7 @@ pluginMain = "com.example.ExamplePlugin"
 
 ### loader
 
-A custom [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders).
-Defining a custom plugin loader will disable Nova's library loading mechanism that can be
-accessed via the `libraryLoader` dependency configuration.
+A custom [plugin loader](https://docs.papermc.io/paper/dev/getting-started/paper-plugins#loaders). Defining a custom plugin loader will disable Nova's library loading mechanism that can be accessed via the `libraryLoader` dependency configuration.
 
 Example:
 
@@ -200,8 +194,7 @@ You can also create your own distributor by implementing the `ProjectDistributor
 !!! abstract "Order of update checks"
 
     When checking for updates, all registered distributors are checked in the order they are specified in the list.  
-    This means that if you want users to download your updates from a specific distributor, you should put it at the
-    top of the list.
+    This means that if you want users to download your updates from a specific distributor, you should put it at the top of the list.
 
 !!! abstract "Pre-release versions"
 

@@ -8,8 +8,7 @@ The `replace_single_block` feature allows you to randomly replace blocks with an
 
 ## Configuration
 
-The `replace_single_block` feature has a single option, `targets` which similar to the `targets` option in the [ore feature](ores.md),
-allows you to specify which block states should be replaced with which other block states. Each `Target` has the following options:
+The `replace_single_block` feature has a single option, `targets` which similar to the `targets` option in the [ore feature](ores.md), allows you to specify which block states should be replaced with which other block states. Each `Target` has the following options:
 
 | Option   | Type                                                                             | Description                                        |
 |----------|----------------------------------------------------------------------------------|----------------------------------------------------|

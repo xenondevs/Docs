@@ -76,9 +76,7 @@ This is an example recipe for extract water from a water bottle to create an emp
 
 ## Electric Brewing Stand Recipes
 
-Using these recipes, you can configure which potion types can be created using the electric brewing stand. You're also
-able to configure their ingredients, as well as multipliers for duration and amplifier level and the max amount of these
-levels.
+Using these recipes, you can configure which potion types can be created using the electric brewing stand. You're also able to configure their ingredients, as well as multipliers for duration and amplifier level and the max amount of these levels.
 
 This recipe would add the luck effect type to the electric brewing stand:
 

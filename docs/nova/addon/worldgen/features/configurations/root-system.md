@@ -6,8 +6,7 @@ icon: lucide/trees
 
 !!! warning
 
-     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world 
-     generation system. Beginner users may find the content challenging to understand.
+     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world generation system. Beginner users may find the content challenging to understand.
 
 The `root_system` feature can be used to generate trees with roots.
 

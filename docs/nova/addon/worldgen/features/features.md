@@ -9,29 +9,19 @@ Most features are registered in 3 "steps":
 
 ### 1. Feature Type
 
-The feature type is the logic behind the feature. It's the only part that needs to be written in code. Minecraft already
-has a ton of default feature types (Although they're just called `Feature` in NMS). Check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_feature#Feature_Type)
-for an up-to-date list of all feature types.
+The feature type is the logic behind the feature. It's the only part that needs to be written in code. Minecraft already has a ton of default feature types (Although they're just called `Feature` in NMS). Check out the [Minecraft Wiki](https://minecraft.wiki/w/Custom_feature#Feature_Type) for an up-to-date list of all feature types.
 
 ### 2. Configured Feature
 
-Some feature types require additional configuration which determines what the feature will generate. For example, the 
-`minecraft:ore` feature type requires a `minecraft:ore_configuration` to be defined. This configuration will determine 
-stuff like: what block the ore will be placed in, how large the ore vein will be, etc. For more details on a specific 
-configuration, check out its corresponding page in the sidebar. You can create configured feature files in the 
-`data/worldgen/configured_feature` directory.
+Some feature types require additional configuration which determines what the feature will generate. For example, the `minecraft:ore` feature type requires a `minecraft:ore_configuration` to be defined. This configuration will determine stuff like: what block the ore will be placed in, how large the ore vein will be, etc. For more details on a specific configuration, check out its corresponding page in the sidebar. You can create configured feature files in the `data/worldgen/configured_feature` directory.
 
 ### 3. Placed Feature
 
-A placed feature determines where and how a configured feature will be placed. You can create placed feature files in the
-`data/worldgen/placed_feature` directory. You can find more information on the [Placed Feature](placed-feature.md) page.
+A placed feature determines where and how a configured feature will be placed. You can create placed feature files in the `data/worldgen/placed_feature` directory. You can find more information on the [Placed Feature](placed-feature.md) page.
 
 ## Using Features
 
-To register a new feature, you'll always need a placed feature. When creating a new biome or adding it to an existing one,
-you'll quickly notice that `features` is a 2d `JsonArray` instead of a 1-dimensional one. This is because Minecraft
-generates different feature categories in a specific order. Below you'll find a list of all feature categories in the order
-they're generated.
+To register a new feature, you'll always need a placed feature. When creating a new biome or adding it to an existing one, you'll quickly notice that `features` is a 2d `JsonArray` instead of a 1-dimensional one. This is because Minecraft generates different feature categories in a specific order. Below you'll find a list of all feature categories in the order they're generated.
 
 - raw_generation <small> (e.g. end islands) </small>
 - lakes <small> (e.g. lava lakes) </small>
@@ -119,5 +109,4 @@ Make sure to add your feature to the correct category, or it might not generate 
     ]
     ```
 
-Check out the [Biomes](../biome.md) page for more information on how to create a new biome. If you want to add your
-feature to an existing biome, check out the [Biome Injections](../inject/biome.md) page.
+Check out the [Biomes](../biome.md) page for more information on how to create a new biome. If you want to add your feature to an existing biome, check out the [Biome Injections](../inject/biome.md) page.

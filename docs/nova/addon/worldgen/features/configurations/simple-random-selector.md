@@ -4,9 +4,7 @@ icon: lucide/dice-3
 
 # Simple random selector feature
 
-Similar to the [random selector](./random-selector.md) feature, the `simple_random_selector` feature can be used to
-randomly choose from a provided list of features to place. The only difference being the absence of the `default` and
-`probability` options since all features have an equal chance of being picked.
+Similar to the [random selector](./random-selector.md) feature, the `simple_random_selector` feature can be used to randomly choose from a provided list of features to place. The only difference being the absence of the `default` and `probability` options since all features have an equal chance of being picked.
 
 ## Configuration
 
@@ -20,8 +18,7 @@ In code, the `SimpleRandomFeatureConfiguration` class is used to configure the f
 
 ## Example
 
-As mentioned on the [Pointed Dripstone](pointed-dripstone.md) page, the `simple_random_selector` feature is used to
-randomly choose between a stalactite and a stalagmite. Si here's the full configured- and placed feature.
+As mentioned on the [Pointed Dripstone](pointed-dripstone.md) page, the `simple_random_selector` feature is used to randomly choose between a stalactite and a stalagmite. Si here's the full configured- and placed feature.
 
 === "Kotlin"
 

@@ -4,8 +4,7 @@ icon: lucide/expand
 
 # Multiface growth feature
 
-The `multiface_growth` feature is used to generate plants that grow on multiple faces of a block (for example sculk or
-glow lichen).
+The `multiface_growth` feature is used to generate plants that grow on multiple faces of a block (for example sculk or glow lichen).
 
 ## Configuration
 

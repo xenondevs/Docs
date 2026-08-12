@@ -21,8 +21,7 @@ In code, the `PointedDripstoneConfiguration` class is used to configure the feat
 
 ## Example
 
-Minecraft uses a [`simple_random_selector`](simple-random-selector.md) feature to actually place pointed dripstone. Here's 
-one of the features used to place upwards pointing dripstone.
+Minecraft uses a [`simple_random_selector`](simple-random-selector.md) feature to actually place pointed dripstone. Here's one of the features used to place upwards pointing dripstone.
 
 === "Kotlin"
 

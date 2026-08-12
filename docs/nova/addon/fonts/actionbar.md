@@ -4,17 +4,14 @@ icon: lucide/panel-bottom
 
 # Action Bar Overlay
 
-Overlays follow the same concept of using fonts to render images as [GUI Textures](guitextures.md), but are
-a bit more difficult to implement for addon developers, as you need to create the font file yourself.
+Overlays follow the same concept of using fonts to render images as [GUI Textures](guitextures.md), but are a bit more difficult to implement for addon developers, as you need to create the font file yourself.
 
 Font files are stored under `assets/fonts/` and have [this format](https://minecraft.wiki/w/Resource_Pack#Fonts).  
 You might also want to take a look at [our font for the jetpack energy bar overlay](https://github.com/Nova-Addons/Jetpacks/blob/main/src/main/resources/assets/fonts/energy_bar.json).
 
 ## ActionBarOverlay
 
-After creating your font, implement the `ActionbarOverlay` interface. There you'll need to provide the component
-to be displayed in the action bar. To improve performance, you can also override the `getWidth` function which should
-return the width of the overlay in pixels. Otherwise, this width will be calculated at runtime.
+After creating your font, implement the `ActionbarOverlay` interface. There you'll need to provide the component to be displayed in the action bar. To improve performance, you can also override the `getWidth` function which should return the width of the overlay in pixels. Otherwise, this width will be calculated at runtime.
 
 ??? example "Example: JetpackOverlay"
 

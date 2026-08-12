@@ -6,8 +6,7 @@ icon: lucide/mountain
 
 !!! warning
 
-     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world 
-     generation system. Beginner users may find the content challenging to understand.
+     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world generation system. Beginner users may find the content challenging to understand.
 
 The `dripstone_cluster` feature allows you to add dripstone clusters to the world.
 

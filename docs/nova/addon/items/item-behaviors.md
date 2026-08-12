@@ -4,8 +4,7 @@ icon: lucide/component
 
 # Item Behaviors
 
-To add custom functionality to your item type, create a class that implements the `ItemBehavior` interface.
-There are also some default behaviors available, not all of which are covered in this documentation. For a list of all available default item behaviors, refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.behavior/index.html).
+To add custom functionality to your item type, create a class that implements the `ItemBehavior` interface. There are also some default behaviors available, not all of which are covered in this documentation. For a list of all available default item behaviors, refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.behavior/index.html).
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
@@ -128,8 +127,7 @@ While an entity is using the item `handleUseTick` is called. If using is aborted
 
 ## Data components
 
-The `ItemBehavior` interface specifies a `baseDataComponents` property, which are the default
-[data components](https://minecraft.wiki/w/Data_component_format) (also referred to as the prototype) of `NovaItems` with that behavior. This is a `#!kotlin Provider<DataComponentMap>`, which ties in with Nova's [config system](../configs.md), allowing you to make your base data components config-reloadable. Use the `buildDataComponentMapProvider` function to create a `#!kotlin Provider<DataComponentMap>`:
+The `ItemBehavior` interface specifies a `baseDataComponents` property, which are the default [data components](https://minecraft.wiki/w/Data_component_format) (also referred to as the prototype) of `NovaItems` with that behavior. This is a `#!kotlin Provider<DataComponentMap>`, which ties in with Nova's [config system](../configs.md), allowing you to make your base data components config-reloadable. Use the `buildDataComponentMapProvider` function to create a `#!kotlin Provider<DataComponentMap>`:
 
 ```kotlin
 override val baseDataComponents: Provider<DataComponentMap> = buildDataComponentMapProvider {
@@ -146,21 +144,15 @@ override val baseDataComponents: Provider<DataComponentMap> = buildDataComponent
 
 Some functionality is still hardcoded to the item type. For such cases, you can change the client-side item type via [VanillaMaterialProperties](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.item.vanilla/-vanilla-material-property/index.html) or by overriding `modifyClientSideItemType`.
 
-To modify the [client-side item stack](creating-items.md#client-side-items), you can override `modifyClientSideStack`.
-The data of the client-side stack will not be stored in the world and is only intended for display purposes.
-Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the `DAMAGE` component
-will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova
-via `/nova advancedTooltips`).
+To modify the [client-side item stack](creating-items.md#client-side-items), you can override `modifyClientSideStack`. The data of the client-side stack will not be stored in the world and is only intended for display purposes. Furthermore, the components of the client-side stack will not affect the tooltip, e.g. adding the `DAMAGE` component will not cause the damage value to be shown in the advanced tooltip. (Assuming advanced tooltips are handled by Nova via `/nova advancedTooltips`).
 
 !!! note "Inspecting client-side item data"
 
-    You can inspect the client-side version of a server-side item stack by creating a client-side copy via
-    `/nova debug giveClientsideStack`, then run `/paper dumpitem` to print the item data in chat.
+    You can inspect the client-side version of a server-side item stack by creating a client-side copy via `/nova debug giveClientsideStack`, then run `/paper dumpitem` to print the item data in chat.
 
 ## ItemBehaviorFactory
 
-`ItemBehaviorFactory` creates `ItemBehavior` instances based on a `NovaItem` instance. This allows you to create
-factories for your `ItemBehaviors` that read from the item's config file.  
+`ItemBehaviorFactory` creates `ItemBehavior` instances based on a `NovaItem` instance. This allows you to create factories for your `ItemBehaviors` that read from the item's config file.  
 
 ```kotlin title="Example custom ItemBehavior with ItemBehaviorFactory"
 class MyBehavior(value: Provider<Int>) : ItemBehavior {
@@ -197,7 +189,6 @@ object Items {
 
 ## Item Data
 
-Data for Nova's ItemStacks can be stored using [CBF](../../../../cbf/) via the extension functions 
-`#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`.
+Data for Nova's ItemStacks can be stored using [CBF](../../../../cbf/) via the extension functions `#!kotlin ItemStack.storeData` and `#!kotlin ItemStack.retrieveData`.
 
 Alternatively, it is also possible to store data in Bukkit's [persistent data container](https://docs.papermc.io/paper/dev/pdc).

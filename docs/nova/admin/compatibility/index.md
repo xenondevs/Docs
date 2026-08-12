@@ -32,8 +32,7 @@ We're planning to add support for the following server software in the future:
 
 ### World Protection Plugins
 
-The following protection plugins are supported out of the box by Nova, but plugin developers may also
-add support on their end using [the API](../../api/protection/protectionintegration.md).
+The following protection plugins are supported out of the box by Nova, but plugin developers may also add support on their end using [the API](../../api/protection/protectionintegration.md).
 
 - [x] WorldGuard
 - [x] GriefPrevention

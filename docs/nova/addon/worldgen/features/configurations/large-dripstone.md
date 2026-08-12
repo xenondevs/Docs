@@ -6,15 +6,13 @@ icon: lucide/cone
 
 !!! warning
 
-     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world 
-     generation system. Beginner users may find the content challenging to understand.
+     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world generation system. Beginner users may find the content challenging to understand.
 
 The `large_dripstone` feature generates large dripstone formations in the world.
 
 ## Configuration
 
-The `large_dripstone` feature has the following configuration options. Some of these options are pretty hard to understand.
-Make sure to check out [this graph](https://www.desmos.com/calculator/8epce7fyjr) to play around with the values.
+The `large_dripstone` feature has the following configuration options. Some of these options are pretty hard to understand. Make sure to check out [this graph](https://www.desmos.com/calculator/8epce7fyjr) to play around with the values.
 
 | Option                                                               | Type                                                                                                     | Description                                                                            |
 |----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|

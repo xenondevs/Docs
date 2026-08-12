@@ -4,8 +4,7 @@ icon: lucide/pickaxe
 
 # Ore features
 
-Ore features are used to generate ores in the world. They are configured using the `ore` or `scattered_ore` feature types
-(`ore` is recommended for most cases).
+Ore features are used to generate ores in the world. They are configured using the `ore` or `scattered_ore` feature types (`ore` is recommended for most cases).
 
 ## Configuration
 
@@ -21,9 +20,7 @@ In code, the `OreConfiguration` class is used to configure the feature.
 
 ### Targets
 
-As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is 
-pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../types/block-state-provider.md)
-which determines what block to use for the specific target.  
+As mentioned above, the `targets` option is a list of targets. The `target` option is a so called`RuleTest`. A `RuleTest` is pretty much the same thing as `Predicate<BlockState>` in Java. The `state` option is a [`BlockStateProvider`](../../types/block-state-provider.md) which determines what block to use for the specific target.  
 The following `RuleTests` are available:
 
 <table>
@@ -172,12 +169,8 @@ The following `RuleTests` are available:
 </table>
 
 ??? tip "Custom `RuleTests`"
-    You can also implement your own custom `RuleTests` by implementing the Minecraft `RuleTest` interface or extending
-    Nova's `NovaRuleTest`/`NovaMaterialTest` classes. Nova's classes provide a bit more parameters such as the `Level` and
-    `BlockPos` (or even the `NovaMaterial` via `NovaMaterialTest`).   
-    You will also need to provide a `RuleTestType`, which  specifies how your RuleTest implementation is (de)serialized.
-    This can either be done by implementing the `RuleTestType` interface or creating it inline by just registering the `Codec`
-    in the `FeatureRegistry`. Check out the [Codecs](../../codec.md) page for more information on Mojang's serialization system.  
+    You can also implement your own custom `RuleTests` by implementing the Minecraft `RuleTest` interface or extending Nova's `NovaRuleTest`/`NovaMaterialTest` classes. Nova's classes provide a bit more parameters such as the `Level` and `BlockPos` (or even the `NovaMaterial` via `NovaMaterialTest`).   
+    You will also need to provide a `RuleTestType`, which  specifies how your RuleTest implementation is (de)serialized. This can either be done by implementing the `RuleTestType` interface or creating it inline by just registering the `Codec` in the `FeatureRegistry`. Check out the [Codecs](../../codec.md) page for more information on Mojang's serialization system.  
     Here's the code for Nova's `MaterialMatchTest` implementation as an example:
 
     === "Inline RuleTestType"

@@ -4,8 +4,7 @@ icon: lucide/flame
 
 # Delta feature
 
-The `delta_feature` is a 1-block deep sheet of a block randomly surrounded by a block (rim). It's normally used to generate
-the deltas in the basalt deltas biome.
+The `delta_feature` is a 1-block deep sheet of a block randomly surrounded by a block (rim). It's normally used to generate the deltas in the basalt deltas biome.
 
 ## Configuration
 

@@ -6,8 +6,7 @@ icon: lucide/wand-sparkles
 
 ## What are Abilities?
 
-In Nova, abilities are ticking objects that can be assigned to players. They work similar to [attachments](attachments.md),
-except that they have no logic by default.
+In Nova, abilities are ticking objects that can be assigned to players. They work similar to [attachments](attachments.md), except that they have no logic by default.
 
 ## Creating your own Ability
 

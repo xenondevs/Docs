@@ -6,8 +6,7 @@ icon: lucide/image
 
 !!! tip "Minecraft Resource Pack Format"
 
-    Before continuing here, make sure to familiarize yourself with the
-    [Minecraft Resource Pack Format](https://minecraft.wiki/w/Resource_pack#Pack_format) if you haven't already.
+    Before continuing here, make sure to familiarize yourself with the [Minecraft Resource Pack Format](https://minecraft.wiki/w/Resource_pack#Pack_format) if you haven't already.
 
 All assets intended for the resource pack should be placed in `src/main/resources/assets/`.  
 Nova will automatically read and extract assets from the following subdirectories into the final resource pack:
@@ -22,24 +21,19 @@ Nova will automatically read and extract assets from the following subdirectorie
 ## Models
 
 For creating custom block models, we recommend using [Blockbench](https://blockbench.net/).  
-For [entity-backed blocks](../blocks/creating-blocks.md#model-backing), Nova allows you to create oversized models.
-If you want to take advantage of this, you'll need to deactivate Blockbench's size limit:
+For [entity-backed blocks](../blocks/creating-blocks.md#model-backing), Nova allows you to create oversized models. If you want to take advantage of this, you'll need to deactivate Blockbench's size limit:
 
 ![](../../assets/img/addon/resource-pack/blockbench-size-limit.png){width=50%}
 
 ## Language Files
 
-Language files belong in the `lang` folder.
-The format for these files is the same one minecraft uses.
-If you need the locale code for a language, you can search for it [here](https://minecraft.wiki/w/Language).
+Language files belong in the `lang` folder. The format for these files is the same one minecraft uses. If you need the locale code for a language, you can search for it [here](https://minecraft.wiki/w/Language).
 
 !!! warning
 
     **Make sure to use the "in-game" locale code since ISO-639-3 isn't implemented by Minecraft (yet?)**
 
-For English (United States), create a file called ``en_us.json`` in the ``lang`` folder. The format ``[<type>].<namespace/addon-id>.<item>``
-should be used for the translations keys. The type can be left out if it's a generic message. In general, the following
-types should be used:
+For English (United States), create a file called ``en_us.json`` in the ``lang`` folder. The format ``[<type>].<namespace/addon-id>.<item>`` should be used for the translations keys. The type can be left out if it's a generic message. In general, the following types should be used:
 
 * ``item`` - For translations related to items
 * ``block`` - For translations related to blocks

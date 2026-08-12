@@ -4,11 +4,9 @@ icon: lucide/map
 
 # Placed Features
 
-A placed feature determines where and how a configured feature will be placed. Placed features work via placement modifiers 
-that can be applied to a configured feature. 
+A placed feature determines where and how a configured feature will be placed. Placed features work via placement modifiers that can be applied to a configured feature. 
 
-You can create placed feature files in the `data/worldgen/placed_feature` directory or register them in the `FeatureRegistry`
-in code.
+You can create placed feature files in the `data/worldgen/placed_feature` directory or register them in the `FeatureRegistry` in code.
 
 ## Structure
 
@@ -86,8 +84,7 @@ Here's an example of Minecraft's large diamond ore placed feature:
 
 ## Placement Modifiers
 
-A Placement modifier takes an initial position and returns empty, one or more block positions. These modifiers are chained,
-and pretty much act like a lot of `flatMap` calls. In fact, that's exactly what Minecraft does internally:
+A Placement modifier takes an initial position and returns empty, one or more block positions. These modifiers are chained, and pretty much act like a lot of `flatMap` calls. In fact, that's exactly what Minecraft does internally:
 
 ```java title="PlacedFeature.java"
 private boolean placeWithContext(PlacementContext ctx, RandomSource random, BlockPos pos) {
@@ -105,8 +102,7 @@ private boolean placeWithContext(PlacementContext ctx, RandomSource random, Bloc
 
 ??? example "Animated example"
 
-    Below is an animated example of how placement modifiers work together to generate a list of position to place a feature 
-    at. The example uses the following placement modifiers:
+    Below is an animated example of how placement modifiers work together to generate a list of position to place a feature at. The example uses the following placement modifiers:
 
     1. [`minecraft:count`](#minecraftcount) with a count of `4`
     2. [`minecraft:in_square`](#minecraftin_square)
@@ -118,8 +114,7 @@ A list of vanilla placement modifiers can be found below.
 
 ### `minecraft:biome`
 
-Returns the position if the configured feature is registered in the biome's `feature` list at the given position. Empty
-otherwise.
+Returns the position if the configured feature is registered in the biome's `feature` list at the given position. Empty otherwise.
 
 === "Kotlin"
 
@@ -228,8 +223,7 @@ Returns the given position `count` times.
 
 ### `minecraft:environment_scan`
 
-Scans for blocks matching the given [block predicate](../types/block-predicate.md) up/down until it finds a matching block or the
-max number of steps is reached. If no matching block is found, empty is returned.
+Scans for blocks matching the given [block predicate](../types/block-predicate.md) up/down until it finds a matching block or the max number of steps is reached. If no matching block is found, empty is returned.
 
 | Name                                  | Description                                                                                                                |
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -373,8 +367,7 @@ Adds a random integer in the range $[0;15]$ to the x- and z-coordinates of the g
 
 ### `minecraft:noise_based_count`
 
-Gets the noise value at the given position and, if the value is positive, returns the given position multiple times. The
-amount of times the position is returned is determined by the following code:
+Gets the noise value at the given position and, if the value is positive, returns the given position multiple times. The amount of times the position is returned is determined by the following code:
 ```java
 double noise = Biome.BIOME_INFO_NOISE.getValue((double)pos.getX() / noiseFactor, (double)pos.getZ() / noiseFactor, false);
 int count = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
@@ -409,8 +402,7 @@ int count = (int)Math.ceil((noise + noiseOffset) * noiseToCountRatio);
 
 ### `minecraft:noise_threshold_count`
 
-Returns the given position multiple times. If the noise value at the given position is below the given threshold, the
-position is returned `below_noise` times. Otherwise, it is returned `above_noise` times. Or, in code:
+Returns the given position multiple times. If the noise value at the given position is below the given threshold, the position is returned `below_noise` times. Otherwise, it is returned `above_noise` times. Or, in code:
 
 ```java
 if (noise < threshold) {
@@ -480,8 +472,7 @@ Offsets the given position by the provided [`IntProvider's`](../types/number-pro
 
 ### `minecraft:rarity_filter`
 
-Either returns the given position or empty. The chance of returning the position is determined by the given chance and
-calculated via `1 / chance`.
+Either returns the given position or empty. The chance of returning the position is determined by the given chance and calculated via `1 / chance`.
 
 | Name     | Description                                                                     |
 |----------|---------------------------------------------------------------------------------|
@@ -558,10 +549,7 @@ If the amount of motion-blocking blocks under the surface is less than/equal to 
 
 ### Custom `PlacementModifiers`
 
-You can also implement your own custom `PlacementModifiers` by extending Minecraft's `PlacementModifier` class. You can
-then register your custom `PlacementModifier` via the `FeatureRegistry` either by creating a `PlacementModifierType` or
-by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codec)
-page for more information on Mojang's serialization system.  
+You can also implement your own custom `PlacementModifiers` by extending Minecraft's `PlacementModifier` class. You can then register your custom `PlacementModifier` via the `FeatureRegistry` either by creating a `PlacementModifierType` or by providing the `Codec` directly and thus creating an inline `PlacementModifierType`. Check out the [Codecs](../codec) page for more information on Mojang's serialization system.  
 Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementModifier` as an example:
 
 === "Inline PlacementModifierType"
@@ -653,14 +641,11 @@ Here's how you'd implement the [`minecraft:count`](#minecraftcount) `PlacementMo
     }
     ```
 
-Minecraft also offers further abstraction via the `RepeatingPlacement` and `PlacementFilter` classes. They both override
-the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
+Minecraft also offers further abstraction via the `RepeatingPlacement` and `PlacementFilter` classes. They both override the `getPositions` method and provide the `count` and `shouldPlace` methods respectively.
 
 ## Inlined
 
-Some placed features might not be worth registering in the `Registry` (e.g. `fill_layer` features for flat worlds). In
-such cases, `#!kotlin PlacementUtils.inlinePlaced` can be used to get a `Holder` that contains a `PlacedFeature` constructed
-from the `ConfiguredFeature` and `PlacementModifiers` provided.
+Some placed features might not be worth registering in the `Registry` (e.g. `fill_layer` features for flat worlds). In such cases, `#!kotlin PlacementUtils.inlinePlaced` can be used to get a `Holder` that contains a `PlacedFeature` constructed from the `ConfiguredFeature` and `PlacementModifiers` provided.
 
 As an example, here's how `fill_layer` placed features are inlined in Minecraft's flat level generator:
 

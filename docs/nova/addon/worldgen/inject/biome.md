@@ -6,11 +6,9 @@ icon: lucide/route
 
 !!! warning
 
-    This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be
-    added in the future.
+    This worldgen page is still a work in progress. Some Json formats/code examples/features might be missing and will be added in the future.
 
-`BiomeInjections` allow you to add [`PlacedFeatures`](../features/placed-feature.md) to an already existing biome. In the
-future, this will also allow you to modify any other biome property.
+`BiomeInjections` allow you to add [`PlacedFeatures`](../features/placed-feature.md) to an already existing biome. In the future, this will also allow you to modify any other biome property.
 
 ## Example usage
 

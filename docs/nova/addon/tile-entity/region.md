@@ -39,8 +39,7 @@ VisualizeRegionItem(regionUuid) { region }
 
 ## Dynamic Region
 
-A `DynamicRegion` is a type of region intended for use in tile-entities: Using a `MutableProvider<Int>` for the size,
-the region can be dynamically resized. It provides several gui-components to inspect, modify, and visualize the region.
+A `DynamicRegion` is a type of region intended for use in tile-entities: Using a `MutableProvider<Int>` for the size, the region can be dynamically resized. It provides several gui-components to inspect, modify, and visualize the region.
 
 Using `TileEntity#storedRegion`, we can create a `DynamicRegion`:
 

@@ -6,9 +6,7 @@ icon: lucide/box
 
 ## Block States
 
-Block states in Nova are quite similar to those in vanilla Minecraft. Every block type has at least one block state,
-and additional block states can be added using block state properties. For example, a directional block may have four
-block states for each cardinal direction, but they're all the same block type.
+Block states in Nova are quite similar to those in vanilla Minecraft. Every block type has at least one block state, and additional block states can be added using block state properties. For example, a directional block may have four block states for each cardinal direction, but they're all the same block type.
 
 ### Block State Properties
 
@@ -19,8 +17,7 @@ In Nova, block state properties a separated into `BlockStateProperty` and `Scope
 val FACING: EnumProperty<BlockFace> = EnumProperty(ResourceLocation.fromNamespaceAndPath("nova", "facing"))
 ```
 
-`ScopedBlockStateProperty` on the other hand defines which values are valid and how the default values are inferred
-from a [block place context](../contexts.md):
+`ScopedBlockStateProperty` on the other hand defines which values are valid and how the default values are inferred from a [block place context](../contexts.md):
 
 ```kotlin title="DefaultScopedBlockStateProperties.kt"
  /**
@@ -47,10 +44,8 @@ from a [block place context](../contexts.md):
      }
 ```
 
-The `ScopedBlockStateProperty` is only used for registering a block.
-`BlockStateProperty` is used to retrieve a values from a `NovaBlockState`.  
-This separation is useful, as it allows us to generalize all scopes for `nova:facing` into a single property, so we don't
-need to check for each individual scope, but can just use `#!kotlin DefaultBlockStateProperties.FACING`
+The `ScopedBlockStateProperty` is only used for registering a block. `BlockStateProperty` is used to retrieve a values from a `NovaBlockState`.  
+This separation is useful, as it allows us to generalize all scopes for `nova:facing` into a single property, so we don't need to check for each individual scope, but can just use `#!kotlin DefaultBlockStateProperties.FACING`
 
 ## Creating a Block Registry
 
@@ -81,8 +76,7 @@ object Blocks {
 }
 ```
 
-This block will have no functionality and its model will default to the model defined under
-`models/block/example_block.json` or alternatively a cube model with the texture `textures/block/example_block.png`.
+This block will have no functionality and its model will default to the model defined under `models/block/example_block.json` or alternatively a cube model with the texture `textures/block/example_block.png`.
 
 ### Defining the block model layout
 
@@ -90,12 +84,7 @@ To define the block model layout, use the `models` scope in the builder.
 
 #### Model backing
 
-First you'll need to choose how to back the block model. In Nova, you can either use existing vanilla block states
-(`#!kotlin stateBacked(/*...*/)`), item display entities (`#!kotlin entityBacked(/*...*/`), or item display entities
-with a custom item model definition (`#!kotlin entityItemBacked(/*...*/)`) for custom blocks.
-All options have their own advantages and disadvantages, which are explained in more detail in the KDocs
-([here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html),
-[here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.block/-backing-state-category/index.html)).
+First you'll need to choose how to back the block model. In Nova, you can either use existing vanilla block states (`#!kotlin stateBacked(/*...*/)`), item display entities (`#!kotlin entityBacked(/*...*/`), or item display entities with a custom item model definition (`#!kotlin entityItemBacked(/*...*/)`) for custom blocks. All options have their own advantages and disadvantages, which are explained in more detail in the KDocs ([here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html), [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.block/-backing-state-category/index.html)).
 
 In the following code snippet, I chose to back the custom block via mushroom blocks:
 
@@ -134,9 +123,7 @@ object Blocks {
 3. You can retrieve the value of a `BlockStateProperty` and select the model accordingly.
 4. Loads and returns the model under the given path.
 
-Of course, you won't need to manually create rotated models for your blocks.
-Instead, you can use the `ModelBuilder` obtained by `getModel(/*...*/)` (or `defaultModel`) in the `selectModel` scope
-and use that to rotate the model:
+Of course, you won't need to manually create rotated models for your blocks. Instead, you can use the `ModelBuilder` obtained by `getModel(/*...*/)` (or `defaultModel`) in the `selectModel` scope and use that to rotate the model:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
@@ -153,9 +140,7 @@ object Blocks {
 }
 ```
 
-1. Automatically rotates your model based on `DefaultBlockStateProperties.FACING` or `DefaultBlockStateProperties.AXIS`.
-   You can also rotate manually, or do other transformations such as scaling, translating or combining models using
-   the `ModelBuilder`.
+1. Automatically rotates your model based on `DefaultBlockStateProperties.FACING` or `DefaultBlockStateProperties.AXIS`. You can also rotate manually, or do other transformations such as scaling, translating or combining models using the `ModelBuilder`.
 
 !!! note "Refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html) for a full list of available functions and properties."
 
@@ -174,13 +159,10 @@ object Items {
 
 ## Placing / Destroying Nova Blocks
 
-To place or break custom blocks, you'll need a [Context](../contexts.md). Then, use `#!kotlin BlockUtils.placeBlock`,
-`#!kotlin BlockUtils.breakBlock` or `#!kotlin BlockUtils.updateBlockState`.
+To place or break custom blocks, you'll need a [Context](../contexts.md). Then, use `#!kotlin BlockUtils.placeBlock`, `#!kotlin BlockUtils.breakBlock` or `#!kotlin BlockUtils.updateBlockState`.
 
 There are extension properties available on `org.bukkit.Block` to get the `novaBlockState` or `novaBlock`.
 
 !!! warning "Direct world access via WorldDataManager"
 
-      You can also directly read / write to Nova's world data storage via `WorldDataManager`. However, note that setting a 
-      block state via `WorldDataManager` will not perform any other logic such as tile-entity creation, calling
-      block behaviors, placing the backing state, or spawning the associated display entity.
+      You can also directly read / write to Nova's world data storage via `WorldDataManager`. However, note that setting a block state via `WorldDataManager` will not perform any other logic such as tile-entity creation, calling block behaviors, placing the backing state, or spawning the associated display entity.

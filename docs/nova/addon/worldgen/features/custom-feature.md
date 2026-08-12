@@ -10,9 +10,7 @@ icon: lucide/git-branch
 
 ## 1. Empty Feature
 
-To create a custom feature, you'll need to create a new object and extend Nova's `FeatureType` class. This class needs
-a [`Codec`](../codec) for your feature configuration in the constructor, but you can just leave a `TODO()` call there 
-for now. You'll also need a `FeatureConfiguration` class (unless a pre-existing one fits your needs).
+To create a custom feature, you'll need to create a new object and extend Nova's `FeatureType` class. This class needs a [`Codec`](../codec) for your feature configuration in the constructor, but you can just leave a `TODO()` call there for now. You'll also need a `FeatureConfiguration` class (unless a pre-existing one fits your needs).
 
 So let's keep everything empty for now:
 
@@ -30,8 +28,7 @@ class ExampleConfiguration : FeatureConfiguration
 
 ## 2. Configuration
 
-For this example, we'll create a feature that generates a cuboid of blocks. We'll make the height, width and block of
-the cuboid configurable. Let's also change our configuration class to a `data class`.
+For this example, we'll create a feature that generates a cuboid of blocks. We'll make the height, width and block of the cuboid configurable. Let's also change our configuration class to a `data class`.
 
 ```kotlin title="ExampleFeature.kt"
 data class ExampleConfiguration(
@@ -70,9 +67,7 @@ data class ExampleConfiguration(
 
 1. Use the `BlockStateProvider` `Codec` to deserialize the `blockState` field.  
    If you only want to support Nova's `BlockNovaMaterial`, you can use `BlockNovaMaterial.CODEC` instead.
-2. Use the `Codec` of `IntProvider` to deserialize the `height` and `width` fields. The `codec` method takes a minimum 
-   and maximum value, which will be used to clamp the value if it's outside the range **(Only enforced for deserialized 
-   IntProviders!)**.
+2. Use the `Codec` of `IntProvider` to deserialize the `height` and `width` fields. The `codec` method takes a minimum and maximum value, which will be used to clamp the value if it's outside the range **(Only enforced for deserialized IntProviders!)**.
 
 Now we can pass the `CODEC` field to the `FeatureType` constructor.
 
@@ -82,21 +77,15 @@ object ExampleFeature : FeatureType<ExampleConfiguration>(ExampleConfiguration.C
 
 ## 4. Place function
 
-Finally, we can implement the `place` function. This function is called for each position returned by the 
-[`PlacementModifiers`](placed-feature.md#placement-modifiers)defined in the outer [`PlacedFeature`](placed-feature.md).
-The `FeaturePlaceContext` contains, as the name suggests, the context of the feature placement. This includes the 
-`origin` (the position of the feature), the `level`, a `random` instance and the `config` (our configuration).  
-If the feature is used in another feature (For example, the [`minecraft:random_selector`](configurations/random-selector.md)
-feature), that feature can also be accessed through the `topFeature` method.
+Finally, we can implement the `place` function. This function is called for each position returned by the [`PlacementModifiers`](placed-feature.md#placement-modifiers)defined in the outer [`PlacedFeature`](placed-feature.md). The `FeaturePlaceContext` contains, as the name suggests, the context of the feature placement. This includes the `origin` (the position of the feature), the `level`, a `random` instance and the `config` (our configuration).  
+If the feature is used in another feature (For example, the [`minecraft:random_selector`](configurations/random-selector.md) feature), that feature can also be accessed through the `topFeature` method.
 
 !!! danger "Random usage"
 
-    To ensure consistency for the same seed across worlds, you should only use the `random` instance provided by the
-    `FeaturePlaceContext`.  
+    To ensure consistency for the same seed across worlds, you should only use the `random` instance provided by the `FeaturePlaceContext`.  
     **Do not use `Random` or `ThreadLocalRandom` directly.**
 
-If you have a `BlockNovaMaterial` or Bukkit `Material` you want to place, you can use the `setBlock` method of the
-`FeatureType` class.
+If you have a `BlockNovaMaterial` or Bukkit `Material` you want to place, you can use the `setBlock` method of the `FeatureType` class.
 
 ```kotlin title="ExampleFeature.kt"
 object ExampleFeature : FeatureType<ExampleConfiguration>(ExampleConfiguration.CODEC) {
@@ -188,8 +177,7 @@ We can now properly use our newly defined feature.
     }
     ```
     
-    Finally, we can add our `PlacedFeature` to a biome. For this example, let's add it to all overworld biomes using
-    [`BiomeInjections`](../inject/biome.md):
+    Finally, we can add our `PlacedFeature` to a biome. For this example, let's add it to all overworld biomes using [`BiomeInjections`](../inject/biome.md):
     
     ```kotlin
     @OptIn(ExperimentalWorldGen::class)
@@ -254,8 +242,7 @@ We can now properly use our newly defined feature.
     }
     ```
     
-    Finally, we can add our `PlacedFeature` to a biome. For this example, let's add it to all overworld biomes using
-    [`BiomeInjections`](../inject/biome.md):
+    Finally, we can add our `PlacedFeature` to a biome. For this example, let's add it to all overworld biomes using [`BiomeInjections`](../inject/biome.md):
     
     ```json
     {

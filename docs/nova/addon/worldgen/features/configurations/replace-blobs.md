@@ -4,8 +4,7 @@ icon: lucide/replace
 
 # Replace blobs feature
 
-The `replace_blobs` feature can be used to replace specific blobs with a blob of a different block. Although
-the name suggests that it only works with netherrack, it can be used with any block.
+The `replace_blobs` feature can be used to replace specific blobs with a blob of a different block. Although the name suggests that it only works with netherrack, it can be used with any block.
 
 ## Configuration
 

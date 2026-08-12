@@ -6,8 +6,7 @@ icon: lucide/gem
 
 !!! warning
 
-     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world 
-     generation system. Beginner users may find the content challenging to understand.
+     Advanced Knowledge Required - This documentation page is intended for users with in-depth knowledge of the world generation system. Beginner users may find the content challenging to understand.
 
 The `geode` feature can be used to generate geode-like structures in the world.
 
@@ -52,8 +51,7 @@ In code, the `GeodeBlockSettings` class is used to configure the blocks of the g
 
 ### `layers`
 
-Defines the max radius of each layer of the geode. The higher the value the higher the max radius of the respective layer.
-The following options are all `double`s in the range $[0.01;50.0]$.
+Defines the max radius of each layer of the geode. The higher the value the higher the max radius of the respective layer. The following options are all `double`s in the range $[0.01;50.0]$.
 
 | Option                                               | Description                                                                 | Amethyst geode value |
 |------------------------------------------------------|-----------------------------------------------------------------------------|----------------------|

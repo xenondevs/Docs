@@ -24,9 +24,7 @@ You can get the ``TileEntityManager`` using [the previously retrieved Nova insta
 
 ### Getting a TileEntity at a specific location
 
-Getting a TileEntity at a specific location is done by calling the ``getTileEntityAt`` function of the
-``TileEntityManager``. The function either returns a TileEntity or ``null`` if there is no TileEntity at the specified
-location.
+Getting a TileEntity at a specific location is done by calling the ``getTileEntityAt`` function of the ``TileEntityManager``. The function either returns a TileEntity or ``null`` if there is no TileEntity at the specified location.
 
 === "Kotlin"
 
@@ -88,8 +86,7 @@ For this example, we'll get the english name of a Pulverizer.
 
 ### Getting the drops of a TileEntity
 
-These drops include all items in the TileEntity's inventory and the TileEntity itself if ``includeSelf`` is set to
-``true``.
+These drops include all items in the TileEntity's inventory and the TileEntity itself if ``includeSelf`` is set to ``true``.
 
 === "Kotlin"
 

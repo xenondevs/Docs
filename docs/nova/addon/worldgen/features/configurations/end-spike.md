@@ -52,8 +52,7 @@ As an example, here's the configured feature used to place the default end spike
     }
     ```
 
-    1. Since Minecraft only needs the default end spikes, we don't need to configure anything. `false` means that the 
-       crystals on top of the end spikes should not be invulnerable and `null` is the crystal beam target.
+    1. Since Minecraft only needs the default end spikes, we don't need to configure anything. `false` means that the crystals on top of the end spikes should not be invulnerable and `null` is the crystal beam target.
 
 === "Json"
 
@@ -97,8 +96,7 @@ As an example, here's the configured feature used to place the default end spike
         ```
 
         1. Don't make the crystals invulnerable.
-        2. The first spike is at the coordinates `42, 0` with a radius of `2` and a height of `82`. `true` specifies that 
-           iron bars should be placed around the end crystal.
+        2. The first spike is at the coordinates `42, 0` with a radius of `2` and a height of `82`. `true` specifies that iron bars should be placed around the end crystal.
         3. Don't specify any specific target for the crystal beam.
 
     === "Json"
@@ -197,8 +195,7 @@ As an example, here's the configured feature used to place the default end spike
     }
     ```
 
-    1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 
-       feature should only be placed in biomes that have end spikes.
+    1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the feature should only be placed in biomes that have end spikes.
 
 === "Json"    
 
@@ -213,8 +210,7 @@ As an example, here's the configured feature used to place the default end spike
     }
     ```
 
-    1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the 
-       feature should only be placed in biomes that have end spikes.
+    1. Most of the placement logic is handled by the feature itself. The only thing we need to do is to specify that the feature should only be placed in biomes that have end spikes.
 
 ## Result
 

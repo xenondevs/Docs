@@ -5,8 +5,7 @@ icon: lucide/cooking-pot
 # Recipes
 
 ## Adding recipes to your addon
-Recipes files are placed under `recipes/<namespace>/type`, where the `namespace` is the namespace of the addon that
-registered this recipe type (`minecraft` for Minecraft recipe types) and `type` the name of the recipe type.  
+Recipes files are placed under `recipes/<namespace>/type`, where the `namespace` is the namespace of the addon that registered this recipe type (`minecraft` for Minecraft recipe types) and `type` the name of the recipe type.  
 For more information about the recipe format and default recipe types, [read the admin page on it](../../../admin/recipes).
 
 ## Creating a custom Recipe Type
@@ -24,8 +23,7 @@ All the following values are required to create a new `RecipeType`:
 
     === "Recipe Class"
         
-        Every recipe that is created also creates a new instance of the `recipeClass`. That object then contains
-        all the information about the recipe (e.g. Input, Output, Time, etc.).
+        Every recipe that is created also creates a new instance of the `recipeClass`. That object then contains all the information about the recipe (e.g. Input, Output, Time, etc.).
 
         The following example is the `PulverizerRecipe` from the Machines addon:  
         ```kotlin title="PulverizerRecipe"
@@ -38,15 +36,13 @@ All the following values are required to create a new `RecipeType`:
             override val type = RecipeTypes.PULVERIZER
         }
         ```
-        Since a Pulverizer just converts one input item to another output item, I could use the pre-existing
-        `ConversionNovaRecipe`. Depending on your recipe type, you might need to directly inherit from `NovaRecipe` though.
+        Since a Pulverizer just converts one input item to another output item, I could use the pre-existing `ConversionNovaRecipe`. Depending on your recipe type, you might need to directly inherit from `NovaRecipe` though.
 
     === "Recipe Deserializer"
 
         The recipe deserializer deserializes the recipe file to an instance of the `recipeClass`.
 
-        For the `PulverizerRecipe` from Machines, the recipe deserializer is actually quite easy, as you can just
-        extend the already existing `ConversionRecipeDeserializer`:  
+        For the `PulverizerRecipe` from Machines, the recipe deserializer is actually quite easy, as you can just extend the already existing `ConversionRecipeDeserializer`:  
         ```kotlin title="PulverizerRecipeDeserializer"
         object PulverizerRecipeDeserializer : ConversionRecipeDeserializer<PulverizerRecipe>() {
             override fun createRecipe(json: JsonObject, key: NamespacedKey, input: RecipeChoice, result: ItemStack, time: Int) =
@@ -54,8 +50,7 @@ All the following values are required to create a new `RecipeType`:
         }
         ```
 
-        However, depending on you recipe type you might need to do some more work. The following deserializer is used for
-        the fluid infuser recipe:
+        However, depending on you recipe type you might need to do some more work. The following deserializer is used for the fluid infuser recipe:
         ```kotlin title="FluidInfuserRecipeDeserializer"
         object FluidInfuserRecipeDeserializer : RecipeDeserializer<FluidInfuserRecipe> {
     
@@ -75,8 +70,7 @@ All the following values are required to create a new `RecipeType`:
 
         !!! info
 
-            Make sure to always use the `parseRecipeChoice(JsonElement)`, `ItemUtils.getItemBuilder(String)` and`getRecipeKey(File)`
-            utility methods instead of using your own logic.
+            Make sure to always use the `parseRecipeChoice(JsonElement)`, `ItemUtils.getItemBuilder(String)` and`getRecipeKey(File)` utility methods instead of using your own logic.
 
     === "Recipe Group"
 
@@ -141,7 +135,6 @@ All the following values are required to create a new `RecipeType`:
         }
         ```
         
-        1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that
-            item. It also automatically cycles through all possible input options if there is more than one.
+        1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that item. It also automatically cycles through all possible input options if there is more than one.
 
         [:material-file-document-outline: InvUI Documentation](../../../invui/){ .md-button }

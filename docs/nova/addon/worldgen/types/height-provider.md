@@ -4,14 +4,11 @@ icon: lucide/arrow-up-down
 
 # Height Providers
 
-Height providers are used to get a height value for a given position. Before we can get into the details however, we first
-need to take a look at `VerticalAnchors`.
+Height providers are used to get a height value for a given position. Before we can get into the details however, we first need to take a look at `VerticalAnchors`.
 
 ## Vertical Anchors
 
-Vertical anchors are used to get a fixed height value depending on factors like the min and max build height. There is 
-of course also a constant implementation that always returns the same value. Please note that the type doesn't have to 
-be specified in Json. It's automatically inferred via the key name.
+Vertical anchors are used to get a fixed height value depending on factors like the min and max build height. There is of course also a constant implementation that always returns the same value. Please note that the type doesn't have to be specified in Json. It's automatically inferred via the key name.
 
 !!! warning
 
@@ -47,8 +44,7 @@ Returns a y-value above the min build height of the world by `above_bottom` bloc
 
     !!! tip
     
-        If you want to get the minimum build height, you can also use `#!kotlin VerticalAnchor.bottom()` or
-        `#!kotlin VerticalAnchor.BOTTOM` instead of `#!kotlin VerticalAnchor.aboveBottom(0)`.
+        If you want to get the minimum build height, you can also use `#!kotlin VerticalAnchor.bottom()` or `#!kotlin VerticalAnchor.BOTTOM` instead of `#!kotlin VerticalAnchor.aboveBottom(0)`.
 
 === "Json"
 
@@ -70,8 +66,7 @@ Returns a y-value below the max build height of the world by `below_top` blocks.
 
     !!! tip
     
-        If you want to get the maximum build height, you can also use `#!kotlin VerticalAnchor.top()` or
-        `#!kotlin VerticalAnchor.TOP` instead of `#!kotlin VerticalAnchor.belowTop(0)`.
+        If you want to get the maximum build height, you can also use `#!kotlin VerticalAnchor.top()` or `#!kotlin VerticalAnchor.TOP` instead of `#!kotlin VerticalAnchor.belowTop(0)`.
 
 === "Json"
 
@@ -110,8 +105,7 @@ Always returns the y-value provided by a vertical anchor.
 
     !!! tip
     
-        Mojang also added a feature that allows directly specifying a vertical anchor when a height provider is expected. So
-        this is would also be a valid height provider:
+        Mojang also added a feature that allows directly specifying a vertical anchor when a height provider is expected. So this is would also be a valid height provider:
     
         ```json
         {

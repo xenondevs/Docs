@@ -4,11 +4,9 @@ icon: lucide/settings
 
 # Configuring Nova
 
-All config files are located in under `plugins/Nova/configs/`.
-Every addon has its own subdirectory with its own config files.
+All config files are located in under `plugins/Nova/configs/`. Every addon has its own subdirectory with its own config files.
 
-Most of the options in the configs are self-explanatory or explained using comments.
-The following section explains the more complex configuration options.
+Most of the options in the configs are self-explanatory or explained using comments. The following section explains the more complex configuration options.
 
 ## Items Menu
 
@@ -26,8 +24,7 @@ To customize the items menu (accessible via `/nova items`), create a file named 
 ```
 
 1. The item type to use as the icon for the category.
-2. The name of the category, which will be used as the hover name of the icon.
-   In [MiniMessage format](https://docs.advntr.dev/minimessage/format.html).
+2. The name of the category, which will be used as the hover name of the icon. In [MiniMessage format](https://docs.advntr.dev/minimessage/format.html).
 3. A list of items in the category.
 
 ??? example "Example configuration"
@@ -143,8 +140,7 @@ Example configs:
 
 ## Upgrade values (Simple-Upgrades addon)
 
-Every addon can register its own upgrade types. As a server administrator, you can configure these values in the
-`plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
+Every addon can register its own upgrade types. As a server administrator, you can configure these values in the `plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
 
 The config of the `simple_upgrades` addon looks like this:
 ```yaml
@@ -155,11 +151,9 @@ fluid: [ 1.0, 1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1, 10.0 ]
 range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
 
-The amount of values in the arrays specifies the amount of upgrades that can be added, the numbers themselves are the modifiers.
-Depending on the type of upgrade, these values might be a multipliers or in the case of the range upgrade, are just added on top of the default max range.
+The amount of values in the arrays specifies the amount of upgrades that can be added, the numbers themselves are the modifiers. Depending on the type of upgrade, these values might be a multipliers or in the case of the range upgrade, are just added on top of the default max range.
 
-The upgrade values can also be changed for specific tile-entities by adding a `upgrade_values` section to the config of that tile-entity.
-For example, the default limit of range upgrades for the Pump from the Machines addon is changed to 30 this way:
+The upgrade values can also be changed for specific tile-entities by adding a `upgrade_values` section to the config of that tile-entity. For example, the default limit of range upgrades for the Pump from the Machines addon is changed to 30 this way:
 ```yaml
 upgrade_values:
   range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ]
@@ -179,8 +173,7 @@ attribute_modifiers:
 
 1. The equipment slot group that this item needs to be in for the attribute modifier to apply.  
     Possible values: `any`, `mainhand`, `offhand`, `hand`, `feet`, `legs`, `chest`, `head`, `armor`, `body`
-2. The attribute to modify.
-     You can find a list of all available attributes on the [Minecraft Wiki](https://minecraft.wiki/w/Attribute#Attributes)
+2. The attribute to modify. You can find a list of all available attributes on the [Minecraft Wiki](https://minecraft.wiki/w/Attribute#Attributes)
 3. The operation to perform.  
     Possible operations: `add_value`, `add_multiplied_base`, `add_multiplied_total`
 4. The value to modify the attribute with.
@@ -225,8 +218,7 @@ resource_pack:
 
 1. The stage at which the filter should be applied. Can be `asset_pack` or `resource_pack`.
 2. The type of the filter. Can be `whitelist` or `blacklist`.
-3. The pattern type of the `filter` field. Can be `regex` or `wildcard`.
-   You can test your regex pattern on [RegExr](https://regexr.com/) or similar sites.
+3. The pattern type of the `filter` field. Can be `regex` or `wildcard`. You can test your regex pattern on [RegExr](https://regexr.com/) or similar sites.
 4. The filter pattern to match against. The `pattern_type` field determines how the pattern is interpreted.
 5. (Optional) The directory to apply the filter to. Relative to the `assets` directory.
 
@@ -263,9 +255,7 @@ resource_pack:
 
 ## WAILA Positioning
 
-If you want to change the vertical position of the WAILA overlay, you can do so by defining which boss bars should be
-above or below it. This is done by defining matchers in `waila` > `positioning` > `above` (defines the boss bars that should
-be below WAILA) and `waila` > `positioning` > `below` (defines the boss bars that should be above WAILA).
+If you want to change the vertical position of the WAILA overlay, you can do so by defining which boss bars should be above or below it. This is done by defining matchers in `waila` > `positioning` > `above` (defines the boss bars that should be below WAILA) and `waila` > `positioning` > `below` (defines the boss bars that should be above WAILA).
 
 There are five different types of matchers available:
 

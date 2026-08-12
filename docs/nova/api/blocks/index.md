@@ -99,8 +99,7 @@ To retrieve the block type of block at a specific location, you can do the follo
 
 #### Tile Entity
 
-[TileEntities](../tileentity/index.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity
-instance of the block.
+[TileEntities](../tileentity/index.md) use the ``NovaTileEntityState`` class via which you can get the TileEntity instance of the block.
 
 === "Kotlin"
 
@@ -166,8 +165,7 @@ You can also place a nova block at a specific location by using a [`NovaBlock`](
 
 ### Getting the drops of a block
 
-If you want to get the drops of a block, you can use the ``BlockManager.getDrops`` function. Again, there are a few
-overrides requiring less arguments.
+If you want to get the drops of a block, you can use the ``BlockManager.getDrops`` function. Again, there are a few overrides requiring less arguments.
 
 !!! warning
 
@@ -203,8 +201,7 @@ overrides requiring less arguments.
 
 ### Removing a block
 
-You can remove a block at a specific location by using the ``BlockManager.removeBlock`` function. The function will
-return a ``boolean`` whether there was a block at the provided location and whether it was removed successfully.
+You can remove a block at a specific location by using the ``BlockManager.removeBlock`` function. The function will return a ``boolean`` whether there was a block at the provided location and whether it was removed successfully.
 
 === "Kotlin"
 

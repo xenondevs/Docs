@@ -32,12 +32,10 @@ object Equipment {
 
 1. Nova will load this class during addon initialization, causing your armor to be registered.
 2. The type of equipment. You can also create equipment for horses, dogs, and more.
-3. You can layer multiple textures on top of each other. This layering is flat, there is no three-dimensional effect
-   like for the player skin.
+3. You can layer multiple textures on top of each other. This layering is flat, there is no three-dimensional effect like for the player skin.
 4. The path to the texture. This resolves the file under `textures/entity/equipment/humanoid/example.png`
 5. The path to the texture. This resolves the file under `textures/entity/equipment/humanoid/example.png`
-6. (optional) Makes this layer dyeable and uses `Color.WHITE` if no dye is applied.
-   Dyeable items also require the `Dyeable` item behavior.
+6. (optional) Makes this layer dyeable and uses `Color.WHITE` if no dye is applied. Dyeable items also require the `Dyeable` item behavior.
 
 After creating the armor, you can apply it to items using the `Equippable` behavior:
 
@@ -61,6 +59,4 @@ val EXAMPLE = ExampleAddon.animatedEquipment("example") {
 }
 ```
 
-1. Creates a non-interpolated animation that switches through the three defined frames every 5 ticks.
-   Note that interpolation is achieved by pre-generating all interpolated frames, which may drastically
-   increase resource pack size.
+1. Creates a non-interpolated animation that switches through the three defined frames every 5 ticks. Note that interpolation is achieved by pre-generating all interpolated frames, which may drastically increase resource pack size.

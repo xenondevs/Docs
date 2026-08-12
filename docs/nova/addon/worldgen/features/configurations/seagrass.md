@@ -8,8 +8,7 @@ The `seagrass` feature allows you to generate seagrass in water.
 
 ## Configuration
 
-The `seagrass` feature only has the `probability` option (`float` in the range $[0.0;1.0)$), which determines the chance
-of seagrass being generated.
+The `seagrass` feature only has the `probability` option (`float` in the range $[0.0;1.0)$), which determines the chance of seagrass being generated.
 
 In code, the `ProbabilityFeatureConfiguration` class is used to configure the feature.
 

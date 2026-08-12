@@ -12,9 +12,7 @@ icon: lucide/circle-help
 
 ??? faq "Which Minecraft versions are supported by Nova? Is there multi-version support?"
 
-    The goal for Nova is to always target the latest version of Minecraft. There is no multi-version support.
-    If the latest version of Nova does not support the latest Minecraft version yet, please be patient
-    while we work on updating it.
+    The goal for Nova is to always target the latest version of Minecraft. There is no multi-version support. If the latest version of Nova does not support the latest Minecraft version yet, please be patient while we work on updating it.
 
 ??? faq "Can I use Nova with Bedrock bridges like Geyser?"
 
@@ -26,8 +24,7 @@ icon: lucide/circle-help
 
 ??? faq "Where can I find the crafting recipes?"
 
-    All items from Nova and their crafting recipes can be viewed by using `/nova items` and are also present in the
-    vanilla crafting book (the green book in the crafting table).  
+    All items from Nova and their crafting recipes can be viewed by using `/nova items` and are also present in the vanilla crafting book (the green book in the crafting table).  
     Additionally, recipes can also be viewed directly by using `/nvrecipe` and `/nvusage`.
 
 ??? faq "My items don't have textures / look like shulker shells."
