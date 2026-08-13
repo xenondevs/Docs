@@ -43,7 +43,7 @@ Then, each line that isn't blank or a comment is an instruction to widen the acc
 - `access`: either `accessible` or `extendable`
     - `accessible` (make public and final if private)
     - `extendable` (make protected and remove final, also make class extendable)
-- `class name` fully qualified internal name of the owner class, i.e. using `/` instead of `.` and `$` for inner classes
+- `class name`: fully qualified internal name of the owner class, i.e. using `/` instead of `.` and `$` for inner classes
 - `method name`: name of the method
 - `method descriptor`: the [method descriptor](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.3.3)
 
@@ -56,6 +56,6 @@ Then, each line that isn't blank or a comment is an instruction to widen the acc
 - `access`: either `accessible` or `mutable`
     - `accessible` (make public)
     - `mutable` (remove final)
-- `class name` fully qualified internal name of the owner class, i.e. using `/` instead of `.` and `$` for inner classes
+- `class name`: fully qualified internal name of the owner class, i.e. using `/` instead of `.` and `$` for inner classes
 - `field name`: name of the field
 - `field descriptor`: the [field descriptor](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.3.2)
