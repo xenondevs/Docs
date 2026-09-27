@@ -4,22 +4,22 @@ icon: lucide/box
 
 # Blocks
 
-## BlockRegistry
+## NovaBlockRegistry
 
 The block registry contains all registered block types.
 
-You can get the ``BlockRegistry`` using [the previously retrieved Nova instance](../index.md).
+You can get the ``NovaBlockRegistry`` using [the previously retrieved Nova instance](../index.md).
 
 === "Kotlin"
 
     ```kotlin
-    val blockRegistry = Nova.blockRegistry
+    val blockRegistry = nova.blockRegistry
     ```
 
 === "Java"
 
     ```java
-    BlockRegistry blockRegistry = Nova.getNova().getBlockRegistry();
+    NovaBlockRegistry blockRegistry = Nova.getNova().getBlockRegistry();
     ```
 
 After that, you can retrieve a block type by its id:
@@ -27,13 +27,13 @@ After that, you can retrieve a block type by its id:
 === "Kotlin"
 
     ```kotlin
-    val block = blockRegistry.getBlock("machines:pulverizer")
+    val block = blockRegistry.get("machines:pulverizer")
     ```
 
 === "Java"
 
     ```java
-    NovaBlock block = blockRegistry.getBlock("machines:pulverizer");
+    NovaBlock block = blockRegistry.get("machines:pulverizer");
     ```
 
 ## BlockManager
@@ -45,7 +45,7 @@ You can get the ``BlockManager`` using [the previously retrieved Nova instance](
 === "Kotlin"
 
     ```kotlin
-    val blockManager = Nova.blockManager
+    val blockManager = nova.blockManager
     ```
 
 === "Java"
@@ -123,7 +123,7 @@ To retrieve the block type of block at a specific location, you can do the follo
 
 ### Placing a block
 
-You can also place a nova block at a specific location by using a [`NovaBlock`](#blockregistry).
+You can also place a nova block at a specific location by using a [`NovaBlock`](#novablockregistry).
 
 === "Kotlin"
 

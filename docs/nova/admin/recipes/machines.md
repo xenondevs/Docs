@@ -64,7 +64,7 @@ This is an example recipe for extract water from a water bottle to create an emp
   "mode": "EXTRACT",
   "fluid_type": "WATER",
   "fluid_amount": 300,
-  "input": "minecraft:potion{\"Potion\": \"minecraft:water\"}",
+  "input": "minecraft:potion[minecraft:potion_contents={potion:\"minecraft:water\"}]",
   "result": "minecraft:glass_bottle",
   "time": 30
 }

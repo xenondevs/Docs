@@ -2,20 +2,20 @@
 icon: lucide/scan-box
 ---
 
-# Introduction
+# Tile Entities
 
 Tile-Entities are blocks that have additional data and logic attached to them.
 
 ## Creating a Tile-Entity
 
-Before registering the `NovaBlock` for a tile-entity, you'll need to create a class that extends `TileEntity`:
+Before registering the block for a tile-entity, you'll need to create a class that extends `TileEntity`:
 
 ```kotlin
 class ExampleTileEntity(
-    pos: BlockPos,
+    block: Block,
     blockState: NovaBlockState,
     data: Compound
-) : TileEntity(pos, blockState, data) {
+) : TileEntity(block, blockState, data) {
 
     // ...
 
@@ -30,21 +30,21 @@ object Blocks {
     
     val EXAMPLE_TILE_ENTITY = ExampleAddon.tileEntity("example_tile_entity", ::ExampleTileEntity) {
         behaviors(
-            TileEntityLimited, // (2)!
-            TileEntityDrops, // (3)!
-            TileEntityInteractive // (4)!
+            TileEntityDrops, // (2)!
+            TileEntityInteractive // (3)!
         )
-        tickrate(20) // (5)!
+        tickrate(20) // (4)!
     }
     
 }
 ```
 
 1. Nova will load this class during addon initialization, causing your blocks to be registered.
-2. Enables [tile-entity limits](../../admin/configuration.md#tile-entity-limits). (Note that if this behavior is not present, tile-entity limit tracking will also be disabled and placing this tile-entity will not count towards global limits.)
-3. Delegates the drop logic to `#!kotlin TileEntity.getDrops`.
-4. Delegates interactions to `#!kotlin TileEntity.handleRightClick`. This is also required if your tile-entity has a [GUI](gui.md).
-5. The rate at which `#!kotlin TileEntity.handleTick` function is called. This defaults to `20`, so you wouldn't need to specify it in this case.
+2. Delegates the drop logic to `#!kotlin TileEntity.getDrops`.
+3. Delegates interactions to `#!kotlin TileEntity.use` and `#!kotlin TileEntity.useItemOn`. This is also required if your tile-entity has a [GUI](../guis/tile-entity-menu.md).
+4. The rate at which `#!kotlin TileEntity.handleTick` function is called. This defaults to `20`, so you wouldn't need to specify it in this case.
+
+[Tile-entity limits](../../admin/configuration.md#tile-entity-limits) are enabled automatically.
 
 !!! danger "Tile-Entities are instantiated off-main"
 
@@ -59,8 +59,7 @@ Tile-Entity data is stored in our CBF Format, so make sure to check out the [CBF
 
 ??? example "Default Nova Binary Adapters"
 
-    Nova provides binary adapters for the following types by default:  
-    `NamespacedCompound`, `Color`, `Location`, `NamespacedKey`, `NamespacedId`, `ResourceLocation`, `VirtualInventory`, `BlockPos`, `ItemStack`, `NetworkType`, `AbilityType`, `AttachmentType`, `RecipeType`, `Table`, `ItemFilter`, `NovaBlock`, `NovaItem`, `ToolCategory`, `ToolTier`
+    Nova provides binary serializers for types such as `Color`, `Location`, `NamespacedKey`, `Key`, `VirtualInventory`, `#!kotlin Block`, `ItemStack`, `Table`, `ItemFilter`, and the face/side map and set types. It also registers serializers for entries and values of built-in Paper and Nova registries.
 
     You can register binary adapters for your own types as explained in the CBF Documentation.  
     If you require a binary adapter for a type from Java / Minecraft / Paper, please request it on GitHub.
@@ -89,4 +88,4 @@ There are a few utility functions available in `TileEntity` for storing commonly
 
 * `storedInventory` - Creates or reads a [VirtualInventory](../../../../invui/inventory/#virtual-inventory) from internal storage. Also registers a drop provider that drops the inventory's contents when the tile-entity is destroyed.
 * `storedFluidContainer` - Creates or reads a `FluidContainer` from internal storage.
-* `storedRegion` - Creates or reads a [DynamicRegion](region.md#dynamic-region) from internal storage.
+* `storedRegion` - Creates or reads a [DynamicRegion](../regions.md#dynamic-region) from internal storage.

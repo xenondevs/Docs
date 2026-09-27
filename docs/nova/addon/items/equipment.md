@@ -34,13 +34,13 @@ object Equipment {
 2. The type of equipment. You can also create equipment for horses, dogs, and more.
 3. You can layer multiple textures on top of each other. This layering is flat, there is no three-dimensional effect like for the player skin.
 4. The path to the texture. This resolves the file under `textures/entity/equipment/humanoid/example.png`
-5. The path to the texture. This resolves the file under `textures/entity/equipment/humanoid/example.png`
+5. The path to the texture. This resolves the file under `textures/entity/equipment/humanoid_leggings/example.png`
 6. (optional) Makes this layer dyeable and uses `Color.WHITE` if no dye is applied. Dyeable items also require the `Dyeable` item behavior.
 
 After creating the armor, you can apply it to items using the `Equippable` behavior:
 
 ```kotlin
-val EXAMPLE_HELMET = registerItem("example_helmet", Equippable(Armor.EXAMPLE, EquipmentSlot.HEAD))
+val EXAMPLE_HELMET = registerItem("example_helmet", Equippable(Equipment.EXAMPLE, EquipmentSlot.HEAD))
 ```
 
 ## Animated equipment

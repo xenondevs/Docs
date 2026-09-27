@@ -4,7 +4,7 @@ icon: lucide/workflow
 
 # Custom resource pack build logic
 
-Each resource pack to be generated has its own `ResourcePackBuildConfiguration`, which consists of tasks to be executed in a specific order. Addons can add custom tasks to existing resource pack configurations, or create their own ones to generate separate resource packs.
+Each resource pack to be generated has its own `#!kotlin ResourcePackConfiguration`, which consists of tasks to be executed in a specific order. Addons can add custom tasks to existing resource pack configurations, or create their own ones to generate separate resource packs.
 
 !!! info "The build process takes place entirely in an [in-memory file system](https://github.com/google/jimfs)."
 
@@ -82,12 +82,13 @@ Each resource pack to be generated has its own `ResourcePackBuildConfiguration`,
         They can then be retrieved later:
         
         ```kotlin
-        val component: Component = TextureIconContent.getIcon(Key.key("minecraft:item/diamond")).component
+        val component: Provider<Component> = TextureIconContent.getIcon(Key.key("minecraft:item/diamond"))
+            .map { it?.component ?: Component.empty() }
         ```
 
 ## PackTask
 
-`PackTasks` contain the actual logic to be run during the build process. They can use the data from registered `PackBuildData` instances by retrieving them using `ResourcePackBuilder#getBuildData`. Dependencies between tasks can be specified by overriding the `runsAfter` and `runsBefore` properties. If necessary, tasks can also explicitly specify the build stage (either post- or pre-world) by overriding the `buildStage` property.
+`PackTasks` contain the actual logic to be run during the build process. They can use the data from registered `PackBuildData` instances by retrieving them using `ResourcePackBuilder#getBuildData`. Dependencies between tasks can be specified by overriding the `runsAfter` and `runsBefore` properties. If necessary, tasks can also explicitly specify the build stage (either post- or pre-world) by overriding the `#!kotlin stage` property.
 
 If the `NovaDev` system property is set (`-DNovaDev`), Nova will dump the task dependency graph to `debug/nova/resource_pack_<id>.dot`.
 

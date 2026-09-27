@@ -6,7 +6,8 @@ icon: lucide/briefcase-conveyor-belt
 
 ## What is an Attachment?
 
-In Nova, an `Attachment` is a (fake) entity riding a player, but you'll mostly likely use the `ItemAttachment` implementation which is a clientside armor stand riding a player while wearing a custom item as a helmet.  
+In Nova, an `Attachment` is a (fake) entity riding a player, but you'll mostly likely use the `ItemAttachment` implementation which is a clientside item display riding a player.
+
 The attachment system makes assigning models to players easy, as it handles all the riding logic. Once a player is given an attachment, it will stay on that player until it is removed again.
 
 ## Creating an AttachmentType
@@ -17,7 +18,9 @@ Register an attachment type:
 @Init(stage = InitStage.PRE_PACK)
 object Attachments {
     
-    val EXAMPLE_ATTACHMENT = ExampleAddon.registerAttachmentType("example_attachment") { ItemAttachment(it, Items.ATTACHMENT_ITEM) }
+    val EXAMPLE_ATTACHMENT = ExampleAddon.registerAttachmentType("example_attachment") {
+        ItemAttachment(it, Items.ATTACHMENT_ITEM.createItemStack())
+    }
     
 }
 ```
@@ -25,17 +28,17 @@ object Attachments {
 Then, add the attachment to a player:
 
 ```kotlin
-AttachmentManager.addAttachment(player, Attachments.EXAMPLE_ATTACHMENT)
+AttachmentManager.addAttachment(player, Attachments.EXAMPLE_ATTACHMENT.get())
 ```
 
 And this is how you would remove it again:
 
 ```kotlin
-AttachmentManager.removeAttachment(player, Attachments.EXAMPLE_ATTACHMENT)
+AttachmentManager.removeAttachment(player, Attachments.EXAMPLE_ATTACHMENT.get())
 ```
 
 ## Modifying Attachment Logic
 
 You can also change the attachment logic by either directly implementing the `Attachment` interface or by extending the `ItemAttachment` class. Then, just call the constructor of your 'Attachment' subclass when registering the attachment type.
 
-If you need an attachment which gets hidden when a player looks down, check out the `HideOnDownItemAttachment`.
+If you need an attachment which gets hidden when a player looks down, check out the `HideDownItemAttachment`.

@@ -104,11 +104,13 @@ To register/unregister `NetworkNodes`, queue a network task using `NetworkManage
 
 ```kotlin
 NetworkManager.queueAddEndPoint(endPoint) // registers an end point
-NetworkManager.queueAddBridge(bridge, supportedNetworkTypes) // registers a bridge
+NetworkManager.queueAddBridge(bridge, supportedNetworkTypes, bridgeFaces) // registers a bridge
 
 NetworkManager.queueRemoveEndPoint(endPoint) // unregisters an end point
 NetworkManager.queueRemoveBridge(bridge) // unregisters a bridge
 ```
+
+`supportedNetworkTypes` is a `Set<NetworkType<*>>`, and `bridgeFaces` is a `CubeFaceSet` containing the faces on which the bridge can connect.
 
 You'll need to add `NetworkNodes` after they've been placed and also remove them when they're destroyed. You don't need to add/remove on chunk (un-)load.
 

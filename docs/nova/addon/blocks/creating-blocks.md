@@ -10,42 +10,16 @@ Block states in Nova are quite similar to those in vanilla Minecraft. Every bloc
 
 ### Block State Properties
 
-In Nova, block state properties a separated into `BlockStateProperty` and `ScopedBlockStateProperty`.  
-`BlockStateProperty` is just used to assign an id to a type, such as `nova:facing` to the `BlockFace` enum:
+A `BlockStateProperty` describes a property of a block, such the direction it faces. Each property defines its possible values and how a value is chosen when a block is placed:
 
 ```kotlin title="DefaultBlockStateProperties.kt"
-val FACING: EnumProperty<BlockFace> = EnumProperty(ResourceLocation.fromNamespaceAndPath("nova", "facing"))
+val FACING_VERTICAL: BlockStateProperty<BlockFace> =
+    EnumProperty(Key.key("nova", "facing"), BlockFace.UP, BlockFace.DOWN) { ctx ->
+        ctx.resolve(BlockPlace.SOURCE_DIRECTION)?.calculateYawPitch()
+            ?.let { [_, pitch] -> if (pitch < 0) BlockFace.UP else BlockFace.DOWN }
+            ?: BlockFace.UP
+    }
 ```
-
-`ScopedBlockStateProperty` on the other hand defines which values are valid and how the default values are inferred from a [block place context](../contexts.md):
-
-```kotlin title="DefaultScopedBlockStateProperties.kt"
- /**
-  * A scope for [DefaultBlockStateProperties.FACING], limited to the four horizontal directions
-  * [BlockFace.NORTH], [BlockFace.EAST], [BlockFace.SOUTH] and [BlockFace.WEST].
-  */
- val FACING_HORIZONTAL: ScopedBlockStateProperty<BlockFace> =
-     DefaultBlockStateProperties.FACING.scope(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST) { ctx ->
-         ctx[DefaultContextParamTypes.SOURCE_DIRECTION]
-             ?.calculateYaw()
-             ?.let { BlockFaceUtils.toCartesianFace(it) }
-             ?.oppositeFace
-             ?: BlockFace.NORTH
-     }
- 
- /**
-  * A scope for [DefaultBlockStateProperties.FACING], limited to the two vertical directions [BlockFace.UP] and [BlockFace.DOWN].
-  */
- val FACING_VERTICAL: ScopedBlockStateProperty<BlockFace> =
-     DefaultBlockStateProperties.FACING.scope(BlockFace.UP, BlockFace.DOWN) { ctx ->
-         ctx[DefaultContextParamTypes.SOURCE_DIRECTION]?.calculateYawPitch()
-             ?.let { (_, pitch) -> if (pitch < 0) BlockFace.UP else BlockFace.DOWN }
-             ?: BlockFace.UP
-     }
-```
-
-The `ScopedBlockStateProperty` is only used for registering a block. `BlockStateProperty` is used to retrieve a values from a `NovaBlockState`.  
-This separation is useful, as it allows us to generalize all scopes for `nova:facing` into a single property, so we don't need to check for each individual scope, but can just use `#!kotlin DefaultBlockStateProperties.FACING`
 
 ## Creating a Block Registry
 
@@ -80,11 +54,11 @@ This block will have no functionality and its model will default to the model de
 
 ### Defining the block model layout
 
-To define the block model layout, use the `models` scope in the builder.
+To define the block model layout, use `stateBacked`, `entityBacked`, or `entityItemBacked` in the builder.
 
 #### Model backing
 
-First you'll need to choose how to back the block model. In Nova, you can either use existing vanilla block states (`#!kotlin stateBacked(/*...*/)`), item display entities (`#!kotlin entityBacked(/*...*/`), or item display entities with a custom item model definition (`#!kotlin entityItemBacked(/*...*/)`) for custom blocks. All options have their own advantages and disadvantages, which are explained in more detail in the KDocs ([here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html), [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.block/-backing-state-category/index.html)).
+First you'll need to choose how to back the block model. In Nova, you can either use existing vanilla block states (`#!kotlin stateBacked(/*...*/)`), item display entities (`#!kotlin entityBacked(/*...*/)`), or item display entities with a custom item model definition (`#!kotlin entityItemBacked(/*...*/)`) for custom blocks. All options have their own advantages and disadvantages, which are explained in more detail in the KDocs ([here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.registry/-nova-block-builder/index.html), [here](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.block/-backing-state-category/index.html)).
 
 In the following code snippet, I chose to back the custom block via mushroom blocks:
 
@@ -100,17 +74,17 @@ object Blocks {
 
 #### Custom Model
 
-To override which model is used for your block, use the `selectModel` scope to select a model for each block state:
+To override which model is used for your block, pass a model selector to `#!kotlin stateBacked` or `#!kotlin entityBacked` to select a model for each block state:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
 object Blocks {
     
     val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
-        stateProperties(DefaultScopedBlockStateProperties.FACING_HORIZONTAL) // (1)!
+        stateProperties(DefaultBlockStateProperties.FACING_HORIZONTAL) // (1)!
         
         stateBacked(BackingStateCategory.MUSHROOM_BLOCK) { // (2)!
-            val facing = getPropertyValueOrThrow(DefaultBlockStateProperties.FACING) // (3)!
+            val facing = getPropertyValueOrThrow(DefaultBlockStateProperties.FACING_HORIZONTAL) // (3)!
             getModel(/* path */) // (4)!
         }
     }
@@ -120,17 +94,17 @@ object Blocks {
 
 1. The block will have block states for all horizontal directions.
 2. This will be run for every block state.
-3. You can retrieve the value of a `BlockStateProperty` and select the model accordingly.
+3. You can retrieve the value of the registered `BlockStateProperty` and select the model accordingly.
 4. Loads and returns the model under the given path.
 
-Of course, you won't need to manually create rotated models for your blocks. Instead, you can use the `ModelBuilder` obtained by `getModel(/*...*/)` (or `defaultModel`) in the `selectModel` scope and use that to rotate the model:
+Of course, you won't need to manually create rotated models for your blocks. Instead, you can use the `ModelBuilder` obtained by `getModel(/*...*/)` (or `defaultModel`) in the model selector and use that to rotate the model:
 
 ```kotlin
 @Init(stage = InitStage.PRE_PACK)
 object Blocks {
     
     val EXAMPLE_BLOCK = ExampleAddon.block("example_block") {
-        stateProperties(DefaultScopedBlockStateProperties.FACING_HORIZONTAL)
+        stateProperties(DefaultBlockStateProperties.FACING_HORIZONTAL)
         
         stateBacked(BackingStateCategory.MUSHROOM_BLOCK) {
            defaultModel.rotated() // (1)!
@@ -140,9 +114,9 @@ object Blocks {
 }
 ```
 
-1. Automatically rotates your model based on `DefaultBlockStateProperties.FACING` or `DefaultBlockStateProperties.AXIS`. You can also rotate manually, or do other transformations such as scaling, translating or combining models using the `ModelBuilder`.
+1. Automatically rotates your model based on a registered facing or axis property from `DefaultBlockStateProperties`. You can also rotate manually, or do other transformations such as scaling, translating or combining models using the `ModelBuilder`.
 
-!!! note "Refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.world.block/-nova-block-builder/index.html) for a full list of available functions and properties."
+!!! note "Refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.registry/-nova-block-builder/index.html) for a full list of available functions and properties."
 
 ## Creating an Item for the Block
 
@@ -159,10 +133,16 @@ object Items {
 
 ## Placing / Destroying Nova Blocks
 
-To place or break custom blocks, you'll need a [Context](../contexts.md). Then, use `#!kotlin BlockUtils.placeBlock`, `#!kotlin BlockUtils.breakBlock` or `#!kotlin BlockUtils.updateBlockState`.
+To place or break custom blocks, you'll need a [Context](../contexts.md). Then, use `#!kotlin BlockUtils.placeBlock` or `#!kotlin BlockUtils.breakBlock`.
 
-There are extension properties available on `org.bukkit.Block` to get the `novaBlockState` or `novaBlock`.
+There are extension properties available on `org.bukkit.block.Block` to get the `blockType`, `novaBlockState`, or `novaTileEntity`.
 
-!!! warning "Direct world access via WorldDataManager"
+To change a block state property, modify the `NovaBlockState` and apply it back to the block:
 
-      You can also directly read / write to Nova's world data storage via `WorldDataManager`. However, note that setting a block state via `WorldDataManager` will not perform any other logic such as tile-entity creation, calling block behaviors, placing the backing state, or spawning the associated display entity.
+```kotlin
+val state = block.novaBlockState ?: return
+state[DefaultBlockStateProperties.FACING_HORIZONTAL] = BlockFace.NORTH
+block.blockData = state
+```
+
+Inside a tile-entity, use `updateBlockState` to apply the modified `blockState` instead.

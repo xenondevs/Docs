@@ -4,7 +4,7 @@ icon: lucide/panel-bottom
 
 # Action Bar Overlay
 
-Overlays follow the same concept of using fonts to render images as [GUI Textures](guitextures.md), but are a bit more difficult to implement for addon developers, as you need to create the font file yourself.
+Overlays follow the same concept of using fonts to render images as [GUI Textures](../guis/guitextures.md), but are a bit more difficult to implement for addon developers, as you need to create the font file yourself.
 
 Font files are stored under `assets/fonts/` and have [this format](https://minecraft.wiki/w/Resource_Pack#Fonts).  
 You might also want to take a look at [our font for the jetpack energy bar overlay](https://github.com/Nova-Addons/Jetpacks/blob/main/src/main/resources/assets/fonts/energy_bar.json).
@@ -18,26 +18,28 @@ After creating your font, implement the `ActionbarOverlay` interface. There you'
     ```kotlin
     class JetpackOverlay : ActionbarOverlay {
 
-    override var component: Component = getCurrentComponent()
-        private set
-    
-    var percentage: Double = 0.0
-        set(value) {
-            require(value in 0.0..1.0)
-            if (field == value)
-                return
-            
-            field = value
-            component = getCurrentComponent()
+        override var component: Component = getCurrentComponent()
+            private set
+
+        var percentage: Double = 0.0
+            set(value) {
+                require(value in 0.0..1.0)
+                if (field == value)
+                    return
+
+                field = value
+                component = getCurrentComponent()
+            }
+
+        private fun getCurrentComponent(): Component {
+            val stage = (percentage * 38).toInt()
+
+            return Component.text()
+                .move(95) // moves the cursor position to the right by 95 pixels
+                .append(Component.text(('\uF000'.code + stage).toChar().toString()).font("jetpacks:energy_bar"))
+                .build()
         }
-    
-    private fun getCurrentComponent(): Component {
-        val stage = (percentage * 38).toInt()
-        
-        return Component.text()
-            .move(95) // moves the cursor position to the right by 95 pixels
-            .append(Component.text(('\uF000'.code + stage).toChar().toString()).font("jetpacks:energy_bar"))
-            .build()
+
     }
     ```
 

@@ -66,3 +66,51 @@
         display: none;
     }
 }
+
+.md-typeset .grid.codeblock-and-diagram {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+/* Center the diagram horizontally within its 50% column */
+.md-typeset .grid.codeblock-and-diagram > .mermaid {
+  justify-self: center;
+}
+
+.md-typeset .grid.codeblock-and-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.md-typeset .grid.codeblock-and-image > .codeblock-and-image__code {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.md-typeset .grid.codeblock-and-image .codeblock-and-image__code > :first-child,
+.md-typeset .grid.codeblock-and-image .codeblock-and-image__code > .highlight:first-child > :first-child {
+  margin-top: 0;
+}
+
+.md-typeset .grid.codeblock-and-image > .codeblock-and-image__images {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+  flex: 0 0 auto;
+  margin-left: auto;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.md-typeset .grid.codeblock-and-image .codeblock-and-image__images > p {
+  margin: 0;
+}
+
+.md-typeset .grid.codeblock-and-image .codeblock-and-image__images img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  image-rendering: pixelated;
+}

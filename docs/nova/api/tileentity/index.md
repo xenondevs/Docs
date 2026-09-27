@@ -11,7 +11,7 @@ You can get the ``TileEntityManager`` using [the previously retrieved Nova insta
 === "Kotlin"
 
     ```kotlin
-    val tileEntityManager = Nova.tileEntityManager
+    val tileEntityManager = nova.tileEntityManager
     ```
 
 === "Java"
@@ -80,7 +80,7 @@ For this example, we'll get the english name of a Pulverizer.
     TileEntity tileEntity = tileEntityManager.getTileEntityAt(location);
     if(tileEntity == null)
         return;
-    String name = tileEntity.getMaterial().getLocalizedName("en_us");
+    String name = tileEntity.getBlock().getLocalizedName("en_us");
     System.out.println(name); // prints "Pulverizer"
     ```
 

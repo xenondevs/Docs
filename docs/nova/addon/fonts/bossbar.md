@@ -43,4 +43,4 @@ BossBarOverlayManager.unregisterOverlay(player, compound)
 
 ### BarPositioning
 The `BarPositioning` determines where your overlay should be rendered. You can choose between `BarPositioning.Fixed` and `BarPositioning.Dynamic`, where the latter will automatically move your overlay to prevent it from overlapping with other overlays or vanilla boss bars. Both types of positioning also allow you to define `BarMatchers`, which are used to determine whether your overlay should be placed above or below another overlay.  
-`BarMatchers` can be both hard-coded or deserialized from a yaml configuration using `ConfigurationSection.getDeserialized<BarMatcher>(path)`. See [Configuration - WAILA Positioning](../../admin/configuration.md#waila-positioning) for a more detailed explanation.
+`BarMatchers` can be both hard-coded or deserialized from a YAML configuration using `ConfigProvider.entry<BarMatcher>(default, path)`. See [Configuration - WAILA Positioning](../../admin/configuration.md#waila-positioning) for a more detailed explanation.

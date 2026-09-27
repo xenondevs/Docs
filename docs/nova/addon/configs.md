@@ -4,46 +4,66 @@ icon: lucide/file-cog
 
 # Configs
 
-## Configuration Library
-Nova uses [SpongePowered/Configurate](https://github.com/SpongePowered/Configurate), but most of the time you'll be dealing with Nova's `Provider<ConfigurationNode>`, which helps you with config reloading.
+Nova uses YAML as its configuration format, reading it via [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization).
 
-## Provider
+!!! info "Configs are read as JSON"
 
-To help with config reloading, Nova offers the `Provider` class.  
-Config providers are automatically reloaded when the config is reloaded. You can also chain value modification calls on a `Provider`. Those modification steps will then be run lazily every time the config is reloaded.
+    Nova converts YAML to JSON internally, then uses `kotlinx.serialization` for deserialization. This is because `kotlinx.serialization` does not support YAML natively. Additionally, this allows you to use JSON-specific serializers like `JsonTransformingSerializer`. The config files themselves stay in YAML format.
 
-Some of those modification functions are:
+## Config Extraction
 
-* `map` - Maps the value to a new value.
-* `orElse` - Falls back to a default value if the value is null.
+Nova will automatically extract all YAML files from `resources/configs/` on startup to `plugins/<addon name>/configs/<name>.yml`, preserving the capitalization of the addon name. New or changed keys will automatically be added / updated on the server as well, unless they have been modified on the server.
 
-Every time such a modification function is called, a new `Provider` is created and returned. This allows you to create several modified versions from the same `Provider`.
+## Accessing Configs
 
-You might also be interested in these `Provider`-related top-level functions:
+You can access a config in two ways:
 
-* `#!kotlin provider(value: T)` - Creates a constant `Provider` from a given value.
-* `#!kotlin provider(lazyValue: () -> T)` - Creates a `Provider` that loads it value lazily.
-* `combinedProvider()` - Creates a `#!kotlin Provider<List<T>>` from a list of `#!kotlin Provider<T>`s.
+1. `#!kotlin CONFIGS["<namespace>:<name>"]`:
+    - `plugins/<addon name>/configs/<name>.yml` (extracted from `resources/configs/<name>.yml`)
+2. `#!kotlin ItemType.config` / `#!kotlin BlockType.config`:
+    - By default, this is the same as `#!kotlin CONFIGS["<namespace>:<name>"]`, but a custom config path can be set in the item/block builder.
 
-## Config extraction
-Nova will automatically extract all configs from `resources/configs/` on startup. New or changed keys will automatically be added / updated on the server as well, unless they have been modified on the server.
+Ultimately, the type you'll get is `ConfigProvider`[^1], which is a [`Provider<JsonElement>`](providers.md) with additional functions like `entry` and `optionalEntry` that you can use like this:
 
-## Accessing configs
-To access the configs, retrieve them from `Configs`.  
-You can either use their names:
-```kotlin
-Configs["example:ruby"] // namespace:name (drop the .yml)
-```
-
-Or retrieve the config of a `NovaItem` or `NovaBlock` using `#!kotlin NovaItem.config` and `#!kotlin NovaBlock.config`.
-
-All of the above ways will result in you obtaining a config provider, which is a `#!kotlin Provider<CommentedConfigurationNode>`. (Note that Configurate does not have support for yaml comments yet, but this should not be an issue unless you need to write to the config file.)  
-Now, you can either retrieve the raw config node using `#!kotlin provider.get()`, or get a reloadable entry provider using `#!kotlin provider.entry<Type>("path")` and `#!kotlin provider.optionalEntry<Type>("path")`.
+[^1]: Or `#!kotlin Provider<ConfigProvider>` if you got it from e.g. `#!kotlin ItemType.config`, because [registry reloading](registries.md#registry-reloading) could change the config path. This should not matter to you though, since there are equivalent extension functions for `Provider<ConfigProvider>`.
 
 ```kotlin
-val exampleValue1: Int by Items.EXAMPLE_ITEM.config.entry<Int>("example_value") // (1)!
+val exampleValue1: Int by Items.EXAMPLE_ITEM.config.entry<Int>(1, "example_value") // (1)!
 val exampleValue2: Int? by Items.EXAMPLE_ITEM.config.optionalEntry<Int>("optional_value") // (2)!
 ```
 
 1. Delegating to the `Provider<Int>` will cause this field automatically change every time the config is reloaded.
-2. Using `Provider<ConfigurationNode>#optionalEntry`, you can get a `Provider<Int?>`, where the value is null if the key is not present in the config.
+2. Using `ConfigProvider#optionalEntry`, you can get a `Provider<Int?>`, where the value is null if the key is not present in the config.
+
+## Built-In Serializers
+
+Nova offers lots of built-in serializers under `xyz.xenondevs.nova.serialization.kotlinx`. Most notably, this covers all registry-related types such as `ItemType`, `#!kotlin RegistryEntry.Paper<ItemType>`, `#!kotlin RegistryEntrySet.Paper<ItemType>`, and more.
+
+!!! tip "Prefer Nova's registry types"
+
+    Prefer using Nova's `#!kotlin RegistryEntry.Paper<T>` over `T` and `#!kotlin RegistryEntrySet.Paper<T>` over `#!kotlin RegistryKeySet<T>`. Nova's types can be deserialized during bootstrap phase, Paper's types cannot.
+
+Nova also ships with [serializable type aliases](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serializers.md#specifying-a-serializer-globally-using-a-typealias) to reduce verbosity:
+
+```kotlin
+@Serializable
+data class ItemsMenuTab(
+   val icon: ItemTypeEntry /*(1)!*/ = ItemTypeEntries.AIR,
+   val name: ComponentAsMiniMessage /*(2)!*/  = Component.empty(),
+   val description: ValueOrList<ComponentAsMiniMessage> /*(3)!*/  = emptyList(),
+   val items: ItemTypeEntrySet /*(4)!*/  = emptyRegistryEntrySet(RegistryKey.ITEM)
+)
+```
+
+1. `#!kotlin @Serializable(ItemTypeEntrySerializer::class) RegistryEntry.Paper<ItemType>`
+2. `#!kotlin @Serializable(ComponentAsMiniMessageSerializer::class) Component`
+3. `#!kotlin @Serializable(ValueOrListSerializer::class) List<@Serializable(ComponentAsMiniMessageSerializer::class) Component>`
+4. `#!kotlin @Serializable(ItemTypeEntrySetSerializer::class) RegistryEntrySet.Paper<ItemType>`
+
+## Custom Serializers
+
+Nova's config system uses [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization), so every `#!kotlin @Serializable` can immediately be used as a config value. You can also register additional serializers `SerializersModule` via `#!kotlin CONFIGS.setSerializers(addon, serializersModule)`.
+
+!!! warning "Limitations of `SerializersModules`"
+
+     Due to the nature of `kotlinx.serialization`, your custom serializers are only queried for the immediate type requested by `#!kotlin ConfigProvider.entry<T>(...)` (or for properties annotated with `#!kotlin @Contextual`). For serializable classes, prefer annotating the relevant properties with `@Serializable(with = SerializerClass::class)` directly instead of relying on the `SerializersModule` to provide the serializer (see code example above).

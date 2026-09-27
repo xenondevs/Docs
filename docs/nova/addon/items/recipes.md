@@ -6,18 +6,32 @@ icon: lucide/cooking-pot
 
 ## Adding recipes to your addon
 Recipes files are placed under `recipes/<namespace>/type`, where the `namespace` is the namespace of the addon that registered this recipe type (`minecraft` for Minecraft recipe types) and `type` the name of the recipe type.  
-For more information about the recipe format and default recipe types, [read the admin page on it](../../../admin/recipes).
+For more information about the recipe format and default recipe types, [read the admin page on it](../../admin/recipes/index.md).
 
 ## Creating a custom Recipe Type
-Recipe types are registered over the `RecipeTypeRegistry`.  
+Recipe types are registered using `ExampleAddon.registerRecipeType` during `InitStage.PRE_WORLD`.
+
 All the following values are required to create a new `RecipeType`:
 
 |      Name      |           Type           | Usage                                                                                                         |
 |:--------------:|:------------------------:|---------------------------------------------------------------------------------------------------------------|
-|   `dirName`    |         `String`         | The name for the directory of your recipe type.                                                               |
+|     `name`     |         `String`         | The name of your recipe type and its directory.                                                               |
 | `recipeClass`  |       `KClass<T>`        | The class of your recipe type, must be a subclass of `NovaRecipe`.                                            |
-|    `group`     |    `RecipeGroup<T>?`     | The recipe group that displays the recipe in the recipe explorer gui.                                         |
+|    `group`     |    `RecipeGroup<in T>`   | The recipe group that displays the recipe in the recipe explorer gui.                                         |
 | `deserializer` | `RecipeDeserializer<T>?` | The deserializer that deserializes the recipe files to an instance of the previously specified `recipeClass`. |
+
+```kotlin
+@Init(stage = InitStage.PRE_WORLD)
+object RecipeTypes {
+
+    val PULVERIZER by ExampleAddon.registerRecipeType(
+        "pulverizer", PulverizerRecipe::class, PulverizingRecipeGroup, PulverizerRecipeDeserializer
+    )
+
+}
+```
+
+Delegating with `by` resolves the registered recipe type when it is accessed.
 
 !!! example "Creating a custom Recipe Type"
 
@@ -28,7 +42,7 @@ All the following values are required to create a new `RecipeType`:
         The following example is the `PulverizerRecipe` from the Machines addon:  
         ```kotlin title="PulverizerRecipe"
         class PulverizerRecipe(
-            key: NamespacedKey,
+            key: Key,
             input: RecipeChoice,
             result: ItemStack,
             time: Int,
@@ -45,7 +59,7 @@ All the following values are required to create a new `RecipeType`:
         For the `PulverizerRecipe` from Machines, the recipe deserializer is actually quite easy, as you can just extend the already existing `ConversionRecipeDeserializer`:  
         ```kotlin title="PulverizerRecipeDeserializer"
         object PulverizerRecipeDeserializer : ConversionRecipeDeserializer<PulverizerRecipe>() {
-            override fun createRecipe(json: JsonObject, key: NamespacedKey, input: RecipeChoice, result: ItemStack, time: Int) =
+            override fun createRecipe(json: JsonObject, key: Key, input: RecipeChoice, result: ItemStack, time: Int) =
                 PulverizerRecipe(key, input, result, time)
         }
         ```
@@ -55,12 +69,12 @@ All the following values are required to create a new `RecipeType`:
         object FluidInfuserRecipeDeserializer : RecipeDeserializer<FluidInfuserRecipe> {
     
             override fun deserialize(json: JsonObject, file: File): FluidInfuserRecipe {
-                val mode = json.getDeserialized<FluidInfuserRecipe.InfuserMode>("mode")!!
-                val fluidType = json.getDeserialized<FluidType>("fluid_type")!!
-                val fluidAmount = json.getLong("fluid_amount")!!
+                val mode = FluidInfuserRecipe.InfuserMode.valueOf(json.getString("mode"))
+                val fluidType = FluidType.valueOf(json.getString("fluid_type"))
+                val fluidAmount = json.getLong("fluid_amount")
                 val input = parseRecipeChoice(json.get("input"))
-                val time = json.getInt("time")!!
-                val result = ItemUtils.getItemBuilder(json.getString("result")!!).get()
+                val time = json.getInt("time")
+                val result = ItemUtils.getItemStack(json.getString("result"))
         
                 return FluidInfuserRecipe(getRecipeKey(file), mode, fluidType, fluidAmount, input, result, time)
             }
@@ -70,18 +84,17 @@ All the following values are required to create a new `RecipeType`:
 
         !!! info
 
-            Make sure to always use the `parseRecipeChoice(JsonElement)`, `ItemUtils.getItemBuilder(String)` and`getRecipeKey(File)` utility methods instead of using your own logic.
+            Make sure to always use the `parseRecipeChoice(JsonElement)`, `ItemUtils.getItemStack(String)` and `getRecipeKey(File)` utility methods instead of using your own logic.
 
     === "Recipe Group"
 
-        The recipe group is only used for the recipe explorer GUI, so your recipes will already work without it.  
-        However, it is still required to create a recipe group.
+        The recipe group is only used for the recipe explorer GUI. It is required when registering a recipe type.
 
         As always, it is very easy to create a recipe group for conversion recipes:
         ```kotlin title="PulverizingRecipeGroup"
         object PulverizingRecipeGroup : ConversionRecipeGroup<PulverizerRecipe>() {
             override val priority = 4 // (1)!
-            override val icon = Items.PULVERIZER.model.clientsideProvider // (2)!
+            override val icon = Items.PULVERIZER.guiItemProvider // (2)!
             override val texture = GuiTextures.RECIPE_PULVERIZER // (3)!
         }
         ```
@@ -97,39 +110,30 @@ All the following values are required to create a new `RecipeType`:
         object FluidInfuserRecipeGroup : RecipeGroup<FluidInfuserRecipe>() {
             
             override val texture = GuiTextures.RECIPE_FLUID_INFUSER
-            override val icon = Items.FLUID_INFUSER.model.clientsideProvider
+            override val icon = Items.FLUID_INFUSER.guiItemProvider
             override val priority = 6
             
-            override fun createGui(recipe: FluidInfuserRecipe): Gui {
-                val progressItem: ItemBuilder
-                val translate: String
-                if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) {
-                    progressItem = GuiItems.TP_FLUID_PROGRESS_LEFT_RIGHT.model.createClientsideItemBuilder()
-                    translate = "menu.machines.recipe.insert_fluid"
-                } else {
-                    progressItem = GuiItems.TP_FLUID_PROGRESS_RIGHT_LEFT.model.createClientsideItemBuilder()
-                    translate = "menu.machines.recipe.extract_fluid"
+            override fun createGui(recipe: FluidInfuserRecipe) = gui(
+                ". f . . . . . . .",
+                ". f p i . t . r .",
+                ". f . . . . . . ."
+            ) {
+                'i' by createRecipeChoiceItem(recipe.input) // (1)!
+                'r' by createRecipeChoiceItem(listOf(recipe.result))
+                'p' by itemProvider(
+                    if (recipe.mode == FluidInfuserRecipe.InfuserMode.INSERT) GuiItems.FLUID_PROGRESS_LEFT_RIGHT.guiItemProvider
+                    else GuiItems.FLUID_PROGRESS_RIGHT_LEFT.guiItemProvider
+                ) {
+                    name by Component.translatable(
+                        "menu.machines.recipe.${recipe.mode.name.lowercase()}_fluid",
+                        Component.text(recipe.fluidAmount),
+                        Component.translatable(recipe.fluidType.localizedName)
+                    )
                 }
-                
-                progressItem.setDisplayName(Component.translatable(
-                    translate,
-                    Component.text(recipe.fluidAmount),
-                    Component.translatable(recipe.fluidType.localizedName)
-                ))
-                
-                return Gui.builder()
-                    .setStructure(
-                        ". f . t . . . . .",
-                        ". f p i . . . r .",
-                        ". f . . . . . . .")
-                    .addIngredient('i', createRecipeChoiceItem(recipe.input)) // (1)!
-                    .addIngredient('r', createRecipeChoiceItem(listOf(recipe.result)))
-                    .addIngredient('p', progressItem)
-                    .addIngredient('f', StaticFluidBar(3, FLUID_CAPACITY, recipe.fluidType, recipe.fluidAmount))
-                    .addIngredient('t', DefaultGuiItems.TP_STOPWATCH.model
-                        .createClientsideItemBuilder()
-                        .setDisplayName(Component.translatable("menu.nova.recipe.time", Component.text(recipe.time / 20.0)))
-                    ).build()
+                'f' by fluidBar(provider(recipe.fluidType), provider(recipe.fluidAmount), provider(FLUID_CAPACITY))
+                't' by itemProvider(DefaultGuiItems.INVISIBLE_ITEM.guiItemProvider) {
+                    name by Component.translatable("menu.nova.recipe.time", Component.text(recipe.time / 20.0))
+                }
             }
         
         }
@@ -137,4 +141,6 @@ All the following values are required to create a new `RecipeType`:
         
         1. This function creates an InvUI item for a `RecipeChoice`. When clicked, it shows you recipes / usages for that item. It also automatically cycles through all possible input options if there is more than one.
 
-        [:material-file-document-outline: InvUI Documentation](../../../invui/){ .md-button }
+        `FLUID_CAPACITY` is the maximum amount of fluid shown by the bar, for example `10_000L`.
+
+        [:material-file-document-outline: InvUI Documentation](../../../../invui/){ .md-button }

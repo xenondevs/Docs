@@ -8,10 +8,10 @@ icon: lucide/cable
 
 ```kotlin
 class ExampleTileEntity(
-    pos: BlockPos,
+    block: Block,
     blockState: NovaBlockState,
     data: Compound
-) : NetworkedTileEntity(pos, blockState, data) {
+) : NetworkedTileEntity(block, blockState, data) {
     
 }
 ```
@@ -26,7 +26,7 @@ For the built-in network types, there are utility functions in `NetworkedTileEnt
 Create an `EnergyHolder` via `NetworkedTileEntity#storedEnergyHolder`:
 
 ```kotlin
-class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(pos, blockState, data) {
+class ExampleTileEntity(block: Block, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(block, blockState, data) {
     
     private val energyHolder = storedEnergyHolder(
         maxEnergy = provider(1000L), // (1)!
@@ -49,7 +49,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 Create an `ItemHolder` via `NetworkedTileEntity#storedItemHolder`:
 
 ```kotlin
-class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(pos, blockState, data) {
+class ExampleTileEntity(block: Block, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(block, blockState, data) {
     
     private val inputInventory = storedInventory(name = "input", size = 9) // (1)!
     private val outputInventory = storedInventory(name = "output", size = 9) // (2)!
@@ -72,7 +72,7 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 Create a `FluidHolder` via `NetworkedTileEntity#storedFluidHolder`:
 
 ```kotlin
-class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(pos, blockState, data) {
+class ExampleTileEntity(block: Block, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(block, blockState, data) {
     
     private val fluidContainer = storedFluidContainer(
         name = "fluidContainer",
@@ -96,12 +96,12 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
 3. Networks can only extract from the fluid container.
 4. Every tick, the fluid container replenishes by 1_000 mB of water.
 
-## Side Configuration Gui
+## Side Configuration Menu
 
-Using `SideConfigMenu`, we can easily add a `Gui` to our tile-entity with which we can change the side-configuration for all built-in network types:
+Using `openSideConfigItem`, you can easily add a button that opens Nova's built-in side configuration menu to our tile entity. With this GUI, users can change the side-configuration for all built-in network types:
 
 ```kotlin
-class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(pos, blockState, data) {
+class ExampleTileEntity(block: Block, blockState: NovaBlockState, data: Compound) : NetworkedTileEntity(block, blockState, data) {
     
     // end point data holders from the previous examples
     private val energyHolder = storedEnergyHolder(provider(1000L), NetworkConnectionType.BUFFER)
@@ -111,38 +111,31 @@ class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compoun
     private val fluidContainer = storedFluidContainer("fluidContainer", setOf(FluidType.WATER), provider(10_000L))
     private val fluidHolder = storedFluidHolder(fluidContainer to NetworkConnectionType.EXTRACT)
     
-    @TileEntityMenuClass
-    inner class ExampleTileEntityMenu : GlobalTileEntityMenu() {
-        
-        private val sideConfigMenu = SideConfigMenu(
-            endPoint = this@ExampleTileEntity,
-            // localization keys for inventories
-            inventories = mapOf(
-                itemHolder.getNetworkedInventory(inputInventory) to "inventory.example_addon.input",
-                itemHolder.getNetworkedInventory(outputInventory) to "inventory.example_addon.output"
-            ),
-            // localization keys for fluid contains
-            containers = mapOf(fluidContainer to "container.example_addon.fluid_tank"),
-            openPrevious = ::openWindow
-        )
-        
-        override val gui = Gui.builder()
-            .setStructure(
-                "s # # # # # # # #",
-                "# i i i # o o o #",
-                "# i i i # o o o #",
-                "# i i i # o o o #",
-                "# # # # # # # # #")
-            .addIngredient('s', OpenSideConfigItem(sideConfigMenu))
-            .addIngredient('i', inputInventory)
-            .addIngredient('o', outputInventory)
-            .build()
-    
+    override val menu = TileEntityMenu.cachedWindow {
+        upperGui by gui(
+            "s . . . . . . . .",
+            ". i i i . o o o .",
+            ". i i i . o o o .",
+            ". i i i . o o o .",
+            ". . . . . . . . ."
+        ) {
+            's' by openSideConfigItem(
+                // localization keys for inventories
+                inventories = mapOf(
+                    itemHolder.getNetworkedInventory(inputInventory) to "inventory.example_addon.input",
+                    itemHolder.getNetworkedInventory(outputInventory) to "inventory.example_addon.output"
+                ),
+                // localization keys for fluid containers
+                containers = mapOf(fluidContainer to "container.example_addon.fluid_tank")
+            )
+            'i' by inputInventory
+            'o' by outputInventory
+        }
     }
-    
+
 }
 ```
 
 ![](../../assets/img/addon/tile-entity-networks/side-configuration.png){width=40%}
 
-Of course, nothing stops you from creating your own side-config gui.
+Of course, nothing stops you from creating your own side configuration menu.

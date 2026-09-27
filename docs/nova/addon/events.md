@@ -6,15 +6,11 @@ icon: lucide/at-sign
 
 ## Working with Bukkit Events
 
-Of course, you can also use Bukkit's events. To register an event listener, use the `#!kotlin Listener.registerEvents()` extension function.
+Of course, you can also use Bukkit's events. To register an event listener, implement `Listener` and call `#!kotlin registerEvents()` from your listener.
 
 ## Working with Packet Events
 
-You can also listen to incoming and outgoing packets. To do so, implement the `PacketListener` interface and register your listener using the `#!kotlin PacketListener.registerPacketHandler()` extension function. Then, you can use the `#!kotlin @PacketHandler` annotation to mark event methods.
-
-!!! abstract "Packet Event Types"
-
-    Please note that this currently does not include all possible packets, as the system is still in development. Feel free to open an issue or a pull request if you need another packet type.
+You can also listen to incoming and outgoing packets. To do so, implement the `PacketListener` interface and call `#!kotlin registerPacketListener()` from your listener. Then, you can use the `#!kotlin @PacketHandler` annotation to mark event methods.
 
 ## Calling events from Nova's Plugin API
 

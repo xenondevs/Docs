@@ -4,7 +4,7 @@ icon: lucide/settings
 
 # Configuring Nova
 
-All config files are located in under `plugins/Nova/configs/`. Every addon has its own subdirectory with its own config files.
+Nova's config files are located under `plugins/Nova/configs/`. Each addon's config files are located under `plugins/<addon name>/configs/`.
 
 Most of the options in the configs are self-explanatory or explained using comments. The following section explains the more complex configuration options.
 
@@ -140,7 +140,7 @@ Example configs:
 
 ## Upgrade values (Simple-Upgrades addon)
 
-Every addon can register its own upgrade types. As a server administrator, you can configure these values in the `plugin/Nova/configs/<addon name>/upgrade_values.yml` file.
+Every addon can register its own upgrade types. As a server administrator, you can configure these values in the `plugins/<addon name>/configs/upgrade_values.yml` file.
 
 The config of the `simple_upgrades` addon looks like this:
 ```yaml
@@ -158,47 +158,6 @@ The upgrade values can also be changed for specific tile-entities by adding a `u
 upgrade_values:
   range: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ]
 ```
-
-## Attribute Modifiers
-
-Every item configuration file can have an `attribute_modifiers` section.
-
-```yaml title="Structure of the attribute_modifiers section"
-attribute_modifiers:
-  <equipment_slot>: # (1)!
-  - attribute: <attribute> # (2)!
-    operation: <operation> # (3)!
-    value: <value> # (4)!
-```
-
-1. The equipment slot group that this item needs to be in for the attribute modifier to apply.  
-    Possible values: `any`, `mainhand`, `offhand`, `hand`, `feet`, `legs`, `chest`, `head`, `armor`, `body`
-2. The attribute to modify. You can find a list of all available attributes on the [Minecraft Wiki](https://minecraft.wiki/w/Attribute#Attributes)
-3. The operation to perform.  
-    Possible operations: `add_value`, `add_multiplied_base`, `add_multiplied_total`
-4. The value to modify the attribute with.
-
-??? example "Example configuration"
-
-    ```yaml
-    # The following configuration increases the player's attack damage by 5 if the item is held in the main hand
-    # and increases the movement speed by 10% for both the main hand and off hand.
-    
-    attribute_modifiers:
-      mainhand:
-      - attribute: attack_damage
-        operation: add_value
-        value: 5.0
-      - attribute: movement_speed
-        operation: add_multiplied_base
-        value: 0.1  
-      offhand:
-      - attribute: movement_speed
-        operation: add_multiplied_base
-        value: 0.1
-    ```
-    
-    ![](../assets/img/admin/configuration/attribute-modifiers.png)
 
 ## Resource Filters
 
@@ -249,8 +208,8 @@ resource_pack:
     ```yaml title="config.yml: resource_pack > generation > resource_filters"
     - stage: resource_pack
       type: blacklist
-      pattern_type: regex
-      filter: *.png
+      pattern_type: wildcard
+      filter: "*.png"
     ```
 
 ## WAILA Positioning

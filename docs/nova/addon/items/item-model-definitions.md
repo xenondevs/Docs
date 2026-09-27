@@ -1,46 +1,10 @@
 ---
-icon: lucide/apple
+icon: lucide/boxes
 ---
 
-# Creating Items
+# Item Model Definitions
 
-## Creating an Item Registry
-
-First, create an empty singleton object and annotate it like this:
-```kotlin
-@Init(stage = InitStage.PRE_PACK) // (1)! 
-object Items {
-    
-    // (2)!
-    
-}
-```
-
-1. Nova will load this class during addon initialization, causing your items to be registered.
-2. Register your items here
-
-## Creating Items
-
-You can register a really simple item like this:
-
-```kotlin
-@Init(stage = InitStage.PRE_PACK)
-object Items {
-
-   val EXAMPLE_ITEM = ExampleAddon.registerItem("example_item", /* Item Behaviors */)
-   
-}
-```
-
-This item will default to the model under `models/item/example_item.json` or, if no such model exists, create a basic item model with the texture under `textures/item/example_item.png`.
-
-## Item Model Definitions
-
-!!! info "Item Model Definitions - Minecraft Wiki"
-    
-    Item Model Defintions are a 1.21.4 feature. You may be interested in the [Minecraft wiki page](https://minecraft.wiki/w/Items_model_definition) on this topic.
-
-Item model definitions allow defining rules that are then used by the client to select a model for an item at runtime. These rules are constantly evaluated by the client, so the item model can change very dynamically based on the player's actions, such as holding a keybind, or the state of the item, such as its use duration.
+[Item model definitions](https://minecraft.wiki/w/Items_model_definition) allow defining rules that are then used by the client to select a model for an item at runtime. These rules are constantly evaluated by the client, so the item model can change very dynamically based on the player's actions, such as holding a keybind, or the state of the item, such as its use duration.
 
 Nova offers a DSL builder for creating item model definitions:
 
@@ -73,7 +37,7 @@ Models are nested, so you can have, for example, a `select` model that chooses a
 
 !!! note "Refer to the [KDocs](https://nova.dokka.xenondevs.xyz/nova/xyz.xenondevs.nova.resources.builder.layout.item/-item-model-creation-scope/index.html) for a full list of available functions and properties."
 
-### Model
+## Model
 
 This is the most basic model type. You will need this type as a leaf of all your models, as it is the only type that directly links to a model file. Additionally, this type also allows you to define tints.
 
@@ -87,7 +51,7 @@ model = model {
 1. This sets `tintindex` 0 to read the color value 0 from the `minecraft:custom_model_data` component.
 2. This sets the model to `item/my_item`. In the model selector scope, you have additional functionality available that can be used to generate models at runtime.
 
-### Composite
+## Composite
 
 This model type allows you to render multiple models in the same space.
 
@@ -99,7 +63,7 @@ model = composite {
 
 1. Adds a model to the composite. You can either create a model like for the root model, or define a model selector lambda directly.
 
-### Condition
+## Condition
 
 This model type allows you to choose a model based on a condition.
 
@@ -113,21 +77,21 @@ model = condition(ConditionItemModelProperty.KeybindDown(Keybind.LEFT)) { // (1)
 1. This condition checks if the keybind `LEFT` is pressed. If it is, the model `item/left` is used, otherwise `item/not_left`.
 2. `#!kotlin buildModel { /* ... */ }` is a shortcut for `#!kotlin model { model = { /* ... */ } }`.
 
-### Select
+## Select
 
 This model type allows you to choose a model based on a value.
 
 ```kotlin title="modelDefinition { }"
 model = select(SelectItemModelProperty.ChargedType) { // (1)!
-    case[ChargedType.NONE] = { getModel("item/crossbow")}
-    case[ChargedType.ARROW] = { getModel("item/crossbow_arrow")}
+    case[ChargedType.NONE] = { getModel("item/crossbow") }
+    case[ChargedType.ARROW] = { getModel("item/crossbow_arrow") }
     case[ChargedType.ROCKET] = composite { /* ... */ }
 }
 ```
 
-1. Selects over the value of the `minecraft:charged_projectile`.
+1. Selects over the value of the `minecraft:charged_projectiles` component.
 
-### Range Dispatch
+## Range Dispatch
 
 ```kotlin title="modelDefinition { }"
 model = rangeDispatch(RangeDispatchItemModelProperty.Cooldown) { // (1)!
@@ -137,9 +101,9 @@ model = rangeDispatch(RangeDispatchItemModelProperty.Cooldown) { // (1)!
 }
 ```
 
-1. Selects a model based on the value of the `minecraft:cooldown` component. You can add as many intermediate models as you want. The client will always render the one with the closest lower value.
+1. Selects a model based on the item's remaining cooldown, scaled from `0` (no cooldown) to `1` (full cooldown). You can add as many intermediate models as you want. The client will always render the one with the closest lower value.
 
-### Special
+## Special
 
 There are various special model types available. These use hardcoded rendering logic and are not achievable through regular model files.
 
@@ -149,22 +113,3 @@ model = chestSpecialModel {
     openness = 0.5
 }
 ```
-
-## NovaItem
-
-### Getting an ItemStack
-To get an ItemStack from a `NovaItem`, use `#!kotlin NovaItem.createItemStack(amount)`.
-
-### Getting ItemBehaviors
-Using the function `#!kotlin hasItemBehavior<T>()` and `#!kotlin getItemBehavior<T>()` you can check for and get an ItemBehavior of a certain type.
-
-### Client-side items
-
-Using `NovaItem.clientsideProvider` and `NovaItem.createClientsideItemBuilder()` you can obtain client-side items.
-
-To understand the difference between a normal (server-side) and a client-side item, you first need to understand how custom items are handled in Nova.  
-In order to be extremely flexible when it comes to changing custom model data, the underlying vanilla item type, the lore format of the item or its display name, Nova's ItemStacks do not store this information at all. All of these values are actually only applied on packet level, which can be observed by running the command `/data get entity @p SelectedItem` while holding an item from Nova: its item type will always be `shulker_shell` and it won't have any custom model data, display name or lore, even though it has one for your game.
-
-Coming back to client-side item builders and providers: These are wrappers for the ItemStacks that the client actually sees. They should only be used in cases where the ItemStack isn't actually stored anywhere, for example as a button in a GUI or for `FakeEntities`.
-
-!!! abstract "Generally, you should use `NovaItem.clientsideProvider` and `NovaItem.createClientsideItemBuilder()` when working with GUIs and `#!kotlin NovaItem.createItemStack(amount)` if you need an item to give to a player."

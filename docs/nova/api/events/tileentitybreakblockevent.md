@@ -36,7 +36,7 @@ Adding a 25% chance to get 1 flint when breaking a dirt block with a tile-entity
     @EventHandler
     fun handleBlockBreak(event: TileEntityBreakBlockEvent) {
         if (event.block.type == Material.DIRT
-            && Random.nextInt(0, 100) <= 25  // 25% chance
+            && Random.nextInt(0, 100) < 25  // 25% chance
         ) {
             event.drops.add(ItemStack(Material.FLINT, 1)) // Add a flint to the drops
         }
@@ -49,7 +49,7 @@ Adding a 25% chance to get 1 flint when breaking a dirt block with a tile-entity
     @EventHandler
     public void handleBlockBreak(TileEntityBreakBlockEvent event) {
         if (event.getBlock().getType() == Material.DIRT
-            && random.nextInt(100) <= 25 // 25% chance
+            && random.nextInt(100) < 25 // 25% chance
         ) {
             List<ItemStack> drops = event.getDrops();
             drops.add(new ItemStack(Material.FLINT, 1)); // Add a flint to the drops

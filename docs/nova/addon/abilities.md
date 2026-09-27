@@ -10,7 +10,7 @@ In Nova, abilities are ticking objects that can be assigned to players. They wor
 
 ## Creating your own Ability
 
-To create your own ability, inherit from `Ability` and add your custom `handleRemoved` and `handleTick` logic.
+To create your own ability, inherit from `Ability` and add your custom `handleRemove` and `handleTick` logic.
 
 ```kotlin
 class ExampleAbility(player: Player) : Ability(player) {
@@ -31,7 +31,7 @@ Then, register a new ability type for that ability:
 @Init(stage = InitStage.PRE_PACK)
 object Abilities {
     
-    val EXAMPLE_ABILITY = ExampleAddon.registerAbilityType("example_ability", ::MyAbility)
+    val EXAMPLE_ABILITY = ExampleAddon.registerAbilityType("example_ability", ::ExampleAbility)
     
 }
 ```
@@ -39,11 +39,11 @@ object Abilities {
 Then, give the ability to a player:
 
 ```kotlin
-AbilityManager.giveAbility(player, Abilities.EXAMPLE_ABILITY)
+AbilityManager.giveAbility(player, Abilities.EXAMPLE_ABILITY.get())
 ```
 
 And this is how you remove an ability:
 
 ```kotlin
-AbilityManager.takeAbility(player, Abilities.EXAMPLE_ABILITY)
+AbilityManager.takeAbility(player, Abilities.EXAMPLE_ABILITY.get())
 ```

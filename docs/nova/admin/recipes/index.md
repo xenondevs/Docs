@@ -4,7 +4,7 @@ icon: lucide/cooking-pot
 
 # Customizing Recipes
 
-In Nova, all recipes are customizable. You can find the recipe files under ``plugins/Nova/recipes``  
+In Nova, all recipes are customizable. You can find each addon's recipe files under `plugins/<addon name>/recipes/`.
 You can change or delete existing recipes or just create completely new ones. If a recipe gets updated by us, we will only update it on your server if you haven't modified or deleted it.
 
 You can reload all recipes by running the command `/nova reload recipes`.
@@ -30,7 +30,7 @@ As this checks the item exactly (only ignoring the item name), you might encount
 This is the same format as in Minecraft's /give command. As it is in JSON, quotes need to be escaped.
 
 ```json title="Complex Item Format"
-"minecraft:potion{\"Potion\": \"minecraft:water\"}"
+"minecraft:potion[minecraft:potion_contents={potion:\"minecraft:water\"}]"
 ```
 
 ## Item- & Recipe Fallbacks

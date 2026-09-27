@@ -21,7 +21,7 @@ hitbox.addRightClickHandler { /* ... */ }
 // spawn the hitbox
 hitbox.register()
 // despawn the hitbox
-hitbox.unregister()
+hitbox.remove()
 ```
 
 ### VirtualHitbox
@@ -41,7 +41,7 @@ hitbox.addRightClickHandler { /* ... */ }
 // spawn the hitbox
 hitbox.register()
 // despawn the hitbox
-hitbox.unregister()
+hitbox.remove()
 ```
 
 ## Hit Location

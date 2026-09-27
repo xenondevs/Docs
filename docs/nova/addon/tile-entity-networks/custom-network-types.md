@@ -10,15 +10,19 @@ You can register a custom network type like this:
 
 ```kotlin
 @Init(stage = InitStage.PRE_WORLD)
-class NetworkTypes {
+object NetworkTypes {
     
     val EXAMPLE = ExampleAddon.registerNetworkType(
         name = "example",
         createNetwork = ::ExampleNetwork, // (1)!
         createGroup = ::ExampleNetworkGroup, // (2)!
         validateLocal = ExampleNetwork::validateLocal, // (3)!
-        tickDelay = provider(1), // (4)!
-        holderTypes = arrayOf(ExampleDataHolder::class, ItemHolder::class) // (5)!
+        tickDelay = 1, // (4)!
+        extractHolders = { endPoint -> // (5)!
+            val exampleHolder = endPoint.holders.firstInstanceOfOrNull<ExampleDataHolder>()
+            val itemHolder = endPoint.holders.firstInstanceOfOrNull<ItemHolder>()
+            if (exampleHolder != null && itemHolder != null) listOf(exampleHolder, itemHolder) else null
+        }
     )
 
 }
@@ -28,7 +32,7 @@ class NetworkTypes {
 2. A function that creates the `NetworkGroup` based on `NetworkGroupData`
 3. A function that validates a local network (i.e. a network of two end points that are placed directly next to each other).
 4. The delay between network ticks.
-5. The holder types that `NetworkNodes` require in order to qualify for this network type. Can be one or multiple and do not necessarily need to be custom.
+5. A function that extracts the required data holders from an end point. Return `null` if the end point does not support this network type. The returned holders must all allow a connection at a face for the network to connect there.
 
 ## Network Group
 
@@ -76,12 +80,12 @@ For performance reasons, it is not optimal to always create a network between tw
 
 Using the `validateLocal` function, you can prevent such networks from being created in the first place.
 
-```kotlin title="EnergyNetwork - validateLocal""
+```kotlin title="EnergyNetwork - validateLocal"
 fun validateLocal(from: NetworkEndPoint, to: NetworkEndPoint, face: BlockFace): Boolean {
     val energyHolderFrom: EnergyHolder = from.holders.firstInstanceOfOrNull<EnergyHolder>() ?: return false
     val energyHolderTo: EnergyHolder = to.holders.firstInstanceOfOrNull<EnergyHolder>() ?: return false
-    val conFrom: NetworkConnectionType? = energyHolderFrom.connectionConfig[face]
-    val conTo: NetworkConnectionType? = energyHolderTo.connectionConfig[face.oppositeFace]
+    val conFrom: NetworkConnectionType = energyHolderFrom.connectionConfig[face]
+    val conTo: NetworkConnectionType = energyHolderTo.connectionConfig[face.oppositeFace]
     
     return conFrom != conTo || conFrom == NetworkConnectionType.BUFFER
 }
@@ -97,7 +101,7 @@ A custom `EndPointDataHolder` is only required if you want to supply additional 
 ```kotlin
 class ExampleDataHolder : EndPointDataHolder {
     
-    override val allowedFaces: Set<BlockFace>
+    override val allowedFaces: CubeFaceSet
         get() = TODO("Not yet implemented")
     
 }
@@ -105,10 +109,8 @@ class ExampleDataHolder : EndPointDataHolder {
 
 For reference, all built-in `EndPointDataHolders` delegate this to their `connectionConfig`:
 ```kotlin title="EnergyHolder (built-in), ContainerEndPointDataHolder (built-in)"
-val connectionConfig: MutableMap<BlockFace, NetworkConnectionType>
+var connectionConfig: CubeFaceMap<NetworkConnectionType>
 
-override val allowedFaces: Set<BlockFace>
-    get() = connectionConfig.mapNotNullTo(enumSet()) { (face, type) ->
-        if (type != NetworkConnectionType.NONE) face else null
-    }
+override val allowedFaces: CubeFaceSet
+    get() = connectionConfig.mapToCubeFaceSet { it != NetworkConnectionType.NONE }
 ```

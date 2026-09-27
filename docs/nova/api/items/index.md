@@ -13,7 +13,7 @@ To get a ``NovaItem`` you first have to get the ``NovaItemRegistry`` using [the 
 === "Kotlin"
 
     ```kotlin
-    val itemRegistry = Nova.itemRegistry
+    val itemRegistry = nova.itemRegistry
     ```
 
 === "Java"

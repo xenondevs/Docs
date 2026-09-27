@@ -14,7 +14,7 @@ val region = Region(min, max)
 
 The `Region` companion object provides several utility functions for creating regions, such as:
 
-- `#!kotlin Region.surrounding(pos, radius)`
+- `#!kotlin Region.surrounding(block, radius)`
 - `#!kotlin Region.inFrontOf(tileEntity, ...)`
 - and more
 
@@ -31,7 +31,7 @@ VisualRegion.hideRegion(player, regionUUID)
 VisualRegion.toggleView(player, regionUUID, region)
 ```
 
-If you want a "Visualize Region" button in your GUI, you can use the `VisualRegionItem`:
+If you want a "Visualize Region" button in your GUI, you can use the `VisualizeRegionItem`:
 
 ```kotlin
 VisualizeRegionItem(regionUuid) { region }
@@ -44,30 +44,27 @@ A `DynamicRegion` is a type of region intended for use in tile-entities: Using a
 Using `TileEntity#storedRegion`, we can create a `DynamicRegion`:
 
 ```kotlin
-class ExampleTileEntity(pos: BlockPos, blockState: NovaBlockState, data: Compound) : TileEntity(pos, blockState, data) {
+class ExampleTileEntity(block: Block, blockState: NovaBlockState, data: Compound) : TileEntity(block, blockState, data) {
     
     private val region = storedRegion(
         "region",
         minSize = provider(1), // (1)!
         maxSize = provider(10), // (2)!
         defaultSize = 5, // (3)!
-        createRegion = { size -> Region.surrounding(pos, size) } // (4)!
+        createRegion = { size -> Region.surrounding(block, size) } // (4)!
     )
     
-    @TileEntityMenuClass
-    inner class ExampleTileEntityMenu(player: Player) : IndividualTileEntityMenu(player) {
-        
-        override val gui = Gui.builder()
-            .setStructure(
-                "v # # # # # # # #",
-                "# # + # d # - # #",
-                "# # # # # # # # #")
-            .addIngredient('+', region.increaseSizeItem)
-            .addIngredient('-', region.decreaseSizeItem)
-            .addIngredient('d', region.displaySizeItem)
-            .addIngredient('v', region.visualizeRegionItem)
-            .build()
-        
+    override val menu = TileEntityMenu.cachedWindow {
+        upperGui by gui(
+            "v . . . . . . . .",
+            ". . + . d . - . .",
+            ". . . . . . . . ."
+        ) {
+            '+' by region.increaseSizeItem
+            '-' by region.decreaseSizeItem
+            'd' by region.displaySizeItem
+            'v' by region.visualizeRegionItem
+        }
     }
     
 }
