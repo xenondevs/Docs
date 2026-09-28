@@ -19,11 +19,11 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="zensical-0.0.53">
+      <meta name="generator" content="zensical-0.0.65">
     
     
       
-        <title>Compound - CBF Documentation</title>
+        <title>Compounds - CBF Documentation</title>
       
     
     
@@ -41,12 +41,12 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.40d3fdbb.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Compound
+              Compounds
             
           </span>
         </div>
@@ -569,20 +569,20 @@
 stored as binary data (It will of course be cached after the first time it is requested).</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test1&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">123</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test2&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test3&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test4&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test2&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">321</span><span class="p">)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;test5&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="o">[</span><span class="s">&quot;list&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="m">321</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">compound</span><span class="o">[</span><span class="s">"test1"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">123</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">compound</span><span class="o">[</span><span class="s">"test2"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"test"</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">compound</span><span class="o">[</span><span class="s">"test3"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">"test4"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span><span class="s">"test"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s">"test2"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">321</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">compound</span><span class="o">[</span><span class="s">"test5"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="o">[</span><span class="s">"list"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="m">321</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>This will create a compound with the following data:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    &quot;test1&quot;: 123
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    &quot;test2&quot;: test
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    &quot;test3&quot;: true
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    &quot;test4&quot;: {test=123, test2=321}
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    &quot;test5&quot;: {
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        &quot;list&quot;: [123, 321]
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    "test1": 123
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    "test2": test
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    "test3": true
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    "test4": {test=123, test2=321}
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    "test5": {
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        "list": [123, 321]
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    }
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>}
 </code></pre></div>
@@ -591,11 +591,11 @@ stored as binary data (It will of course be cached after the first time it is re
 </code></pre></div>
 <p>We can then deserialize it, and get back the same data:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cbf</span><span class="p">.</span><span class="na">read</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">!!</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test1&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints 123</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test2&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints test</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test3&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints true</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;test4&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints {test=123, test2=321}</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;test5&quot;</span><span class="p">)</span><span class="o">!!</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints [123, 321]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"test1"</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints 123</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"test2"</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints test</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="kt">Boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"test3"</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints true</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">"test4"</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints {test=123, test2=321}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">Compound</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"test5"</span><span class="p">)</span><span class="o">!!</span><span class="p">.</span><span class="na">get</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">"list"</span><span class="p">))</span><span class="w"> </span><span class="c1">// prints [123, 321]</span>
 </code></pre></div>
 <h2 id="entry-providers">Entry providers<a class="headerlink" href="#entry-providers" title="Permanent link">&para;</a></h2>
 <p>Using <code class="highlight"><span class="n">Compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span></code>, you can obtain a 
@@ -604,50 +604,50 @@ that will contain the value of type <code>T</code> under the given key.</p>
 <h3 id="non-defaulting">Non-defaulting<a class="headerlink" href="#non-defaulting" title="Permanent link">&para;</a></h3>
 <p>Non-defaulting entry providers will contain <code>null</code> if there is no value under the given key.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
 </code></pre></div>
 <p>Changing the value of the provider updates the value stored inside the compound:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// null</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
 </code></pre></div>
 <p>And vice versa, if you update the value inside the compound, the provider will be automatically updated as well:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 2</span>
 </code></pre></div>
 <p>Once you've registered an entry provider for a key, the type under this key is constrained to the type of the entry
 provider.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// no entry provider: type under key &quot;a&quot; can be changed</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// no entry provider: type under key "a" can be changed</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"1"</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">// with entry provider: type is constrained to provider&#39;s type</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Int (value type) is not a subtype of kotlin.String? (entry type)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">// with entry provider: type is constrained to provider's type</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Int (value type) is not a subtype of kotlin.String? (entry type)</span>
 </code></pre></div>
 <h3 id="defaulting">Defaulting<a class="headerlink" href="#defaulting" title="Permanent link">&para;</a></h3>
 <p>Defaulting entry providers cannot be <code>null</code>. Instead, a default value is lazily generated using a predefined lambda
 if there initially is no value under the given key.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">println</span><span class="p">(</span><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
 </code></pre></div>
 <p>Note that defaulting entry providers introduce an additional type constraint of non-nullability to the type under the
 key, meaning entries cannot be removed (i.e. set to <code>null</code>).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compound</span><span class="p">()</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">// non-defaulting entry provider: value can be removed (set to null)</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;a&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">compound</span><span class="o">[</span><span class="s">"a"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">// default entry provider: value cannot be removed (set to null)</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry1</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">&quot;b&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Nothing? (value type) is not a subtype of kotlin.Int (entry type)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="kd">var</span><span class="w"> </span><span class="nv">entry1</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">compound</span><span class="p">.</span><span class="na">entry</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"b"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">compound</span><span class="o">[</span><span class="s">"b"</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// IllegalArgumentException: kotlin.Nothing? (value type) is not a subtype of kotlin.Int (entry type)</span>
 </code></pre></div>
 
 
@@ -761,10 +761,14 @@ key, meaning entries cannot be removed (i.e. set to <code>null</code>).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../assets/javascripts/bundle.c04ba553.min.js"></script>
       
         <script src="../assets/js/mathjax.js"></script>
       

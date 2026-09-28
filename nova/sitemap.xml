@@ -61,7 +61,13 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/initialization/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/providers/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/configs/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/registries/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/contexts/</loc>
@@ -73,7 +79,10 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/build-logic/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/creating-items/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/overview/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/item-model-definitions/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/items/item-behaviors/</loc>
@@ -97,13 +106,13 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/blocks/block-behaviors/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity/introduction/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/blocks/tile-entities/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity/gui/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/guitextures/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity/region/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/tile-entity-menu/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/introduction/</loc>
@@ -116,9 +125,6 @@
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/fonts/fonts/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/fonts/guitextures/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/fonts/actionbar/</loc>
@@ -295,10 +301,16 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/hitboxes/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/misc/events/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/regions/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/misc/scheduler/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/events/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/scheduler/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.24-0.25/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.23-0.24/</loc>

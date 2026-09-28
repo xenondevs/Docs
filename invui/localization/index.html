@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="zensical-0.0.53">
+      <meta name="generator" content="zensical-0.0.65">
     
     
       
@@ -43,12 +43,12 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.40d3fdbb.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -726,8 +726,8 @@
 <p>To add translations for a new language, you can call <code class="highlight"><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">Locale</span><span class="w"> </span><span class="n">locale</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">translations</span><span class="p">)</span></code>.  The <code>lang</code> parameter is the language code of the language you want to add. The <code>translations</code> parameter should be a map containing the translation keys and their translations.</p>
 <p>If your translations are stored in a json structure like this:</p>
 <div class="highlight"><span class="filename">en_us.json</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;translation.key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;other.translation.key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World 2&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"translation.key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"other.translation.key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World 2"</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
 </code></pre></div>
 <p>These translations are interpreted as <a href="https://docs.advntr.dev/minimessage/index.html">MiniMessage</a> strings. Argument placeholders in translations are defined using <code>&lt;arg:index&gt;</code> or with custom names like <code>&lt;name&gt;</code>, as explained on the <a href="https://docs.advntr.dev/minimessage/translator.html#using-a-minimessage-translator">MiniMessage Translator</a> page.</p>
@@ -735,11 +735,11 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Kotlin</label><label for="__tabbed_1_2">Java</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">&quot;en_us&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;en_us.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Charsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">"en_us"</span><span class="p">,</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"en_us.json"</span><span class="p">),</span><span class="w"> </span><span class="n">Charsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">&quot;en_us&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&quot;en_us.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">loadLanguage</span><span class="p">(</span><span class="s">"en_us"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"en_us.json"</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">);</span>
 </code></pre></div>
 </div>
 </div>
@@ -764,17 +764,17 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">,</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="s">&quot;invui.example_window.title&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">&quot;&lt;aqua&gt;Example Window&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">&quot;&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="s">"invui.example_window.title"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">"&lt;aqua&gt;Example Window"</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s">"invui.example_window.btn.name"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="s">"&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;"</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">))</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">val</span><span class="w"> </span><span class="nv">itemBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ItemBuilder</span><span class="p">(</span><span class="n">Material</span><span class="p">.</span><span class="na">DIAMOND</span><span class="p">)</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)))</span><span class="w"> </span><span class="c1">// (1)!</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="p">.</span><span class="na">setPlaceholder</span><span class="p">(</span><span class="s">&quot;placeholder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// (2)!</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">"invui.example_window.btn.name"</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">"A"</span><span class="p">)))</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="p">.</span><span class="na">setPlaceholder</span><span class="p">(</span><span class="s">"placeholder"</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">"B"</span><span class="p">))</span><span class="w"> </span><span class="c1">// (2)!</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">Window</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="p">.</span><span class="na">setUpperGui</span><span class="p">(</span><span class="n">Gui</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">itemBuilder</span><span class="p">)))</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.title&quot;</span><span class="p">))</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">"invui.example_window.title"</span><span class="p">))</span>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
 </code></pre></div>
 <ol>
@@ -784,17 +784,17 @@
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Languages</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">addLanguage</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="s">&quot;invui.example_window.title&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;aqua&gt;Example Window&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="s">"invui.example_window.title"</span><span class="p">,</span><span class="w"> </span><span class="s">"&lt;aqua&gt;Example Window"</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="s">"invui.example_window.btn.name"</span><span class="p">,</span><span class="w"> </span><span class="s">"&lt;red&gt;Example translation! &lt;arg:0&gt; &lt;placeholder&gt;"</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">));</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">var</span><span class="w"> </span><span class="n">itemBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ItemBuilder</span><span class="p">(</span><span class="n">Material</span><span class="p">.</span><span class="na">DIAMOND</span><span class="p">)</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.btn.name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)))</span><span class="w"> </span><span class="c1">// (1)!</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="p">.</span><span class="na">setPlaceholder</span><span class="p">(</span><span class="s">&quot;placeholder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// (2)!</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">"invui.example_window.btn.name"</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">"A"</span><span class="p">)))</span><span class="w"> </span><span class="c1">// (1)!</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="p">.</span><span class="na">setPlaceholder</span><span class="p">(</span><span class="s">"placeholder"</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">.</span><span class="na">text</span><span class="p">(</span><span class="s">"B"</span><span class="p">));</span><span class="w"> </span><span class="c1">// (2)!</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">Window</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">.</span><span class="na">setUpperGui</span><span class="p">(</span><span class="n">Gui</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">simple</span><span class="p">(</span><span class="n">itemBuilder</span><span class="p">)))</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">&quot;invui.example_window.title&quot;</span><span class="p">))</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">translatable</span><span class="p">(</span><span class="s">"invui.example_window.title"</span><span class="p">))</span>
 <a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
 </code></pre></div>
 <ol>
@@ -939,10 +939,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer","content.action.edit","content.tabs.link","content.code.annotate","content.code.copy","content.code.select"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../assets/javascripts/bundle.c04ba553.min.js"></script>
       
         <script src="../assets/js/mathjax.js"></script>
       
