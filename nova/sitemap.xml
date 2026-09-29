@@ -1,130 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/setup/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/configuration/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/faq/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/itemsadder/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/nexo/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/vanilla/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/machines/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/items/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/blocks/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/tileentity/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/events/novaloaddataevent/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/events/tileentitybreakblockevent/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/protection/protectionintegration/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/api/player/wailamanager/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/abilities/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/access-widener/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/addon-configuration/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/initialization/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/providers/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/configs/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/registries/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/contexts/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/addon-assets/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/build-logic/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/overview/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/item-model-definitions/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/item-behaviors/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/tools/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/enchantments/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/equipment/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/items/recipes/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/blocks/creating-blocks/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/attachments/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/blocks/block-behaviors/</loc>
       </url>
       <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/blocks/creating-blocks/</loc>
+      </url>
+      <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/blocks/tile-entities/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/guis/guitextures/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/configs/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/guis/tile-entity-menu/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/contexts/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/introduction/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/entity-variants/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/networked-tile-entity/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/custom-network-types/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/fonts/fonts/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/events/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/fonts/actionbar/</loc>
@@ -133,16 +46,127 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/fonts/bossbar/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/worldgen/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/fonts/fonts/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/components/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/guitextures/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/recipe-explorer/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/guis/tile-entity-menu/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/hitboxes/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/initialization/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/enchantments/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/equipment/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/item-behaviors/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/item-model-definitions/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/overview/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/recipes/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/items/tools/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.11-0.12/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.12-0.13/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.13-0.14/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.14-0.15/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.15-0.16/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.16-0.17/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.17-0.18/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.18-0.19/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.19-0.20/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.20-0.21/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.21-0.22/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.22-0.23/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.23-0.24/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.24-0.25/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/mixin/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/providers/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/regions/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/registries/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/addon-assets/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/resourcepack/build-logic/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/scheduler/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/custom-network-types/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/introduction/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/tile-entity-networks/networked-tile-entity/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/biome/</loc>
+      </url>
+      <url>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/carver/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/codec/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/features/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/placed-feature/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/configurations/bamboo/</loc>
@@ -259,19 +283,16 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/custom-feature/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/carver/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/features/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/biome/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/features/placed-feature/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/inject/biome/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/height-provider/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/number-provider/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/block-predicate/</loc>
       </url>
       <url>
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/block-state-provider/</loc>
@@ -280,75 +301,63 @@
         <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/block-state/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/block-predicate/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/height-provider/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/access-widener/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/types/number-provider/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/mixin/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/addon/worldgen/worldgen/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/entity-variants/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/attachments/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/itemsadder/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/abilities/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/compatibility/nexo/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/hitboxes/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/configuration/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/regions/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/faq/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/events/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/scheduler/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/machines/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.24-0.25/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/recipes/vanilla/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.23-0.24/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/admin/setup/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.22-0.23/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.21-0.22/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/blocks/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.20-0.21/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/events/novaloaddataevent/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.19-0.20/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/events/tileentitybreakblockevent/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.18-0.19/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/items/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.17-0.18/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/player/wailamanager/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.16-0.17/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/protection/protectionintegration/</loc>
       </url>
       <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.15-0.16/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.14-0.15/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.13-0.14/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.12-0.13/</loc>
-      </url>
-      <url>
-        <loc>https://xenondevs.xyz/docs/nova/addon/migration-guide/0.11-0.12/</loc>
+        <loc>https://xenondevs.xyz/docs/nova/api/tileentity/</loc>
       </url>
 </urlset>
