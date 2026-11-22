@@ -162,6 +162,7 @@ nav:
           - "Regions": "addon/regions.md"
           - "Events": "addon/events.md"
           - "Scheduler": "addon/scheduler.md"
+          - "WAILA": "addon/waila.md"
       - "Versioning":
           - "Migration Guide":
               - "0.24 ➝ 0.25": "addon/migration-guide/0.24-0.25.md"
