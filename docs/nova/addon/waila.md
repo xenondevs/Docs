@@ -2,7 +2,7 @@
 icon: lucide/scan-eye
 ---
 
-# WAILA
+# What Am I Looking At? (WAILA)
 
 ## Info Providers
 
